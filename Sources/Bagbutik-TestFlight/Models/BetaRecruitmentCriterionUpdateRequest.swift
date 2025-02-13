@@ -2,7 +2,14 @@ import Bagbutik_Core
 import Bagbutik_Models
 import Foundation
 
-public struct PromotedPurchaseImageUpdateRequest: Codable, Sendable, RequestBody {
+/**
+ # BetaRecruitmentCriterionUpdateRequest
+ The request body you use to update a beta recruitment criterion resource.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/betarecruitmentcriterionupdaterequest>
+ */
+public struct BetaRecruitmentCriterionUpdateRequest: Codable, Sendable, RequestBody {
     public let data: Data
 
     public init(data: Data) {
@@ -21,7 +28,7 @@ public struct PromotedPurchaseImageUpdateRequest: Codable, Sendable, RequestBody
 
     public struct Data: Codable, Sendable, Identifiable {
         public let id: String
-        public var type: String { "promotedPurchaseImages" }
+        public var type: String { "betaRecruitmentCriteria" }
         public var attributes: Attributes?
 
         public init(id: String,
@@ -48,26 +55,20 @@ public struct PromotedPurchaseImageUpdateRequest: Codable, Sendable, RequestBody
         }
 
         public struct Attributes: Codable, Sendable {
-            public var sourceFileChecksum: String?
-            public var uploaded: Bool?
+            public var deviceFamilyOsVersionFilters: [DeviceFamilyOsVersionFilter]?
 
-            public init(sourceFileChecksum: String? = nil,
-                        uploaded: Bool? = nil)
-            {
-                self.sourceFileChecksum = sourceFileChecksum
-                self.uploaded = uploaded
+            public init(deviceFamilyOsVersionFilters: [DeviceFamilyOsVersionFilter]? = nil) {
+                self.deviceFamilyOsVersionFilters = deviceFamilyOsVersionFilters
             }
 
             public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: AnyCodingKey.self)
-                sourceFileChecksum = try container.decodeIfPresent(String.self, forKey: "sourceFileChecksum")
-                uploaded = try container.decodeIfPresent(Bool.self, forKey: "uploaded")
+                deviceFamilyOsVersionFilters = try container.decodeIfPresent([DeviceFamilyOsVersionFilter].self, forKey: "deviceFamilyOsVersionFilters")
             }
 
             public func encode(to encoder: Encoder) throws {
                 var container = encoder.container(keyedBy: AnyCodingKey.self)
-                try container.encodeIfPresent(sourceFileChecksum, forKey: "sourceFileChecksum")
-                try container.encodeIfPresent(uploaded, forKey: "uploaded")
+                try container.encodeIfPresent(deviceFamilyOsVersionFilters, forKey: "deviceFamilyOsVersionFilters")
             }
         }
     }

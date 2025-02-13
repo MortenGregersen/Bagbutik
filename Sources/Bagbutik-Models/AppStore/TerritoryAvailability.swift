@@ -119,6 +119,9 @@ public struct TerritoryAvailability: Codable, Sendable, Identifiable {
             case processingToAvailable = "PROCESSING_TO_AVAILABLE"
             case processingToNotAvailable = "PROCESSING_TO_NOT_AVAILABLE"
             case processingToPreOrder = "PROCESSING_TO_PRE_ORDER"
+            case traderStatusNotProvided = "TRADER_STATUS_NOT_PROVIDED"
+            case traderStatusVerificationFailed = "TRADER_STATUS_VERIFICATION_FAILED"
+            case traderStatusVerificationStatusMissing = "TRADER_STATUS_VERIFICATION_STATUS_MISSING"
             case unverifiedGrn = "UNVERIFIED_GRN"
         }
     }

@@ -56,6 +56,7 @@ public struct BetaGroup: Codable, Sendable, Identifiable {
         public var feedbackEnabled: Bool?
         public var hasAccessToAllBuilds: Bool?
         public var iosBuildsAvailableForAppleSiliconMac: Bool?
+        public var iosBuildsAvailableForAppleVision: Bool?
         public var isInternalGroup: Bool?
         public var name: String?
         public var publicLink: String?
@@ -68,6 +69,7 @@ public struct BetaGroup: Codable, Sendable, Identifiable {
                     feedbackEnabled: Bool? = nil,
                     hasAccessToAllBuilds: Bool? = nil,
                     iosBuildsAvailableForAppleSiliconMac: Bool? = nil,
+                    iosBuildsAvailableForAppleVision: Bool? = nil,
                     isInternalGroup: Bool? = nil,
                     name: String? = nil,
                     publicLink: String? = nil,
@@ -80,6 +82,7 @@ public struct BetaGroup: Codable, Sendable, Identifiable {
             self.feedbackEnabled = feedbackEnabled
             self.hasAccessToAllBuilds = hasAccessToAllBuilds
             self.iosBuildsAvailableForAppleSiliconMac = iosBuildsAvailableForAppleSiliconMac
+            self.iosBuildsAvailableForAppleVision = iosBuildsAvailableForAppleVision
             self.isInternalGroup = isInternalGroup
             self.name = name
             self.publicLink = publicLink
@@ -95,6 +98,7 @@ public struct BetaGroup: Codable, Sendable, Identifiable {
             feedbackEnabled = try container.decodeIfPresent(Bool.self, forKey: "feedbackEnabled")
             hasAccessToAllBuilds = try container.decodeIfPresent(Bool.self, forKey: "hasAccessToAllBuilds")
             iosBuildsAvailableForAppleSiliconMac = try container.decodeIfPresent(Bool.self, forKey: "iosBuildsAvailableForAppleSiliconMac")
+            iosBuildsAvailableForAppleVision = try container.decodeIfPresent(Bool.self, forKey: "iosBuildsAvailableForAppleVision")
             isInternalGroup = try container.decodeIfPresent(Bool.self, forKey: "isInternalGroup")
             name = try container.decodeIfPresent(String.self, forKey: "name")
             publicLink = try container.decodeIfPresent(String.self, forKey: "publicLink")
@@ -110,6 +114,7 @@ public struct BetaGroup: Codable, Sendable, Identifiable {
             try container.encodeIfPresent(feedbackEnabled, forKey: "feedbackEnabled")
             try container.encodeIfPresent(hasAccessToAllBuilds, forKey: "hasAccessToAllBuilds")
             try container.encodeIfPresent(iosBuildsAvailableForAppleSiliconMac, forKey: "iosBuildsAvailableForAppleSiliconMac")
+            try container.encodeIfPresent(iosBuildsAvailableForAppleVision, forKey: "iosBuildsAvailableForAppleVision")
             try container.encodeIfPresent(isInternalGroup, forKey: "isInternalGroup")
             try container.encodeIfPresent(name, forKey: "name")
             try container.encodeIfPresent(publicLink, forKey: "publicLink")
@@ -122,14 +127,20 @@ public struct BetaGroup: Codable, Sendable, Identifiable {
 
     public struct Relationships: Codable, Sendable {
         public var app: App?
+        public var betaRecruitmentCriteria: BetaRecruitmentCriteria?
+        public var betaRecruitmentCriterionCompatibleBuildCheck: BetaRecruitmentCriterionCompatibleBuildCheck?
         public var betaTesters: BetaTesters?
         public var builds: Builds?
 
         public init(app: App? = nil,
+                    betaRecruitmentCriteria: BetaRecruitmentCriteria? = nil,
+                    betaRecruitmentCriterionCompatibleBuildCheck: BetaRecruitmentCriterionCompatibleBuildCheck? = nil,
                     betaTesters: BetaTesters? = nil,
                     builds: Builds? = nil)
         {
             self.app = app
+            self.betaRecruitmentCriteria = betaRecruitmentCriteria
+            self.betaRecruitmentCriterionCompatibleBuildCheck = betaRecruitmentCriterionCompatibleBuildCheck
             self.betaTesters = betaTesters
             self.builds = builds
         }
@@ -137,6 +148,8 @@ public struct BetaGroup: Codable, Sendable, Identifiable {
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: AnyCodingKey.self)
             app = try container.decodeIfPresent(App.self, forKey: "app")
+            betaRecruitmentCriteria = try container.decodeIfPresent(BetaRecruitmentCriteria.self, forKey: "betaRecruitmentCriteria")
+            betaRecruitmentCriterionCompatibleBuildCheck = try container.decodeIfPresent(BetaRecruitmentCriterionCompatibleBuildCheck.self, forKey: "betaRecruitmentCriterionCompatibleBuildCheck")
             betaTesters = try container.decodeIfPresent(BetaTesters.self, forKey: "betaTesters")
             builds = try container.decodeIfPresent(Builds.self, forKey: "builds")
         }
@@ -144,6 +157,8 @@ public struct BetaGroup: Codable, Sendable, Identifiable {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: AnyCodingKey.self)
             try container.encodeIfPresent(app, forKey: "app")
+            try container.encodeIfPresent(betaRecruitmentCriteria, forKey: "betaRecruitmentCriteria")
+            try container.encodeIfPresent(betaRecruitmentCriterionCompatibleBuildCheck, forKey: "betaRecruitmentCriterionCompatibleBuildCheck")
             try container.encodeIfPresent(betaTesters, forKey: "betaTesters")
             try container.encodeIfPresent(builds, forKey: "builds")
         }
@@ -192,6 +207,71 @@ public struct BetaGroup: Codable, Sendable, Identifiable {
                     try container.encode(id, forKey: "id")
                     try container.encode(type, forKey: "type")
                 }
+            }
+        }
+
+        public struct BetaRecruitmentCriteria: Codable, Sendable {
+            @NullCodable public var data: Data?
+            public var links: RelationshipLinks?
+
+            public init(data: Data? = nil,
+                        links: RelationshipLinks? = nil)
+            {
+                self.data = data
+                self.links = links
+            }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                data = try container.decodeIfPresent(Data.self, forKey: "data")
+                links = try container.decodeIfPresent(RelationshipLinks.self, forKey: "links")
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: AnyCodingKey.self)
+                try container.encode(data, forKey: "data")
+                try container.encodeIfPresent(links, forKey: "links")
+            }
+
+            public struct Data: Codable, Sendable, Identifiable {
+                public let id: String
+                public var type: String { "betaRecruitmentCriteria" }
+
+                public init(id: String) {
+                    self.id = id
+                }
+
+                public init(from decoder: Decoder) throws {
+                    let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                    id = try container.decode(String.self, forKey: "id")
+                    if try container.decode(String.self, forKey: "type") != type {
+                        throw DecodingError.dataCorruptedError(forKey: "type", in: container, debugDescription: "Not matching \(type)")
+                    }
+                }
+
+                public func encode(to encoder: Encoder) throws {
+                    var container = encoder.container(keyedBy: AnyCodingKey.self)
+                    try container.encode(id, forKey: "id")
+                    try container.encode(type, forKey: "type")
+                }
+            }
+        }
+
+        public struct BetaRecruitmentCriterionCompatibleBuildCheck: Codable, Sendable {
+            public var links: RelationshipLinks?
+
+            public init(links: RelationshipLinks? = nil) {
+                self.links = links
+            }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                links = try container.decodeIfPresent(RelationshipLinks.self, forKey: "links")
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: AnyCodingKey.self)
+                try container.encodeIfPresent(links, forKey: "links")
             }
         }
 

@@ -53,14 +53,11 @@ public struct PromotedPurchasesResponse: Codable, Sendable, PagedResponse {
 
     public enum Included: Codable, Sendable {
         case inAppPurchaseV2(InAppPurchaseV2)
-        case promotedPurchaseImage(PromotedPurchaseImage)
         case subscription(Subscription)
 
         public init(from decoder: Decoder) throws {
             if let inAppPurchaseV2 = try? InAppPurchaseV2(from: decoder) {
                 self = .inAppPurchaseV2(inAppPurchaseV2)
-            } else if let promotedPurchaseImage = try? PromotedPurchaseImage(from: decoder) {
-                self = .promotedPurchaseImage(promotedPurchaseImage)
             } else if let subscription = try? Subscription(from: decoder) {
                 self = .subscription(subscription)
             } else {
@@ -72,8 +69,6 @@ public struct PromotedPurchasesResponse: Codable, Sendable, PagedResponse {
         public func encode(to encoder: Encoder) throws {
             switch self {
             case let .inAppPurchaseV2(value):
-                try value.encode(to: encoder)
-            case let .promotedPurchaseImage(value):
                 try value.encode(to: encoder)
             case let .subscription(value):
                 try value.encode(to: encoder)

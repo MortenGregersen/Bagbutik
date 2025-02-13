@@ -46,6 +46,7 @@ public struct Certificate: Codable, Sendable, Identifiable {
     }
 
     public struct Attributes: Codable, Sendable {
+        public var activated: Bool?
         public var certificateContent: String?
         public var certificateType: CertificateType?
         public var displayName: String?
@@ -54,7 +55,8 @@ public struct Certificate: Codable, Sendable, Identifiable {
         public var platform: BundleIdPlatform?
         public var serialNumber: String?
 
-        public init(certificateContent: String? = nil,
+        public init(activated: Bool? = nil,
+                    certificateContent: String? = nil,
                     certificateType: CertificateType? = nil,
                     displayName: String? = nil,
                     expirationDate: Date? = nil,
@@ -62,6 +64,7 @@ public struct Certificate: Codable, Sendable, Identifiable {
                     platform: BundleIdPlatform? = nil,
                     serialNumber: String? = nil)
         {
+            self.activated = activated
             self.certificateContent = certificateContent
             self.certificateType = certificateType
             self.displayName = displayName
@@ -73,6 +76,7 @@ public struct Certificate: Codable, Sendable, Identifiable {
 
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: AnyCodingKey.self)
+            activated = try container.decodeIfPresent(Bool.self, forKey: "activated")
             certificateContent = try container.decodeIfPresent(String.self, forKey: "certificateContent")
             certificateType = try container.decodeIfPresent(CertificateType.self, forKey: "certificateType")
             displayName = try container.decodeIfPresent(String.self, forKey: "displayName")
@@ -84,6 +88,7 @@ public struct Certificate: Codable, Sendable, Identifiable {
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: AnyCodingKey.self)
+            try container.encodeIfPresent(activated, forKey: "activated")
             try container.encodeIfPresent(certificateContent, forKey: "certificateContent")
             try container.encodeIfPresent(certificateType, forKey: "certificateType")
             try container.encodeIfPresent(displayName, forKey: "displayName")

@@ -77,19 +77,7 @@ public struct PromotedPurchase: Codable, Sendable, Identifiable {
 
     public struct Relationships: Codable, Sendable {
         public var inAppPurchaseV2: InAppPurchaseV2?
-        @available(*, deprecated, message: "Apple has marked this property deprecated and it will be removed sometime in the future.")
-        public var promotionImages: PromotionImages? = nil
         public var subscription: Subscription?
-
-        @available(*, deprecated, message: "This uses a property Apple has marked as deprecated.")
-        public init(inAppPurchaseV2: InAppPurchaseV2? = nil,
-                    promotionImages: PromotionImages? = nil,
-                    subscription: Subscription? = nil)
-        {
-            self.inAppPurchaseV2 = inAppPurchaseV2
-            self.promotionImages = promotionImages
-            self.subscription = subscription
-        }
 
         public init(inAppPurchaseV2: InAppPurchaseV2? = nil,
                     subscription: Subscription? = nil)
@@ -101,14 +89,12 @@ public struct PromotedPurchase: Codable, Sendable, Identifiable {
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: AnyCodingKey.self)
             inAppPurchaseV2 = try container.decodeIfPresent(InAppPurchaseV2.self, forKey: "inAppPurchaseV2")
-            promotionImages = try container.decodeIfPresent(PromotionImages.self, forKey: "promotionImages")
             subscription = try container.decodeIfPresent(Subscription.self, forKey: "subscription")
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: AnyCodingKey.self)
             try container.encodeIfPresent(inAppPurchaseV2, forKey: "inAppPurchaseV2")
-            try container.encodeIfPresent(promotionImages, forKey: "promotionImages")
             try container.encodeIfPresent(subscription, forKey: "subscription")
         }
 
@@ -132,58 +118,6 @@ public struct PromotedPurchase: Codable, Sendable, Identifiable {
             public struct Data: Codable, Sendable, Identifiable {
                 public let id: String
                 public var type: String { "inAppPurchases" }
-
-                public init(id: String) {
-                    self.id = id
-                }
-
-                public init(from decoder: Decoder) throws {
-                    let container = try decoder.container(keyedBy: AnyCodingKey.self)
-                    id = try container.decode(String.self, forKey: "id")
-                    if try container.decode(String.self, forKey: "type") != type {
-                        throw DecodingError.dataCorruptedError(forKey: "type", in: container, debugDescription: "Not matching \(type)")
-                    }
-                }
-
-                public func encode(to encoder: Encoder) throws {
-                    var container = encoder.container(keyedBy: AnyCodingKey.self)
-                    try container.encode(id, forKey: "id")
-                    try container.encode(type, forKey: "type")
-                }
-            }
-        }
-
-        public struct PromotionImages: Codable, Sendable {
-            @NullCodable public var data: [Data]?
-            public var links: RelationshipLinks?
-            public var meta: PagingInformation?
-
-            public init(data: [Data]? = nil,
-                        links: RelationshipLinks? = nil,
-                        meta: PagingInformation? = nil)
-            {
-                self.data = data
-                self.links = links
-                self.meta = meta
-            }
-
-            public init(from decoder: Decoder) throws {
-                let container = try decoder.container(keyedBy: AnyCodingKey.self)
-                data = try container.decodeIfPresent([Data].self, forKey: "data")
-                links = try container.decodeIfPresent(RelationshipLinks.self, forKey: "links")
-                meta = try container.decodeIfPresent(PagingInformation.self, forKey: "meta")
-            }
-
-            public func encode(to encoder: Encoder) throws {
-                var container = encoder.container(keyedBy: AnyCodingKey.self)
-                try container.encode(data, forKey: "data")
-                try container.encodeIfPresent(links, forKey: "links")
-                try container.encodeIfPresent(meta, forKey: "meta")
-            }
-
-            public struct Data: Codable, Sendable, Identifiable {
-                public let id: String
-                public var type: String { "promotedPurchaseImages" }
 
                 public init(id: String) {
                     self.id = id

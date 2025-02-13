@@ -2,7 +2,14 @@ import Bagbutik_Core
 import Bagbutik_Models
 import Foundation
 
-public struct PromotedPurchaseImageCreateRequest: Codable, Sendable, RequestBody {
+/**
+ # BetaRecruitmentCriterionCreateRequest
+ The request body you use to create a beta recruitment criterion.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/betarecruitmentcriterioncreaterequest>
+ */
+public struct BetaRecruitmentCriterionCreateRequest: Codable, Sendable, RequestBody {
     public let data: Data
 
     public init(data: Data) {
@@ -20,7 +27,7 @@ public struct PromotedPurchaseImageCreateRequest: Codable, Sendable, RequestBody
     }
 
     public struct Data: Codable, Sendable {
-        public var type: String { "promotedPurchaseImages" }
+        public var type: String { "betaRecruitmentCriteria" }
         public let attributes: Attributes
         public let relationships: Relationships
 
@@ -48,47 +55,41 @@ public struct PromotedPurchaseImageCreateRequest: Codable, Sendable, RequestBody
         }
 
         public struct Attributes: Codable, Sendable {
-            public let fileName: String
-            public let fileSize: Int
+            public let deviceFamilyOsVersionFilters: [DeviceFamilyOsVersionFilter]
 
-            public init(fileName: String,
-                        fileSize: Int)
-            {
-                self.fileName = fileName
-                self.fileSize = fileSize
+            public init(deviceFamilyOsVersionFilters: [DeviceFamilyOsVersionFilter]) {
+                self.deviceFamilyOsVersionFilters = deviceFamilyOsVersionFilters
             }
 
             public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: AnyCodingKey.self)
-                fileName = try container.decode(String.self, forKey: "fileName")
-                fileSize = try container.decode(Int.self, forKey: "fileSize")
+                deviceFamilyOsVersionFilters = try container.decode([DeviceFamilyOsVersionFilter].self, forKey: "deviceFamilyOsVersionFilters")
             }
 
             public func encode(to encoder: Encoder) throws {
                 var container = encoder.container(keyedBy: AnyCodingKey.self)
-                try container.encode(fileName, forKey: "fileName")
-                try container.encode(fileSize, forKey: "fileSize")
+                try container.encode(deviceFamilyOsVersionFilters, forKey: "deviceFamilyOsVersionFilters")
             }
         }
 
         public struct Relationships: Codable, Sendable {
-            public let promotedPurchase: PromotedPurchase
+            public let betaGroup: BetaGroup
 
-            public init(promotedPurchase: PromotedPurchase) {
-                self.promotedPurchase = promotedPurchase
+            public init(betaGroup: BetaGroup) {
+                self.betaGroup = betaGroup
             }
 
             public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: AnyCodingKey.self)
-                promotedPurchase = try container.decode(PromotedPurchase.self, forKey: "promotedPurchase")
+                betaGroup = try container.decode(BetaGroup.self, forKey: "betaGroup")
             }
 
             public func encode(to encoder: Encoder) throws {
                 var container = encoder.container(keyedBy: AnyCodingKey.self)
-                try container.encode(promotedPurchase, forKey: "promotedPurchase")
+                try container.encode(betaGroup, forKey: "betaGroup")
             }
 
-            public struct PromotedPurchase: Codable, Sendable {
+            public struct BetaGroup: Codable, Sendable {
                 public let data: Data
 
                 public init(data: Data) {
@@ -107,7 +108,7 @@ public struct PromotedPurchaseImageCreateRequest: Codable, Sendable, RequestBody
 
                 public struct Data: Codable, Sendable, Identifiable {
                     public let id: String
-                    public var type: String { "promotedPurchases" }
+                    public var type: String { "betaGroups" }
 
                     public init(id: String) {
                         self.id = id

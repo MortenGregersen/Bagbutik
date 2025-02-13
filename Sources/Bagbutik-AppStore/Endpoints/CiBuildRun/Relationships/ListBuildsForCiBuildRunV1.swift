@@ -169,12 +169,15 @@ public enum ListBuildsForCiBuildRunV1 {
 
         public enum BetaGroups: String, Sendable, ParameterValue, Codable, CaseIterable {
             case app
+            case betaRecruitmentCriteria
+            case betaRecruitmentCriterionCompatibleBuildCheck
             case betaTesters
             case builds
             case createdDate
             case feedbackEnabled
             case hasAccessToAllBuilds
             case iosBuildsAvailableForAppleSiliconMac
+            case iosBuildsAvailableForAppleVision
             case isInternalGroup
             case name
             case publicLink

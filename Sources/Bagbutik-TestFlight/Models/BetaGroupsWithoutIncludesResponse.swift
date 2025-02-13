@@ -2,6 +2,13 @@ import Bagbutik_Core
 import Bagbutik_Models
 import Foundation
 
+/**
+ # BetaGroupsWithoutIncludesResponse
+ A response body that contains a list of beta groups without any includes.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/betagroupswithoutincludesresponse>
+ */
 public struct BetaGroupsWithoutIncludesResponse: Codable, Sendable, PagedResponse {
     public typealias Data = BetaGroup
 
