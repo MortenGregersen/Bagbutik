@@ -46,6 +46,13 @@ public struct BetaGroupResponse: Codable, Sendable {
         }.first { $0.id == data.relationships?.app?.data?.id }
     }
 
+    public func getBetaRecruitmentCriteria() -> BetaRecruitmentCriterion? {
+        included?.compactMap { relationship -> BetaRecruitmentCriterion? in
+            guard case let .betaRecruitmentCriterion(betaRecruitmentCriteria) = relationship else { return nil }
+            return betaRecruitmentCriteria
+        }.first { $0.id == data.relationships?.betaRecruitmentCriteria?.data?.id }
+    }
+
     public func getBetaTesters() -> [BetaTester] {
         guard let betaTesterIds = data.relationships?.betaTesters?.data?.map(\.id),
               let betaTesters = included?.compactMap({ relationship -> BetaTester? in
@@ -72,12 +79,15 @@ public struct BetaGroupResponse: Codable, Sendable {
 
     public enum Included: Codable, Sendable {
         case app(App)
+        case betaRecruitmentCriterion(BetaRecruitmentCriterion)
         case betaTester(BetaTester)
         case build(Build)
 
         public init(from decoder: Decoder) throws {
             if let app = try? App(from: decoder) {
                 self = .app(app)
+            } else if let betaRecruitmentCriterion = try? BetaRecruitmentCriterion(from: decoder) {
+                self = .betaRecruitmentCriterion(betaRecruitmentCriterion)
             } else if let betaTester = try? BetaTester(from: decoder) {
                 self = .betaTester(betaTester)
             } else if let build = try? Build(from: decoder) {
@@ -91,6 +101,8 @@ public struct BetaGroupResponse: Codable, Sendable {
         public func encode(to encoder: Encoder) throws {
             switch self {
             case let .app(value):
+                try value.encode(to: encoder)
+            case let .betaRecruitmentCriterion(value):
                 try value.encode(to: encoder)
             case let .betaTester(value):
                 try value.encode(to: encoder)

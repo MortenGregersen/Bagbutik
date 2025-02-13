@@ -51,6 +51,7 @@ public enum GetProfileV1 {
         }
 
         public enum Certificates: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case activated
             case certificateContent
             case certificateType
             case displayName

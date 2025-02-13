@@ -58,6 +58,7 @@ public struct BetaGroupUpdateRequest: Codable, Sendable, RequestBody {
         public struct Attributes: Codable, Sendable {
             public var feedbackEnabled: Bool?
             public var iosBuildsAvailableForAppleSiliconMac: Bool?
+            public var iosBuildsAvailableForAppleVision: Bool?
             public var name: String?
             public var publicLinkEnabled: Bool?
             public var publicLinkLimit: Int?
@@ -65,6 +66,7 @@ public struct BetaGroupUpdateRequest: Codable, Sendable, RequestBody {
 
             public init(feedbackEnabled: Bool? = nil,
                         iosBuildsAvailableForAppleSiliconMac: Bool? = nil,
+                        iosBuildsAvailableForAppleVision: Bool? = nil,
                         name: String? = nil,
                         publicLinkEnabled: Bool? = nil,
                         publicLinkLimit: Int? = nil,
@@ -72,6 +74,7 @@ public struct BetaGroupUpdateRequest: Codable, Sendable, RequestBody {
             {
                 self.feedbackEnabled = feedbackEnabled
                 self.iosBuildsAvailableForAppleSiliconMac = iosBuildsAvailableForAppleSiliconMac
+                self.iosBuildsAvailableForAppleVision = iosBuildsAvailableForAppleVision
                 self.name = name
                 self.publicLinkEnabled = publicLinkEnabled
                 self.publicLinkLimit = publicLinkLimit
@@ -82,6 +85,7 @@ public struct BetaGroupUpdateRequest: Codable, Sendable, RequestBody {
                 let container = try decoder.container(keyedBy: AnyCodingKey.self)
                 feedbackEnabled = try container.decodeIfPresent(Bool.self, forKey: "feedbackEnabled")
                 iosBuildsAvailableForAppleSiliconMac = try container.decodeIfPresent(Bool.self, forKey: "iosBuildsAvailableForAppleSiliconMac")
+                iosBuildsAvailableForAppleVision = try container.decodeIfPresent(Bool.self, forKey: "iosBuildsAvailableForAppleVision")
                 name = try container.decodeIfPresent(String.self, forKey: "name")
                 publicLinkEnabled = try container.decodeIfPresent(Bool.self, forKey: "publicLinkEnabled")
                 publicLinkLimit = try container.decodeIfPresent(Int.self, forKey: "publicLinkLimit")
@@ -92,6 +96,7 @@ public struct BetaGroupUpdateRequest: Codable, Sendable, RequestBody {
                 var container = encoder.container(keyedBy: AnyCodingKey.self)
                 try container.encodeIfPresent(feedbackEnabled, forKey: "feedbackEnabled")
                 try container.encodeIfPresent(iosBuildsAvailableForAppleSiliconMac, forKey: "iosBuildsAvailableForAppleSiliconMac")
+                try container.encodeIfPresent(iosBuildsAvailableForAppleVision, forKey: "iosBuildsAvailableForAppleVision")
                 try container.encodeIfPresent(name, forKey: "name")
                 try container.encodeIfPresent(publicLinkEnabled, forKey: "publicLinkEnabled")
                 try container.encodeIfPresent(publicLinkLimit, forKey: "publicLinkLimit")

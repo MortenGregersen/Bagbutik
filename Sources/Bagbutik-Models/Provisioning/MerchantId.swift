@@ -1,11 +1,23 @@
 import Bagbutik_Core
 import Foundation
 
-public struct PromotedPurchaseImage: Codable, Sendable, Identifiable {
+/**
+ # MerchantId
+ The data structure that represents a merchant ID resource.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/merchantid>
+ */
+public struct MerchantId: Codable, Sendable, Identifiable {
+    /// An opaque resource ID that uniquely identifies the resource. Obtain the merchant ID resource ID from the [List merchant IDs](https://developer.apple.com/documentation/appstoreconnectapi/get-v1-merchantids) response.
     public let id: String
+    /// Navigational links that include the self-link.
     public var links: ResourceLinks?
-    public var type: String { "promotedPurchaseImages" }
+    /// The resource type.
+    public var type: String { "merchantIds" }
+    /// Attributes that describe a merchant ID resource.
     public var attributes: Attributes?
+    /// Navigational links to related data and included resource types and IDs.
     public var relationships: Relationships?
 
     public init(id: String,
@@ -40,106 +52,77 @@ public struct PromotedPurchaseImage: Codable, Sendable, Identifiable {
     }
 
     public struct Attributes: Codable, Sendable {
-        public var assetToken: String?
-        public var assetType: String?
-        public var fileName: String?
-        public var fileSize: Int?
-        public var imageAsset: ImageAsset?
-        public var sourceFileChecksum: String?
-        public var state: State?
-        public var uploadOperations: [UploadOperation]?
+        public var identifier: String?
+        public var name: String?
 
-        public init(assetToken: String? = nil,
-                    assetType: String? = nil,
-                    fileName: String? = nil,
-                    fileSize: Int? = nil,
-                    imageAsset: ImageAsset? = nil,
-                    sourceFileChecksum: String? = nil,
-                    state: State? = nil,
-                    uploadOperations: [UploadOperation]? = nil)
+        public init(identifier: String? = nil,
+                    name: String? = nil)
         {
-            self.assetToken = assetToken
-            self.assetType = assetType
-            self.fileName = fileName
-            self.fileSize = fileSize
-            self.imageAsset = imageAsset
-            self.sourceFileChecksum = sourceFileChecksum
-            self.state = state
-            self.uploadOperations = uploadOperations
+            self.identifier = identifier
+            self.name = name
         }
 
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: AnyCodingKey.self)
-            assetToken = try container.decodeIfPresent(String.self, forKey: "assetToken")
-            assetType = try container.decodeIfPresent(String.self, forKey: "assetType")
-            fileName = try container.decodeIfPresent(String.self, forKey: "fileName")
-            fileSize = try container.decodeIfPresent(Int.self, forKey: "fileSize")
-            imageAsset = try container.decodeIfPresent(ImageAsset.self, forKey: "imageAsset")
-            sourceFileChecksum = try container.decodeIfPresent(String.self, forKey: "sourceFileChecksum")
-            state = try container.decodeIfPresent(State.self, forKey: "state")
-            uploadOperations = try container.decodeIfPresent([UploadOperation].self, forKey: "uploadOperations")
+            identifier = try container.decodeIfPresent(String.self, forKey: "identifier")
+            name = try container.decodeIfPresent(String.self, forKey: "name")
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: AnyCodingKey.self)
-            try container.encodeIfPresent(assetToken, forKey: "assetToken")
-            try container.encodeIfPresent(assetType, forKey: "assetType")
-            try container.encodeIfPresent(fileName, forKey: "fileName")
-            try container.encodeIfPresent(fileSize, forKey: "fileSize")
-            try container.encodeIfPresent(imageAsset, forKey: "imageAsset")
-            try container.encodeIfPresent(sourceFileChecksum, forKey: "sourceFileChecksum")
-            try container.encodeIfPresent(state, forKey: "state")
-            try container.encodeIfPresent(uploadOperations, forKey: "uploadOperations")
-        }
-
-        public enum State: String, Sendable, Codable, CaseIterable {
-            case approved = "APPROVED"
-            case awaitingUpload = "AWAITING_UPLOAD"
-            case failed = "FAILED"
-            case prepareForSubmission = "PREPARE_FOR_SUBMISSION"
-            case rejected = "REJECTED"
-            case uploadComplete = "UPLOAD_COMPLETE"
-            case waitingForReview = "WAITING_FOR_REVIEW"
+            try container.encodeIfPresent(identifier, forKey: "identifier")
+            try container.encodeIfPresent(name, forKey: "name")
         }
     }
 
     public struct Relationships: Codable, Sendable {
-        public var promotedPurchase: PromotedPurchase?
+        public var certificates: Certificates?
 
-        public init(promotedPurchase: PromotedPurchase? = nil) {
-            self.promotedPurchase = promotedPurchase
+        public init(certificates: Certificates? = nil) {
+            self.certificates = certificates
         }
 
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: AnyCodingKey.self)
-            promotedPurchase = try container.decodeIfPresent(PromotedPurchase.self, forKey: "promotedPurchase")
+            certificates = try container.decodeIfPresent(Certificates.self, forKey: "certificates")
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: AnyCodingKey.self)
-            try container.encodeIfPresent(promotedPurchase, forKey: "promotedPurchase")
+            try container.encodeIfPresent(certificates, forKey: "certificates")
         }
 
-        public struct PromotedPurchase: Codable, Sendable {
-            @NullCodable public var data: Data?
+        public struct Certificates: Codable, Sendable {
+            @NullCodable public var data: [Data]?
+            public var links: RelationshipLinks?
+            public var meta: PagingInformation?
 
-            public init(data: Data? = nil) {
+            public init(data: [Data]? = nil,
+                        links: RelationshipLinks? = nil,
+                        meta: PagingInformation? = nil)
+            {
                 self.data = data
+                self.links = links
+                self.meta = meta
             }
 
             public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: AnyCodingKey.self)
-                data = try container.decodeIfPresent(Data.self, forKey: "data")
+                data = try container.decodeIfPresent([Data].self, forKey: "data")
+                links = try container.decodeIfPresent(RelationshipLinks.self, forKey: "links")
+                meta = try container.decodeIfPresent(PagingInformation.self, forKey: "meta")
             }
 
             public func encode(to encoder: Encoder) throws {
                 var container = encoder.container(keyedBy: AnyCodingKey.self)
                 try container.encode(data, forKey: "data")
+                try container.encodeIfPresent(links, forKey: "links")
+                try container.encodeIfPresent(meta, forKey: "meta")
             }
 
             public struct Data: Codable, Sendable, Identifiable {
                 public let id: String
-                public var type: String { "promotedPurchases" }
+                public var type: String { "certificates" }
 
                 public init(id: String) {
                     self.id = id

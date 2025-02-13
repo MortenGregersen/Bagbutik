@@ -39,6 +39,8 @@ public enum ListBetaGroupsV1 {
         case apps([Apps])
         /// The fields to include for returned resources of type betaGroups
         case betaGroups([BetaGroups])
+        /// The fields to include for returned resources of type betaRecruitmentCriteria
+        case betaRecruitmentCriteria([BetaRecruitmentCriteria])
         /// The fields to include for returned resources of type betaTesters
         case betaTesters([BetaTesters])
         /// The fields to include for returned resources of type builds
@@ -92,12 +94,15 @@ public enum ListBetaGroupsV1 {
 
         public enum BetaGroups: String, Sendable, ParameterValue, Codable, CaseIterable {
             case app
+            case betaRecruitmentCriteria
+            case betaRecruitmentCriterionCompatibleBuildCheck
             case betaTesters
             case builds
             case createdDate
             case feedbackEnabled
             case hasAccessToAllBuilds
             case iosBuildsAvailableForAppleSiliconMac
+            case iosBuildsAvailableForAppleVision
             case isInternalGroup
             case name
             case publicLink
@@ -105,6 +110,11 @@ public enum ListBetaGroupsV1 {
             case publicLinkId
             case publicLinkLimit
             case publicLinkLimitEnabled
+        }
+
+        public enum BetaRecruitmentCriteria: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case deviceFamilyOsVersionFilters
+            case lastModifiedDate
         }
 
         public enum BetaTesters: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -173,6 +183,8 @@ public enum ListBetaGroupsV1 {
      */
     public enum Include: String, IncludeParameter, CaseIterable {
         case app
+        case betaRecruitmentCriteria
+        case betaRecruitmentCriterionCompatibleBuildCheck
         case betaTesters
         case builds
     }

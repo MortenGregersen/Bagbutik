@@ -36,6 +36,7 @@ public enum ListCertificatesV1 {
         case certificates([Certificates])
 
         public enum Certificates: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case activated
             case certificateContent
             case certificateType
             case displayName

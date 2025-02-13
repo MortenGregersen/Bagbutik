@@ -128,7 +128,6 @@ public enum GetInAppPurchasesV2 {
         public enum PromotedPurchases: String, Sendable, ParameterValue, Codable, CaseIterable {
             case enabled
             case inAppPurchaseV2
-            case promotionImages
             case state
             case subscription
             case visibleForAllUsers
