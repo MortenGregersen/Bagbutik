@@ -947,7 +947,7 @@ final class SpecTests: XCTestCase {
             XCTFail(); return
         }
         XCTAssertEqual(enumSchema.cases.count, 6)
-        XCTAssertTrue(enumSchema.cases.contains { $0.value == "XKS"})
+        XCTAssertTrue(enumSchema.cases.contains { $0.id == "xks" && $0.value == "XKS"})
 
     }
 
