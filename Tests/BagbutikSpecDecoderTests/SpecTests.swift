@@ -870,6 +870,10 @@ final class SpecTests: XCTestCase {
                             }
                         },
                         "required" : [ "data" ]
+                    },
+                    "TerritoryCode" : {
+                        "type" : "string",
+                        "enum" : [ "ABW", "AFG", "AGO", "AIA", "ALB" ]
                     }
                 }
             }
@@ -938,6 +942,13 @@ final class SpecTests: XCTestCase {
             XCTFail(); return
         }
         XCTAssertTrue(kidsAgeBandProperty.clearable)
+        
+        guard case .enum(let enumSchema) = spec.components.schemas["TerritoryCode"] else {
+            XCTFail(); return
+        }
+        XCTAssertEqual(enumSchema.cases.count, 6)
+        XCTAssertTrue(enumSchema.cases.contains { $0.id == "xks" && $0.value == "XKS"})
+
     }
 
     func testApplyManualPatches_Error() throws {

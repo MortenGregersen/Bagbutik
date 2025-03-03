@@ -252,6 +252,14 @@ public struct Spec: Decodable {
             components.schemas["AgeRatingDeclarationUpdateRequest"] = .object(ageRatingDeclarationUpdateRequestSchema)
             patchedSchemas.append(.object(ageRatingDeclarationUpdateRequestSchema))
         }
+        
+        // Adds XKS (Kosovo) to the list of `TerritoryCode`s.
+        // Apple's OpenAPI spec doesn't include the country code for Kosovo in the list of codes.
+        if case .enum(var territoryCode) = components.schemas["TerritoryCode"] {
+            territoryCode.cases.append(.init(id: "xks", value: "XKS"))
+            components.schemas["TerritoryCode"] = .enum(territoryCode)
+            patchedSchemas.append(.enum(territoryCode))
+        }
     }
 
     /// A wrapper for schemas to ease decoding
