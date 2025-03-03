@@ -173,6 +173,12 @@ But it is observed when creating a `ReviewSubmissionItem` with an `AppStoreVersi
 
 In the OpenAPI spec for the App Store Connect API the “Device.deviceClass” schema is said to not include "APPLE_VISION_PRO”. This is not right as “Devices” endpoints can have a “APPLE_VISION_PRO” type.
 
+#### **FB16699896**: App Store Connect API is missing "XKS" (Kosovo) for the TerritoryCode enum
+
+* Submitted: March 3rd, 2025.
+
+In the OpenAPI spec (and documentation) for the App Store Connect API the “TerritoryCode” schema is said to not include "XKS” (Kosovo). This is not right as the “Territories” endpoint returns a “XKS” `TerritoryCode`. Nominations as well can have "XKS" as a `supportedTerritory`.
+
 ### Closed feedback (removed patches)
 
 * **FB9963088**: The xcodeMetrics schema has no properties or attributes in the OpenAPI spec
