@@ -252,13 +252,24 @@ public struct Spec: Decodable {
             components.schemas["AgeRatingDeclarationUpdateRequest"] = .object(ageRatingDeclarationUpdateRequestSchema)
             patchedSchemas.append(.object(ageRatingDeclarationUpdateRequestSchema))
         }
-        
+
         // Adds XKS (Kosovo) to the list of `TerritoryCode`s.
         // Apple's OpenAPI spec doesn't include the country code for Kosovo in the list of codes.
         if case .enum(var territoryCode) = components.schemas["TerritoryCode"] {
             territoryCode.cases.append(.init(id: "xks", value: "XKS"))
             components.schemas["TerritoryCode"] = .enum(territoryCode)
             patchedSchemas.append(.enum(territoryCode))
+        }
+
+        if case .object(var appEventSchema) = components.schemas["AppEvent"],
+           case .schema(var appEventAttributesSchema) = appEventSchema.properties["attributes"]?.type,
+           var purchaseRequirementProperty = appEventAttributesSchema.properties["purchaseRequirement"],
+           case .simple = purchaseRequirementProperty.type {
+            let purchaseRequirementEnum = EnumSchema(name: "PurchaseRequirement", type: "String", caseValues: ["NO_COST_ASSOCIATED", "IN_APP_PURCHASE"])
+            purchaseRequirementProperty.type = .enumSchema(purchaseRequirementEnum)
+            appEventAttributesSchema.properties["purchaseRequirement"] = purchaseRequirementProperty
+            appEventSchema.properties["attributes"]?.type = .schema(appEventAttributesSchema)
+            components.schemas["AppEvent"] = .object(appEventSchema)
         }
     }
 

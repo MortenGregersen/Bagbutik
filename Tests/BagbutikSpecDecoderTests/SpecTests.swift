@@ -874,6 +874,27 @@ final class SpecTests: XCTestCase {
                     "TerritoryCode" : {
                         "type" : "string",
                         "enum" : [ "ABW", "AFG", "AGO", "AIA", "ALB" ]
+                    },
+                    "AppEvent" : {
+                        "type" : "object",
+                        "title" : "AppEvent",
+                        "properties" : {
+                            "type" : {
+                                "type" : "string",
+                                "enum" : [ "appEvents" ]
+                            },
+                            "id" : {
+                                "type" : "string"
+                            },
+                            "attributes" : {
+                                "type" : "object",
+                                "properties" : {
+                                    "purchaseRequirement" : {
+                                        "type" : "string"
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
             }
@@ -942,13 +963,24 @@ final class SpecTests: XCTestCase {
             XCTFail(); return
         }
         XCTAssertTrue(kidsAgeBandProperty.clearable)
-        
-        guard case .enum(let enumSchema) = spec.components.schemas["TerritoryCode"] else {
+
+        guard case .enum(let territoryCodeSchema) = spec.components.schemas["TerritoryCode"] else {
             XCTFail(); return
         }
-        XCTAssertEqual(enumSchema.cases.count, 6)
-        XCTAssertTrue(enumSchema.cases.contains { $0.id == "xks" && $0.value == "XKS"})
+        XCTAssertEqual(territoryCodeSchema.cases.count, 6)
+        XCTAssertTrue(territoryCodeSchema.cases.contains { $0.id == "xks" && $0.value == "XKS" })
 
+        guard case .object(let appEventSchema) = spec.components.schemas["AppEvent"],
+              case .schema(let appEventAttributesSchema) = appEventSchema.properties["attributes"]?.type,
+              let purchaseRequirementProperty = appEventAttributesSchema.properties["purchaseRequirement"],
+              case .enumSchema(let purchaseRequirementEnumSchema) = purchaseRequirementProperty.type
+        else {
+            XCTFail(); return
+        }
+        XCTAssertTrue(purchaseRequirementEnumSchema.cases.count == 2)
+        XCTAssertEqual(purchaseRequirementEnumSchema.cases.sorted(by: {$0.value < $1.value}),
+                       [EnumCase(id: "inAppPurchase", value: "IN_APP_PURCHASE"),
+                        EnumCase(id: "noCostAssociated", value: "NO_COST_ASSOCIATED")])
     }
 
     func testApplyManualPatches_Error() throws {

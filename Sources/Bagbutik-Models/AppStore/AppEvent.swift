@@ -46,7 +46,7 @@ public struct AppEvent: Codable, Sendable, Identifiable {
         public var eventState: EventState?
         public var primaryLocale: String?
         public var priority: Priority?
-        public var purchaseRequirement: String?
+        public var purchaseRequirement: PurchaseRequirement?
         public var purpose: Purpose?
         public var referenceName: String?
         public var territorySchedules: [TerritorySchedules]?
@@ -57,7 +57,7 @@ public struct AppEvent: Codable, Sendable, Identifiable {
                     eventState: EventState? = nil,
                     primaryLocale: String? = nil,
                     priority: Priority? = nil,
-                    purchaseRequirement: String? = nil,
+                    purchaseRequirement: PurchaseRequirement? = nil,
                     purpose: Purpose? = nil,
                     referenceName: String? = nil,
                     territorySchedules: [TerritorySchedules]? = nil)
@@ -82,7 +82,7 @@ public struct AppEvent: Codable, Sendable, Identifiable {
             eventState = try container.decodeIfPresent(EventState.self, forKey: "eventState")
             primaryLocale = try container.decodeIfPresent(String.self, forKey: "primaryLocale")
             priority = try container.decodeIfPresent(Priority.self, forKey: "priority")
-            purchaseRequirement = try container.decodeIfPresent(String.self, forKey: "purchaseRequirement")
+            purchaseRequirement = try container.decodeIfPresent(PurchaseRequirement.self, forKey: "purchaseRequirement")
             purpose = try container.decodeIfPresent(Purpose.self, forKey: "purpose")
             referenceName = try container.decodeIfPresent(String.self, forKey: "referenceName")
             territorySchedules = try container.decodeIfPresent([TerritorySchedules].self, forKey: "territorySchedules")
@@ -162,6 +162,11 @@ public struct AppEvent: Codable, Sendable, Identifiable {
         public enum Priority: String, Sendable, Codable, CaseIterable {
             case high = "HIGH"
             case normal = "NORMAL"
+        }
+
+        public enum PurchaseRequirement: String, Sendable, Codable, CaseIterable {
+            case inAppPurchase = "IN_APP_PURCHASE"
+            case noCostAssociated = "NO_COST_ASSOCIATED"
         }
 
         public enum Purpose: String, Sendable, Codable, CaseIterable {
