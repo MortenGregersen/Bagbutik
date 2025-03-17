@@ -978,7 +978,7 @@ final class SpecTests: XCTestCase {
             XCTFail(); return
         }
         XCTAssertTrue(purchaseRequirementEnumSchema.cases.count == 2)
-        XCTAssertEqual(purchaseRequirementEnumSchema.cases.sorted(using: KeyPathComparator(\.value)),
+        XCTAssertEqual(purchaseRequirementEnumSchema.cases.sorted(by: {$0.value < $1.value}),
                        [EnumCase(id: "inAppPurchase", value: "IN_APP_PURCHASE"),
                         EnumCase(id: "noCostAssociated", value: "NO_COST_ASSOCIATED")])
     }
