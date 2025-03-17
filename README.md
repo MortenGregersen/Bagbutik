@@ -179,6 +179,12 @@ In the OpenAPI spec for the App Store Connect API the “Device.deviceClass” s
 
 In the OpenAPI spec (and documentation) for the App Store Connect API the “TerritoryCode” schema is said to not include "XKS” (Kosovo). This is not right as the “Territories” endpoint returns a “XKS” `TerritoryCode`. Nominations as well can have "XKS" as a `supportedTerritory`.
 
+#### **FB16908301**: App Store Connect API Spec is missing list of possible "PurchaseRequirement" on AppEvent
+
+* Submitted: March 17th, 2025.
+
+In the OpenAPI spec (and documentation) for the App Store Connect API the `purchaseRequirement` property on the “AppEvent” schema is a string. As a consumer of the API, we don’t know the possible values of this could be. After doing some research, it looks like there are two options `NO_COST_ASSOCIATED` and `IN_APP_PURCHASE`.
+
 ### Closed feedback (removed patches)
 
 * **FB9963088**: The xcodeMetrics schema has no properties or attributes in the OpenAPI spec
