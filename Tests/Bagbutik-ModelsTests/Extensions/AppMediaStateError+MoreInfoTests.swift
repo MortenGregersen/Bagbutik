@@ -7,6 +7,11 @@ final class AppMediaStateErrorMoreInfoTests: XCTestCase {
         XCTAssertNotEqual(error.betterDescription, error.description)
     }
     
+    func testBetterDescription_ImageAlphaNotAllowed() {
+        let error = AppMediaStateError(code: "IMAGE_ALPHA_NOT_ALLOWED", description: "IMAGE_ALPHA_NOT_ALLOWED")
+        XCTAssertNotEqual(error.betterDescription, error.description)
+    }
+    
     func testBetterDescription_MovieResaveFormat() {
         let error = AppMediaStateError(code: "MOV_RESAVE_FORMAT", description: "MOV_RESAVE_FORMAT")
         XCTAssertNotEqual(error.betterDescription, error.description)
