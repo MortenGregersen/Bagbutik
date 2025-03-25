@@ -36,4 +36,8 @@ public struct SubscriptionLocalizationsResponse: Codable, Sendable, PagedRespons
         try container.encode(links, forKey: "links")
         try container.encodeIfPresent(meta, forKey: "meta")
     }
+
+    public func getSubscription(for subscriptionLocalization: SubscriptionLocalization) -> Subscription? {
+        included?.first { $0.id == subscriptionLocalization.relationships?.subscription?.data?.id }
+    }
 }

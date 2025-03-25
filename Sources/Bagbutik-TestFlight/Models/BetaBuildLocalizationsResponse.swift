@@ -46,4 +46,8 @@ public struct BetaBuildLocalizationsResponse: Codable, Sendable, PagedResponse {
         try container.encode(links, forKey: "links")
         try container.encodeIfPresent(meta, forKey: "meta")
     }
+
+    public func getBuild(for betaBuildLocalization: BetaBuildLocalization) -> Build? {
+        included?.first { $0.id == betaBuildLocalization.relationships?.build?.data?.id }
+    }
 }

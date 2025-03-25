@@ -43,4 +43,9 @@ public struct MerchantIdsResponse: Codable, Sendable, PagedResponse {
         try container.encode(links, forKey: "links")
         try container.encodeIfPresent(meta, forKey: "meta")
     }
+
+    public func getCertificates(for merchantId: MerchantId) -> [Certificate] {
+        guard let certificateIds = merchantId.relationships?.certificates?.data?.map(\.id) else { return [] }
+        return included?.filter { certificateIds.contains($0.id) } ?? []
+    }
 }

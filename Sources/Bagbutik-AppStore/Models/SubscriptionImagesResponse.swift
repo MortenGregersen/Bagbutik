@@ -43,4 +43,8 @@ public struct SubscriptionImagesResponse: Codable, Sendable, PagedResponse {
         try container.encode(links, forKey: "links")
         try container.encodeIfPresent(meta, forKey: "meta")
     }
+
+    public func getSubscription(for subscriptionImage: SubscriptionImage) -> Subscription? {
+        included?.first { $0.id == subscriptionImage.relationships?.subscription?.data?.id }
+    }
 }

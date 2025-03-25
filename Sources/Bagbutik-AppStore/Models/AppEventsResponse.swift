@@ -36,4 +36,9 @@ public struct AppEventsResponse: Codable, Sendable, PagedResponse {
         try container.encode(links, forKey: "links")
         try container.encodeIfPresent(meta, forKey: "meta")
     }
+
+    public func getLocalizations(for appEvent: AppEvent) -> [AppEventLocalization] {
+        guard let localizationIds = appEvent.relationships?.localizations?.data?.map(\.id) else { return [] }
+        return included?.filter { localizationIds.contains($0.id) } ?? []
+    }
 }

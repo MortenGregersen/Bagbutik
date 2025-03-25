@@ -43,4 +43,8 @@ public struct AppScreenshotsResponse: Codable, Sendable, PagedResponse {
         try container.encode(links, forKey: "links")
         try container.encodeIfPresent(meta, forKey: "meta")
     }
+
+    public func getAppScreenshotSet(for appScreenshot: AppScreenshot) -> AppScreenshotSet? {
+        included?.first { $0.id == appScreenshot.relationships?.appScreenshotSet?.data?.id }
+    }
 }

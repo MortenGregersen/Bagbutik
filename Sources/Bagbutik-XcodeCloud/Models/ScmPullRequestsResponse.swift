@@ -47,4 +47,8 @@ public struct ScmPullRequestsResponse: Codable, Sendable, PagedResponse {
         try container.encode(links, forKey: "links")
         try container.encodeIfPresent(meta, forKey: "meta")
     }
+
+    public func getRepository(for scmPullRequest: ScmPullRequest) -> ScmRepository? {
+        included?.first { $0.id == scmPullRequest.relationships?.repository?.data?.id }
+    }
 }

@@ -43,4 +43,8 @@ public struct TerritoryAvailabilitiesResponse: Codable, Sendable, PagedResponse 
         try container.encode(links, forKey: "links")
         try container.encodeIfPresent(meta, forKey: "meta")
     }
+
+    public func getTerritory(for territoryAvailability: TerritoryAvailability) -> Territory? {
+        included?.first { $0.id == territoryAvailability.relationships?.territory?.data?.id }
+    }
 }

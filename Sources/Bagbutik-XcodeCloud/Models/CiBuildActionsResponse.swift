@@ -47,4 +47,8 @@ public struct CiBuildActionsResponse: Codable, Sendable, PagedResponse {
         try container.encode(links, forKey: "links")
         try container.encodeIfPresent(meta, forKey: "meta")
     }
+
+    public func getBuildRun(for ciBuildAction: CiBuildAction) -> CiBuildRun? {
+        included?.first { $0.id == ciBuildAction.relationships?.buildRun?.data?.id }
+    }
 }
