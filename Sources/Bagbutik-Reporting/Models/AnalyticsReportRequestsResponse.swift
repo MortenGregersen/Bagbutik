@@ -45,4 +45,9 @@ public struct AnalyticsReportRequestsResponse: Codable, Sendable, PagedResponse 
         try container.encode(links, forKey: "links")
         try container.encodeIfPresent(meta, forKey: "meta")
     }
+
+    public func getReports(for analyticsReportRequest: AnalyticsReportRequest) -> [AnalyticsReport] {
+        guard let reportIds = analyticsReportRequest.relationships?.reports?.data?.map(\.id) else { return [] }
+        return included?.filter { reportIds.contains($0.id) } ?? []
+    }
 }

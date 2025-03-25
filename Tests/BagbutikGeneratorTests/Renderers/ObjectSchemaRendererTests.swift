@@ -267,7 +267,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
                 }
             }
         }
-        
+
         """#)
     }
 
@@ -1004,6 +1004,104 @@ final class ObjectSchemaRendererTests: XCTestCase {
         """#)
     }
 
+    func testGetterForSingleIncludedType() async throws {
+        // Given
+        let docsLoader = DocsLoader(schemaDocumentationById: [:])
+        let renderer = ObjectSchemaRenderer(docsLoader: docsLoader, shouldFormat: true)
+        let schema = ObjectSchema(
+            name: "AppEventsResponse",
+            url: "https://developer.apple.com/documentation/appstoreconnectapi/appeventsresponse",
+            properties: [
+                "meta": .init(type: .schemaRef("PagingInformation")),
+                "included": .init(type: .arrayOfSchemaRef("AppEventLocalization")),
+                "data": .init(type: .arrayOfSchemaRef("AppEvent")),
+                "links": .init(type: .schemaRef("PagedDocumentLinks"))
+            ],
+            requiredProperties: ["data", "links"]
+        )
+        let appEventSchema = ObjectSchema(
+            name: "AppEvent",
+            url: "some://url",
+            properties: [
+                "type": .init(type: .constant("appEvents")),
+                "relationships": .init(type: .schema(.init(
+                    name: "Relationships",
+                    url: "some://url",
+                    properties: [
+                        "localizations": .init(type: .schema(.init(
+                            name: "AppEventLocalization",
+                            url: "some://url",
+                            properties: [
+                                "data": .init(type: .arrayOfSubSchema(.init(
+                                    name: "Data",
+                                    url: "some://url",
+                                    properties: [
+                                        "id": .init(type: .simple(.string())),
+                                        "type": .init(type: .constant("appEventLocalizations"))
+                                    ]
+                                )))
+                            ],
+                            requiredProperties: ["id", "type"]
+                        )))
+                    ])))
+            ]
+        )
+        let appEventLocalizationSchema = ObjectSchema(
+            name: "AppEventLocalization",
+            url: "some://url",
+            properties: ["type": .init(type: .constant("appEventLocalizations"))]
+        )
+        // When
+        let rendered = try await renderer.render(objectSchema: schema, otherSchemas: [
+            "AppEvent": .object(appEventSchema),
+            "AppEventLocalization": .object(appEventLocalizationSchema)
+        ])
+        // Then
+        XCTAssertEqual(rendered, #"""
+        public struct AppEventsResponse: Codable, Sendable, PagedResponse {
+            public typealias Data = AppEvent
+
+            public let data: [AppEvent]
+            public var included: [AppEventLocalization]?
+            public let links: PagedDocumentLinks
+            public var meta: PagingInformation?
+
+            public init(data: [AppEvent],
+                        included: [AppEventLocalization]? = nil,
+                        links: PagedDocumentLinks,
+                        meta: PagingInformation? = nil)
+            {
+                self.data = data
+                self.included = included
+                self.links = links
+                self.meta = meta
+            }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                data = try container.decode([AppEvent].self, forKey: "data")
+                included = try container.decodeIfPresent([AppEventLocalization].self, forKey: "included")
+                links = try container.decode(PagedDocumentLinks.self, forKey: "links")
+                meta = try container.decodeIfPresent(PagingInformation.self, forKey: "meta")
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: AnyCodingKey.self)
+                try container.encode(data, forKey: "data")
+                try container.encodeIfPresent(included, forKey: "included")
+                try container.encode(links, forKey: "links")
+                try container.encodeIfPresent(meta, forKey: "meta")
+            }
+
+            public func getLocalizations(for appEvent: AppEvent) -> [AppEventLocalization] {
+                guard let localizationIds = appEvent.relationships?.localizations?.data?.map(\.id) else { return [] }
+                return included?.filter { localizationIds.contains($0.id) } ?? []
+            }
+        }
+
+        """#)
+    }
+
     func testRenderCustomCoding() async throws {
         // Given
         let docsLoader = DocsLoader(schemaDocumentationById: [
@@ -1323,7 +1421,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
 
         """#)
     }
-    
+
     func testRenderWithAdditionalProtocol() async throws {
         // Given
         let docsLoader = DocsLoader(schemaDocumentationById: [:])
@@ -1344,10 +1442,10 @@ final class ObjectSchemaRendererTests: XCTestCase {
                 var container = encoder.container(keyedBy: AnyCodingKey.self)
             }
         }
-        
+
         """#)
     }
-    
+
     func testRenderWithDeprecatedRequiredProperty() async throws {
         // Given
         let json = """
@@ -1375,7 +1473,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
                         "required" : [ "data" ],
                         "deprecated" : true
                     }
-        
+
                 },
                 "required" : [ "app" ]
             }
@@ -1451,7 +1549,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
 
         """#)
     }
-    
+
     func testRenderWithDeprecatedRequiredAndOtherProperty() async throws {
         // Given
         let json = """
@@ -1499,7 +1597,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
                         "required" : [ "data" ],
                         "deprecated" : false
                     }
-        
+
                 },
                 "required" : [ "app", "user" ]
             }
@@ -1622,7 +1720,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
 
         """#)
     }
-    
+
     func testRenderWithDeprecatedNonRequiredAndOtherProperty() async throws {
         // Given
         let json = """
@@ -1670,7 +1768,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
                         "required" : [ "data" ],
                         "deprecated" : false
                     }
-        
+
                 },
                 "required" : [ "user" ]
             }

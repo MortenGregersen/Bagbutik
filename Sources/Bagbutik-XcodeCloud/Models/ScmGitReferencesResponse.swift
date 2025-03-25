@@ -47,4 +47,8 @@ public struct ScmGitReferencesResponse: Codable, Sendable, PagedResponse {
         try container.encode(links, forKey: "links")
         try container.encodeIfPresent(meta, forKey: "meta")
     }
+
+    public func getRepository(for scmGitReference: ScmGitReference) -> ScmRepository? {
+        included?.first { $0.id == scmGitReference.relationships?.repository?.data?.id }
+    }
 }

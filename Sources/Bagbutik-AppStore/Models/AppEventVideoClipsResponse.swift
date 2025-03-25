@@ -36,4 +36,8 @@ public struct AppEventVideoClipsResponse: Codable, Sendable, PagedResponse {
         try container.encode(links, forKey: "links")
         try container.encodeIfPresent(meta, forKey: "meta")
     }
+
+    public func getAppEventLocalization(for appEventVideoClip: AppEventVideoClip) -> AppEventLocalization? {
+        included?.first { $0.id == appEventVideoClip.relationships?.appEventLocalization?.data?.id }
+    }
 }

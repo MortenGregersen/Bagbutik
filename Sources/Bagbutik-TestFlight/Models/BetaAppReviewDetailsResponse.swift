@@ -46,4 +46,8 @@ public struct BetaAppReviewDetailsResponse: Codable, Sendable, PagedResponse {
         try container.encode(links, forKey: "links")
         try container.encodeIfPresent(meta, forKey: "meta")
     }
+
+    public func getApp(for betaAppReviewDetail: BetaAppReviewDetail) -> App? {
+        included?.first { $0.id == betaAppReviewDetail.relationships?.app?.data?.id }
+    }
 }

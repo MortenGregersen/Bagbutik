@@ -43,4 +43,8 @@ public struct InAppPurchaseImagesResponse: Codable, Sendable, PagedResponse {
         try container.encode(links, forKey: "links")
         try container.encodeIfPresent(meta, forKey: "meta")
     }
+
+    public func getInAppPurchase(for inAppPurchaseImage: InAppPurchaseImage) -> InAppPurchaseV2? {
+        included?.first { $0.id == inAppPurchaseImage.relationships?.inAppPurchase?.data?.id }
+    }
 }
