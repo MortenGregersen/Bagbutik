@@ -255,7 +255,7 @@ public class ObjectSchemaRenderer: Renderer {
                 ".first { $0.id == data.relationships?.\(relationship.key)?.data?.id }"
             }
             let functionContent: String
-            if case .arrayOfSchemaRef(let includedSchemaRef) = includedProperty.type {
+            if case .arrayOfSchemaRef(let includedSchemaRef) = includedProperty.type, case .arrayOfSchemaRef = dataProperty.type {
                 includedSchemaName = includedSchemaRef
                 if isArrayReturnType {
                     functionContent = """
@@ -264,7 +264,7 @@ public class ObjectSchemaRenderer: Renderer {
                     """
                 } else {
                     functionContent = """
-                    included\(firstFilter)
+                    included?\(firstFilter)
                     """
                 }
             } else if case .arrayOfOneOf(_, let includedOneOf) = includedProperty.type {
