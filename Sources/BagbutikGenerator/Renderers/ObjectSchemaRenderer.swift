@@ -228,6 +228,7 @@ public class ObjectSchemaRenderer: Renderer {
               case .schema(let relationshipsSchema) = dataSchema.properties["relationships"]?.type else { return [] }
         return relationshipsSchema.properties.sorted(by: { $0.key < $1.key }).compactMap { relationship -> String? in
             guard !relationship.value.deprecated, case .schema(let relationshipPropertySchema) = relationship.value.type else { return nil }
+            let pagedType = dataSchemaName.lowercasedFirstLetter()
             let relationshipDataProperty = relationshipPropertySchema.properties["data"]
             let relationshipDataSchema: ObjectSchema
             let isArrayReturnType: Bool
@@ -240,35 +241,47 @@ public class ObjectSchemaRenderer: Renderer {
             } else {
                 return nil
             }
-            guard case .constant(let relationshipType) = relationshipDataSchema.properties["type"]?.type,
-                  case .arrayOfOneOf(_, let includedOneOf) = includedProperty.type
-            else { return nil }
-            let includedSchemaNames = includedOneOf.options.map(\.typeName)
-            guard let includedSchemaName = includedSchemaNames.compactMap({ includedSchemaName -> String? in
-                if case .object(let includedSchema) = otherSchemas[includedSchemaName],
-                   case .constant(let includedType) = includedSchema.properties["type"]?.type,
-                   includedType == relationshipType {
-                    return includedSchemaName
-                }
-                return nil
-            }).first else { return nil }
-            let functionName = "get\(relationship.key.capitalizingFirstLetter())"
-            let returnType = isArrayReturnType ? "[\(includedSchemaName)]" : "\(includedSchemaName)?"
-            return renderFunction(named: functionName,
-                                  parameters: parameters,
-                                  returnType: returnType) {
-                let pagedType = dataSchemaName.lowercasedFirstLetter()
-                let includedCase = includedSchemaName.lowercasedFirstLetter()
-                let functionContent: String
+            guard case .constant(let relationshipType) = relationshipDataSchema.properties["type"]?.type else { return nil }
+            let includedSchemaName: String
+            let relationshipSingular = relationship.key.singularized()
+            let guardIds = if isPagedGetter {
+                "guard let \(relationshipSingular)Ids = \(pagedType).relationships?.\(relationship.key)?.data?.map(\\.id)"
+            } else {
+                "guard let \(relationshipSingular)Ids = data.relationships?.\(relationship.key)?.data?.map(\\.id)"
+            }
+            let firstFilter = if isPagedGetter {
+                ".first { $0.id == \(pagedType).relationships?.\(relationship.key)?.data?.id }"
+            } else {
+                ".first { $0.id == data.relationships?.\(relationship.key)?.data?.id }"
+            }
+            let functionContent: String
+            if case .arrayOfSchemaRef(let includedSchemaRef) = includedProperty.type {
+                includedSchemaName = includedSchemaRef
                 if isArrayReturnType {
-                    let relationshipSingular = relationship.key.singularized()
-                    let guardIds = if isPagedGetter {
-                        "guard let \(relationshipSingular)Ids = \(pagedType).relationships?.\(relationship.key)?.data?.map(\\.id),"
-                    } else {
-                        "guard let \(relationshipSingular)Ids = data.relationships?.\(relationship.key)?.data?.map(\\.id),"
-                    }
                     functionContent = """
-                    \(guardIds)
+                    \(guardIds) else { return [] }
+                    return included?.filter { \(relationshipSingular)Ids.contains($0.id) } ?? []
+                    """
+                } else {
+                    functionContent = """
+                    included\(firstFilter)
+                    """
+                }
+            } else if case .arrayOfOneOf(_, let includedOneOf) = includedProperty.type {
+                let includedSchemaNames = includedOneOf.options.map(\.typeName)
+                guard let foundIncludedSchemaName = includedSchemaNames.compactMap({ includedSchemaName -> String? in
+                    if case .object(let includedSchema) = otherSchemas[includedSchemaName],
+                       case .constant(let includedType) = includedSchema.properties["type"]?.type,
+                       includedType == relationshipType {
+                        return includedSchemaName
+                    }
+                    return nil
+                }).first else { return nil }
+                includedSchemaName = foundIncludedSchemaName
+                let includedCase = includedSchemaName.lowercasedFirstLetter()
+                if isArrayReturnType {
+                    functionContent = """
+                    \(guardIds),
                           let \(relationship.key) = included?.compactMap({ relationship -> \(includedSchemaName)? in
                               guard case let .\(includedCase)(\(relationshipSingular)) = relationship else { return nil }
                               return \(relationshipSingular)Ids.contains(\(relationshipSingular).id) ? \(relationshipSingular) : nil
@@ -278,11 +291,6 @@ public class ObjectSchemaRenderer: Renderer {
                     return \(relationship.key)
                     """
                 } else {
-                    let firstFilter = if isPagedGetter {
-                        ".first { $0.id == \(pagedType).relationships?.\(relationship.key)?.data?.id }"
-                    } else {
-                        ".first { $0.id == data.relationships?.\(relationship.key)?.data?.id }"
-                    }
                     functionContent = """
                     included?.compactMap { relationship -> \(includedSchemaName)? in
                         guard case let .\(includedCase)(\(relationship.key)) = relationship else { return nil }
@@ -290,7 +298,13 @@ public class ObjectSchemaRenderer: Renderer {
                     }\(firstFilter)
                     """
                 }
-                return functionContent
+            } else {
+                return nil
+            }
+            let functionName = "get\(relationship.key.capitalizingFirstLetter())"
+            let returnType = isArrayReturnType ? "[\(includedSchemaName)]" : "\(includedSchemaName)?"
+            return renderFunction(named: functionName, parameters: parameters, returnType: returnType) {
+                functionContent
             }
         }
     }
