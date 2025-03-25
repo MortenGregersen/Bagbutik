@@ -43,4 +43,8 @@ public struct AppStoreReviewAttachmentsResponse: Codable, Sendable, PagedRespons
         try container.encode(links, forKey: "links")
         try container.encodeIfPresent(meta, forKey: "meta")
     }
+
+    public func getAppStoreReviewDetail(for appStoreReviewAttachment: AppStoreReviewAttachment) -> AppStoreReviewDetail? {
+        included?.first { $0.id == appStoreReviewAttachment.relationships?.appStoreReviewDetail?.data?.id }
+    }
 }

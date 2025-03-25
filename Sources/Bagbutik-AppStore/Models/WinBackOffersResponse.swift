@@ -43,4 +43,9 @@ public struct WinBackOffersResponse: Codable, Sendable, PagedResponse {
         try container.encode(links, forKey: "links")
         try container.encodeIfPresent(meta, forKey: "meta")
     }
+
+    public func getPrices(for winBackOffer: WinBackOffer) -> [WinBackOfferPrice] {
+        guard let priceIds = winBackOffer.relationships?.prices?.data?.map(\.id) else { return [] }
+        return included?.filter { priceIds.contains($0.id) } ?? []
+    }
 }

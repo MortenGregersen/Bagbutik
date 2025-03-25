@@ -36,4 +36,8 @@ public struct AppEventScreenshotsResponse: Codable, Sendable, PagedResponse {
         try container.encode(links, forKey: "links")
         try container.encodeIfPresent(meta, forKey: "meta")
     }
+
+    public func getAppEventLocalization(for appEventScreenshot: AppEventScreenshot) -> AppEventLocalization? {
+        included?.first { $0.id == appEventScreenshot.relationships?.appEventLocalization?.data?.id }
+    }
 }

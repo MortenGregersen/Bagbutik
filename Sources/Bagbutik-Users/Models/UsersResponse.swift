@@ -46,4 +46,9 @@ public struct UsersResponse: Codable, Sendable, PagedResponse {
         try container.encode(links, forKey: "links")
         try container.encodeIfPresent(meta, forKey: "meta")
     }
+
+    public func getVisibleApps(for user: User) -> [App] {
+        guard let visibleAppIds = user.relationships?.visibleApps?.data?.map(\.id) else { return [] }
+        return included?.filter { visibleAppIds.contains($0.id) } ?? []
+    }
 }

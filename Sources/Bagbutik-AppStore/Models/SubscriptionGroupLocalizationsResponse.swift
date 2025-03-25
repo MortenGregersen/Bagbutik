@@ -36,4 +36,8 @@ public struct SubscriptionGroupLocalizationsResponse: Codable, Sendable, PagedRe
         try container.encode(links, forKey: "links")
         try container.encodeIfPresent(meta, forKey: "meta")
     }
+
+    public func getSubscriptionGroup(for subscriptionGroupLocalization: SubscriptionGroupLocalization) -> SubscriptionGroup? {
+        included?.first { $0.id == subscriptionGroupLocalization.relationships?.subscriptionGroup?.data?.id }
+    }
 }

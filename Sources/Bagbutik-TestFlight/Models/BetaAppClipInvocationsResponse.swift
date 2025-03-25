@@ -47,4 +47,9 @@ public struct BetaAppClipInvocationsResponse: Codable, Sendable, PagedResponse {
         try container.encode(links, forKey: "links")
         try container.encodeIfPresent(meta, forKey: "meta")
     }
+
+    public func getBetaAppClipInvocationLocalizations(for betaAppClipInvocation: BetaAppClipInvocation) -> [BetaAppClipInvocationLocalization] {
+        guard let betaAppClipInvocationLocalizationIds = betaAppClipInvocation.relationships?.betaAppClipInvocationLocalizations?.data?.map(\.id) else { return [] }
+        return included?.filter { betaAppClipInvocationLocalizationIds.contains($0.id) } ?? []
+    }
 }

@@ -36,4 +36,8 @@ public struct InAppPurchaseLocalizationsResponse: Codable, Sendable, PagedRespon
         try container.encode(links, forKey: "links")
         try container.encodeIfPresent(meta, forKey: "meta")
     }
+
+    public func getInAppPurchaseV2(for inAppPurchaseLocalization: InAppPurchaseLocalization) -> InAppPurchaseV2? {
+        included?.first { $0.id == inAppPurchaseLocalization.relationships?.inAppPurchaseV2?.data?.id }
+    }
 }

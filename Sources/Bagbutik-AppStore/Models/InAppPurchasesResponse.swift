@@ -43,4 +43,9 @@ public struct InAppPurchasesResponse: Codable, Sendable, PagedResponse {
         try container.encode(links, forKey: "links")
         try container.encodeIfPresent(meta, forKey: "meta")
     }
+
+    public func getApps(for inAppPurchase: InAppPurchase) -> [App] {
+        guard let appIds = inAppPurchase.relationships?.apps?.data?.map(\.id) else { return [] }
+        return included?.filter { appIds.contains($0.id) } ?? []
+    }
 }

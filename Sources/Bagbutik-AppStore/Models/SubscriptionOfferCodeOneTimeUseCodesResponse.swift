@@ -36,4 +36,8 @@ public struct SubscriptionOfferCodeOneTimeUseCodesResponse: Codable, Sendable, P
         try container.encode(links, forKey: "links")
         try container.encodeIfPresent(meta, forKey: "meta")
     }
+
+    public func getOfferCode(for subscriptionOfferCodeOneTimeUseCode: SubscriptionOfferCodeOneTimeUseCode) -> SubscriptionOfferCode? {
+        included?.first { $0.id == subscriptionOfferCodeOneTimeUseCode.relationships?.offerCode?.data?.id }
+    }
 }

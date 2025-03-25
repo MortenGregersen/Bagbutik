@@ -43,4 +43,8 @@ public struct AppPreviewsResponse: Codable, Sendable, PagedResponse {
         try container.encode(links, forKey: "links")
         try container.encodeIfPresent(meta, forKey: "meta")
     }
+
+    public func getAppPreviewSet(for appPreview: AppPreview) -> AppPreviewSet? {
+        included?.first { $0.id == appPreview.relationships?.appPreviewSet?.data?.id }
+    }
 }

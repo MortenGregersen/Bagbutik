@@ -43,4 +43,8 @@ public struct AppInfoLocalizationsResponse: Codable, Sendable, PagedResponse {
         try container.encode(links, forKey: "links")
         try container.encodeIfPresent(meta, forKey: "meta")
     }
+
+    public func getAppInfo(for appInfoLocalization: AppInfoLocalization) -> AppInfo? {
+        included?.first { $0.id == appInfoLocalization.relationships?.appInfo?.data?.id }
+    }
 }
