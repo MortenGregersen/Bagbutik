@@ -36,4 +36,8 @@ public struct InAppPurchasePricePointsResponse: Codable, Sendable, PagedResponse
         try container.encode(links, forKey: "links")
         try container.encodeIfPresent(meta, forKey: "meta")
     }
+
+    public func getTerritory(for inAppPurchasePricePoint: InAppPurchasePricePoint) -> Territory? {
+        included?.first { $0.id == inAppPurchasePricePoint.relationships?.territory?.data?.id }
+    }
 }

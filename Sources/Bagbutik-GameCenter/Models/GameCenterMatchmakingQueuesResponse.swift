@@ -46,4 +46,12 @@ public struct GameCenterMatchmakingQueuesResponse: Codable, Sendable, PagedRespo
         try container.encode(links, forKey: "links")
         try container.encodeIfPresent(meta, forKey: "meta")
     }
+
+    public func getExperimentRuleSet(for gameCenterMatchmakingQueue: GameCenterMatchmakingQueue) -> GameCenterMatchmakingRuleSet? {
+        included?.first { $0.id == gameCenterMatchmakingQueue.relationships?.experimentRuleSet?.data?.id }
+    }
+
+    public func getRuleSet(for gameCenterMatchmakingQueue: GameCenterMatchmakingQueue) -> GameCenterMatchmakingRuleSet? {
+        included?.first { $0.id == gameCenterMatchmakingQueue.relationships?.ruleSet?.data?.id }
+    }
 }

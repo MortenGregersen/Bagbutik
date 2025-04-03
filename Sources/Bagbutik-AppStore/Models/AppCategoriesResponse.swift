@@ -43,4 +43,13 @@ public struct AppCategoriesResponse: Codable, Sendable, PagedResponse {
         try container.encode(links, forKey: "links")
         try container.encodeIfPresent(meta, forKey: "meta")
     }
+
+    public func getParent(for appCategory: AppCategory) -> AppCategory? {
+        included?.first { $0.id == appCategory.relationships?.parent?.data?.id }
+    }
+
+    public func getSubcategories(for appCategory: AppCategory) -> [AppCategory] {
+        guard let subcategoryIds = appCategory.relationships?.subcategories?.data?.map(\.id) else { return [] }
+        return included?.filter { subcategoryIds.contains($0.id) } ?? []
+    }
 }

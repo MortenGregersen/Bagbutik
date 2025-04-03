@@ -46,4 +46,8 @@ public struct BetaLicenseAgreementsResponse: Codable, Sendable, PagedResponse {
         try container.encode(links, forKey: "links")
         try container.encodeIfPresent(meta, forKey: "meta")
     }
+
+    public func getApp(for betaLicenseAgreement: BetaLicenseAgreement) -> App? {
+        included?.first { $0.id == betaLicenseAgreement.relationships?.app?.data?.id }
+    }
 }

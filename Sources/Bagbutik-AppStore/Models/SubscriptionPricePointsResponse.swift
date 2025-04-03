@@ -36,4 +36,8 @@ public struct SubscriptionPricePointsResponse: Codable, Sendable, PagedResponse 
         try container.encode(links, forKey: "links")
         try container.encodeIfPresent(meta, forKey: "meta")
     }
+
+    public func getTerritory(for subscriptionPricePoint: SubscriptionPricePoint) -> Territory? {
+        included?.first { $0.id == subscriptionPricePoint.relationships?.territory?.data?.id }
+    }
 }

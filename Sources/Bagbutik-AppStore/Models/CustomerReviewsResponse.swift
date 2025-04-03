@@ -47,4 +47,8 @@ public struct CustomerReviewsResponse: Codable, Sendable, PagedResponse {
         try container.encode(links, forKey: "links")
         try container.encodeIfPresent(meta, forKey: "meta")
     }
+
+    public func getResponse(for customerReview: CustomerReview) -> CustomerReviewResponseV1? {
+        included?.first { $0.id == customerReview.relationships?.response?.data?.id }
+    }
 }

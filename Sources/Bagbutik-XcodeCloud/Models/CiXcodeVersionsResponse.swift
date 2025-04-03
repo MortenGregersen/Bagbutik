@@ -47,4 +47,9 @@ public struct CiXcodeVersionsResponse: Codable, Sendable, PagedResponse {
         try container.encode(links, forKey: "links")
         try container.encodeIfPresent(meta, forKey: "meta")
     }
+
+    public func getMacOsVersions(for ciXcodeVersion: CiXcodeVersion) -> [CiMacOsVersion] {
+        guard let macOsVersionIds = ciXcodeVersion.relationships?.macOsVersions?.data?.map(\.id) else { return [] }
+        return included?.filter { macOsVersionIds.contains($0.id) } ?? []
+    }
 }
