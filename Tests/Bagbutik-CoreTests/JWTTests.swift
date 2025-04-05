@@ -12,8 +12,14 @@ final class JWTTests: XCTestCase {
     -----END PRIVATE KEY-----
     """
 
-    func testInitialEncodedSignature() throws {
+    func testTeamInitialEncodedSignature() throws {
         let jwt = try JWT(keyId: Self.keyId, issuerId: Self.issuerId, privateKey: Self.privateKey, dateFactory: .init(now: Date.distantFuture))
+        XCTAssertFalse(jwt.isExpired)
+        XCTAssertTrue(jwt.encodedSignature.hasPrefix("eyJ"))
+    }
+    
+    func testIndividualInitialEncodedSignature() throws {
+        let jwt = try JWT(keyId: Self.keyId, privateKey: Self.privateKey)
         XCTAssertFalse(jwt.isExpired)
         XCTAssertTrue(jwt.encodedSignature.hasPrefix("eyJ"))
     }
