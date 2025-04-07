@@ -22,12 +22,12 @@ public struct JWT: Sendable {
     private var payload: Payload
     private let privateKey: String
     
-    internal var dateFactory: DateFactory {
+    var dateFactory: DateFactory {
         didSet { payload.dateFactory = dateFactory }
     }
     
     /**
-     Create a new JWT.
+     Create a JWT for a Team key.
      
      Full documentation for how to get the required keys.
      <https://developer.apple.com/documentation/appstoreconnectapi/creating_api_keys_for_app_store_connect_api>
@@ -42,7 +42,7 @@ public struct JWT: Sendable {
     }
     
     /**
-     Create a new JWT.
+     Create a JWT for a Team key.
      
      Full documentation for how to get the required keys.
      <https://developer.apple.com/documentation/appstoreconnectapi/creating_api_keys_for_app_store_connect_api>
@@ -57,7 +57,36 @@ public struct JWT: Sendable {
         try self.init(keyId: keyId, issuerId: issuerId, privateKey: privateKey)
     }
     
-    init(keyId: String, issuerId: String, privateKey: String, dateFactory: DateFactory) throws {
+    /**
+     Create a JWT for an Individual key.
+     
+     Full documentation for how to get the required keys.
+     <https://developer.apple.com/documentation/appstoreconnectapi/creating_api_keys_for_app_store_connect_api>
+     
+     - Parameters:
+        - keyId: Your private key ID from App Store Connect; for example 2X9R4HXF34.
+        - privateKey: The contents of your private key from App Store Connect. Starting with `-----BEGIN PRIVATE KEY-----`.
+      */
+    public init(keyId: String, privateKey: String) throws {
+        try self.init(keyId: keyId, issuerId: nil, privateKey: privateKey, dateFactory: DateFactory())
+    }
+    
+    /**
+     Create a JWT for an Individual key.
+     
+     Full documentation for how to get the required keys.
+     <https://developer.apple.com/documentation/appstoreconnectapi/creating_api_keys_for_app_store_connect_api>
+     
+     - Parameters:
+        - keyId: Your private key ID from App Store Connect; for example 2X9R4HXF34.
+        - privateKeyPath: The file path to your private key from App Store Connect.
+      */
+    public init(keyId: String, privateKeyPath: String) throws {
+        let privateKey = try String(contentsOf: URL(fileURLWithPath: privateKeyPath))
+        try self.init(keyId: keyId, privateKey: privateKey)
+    }
+    
+    init(keyId: String, issuerId: String?, privateKey: String, dateFactory: DateFactory) throws {
         header = Header(kid: keyId)
         payload = Payload(iss: issuerId, dateFactory: dateFactory)
         self.privateKey = privateKey
@@ -84,18 +113,29 @@ public struct JWT: Sendable {
     private struct Header: Encodable {
         let alg = "ES256"
         let kid: String
-        let typ = "kid"
+        let typ = "JWT"
     }
     
     private struct Payload: Encodable, Sendable {
-        let iss: String
+        let type: KeyType
+        let iat = Int(Date.now.timeIntervalSince1970)
         private(set) var exp: Int
         let aud = "appstoreconnect-v1"
+        
         var dateFactory: DateFactory
         var isExpired: Bool { Date(timeIntervalSince1970: TimeInterval(exp)) < Date(timeIntervalSinceNow: 0) }
         
-        init(iss: String, dateFactory: DateFactory) {
-            self.iss = iss
+        enum KeyType {
+            case team(issuerId: String)
+            case individual
+        }
+        
+        init(iss: String?, dateFactory: DateFactory) {
+            if let iss {
+                type = .team(issuerId: iss)
+            } else {
+                type = .individual
+            }
             self.dateFactory = dateFactory
             exp = 0
             renewExp()
@@ -103,13 +143,19 @@ public struct JWT: Sendable {
         
         func encode(to encoder: any Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
-            try container.encode(iss, forKey: .iss)
+            switch type {
+            case .team(let issuerId):
+                try container.encode(issuerId, forKey: .iss)
+            case .individual:
+                try container.encode("user", forKey: .sub)
+            }
+            try container.encode(iat, forKey: .iat)
             try container.encode(exp, forKey: .exp)
             try container.encode(aud, forKey: .aud)
         }
 
         enum CodingKeys: String, CodingKey {
-            case iss, exp, aud
+            case iss, sub, iat, exp, aud
         }
         
         mutating func renewExp() {
@@ -118,7 +164,7 @@ public struct JWT: Sendable {
     }
 }
 
-internal struct DateFactory: Sendable {
+struct DateFactory: Sendable {
     let now: Date?
     
     init(now: Date? = nil) {
