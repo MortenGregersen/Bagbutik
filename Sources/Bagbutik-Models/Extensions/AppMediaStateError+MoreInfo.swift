@@ -8,9 +8,13 @@ public extension AppMediaStateError {
      */
     var betterDescription: String {
         if description == "IMAGE_INCORRECT_DIMENSIONS" {
-            "The dimensions of the screenshot is wrong"
+            "The dimensions of the image is wrong"
         } else if description == "IMAGE_ALPHA_NOT_ALLOWED" {
-            "Screenshots can't contain alpha channels"
+            "Images can't contain alpha channels"
+        } else if description == "IMAGE_BAD_ASPECT_RATIO" {
+            "The aspect ratio of the image is wrong"
+        } else if description == "IMAGE_BAD_DIMENSION_SM_LESS_MIN" {
+            "The image is too small in one dimension"
         } else if description == "MOV_RESAVE_FORMAT" {
             "The App Preview is in the wrong format"
         } else if description == "MOV_RESAVE_STEREO" {
