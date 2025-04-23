@@ -12,6 +12,16 @@ final class AppMediaStateErrorMoreInfoTests: XCTestCase {
         XCTAssertNotEqual(error.betterDescription, error.description)
     }
     
+    func testBetterDescription_ImageBadAspectRatio() {
+        let error = AppMediaStateError(code: "IMAGE_BAD_ASPECT_RATIO", description: "IMAGE_BAD_ASPECT_RATIO")
+        XCTAssertNotEqual(error.betterDescription, error.description)
+    }
+    
+    func testBetterDescription_ImageBadDimensionSmLessMin() {
+        let error = AppMediaStateError(code: "IMAGE_BAD_DIMENSION_SM_LESS_MIN", description: "IMAGE_BAD_DIMENSION_SM_LESS_MIN")
+        XCTAssertNotEqual(error.betterDescription, error.description)
+    }
+    
     func testBetterDescription_MovieResaveFormat() {
         let error = AppMediaStateError(code: "MOV_RESAVE_FORMAT", description: "MOV_RESAVE_FORMAT")
         XCTAssertNotEqual(error.betterDescription, error.description)
