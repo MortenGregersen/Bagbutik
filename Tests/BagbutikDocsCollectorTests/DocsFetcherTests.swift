@@ -203,7 +203,7 @@ final class DocsFetcherTests: XCTestCase {
         await XCTAssertAsyncThrowsError(try await docsFetcher.fetchAllDocs(specFileURL: specFileURL, outputDirURL: outputDirURL, dryRun: false)) {
             // Then
             let nsError = $0 as NSError
-            #if os(Linux) && compiler(<6.0)
+            #if (os(Linux) || os(Android) || os(Windows) || os(WASI)) && compiler(<6.0)
                 XCTAssertEqual(nsError.domain, "NSPOSIXErrorDomain")
                 XCTAssertEqual(nsError.code, 2)
             #else

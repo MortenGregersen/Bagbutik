@@ -1,5 +1,5 @@
 import Foundation
-#if os(Linux)
+#if os(Linux) || os(Android) || os(Windows) || os(WASI)
 import zlibLinux
 #else
 import zlib

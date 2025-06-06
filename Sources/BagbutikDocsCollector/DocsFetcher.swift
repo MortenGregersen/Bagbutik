@@ -171,7 +171,7 @@ public class DocsFetcher {
         do {
             return try JSONDecoder().decode(Documentation.self, from: data)
         } catch {
-            #if os(Linux)
+            #if os(Linux) || os(Android) || os(Windows) || os(WASI) || os(Android) || os(Windows) || os(WASI)
             throw error
             #else
             // Sometimes the response contains HTML-like content - probably rate limiting. Try again
