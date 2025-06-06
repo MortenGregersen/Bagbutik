@@ -52,6 +52,7 @@ jobs:
     name: "Build and Test (Android)"
     runs-on: ubuntu-latest
     steps:
+    - uses: actions/checkout@v4
     - uses: skiptools/swift-android-action@v2
       with:
         swift-version: 6.1
@@ -59,6 +60,7 @@ jobs:
     name: "Build and Test (WASM)"
     runs-on: ubuntu-latest
     steps:
+    - uses: actions/checkout@v4
     - name: Setup SwiftWasm SDK
       uses: swiftwasm/setup-swiftwasm@v2
     - name: Build tests
