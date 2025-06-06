@@ -140,7 +140,7 @@ public class Renderer {
     
     internal func format(_ source: String) throws -> String {
         guard shouldFormat else { return source }
-        return try SwiftFormat.format(source)
+        return try SwiftFormat.format(source).output
     }
     
     struct FunctionParameter: Equatable {
