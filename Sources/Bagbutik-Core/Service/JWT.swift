@@ -53,7 +53,7 @@ public struct JWT: Sendable {
         - privateKeyPath: The file path to your private key from App Store Connect.
       */
     public init(keyId: String, issuerId: String, privateKeyPath: String) throws {
-        let privateKey = try String(contentsOf: URL(fileURLWithPath: privateKeyPath))
+        let privateKey = try String(contentsOf: URL(fileURLWithPath: privateKeyPath), encoding: .utf8)
         try self.init(keyId: keyId, issuerId: issuerId, privateKey: privateKey)
     }
     
@@ -82,7 +82,7 @@ public struct JWT: Sendable {
         - privateKeyPath: The file path to your private key from App Store Connect.
       */
     public init(keyId: String, privateKeyPath: String) throws {
-        let privateKey = try String(contentsOf: URL(fileURLWithPath: privateKeyPath))
+        let privateKey = try String(contentsOf: URL(fileURLWithPath: privateKeyPath), encoding: .utf8)
         try self.init(keyId: keyId, privateKey: privateKey)
     }
     
