@@ -1,7 +1,7 @@
 import BagbutikSpecDecoder
 import Foundation
 #if canImport(FoundationNetworking)
-// Linux support
+// Non-Apple platform support
 import BagbutikPolyfill
 import FoundationNetworking
 #endif
@@ -171,7 +171,7 @@ public class DocsFetcher {
         do {
             return try JSONDecoder().decode(Documentation.self, from: data)
         } catch {
-            #if os(Linux) || os(Android) || os(Windows) || os(WASI) || os(Android) || os(Windows) || os(WASI)
+            #if os(Linux) || os(Android) || os(Windows) || os(WASI)
             throw error
             #else
             // Sometimes the response contains HTML-like content - probably rate limiting. Try again

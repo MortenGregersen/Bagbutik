@@ -3,7 +3,7 @@ import Bagbutik_AppStore
 import Bagbutik_Models
 import XCTest
 #if canImport(FoundationNetworking)
-// Linux support
+// Non-Apple platform support
 import FoundationNetworking
 #endif
 
@@ -187,7 +187,6 @@ class MockURLSession {
     }
 }
 
-#if compiler(<6.0)
 extension AppResponse: Equatable {
     public static func == (lhs: AppResponse, rhs: AppResponse) -> Bool {
         lhs.data.id == rhs.data.id
@@ -247,67 +246,6 @@ extension ServiceError: Equatable {
         }
     }
 }
-#else
-extension AppResponse: @retroactive Equatable {
-    public static func == (lhs: AppResponse, rhs: AppResponse) -> Bool {
-        lhs.data.id == rhs.data.id
-    }
-}
-
-extension App: @retroactive Equatable {
-    public static func == (lhs: App, rhs: App) -> Bool {
-        lhs.id == rhs.id
-    }
-}
-
-extension EmptyResponse: @retroactive Equatable {
-    public static func == (lhs: EmptyResponse, rhs: EmptyResponse) -> Bool {
-        true
-    }
-}
-
-extension ErrorResponse.Errors: @retroactive Equatable {
-    public static func == (lhs: ErrorResponse.Errors, rhs: ErrorResponse.Errors) -> Bool {
-        lhs.code == rhs.code
-            && lhs.detail == rhs.detail
-            && lhs.status == rhs.status
-            && lhs.title == rhs.title
-    }
-}
-
-extension ErrorResponse: @retroactive Equatable {
-    public static func == (lhs: ErrorResponse, rhs: ErrorResponse) -> Bool {
-        lhs.errors == rhs.errors
-    }
-}
-
-extension ServiceError: @retroactive Equatable {
-    public static func == (lhs: ServiceError, rhs: ServiceError) -> Bool {
-        switch (lhs, rhs) {
-        case (.badRequest(let lhsResponse), .badRequest(let rhsResponse)):
-            lhsResponse == rhsResponse
-        case (.unauthorized(let lhsResponse), .unauthorized(let rhsResponse)):
-            lhsResponse == rhsResponse
-        case (.forbidden(let lhsResponse), .forbidden(let rhsResponse)):
-            lhsResponse == rhsResponse
-        case (.notFound(let lhsResponse), .notFound(let rhsResponse)):
-            lhsResponse == rhsResponse
-        case (.conflict(let lhsResponse), .conflict(let rhsResponse)):
-            lhsResponse == rhsResponse
-        case (.unprocessableEntity(let lhsResponse), .unprocessableEntity(let rhsResponse)):
-            lhsResponse == rhsResponse
-        case (.wrongDateFormat(let lhsDateString), .wrongDateFormat(let rhsDateString)):
-            lhsDateString == rhsDateString
-        case (.unknownHTTPError(let lhsStatusCode, let lhsData), .unknownHTTPError(let rhsStatusCode, let rhsData)):
-            lhsStatusCode == rhsStatusCode && lhsData == rhsData
-        case (.unknown(let lhsData), .unknown(let rhsData)):
-            lhsData == rhsData
-        default:
-            fatalError("A error type is missing here.")
-        }
-    }
-}
-#endif
 
 struct CrazyDatesResponse: Decodable {
     let date: Date

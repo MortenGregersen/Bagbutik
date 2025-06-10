@@ -42,7 +42,7 @@ public struct EnumSchema: Decodable, Equatable, Sendable {
         if name == "Type" {
             var parentType = container.codingPath.dropLast(1).last!.stringValue
             if parentType == "properties" {
-                // The codingPath on Linux has an extra layer ("Properties") which isn't present on macOS
+                // The codingPath on non-Apple platforms has an extra layer ("Properties") which isn't present on macOS
                 parentType = container.codingPath.dropLast(2).last!.stringValue
             }
             name = parentType.capitalizingFirstLetter() + name

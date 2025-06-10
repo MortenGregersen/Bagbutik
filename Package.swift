@@ -1,4 +1,4 @@
-// swift-tools-version:5.5
+// swift-tools-version:6.1
 
 import PackageDescription
 
@@ -63,8 +63,8 @@ let package = Package(
             targets: ["BagbutikCLI"])
     ],
     dependencies: [
-        .package(url: "https://github.com/apple/swift-argument-parser", from: "1.5.0"),
-        .package(url: "https://github.com/apple/swift-crypto", from: "3.8.0"),
+        .package(url: "https://github.com/apple/swift-argument-parser", from: "1.5.1"),
+        .package(url: "https://github.com/apple/swift-crypto", from: "3.12.3"),
     ],
     targets: [
         .target(name: "Bagbutik-Core", dependencies: [
@@ -120,4 +120,4 @@ let package = Package(
         .testTarget(name: "BagbutikSpecDecoderTests", dependencies: ["BagbutikSpecDecoder"]),
         .testTarget(name: "BagbutikStringExtensionsTests", dependencies: ["BagbutikStringExtensions"]),
     ],
-    swiftLanguageVersions: [.v5, .version("6")])
+    swiftLanguageModes: [.v5, .v6])
