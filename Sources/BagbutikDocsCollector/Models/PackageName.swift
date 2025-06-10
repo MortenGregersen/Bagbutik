@@ -59,8 +59,10 @@ public enum PackageName: CaseIterable, Codable, Equatable {
             resource = identifier.split(separator: "-").filter { $0 != "_id_" }.map(String.init).last?.lowercasedFirstLetter()
         }
         guard let resource else { return nil }
-        if resource.hasPrefix("actor")
+        if resource.hasPrefix("accessibilityDeclaration")
+            || resource.hasPrefix("actor")
             || resource.lowercased().contains("agerating")
+            || resource.hasPrefix("backgroundAsset")
             || (resource.hasPrefix("build") && !resource.hasPrefix("buildBeta") && !resource.hasPrefix("buildRun"))
             || (resource.hasPrefix("app") && !resource.lowercased().contains("beta"))
             || resource.hasPrefix("automaticPrices")
@@ -69,6 +71,7 @@ public enum PackageName: CaseIterable, Codable, Equatable {
             || resource.hasPrefix("customCode")
             || resource.hasPrefix("customer")
             || resource.hasPrefix("content")
+            || resource.lowercased().contains("deliveryfile")
             || resource.hasPrefix("end")
             || resource.hasPrefix("equalizations")
             || resource.hasPrefix("iap")
@@ -104,8 +107,11 @@ public enum PackageName: CaseIterable, Codable, Equatable {
             || resource.hasPrefix("winBackOffer") {
             return .appStore
         } else if resource.lowercased().contains("achievement")
+            || resource.hasPrefix("activity")
+            || resource.lowercased().contains("challenge")
             || resource.lowercased().contains("compatibleversion")
             || resource.lowercased().contains("compatibilityversion")
+            || resource.hasPrefix("defaultImage")
             || resource.hasPrefix("gameCenter")
             || resource.hasPrefix("localization")
             || resource.lowercased().contains("leaderboard")
@@ -115,6 +121,13 @@ public enum PackageName: CaseIterable, Codable, Equatable {
             || resource.lowercased().contains("rule")
             || resource.hasPrefix("team") {
             return .gameCenter
+        } else if resource.lowercased().contains("beta")
+            || resource.hasPrefix("crashLog")
+            || resource.hasPrefix("individualTester")
+            || resource.lowercased().hasPrefix("prerelease")
+            || resource.lowercased().hasPrefix("publiclink")
+            || resource.hasPrefix("sandbox") {
+            return .testFlight
         } else if resource.hasPrefix("alternative")
             || resource.hasPrefix("marketplace")
             || resource.hasPrefix("version")
@@ -126,6 +139,7 @@ public enum PackageName: CaseIterable, Codable, Equatable {
             || resource.hasPrefix("certificate")
             || resource.hasPrefix("device")
             || resource.hasPrefix("merchant")
+            || resource.hasPrefix("passType")
             || resource.hasPrefix("profile") {
             return .provisioning
         } else if resource.hasPrefix("analytic")
@@ -140,12 +154,6 @@ public enum PackageName: CaseIterable, Codable, Equatable {
             || resource.hasPrefix("segment")
             || resource.hasPrefix("xcodeMetric") {
             return .reporting
-        } else if resource.lowercased().contains("beta")
-            || resource.hasPrefix("individualTester")
-            || resource.lowercased().hasPrefix("prerelease")
-            || resource.lowercased().hasPrefix("publiclink")
-            || resource.hasPrefix("sandbox") {
-            return .testFlight
         } else if resource.hasPrefix("user") {
             return .users
         } else if resource.hasPrefix("action")

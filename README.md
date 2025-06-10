@@ -185,6 +185,12 @@ In the OpenAPI spec (and documentation) for the App Store Connect API the “Ter
 
 In the OpenAPI spec (and documentation) for the App Store Connect API the `purchaseRequirement` property on the “AppEvent” schema is a string. As a consumer of the API, we don’t know the possible values of this could be. After doing some research, it looks like there are two options `NO_COST_ASSOCIATED` and `IN_APP_PURCHASE`.
 
+#### **FB17874677**: The "AgeRatingDeclaration.Attributes" properties is missing the values "INFREQUENT_OR_MILD" and "FREQUENT_OR_INTENSE"
+
+* Submitted: June 10th 2025.
+
+In version 4.0 of the App Store Connect API spec, the the properties of the AgeRatingDeclaration.Attributes type schema, does not have the “INFREQUENT_OR_MILD” and ”FREQUENT_OR_INTENSE”, as can be seen in the documentation, and was present in previous versions of the spec. Now the only possible value is “NONE”.
+
 ### Closed feedback (removed patches)
 
 * **FB9963088**: The xcodeMetrics schema has no properties or attributes in the OpenAPI spec

@@ -94,13 +94,12 @@ public indirect enum PropertyType: Decodable, Equatable, CustomStringConvertible
                             uniqueOptions.append(option)
                         }
                     }),
-                    let oneOfName = container.codingPath.last?.stringValue.capitalizingFirstLetter()
-                {
+                    let oneOfName = container.codingPath.last?.stringValue.capitalizingFirstLetter() {
                     self = .arrayOfOneOf(name: oneOfName, schema: OneOfSchema(options: oneOfOptions))
                 } else if case .schemaRef(let schemaName) = try? container.decodeIfPresent(PropertyType.self, forKey: .items) {
                     self = .arrayOfSchemaRef(schemaName)
                 } else if let schema = try? container.decodeIfPresent(ObjectSchema.self, forKey: .items),
-                          schema.properties.count > 0 || schema.name == "XcodeMetrics" {
+                          !schema.properties.isEmpty || schema.name == "XcodeMetrics" {
                     self = .arrayOfSubSchema(schema)
                 } else {
                     let propertyType = try container.decode(PropertyType.self, forKey: .items)
@@ -135,7 +134,11 @@ public indirect enum PropertyType: Decodable, Equatable, CustomStringConvertible
             }
         } else if let schemaPath = try container.decodeIfPresent(String.self, forKey: .ref),
                   let schemaName = schemaPath.components(separatedBy: "/").last {
-            self = .schemaRef(schemaName)
+            if schemaName == "StringToStringMap" {
+                self = .dictionary(.simple(.string()))
+            } else {
+                self = .schemaRef(schemaName)
+            }
         } else if let oneOfOptions = try container.decodeIfPresent([OneOfOption].self, forKey: .oneOf),
                   let oneOfName = container.codingPath.last?.stringValue.capitalizingFirstLetter() {
             self = .oneOf(name: oneOfName, schema: OneOfSchema(options: oneOfOptions))
