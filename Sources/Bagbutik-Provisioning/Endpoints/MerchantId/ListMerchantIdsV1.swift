@@ -20,13 +20,16 @@ public extension Request {
                                   filters: [ListMerchantIdsV1.Filter]? = nil,
                                   includes: [ListMerchantIdsV1.Include]? = nil,
                                   sorts: [ListMerchantIdsV1.Sort]? = nil,
-                                  limits: [ListMerchantIdsV1.Limit]? = nil) -> Request<MerchantIdsResponse, ErrorResponse>
-    {
-        .init(path: "/v1/merchantIds", method: .get, parameters: .init(fields: fields,
-                                                                       filters: filters,
-                                                                       includes: includes,
-                                                                       sorts: sorts,
-                                                                       limits: limits))
+                                  limits: [ListMerchantIdsV1.Limit]? = nil) -> Request<MerchantIdsResponse, ErrorResponse> {
+        .init(
+            path: "/v1/merchantIds",
+            method: .get,
+            parameters: .init(
+                fields: fields,
+                filters: filters,
+                includes: includes,
+                sorts: sorts,
+                limits: limits))
     }
 }
 

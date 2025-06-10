@@ -16,11 +16,14 @@ public extension Request {
      */
     static func listGameCenterMatchmakingRuleSetsV1(fields: [ListGameCenterMatchmakingRuleSetsV1.Field]? = nil,
                                                     includes: [ListGameCenterMatchmakingRuleSetsV1.Include]? = nil,
-                                                    limits: [ListGameCenterMatchmakingRuleSetsV1.Limit]? = nil) -> Request<GameCenterMatchmakingRuleSetsResponse, ErrorResponse>
-    {
-        .init(path: "/v1/gameCenterMatchmakingRuleSets", method: .get, parameters: .init(fields: fields,
-                                                                                         includes: includes,
-                                                                                         limits: limits))
+                                                    limits: [ListGameCenterMatchmakingRuleSetsV1.Limit]? = nil) -> Request<GameCenterMatchmakingRuleSetsResponse, ErrorResponse> {
+        .init(
+            path: "/v1/gameCenterMatchmakingRuleSets",
+            method: .get,
+            parameters: .init(
+                fields: fields,
+                includes: includes,
+                limits: limits))
     }
 }
 

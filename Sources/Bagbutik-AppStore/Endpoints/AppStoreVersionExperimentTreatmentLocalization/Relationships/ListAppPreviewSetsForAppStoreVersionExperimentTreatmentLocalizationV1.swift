@@ -19,12 +19,15 @@ public extension Request {
                                                                                       fields: [ListAppPreviewSetsForAppStoreVersionExperimentTreatmentLocalizationV1.Field]? = nil,
                                                                                       filters: [ListAppPreviewSetsForAppStoreVersionExperimentTreatmentLocalizationV1.Filter]? = nil,
                                                                                       includes: [ListAppPreviewSetsForAppStoreVersionExperimentTreatmentLocalizationV1.Include]? = nil,
-                                                                                      limits: [ListAppPreviewSetsForAppStoreVersionExperimentTreatmentLocalizationV1.Limit]? = nil) -> Request<AppPreviewSetsResponse, ErrorResponse>
-    {
-        .init(path: "/v1/appStoreVersionExperimentTreatmentLocalizations/\(id)/appPreviewSets", method: .get, parameters: .init(fields: fields,
-                                                                                                                                filters: filters,
-                                                                                                                                includes: includes,
-                                                                                                                                limits: limits))
+                                                                                      limits: [ListAppPreviewSetsForAppStoreVersionExperimentTreatmentLocalizationV1.Limit]? = nil) -> Request<AppPreviewSetsResponse, ErrorResponse> {
+        .init(
+            path: "/v1/appStoreVersionExperimentTreatmentLocalizations/\(id)/appPreviewSets",
+            method: .get,
+            parameters: .init(
+                fields: fields,
+                filters: filters,
+                includes: includes,
+                limits: limits))
     }
 }
 

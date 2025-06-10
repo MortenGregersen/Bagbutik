@@ -61,8 +61,11 @@ public struct PromotedPurchasesResponse: Codable, Sendable, PagedResponse {
             } else if let subscription = try? Subscription(from: decoder) {
                 self = .subscription(subscription)
             } else {
-                throw DecodingError.typeMismatch(Included.self, DecodingError.Context(codingPath: decoder.codingPath,
-                                                                                      debugDescription: "Unknown Included"))
+                throw DecodingError.typeMismatch(
+                    Included.self,
+                    DecodingError.Context(
+                        codingPath: decoder.codingPath,
+                        debugDescription: "Unknown Included"))
             }
         }
 

@@ -20,12 +20,15 @@ public extension Request {
                                                   fields: [ListAppCustomProductPagesForAppV1.Field]? = nil,
                                                   filters: [ListAppCustomProductPagesForAppV1.Filter]? = nil,
                                                   includes: [ListAppCustomProductPagesForAppV1.Include]? = nil,
-                                                  limits: [ListAppCustomProductPagesForAppV1.Limit]? = nil) -> Request<AppCustomProductPagesResponse, ErrorResponse>
-    {
-        .init(path: "/v1/apps/\(id)/appCustomProductPages", method: .get, parameters: .init(fields: fields,
-                                                                                            filters: filters,
-                                                                                            includes: includes,
-                                                                                            limits: limits))
+                                                  limits: [ListAppCustomProductPagesForAppV1.Limit]? = nil) -> Request<AppCustomProductPagesResponse, ErrorResponse> {
+        .init(
+            path: "/v1/apps/\(id)/appCustomProductPages",
+            method: .get,
+            parameters: .init(
+                fields: fields,
+                filters: filters,
+                includes: includes,
+                limits: limits))
     }
 }
 

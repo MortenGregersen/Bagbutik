@@ -14,8 +14,10 @@ public extension Request {
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func deleteGameCenterLeaderboardsForGameCenterLeaderboardSetV1(id: String,
-                                                                          requestBody: GameCenterLeaderboardSetGameCenterLeaderboardsLinkagesRequest) -> Request<EmptyResponse, ErrorResponse>
-    {
-        .init(path: "/v1/gameCenterLeaderboardSets/\(id)/relationships/gameCenterLeaderboards", method: .delete, requestBody: requestBody)
+                                                                          requestBody: GameCenterLeaderboardSetGameCenterLeaderboardsLinkagesRequest) -> Request<EmptyResponse, ErrorResponse> {
+        .init(
+            path: "/v1/gameCenterLeaderboardSets/\(id)/relationships/gameCenterLeaderboards",
+            method: .delete,
+            requestBody: requestBody)
     }
 }

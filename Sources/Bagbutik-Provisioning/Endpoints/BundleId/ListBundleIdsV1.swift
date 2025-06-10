@@ -20,13 +20,16 @@ public extension Request {
                                 filters: [ListBundleIdsV1.Filter]? = nil,
                                 includes: [ListBundleIdsV1.Include]? = nil,
                                 sorts: [ListBundleIdsV1.Sort]? = nil,
-                                limits: [ListBundleIdsV1.Limit]? = nil) -> Request<BundleIdsResponse, ErrorResponse>
-    {
-        .init(path: "/v1/bundleIds", method: .get, parameters: .init(fields: fields,
-                                                                     filters: filters,
-                                                                     includes: includes,
-                                                                     sorts: sorts,
-                                                                     limits: limits))
+                                limits: [ListBundleIdsV1.Limit]? = nil) -> Request<BundleIdsResponse, ErrorResponse> {
+        .init(
+            path: "/v1/bundleIds",
+            method: .get,
+            parameters: .init(
+                fields: fields,
+                filters: filters,
+                includes: includes,
+                sorts: sorts,
+                limits: limits))
     }
 }
 

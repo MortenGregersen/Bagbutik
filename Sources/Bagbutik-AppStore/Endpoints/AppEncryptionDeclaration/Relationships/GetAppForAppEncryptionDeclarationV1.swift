@@ -15,9 +15,11 @@ public extension Request {
      */
     @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
     static func getAppForAppEncryptionDeclarationV1(id: String,
-                                                    fields: [GetAppForAppEncryptionDeclarationV1.Field]? = nil) -> Request<AppWithoutIncludesResponse, ErrorResponse>
-    {
-        .init(path: "/v1/appEncryptionDeclarations/\(id)/app", method: .get, parameters: .init(fields: fields))
+                                                    fields: [GetAppForAppEncryptionDeclarationV1.Field]? = nil) -> Request<AppWithoutIncludesResponse, ErrorResponse> {
+        .init(
+            path: "/v1/appEncryptionDeclarations/\(id)/app",
+            method: .get,
+            parameters: .init(fields: fields))
     }
 }
 

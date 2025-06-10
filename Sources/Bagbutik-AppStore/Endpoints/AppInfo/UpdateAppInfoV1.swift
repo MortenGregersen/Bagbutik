@@ -16,8 +16,10 @@ public extension Request {
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func updateAppInfoV1(id: String,
-                                requestBody: AppInfoUpdateRequest) -> Request<AppInfoResponse, ErrorResponse>
-    {
-        .init(path: "/v1/appInfos/\(id)", method: .patch, requestBody: requestBody)
+                                requestBody: AppInfoUpdateRequest) -> Request<AppInfoResponse, ErrorResponse> {
+        .init(
+            path: "/v1/appInfos/\(id)",
+            method: .patch,
+            requestBody: requestBody)
     }
 }

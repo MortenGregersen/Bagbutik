@@ -13,6 +13,9 @@ public extension Request {
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func createGameCenterAchievementLocalizationV1(requestBody: GameCenterAchievementLocalizationCreateRequest) -> Request<GameCenterAchievementLocalizationResponse, ErrorResponse> {
-        .init(path: "/v1/gameCenterAchievementLocalizations", method: .post, requestBody: requestBody)
+        .init(
+            path: "/v1/gameCenterAchievementLocalizations",
+            method: .post,
+            requestBody: requestBody)
     }
 }

@@ -12,6 +12,9 @@ public extension Request {
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func createAppStoreVersionExperimentTreatmentV1(requestBody: AppStoreVersionExperimentTreatmentCreateRequest) -> Request<AppStoreVersionExperimentTreatmentResponse, ErrorResponse> {
-        .init(path: "/v1/appStoreVersionExperimentTreatments", method: .post, requestBody: requestBody)
+        .init(
+            path: "/v1/appStoreVersionExperimentTreatments",
+            method: .post,
+            requestBody: requestBody)
     }
 }

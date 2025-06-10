@@ -14,8 +14,10 @@ public extension Request {
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func updateInAppPurchaseAppStoreReviewScreenshotV1(id: String,
-                                                              requestBody: InAppPurchaseAppStoreReviewScreenshotUpdateRequest) -> Request<InAppPurchaseAppStoreReviewScreenshotResponse, ErrorResponse>
-    {
-        .init(path: "/v1/inAppPurchaseAppStoreReviewScreenshots/\(id)", method: .patch, requestBody: requestBody)
+                                                              requestBody: InAppPurchaseAppStoreReviewScreenshotUpdateRequest) -> Request<InAppPurchaseAppStoreReviewScreenshotResponse, ErrorResponse> {
+        .init(
+            path: "/v1/inAppPurchaseAppStoreReviewScreenshots/\(id)",
+            method: .patch,
+            requestBody: requestBody)
     }
 }

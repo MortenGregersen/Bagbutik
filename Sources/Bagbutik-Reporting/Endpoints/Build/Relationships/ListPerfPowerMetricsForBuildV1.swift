@@ -16,9 +16,11 @@ public extension Request {
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func listPerfPowerMetricsForBuildV1(id: String,
-                                               filters: [ListPerfPowerMetricsForBuildV1.Filter]? = nil) -> Request<XcodeMetrics, ErrorResponse>
-    {
-        .init(path: "/v1/builds/\(id)/perfPowerMetrics", method: .get, parameters: .init(filters: filters))
+                                               filters: [ListPerfPowerMetricsForBuildV1.Filter]? = nil) -> Request<XcodeMetrics, ErrorResponse> {
+        .init(
+            path: "/v1/builds/\(id)/perfPowerMetrics",
+            method: .get,
+            parameters: .init(filters: filters))
     }
 }
 

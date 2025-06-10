@@ -20,12 +20,15 @@ public extension Request {
                                      fields: [ListAppClipsForAppV1.Field]? = nil,
                                      filters: [ListAppClipsForAppV1.Filter]? = nil,
                                      includes: [ListAppClipsForAppV1.Include]? = nil,
-                                     limits: [ListAppClipsForAppV1.Limit]? = nil) -> Request<AppClipsResponse, ErrorResponse>
-    {
-        .init(path: "/v1/apps/\(id)/appClips", method: .get, parameters: .init(fields: fields,
-                                                                               filters: filters,
-                                                                               includes: includes,
-                                                                               limits: limits))
+                                     limits: [ListAppClipsForAppV1.Limit]? = nil) -> Request<AppClipsResponse, ErrorResponse> {
+        .init(
+            path: "/v1/apps/\(id)/appClips",
+            method: .get,
+            parameters: .init(
+                fields: fields,
+                filters: filters,
+                includes: includes,
+                limits: limits))
     }
 }
 

@@ -22,13 +22,16 @@ public extension Request {
                                              filters: [ListInAppPurchasesV2ForAppV1.Filter]? = nil,
                                              includes: [ListInAppPurchasesV2ForAppV1.Include]? = nil,
                                              sorts: [ListInAppPurchasesV2ForAppV1.Sort]? = nil,
-                                             limits: [ListInAppPurchasesV2ForAppV1.Limit]? = nil) -> Request<InAppPurchasesV2Response, ErrorResponse>
-    {
-        .init(path: "/v1/apps/\(id)/inAppPurchasesV2", method: .get, parameters: .init(fields: fields,
-                                                                                       filters: filters,
-                                                                                       includes: includes,
-                                                                                       sorts: sorts,
-                                                                                       limits: limits))
+                                             limits: [ListInAppPurchasesV2ForAppV1.Limit]? = nil) -> Request<InAppPurchasesV2Response, ErrorResponse> {
+        .init(
+            path: "/v1/apps/\(id)/inAppPurchasesV2",
+            method: .get,
+            parameters: .init(
+                fields: fields,
+                filters: filters,
+                includes: includes,
+                sorts: sorts,
+                limits: limits))
     }
 }
 

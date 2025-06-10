@@ -13,8 +13,10 @@ public extension Request {
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func updateAppEventScreenshotV1(id: String,
-                                           requestBody: AppEventScreenshotUpdateRequest) -> Request<AppEventScreenshotResponse, ErrorResponse>
-    {
-        .init(path: "/v1/appEventScreenshots/\(id)", method: .patch, requestBody: requestBody)
+                                           requestBody: AppEventScreenshotUpdateRequest) -> Request<AppEventScreenshotResponse, ErrorResponse> {
+        .init(
+            path: "/v1/appEventScreenshots/\(id)",
+            method: .patch,
+            requestBody: requestBody)
     }
 }

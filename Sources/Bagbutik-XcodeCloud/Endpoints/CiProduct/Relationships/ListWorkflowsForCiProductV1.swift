@@ -18,11 +18,14 @@ public extension Request {
     static func listWorkflowsForCiProductV1(id: String,
                                             fields: [ListWorkflowsForCiProductV1.Field]? = nil,
                                             includes: [ListWorkflowsForCiProductV1.Include]? = nil,
-                                            limit: Int? = nil) -> Request<CiWorkflowsResponse, ErrorResponse>
-    {
-        .init(path: "/v1/ciProducts/\(id)/workflows", method: .get, parameters: .init(fields: fields,
-                                                                                      includes: includes,
-                                                                                      limit: limit))
+                                            limit: Int? = nil) -> Request<CiWorkflowsResponse, ErrorResponse> {
+        .init(
+            path: "/v1/ciProducts/\(id)/workflows",
+            method: .get,
+            parameters: .init(
+                fields: fields,
+                includes: includes,
+                limit: limit))
     }
 }
 

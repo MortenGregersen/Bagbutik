@@ -15,8 +15,10 @@ public extension Request {
      */
     @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
     static func updateAppStoreVersionExperimentV1(id: String,
-                                                  requestBody: AppStoreVersionExperimentUpdateRequest) -> Request<AppStoreVersionExperimentResponse, ErrorResponse>
-    {
-        .init(path: "/v1/appStoreVersionExperiments/\(id)", method: .patch, requestBody: requestBody)
+                                                  requestBody: AppStoreVersionExperimentUpdateRequest) -> Request<AppStoreVersionExperimentResponse, ErrorResponse> {
+        .init(
+            path: "/v1/appStoreVersionExperiments/\(id)",
+            method: .patch,
+            requestBody: requestBody)
     }
 }

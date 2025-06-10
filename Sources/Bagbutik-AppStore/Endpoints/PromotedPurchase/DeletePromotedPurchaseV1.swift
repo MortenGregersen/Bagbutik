@@ -13,6 +13,8 @@ public extension Request {
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func deletePromotedPurchaseV1(id: String) -> Request<EmptyResponse, ErrorResponse> {
-        .init(path: "/v1/promotedPurchases/\(id)", method: .delete)
+        .init(
+            path: "/v1/promotedPurchases/\(id)",
+            method: .delete)
     }
 }

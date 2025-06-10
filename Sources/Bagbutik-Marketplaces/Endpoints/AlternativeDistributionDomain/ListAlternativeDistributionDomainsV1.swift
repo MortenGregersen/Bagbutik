@@ -14,10 +14,13 @@ public extension Request {
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func listAlternativeDistributionDomainsV1(fields: [ListAlternativeDistributionDomainsV1.Field]? = nil,
-                                                     limit: Int? = nil) -> Request<AlternativeDistributionDomainsResponse, ErrorResponse>
-    {
-        .init(path: "/v1/alternativeDistributionDomains", method: .get, parameters: .init(fields: fields,
-                                                                                          limit: limit))
+                                                     limit: Int? = nil) -> Request<AlternativeDistributionDomainsResponse, ErrorResponse> {
+        .init(
+            path: "/v1/alternativeDistributionDomains",
+            method: .get,
+            parameters: .init(
+                fields: fields,
+                limit: limit))
     }
 }
 

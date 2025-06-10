@@ -15,8 +15,10 @@ public extension Request {
      */
     @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
     static func updateGroupAchievementForGameCenterAchievementV1(id: String,
-                                                                 requestBody: GameCenterAchievementGroupAchievementLinkageRequest) -> Request<EmptyResponse, ErrorResponse>
-    {
-        .init(path: "/v1/gameCenterAchievements/\(id)/relationships/groupAchievement", method: .patch, requestBody: requestBody)
+                                                                 requestBody: GameCenterAchievementGroupAchievementLinkageRequest) -> Request<EmptyResponse, ErrorResponse> {
+        .init(
+            path: "/v1/gameCenterAchievements/\(id)/relationships/groupAchievement",
+            method: .patch,
+            requestBody: requestBody)
     }
 }

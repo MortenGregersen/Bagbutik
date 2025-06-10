@@ -73,8 +73,11 @@ public struct GameCenterEnabledVersionsResponse: Codable, Sendable, PagedRespons
             } else if let gameCenterEnabledVersion = try? GameCenterEnabledVersion(from: decoder) {
                 self = .gameCenterEnabledVersion(gameCenterEnabledVersion)
             } else {
-                throw DecodingError.typeMismatch(Included.self, DecodingError.Context(codingPath: decoder.codingPath,
-                                                                                      debugDescription: "Unknown Included"))
+                throw DecodingError.typeMismatch(
+                    Included.self,
+                    DecodingError.Context(
+                        codingPath: decoder.codingPath,
+                        debugDescription: "Unknown Included"))
             }
         }
 

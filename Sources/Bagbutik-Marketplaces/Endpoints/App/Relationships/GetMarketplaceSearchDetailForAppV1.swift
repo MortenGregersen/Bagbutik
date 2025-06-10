@@ -14,9 +14,11 @@ public extension Request {
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func getMarketplaceSearchDetailForAppV1(id: String,
-                                                   fields: [GetMarketplaceSearchDetailForAppV1.Field]? = nil) -> Request<MarketplaceSearchDetailResponse, ErrorResponse>
-    {
-        .init(path: "/v1/apps/\(id)/marketplaceSearchDetail", method: .get, parameters: .init(fields: fields))
+                                                   fields: [GetMarketplaceSearchDetailForAppV1.Field]? = nil) -> Request<MarketplaceSearchDetailResponse, ErrorResponse> {
+        .init(
+            path: "/v1/apps/\(id)/marketplaceSearchDetail",
+            method: .get,
+            parameters: .init(fields: fields))
     }
 }
 

@@ -18,11 +18,14 @@ public extension Request {
     static func getGameCenterDetailV1(id: String,
                                       fields: [GetGameCenterDetailV1.Field]? = nil,
                                       includes: [GetGameCenterDetailV1.Include]? = nil,
-                                      limits: [GetGameCenterDetailV1.Limit]? = nil) -> Request<GameCenterDetailResponse, ErrorResponse>
-    {
-        .init(path: "/v1/gameCenterDetails/\(id)", method: .get, parameters: .init(fields: fields,
-                                                                                   includes: includes,
-                                                                                   limits: limits))
+                                      limits: [GetGameCenterDetailV1.Limit]? = nil) -> Request<GameCenterDetailResponse, ErrorResponse> {
+        .init(
+            path: "/v1/gameCenterDetails/\(id)",
+            method: .get,
+            parameters: .init(
+                fields: fields,
+                includes: includes,
+                limits: limits))
     }
 }
 

@@ -14,9 +14,11 @@ public extension Request {
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func getAppClipAdvancedExperienceImageV1(id: String,
-                                                    fields: [GetAppClipAdvancedExperienceImageV1.Field]? = nil) -> Request<AppClipAdvancedExperienceImageResponse, ErrorResponse>
-    {
-        .init(path: "/v1/appClipAdvancedExperienceImages/\(id)", method: .get, parameters: .init(fields: fields))
+                                                    fields: [GetAppClipAdvancedExperienceImageV1.Field]? = nil) -> Request<AppClipAdvancedExperienceImageResponse, ErrorResponse> {
+        .init(
+            path: "/v1/appClipAdvancedExperienceImages/\(id)",
+            method: .get,
+            parameters: .init(fields: fields))
     }
 }
 

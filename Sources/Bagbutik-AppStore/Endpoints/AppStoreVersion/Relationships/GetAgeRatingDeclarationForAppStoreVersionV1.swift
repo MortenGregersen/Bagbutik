@@ -15,9 +15,11 @@ public extension Request {
      */
     @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
     static func getAgeRatingDeclarationForAppStoreVersionV1(id: String,
-                                                            fields: [GetAgeRatingDeclarationForAppStoreVersionV1.Field]? = nil) -> Request<AgeRatingDeclarationWithoutIncludesResponse, ErrorResponse>
-    {
-        .init(path: "/v1/appStoreVersions/\(id)/ageRatingDeclaration", method: .get, parameters: .init(fields: fields))
+                                                            fields: [GetAgeRatingDeclarationForAppStoreVersionV1.Field]? = nil) -> Request<AgeRatingDeclarationWithoutIncludesResponse, ErrorResponse> {
+        .init(
+            path: "/v1/appStoreVersions/\(id)/ageRatingDeclaration",
+            method: .get,
+            parameters: .init(fields: fields))
     }
 }
 

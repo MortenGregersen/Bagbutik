@@ -15,8 +15,10 @@ public extension Request {
      */
     @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
     static func createBuildsForAppEncryptionDeclarationV1(id: String,
-                                                          requestBody: AppEncryptionDeclarationBuildsLinkagesRequest) -> Request<EmptyResponse, ErrorResponse>
-    {
-        .init(path: "/v1/appEncryptionDeclarations/\(id)/relationships/builds", method: .post, requestBody: requestBody)
+                                                          requestBody: AppEncryptionDeclarationBuildsLinkagesRequest) -> Request<EmptyResponse, ErrorResponse> {
+        .init(
+            path: "/v1/appEncryptionDeclarations/\(id)/relationships/builds",
+            method: .post,
+            requestBody: requestBody)
     }
 }

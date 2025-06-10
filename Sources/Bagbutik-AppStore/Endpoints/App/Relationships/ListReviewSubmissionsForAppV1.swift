@@ -20,12 +20,15 @@ public extension Request {
                                               fields: [ListReviewSubmissionsForAppV1.Field]? = nil,
                                               filters: [ListReviewSubmissionsForAppV1.Filter]? = nil,
                                               includes: [ListReviewSubmissionsForAppV1.Include]? = nil,
-                                              limits: [ListReviewSubmissionsForAppV1.Limit]? = nil) -> Request<ReviewSubmissionsResponse, ErrorResponse>
-    {
-        .init(path: "/v1/apps/\(id)/reviewSubmissions", method: .get, parameters: .init(fields: fields,
-                                                                                        filters: filters,
-                                                                                        includes: includes,
-                                                                                        limits: limits))
+                                              limits: [ListReviewSubmissionsForAppV1.Limit]? = nil) -> Request<ReviewSubmissionsResponse, ErrorResponse> {
+        .init(
+            path: "/v1/apps/\(id)/reviewSubmissions",
+            method: .get,
+            parameters: .init(
+                fields: fields,
+                filters: filters,
+                includes: includes,
+                limits: limits))
     }
 }
 

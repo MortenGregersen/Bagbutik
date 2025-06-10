@@ -16,10 +16,13 @@ public extension Request {
      */
     static func getBetaAppReviewDetailV1(id: String,
                                          fields: [GetBetaAppReviewDetailV1.Field]? = nil,
-                                         includes: [GetBetaAppReviewDetailV1.Include]? = nil) -> Request<BetaAppReviewDetailResponse, ErrorResponse>
-    {
-        .init(path: "/v1/betaAppReviewDetails/\(id)", method: .get, parameters: .init(fields: fields,
-                                                                                      includes: includes))
+                                         includes: [GetBetaAppReviewDetailV1.Include]? = nil) -> Request<BetaAppReviewDetailResponse, ErrorResponse> {
+        .init(
+            path: "/v1/betaAppReviewDetails/\(id)",
+            method: .get,
+            parameters: .init(
+                fields: fields,
+                includes: includes))
     }
 }
 

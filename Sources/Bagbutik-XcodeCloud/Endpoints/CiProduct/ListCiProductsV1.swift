@@ -20,12 +20,15 @@ public extension Request {
     static func listCiProductsV1(fields: [ListCiProductsV1.Field]? = nil,
                                  filters: [ListCiProductsV1.Filter]? = nil,
                                  includes: [ListCiProductsV1.Include]? = nil,
-                                 limits: [ListCiProductsV1.Limit]? = nil) -> Request<CiProductsResponse, ErrorResponse>
-    {
-        .init(path: "/v1/ciProducts", method: .get, parameters: .init(fields: fields,
-                                                                      filters: filters,
-                                                                      includes: includes,
-                                                                      limits: limits))
+                                 limits: [ListCiProductsV1.Limit]? = nil) -> Request<CiProductsResponse, ErrorResponse> {
+        .init(
+            path: "/v1/ciProducts",
+            method: .get,
+            parameters: .init(
+                fields: fields,
+                filters: filters,
+                includes: includes,
+                limits: limits))
     }
 }
 

@@ -20,12 +20,15 @@ public extension Request {
                                                 fields: [ListCertificatesForMerchantIdV1.Field]? = nil,
                                                 filters: [ListCertificatesForMerchantIdV1.Filter]? = nil,
                                                 sorts: [ListCertificatesForMerchantIdV1.Sort]? = nil,
-                                                limit: Int? = nil) -> Request<CertificatesResponse, ErrorResponse>
-    {
-        .init(path: "/v1/merchantIds/\(id)/certificates", method: .get, parameters: .init(fields: fields,
-                                                                                          filters: filters,
-                                                                                          sorts: sorts,
-                                                                                          limit: limit))
+                                                limit: Int? = nil) -> Request<CertificatesResponse, ErrorResponse> {
+        .init(
+            path: "/v1/merchantIds/\(id)/certificates",
+            method: .get,
+            parameters: .init(
+                fields: fields,
+                filters: filters,
+                sorts: sorts,
+                limit: limit))
     }
 }
 

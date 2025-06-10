@@ -18,13 +18,16 @@ public extension Request {
     static func getMetricsForMatchmakingSessionInGameCenterMatchmakingQueueV1(id: String,
                                                                               sorts: [GetMetricsForMatchmakingSessionInGameCenterMatchmakingQueueV1.Sort]? = nil,
                                                                               granularity: GetMetricsForMatchmakingSessionInGameCenterMatchmakingQueueV1.Granularity? = nil,
-                                                                              limit: Int? = nil) -> Request<GameCenterMatchmakingSessionsV1MetricResponse, ErrorResponse>
-    {
+                                                                              limit: Int? = nil) -> Request<GameCenterMatchmakingSessionsV1MetricResponse, ErrorResponse> {
         var customs = [String: String]()
         if let granularity { customs["granularity"] = granularity.rawValue }
-        return .init(path: "/v1/gameCenterMatchmakingQueues/\(id)/metrics/matchmakingSessions", method: .get, parameters: .init(sorts: sorts,
-                                                                                                                                limit: limit,
-                                                                                                                                customs: customs))
+        return .init(
+            path: "/v1/gameCenterMatchmakingQueues/\(id)/metrics/matchmakingSessions",
+            method: .get,
+            parameters: .init(
+                sorts: sorts,
+                limit: limit,
+                customs: customs))
     }
 }
 

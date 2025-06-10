@@ -14,8 +14,10 @@ public extension Request {
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func replaceVisibleAppsForUserV1(id: String,
-                                            requestBody: UserVisibleAppsLinkagesRequest) -> Request<EmptyResponse, ErrorResponse>
-    {
-        .init(path: "/v1/users/\(id)/relationships/visibleApps", method: .patch, requestBody: requestBody)
+                                            requestBody: UserVisibleAppsLinkagesRequest) -> Request<EmptyResponse, ErrorResponse> {
+        .init(
+            path: "/v1/users/\(id)/relationships/visibleApps",
+            method: .patch,
+            requestBody: requestBody)
     }
 }

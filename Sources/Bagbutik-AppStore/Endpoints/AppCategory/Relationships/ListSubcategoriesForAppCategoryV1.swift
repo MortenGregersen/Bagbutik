@@ -16,10 +16,13 @@ public extension Request {
      */
     static func listSubcategoriesForAppCategoryV1(id: String,
                                                   fields: [ListSubcategoriesForAppCategoryV1.Field]? = nil,
-                                                  limit: Int? = nil) -> Request<AppCategoriesWithoutIncludesResponse, ErrorResponse>
-    {
-        .init(path: "/v1/appCategories/\(id)/subcategories", method: .get, parameters: .init(fields: fields,
-                                                                                             limit: limit))
+                                                  limit: Int? = nil) -> Request<AppCategoriesWithoutIncludesResponse, ErrorResponse> {
+        .init(
+            path: "/v1/appCategories/\(id)/subcategories",
+            method: .get,
+            parameters: .init(
+                fields: fields,
+                limit: limit))
     }
 }
 

@@ -14,8 +14,10 @@ public extension Request {
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func updateGameCenterLeaderboardImageV1(id: String,
-                                                   requestBody: GameCenterLeaderboardImageUpdateRequest) -> Request<GameCenterLeaderboardImageResponse, ErrorResponse>
-    {
-        .init(path: "/v1/gameCenterLeaderboardImages/\(id)", method: .patch, requestBody: requestBody)
+                                                   requestBody: GameCenterLeaderboardImageUpdateRequest) -> Request<GameCenterLeaderboardImageResponse, ErrorResponse> {
+        .init(
+            path: "/v1/gameCenterLeaderboardImages/\(id)",
+            method: .patch,
+            requestBody: requestBody)
     }
 }

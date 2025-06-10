@@ -89,8 +89,11 @@ public struct SubscriptionOfferCodeResponse: Codable, Sendable {
             } else if let subscriptionOfferCodePrice = try? SubscriptionOfferCodePrice(from: decoder) {
                 self = .subscriptionOfferCodePrice(subscriptionOfferCodePrice)
             } else {
-                throw DecodingError.typeMismatch(Included.self, DecodingError.Context(codingPath: decoder.codingPath,
-                                                                                      debugDescription: "Unknown Included"))
+                throw DecodingError.typeMismatch(
+                    Included.self,
+                    DecodingError.Context(
+                        codingPath: decoder.codingPath,
+                        debugDescription: "Unknown Included"))
             }
         }
 

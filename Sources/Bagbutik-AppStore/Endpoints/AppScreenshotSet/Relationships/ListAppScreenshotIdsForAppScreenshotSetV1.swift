@@ -14,8 +14,10 @@ public extension Request {
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func listAppScreenshotIdsForAppScreenshotSetV1(id: String,
-                                                          limit: Int? = nil) -> Request<AppScreenshotSetAppScreenshotsLinkagesResponse, ErrorResponse>
-    {
-        .init(path: "/v1/appScreenshotSets/\(id)/relationships/appScreenshots", method: .get, parameters: .init(limit: limit))
+                                                          limit: Int? = nil) -> Request<AppScreenshotSetAppScreenshotsLinkagesResponse, ErrorResponse> {
+        .init(
+            path: "/v1/appScreenshotSets/\(id)/relationships/appScreenshots",
+            method: .get,
+            parameters: .init(limit: limit))
     }
 }

@@ -18,11 +18,14 @@ public extension Request {
     static func getAlternativeDistributionPackageV1(id: String,
                                                     fields: [GetAlternativeDistributionPackageV1.Field]? = nil,
                                                     includes: [GetAlternativeDistributionPackageV1.Include]? = nil,
-                                                    limit: GetAlternativeDistributionPackageV1.Limit? = nil) -> Request<AlternativeDistributionPackageResponse, ErrorResponse>
-    {
-        .init(path: "/v1/alternativeDistributionPackages/\(id)", method: .get, parameters: .init(fields: fields,
-                                                                                                 includes: includes,
-                                                                                                 limits: limit.map { [$0] }))
+                                                    limit: GetAlternativeDistributionPackageV1.Limit? = nil) -> Request<AlternativeDistributionPackageResponse, ErrorResponse> {
+        .init(
+            path: "/v1/alternativeDistributionPackages/\(id)",
+            method: .get,
+            parameters: .init(
+                fields: fields,
+                includes: includes,
+                limits: limit.map { [$0] }))
     }
 }
 

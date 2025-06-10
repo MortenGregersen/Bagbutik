@@ -13,6 +13,9 @@ public extension Request {
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func createBetaAppClipInvocationV1(requestBody: BetaAppClipInvocationCreateRequest) -> Request<BetaAppClipInvocationResponse, ErrorResponse> {
-        .init(path: "/v1/betaAppClipInvocations", method: .post, requestBody: requestBody)
+        .init(
+            path: "/v1/betaAppClipInvocations",
+            method: .post,
+            requestBody: requestBody)
     }
 }

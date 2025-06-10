@@ -16,10 +16,13 @@ public extension Request {
      */
     static func getSubscriptionPricePointV1(id: String,
                                             fields: [GetSubscriptionPricePointV1.Field]? = nil,
-                                            includes: [GetSubscriptionPricePointV1.Include]? = nil) -> Request<SubscriptionPricePointResponse, ErrorResponse>
-    {
-        .init(path: "/v1/subscriptionPricePoints/\(id)", method: .get, parameters: .init(fields: fields,
-                                                                                         includes: includes))
+                                            includes: [GetSubscriptionPricePointV1.Include]? = nil) -> Request<SubscriptionPricePointResponse, ErrorResponse> {
+        .init(
+            path: "/v1/subscriptionPricePoints/\(id)",
+            method: .get,
+            parameters: .init(
+                fields: fields,
+                includes: includes))
     }
 }
 

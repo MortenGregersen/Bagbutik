@@ -19,12 +19,15 @@ public extension Request {
                                                                                                            fields: [ListAppStoreVersionExperimentTreatmentLocalizationsForAppStoreVersionExperimentTreatmentV1.Field]? = nil,
                                                                                                            filters: [ListAppStoreVersionExperimentTreatmentLocalizationsForAppStoreVersionExperimentTreatmentV1.Filter]? = nil,
                                                                                                            includes: [ListAppStoreVersionExperimentTreatmentLocalizationsForAppStoreVersionExperimentTreatmentV1.Include]? = nil,
-                                                                                                           limits: [ListAppStoreVersionExperimentTreatmentLocalizationsForAppStoreVersionExperimentTreatmentV1.Limit]? = nil) -> Request<AppStoreVersionExperimentTreatmentLocalizationsResponse, ErrorResponse>
-    {
-        .init(path: "/v1/appStoreVersionExperimentTreatments/\(id)/appStoreVersionExperimentTreatmentLocalizations", method: .get, parameters: .init(fields: fields,
-                                                                                                                                                     filters: filters,
-                                                                                                                                                     includes: includes,
-                                                                                                                                                     limits: limits))
+                                                                                                           limits: [ListAppStoreVersionExperimentTreatmentLocalizationsForAppStoreVersionExperimentTreatmentV1.Limit]? = nil) -> Request<AppStoreVersionExperimentTreatmentLocalizationsResponse, ErrorResponse> {
+        .init(
+            path: "/v1/appStoreVersionExperimentTreatments/\(id)/appStoreVersionExperimentTreatmentLocalizations",
+            method: .get,
+            parameters: .init(
+                fields: fields,
+                filters: filters,
+                includes: includes,
+                limits: limits))
     }
 }
 

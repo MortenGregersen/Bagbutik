@@ -16,10 +16,13 @@ public extension Request {
      */
     static func getBetaLicenseAgreementV1(id: String,
                                           fields: [GetBetaLicenseAgreementV1.Field]? = nil,
-                                          includes: [GetBetaLicenseAgreementV1.Include]? = nil) -> Request<BetaLicenseAgreementResponse, ErrorResponse>
-    {
-        .init(path: "/v1/betaLicenseAgreements/\(id)", method: .get, parameters: .init(fields: fields,
-                                                                                       includes: includes))
+                                          includes: [GetBetaLicenseAgreementV1.Include]? = nil) -> Request<BetaLicenseAgreementResponse, ErrorResponse> {
+        .init(
+            path: "/v1/betaLicenseAgreements/\(id)",
+            method: .get,
+            parameters: .init(
+                fields: fields,
+                includes: includes))
     }
 }
 

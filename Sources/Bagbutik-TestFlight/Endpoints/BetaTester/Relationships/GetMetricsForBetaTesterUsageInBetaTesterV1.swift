@@ -18,13 +18,16 @@ public extension Request {
     static func getMetricsForBetaTesterUsageInBetaTesterV1(id: String,
                                                            filters: [GetMetricsForBetaTesterUsageInBetaTesterV1.Filter]? = nil,
                                                            period: GetMetricsForBetaTesterUsageInBetaTesterV1.Period? = nil,
-                                                           limit: Int? = nil) -> Request<BetaTesterUsagesV1MetricResponse, ErrorResponse>
-    {
+                                                           limit: Int? = nil) -> Request<BetaTesterUsagesV1MetricResponse, ErrorResponse> {
         var customs = [String: String]()
         if let period { customs["period"] = period.rawValue }
-        return .init(path: "/v1/betaTesters/\(id)/metrics/betaTesterUsages", method: .get, parameters: .init(filters: filters,
-                                                                                                             limit: limit,
-                                                                                                             customs: customs))
+        return .init(
+            path: "/v1/betaTesters/\(id)/metrics/betaTesterUsages",
+            method: .get,
+            parameters: .init(
+                filters: filters,
+                limit: limit,
+                customs: customs))
     }
 }
 

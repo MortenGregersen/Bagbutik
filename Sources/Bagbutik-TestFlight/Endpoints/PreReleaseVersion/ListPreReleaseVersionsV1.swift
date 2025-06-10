@@ -20,13 +20,16 @@ public extension Request {
                                          filters: [ListPreReleaseVersionsV1.Filter]? = nil,
                                          includes: [ListPreReleaseVersionsV1.Include]? = nil,
                                          sorts: [ListPreReleaseVersionsV1.Sort]? = nil,
-                                         limits: [ListPreReleaseVersionsV1.Limit]? = nil) -> Request<PreReleaseVersionsResponse, ErrorResponse>
-    {
-        .init(path: "/v1/preReleaseVersions", method: .get, parameters: .init(fields: fields,
-                                                                              filters: filters,
-                                                                              includes: includes,
-                                                                              sorts: sorts,
-                                                                              limits: limits))
+                                         limits: [ListPreReleaseVersionsV1.Limit]? = nil) -> Request<PreReleaseVersionsResponse, ErrorResponse> {
+        .init(
+            path: "/v1/preReleaseVersions",
+            method: .get,
+            parameters: .init(
+                fields: fields,
+                filters: filters,
+                includes: includes,
+                sorts: sorts,
+                limits: limits))
     }
 }
 

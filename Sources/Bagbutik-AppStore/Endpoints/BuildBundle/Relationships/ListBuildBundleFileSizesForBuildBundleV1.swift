@@ -16,10 +16,13 @@ public extension Request {
      */
     static func listBuildBundleFileSizesForBuildBundleV1(id: String,
                                                          fields: [ListBuildBundleFileSizesForBuildBundleV1.Field]? = nil,
-                                                         limit: Int? = nil) -> Request<BuildBundleFileSizesResponse, ErrorResponse>
-    {
-        .init(path: "/v1/buildBundles/\(id)/buildBundleFileSizes", method: .get, parameters: .init(fields: fields,
-                                                                                                   limit: limit))
+                                                         limit: Int? = nil) -> Request<BuildBundleFileSizesResponse, ErrorResponse> {
+        .init(
+            path: "/v1/buildBundles/\(id)/buildBundleFileSizes",
+            method: .get,
+            parameters: .init(
+                fields: fields,
+                limit: limit))
     }
 }
 

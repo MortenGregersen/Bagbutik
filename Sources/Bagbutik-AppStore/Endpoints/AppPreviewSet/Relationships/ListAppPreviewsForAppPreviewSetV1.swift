@@ -18,11 +18,14 @@ public extension Request {
     static func listAppPreviewsForAppPreviewSetV1(id: String,
                                                   fields: [ListAppPreviewsForAppPreviewSetV1.Field]? = nil,
                                                   includes: [ListAppPreviewsForAppPreviewSetV1.Include]? = nil,
-                                                  limit: Int? = nil) -> Request<AppPreviewsResponse, ErrorResponse>
-    {
-        .init(path: "/v1/appPreviewSets/\(id)/appPreviews", method: .get, parameters: .init(fields: fields,
-                                                                                            includes: includes,
-                                                                                            limit: limit))
+                                                  limit: Int? = nil) -> Request<AppPreviewsResponse, ErrorResponse> {
+        .init(
+            path: "/v1/appPreviewSets/\(id)/appPreviews",
+            method: .get,
+            parameters: .init(
+                fields: fields,
+                includes: includes,
+                limit: limit))
     }
 }
 

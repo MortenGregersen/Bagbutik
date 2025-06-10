@@ -19,11 +19,14 @@ public extension Request {
     static func listAppStoreVersionExperimentTreatmentsForAppStoreVersionExperimentV1(id: String,
                                                                                       fields: [ListAppStoreVersionExperimentTreatmentsForAppStoreVersionExperimentV1.Field]? = nil,
                                                                                       includes: [ListAppStoreVersionExperimentTreatmentsForAppStoreVersionExperimentV1.Include]? = nil,
-                                                                                      limits: [ListAppStoreVersionExperimentTreatmentsForAppStoreVersionExperimentV1.Limit]? = nil) -> Request<AppStoreVersionExperimentTreatmentsResponse, ErrorResponse>
-    {
-        .init(path: "/v1/appStoreVersionExperiments/\(id)/appStoreVersionExperimentTreatments", method: .get, parameters: .init(fields: fields,
-                                                                                                                                includes: includes,
-                                                                                                                                limits: limits))
+                                                                                      limits: [ListAppStoreVersionExperimentTreatmentsForAppStoreVersionExperimentV1.Limit]? = nil) -> Request<AppStoreVersionExperimentTreatmentsResponse, ErrorResponse> {
+        .init(
+            path: "/v1/appStoreVersionExperiments/\(id)/appStoreVersionExperimentTreatments",
+            method: .get,
+            parameters: .init(
+                fields: fields,
+                includes: includes,
+                limits: limits))
     }
 }
 

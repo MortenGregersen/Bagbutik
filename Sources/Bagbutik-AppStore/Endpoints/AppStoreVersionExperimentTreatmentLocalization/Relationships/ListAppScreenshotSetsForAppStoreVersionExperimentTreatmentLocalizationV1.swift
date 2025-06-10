@@ -19,12 +19,15 @@ public extension Request {
                                                                                          fields: [ListAppScreenshotSetsForAppStoreVersionExperimentTreatmentLocalizationV1.Field]? = nil,
                                                                                          filters: [ListAppScreenshotSetsForAppStoreVersionExperimentTreatmentLocalizationV1.Filter]? = nil,
                                                                                          includes: [ListAppScreenshotSetsForAppStoreVersionExperimentTreatmentLocalizationV1.Include]? = nil,
-                                                                                         limits: [ListAppScreenshotSetsForAppStoreVersionExperimentTreatmentLocalizationV1.Limit]? = nil) -> Request<AppScreenshotSetsResponse, ErrorResponse>
-    {
-        .init(path: "/v1/appStoreVersionExperimentTreatmentLocalizations/\(id)/appScreenshotSets", method: .get, parameters: .init(fields: fields,
-                                                                                                                                   filters: filters,
-                                                                                                                                   includes: includes,
-                                                                                                                                   limits: limits))
+                                                                                         limits: [ListAppScreenshotSetsForAppStoreVersionExperimentTreatmentLocalizationV1.Limit]? = nil) -> Request<AppScreenshotSetsResponse, ErrorResponse> {
+        .init(
+            path: "/v1/appStoreVersionExperimentTreatmentLocalizations/\(id)/appScreenshotSets",
+            method: .get,
+            parameters: .init(
+                fields: fields,
+                filters: filters,
+                includes: includes,
+                limits: limits))
     }
 }
 

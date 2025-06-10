@@ -17,11 +17,14 @@ public extension Request {
     static func getAppEventV1(id: String,
                               fields: [GetAppEventV1.Field]? = nil,
                               includes: [GetAppEventV1.Include]? = nil,
-                              limit: GetAppEventV1.Limit? = nil) -> Request<AppEventResponse, ErrorResponse>
-    {
-        .init(path: "/v1/appEvents/\(id)", method: .get, parameters: .init(fields: fields,
-                                                                           includes: includes,
-                                                                           limits: limit.map { [$0] }))
+                              limit: GetAppEventV1.Limit? = nil) -> Request<AppEventResponse, ErrorResponse> {
+        .init(
+            path: "/v1/appEvents/\(id)",
+            method: .get,
+            parameters: .init(
+                fields: fields,
+                includes: includes,
+                limits: limit.map { [$0] }))
     }
 }
 

@@ -22,15 +22,18 @@ public extension Request {
                                                                                       sorts: [GetMetricsForMatchmakingNumberRuleResultInGameCenterMatchmakingRuleV1.Sort]? = nil,
                                                                                       granularity: GetMetricsForMatchmakingNumberRuleResultInGameCenterMatchmakingRuleV1.Granularity? = nil,
                                                                                       groupBy: GetMetricsForMatchmakingNumberRuleResultInGameCenterMatchmakingRuleV1.GroupBy? = nil,
-                                                                                      limit: Int? = nil) -> Request<GameCenterMatchmakingNumberRuleResultsV1MetricResponse, ErrorResponse>
-    {
+                                                                                      limit: Int? = nil) -> Request<GameCenterMatchmakingNumberRuleResultsV1MetricResponse, ErrorResponse> {
         var customs = [String: String]()
         if let granularity { customs["granularity"] = granularity.rawValue }
         if let groupBy { customs["groupBy"] = groupBy.rawValue }
-        return .init(path: "/v1/gameCenterMatchmakingRules/\(id)/metrics/matchmakingNumberRuleResults", method: .get, parameters: .init(filters: filters,
-                                                                                                                                        sorts: sorts,
-                                                                                                                                        limit: limit,
-                                                                                                                                        customs: customs))
+        return .init(
+            path: "/v1/gameCenterMatchmakingRules/\(id)/metrics/matchmakingNumberRuleResults",
+            method: .get,
+            parameters: .init(
+                filters: filters,
+                sorts: sorts,
+                limit: limit,
+                customs: customs))
     }
 }
 

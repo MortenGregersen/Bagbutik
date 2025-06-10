@@ -13,6 +13,9 @@ public extension Request {
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func createSubscriptionSubmissionV1(requestBody: SubscriptionSubmissionCreateRequest) -> Request<SubscriptionSubmissionResponse, ErrorResponse> {
-        .init(path: "/v1/subscriptionSubmissions", method: .post, requestBody: requestBody)
+        .init(
+            path: "/v1/subscriptionSubmissions",
+            method: .post,
+            requestBody: requestBody)
     }
 }

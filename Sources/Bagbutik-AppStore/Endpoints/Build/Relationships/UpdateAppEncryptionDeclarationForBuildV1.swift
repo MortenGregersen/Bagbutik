@@ -14,8 +14,10 @@ public extension Request {
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func updateAppEncryptionDeclarationForBuildV1(id: String,
-                                                         requestBody: BuildAppEncryptionDeclarationLinkageRequest) -> Request<EmptyResponse, ErrorResponse>
-    {
-        .init(path: "/v1/builds/\(id)/relationships/appEncryptionDeclaration", method: .patch, requestBody: requestBody)
+                                                         requestBody: BuildAppEncryptionDeclarationLinkageRequest) -> Request<EmptyResponse, ErrorResponse> {
+        .init(
+            path: "/v1/builds/\(id)/relationships/appEncryptionDeclaration",
+            method: .patch,
+            requestBody: requestBody)
     }
 }

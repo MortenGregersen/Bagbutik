@@ -20,13 +20,16 @@ public extension Request {
                                filters: [ListProfilesV1.Filter]? = nil,
                                includes: [ListProfilesV1.Include]? = nil,
                                sorts: [ListProfilesV1.Sort]? = nil,
-                               limits: [ListProfilesV1.Limit]? = nil) -> Request<ProfilesResponse, ErrorResponse>
-    {
-        .init(path: "/v1/profiles", method: .get, parameters: .init(fields: fields,
-                                                                    filters: filters,
-                                                                    includes: includes,
-                                                                    sorts: sorts,
-                                                                    limits: limits))
+                               limits: [ListProfilesV1.Limit]? = nil) -> Request<ProfilesResponse, ErrorResponse> {
+        .init(
+            path: "/v1/profiles",
+            method: .get,
+            parameters: .init(
+                fields: fields,
+                filters: filters,
+                includes: includes,
+                sorts: sorts,
+                limits: limits))
     }
 }
 

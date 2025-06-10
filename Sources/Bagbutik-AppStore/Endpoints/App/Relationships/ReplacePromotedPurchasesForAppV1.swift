@@ -14,8 +14,10 @@ public extension Request {
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func replacePromotedPurchasesForAppV1(id: String,
-                                                 requestBody: AppPromotedPurchasesLinkagesRequest) -> Request<EmptyResponse, ErrorResponse>
-    {
-        .init(path: "/v1/apps/\(id)/relationships/promotedPurchases", method: .patch, requestBody: requestBody)
+                                                 requestBody: AppPromotedPurchasesLinkagesRequest) -> Request<EmptyResponse, ErrorResponse> {
+        .init(
+            path: "/v1/apps/\(id)/relationships/promotedPurchases",
+            method: .patch,
+            requestBody: requestBody)
     }
 }

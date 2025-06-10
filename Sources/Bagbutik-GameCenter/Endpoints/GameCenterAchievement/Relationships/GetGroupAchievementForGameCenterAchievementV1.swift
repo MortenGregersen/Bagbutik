@@ -19,11 +19,14 @@ public extension Request {
     static func getGroupAchievementForGameCenterAchievementV1(id: String,
                                                               fields: [GetGroupAchievementForGameCenterAchievementV1.Field]? = nil,
                                                               includes: [GetGroupAchievementForGameCenterAchievementV1.Include]? = nil,
-                                                              limits: [GetGroupAchievementForGameCenterAchievementV1.Limit]? = nil) -> Request<GameCenterAchievementResponse, ErrorResponse>
-    {
-        .init(path: "/v1/gameCenterAchievements/\(id)/groupAchievement", method: .get, parameters: .init(fields: fields,
-                                                                                                         includes: includes,
-                                                                                                         limits: limits))
+                                                              limits: [GetGroupAchievementForGameCenterAchievementV1.Limit]? = nil) -> Request<GameCenterAchievementResponse, ErrorResponse> {
+        .init(
+            path: "/v1/gameCenterAchievements/\(id)/groupAchievement",
+            method: .get,
+            parameters: .init(
+                fields: fields,
+                includes: includes,
+                limits: limits))
     }
 }
 

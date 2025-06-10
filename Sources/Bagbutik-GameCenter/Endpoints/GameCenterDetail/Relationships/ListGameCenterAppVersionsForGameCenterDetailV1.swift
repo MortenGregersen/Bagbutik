@@ -20,12 +20,15 @@ public extension Request {
                                                                fields: [ListGameCenterAppVersionsForGameCenterDetailV1.Field]? = nil,
                                                                filters: [ListGameCenterAppVersionsForGameCenterDetailV1.Filter]? = nil,
                                                                includes: [ListGameCenterAppVersionsForGameCenterDetailV1.Include]? = nil,
-                                                               limits: [ListGameCenterAppVersionsForGameCenterDetailV1.Limit]? = nil) -> Request<GameCenterAppVersionsResponse, ErrorResponse>
-    {
-        .init(path: "/v1/gameCenterDetails/\(id)/gameCenterAppVersions", method: .get, parameters: .init(fields: fields,
-                                                                                                         filters: filters,
-                                                                                                         includes: includes,
-                                                                                                         limits: limits))
+                                                               limits: [ListGameCenterAppVersionsForGameCenterDetailV1.Limit]? = nil) -> Request<GameCenterAppVersionsResponse, ErrorResponse> {
+        .init(
+            path: "/v1/gameCenterDetails/\(id)/gameCenterAppVersions",
+            method: .get,
+            parameters: .init(
+                fields: fields,
+                filters: filters,
+                includes: includes,
+                limits: limits))
     }
 }
 

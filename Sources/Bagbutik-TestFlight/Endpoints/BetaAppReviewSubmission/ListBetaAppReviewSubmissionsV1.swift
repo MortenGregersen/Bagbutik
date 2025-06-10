@@ -18,12 +18,15 @@ public extension Request {
     static func listBetaAppReviewSubmissionsV1(fields: [ListBetaAppReviewSubmissionsV1.Field]? = nil,
                                                filters: [ListBetaAppReviewSubmissionsV1.Filter]? = nil,
                                                includes: [ListBetaAppReviewSubmissionsV1.Include]? = nil,
-                                               limit: Int? = nil) -> Request<BetaAppReviewSubmissionsResponse, ErrorResponse>
-    {
-        .init(path: "/v1/betaAppReviewSubmissions", method: .get, parameters: .init(fields: fields,
-                                                                                    filters: filters,
-                                                                                    includes: includes,
-                                                                                    limit: limit))
+                                               limit: Int? = nil) -> Request<BetaAppReviewSubmissionsResponse, ErrorResponse> {
+        .init(
+            path: "/v1/betaAppReviewSubmissions",
+            method: .get,
+            parameters: .init(
+                fields: fields,
+                filters: filters,
+                includes: includes,
+                limit: limit))
     }
 }
 

@@ -20,12 +20,15 @@ public extension Request {
                                                       fields: [ListAppEncryptionDeclarationsForAppV1.Field]? = nil,
                                                       filters: [ListAppEncryptionDeclarationsForAppV1.Filter]? = nil,
                                                       includes: [ListAppEncryptionDeclarationsForAppV1.Include]? = nil,
-                                                      limits: [ListAppEncryptionDeclarationsForAppV1.Limit]? = nil) -> Request<AppEncryptionDeclarationsResponse, ErrorResponse>
-    {
-        .init(path: "/v1/apps/\(id)/appEncryptionDeclarations", method: .get, parameters: .init(fields: fields,
-                                                                                                filters: filters,
-                                                                                                includes: includes,
-                                                                                                limits: limits))
+                                                      limits: [ListAppEncryptionDeclarationsForAppV1.Limit]? = nil) -> Request<AppEncryptionDeclarationsResponse, ErrorResponse> {
+        .init(
+            path: "/v1/apps/\(id)/appEncryptionDeclarations",
+            method: .get,
+            parameters: .init(
+                fields: fields,
+                filters: filters,
+                includes: includes,
+                limits: limits))
     }
 }
 

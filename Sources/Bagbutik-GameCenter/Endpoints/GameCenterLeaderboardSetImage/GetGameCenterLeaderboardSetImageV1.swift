@@ -16,10 +16,13 @@ public extension Request {
      */
     static func getGameCenterLeaderboardSetImageV1(id: String,
                                                    fields: [GetGameCenterLeaderboardSetImageV1.Field]? = nil,
-                                                   includes: [GetGameCenterLeaderboardSetImageV1.Include]? = nil) -> Request<GameCenterLeaderboardSetImageResponse, ErrorResponse>
-    {
-        .init(path: "/v1/gameCenterLeaderboardSetImages/\(id)", method: .get, parameters: .init(fields: fields,
-                                                                                                includes: includes))
+                                                   includes: [GetGameCenterLeaderboardSetImageV1.Include]? = nil) -> Request<GameCenterLeaderboardSetImageResponse, ErrorResponse> {
+        .init(
+            path: "/v1/gameCenterLeaderboardSetImages/\(id)",
+            method: .get,
+            parameters: .init(
+                fields: fields,
+                includes: includes))
     }
 }
 

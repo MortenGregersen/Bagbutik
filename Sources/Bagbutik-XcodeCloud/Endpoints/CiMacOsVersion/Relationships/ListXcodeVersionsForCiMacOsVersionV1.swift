@@ -20,11 +20,14 @@ public extension Request {
     static func listXcodeVersionsForCiMacOsVersionV1(id: String,
                                                      fields: [ListXcodeVersionsForCiMacOsVersionV1.Field]? = nil,
                                                      includes: [ListXcodeVersionsForCiMacOsVersionV1.Include]? = nil,
-                                                     limits: [ListXcodeVersionsForCiMacOsVersionV1.Limit]? = nil) -> Request<CiXcodeVersionsResponse, ErrorResponse>
-    {
-        .init(path: "/v1/ciMacOsVersions/\(id)/xcodeVersions", method: .get, parameters: .init(fields: fields,
-                                                                                               includes: includes,
-                                                                                               limits: limits))
+                                                     limits: [ListXcodeVersionsForCiMacOsVersionV1.Limit]? = nil) -> Request<CiXcodeVersionsResponse, ErrorResponse> {
+        .init(
+            path: "/v1/ciMacOsVersions/\(id)/xcodeVersions",
+            method: .get,
+            parameters: .init(
+                fields: fields,
+                includes: includes,
+                limits: limits))
     }
 }
 

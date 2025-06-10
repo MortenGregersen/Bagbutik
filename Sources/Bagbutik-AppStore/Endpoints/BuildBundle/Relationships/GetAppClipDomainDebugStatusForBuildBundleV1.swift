@@ -14,9 +14,11 @@ public extension Request {
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func getAppClipDomainDebugStatusForBuildBundleV1(id: String,
-                                                            fields: [GetAppClipDomainDebugStatusForBuildBundleV1.Field]? = nil) -> Request<AppClipDomainStatusResponse, ErrorResponse>
-    {
-        .init(path: "/v1/buildBundles/\(id)/appClipDomainDebugStatus", method: .get, parameters: .init(fields: fields))
+                                                            fields: [GetAppClipDomainDebugStatusForBuildBundleV1.Field]? = nil) -> Request<AppClipDomainStatusResponse, ErrorResponse> {
+        .init(
+            path: "/v1/buildBundles/\(id)/appClipDomainDebugStatus",
+            method: .get,
+            parameters: .init(fields: fields))
     }
 }
 

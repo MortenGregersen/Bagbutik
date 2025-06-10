@@ -18,11 +18,14 @@ public extension Request {
     static func getNominationV1(id: String,
                                 fields: [GetNominationV1.Field]? = nil,
                                 includes: [GetNominationV1.Include]? = nil,
-                                limits: [GetNominationV1.Limit]? = nil) -> Request<NominationResponse, ErrorResponse>
-    {
-        .init(path: "/v1/nominations/\(id)", method: .get, parameters: .init(fields: fields,
-                                                                             includes: includes,
-                                                                             limits: limits))
+                                limits: [GetNominationV1.Limit]? = nil) -> Request<NominationResponse, ErrorResponse> {
+        .init(
+            path: "/v1/nominations/\(id)",
+            method: .get,
+            parameters: .init(
+                fields: fields,
+                includes: includes,
+                limits: limits))
     }
 }
 

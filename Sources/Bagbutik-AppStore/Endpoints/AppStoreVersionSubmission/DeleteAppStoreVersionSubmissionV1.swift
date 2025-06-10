@@ -16,6 +16,8 @@ public extension Request {
      */
     @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
     static func deleteAppStoreVersionSubmissionV1(id: String) -> Request<EmptyResponse, ErrorResponse> {
-        .init(path: "/v1/appStoreVersionSubmissions/\(id)", method: .delete)
+        .init(
+            path: "/v1/appStoreVersionSubmissions/\(id)",
+            method: .delete)
     }
 }

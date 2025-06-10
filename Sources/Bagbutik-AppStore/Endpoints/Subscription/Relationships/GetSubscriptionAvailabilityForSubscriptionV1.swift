@@ -18,11 +18,14 @@ public extension Request {
     static func getSubscriptionAvailabilityForSubscriptionV1(id: String,
                                                              fields: [GetSubscriptionAvailabilityForSubscriptionV1.Field]? = nil,
                                                              includes: [GetSubscriptionAvailabilityForSubscriptionV1.Include]? = nil,
-                                                             limit: GetSubscriptionAvailabilityForSubscriptionV1.Limit? = nil) -> Request<SubscriptionAvailabilityResponse, ErrorResponse>
-    {
-        .init(path: "/v1/subscriptions/\(id)/subscriptionAvailability", method: .get, parameters: .init(fields: fields,
-                                                                                                        includes: includes,
-                                                                                                        limits: limit.map { [$0] }))
+                                                             limit: GetSubscriptionAvailabilityForSubscriptionV1.Limit? = nil) -> Request<SubscriptionAvailabilityResponse, ErrorResponse> {
+        .init(
+            path: "/v1/subscriptions/\(id)/subscriptionAvailability",
+            method: .get,
+            parameters: .init(
+                fields: fields,
+                includes: includes,
+                limits: limit.map { [$0] }))
     }
 }
 

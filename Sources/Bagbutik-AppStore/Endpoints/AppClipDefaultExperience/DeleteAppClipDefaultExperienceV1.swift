@@ -13,6 +13,8 @@ public extension Request {
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func deleteAppClipDefaultExperienceV1(id: String) -> Request<EmptyResponse, ErrorResponse> {
-        .init(path: "/v1/appClipDefaultExperiences/\(id)", method: .delete)
+        .init(
+            path: "/v1/appClipDefaultExperiences/\(id)",
+            method: .delete)
     }
 }

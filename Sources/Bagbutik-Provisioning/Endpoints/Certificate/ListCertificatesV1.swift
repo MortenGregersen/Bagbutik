@@ -18,12 +18,15 @@ public extension Request {
     static func listCertificatesV1(fields: [ListCertificatesV1.Field]? = nil,
                                    filters: [ListCertificatesV1.Filter]? = nil,
                                    sorts: [ListCertificatesV1.Sort]? = nil,
-                                   limit: Int? = nil) -> Request<CertificatesResponse, ErrorResponse>
-    {
-        .init(path: "/v1/certificates", method: .get, parameters: .init(fields: fields,
-                                                                        filters: filters,
-                                                                        sorts: sorts,
-                                                                        limit: limit))
+                                   limit: Int? = nil) -> Request<CertificatesResponse, ErrorResponse> {
+        .init(
+            path: "/v1/certificates",
+            method: .get,
+            parameters: .init(
+                fields: fields,
+                filters: filters,
+                sorts: sorts,
+                limit: limit))
     }
 }
 

@@ -20,13 +20,16 @@ public extension Request {
                                   filters: [ListNominationsV1.Filter]? = nil,
                                   includes: [ListNominationsV1.Include]? = nil,
                                   sorts: [ListNominationsV1.Sort]? = nil,
-                                  limits: [ListNominationsV1.Limit]? = nil) -> Request<NominationsResponse, ErrorResponse>
-    {
-        .init(path: "/v1/nominations", method: .get, parameters: .init(fields: fields,
-                                                                       filters: filters,
-                                                                       includes: includes,
-                                                                       sorts: sorts,
-                                                                       limits: limits))
+                                  limits: [ListNominationsV1.Limit]? = nil) -> Request<NominationsResponse, ErrorResponse> {
+        .init(
+            path: "/v1/nominations",
+            method: .get,
+            parameters: .init(
+                fields: fields,
+                filters: filters,
+                includes: includes,
+                sorts: sorts,
+                limits: limits))
     }
 }
 

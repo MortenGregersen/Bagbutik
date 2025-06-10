@@ -15,6 +15,9 @@ public extension Request {
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func createCiWorkflowV1(requestBody: CiWorkflowCreateRequest) -> Request<CiWorkflowResponse, ErrorResponse> {
-        .init(path: "/v1/ciWorkflows", method: .post, requestBody: requestBody)
+        .init(
+            path: "/v1/ciWorkflows",
+            method: .post,
+            requestBody: requestBody)
     }
 }

@@ -15,10 +15,13 @@ public extension Request {
      */
     static func getAppEventScreenshotV1(id: String,
                                         fields: [GetAppEventScreenshotV1.Field]? = nil,
-                                        includes: [GetAppEventScreenshotV1.Include]? = nil) -> Request<AppEventScreenshotResponse, ErrorResponse>
-    {
-        .init(path: "/v1/appEventScreenshots/\(id)", method: .get, parameters: .init(fields: fields,
-                                                                                     includes: includes))
+                                        includes: [GetAppEventScreenshotV1.Include]? = nil) -> Request<AppEventScreenshotResponse, ErrorResponse> {
+        .init(
+            path: "/v1/appEventScreenshots/\(id)",
+            method: .get,
+            parameters: .init(
+                fields: fields,
+                includes: includes))
     }
 }
 

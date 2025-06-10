@@ -18,11 +18,14 @@ public extension Request {
     static func getUserInvitationV1(id: String,
                                     fields: [GetUserInvitationV1.Field]? = nil,
                                     includes: [GetUserInvitationV1.Include]? = nil,
-                                    limit: GetUserInvitationV1.Limit? = nil) -> Request<UserInvitationResponse, ErrorResponse>
-    {
-        .init(path: "/v1/userInvitations/\(id)", method: .get, parameters: .init(fields: fields,
-                                                                                 includes: includes,
-                                                                                 limits: limit.map { [$0] }))
+                                    limit: GetUserInvitationV1.Limit? = nil) -> Request<UserInvitationResponse, ErrorResponse> {
+        .init(
+            path: "/v1/userInvitations/\(id)",
+            method: .get,
+            parameters: .init(
+                fields: fields,
+                includes: includes,
+                limits: limit.map { [$0] }))
     }
 }
 

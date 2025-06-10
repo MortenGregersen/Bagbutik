@@ -18,11 +18,14 @@ public extension Request {
     static func listTerritoryAvailabilitiesForAppAvailabilitiesV2(id: String,
                                                                   fields: [ListTerritoryAvailabilitiesForAppAvailabilitiesV2.Field]? = nil,
                                                                   includes: [ListTerritoryAvailabilitiesForAppAvailabilitiesV2.Include]? = nil,
-                                                                  limit: Int? = nil) -> Request<TerritoryAvailabilitiesResponse, ErrorResponse>
-    {
-        .init(path: "/v2/appAvailabilities/\(id)/territoryAvailabilities", method: .get, parameters: .init(fields: fields,
-                                                                                                           includes: includes,
-                                                                                                           limit: limit))
+                                                                  limit: Int? = nil) -> Request<TerritoryAvailabilitiesResponse, ErrorResponse> {
+        .init(
+            path: "/v2/appAvailabilities/\(id)/territoryAvailabilities",
+            method: .get,
+            parameters: .init(
+                fields: fields,
+                includes: includes,
+                limit: limit))
     }
 }
 

@@ -16,10 +16,13 @@ public extension Request {
      */
     static func getAppScreenshotV1(id: String,
                                    fields: [GetAppScreenshotV1.Field]? = nil,
-                                   includes: [GetAppScreenshotV1.Include]? = nil) -> Request<AppScreenshotResponse, ErrorResponse>
-    {
-        .init(path: "/v1/appScreenshots/\(id)", method: .get, parameters: .init(fields: fields,
-                                                                                includes: includes))
+                                   includes: [GetAppScreenshotV1.Include]? = nil) -> Request<AppScreenshotResponse, ErrorResponse> {
+        .init(
+            path: "/v1/appScreenshots/\(id)",
+            method: .get,
+            parameters: .init(
+                fields: fields,
+                includes: includes))
     }
 }
 

@@ -94,8 +94,11 @@ public struct GameCenterAchievementResponse: Codable, Sendable {
             } else if let gameCenterGroup = try? GameCenterGroup(from: decoder) {
                 self = .gameCenterGroup(gameCenterGroup)
             } else {
-                throw DecodingError.typeMismatch(Included.self, DecodingError.Context(codingPath: decoder.codingPath,
-                                                                                      debugDescription: "Unknown Included"))
+                throw DecodingError.typeMismatch(
+                    Included.self,
+                    DecodingError.Context(
+                        codingPath: decoder.codingPath,
+                        debugDescription: "Unknown Included"))
             }
         }
 

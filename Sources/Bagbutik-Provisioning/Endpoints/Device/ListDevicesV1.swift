@@ -18,12 +18,15 @@ public extension Request {
     static func listDevicesV1(fields: [ListDevicesV1.Field]? = nil,
                               filters: [ListDevicesV1.Filter]? = nil,
                               sorts: [ListDevicesV1.Sort]? = nil,
-                              limit: Int? = nil) -> Request<DevicesResponse, ErrorResponse>
-    {
-        .init(path: "/v1/devices", method: .get, parameters: .init(fields: fields,
-                                                                   filters: filters,
-                                                                   sorts: sorts,
-                                                                   limit: limit))
+                              limit: Int? = nil) -> Request<DevicesResponse, ErrorResponse> {
+        .init(
+            path: "/v1/devices",
+            method: .get,
+            parameters: .init(
+                fields: fields,
+                filters: filters,
+                sorts: sorts,
+                limit: limit))
     }
 }
 

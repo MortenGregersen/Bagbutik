@@ -18,11 +18,14 @@ public extension Request {
     static func getReviewSubmissionV1(id: String,
                                       fields: [GetReviewSubmissionV1.Field]? = nil,
                                       includes: [GetReviewSubmissionV1.Include]? = nil,
-                                      limit: GetReviewSubmissionV1.Limit? = nil) -> Request<ReviewSubmissionResponse, ErrorResponse>
-    {
-        .init(path: "/v1/reviewSubmissions/\(id)", method: .get, parameters: .init(fields: fields,
-                                                                                   includes: includes,
-                                                                                   limits: limit.map { [$0] }))
+                                      limit: GetReviewSubmissionV1.Limit? = nil) -> Request<ReviewSubmissionResponse, ErrorResponse> {
+        .init(
+            path: "/v1/reviewSubmissions/\(id)",
+            method: .get,
+            parameters: .init(
+                fields: fields,
+                includes: includes,
+                limits: limit.map { [$0] }))
     }
 }
 

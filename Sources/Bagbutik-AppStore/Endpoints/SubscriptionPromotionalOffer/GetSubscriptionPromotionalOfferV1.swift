@@ -18,11 +18,14 @@ public extension Request {
     static func getSubscriptionPromotionalOfferV1(id: String,
                                                   fields: [GetSubscriptionPromotionalOfferV1.Field]? = nil,
                                                   includes: [GetSubscriptionPromotionalOfferV1.Include]? = nil,
-                                                  limit: GetSubscriptionPromotionalOfferV1.Limit? = nil) -> Request<SubscriptionPromotionalOfferResponse, ErrorResponse>
-    {
-        .init(path: "/v1/subscriptionPromotionalOffers/\(id)", method: .get, parameters: .init(fields: fields,
-                                                                                               includes: includes,
-                                                                                               limits: limit.map { [$0] }))
+                                                  limit: GetSubscriptionPromotionalOfferV1.Limit? = nil) -> Request<SubscriptionPromotionalOfferResponse, ErrorResponse> {
+        .init(
+            path: "/v1/subscriptionPromotionalOffers/\(id)",
+            method: .get,
+            parameters: .init(
+                fields: fields,
+                includes: includes,
+                limits: limit.map { [$0] }))
     }
 }
 

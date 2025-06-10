@@ -14,8 +14,10 @@ public extension Request {
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func updateAppClipDefaultExperienceLocalizationV1(id: String,
-                                                             requestBody: AppClipDefaultExperienceLocalizationUpdateRequest) -> Request<AppClipDefaultExperienceLocalizationResponse, ErrorResponse>
-    {
-        .init(path: "/v1/appClipDefaultExperienceLocalizations/\(id)", method: .patch, requestBody: requestBody)
+                                                             requestBody: AppClipDefaultExperienceLocalizationUpdateRequest) -> Request<AppClipDefaultExperienceLocalizationResponse, ErrorResponse> {
+        .init(
+            path: "/v1/appClipDefaultExperienceLocalizations/\(id)",
+            method: .patch,
+            requestBody: requestBody)
     }
 }

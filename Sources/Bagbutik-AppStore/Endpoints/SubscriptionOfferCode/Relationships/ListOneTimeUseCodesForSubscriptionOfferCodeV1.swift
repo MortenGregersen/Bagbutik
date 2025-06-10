@@ -18,11 +18,14 @@ public extension Request {
     static func listOneTimeUseCodesForSubscriptionOfferCodeV1(id: String,
                                                               fields: [ListOneTimeUseCodesForSubscriptionOfferCodeV1.Field]? = nil,
                                                               includes: [ListOneTimeUseCodesForSubscriptionOfferCodeV1.Include]? = nil,
-                                                              limit: Int? = nil) -> Request<SubscriptionOfferCodeOneTimeUseCodesResponse, ErrorResponse>
-    {
-        .init(path: "/v1/subscriptionOfferCodes/\(id)/oneTimeUseCodes", method: .get, parameters: .init(fields: fields,
-                                                                                                        includes: includes,
-                                                                                                        limit: limit))
+                                                              limit: Int? = nil) -> Request<SubscriptionOfferCodeOneTimeUseCodesResponse, ErrorResponse> {
+        .init(
+            path: "/v1/subscriptionOfferCodes/\(id)/oneTimeUseCodes",
+            method: .get,
+            parameters: .init(
+                fields: fields,
+                includes: includes,
+                limit: limit))
     }
 }
 

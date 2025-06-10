@@ -16,10 +16,13 @@ public extension Request {
      */
     static func listSegmentsForAnalyticsReportInstanceV1(id: String,
                                                          fields: [ListSegmentsForAnalyticsReportInstanceV1.Field]? = nil,
-                                                         limit: Int? = nil) -> Request<AnalyticsReportSegmentsResponse, ErrorResponse>
-    {
-        .init(path: "/v1/analyticsReportInstances/\(id)/segments", method: .get, parameters: .init(fields: fields,
-                                                                                                   limit: limit))
+                                                         limit: Int? = nil) -> Request<AnalyticsReportSegmentsResponse, ErrorResponse> {
+        .init(
+            path: "/v1/analyticsReportInstances/\(id)/segments",
+            method: .get,
+            parameters: .init(
+                fields: fields,
+                limit: limit))
     }
 }
 

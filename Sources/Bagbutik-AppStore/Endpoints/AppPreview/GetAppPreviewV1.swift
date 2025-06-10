@@ -16,10 +16,13 @@ public extension Request {
      */
     static func getAppPreviewV1(id: String,
                                 fields: [GetAppPreviewV1.Field]? = nil,
-                                includes: [GetAppPreviewV1.Include]? = nil) -> Request<AppPreviewResponse, ErrorResponse>
-    {
-        .init(path: "/v1/appPreviews/\(id)", method: .get, parameters: .init(fields: fields,
-                                                                             includes: includes))
+                                includes: [GetAppPreviewV1.Include]? = nil) -> Request<AppPreviewResponse, ErrorResponse> {
+        .init(
+            path: "/v1/appPreviews/\(id)",
+            method: .get,
+            parameters: .init(
+                fields: fields,
+                includes: includes))
     }
 }
 

@@ -18,11 +18,14 @@ public extension Request {
     static func getAppAvailabilityV2ForAppV1(id: String,
                                              fields: [GetAppAvailabilityV2ForAppV1.Field]? = nil,
                                              includes: [GetAppAvailabilityV2ForAppV1.Include]? = nil,
-                                             limit: GetAppAvailabilityV2ForAppV1.Limit? = nil) -> Request<AppAvailabilityV2Response, ErrorResponse>
-    {
-        .init(path: "/v1/apps/\(id)/appAvailabilityV2", method: .get, parameters: .init(fields: fields,
-                                                                                        includes: includes,
-                                                                                        limits: limit.map { [$0] }))
+                                             limit: GetAppAvailabilityV2ForAppV1.Limit? = nil) -> Request<AppAvailabilityV2Response, ErrorResponse> {
+        .init(
+            path: "/v1/apps/\(id)/appAvailabilityV2",
+            method: .get,
+            parameters: .init(
+                fields: fields,
+                includes: includes,
+                limits: limit.map { [$0] }))
     }
 }
 

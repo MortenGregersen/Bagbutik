@@ -13,6 +13,9 @@ public extension Request {
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func createBundleIdCapabilityV1(requestBody: BundleIdCapabilityCreateRequest) -> Request<BundleIdCapabilityResponse, ErrorResponse> {
-        .init(path: "/v1/bundleIdCapabilities", method: .post, requestBody: requestBody)
+        .init(
+            path: "/v1/bundleIdCapabilities",
+            method: .post,
+            requestBody: requestBody)
     }
 }

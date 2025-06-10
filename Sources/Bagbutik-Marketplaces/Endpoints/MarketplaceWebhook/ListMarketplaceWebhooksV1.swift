@@ -14,10 +14,13 @@ public extension Request {
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func listMarketplaceWebhooksV1(fields: [ListMarketplaceWebhooksV1.Field]? = nil,
-                                          limit: Int? = nil) -> Request<MarketplaceWebhooksResponse, ErrorResponse>
-    {
-        .init(path: "/v1/marketplaceWebhooks", method: .get, parameters: .init(fields: fields,
-                                                                               limit: limit))
+                                          limit: Int? = nil) -> Request<MarketplaceWebhooksResponse, ErrorResponse> {
+        .init(
+            path: "/v1/marketplaceWebhooks",
+            method: .get,
+            parameters: .init(
+                fields: fields,
+                limit: limit))
     }
 }
 

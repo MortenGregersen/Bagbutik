@@ -14,8 +14,10 @@ public extension Request {
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func updateBetaAppLocalizationV1(id: String,
-                                            requestBody: BetaAppLocalizationUpdateRequest) -> Request<BetaAppLocalizationResponse, ErrorResponse>
-    {
-        .init(path: "/v1/betaAppLocalizations/\(id)", method: .patch, requestBody: requestBody)
+                                            requestBody: BetaAppLocalizationUpdateRequest) -> Request<BetaAppLocalizationResponse, ErrorResponse> {
+        .init(
+            path: "/v1/betaAppLocalizations/\(id)",
+            method: .patch,
+            requestBody: requestBody)
     }
 }

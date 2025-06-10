@@ -22,13 +22,16 @@ public extension Request {
                                                                     filters: [ListCompatibleVersionsForGameCenterEnabledVersionV1.Filter]? = nil,
                                                                     includes: [ListCompatibleVersionsForGameCenterEnabledVersionV1.Include]? = nil,
                                                                     sorts: [ListCompatibleVersionsForGameCenterEnabledVersionV1.Sort]? = nil,
-                                                                    limits: [ListCompatibleVersionsForGameCenterEnabledVersionV1.Limit]? = nil) -> Request<GameCenterEnabledVersionsResponse, ErrorResponse>
-    {
-        .init(path: "/v1/gameCenterEnabledVersions/\(id)/compatibleVersions", method: .get, parameters: .init(fields: fields,
-                                                                                                              filters: filters,
-                                                                                                              includes: includes,
-                                                                                                              sorts: sorts,
-                                                                                                              limits: limits))
+                                                                    limits: [ListCompatibleVersionsForGameCenterEnabledVersionV1.Limit]? = nil) -> Request<GameCenterEnabledVersionsResponse, ErrorResponse> {
+        .init(
+            path: "/v1/gameCenterEnabledVersions/\(id)/compatibleVersions",
+            method: .get,
+            parameters: .init(
+                fields: fields,
+                filters: filters,
+                includes: includes,
+                sorts: sorts,
+                limits: limits))
     }
 }
 

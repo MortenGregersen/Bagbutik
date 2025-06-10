@@ -20,12 +20,15 @@ public extension Request {
                                                     fields: [ListAnalyticsReportRequestsForAppV1.Field]? = nil,
                                                     filters: [ListAnalyticsReportRequestsForAppV1.Filter]? = nil,
                                                     includes: [ListAnalyticsReportRequestsForAppV1.Include]? = nil,
-                                                    limits: [ListAnalyticsReportRequestsForAppV1.Limit]? = nil) -> Request<AnalyticsReportRequestsResponse, ErrorResponse>
-    {
-        .init(path: "/v1/apps/\(id)/analyticsReportRequests", method: .get, parameters: .init(fields: fields,
-                                                                                              filters: filters,
-                                                                                              includes: includes,
-                                                                                              limits: limits))
+                                                    limits: [ListAnalyticsReportRequestsForAppV1.Limit]? = nil) -> Request<AnalyticsReportRequestsResponse, ErrorResponse> {
+        .init(
+            path: "/v1/apps/\(id)/analyticsReportRequests",
+            method: .get,
+            parameters: .init(
+                fields: fields,
+                filters: filters,
+                includes: includes,
+                limits: limits))
     }
 }
 

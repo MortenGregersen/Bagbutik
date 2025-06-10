@@ -17,11 +17,14 @@ public extension Request {
     static func getAppStoreVersionExperimentTreatmentLocalizationV1(id: String,
                                                                     fields: [GetAppStoreVersionExperimentTreatmentLocalizationV1.Field]? = nil,
                                                                     includes: [GetAppStoreVersionExperimentTreatmentLocalizationV1.Include]? = nil,
-                                                                    limits: [GetAppStoreVersionExperimentTreatmentLocalizationV1.Limit]? = nil) -> Request<AppStoreVersionExperimentTreatmentLocalizationResponse, ErrorResponse>
-    {
-        .init(path: "/v1/appStoreVersionExperimentTreatmentLocalizations/\(id)", method: .get, parameters: .init(fields: fields,
-                                                                                                                 includes: includes,
-                                                                                                                 limits: limits))
+                                                                    limits: [GetAppStoreVersionExperimentTreatmentLocalizationV1.Limit]? = nil) -> Request<AppStoreVersionExperimentTreatmentLocalizationResponse, ErrorResponse> {
+        .init(
+            path: "/v1/appStoreVersionExperimentTreatmentLocalizations/\(id)",
+            method: .get,
+            parameters: .init(
+                fields: fields,
+                includes: includes,
+                limits: limits))
     }
 }
 

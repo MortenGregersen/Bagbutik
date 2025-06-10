@@ -112,8 +112,11 @@ public struct ErrorResponse: Codable, Sendable, Error {
                 } else if let parameter = try? Parameter(from: decoder) {
                     self = .parameter(parameter)
                 } else {
-                    throw DecodingError.typeMismatch(Source.self, DecodingError.Context(codingPath: decoder.codingPath,
-                                                                                        debugDescription: "Unknown Source"))
+                    throw DecodingError.typeMismatch(
+                        Source.self,
+                        DecodingError.Context(
+                            codingPath: decoder.codingPath,
+                            debugDescription: "Unknown Source"))
                 }
             }
 

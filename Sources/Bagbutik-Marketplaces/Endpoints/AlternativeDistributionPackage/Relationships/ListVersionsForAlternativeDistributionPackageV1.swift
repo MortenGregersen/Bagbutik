@@ -20,12 +20,15 @@ public extension Request {
                                                                 fields: [ListVersionsForAlternativeDistributionPackageV1.Field]? = nil,
                                                                 filters: [ListVersionsForAlternativeDistributionPackageV1.Filter]? = nil,
                                                                 includes: [ListVersionsForAlternativeDistributionPackageV1.Include]? = nil,
-                                                                limits: [ListVersionsForAlternativeDistributionPackageV1.Limit]? = nil) -> Request<AlternativeDistributionPackageVersionsResponse, ErrorResponse>
-    {
-        .init(path: "/v1/alternativeDistributionPackages/\(id)/versions", method: .get, parameters: .init(fields: fields,
-                                                                                                          filters: filters,
-                                                                                                          includes: includes,
-                                                                                                          limits: limits))
+                                                                limits: [ListVersionsForAlternativeDistributionPackageV1.Limit]? = nil) -> Request<AlternativeDistributionPackageVersionsResponse, ErrorResponse> {
+        .init(
+            path: "/v1/alternativeDistributionPackages/\(id)/versions",
+            method: .get,
+            parameters: .init(
+                fields: fields,
+                filters: filters,
+                includes: includes,
+                limits: limits))
     }
 }
 

@@ -14,8 +14,10 @@ public extension Request {
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func updateTerritoryAvailabilityV1(id: String,
-                                              requestBody: TerritoryAvailabilityUpdateRequest) -> Request<TerritoryAvailabilityResponse, ErrorResponse>
-    {
-        .init(path: "/v1/territoryAvailabilities/\(id)", method: .patch, requestBody: requestBody)
+                                              requestBody: TerritoryAvailabilityUpdateRequest) -> Request<TerritoryAvailabilityResponse, ErrorResponse> {
+        .init(
+            path: "/v1/territoryAvailabilities/\(id)",
+            method: .patch,
+            requestBody: requestBody)
     }
 }

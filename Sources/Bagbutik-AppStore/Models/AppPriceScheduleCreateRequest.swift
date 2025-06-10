@@ -210,8 +210,11 @@ public struct AppPriceScheduleCreateRequest: Codable, Sendable, RequestBody {
             } else if let territoryInlineCreate = try? TerritoryInlineCreate(from: decoder) {
                 self = .territoryInlineCreate(territoryInlineCreate)
             } else {
-                throw DecodingError.typeMismatch(Included.self, DecodingError.Context(codingPath: decoder.codingPath,
-                                                                                      debugDescription: "Unknown Included"))
+                throw DecodingError.typeMismatch(
+                    Included.self,
+                    DecodingError.Context(
+                        codingPath: decoder.codingPath,
+                        debugDescription: "Unknown Included"))
             }
         }
 

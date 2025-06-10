@@ -18,11 +18,14 @@ public extension Request {
     static func listItemsForReviewSubmissionV1(id: String,
                                                fields: [ListItemsForReviewSubmissionV1.Field]? = nil,
                                                includes: [ListItemsForReviewSubmissionV1.Include]? = nil,
-                                               limit: Int? = nil) -> Request<ReviewSubmissionItemsResponse, ErrorResponse>
-    {
-        .init(path: "/v1/reviewSubmissions/\(id)/items", method: .get, parameters: .init(fields: fields,
-                                                                                         includes: includes,
-                                                                                         limit: limit))
+                                               limit: Int? = nil) -> Request<ReviewSubmissionItemsResponse, ErrorResponse> {
+        .init(
+            path: "/v1/reviewSubmissions/\(id)/items",
+            method: .get,
+            parameters: .init(
+                fields: fields,
+                includes: includes,
+                limit: limit))
     }
 }
 

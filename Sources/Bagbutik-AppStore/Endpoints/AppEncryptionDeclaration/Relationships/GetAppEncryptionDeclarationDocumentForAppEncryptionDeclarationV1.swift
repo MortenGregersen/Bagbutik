@@ -14,9 +14,11 @@ public extension Request {
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func getAppEncryptionDeclarationDocumentForAppEncryptionDeclarationV1(id: String,
-                                                                                 fields: [GetAppEncryptionDeclarationDocumentForAppEncryptionDeclarationV1.Field]? = nil) -> Request<AppEncryptionDeclarationDocumentResponse, ErrorResponse>
-    {
-        .init(path: "/v1/appEncryptionDeclarations/\(id)/appEncryptionDeclarationDocument", method: .get, parameters: .init(fields: fields))
+                                                                                 fields: [GetAppEncryptionDeclarationDocumentForAppEncryptionDeclarationV1.Field]? = nil) -> Request<AppEncryptionDeclarationDocumentResponse, ErrorResponse> {
+        .init(
+            path: "/v1/appEncryptionDeclarations/\(id)/appEncryptionDeclarationDocument",
+            method: .get,
+            parameters: .init(fields: fields))
     }
 }
 

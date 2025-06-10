@@ -14,8 +14,10 @@ public extension Request {
      */
     @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
     static func listCompatibleVersionIdsForGameCenterEnabledVersionV1(id: String,
-                                                                      limit: Int? = nil) -> Request<GameCenterEnabledVersionCompatibleVersionsLinkagesResponse, ErrorResponse>
-    {
-        .init(path: "/v1/gameCenterEnabledVersions/\(id)/relationships/compatibleVersions", method: .get, parameters: .init(limit: limit))
+                                                                      limit: Int? = nil) -> Request<GameCenterEnabledVersionCompatibleVersionsLinkagesResponse, ErrorResponse> {
+        .init(
+            path: "/v1/gameCenterEnabledVersions/\(id)/relationships/compatibleVersions",
+            method: .get,
+            parameters: .init(limit: limit))
     }
 }

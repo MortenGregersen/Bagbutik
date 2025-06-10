@@ -23,13 +23,16 @@ public extension Request {
                                            filters: [ListInAppPurchasesForAppV1.Filter]? = nil,
                                            includes: [ListInAppPurchasesForAppV1.Include]? = nil,
                                            sorts: [ListInAppPurchasesForAppV1.Sort]? = nil,
-                                           limits: [ListInAppPurchasesForAppV1.Limit]? = nil) -> Request<InAppPurchasesResponse, ErrorResponse>
-    {
-        .init(path: "/v1/apps/\(id)/inAppPurchases", method: .get, parameters: .init(fields: fields,
-                                                                                     filters: filters,
-                                                                                     includes: includes,
-                                                                                     sorts: sorts,
-                                                                                     limits: limits))
+                                           limits: [ListInAppPurchasesForAppV1.Limit]? = nil) -> Request<InAppPurchasesResponse, ErrorResponse> {
+        .init(
+            path: "/v1/apps/\(id)/inAppPurchases",
+            method: .get,
+            parameters: .init(
+                fields: fields,
+                filters: filters,
+                includes: includes,
+                sorts: sorts,
+                limits: limits))
     }
 }
 

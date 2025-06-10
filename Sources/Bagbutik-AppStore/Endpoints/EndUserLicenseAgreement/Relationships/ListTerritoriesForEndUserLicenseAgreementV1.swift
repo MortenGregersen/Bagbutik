@@ -16,10 +16,13 @@ public extension Request {
      */
     static func listTerritoriesForEndUserLicenseAgreementV1(id: String,
                                                             fields: [ListTerritoriesForEndUserLicenseAgreementV1.Field]? = nil,
-                                                            limit: Int? = nil) -> Request<TerritoriesWithoutIncludesResponse, ErrorResponse>
-    {
-        .init(path: "/v1/endUserLicenseAgreements/\(id)/territories", method: .get, parameters: .init(fields: fields,
-                                                                                                      limit: limit))
+                                                            limit: Int? = nil) -> Request<TerritoriesWithoutIncludesResponse, ErrorResponse> {
+        .init(
+            path: "/v1/endUserLicenseAgreements/\(id)/territories",
+            method: .get,
+            parameters: .init(
+                fields: fields,
+                limit: limit))
     }
 }
 

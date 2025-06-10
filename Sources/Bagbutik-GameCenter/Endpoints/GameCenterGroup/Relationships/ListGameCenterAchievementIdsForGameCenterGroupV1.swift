@@ -14,8 +14,10 @@ public extension Request {
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func listGameCenterAchievementIdsForGameCenterGroupV1(id: String,
-                                                                 limit: Int? = nil) -> Request<GameCenterGroupGameCenterAchievementsLinkagesResponse, ErrorResponse>
-    {
-        .init(path: "/v1/gameCenterGroups/\(id)/relationships/gameCenterAchievements", method: .get, parameters: .init(limit: limit))
+                                                                 limit: Int? = nil) -> Request<GameCenterGroupGameCenterAchievementsLinkagesResponse, ErrorResponse> {
+        .init(
+            path: "/v1/gameCenterGroups/\(id)/relationships/gameCenterAchievements",
+            method: .get,
+            parameters: .init(limit: limit))
     }
 }

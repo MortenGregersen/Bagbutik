@@ -18,11 +18,14 @@ public extension Request {
     static func getAppStoreVersionForGameCenterAppVersionV1(id: String,
                                                             fields: [GetAppStoreVersionForGameCenterAppVersionV1.Field]? = nil,
                                                             includes: [GetAppStoreVersionForGameCenterAppVersionV1.Include]? = nil,
-                                                            limits: [GetAppStoreVersionForGameCenterAppVersionV1.Limit]? = nil) -> Request<AppStoreVersionResponse, ErrorResponse>
-    {
-        .init(path: "/v1/gameCenterAppVersions/\(id)/appStoreVersion", method: .get, parameters: .init(fields: fields,
-                                                                                                       includes: includes,
-                                                                                                       limits: limits))
+                                                            limits: [GetAppStoreVersionForGameCenterAppVersionV1.Limit]? = nil) -> Request<AppStoreVersionResponse, ErrorResponse> {
+        .init(
+            path: "/v1/gameCenterAppVersions/\(id)/appStoreVersion",
+            method: .get,
+            parameters: .init(
+                fields: fields,
+                includes: includes,
+                limits: limits))
     }
 }
 

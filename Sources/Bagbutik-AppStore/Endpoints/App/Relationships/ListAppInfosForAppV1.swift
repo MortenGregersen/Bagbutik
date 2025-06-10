@@ -20,11 +20,14 @@ public extension Request {
     static func listAppInfosForAppV1(id: String,
                                      fields: [ListAppInfosForAppV1.Field]? = nil,
                                      includes: [ListAppInfosForAppV1.Include]? = nil,
-                                     limits: [ListAppInfosForAppV1.Limit]? = nil) -> Request<AppInfosResponse, ErrorResponse>
-    {
-        .init(path: "/v1/apps/\(id)/appInfos", method: .get, parameters: .init(fields: fields,
-                                                                               includes: includes,
-                                                                               limits: limits))
+                                     limits: [ListAppInfosForAppV1.Limit]? = nil) -> Request<AppInfosResponse, ErrorResponse> {
+        .init(
+            path: "/v1/apps/\(id)/appInfos",
+            method: .get,
+            parameters: .init(
+                fields: fields,
+                includes: includes,
+                limits: limits))
     }
 }
 

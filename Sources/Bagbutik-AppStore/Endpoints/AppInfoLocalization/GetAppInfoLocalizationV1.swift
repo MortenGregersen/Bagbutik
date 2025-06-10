@@ -16,10 +16,13 @@ public extension Request {
      */
     static func getAppInfoLocalizationV1(id: String,
                                          fields: [GetAppInfoLocalizationV1.Field]? = nil,
-                                         includes: [GetAppInfoLocalizationV1.Include]? = nil) -> Request<AppInfoLocalizationResponse, ErrorResponse>
-    {
-        .init(path: "/v1/appInfoLocalizations/\(id)", method: .get, parameters: .init(fields: fields,
-                                                                                      includes: includes))
+                                         includes: [GetAppInfoLocalizationV1.Include]? = nil) -> Request<AppInfoLocalizationResponse, ErrorResponse> {
+        .init(
+            path: "/v1/appInfoLocalizations/\(id)",
+            method: .get,
+            parameters: .init(
+                fields: fields,
+                includes: includes))
     }
 }
 

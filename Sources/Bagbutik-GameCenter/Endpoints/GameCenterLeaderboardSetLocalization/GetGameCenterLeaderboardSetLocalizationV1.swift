@@ -16,10 +16,13 @@ public extension Request {
      */
     static func getGameCenterLeaderboardSetLocalizationV1(id: String,
                                                           fields: [GetGameCenterLeaderboardSetLocalizationV1.Field]? = nil,
-                                                          includes: [GetGameCenterLeaderboardSetLocalizationV1.Include]? = nil) -> Request<GameCenterLeaderboardSetLocalizationResponse, ErrorResponse>
-    {
-        .init(path: "/v1/gameCenterLeaderboardSetLocalizations/\(id)", method: .get, parameters: .init(fields: fields,
-                                                                                                       includes: includes))
+                                                          includes: [GetGameCenterLeaderboardSetLocalizationV1.Include]? = nil) -> Request<GameCenterLeaderboardSetLocalizationResponse, ErrorResponse> {
+        .init(
+            path: "/v1/gameCenterLeaderboardSetLocalizations/\(id)",
+            method: .get,
+            parameters: .init(
+                fields: fields,
+                includes: includes))
     }
 }
 

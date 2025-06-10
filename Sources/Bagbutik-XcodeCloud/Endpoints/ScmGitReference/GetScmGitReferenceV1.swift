@@ -16,10 +16,13 @@ public extension Request {
      */
     static func getScmGitReferenceV1(id: String,
                                      fields: [GetScmGitReferenceV1.Field]? = nil,
-                                     includes: [GetScmGitReferenceV1.Include]? = nil) -> Request<ScmGitReferenceResponse, ErrorResponse>
-    {
-        .init(path: "/v1/scmGitReferences/\(id)", method: .get, parameters: .init(fields: fields,
-                                                                                  includes: includes))
+                                     includes: [GetScmGitReferenceV1.Include]? = nil) -> Request<ScmGitReferenceResponse, ErrorResponse> {
+        .init(
+            path: "/v1/scmGitReferences/\(id)",
+            method: .get,
+            parameters: .init(
+                fields: fields,
+                includes: includes))
     }
 }
 

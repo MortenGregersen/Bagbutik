@@ -18,11 +18,14 @@ public extension Request {
     static func getAppPriceScheduleForAppV1(id: String,
                                             fields: [GetAppPriceScheduleForAppV1.Field]? = nil,
                                             includes: [GetAppPriceScheduleForAppV1.Include]? = nil,
-                                            limits: [GetAppPriceScheduleForAppV1.Limit]? = nil) -> Request<AppPriceScheduleResponse, ErrorResponse>
-    {
-        .init(path: "/v1/apps/\(id)/appPriceSchedule", method: .get, parameters: .init(fields: fields,
-                                                                                       includes: includes,
-                                                                                       limits: limits))
+                                            limits: [GetAppPriceScheduleForAppV1.Limit]? = nil) -> Request<AppPriceScheduleResponse, ErrorResponse> {
+        .init(
+            path: "/v1/apps/\(id)/appPriceSchedule",
+            method: .get,
+            parameters: .init(
+                fields: fields,
+                includes: includes,
+                limits: limits))
     }
 }
 

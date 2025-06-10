@@ -13,6 +13,9 @@ public extension Request {
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func createUserInvitationV1(requestBody: UserInvitationCreateRequest) -> Request<UserInvitationResponse, ErrorResponse> {
-        .init(path: "/v1/userInvitations", method: .post, requestBody: requestBody)
+        .init(
+            path: "/v1/userInvitations",
+            method: .post,
+            requestBody: requestBody)
     }
 }

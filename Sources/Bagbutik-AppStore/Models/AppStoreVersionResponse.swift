@@ -179,8 +179,11 @@ public struct AppStoreVersionResponse: Codable, Sendable {
             } else if let routingAppCoverage = try? RoutingAppCoverage(from: decoder) {
                 self = .routingAppCoverage(routingAppCoverage)
             } else {
-                throw DecodingError.typeMismatch(Included.self, DecodingError.Context(codingPath: decoder.codingPath,
-                                                                                      debugDescription: "Unknown Included"))
+                throw DecodingError.typeMismatch(
+                    Included.self,
+                    DecodingError.Context(
+                        codingPath: decoder.codingPath,
+                        debugDescription: "Unknown Included"))
             }
         }
 

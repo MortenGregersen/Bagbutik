@@ -14,9 +14,11 @@ public extension Request {
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func getAppClipDomainCacheStatusForBuildBundleV1(id: String,
-                                                            fields: [GetAppClipDomainCacheStatusForBuildBundleV1.Field]? = nil) -> Request<AppClipDomainStatusResponse, ErrorResponse>
-    {
-        .init(path: "/v1/buildBundles/\(id)/appClipDomainCacheStatus", method: .get, parameters: .init(fields: fields))
+                                                            fields: [GetAppClipDomainCacheStatusForBuildBundleV1.Field]? = nil) -> Request<AppClipDomainStatusResponse, ErrorResponse> {
+        .init(
+            path: "/v1/buildBundles/\(id)/appClipDomainCacheStatus",
+            method: .get,
+            parameters: .init(fields: fields))
     }
 }
 

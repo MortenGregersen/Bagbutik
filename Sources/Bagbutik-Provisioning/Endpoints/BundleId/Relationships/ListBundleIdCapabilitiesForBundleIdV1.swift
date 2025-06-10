@@ -16,10 +16,13 @@ public extension Request {
      */
     static func listBundleIdCapabilitiesForBundleIdV1(id: String,
                                                       fields: [ListBundleIdCapabilitiesForBundleIdV1.Field]? = nil,
-                                                      limit: Int? = nil) -> Request<BundleIdCapabilitiesWithoutIncludesResponse, ErrorResponse>
-    {
-        .init(path: "/v1/bundleIds/\(id)/bundleIdCapabilities", method: .get, parameters: .init(fields: fields,
-                                                                                                limit: limit))
+                                                      limit: Int? = nil) -> Request<BundleIdCapabilitiesWithoutIncludesResponse, ErrorResponse> {
+        .init(
+            path: "/v1/bundleIds/\(id)/bundleIdCapabilities",
+            method: .get,
+            parameters: .init(
+                fields: fields,
+                limit: limit))
     }
 }
 

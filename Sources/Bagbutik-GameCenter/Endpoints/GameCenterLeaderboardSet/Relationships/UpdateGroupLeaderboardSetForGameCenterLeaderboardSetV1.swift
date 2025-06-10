@@ -15,8 +15,10 @@ public extension Request {
      */
     @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
     static func updateGroupLeaderboardSetForGameCenterLeaderboardSetV1(id: String,
-                                                                       requestBody: GameCenterLeaderboardSetGroupLeaderboardSetLinkageRequest) -> Request<EmptyResponse, ErrorResponse>
-    {
-        .init(path: "/v1/gameCenterLeaderboardSets/\(id)/relationships/groupLeaderboardSet", method: .patch, requestBody: requestBody)
+                                                                       requestBody: GameCenterLeaderboardSetGroupLeaderboardSetLinkageRequest) -> Request<EmptyResponse, ErrorResponse> {
+        .init(
+            path: "/v1/gameCenterLeaderboardSets/\(id)/relationships/groupLeaderboardSet",
+            method: .patch,
+            requestBody: requestBody)
     }
 }

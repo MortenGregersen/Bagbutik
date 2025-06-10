@@ -19,11 +19,14 @@ public extension Request {
     static func getGroupLeaderboardSetForGameCenterLeaderboardSetV1(id: String,
                                                                     fields: [GetGroupLeaderboardSetForGameCenterLeaderboardSetV1.Field]? = nil,
                                                                     includes: [GetGroupLeaderboardSetForGameCenterLeaderboardSetV1.Include]? = nil,
-                                                                    limits: [GetGroupLeaderboardSetForGameCenterLeaderboardSetV1.Limit]? = nil) -> Request<GameCenterLeaderboardSetResponse, ErrorResponse>
-    {
-        .init(path: "/v1/gameCenterLeaderboardSets/\(id)/groupLeaderboardSet", method: .get, parameters: .init(fields: fields,
-                                                                                                               includes: includes,
-                                                                                                               limits: limits))
+                                                                    limits: [GetGroupLeaderboardSetForGameCenterLeaderboardSetV1.Limit]? = nil) -> Request<GameCenterLeaderboardSetResponse, ErrorResponse> {
+        .init(
+            path: "/v1/gameCenterLeaderboardSets/\(id)/groupLeaderboardSet",
+            method: .get,
+            parameters: .init(
+                fields: fields,
+                includes: includes,
+                limits: limits))
     }
 }
 

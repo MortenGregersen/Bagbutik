@@ -14,10 +14,13 @@ public extension Request {
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func listSandboxTestersV2(fields: [ListSandboxTestersV2.Field]? = nil,
-                                     limit: Int? = nil) -> Request<SandboxTestersV2Response, ErrorResponse>
-    {
-        .init(path: "/v2/sandboxTesters", method: .get, parameters: .init(fields: fields,
-                                                                          limit: limit))
+                                     limit: Int? = nil) -> Request<SandboxTestersV2Response, ErrorResponse> {
+        .init(
+            path: "/v2/sandboxTesters",
+            method: .get,
+            parameters: .init(
+                fields: fields,
+                limit: limit))
     }
 }
 

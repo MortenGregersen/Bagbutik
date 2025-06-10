@@ -20,12 +20,15 @@ public extension Request {
                                                                      fields: [ListAppStoreVersionLocalizationsForAppStoreVersionV1.Field]? = nil,
                                                                      filters: [ListAppStoreVersionLocalizationsForAppStoreVersionV1.Filter]? = nil,
                                                                      includes: [ListAppStoreVersionLocalizationsForAppStoreVersionV1.Include]? = nil,
-                                                                     limits: [ListAppStoreVersionLocalizationsForAppStoreVersionV1.Limit]? = nil) -> Request<AppStoreVersionLocalizationsResponse, ErrorResponse>
-    {
-        .init(path: "/v1/appStoreVersions/\(id)/appStoreVersionLocalizations", method: .get, parameters: .init(fields: fields,
-                                                                                                               filters: filters,
-                                                                                                               includes: includes,
-                                                                                                               limits: limits))
+                                                                     limits: [ListAppStoreVersionLocalizationsForAppStoreVersionV1.Limit]? = nil) -> Request<AppStoreVersionLocalizationsResponse, ErrorResponse> {
+        .init(
+            path: "/v1/appStoreVersions/\(id)/appStoreVersionLocalizations",
+            method: .get,
+            parameters: .init(
+                fields: fields,
+                filters: filters,
+                includes: includes,
+                limits: limits))
     }
 }
 

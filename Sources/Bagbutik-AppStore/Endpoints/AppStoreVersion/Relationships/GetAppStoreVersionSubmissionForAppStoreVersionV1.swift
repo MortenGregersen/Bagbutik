@@ -16,10 +16,13 @@ public extension Request {
     @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
     static func getAppStoreVersionSubmissionForAppStoreVersionV1(id: String,
                                                                  fields: [GetAppStoreVersionSubmissionForAppStoreVersionV1.Field]? = nil,
-                                                                 includes: [GetAppStoreVersionSubmissionForAppStoreVersionV1.Include]? = nil) -> Request<AppStoreVersionSubmissionResponse, ErrorResponse>
-    {
-        .init(path: "/v1/appStoreVersions/\(id)/appStoreVersionSubmission", method: .get, parameters: .init(fields: fields,
-                                                                                                            includes: includes))
+                                                                 includes: [GetAppStoreVersionSubmissionForAppStoreVersionV1.Include]? = nil) -> Request<AppStoreVersionSubmissionResponse, ErrorResponse> {
+        .init(
+            path: "/v1/appStoreVersions/\(id)/appStoreVersionSubmission",
+            method: .get,
+            parameters: .init(
+                fields: fields,
+                includes: includes))
     }
 }
 

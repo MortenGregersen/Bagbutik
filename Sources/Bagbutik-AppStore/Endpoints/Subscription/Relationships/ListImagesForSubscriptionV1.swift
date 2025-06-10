@@ -18,11 +18,14 @@ public extension Request {
     static func listImagesForSubscriptionV1(id: String,
                                             fields: [ListImagesForSubscriptionV1.Field]? = nil,
                                             includes: [ListImagesForSubscriptionV1.Include]? = nil,
-                                            limit: Int? = nil) -> Request<SubscriptionImagesResponse, ErrorResponse>
-    {
-        .init(path: "/v1/subscriptions/\(id)/images", method: .get, parameters: .init(fields: fields,
-                                                                                      includes: includes,
-                                                                                      limit: limit))
+                                            limit: Int? = nil) -> Request<SubscriptionImagesResponse, ErrorResponse> {
+        .init(
+            path: "/v1/subscriptions/\(id)/images",
+            method: .get,
+            parameters: .init(
+                fields: fields,
+                includes: includes,
+                limit: limit))
     }
 }
 

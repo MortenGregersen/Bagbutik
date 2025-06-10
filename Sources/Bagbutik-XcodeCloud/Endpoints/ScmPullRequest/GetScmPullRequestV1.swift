@@ -18,10 +18,13 @@ public extension Request {
      */
     static func getScmPullRequestV1(id: String,
                                     fields: [GetScmPullRequestV1.Field]? = nil,
-                                    includes: [GetScmPullRequestV1.Include]? = nil) -> Request<ScmPullRequestResponse, ErrorResponse>
-    {
-        .init(path: "/v1/scmPullRequests/\(id)", method: .get, parameters: .init(fields: fields,
-                                                                                 includes: includes))
+                                    includes: [GetScmPullRequestV1.Include]? = nil) -> Request<ScmPullRequestResponse, ErrorResponse> {
+        .init(
+            path: "/v1/scmPullRequests/\(id)",
+            method: .get,
+            parameters: .init(
+                fields: fields,
+                includes: includes))
     }
 }
 

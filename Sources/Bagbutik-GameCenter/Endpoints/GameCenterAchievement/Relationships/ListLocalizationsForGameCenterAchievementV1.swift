@@ -18,11 +18,14 @@ public extension Request {
     static func listLocalizationsForGameCenterAchievementV1(id: String,
                                                             fields: [ListLocalizationsForGameCenterAchievementV1.Field]? = nil,
                                                             includes: [ListLocalizationsForGameCenterAchievementV1.Include]? = nil,
-                                                            limit: Int? = nil) -> Request<GameCenterAchievementLocalizationsResponse, ErrorResponse>
-    {
-        .init(path: "/v1/gameCenterAchievements/\(id)/localizations", method: .get, parameters: .init(fields: fields,
-                                                                                                      includes: includes,
-                                                                                                      limit: limit))
+                                                            limit: Int? = nil) -> Request<GameCenterAchievementLocalizationsResponse, ErrorResponse> {
+        .init(
+            path: "/v1/gameCenterAchievements/\(id)/localizations",
+            method: .get,
+            parameters: .init(
+                fields: fields,
+                includes: includes,
+                limit: limit))
     }
 }
 

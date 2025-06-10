@@ -18,11 +18,14 @@ public extension Request {
     static func listPromotedPurchasesForAppV1(id: String,
                                               fields: [ListPromotedPurchasesForAppV1.Field]? = nil,
                                               includes: [ListPromotedPurchasesForAppV1.Include]? = nil,
-                                              limit: Int? = nil) -> Request<PromotedPurchasesResponse, ErrorResponse>
-    {
-        .init(path: "/v1/apps/\(id)/promotedPurchases", method: .get, parameters: .init(fields: fields,
-                                                                                        includes: includes,
-                                                                                        limit: limit))
+                                              limit: Int? = nil) -> Request<PromotedPurchasesResponse, ErrorResponse> {
+        .init(
+            path: "/v1/apps/\(id)/promotedPurchases",
+            method: .get,
+            parameters: .init(
+                fields: fields,
+                includes: includes,
+                limit: limit))
     }
 }
 

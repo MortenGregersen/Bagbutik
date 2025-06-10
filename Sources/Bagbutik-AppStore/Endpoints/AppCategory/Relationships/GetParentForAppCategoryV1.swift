@@ -14,9 +14,11 @@ public extension Request {
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func getParentForAppCategoryV1(id: String,
-                                          fields: [GetParentForAppCategoryV1.Field]? = nil) -> Request<AppCategoryWithoutIncludesResponse, ErrorResponse>
-    {
-        .init(path: "/v1/appCategories/\(id)/parent", method: .get, parameters: .init(fields: fields))
+                                          fields: [GetParentForAppCategoryV1.Field]? = nil) -> Request<AppCategoryWithoutIncludesResponse, ErrorResponse> {
+        .init(
+            path: "/v1/appCategories/\(id)/parent",
+            method: .get,
+            parameters: .init(fields: fields))
     }
 }
 

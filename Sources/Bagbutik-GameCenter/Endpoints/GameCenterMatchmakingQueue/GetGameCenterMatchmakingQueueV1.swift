@@ -16,10 +16,13 @@ public extension Request {
      */
     static func getGameCenterMatchmakingQueueV1(id: String,
                                                 fields: [GetGameCenterMatchmakingQueueV1.Field]? = nil,
-                                                includes: [GetGameCenterMatchmakingQueueV1.Include]? = nil) -> Request<GameCenterMatchmakingQueueResponse, ErrorResponse>
-    {
-        .init(path: "/v1/gameCenterMatchmakingQueues/\(id)", method: .get, parameters: .init(fields: fields,
-                                                                                             includes: includes))
+                                                includes: [GetGameCenterMatchmakingQueueV1.Include]? = nil) -> Request<GameCenterMatchmakingQueueResponse, ErrorResponse> {
+        .init(
+            path: "/v1/gameCenterMatchmakingQueues/\(id)",
+            method: .get,
+            parameters: .init(
+                fields: fields,
+                includes: includes))
     }
 }
 

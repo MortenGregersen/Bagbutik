@@ -16,10 +16,13 @@ public extension Request {
      */
     static func getGameCenterAchievementImageForGameCenterAchievementLocalizationV1(id: String,
                                                                                     fields: [GetGameCenterAchievementImageForGameCenterAchievementLocalizationV1.Field]? = nil,
-                                                                                    includes: [GetGameCenterAchievementImageForGameCenterAchievementLocalizationV1.Include]? = nil) -> Request<GameCenterAchievementImageResponse, ErrorResponse>
-    {
-        .init(path: "/v1/gameCenterAchievementLocalizations/\(id)/gameCenterAchievementImage", method: .get, parameters: .init(fields: fields,
-                                                                                                                               includes: includes))
+                                                                                    includes: [GetGameCenterAchievementImageForGameCenterAchievementLocalizationV1.Include]? = nil) -> Request<GameCenterAchievementImageResponse, ErrorResponse> {
+        .init(
+            path: "/v1/gameCenterAchievementLocalizations/\(id)/gameCenterAchievementImage",
+            method: .get,
+            parameters: .init(
+                fields: fields,
+                includes: includes))
     }
 }
 

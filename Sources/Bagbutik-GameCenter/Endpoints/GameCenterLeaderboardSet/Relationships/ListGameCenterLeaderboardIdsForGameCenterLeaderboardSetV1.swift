@@ -14,8 +14,10 @@ public extension Request {
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func listGameCenterLeaderboardIdsForGameCenterLeaderboardSetV1(id: String,
-                                                                          limit: Int? = nil) -> Request<GameCenterLeaderboardSetGameCenterLeaderboardsLinkagesResponse, ErrorResponse>
-    {
-        .init(path: "/v1/gameCenterLeaderboardSets/\(id)/relationships/gameCenterLeaderboards", method: .get, parameters: .init(limit: limit))
+                                                                          limit: Int? = nil) -> Request<GameCenterLeaderboardSetGameCenterLeaderboardsLinkagesResponse, ErrorResponse> {
+        .init(
+            path: "/v1/gameCenterLeaderboardSets/\(id)/relationships/gameCenterLeaderboards",
+            method: .get,
+            parameters: .init(limit: limit))
     }
 }

@@ -20,12 +20,15 @@ public extension Request {
                                                                    fields: [ListAppPreviewSetsForAppStoreVersionLocalizationV1.Field]? = nil,
                                                                    filters: [ListAppPreviewSetsForAppStoreVersionLocalizationV1.Filter]? = nil,
                                                                    includes: [ListAppPreviewSetsForAppStoreVersionLocalizationV1.Include]? = nil,
-                                                                   limits: [ListAppPreviewSetsForAppStoreVersionLocalizationV1.Limit]? = nil) -> Request<AppPreviewSetsResponse, ErrorResponse>
-    {
-        .init(path: "/v1/appStoreVersionLocalizations/\(id)/appPreviewSets", method: .get, parameters: .init(fields: fields,
-                                                                                                             filters: filters,
-                                                                                                             includes: includes,
-                                                                                                             limits: limits))
+                                                                   limits: [ListAppPreviewSetsForAppStoreVersionLocalizationV1.Limit]? = nil) -> Request<AppPreviewSetsResponse, ErrorResponse> {
+        .init(
+            path: "/v1/appStoreVersionLocalizations/\(id)/appPreviewSets",
+            method: .get,
+            parameters: .init(
+                fields: fields,
+                filters: filters,
+                includes: includes,
+                limits: limits))
     }
 }
 

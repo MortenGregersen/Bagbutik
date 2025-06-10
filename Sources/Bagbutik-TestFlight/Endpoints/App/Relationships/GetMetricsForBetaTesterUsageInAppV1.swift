@@ -20,14 +20,17 @@ public extension Request {
                                                     filters: [GetMetricsForBetaTesterUsageInAppV1.Filter]? = nil,
                                                     groupBy: GetMetricsForBetaTesterUsageInAppV1.GroupBy? = nil,
                                                     period: GetMetricsForBetaTesterUsageInAppV1.Period? = nil,
-                                                    limit: Int? = nil) -> Request<AppsBetaTesterUsagesV1MetricResponse, ErrorResponse>
-    {
+                                                    limit: Int? = nil) -> Request<AppsBetaTesterUsagesV1MetricResponse, ErrorResponse> {
         var customs = [String: String]()
         if let groupBy { customs["groupBy"] = groupBy.rawValue }
         if let period { customs["period"] = period.rawValue }
-        return .init(path: "/v1/apps/\(id)/metrics/betaTesterUsages", method: .get, parameters: .init(filters: filters,
-                                                                                                      limit: limit,
-                                                                                                      customs: customs))
+        return .init(
+            path: "/v1/apps/\(id)/metrics/betaTesterUsages",
+            method: .get,
+            parameters: .init(
+                filters: filters,
+                limit: limit,
+                customs: customs))
     }
 }
 

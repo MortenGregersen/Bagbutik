@@ -16,10 +16,13 @@ public extension Request {
      */
     static func getPromotedPurchaseForSubscriptionV1(id: String,
                                                      fields: [GetPromotedPurchaseForSubscriptionV1.Field]? = nil,
-                                                     includes: [GetPromotedPurchaseForSubscriptionV1.Include]? = nil) -> Request<PromotedPurchaseResponse, ErrorResponse>
-    {
-        .init(path: "/v1/subscriptions/\(id)/promotedPurchase", method: .get, parameters: .init(fields: fields,
-                                                                                                includes: includes))
+                                                     includes: [GetPromotedPurchaseForSubscriptionV1.Include]? = nil) -> Request<PromotedPurchaseResponse, ErrorResponse> {
+        .init(
+            path: "/v1/subscriptions/\(id)/promotedPurchase",
+            method: .get,
+            parameters: .init(
+                fields: fields,
+                includes: includes))
     }
 }
 

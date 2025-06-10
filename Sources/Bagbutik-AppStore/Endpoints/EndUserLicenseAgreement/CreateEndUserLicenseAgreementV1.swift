@@ -16,6 +16,9 @@ public extension Request {
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func createEndUserLicenseAgreementV1(requestBody: EndUserLicenseAgreementCreateRequest) -> Request<EndUserLicenseAgreementResponse, ErrorResponse> {
-        .init(path: "/v1/endUserLicenseAgreements", method: .post, requestBody: requestBody)
+        .init(
+            path: "/v1/endUserLicenseAgreements",
+            method: .post,
+            requestBody: requestBody)
     }
 }

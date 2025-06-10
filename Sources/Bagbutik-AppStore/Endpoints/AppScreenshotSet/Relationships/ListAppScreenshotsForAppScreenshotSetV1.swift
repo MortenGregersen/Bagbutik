@@ -18,11 +18,14 @@ public extension Request {
     static func listAppScreenshotsForAppScreenshotSetV1(id: String,
                                                         fields: [ListAppScreenshotsForAppScreenshotSetV1.Field]? = nil,
                                                         includes: [ListAppScreenshotsForAppScreenshotSetV1.Include]? = nil,
-                                                        limit: Int? = nil) -> Request<AppScreenshotsResponse, ErrorResponse>
-    {
-        .init(path: "/v1/appScreenshotSets/\(id)/appScreenshots", method: .get, parameters: .init(fields: fields,
-                                                                                                  includes: includes,
-                                                                                                  limit: limit))
+                                                        limit: Int? = nil) -> Request<AppScreenshotsResponse, ErrorResponse> {
+        .init(
+            path: "/v1/appScreenshotSets/\(id)/appScreenshots",
+            method: .get,
+            parameters: .init(
+                fields: fields,
+                includes: includes,
+                limit: limit))
     }
 }
 

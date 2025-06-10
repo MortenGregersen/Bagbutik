@@ -18,10 +18,13 @@ public extension Request {
      */
     static func getCiBuildActionV1(id: String,
                                    fields: [GetCiBuildActionV1.Field]? = nil,
-                                   includes: [GetCiBuildActionV1.Include]? = nil) -> Request<CiBuildActionResponse, ErrorResponse>
-    {
-        .init(path: "/v1/ciBuildActions/\(id)", method: .get, parameters: .init(fields: fields,
-                                                                                includes: includes))
+                                   includes: [GetCiBuildActionV1.Include]? = nil) -> Request<CiBuildActionResponse, ErrorResponse> {
+        .init(
+            path: "/v1/ciBuildActions/\(id)",
+            method: .get,
+            parameters: .init(
+                fields: fields,
+                includes: includes))
     }
 }
 

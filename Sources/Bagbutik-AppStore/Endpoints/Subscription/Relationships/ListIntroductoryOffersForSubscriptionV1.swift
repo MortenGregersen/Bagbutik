@@ -20,12 +20,15 @@ public extension Request {
                                                         fields: [ListIntroductoryOffersForSubscriptionV1.Field]? = nil,
                                                         filters: [ListIntroductoryOffersForSubscriptionV1.Filter]? = nil,
                                                         includes: [ListIntroductoryOffersForSubscriptionV1.Include]? = nil,
-                                                        limit: Int? = nil) -> Request<SubscriptionIntroductoryOffersResponse, ErrorResponse>
-    {
-        .init(path: "/v1/subscriptions/\(id)/introductoryOffers", method: .get, parameters: .init(fields: fields,
-                                                                                                  filters: filters,
-                                                                                                  includes: includes,
-                                                                                                  limit: limit))
+                                                        limit: Int? = nil) -> Request<SubscriptionIntroductoryOffersResponse, ErrorResponse> {
+        .init(
+            path: "/v1/subscriptions/\(id)/introductoryOffers",
+            method: .get,
+            parameters: .init(
+                fields: fields,
+                filters: filters,
+                includes: includes,
+                limit: limit))
     }
 }
 

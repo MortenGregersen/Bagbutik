@@ -16,10 +16,13 @@ public extension Request {
      */
     static func getSubscriptionOfferCodeCustomCodeV1(id: String,
                                                      fields: [GetSubscriptionOfferCodeCustomCodeV1.Field]? = nil,
-                                                     includes: [GetSubscriptionOfferCodeCustomCodeV1.Include]? = nil) -> Request<SubscriptionOfferCodeCustomCodeResponse, ErrorResponse>
-    {
-        .init(path: "/v1/subscriptionOfferCodeCustomCodes/\(id)", method: .get, parameters: .init(fields: fields,
-                                                                                                  includes: includes))
+                                                     includes: [GetSubscriptionOfferCodeCustomCodeV1.Include]? = nil) -> Request<SubscriptionOfferCodeCustomCodeResponse, ErrorResponse> {
+        .init(
+            path: "/v1/subscriptionOfferCodeCustomCodes/\(id)",
+            method: .get,
+            parameters: .init(
+                fields: fields,
+                includes: includes))
     }
 }
 

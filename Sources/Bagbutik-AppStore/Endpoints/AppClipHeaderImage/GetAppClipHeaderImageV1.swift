@@ -16,10 +16,13 @@ public extension Request {
      */
     static func getAppClipHeaderImageV1(id: String,
                                         fields: [GetAppClipHeaderImageV1.Field]? = nil,
-                                        includes: [GetAppClipHeaderImageV1.Include]? = nil) -> Request<AppClipHeaderImageResponse, ErrorResponse>
-    {
-        .init(path: "/v1/appClipHeaderImages/\(id)", method: .get, parameters: .init(fields: fields,
-                                                                                     includes: includes))
+                                        includes: [GetAppClipHeaderImageV1.Include]? = nil) -> Request<AppClipHeaderImageResponse, ErrorResponse> {
+        .init(
+            path: "/v1/appClipHeaderImages/\(id)",
+            method: .get,
+            parameters: .init(
+                fields: fields,
+                includes: includes))
     }
 }
 

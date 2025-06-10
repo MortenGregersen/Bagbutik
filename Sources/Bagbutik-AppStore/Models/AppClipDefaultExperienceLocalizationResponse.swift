@@ -64,8 +64,11 @@ public struct AppClipDefaultExperienceLocalizationResponse: Codable, Sendable {
             } else if let appClipHeaderImage = try? AppClipHeaderImage(from: decoder) {
                 self = .appClipHeaderImage(appClipHeaderImage)
             } else {
-                throw DecodingError.typeMismatch(Included.self, DecodingError.Context(codingPath: decoder.codingPath,
-                                                                                      debugDescription: "Unknown Included"))
+                throw DecodingError.typeMismatch(
+                    Included.self,
+                    DecodingError.Context(
+                        codingPath: decoder.codingPath,
+                        debugDescription: "Unknown Included"))
             }
         }
 

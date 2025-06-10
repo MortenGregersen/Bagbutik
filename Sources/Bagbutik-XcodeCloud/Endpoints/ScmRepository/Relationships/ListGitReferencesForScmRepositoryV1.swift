@@ -18,11 +18,14 @@ public extension Request {
     static func listGitReferencesForScmRepositoryV1(id: String,
                                                     fields: [ListGitReferencesForScmRepositoryV1.Field]? = nil,
                                                     includes: [ListGitReferencesForScmRepositoryV1.Include]? = nil,
-                                                    limit: Int? = nil) -> Request<ScmGitReferencesResponse, ErrorResponse>
-    {
-        .init(path: "/v1/scmRepositories/\(id)/gitReferences", method: .get, parameters: .init(fields: fields,
-                                                                                               includes: includes,
-                                                                                               limit: limit))
+                                                    limit: Int? = nil) -> Request<ScmGitReferencesResponse, ErrorResponse> {
+        .init(
+            path: "/v1/scmRepositories/\(id)/gitReferences",
+            method: .get,
+            parameters: .init(
+                fields: fields,
+                includes: includes,
+                limit: limit))
     }
 }
 

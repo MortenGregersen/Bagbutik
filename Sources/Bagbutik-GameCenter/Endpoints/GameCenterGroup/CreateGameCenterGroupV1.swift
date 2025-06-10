@@ -13,6 +13,9 @@ public extension Request {
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func createGameCenterGroupV1(requestBody: GameCenterGroupCreateRequest) -> Request<GameCenterGroupResponse, ErrorResponse> {
-        .init(path: "/v1/gameCenterGroups", method: .post, requestBody: requestBody)
+        .init(
+            path: "/v1/gameCenterGroups",
+            method: .post,
+            requestBody: requestBody)
     }
 }

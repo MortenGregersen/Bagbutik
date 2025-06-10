@@ -17,8 +17,10 @@ public extension Request {
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func updateGameCenterLeaderboardLocalizationV1(id: String,
-                                                          requestBody: GameCenterLeaderboardLocalizationUpdateRequest) -> Request<GameCenterLeaderboardLocalizationResponse, ErrorResponse>
-    {
-        .init(path: "/v1/gameCenterLeaderboardLocalizations/\(id)", method: .patch, requestBody: requestBody)
+                                                          requestBody: GameCenterLeaderboardLocalizationUpdateRequest) -> Request<GameCenterLeaderboardLocalizationResponse, ErrorResponse> {
+        .init(
+            path: "/v1/gameCenterLeaderboardLocalizations/\(id)",
+            method: .patch,
+            requestBody: requestBody)
     }
 }

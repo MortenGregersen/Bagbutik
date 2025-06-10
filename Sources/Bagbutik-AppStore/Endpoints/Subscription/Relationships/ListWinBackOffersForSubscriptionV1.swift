@@ -18,11 +18,14 @@ public extension Request {
     static func listWinBackOffersForSubscriptionV1(id: String,
                                                    fields: [ListWinBackOffersForSubscriptionV1.Field]? = nil,
                                                    includes: [ListWinBackOffersForSubscriptionV1.Include]? = nil,
-                                                   limits: [ListWinBackOffersForSubscriptionV1.Limit]? = nil) -> Request<WinBackOffersResponse, ErrorResponse>
-    {
-        .init(path: "/v1/subscriptions/\(id)/winBackOffers", method: .get, parameters: .init(fields: fields,
-                                                                                             includes: includes,
-                                                                                             limits: limits))
+                                                   limits: [ListWinBackOffersForSubscriptionV1.Limit]? = nil) -> Request<WinBackOffersResponse, ErrorResponse> {
+        .init(
+            path: "/v1/subscriptions/\(id)/winBackOffers",
+            method: .get,
+            parameters: .init(
+                fields: fields,
+                includes: includes,
+                limits: limits))
     }
 }
 
