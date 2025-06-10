@@ -66,7 +66,7 @@ public class Renderer {
         }
         return """
         \(access) enum \(name)\(inheritanceString) {
-        \(casesAndContent.indentedLines)
+        \(casesAndContent.indentedLines.trimmingCharacters(in: .newlines))
         }
         """
     }
