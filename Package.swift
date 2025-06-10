@@ -68,9 +68,9 @@ let package = Package(
     ],
     targets: [
         .target(name: "Bagbutik-Core", dependencies: [
-            .product(name: "Crypto", package: "swift-crypto", condition: .when(platforms: [.linux, .android, .wasi])),
-            .target(name: "system-zlib", condition: .when(platforms: [.linux, .android, .wasi])),
-            .target(name: "BagbutikPolyfill", condition: .when(platforms: [.linux, .android, .wasi]))
+            .product(name: "Crypto", package: "swift-crypto", condition: .when(platforms: [.linux, .android])),
+            .target(name: "system-zlib", condition: .when(platforms: [.linux, .android])),
+            .target(name: "BagbutikPolyfill", condition: .when(platforms: [.linux, .android]))
         ]),
         .target(name: "Bagbutik-Models", dependencies: ["Bagbutik-Core"]),
         .target(name: "Bagbutik-AppStore", dependencies: ["Bagbutik-Core", "Bagbutik-Models"]),
@@ -86,7 +86,7 @@ let package = Package(
             dependencies: [
                 "BagbutikGenerator",
                 "BagbutikDocsCollector",
-                .target(name: "BagbutikPolyfill", condition: .when(platforms: [.linux, .android, .wasi])),
+                .target(name: "BagbutikPolyfill", condition: .when(platforms: [.linux, .android])),
                 .product(name: "ArgumentParser", package: "swift-argument-parser")
             ]),
         // Internal targets
@@ -99,7 +99,7 @@ let package = Package(
             ]),
         .target(name: "BagbutikDocsCollector", dependencies: [
             "BagbutikSpecDecoder",
-            .target(name: "BagbutikPolyfill", condition: .when(platforms: [.linux, .android, .wasi]))
+            .target(name: "BagbutikPolyfill", condition: .when(platforms: [.linux, .android]))
         ]),
         .target(name: "BagbutikSpecDecoder", dependencies: ["BagbutikStringExtensions"]),
         .target(name: "BagbutikStringExtensions"),
@@ -111,7 +111,7 @@ let package = Package(
             dependencies: [
                 "Bagbutik-Core",
                 "Bagbutik-AppStore",
-                .product(name: "Crypto", package: "swift-crypto", condition: .when(platforms: [.linux, .android, .wasi]))
+                .product(name: "Crypto", package: "swift-crypto", condition: .when(platforms: [.linux, .android]))
             ],
             resources: [.copy("test-private-key.p8")]),
         .testTarget(name: "Bagbutik-ModelsTests", dependencies: ["Bagbutik-Models"]),

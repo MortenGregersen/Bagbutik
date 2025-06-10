@@ -56,20 +56,3 @@ jobs:
     - uses: skiptools/swift-android-action@v2
       with:
         swift-version: 6.1
-  build-wasm:
-    name: "Build and Test (WASM)"
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v4
-    - name: Setup SwiftWasm SDK
-      uses: swiftwasm/setup-swiftwasm@v2
-    - name: Build tests
-      run: swift build --swift-sdk wasm32-unknown-wasi --build-tests
-    - name: Run tests
-      run: swift test --swift-sdk wasm32-unknown-wasi
-    - name: Install Wasmtime
-      uses: bytecodealliance/actions/wasmtime/setup@v1
-    - name: List wasm files
-      run: ls .build/debug
-    - name: Run tests under Wasmtime
-      run: wasmtime .build/debug/BagbutikPackageTests.wasm
