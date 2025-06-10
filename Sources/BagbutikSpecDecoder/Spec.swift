@@ -178,7 +178,7 @@ public struct Spec: Decodable {
                 deviceSchema.properties["attributes"]?.type = .schema(deviceAttributesSchema)
                 components.schemas["Device"] = .object(deviceSchema)
             }
-            // Add the case `APPLE_VISION_PRO` to DeviceClass
+            // FB15681740: Add the case `APPLE_VISION_PRO` to DeviceClass
             // Apple's OpenAPI spec doesn't include the Apple Vision Pro for Device class.
             if var classProperty = deviceAttributesSchema.properties["deviceClass"],
                case .enumSchema(var classEnum) = classProperty.type {
@@ -209,12 +209,12 @@ public struct Spec: Decodable {
         sourceProperty.type = .oneOf(name: sourcePropertyName, schema: sourceOneOfSchema)
         errorSchema.properties["source"] = sourceProperty
 
-        // Mark `detail` as optional on ErrorResponse.Errors
+        // FB12292035: Mark `detail` as optional on ErrorResponse.Errors
         // In Apple's OpenAPI spec the `detail` property on `ErrorResponse.Errors` is marked as `required`.
         // On 12/1/23 some errors (with status code 409) has been observed, with no `detail`.
         errorSchema.requiredProperties.removeAll(where: { $0 == "detail" })
 
-        // Add `associatedErrors` to the `meta` property on ErrorResponse.Errors
+        // FB12292035: Add `associatedErrors` to the `meta` property on ErrorResponse.Errors
         // In Apple's OpenAPI spec and documentation the `meta` property does not include the `associatedErrors` (last checked 26/1/24).
         // But it is observed when creating a ReviewSubmissionItem with an AppStoreVersion fails.
         if let metaProperty = errorSchema.properties["meta"],
@@ -253,7 +253,7 @@ public struct Spec: Decodable {
             patchedSchemas.append(.object(ageRatingDeclarationUpdateRequestSchema))
         }
 
-        // Adds XKS (Kosovo) to the list of `TerritoryCode`s.
+        // FB16699896: Adds XKS (Kosovo) to the list of `TerritoryCode`s.
         // Apple's OpenAPI spec doesn't include the country code for Kosovo in the list of codes.
         if case .enum(var territoryCode) = components.schemas["TerritoryCode"] {
             territoryCode.cases.append(.init(id: "xks", value: "XKS"))
@@ -261,6 +261,7 @@ public struct Spec: Decodable {
             patchedSchemas.append(.enum(territoryCode))
         }
 
+        // FB16908301: Adds list og `PurchaseRequirement` to `AppEvent`.
         if case .object(var appEventSchema) = components.schemas["AppEvent"],
            case .schema(var appEventAttributesSchema) = appEventSchema.properties["attributes"]?.type,
            var purchaseRequirementProperty = appEventAttributesSchema.properties["purchaseRequirement"],
@@ -271,6 +272,30 @@ public struct Spec: Decodable {
             appEventSchema.properties["attributes"]?.type = .schema(appEventAttributesSchema)
             components.schemas["AppEvent"] = .object(appEventSchema)
         }
+
+        // FB17874677: Adds "INFREQUENT_OR_MILD" and "FREQUENT_OR_INTENSE" to AgeRatingDeclaration.Attributes properties.
+        if case .object(var ageRatingDeclarationSchema) = components.schemas["AgeRatingDeclaration"],
+           case .schema(var ageRatingDeclarationAttributesSchema) = ageRatingDeclarationSchema.properties["attributes"]?.type {
+            let missingCases = [
+                EnumCase(id: "infrequentOrMild", value: "INFREQUENT_OR_MILD"),
+                EnumCase(id: "frequentOrIntense", value: "FREQUENT_OR_INTENSE")
+            ]
+            for (propertyName, property) in ageRatingDeclarationAttributesSchema.properties {
+                if case .enumSchema(var enumSchema) = property.type,
+                   enumSchema.cases.count == 1,
+                   enumSchema.cases.first?.value == "NONE" {
+                    var property = property
+                    enumSchema.cases.append(contentsOf: missingCases)
+                    property.type = .enumSchema(enumSchema)
+                    ageRatingDeclarationAttributesSchema.properties[propertyName] = property
+                }
+            }
+            ageRatingDeclarationSchema.properties["attributes"]?.type = .schema(ageRatingDeclarationAttributesSchema)
+            components.schemas["AgeRatingDeclaration"] = .object(ageRatingDeclarationSchema)
+        }
+
+        // Remove "StringToStringMap" - this is replaced with a [String: String] in the generated code
+        components.schemas.removeValue(forKey: "StringToStringMap")
     }
 
     /// A wrapper for schemas to ease decoding
