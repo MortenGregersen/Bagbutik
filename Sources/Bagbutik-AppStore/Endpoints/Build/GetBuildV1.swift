@@ -99,10 +99,13 @@ public enum GetBuildV1 {
             case releaseType
             case reviewType
             case routingAppCoverage
+            case usesIdfa
             case versionString
         }
 
         public enum Apps: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case accessibilityDeclarations
+            case accessibilityUrl
             case alternativeDistributionKey
             case analyticsReportRequests
             case appAvailabilityV2
@@ -115,8 +118,11 @@ public enum GetBuildV1 {
             case appPriceSchedule
             case appStoreVersionExperimentsV2
             case appStoreVersions
+            case backgroundAssets
             case betaAppLocalizations
             case betaAppReviewDetail
+            case betaFeedbackCrashSubmissions
+            case betaFeedbackScreenshotSubmissions
             case betaGroups
             case betaLicenseAgreement
             case betaTesters
@@ -124,6 +130,7 @@ public enum GetBuildV1 {
             case bundleId
             case ciProduct
             case contentRightsDeclaration
+            case customerReviewSummarizations
             case customerReviews
             case endUserLicenseAgreement
             case gameCenterDetail
@@ -146,6 +153,7 @@ public enum GetBuildV1 {
             case subscriptionStatusUrlForSandbox
             case subscriptionStatusUrlVersion
             case subscriptionStatusUrlVersionForSandbox
+            case webhooks
         }
 
         public enum BetaAppReviewSubmissions: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -195,6 +203,7 @@ public enum GetBuildV1 {
             case buildBetaDetail
             case buildBundles
             case computedMinMacOsVersion
+            case computedMinVisionOsVersion
             case diagnosticSignatures
             case expirationDate
             case expired

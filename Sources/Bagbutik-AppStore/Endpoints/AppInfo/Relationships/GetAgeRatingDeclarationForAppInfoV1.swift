@@ -6,7 +6,7 @@ public extension Request {
      # Read age rating declaration
      Get the age rating declaration for the app info.
 
-     Responses for this endpoint include the `gamblingAndContests` attribute for legacy clients. For new clients, use `contents` or `gambling` properties instead. For example, in an app that has a `FREQUENT_OR_INTENSE` declaration for contests, the age rating for the `AppInfos` is 12+. If you declare a value of true for `gamblingAndContests` instead, the age rating for the `AppInfos` is 17+.
+     Responses for this endpoint include `contests` or `gambling` properties. In an app that has a `FREQUENT_OR_INTENSE` declaration for contests, the age rating for the `AppInfos` is 12+. If you declare a value of true for `gambling`, the age rating for the `AppInfos` is 17+.
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-appInfos-_id_-ageRatingDeclaration>
@@ -33,11 +33,9 @@ public enum GetAgeRatingDeclarationForAppInfoV1 {
         case ageRatingDeclarations([AgeRatingDeclarations])
 
         public enum AgeRatingDeclarations: String, Sendable, ParameterValue, Codable, CaseIterable {
-            case ageRatingOverride
             case alcoholTobaccoOrDrugUseOrReferences
             case contests
             case gambling
-            case gamblingAndContests
             case gamblingSimulated
             case horrorOrFearThemes
             case kidsAgeBand
@@ -46,7 +44,6 @@ public enum GetAgeRatingDeclarationForAppInfoV1 {
             case matureOrSuggestiveThemes
             case medicalOrTreatmentInformation
             case profanityOrCrudeHumor
-            case seventeenPlus
             case sexualContentGraphicAndNudity
             case sexualContentOrNudity
             case unrestrictedWebAccess

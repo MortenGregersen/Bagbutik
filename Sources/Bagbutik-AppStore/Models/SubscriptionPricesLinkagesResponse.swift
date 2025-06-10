@@ -2,6 +2,13 @@ import Bagbutik_Core
 import Bagbutik_Models
 import Foundation
 
+/**
+ # SubscriptionPricesLinkagesResponse
+ A response that contains a list of Ids of related resources.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/subscriptionpriceslinkagesresponse>
+ */
 public struct SubscriptionPricesLinkagesResponse: Codable, Sendable, PagedResponse {
     public let data: [Data]
     public let links: PagedDocumentLinks

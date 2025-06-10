@@ -78,7 +78,6 @@ public enum GetSubscriptionOfferCodeV1 {
             case oneTimeUseCodes
             case prices
             case subscription
-            case totalNumberOfCodes
         }
     }
 

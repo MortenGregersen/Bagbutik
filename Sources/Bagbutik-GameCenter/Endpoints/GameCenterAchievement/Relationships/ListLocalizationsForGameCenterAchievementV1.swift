@@ -60,6 +60,8 @@ public enum ListLocalizationsForGameCenterAchievementV1 {
         }
 
         public enum GameCenterAchievements: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case activity
+            case activityProperties
             case archived
             case gameCenterDetail
             case gameCenterGroup

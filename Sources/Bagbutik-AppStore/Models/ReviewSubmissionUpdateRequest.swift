@@ -49,24 +49,29 @@ public struct ReviewSubmissionUpdateRequest: Codable, Sendable, RequestBody {
 
         public struct Attributes: Codable, Sendable {
             public var canceled: Bool?
+            public var platform: Platform?
             public var submitted: Bool?
 
             public init(canceled: Bool? = nil,
+                        platform: Platform? = nil,
                         submitted: Bool? = nil)
             {
                 self.canceled = canceled
+                self.platform = platform
                 self.submitted = submitted
             }
 
             public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: AnyCodingKey.self)
                 canceled = try container.decodeIfPresent(Bool.self, forKey: "canceled")
+                platform = try container.decodeIfPresent(Platform.self, forKey: "platform")
                 submitted = try container.decodeIfPresent(Bool.self, forKey: "submitted")
             }
 
             public func encode(to encoder: Encoder) throws {
                 var container = encoder.container(keyedBy: AnyCodingKey.self)
                 try container.encodeIfPresent(canceled, forKey: "canceled")
+                try container.encodeIfPresent(platform, forKey: "platform")
                 try container.encodeIfPresent(submitted, forKey: "submitted")
             }
         }

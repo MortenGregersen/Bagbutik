@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read compatibility version information
+     # GET /v1/gameCenterAppVersions/{id}/compatibilityVersions
      Get compatibility version information for a specific app version.
 
      Full documentation:
@@ -66,6 +66,7 @@ public enum ListCompatibilityVersionsForGameCenterAppVersionV1 {
             case releaseType
             case reviewType
             case routingAppCoverage
+            case usesIdfa
             case versionString
         }
 

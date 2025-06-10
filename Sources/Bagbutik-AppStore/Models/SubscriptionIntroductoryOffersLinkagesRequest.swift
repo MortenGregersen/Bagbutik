@@ -2,6 +2,13 @@ import Bagbutik_Core
 import Bagbutik_Models
 import Foundation
 
+/**
+ # SubscriptionIntroductoryOffersLinkagesRequest
+ The data structure that represents a subscription introductory offers linkages request resource.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/subscriptionintroductoryofferslinkagesrequest>
+ */
 public struct SubscriptionIntroductoryOffersLinkagesRequest: Codable, Sendable, RequestBody {
     public let data: [Data]
 

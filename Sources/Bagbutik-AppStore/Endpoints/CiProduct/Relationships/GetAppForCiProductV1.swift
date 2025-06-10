@@ -189,10 +189,13 @@ public enum GetAppForCiProductV1 {
             case releaseType
             case reviewType
             case routingAppCoverage
+            case usesIdfa
             case versionString
         }
 
         public enum Apps: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case accessibilityDeclarations
+            case accessibilityUrl
             case alternativeDistributionKey
             case analyticsReportRequests
             case appAvailabilityV2
@@ -205,8 +208,11 @@ public enum GetAppForCiProductV1 {
             case appPriceSchedule
             case appStoreVersionExperimentsV2
             case appStoreVersions
+            case backgroundAssets
             case betaAppLocalizations
             case betaAppReviewDetail
+            case betaFeedbackCrashSubmissions
+            case betaFeedbackScreenshotSubmissions
             case betaGroups
             case betaLicenseAgreement
             case betaTesters
@@ -214,6 +220,7 @@ public enum GetAppForCiProductV1 {
             case bundleId
             case ciProduct
             case contentRightsDeclaration
+            case customerReviewSummarizations
             case customerReviews
             case endUserLicenseAgreement
             case gameCenterDetail
@@ -236,6 +243,7 @@ public enum GetAppForCiProductV1 {
             case subscriptionStatusUrlForSandbox
             case subscriptionStatusUrlVersion
             case subscriptionStatusUrlVersionForSandbox
+            case webhooks
         }
 
         public enum BetaAppLocalizations: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -296,6 +304,7 @@ public enum GetAppForCiProductV1 {
             case buildBetaDetail
             case buildBundles
             case computedMinMacOsVersion
+            case computedMinVisionOsVersion
             case diagnosticSignatures
             case expirationDate
             case expired
@@ -332,13 +341,18 @@ public enum GetAppForCiProductV1 {
 
         public enum GameCenterDetails: String, Sendable, ParameterValue, Codable, CaseIterable {
             case achievementReleases
+            case activityReleases
             case app
             case arcadeEnabled
             case challengeEnabled
+            case challengeReleases
+            case challengesMinimumPlatformVersions
             case defaultGroupLeaderboard
             case defaultLeaderboard
             case gameCenterAchievements
+            case gameCenterActivities
             case gameCenterAppVersions
+            case gameCenterChallenges
             case gameCenterGroup
             case gameCenterLeaderboardSets
             case gameCenterLeaderboards
@@ -418,6 +432,7 @@ public enum GetAppForCiProductV1 {
      Relationship data to include in the response.
      */
     public enum Include: String, IncludeParameter, CaseIterable {
+        case accessibilityDeclarations
         case alternativeDistributionKey
         case analyticsReportRequests
         case appAvailabilityV2
@@ -430,13 +445,17 @@ public enum GetAppForCiProductV1 {
         case appPriceSchedule
         case appStoreVersionExperimentsV2
         case appStoreVersions
+        case backgroundAssets
         case betaAppLocalizations
         case betaAppReviewDetail
+        case betaFeedbackCrashSubmissions
+        case betaFeedbackScreenshotSubmissions
         case betaGroups
         case betaLicenseAgreement
         case betaTesters
         case builds
         case ciProduct
+        case customerReviewSummarizations
         case customerReviews
         case endUserLicenseAgreement
         case gameCenterDetail
@@ -450,6 +469,7 @@ public enum GetAppForCiProductV1 {
         case reviewSubmissions
         case subscriptionGracePeriod
         case subscriptionGroups
+        case webhooks
     }
 
     /**

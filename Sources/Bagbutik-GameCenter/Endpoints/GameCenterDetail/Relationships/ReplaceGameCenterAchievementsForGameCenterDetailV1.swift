@@ -4,7 +4,7 @@ import Bagbutik_Models
 public extension Request {
     /**
      # Modify associated achievements
-     Modify the achievements for a Game center detail.
+     Modify the achievements for a Game Center detail.
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/patch-v1-gameCenterDetails-_id_-relationships-gameCenterAchievements>

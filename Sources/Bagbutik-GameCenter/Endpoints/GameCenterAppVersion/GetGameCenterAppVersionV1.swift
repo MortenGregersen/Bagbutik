@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read information for a specific app version
+     # GET /v1/gameCenterAppVersions/{id}
      Read the Game Center enablement state and related app version information.
 
      Full documentation:
@@ -63,6 +63,7 @@ public enum GetGameCenterAppVersionV1 {
             case releaseType
             case reviewType
             case routingAppCoverage
+            case usesIdfa
             case versionString
         }
 

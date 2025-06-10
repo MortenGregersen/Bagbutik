@@ -2,6 +2,13 @@ import Bagbutik_Core
 import Bagbutik_Models
 import Foundation
 
+/**
+ # AppPromotedPurchasesLinkagesResponse
+ A response that contains a list of Ids of related resources.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/apppromotedpurchaseslinkagesresponse>
+ */
 public struct AppPromotedPurchasesLinkagesResponse: Codable, Sendable, PagedResponse {
     public let data: [Data]
     public let links: PagedDocumentLinks

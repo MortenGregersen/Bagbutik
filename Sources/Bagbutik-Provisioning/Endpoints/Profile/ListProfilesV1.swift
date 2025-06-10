@@ -64,6 +64,7 @@ public enum ListProfilesV1 {
             case displayName
             case expirationDate
             case name
+            case passTypeId
             case platform
             case serialNumber
         }

@@ -65,11 +65,9 @@ public enum ListAppStoreVersionsForAppV1 {
         case routingAppCoverages([RoutingAppCoverages])
 
         public enum AgeRatingDeclarations: String, Sendable, ParameterValue, Codable, CaseIterable {
-            case ageRatingOverride
             case alcoholTobaccoOrDrugUseOrReferences
             case contests
             case gambling
-            case gamblingAndContests
             case gamblingSimulated
             case horrorOrFearThemes
             case kidsAgeBand
@@ -78,7 +76,6 @@ public enum ListAppStoreVersionsForAppV1 {
             case matureOrSuggestiveThemes
             case medicalOrTreatmentInformation
             case profanityOrCrudeHumor
-            case seventeenPlus
             case sexualContentGraphicAndNudity
             case sexualContentOrNudity
             case unrestrictedWebAccess
@@ -175,10 +172,13 @@ public enum ListAppStoreVersionsForAppV1 {
             case releaseType
             case reviewType
             case routingAppCoverage
+            case usesIdfa
             case versionString
         }
 
         public enum Apps: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case accessibilityDeclarations
+            case accessibilityUrl
             case alternativeDistributionKey
             case analyticsReportRequests
             case appAvailabilityV2
@@ -191,8 +191,11 @@ public enum ListAppStoreVersionsForAppV1 {
             case appPriceSchedule
             case appStoreVersionExperimentsV2
             case appStoreVersions
+            case backgroundAssets
             case betaAppLocalizations
             case betaAppReviewDetail
+            case betaFeedbackCrashSubmissions
+            case betaFeedbackScreenshotSubmissions
             case betaGroups
             case betaLicenseAgreement
             case betaTesters
@@ -200,6 +203,7 @@ public enum ListAppStoreVersionsForAppV1 {
             case bundleId
             case ciProduct
             case contentRightsDeclaration
+            case customerReviewSummarizations
             case customerReviews
             case endUserLicenseAgreement
             case gameCenterDetail
@@ -222,6 +226,7 @@ public enum ListAppStoreVersionsForAppV1 {
             case subscriptionStatusUrlForSandbox
             case subscriptionStatusUrlVersion
             case subscriptionStatusUrlVersionForSandbox
+            case webhooks
         }
 
         public enum Builds: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -235,6 +240,7 @@ public enum ListAppStoreVersionsForAppV1 {
             case buildBetaDetail
             case buildBundles
             case computedMinMacOsVersion
+            case computedMinVisionOsVersion
             case diagnosticSignatures
             case expirationDate
             case expired

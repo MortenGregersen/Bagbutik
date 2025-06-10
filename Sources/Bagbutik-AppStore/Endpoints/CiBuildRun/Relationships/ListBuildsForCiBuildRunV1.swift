@@ -12,6 +12,7 @@ public extension Request {
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types
      - Parameter filters: Attributes, relationships, and IDs by which to filter
+     - Parameter exists: Attributes, relationships, and IDs to check for existence
      - Parameter includes: Relationship data to include in the response
      - Parameter sorts: Attributes by which to sort
      - Parameter limits: Number of resources to return
@@ -20,6 +21,7 @@ public extension Request {
     static func listBuildsForCiBuildRunV1(id: String,
                                           fields: [ListBuildsForCiBuildRunV1.Field]? = nil,
                                           filters: [ListBuildsForCiBuildRunV1.Filter]? = nil,
+                                          exists: [ListBuildsForCiBuildRunV1.Exist]? = nil,
                                           includes: [ListBuildsForCiBuildRunV1.Include]? = nil,
                                           sorts: [ListBuildsForCiBuildRunV1.Sort]? = nil,
                                           limits: [ListBuildsForCiBuildRunV1.Limit]? = nil) -> Request<BuildsResponse, ErrorResponse> {
@@ -29,6 +31,7 @@ public extension Request {
             parameters: .init(
                 fields: fields,
                 filters: filters,
+                exists: exists,
                 includes: includes,
                 sorts: sorts,
                 limits: limits))
@@ -109,10 +112,13 @@ public enum ListBuildsForCiBuildRunV1 {
             case releaseType
             case reviewType
             case routingAppCoverage
+            case usesIdfa
             case versionString
         }
 
         public enum Apps: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case accessibilityDeclarations
+            case accessibilityUrl
             case alternativeDistributionKey
             case analyticsReportRequests
             case appAvailabilityV2
@@ -125,8 +131,11 @@ public enum ListBuildsForCiBuildRunV1 {
             case appPriceSchedule
             case appStoreVersionExperimentsV2
             case appStoreVersions
+            case backgroundAssets
             case betaAppLocalizations
             case betaAppReviewDetail
+            case betaFeedbackCrashSubmissions
+            case betaFeedbackScreenshotSubmissions
             case betaGroups
             case betaLicenseAgreement
             case betaTesters
@@ -134,6 +143,7 @@ public enum ListBuildsForCiBuildRunV1 {
             case bundleId
             case ciProduct
             case contentRightsDeclaration
+            case customerReviewSummarizations
             case customerReviews
             case endUserLicenseAgreement
             case gameCenterDetail
@@ -156,6 +166,7 @@ public enum ListBuildsForCiBuildRunV1 {
             case subscriptionStatusUrlForSandbox
             case subscriptionStatusUrlVersion
             case subscriptionStatusUrlVersionForSandbox
+            case webhooks
         }
 
         public enum BetaAppReviewSubmissions: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -211,6 +222,8 @@ public enum ListBuildsForCiBuildRunV1 {
         public enum BuildBundles: String, Sendable, ParameterValue, Codable, CaseIterable {
             case appClipDomainCacheStatus
             case appClipDomainDebugStatus
+            case baDownloadAllowance
+            case baMaxInstallSize
             case betaAppClipInvocations
             case buildBundleFileSizes
             case bundleId
@@ -249,6 +262,7 @@ public enum ListBuildsForCiBuildRunV1 {
             case buildBetaDetail
             case buildBundles
             case computedMinMacOsVersion
+            case computedMinVisionOsVersion
             case diagnosticSignatures
             case expirationDate
             case expired
@@ -310,6 +324,14 @@ public enum ListBuildsForCiBuildRunV1 {
             case processing = "PROCESSING"
             case valid = "VALID"
         }
+    }
+
+    /**
+     Attributes, relationships, and IDs to check for existence.
+     */
+    public enum Exist: ExistParameter {
+        /// Filter by attribute 'usesNonExemptEncryption'
+        case usesNonExemptEncryption(Bool)
     }
 
     /**

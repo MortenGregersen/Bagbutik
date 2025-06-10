@@ -4,7 +4,7 @@ import Bagbutik_Models
 public extension Request {
     /**
      # Modify a Beta Group
-     Modify a beta group’s metadata, including changing its Testflight public link status.
+     Modify a beta group’s metadata, including changing its TestFlight public link status.
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/patch-v1-betaGroups-_id_>

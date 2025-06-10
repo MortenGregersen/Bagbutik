@@ -57,6 +57,8 @@ public struct AppStoreVersion: Codable, Sendable, Identifiable {
         public var platform: Platform?
         public var releaseType: ReleaseType?
         public var reviewType: ReviewType?
+        @available(*, deprecated, message: "Apple has marked this property deprecated and it will be removed sometime in the future.")
+        public var usesIdfa: Bool? = nil
         public var versionString: String?
 
         @available(*, deprecated, message: "This uses a property Apple has marked as deprecated.")
@@ -69,6 +71,7 @@ public struct AppStoreVersion: Codable, Sendable, Identifiable {
                     platform: Platform? = nil,
                     releaseType: ReleaseType? = nil,
                     reviewType: ReviewType? = nil,
+                    usesIdfa: Bool? = nil,
                     versionString: String? = nil)
         {
             self.appStoreState = appStoreState
@@ -80,6 +83,7 @@ public struct AppStoreVersion: Codable, Sendable, Identifiable {
             self.platform = platform
             self.releaseType = releaseType
             self.reviewType = reviewType
+            self.usesIdfa = usesIdfa
             self.versionString = versionString
         }
 
@@ -115,6 +119,7 @@ public struct AppStoreVersion: Codable, Sendable, Identifiable {
             platform = try container.decodeIfPresent(Platform.self, forKey: "platform")
             releaseType = try container.decodeIfPresent(ReleaseType.self, forKey: "releaseType")
             reviewType = try container.decodeIfPresent(ReviewType.self, forKey: "reviewType")
+            usesIdfa = try container.decodeIfPresent(Bool.self, forKey: "usesIdfa")
             versionString = try container.decodeIfPresent(String.self, forKey: "versionString")
         }
 
@@ -129,6 +134,7 @@ public struct AppStoreVersion: Codable, Sendable, Identifiable {
             try container.encodeIfPresent(platform, forKey: "platform")
             try container.encodeIfPresent(releaseType, forKey: "releaseType")
             try container.encodeIfPresent(reviewType, forKey: "reviewType")
+            try container.encodeIfPresent(usesIdfa, forKey: "usesIdfa")
             try container.encodeIfPresent(versionString, forKey: "versionString")
         }
 

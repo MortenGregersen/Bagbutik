@@ -55,6 +55,7 @@ public struct AppUpdateRequest: Codable, Sendable, RequestBody {
         }
 
         public struct Attributes: Codable, Sendable {
+            public var accessibilityUrl: String?
             public var bundleId: String?
             public var contentRightsDeclaration: App.Attributes.ContentRightsDeclaration?
             public var primaryLocale: String?
@@ -64,7 +65,8 @@ public struct AppUpdateRequest: Codable, Sendable, RequestBody {
             public var subscriptionStatusUrlVersion: SubscriptionStatusUrlVersion?
             public var subscriptionStatusUrlVersionForSandbox: SubscriptionStatusUrlVersion?
 
-            public init(bundleId: String? = nil,
+            public init(accessibilityUrl: String? = nil,
+                        bundleId: String? = nil,
                         contentRightsDeclaration: App.Attributes.ContentRightsDeclaration? = nil,
                         primaryLocale: String? = nil,
                         streamlinedPurchasingEnabled: Bool? = nil,
@@ -73,6 +75,7 @@ public struct AppUpdateRequest: Codable, Sendable, RequestBody {
                         subscriptionStatusUrlVersion: SubscriptionStatusUrlVersion? = nil,
                         subscriptionStatusUrlVersionForSandbox: SubscriptionStatusUrlVersion? = nil)
             {
+                self.accessibilityUrl = accessibilityUrl
                 self.bundleId = bundleId
                 self.contentRightsDeclaration = contentRightsDeclaration
                 self.primaryLocale = primaryLocale
@@ -85,6 +88,7 @@ public struct AppUpdateRequest: Codable, Sendable, RequestBody {
 
             public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                accessibilityUrl = try container.decodeIfPresent(String.self, forKey: "accessibilityUrl")
                 bundleId = try container.decodeIfPresent(String.self, forKey: "bundleId")
                 contentRightsDeclaration = try container.decodeIfPresent(App.Attributes.ContentRightsDeclaration.self, forKey: "contentRightsDeclaration")
                 primaryLocale = try container.decodeIfPresent(String.self, forKey: "primaryLocale")
@@ -97,6 +101,7 @@ public struct AppUpdateRequest: Codable, Sendable, RequestBody {
 
             public func encode(to encoder: Encoder) throws {
                 var container = encoder.container(keyedBy: AnyCodingKey.self)
+                try container.encodeIfPresent(accessibilityUrl, forKey: "accessibilityUrl")
                 try container.encodeIfPresent(bundleId, forKey: "bundleId")
                 try container.encodeIfPresent(contentRightsDeclaration, forKey: "contentRightsDeclaration")
                 try container.encodeIfPresent(primaryLocale, forKey: "primaryLocale")

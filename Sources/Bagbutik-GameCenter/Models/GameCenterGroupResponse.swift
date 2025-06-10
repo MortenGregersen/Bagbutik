@@ -49,6 +49,30 @@ public struct GameCenterGroupResponse: Codable, Sendable {
         return gameCenterAchievements
     }
 
+    public func getGameCenterActivities() -> [GameCenterActivity] {
+        guard let gameCenterActivityIds = data.relationships?.gameCenterActivities?.data?.map(\.id),
+              let gameCenterActivities = included?.compactMap({ relationship -> GameCenterActivity? in
+                  guard case let .gameCenterActivity(gameCenterActivity) = relationship else { return nil }
+                  return gameCenterActivityIds.contains(gameCenterActivity.id) ? gameCenterActivity : nil
+              })
+        else {
+            return []
+        }
+        return gameCenterActivities
+    }
+
+    public func getGameCenterChallenges() -> [GameCenterChallenge] {
+        guard let gameCenterChallengeIds = data.relationships?.gameCenterChallenges?.data?.map(\.id),
+              let gameCenterChallenges = included?.compactMap({ relationship -> GameCenterChallenge? in
+                  guard case let .gameCenterChallenge(gameCenterChallenge) = relationship else { return nil }
+                  return gameCenterChallengeIds.contains(gameCenterChallenge.id) ? gameCenterChallenge : nil
+              })
+        else {
+            return []
+        }
+        return gameCenterChallenges
+    }
+
     public func getGameCenterDetails() -> [GameCenterDetail] {
         guard let gameCenterDetailIds = data.relationships?.gameCenterDetails?.data?.map(\.id),
               let gameCenterDetails = included?.compactMap({ relationship -> GameCenterDetail? in
@@ -87,6 +111,8 @@ public struct GameCenterGroupResponse: Codable, Sendable {
 
     public enum Included: Codable, Sendable {
         case gameCenterAchievement(GameCenterAchievement)
+        case gameCenterActivity(GameCenterActivity)
+        case gameCenterChallenge(GameCenterChallenge)
         case gameCenterDetail(GameCenterDetail)
         case gameCenterLeaderboard(GameCenterLeaderboard)
         case gameCenterLeaderboardSet(GameCenterLeaderboardSet)
@@ -94,6 +120,10 @@ public struct GameCenterGroupResponse: Codable, Sendable {
         public init(from decoder: Decoder) throws {
             if let gameCenterAchievement = try? GameCenterAchievement(from: decoder) {
                 self = .gameCenterAchievement(gameCenterAchievement)
+            } else if let gameCenterActivity = try? GameCenterActivity(from: decoder) {
+                self = .gameCenterActivity(gameCenterActivity)
+            } else if let gameCenterChallenge = try? GameCenterChallenge(from: decoder) {
+                self = .gameCenterChallenge(gameCenterChallenge)
             } else if let gameCenterDetail = try? GameCenterDetail(from: decoder) {
                 self = .gameCenterDetail(gameCenterDetail)
             } else if let gameCenterLeaderboard = try? GameCenterLeaderboard(from: decoder) {
@@ -112,6 +142,10 @@ public struct GameCenterGroupResponse: Codable, Sendable {
         public func encode(to encoder: Encoder) throws {
             switch self {
             case let .gameCenterAchievement(value):
+                try value.encode(to: encoder)
+            case let .gameCenterActivity(value):
+                try value.encode(to: encoder)
+            case let .gameCenterChallenge(value):
                 try value.encode(to: encoder)
             case let .gameCenterDetail(value):
                 try value.encode(to: encoder)

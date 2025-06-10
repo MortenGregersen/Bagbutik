@@ -52,16 +52,21 @@ public struct AppInfo: Codable, Sendable, Identifiable {
     }
 
     public struct Attributes: Codable, Sendable {
-        public var appStoreAgeRating: AppStoreAgeRating?
+        @available(*, deprecated, message: "Apple has marked this property deprecated and it will be removed sometime in the future.")
+        public var appStoreAgeRating: AppStoreAgeRating? = nil
         @available(*, deprecated, message: "Apple has marked this property deprecated and it will be removed sometime in the future.")
         public var appStoreState: AppStoreVersionState? = nil
-        public var australiaAgeRating: AustraliaAgeRating?
+        @available(*, deprecated, message: "Apple has marked this property deprecated and it will be removed sometime in the future.")
+        public var australiaAgeRating: AustraliaAgeRating? = nil
         @available(*, deprecated, message: "Apple has marked this property deprecated and it will be removed sometime in the future.")
         public var brazilAgeRating: BrazilAgeRating? = nil
-        public var brazilAgeRatingV2: BrazilAgeRatingV2?
-        public var franceAgeRating: FranceAgeRating?
+        @available(*, deprecated, message: "Apple has marked this property deprecated and it will be removed sometime in the future.")
+        public var brazilAgeRatingV2: BrazilAgeRatingV2? = nil
+        @available(*, deprecated, message: "Apple has marked this property deprecated and it will be removed sometime in the future.")
+        public var franceAgeRating: FranceAgeRating? = nil
         public var kidsAgeBand: KidsAgeBand?
-        public var koreaAgeRating: KoreaAgeRating?
+        @available(*, deprecated, message: "Apple has marked this property deprecated and it will be removed sometime in the future.")
+        public var koreaAgeRating: KoreaAgeRating? = nil
         public var state: State?
 
         @available(*, deprecated, message: "This uses a property Apple has marked as deprecated.")
@@ -86,20 +91,10 @@ public struct AppInfo: Codable, Sendable, Identifiable {
             self.state = state
         }
 
-        public init(appStoreAgeRating: AppStoreAgeRating? = nil,
-                    australiaAgeRating: AustraliaAgeRating? = nil,
-                    brazilAgeRatingV2: BrazilAgeRatingV2? = nil,
-                    franceAgeRating: FranceAgeRating? = nil,
-                    kidsAgeBand: KidsAgeBand? = nil,
-                    koreaAgeRating: KoreaAgeRating? = nil,
+        public init(kidsAgeBand: KidsAgeBand? = nil,
                     state: State? = nil)
         {
-            self.appStoreAgeRating = appStoreAgeRating
-            self.australiaAgeRating = australiaAgeRating
-            self.brazilAgeRatingV2 = brazilAgeRatingV2
-            self.franceAgeRating = franceAgeRating
             self.kidsAgeBand = kidsAgeBand
-            self.koreaAgeRating = koreaAgeRating
             self.state = state
         }
 

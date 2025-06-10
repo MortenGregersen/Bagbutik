@@ -11,14 +11,18 @@ public extension Request {
 
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types
+     - Parameter includes: Relationship data to include in the response
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func getCertificateV1(id: String,
-                                 fields: [GetCertificateV1.Field]? = nil) -> Request<CertificateResponse, ErrorResponse> {
+                                 fields: [GetCertificateV1.Field]? = nil,
+                                 includes: [GetCertificateV1.Include]? = nil) -> Request<CertificateResponse, ErrorResponse> {
         .init(
             path: "/v1/certificates/\(id)",
             method: .get,
-            parameters: .init(fields: fields))
+            parameters: .init(
+                fields: fields,
+                includes: includes))
     }
 }
 
@@ -29,6 +33,8 @@ public enum GetCertificateV1 {
     public enum Field: FieldParameter {
         /// The fields to include for returned resources of type certificates
         case certificates([Certificates])
+        /// The fields to include for returned resources of type passTypeIds
+        case passTypeIds([PassTypeIds])
 
         public enum Certificates: String, Sendable, ParameterValue, Codable, CaseIterable {
             case activated
@@ -37,8 +43,22 @@ public enum GetCertificateV1 {
             case displayName
             case expirationDate
             case name
+            case passTypeId
             case platform
             case serialNumber
         }
+
+        public enum PassTypeIds: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case certificates
+            case identifier
+            case name
+        }
+    }
+
+    /**
+     Relationship data to include in the response.
+     */
+    public enum Include: String, IncludeParameter, CaseIterable {
+        case passTypeId
     }
 }

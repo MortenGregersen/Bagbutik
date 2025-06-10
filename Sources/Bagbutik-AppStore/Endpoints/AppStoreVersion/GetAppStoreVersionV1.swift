@@ -62,11 +62,9 @@ public enum GetAppStoreVersionV1 {
         case routingAppCoverages([RoutingAppCoverages])
 
         public enum AgeRatingDeclarations: String, Sendable, ParameterValue, Codable, CaseIterable {
-            case ageRatingOverride
             case alcoholTobaccoOrDrugUseOrReferences
             case contests
             case gambling
-            case gamblingAndContests
             case gamblingSimulated
             case horrorOrFearThemes
             case kidsAgeBand
@@ -75,7 +73,6 @@ public enum GetAppStoreVersionV1 {
             case matureOrSuggestiveThemes
             case medicalOrTreatmentInformation
             case profanityOrCrudeHumor
-            case seventeenPlus
             case sexualContentGraphicAndNudity
             case sexualContentOrNudity
             case unrestrictedWebAccess
@@ -172,6 +169,7 @@ public enum GetAppStoreVersionV1 {
             case releaseType
             case reviewType
             case routingAppCoverage
+            case usesIdfa
             case versionString
         }
 
@@ -186,6 +184,7 @@ public enum GetAppStoreVersionV1 {
             case buildBetaDetail
             case buildBundles
             case computedMinMacOsVersion
+            case computedMinVisionOsVersion
             case diagnosticSignatures
             case expirationDate
             case expired

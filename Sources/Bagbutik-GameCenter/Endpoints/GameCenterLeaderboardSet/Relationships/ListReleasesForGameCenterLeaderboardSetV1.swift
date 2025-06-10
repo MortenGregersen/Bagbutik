@@ -46,13 +46,18 @@ public enum ListReleasesForGameCenterLeaderboardSetV1 {
 
         public enum GameCenterDetails: String, Sendable, ParameterValue, Codable, CaseIterable {
             case achievementReleases
+            case activityReleases
             case app
             case arcadeEnabled
             case challengeEnabled
+            case challengeReleases
+            case challengesMinimumPlatformVersions
             case defaultGroupLeaderboard
             case defaultLeaderboard
             case gameCenterAchievements
+            case gameCenterActivities
             case gameCenterAppVersions
+            case gameCenterChallenges
             case gameCenterGroup
             case gameCenterLeaderboardSets
             case gameCenterLeaderboards

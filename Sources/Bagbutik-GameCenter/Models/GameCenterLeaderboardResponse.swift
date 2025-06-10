@@ -37,6 +37,20 @@ public struct GameCenterLeaderboardResponse: Codable, Sendable {
         try container.encode(links, forKey: "links")
     }
 
+    public func getActivity() -> GameCenterActivity? {
+        included?.compactMap { relationship -> GameCenterActivity? in
+            guard case let .gameCenterActivity(activity) = relationship else { return nil }
+            return activity
+        }.first { $0.id == data.relationships?.activity?.data?.id }
+    }
+
+    public func getChallenge() -> GameCenterChallenge? {
+        included?.compactMap { relationship -> GameCenterChallenge? in
+            guard case let .gameCenterChallenge(challenge) = relationship else { return nil }
+            return challenge
+        }.first { $0.id == data.relationships?.challenge?.data?.id }
+    }
+
     public func getGameCenterDetail() -> GameCenterDetail? {
         included?.compactMap { relationship -> GameCenterDetail? in
             guard case let .gameCenterDetail(gameCenterDetail) = relationship else { return nil }
@@ -88,6 +102,8 @@ public struct GameCenterLeaderboardResponse: Codable, Sendable {
     }
 
     public enum Included: Codable, Sendable {
+        case gameCenterActivity(GameCenterActivity)
+        case gameCenterChallenge(GameCenterChallenge)
         case gameCenterDetail(GameCenterDetail)
         case gameCenterGroup(GameCenterGroup)
         case gameCenterLeaderboard(GameCenterLeaderboard)
@@ -96,7 +112,11 @@ public struct GameCenterLeaderboardResponse: Codable, Sendable {
         case gameCenterLeaderboardSet(GameCenterLeaderboardSet)
 
         public init(from decoder: Decoder) throws {
-            if let gameCenterDetail = try? GameCenterDetail(from: decoder) {
+            if let gameCenterActivity = try? GameCenterActivity(from: decoder) {
+                self = .gameCenterActivity(gameCenterActivity)
+            } else if let gameCenterChallenge = try? GameCenterChallenge(from: decoder) {
+                self = .gameCenterChallenge(gameCenterChallenge)
+            } else if let gameCenterDetail = try? GameCenterDetail(from: decoder) {
                 self = .gameCenterDetail(gameCenterDetail)
             } else if let gameCenterGroup = try? GameCenterGroup(from: decoder) {
                 self = .gameCenterGroup(gameCenterGroup)
@@ -119,6 +139,10 @@ public struct GameCenterLeaderboardResponse: Codable, Sendable {
 
         public func encode(to encoder: Encoder) throws {
             switch self {
+            case let .gameCenterActivity(value):
+                try value.encode(to: encoder)
+            case let .gameCenterChallenge(value):
+                try value.encode(to: encoder)
             case let .gameCenterDetail(value):
                 try value.encode(to: encoder)
             case let .gameCenterGroup(value):

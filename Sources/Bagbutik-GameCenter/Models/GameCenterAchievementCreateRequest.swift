@@ -55,18 +55,21 @@ public struct GameCenterAchievementCreateRequest: Codable, Sendable, RequestBody
         }
 
         public struct Attributes: Codable, Sendable {
+            public var activityProperties: [String: String]?
             public let points: Int
             public let referenceName: String
             public let repeatable: Bool
             public let showBeforeEarned: Bool
             public let vendorIdentifier: String
 
-            public init(points: Int,
+            public init(activityProperties: [String: String]? = nil,
+                        points: Int,
                         referenceName: String,
                         repeatable: Bool,
                         showBeforeEarned: Bool,
                         vendorIdentifier: String)
             {
+                self.activityProperties = activityProperties
                 self.points = points
                 self.referenceName = referenceName
                 self.repeatable = repeatable
@@ -76,6 +79,7 @@ public struct GameCenterAchievementCreateRequest: Codable, Sendable, RequestBody
 
             public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                activityProperties = try container.decodeIfPresent([String: String].self, forKey: "activityProperties")
                 points = try container.decode(Int.self, forKey: "points")
                 referenceName = try container.decode(String.self, forKey: "referenceName")
                 repeatable = try container.decode(Bool.self, forKey: "repeatable")
@@ -85,6 +89,7 @@ public struct GameCenterAchievementCreateRequest: Codable, Sendable, RequestBody
 
             public func encode(to encoder: Encoder) throws {
                 var container = encoder.container(keyedBy: AnyCodingKey.self)
+                try container.encodeIfPresent(activityProperties, forKey: "activityProperties")
                 try container.encode(points, forKey: "points")
                 try container.encode(referenceName, forKey: "referenceName")
                 try container.encode(repeatable, forKey: "repeatable")

@@ -11,6 +11,7 @@ public extension Request {
 
      - Parameter fields: Fields to return for included related types
      - Parameter filters: Attributes, relationships, and IDs by which to filter
+     - Parameter exists: Attributes, relationships, and IDs to check for existence
      - Parameter includes: Relationship data to include in the response
      - Parameter sorts: Attributes by which to sort
      - Parameter limits: Number of resources to return
@@ -18,6 +19,7 @@ public extension Request {
      */
     static func listBuildsV1(fields: [ListBuildsV1.Field]? = nil,
                              filters: [ListBuildsV1.Filter]? = nil,
+                             exists: [ListBuildsV1.Exist]? = nil,
                              includes: [ListBuildsV1.Include]? = nil,
                              sorts: [ListBuildsV1.Sort]? = nil,
                              limits: [ListBuildsV1.Limit]? = nil) -> Request<BuildsResponse, ErrorResponse> {
@@ -27,6 +29,7 @@ public extension Request {
             parameters: .init(
                 fields: fields,
                 filters: filters,
+                exists: exists,
                 includes: includes,
                 sorts: sorts,
                 limits: limits))
@@ -103,10 +106,13 @@ public enum ListBuildsV1 {
             case releaseType
             case reviewType
             case routingAppCoverage
+            case usesIdfa
             case versionString
         }
 
         public enum Apps: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case accessibilityDeclarations
+            case accessibilityUrl
             case alternativeDistributionKey
             case analyticsReportRequests
             case appAvailabilityV2
@@ -119,8 +125,11 @@ public enum ListBuildsV1 {
             case appPriceSchedule
             case appStoreVersionExperimentsV2
             case appStoreVersions
+            case backgroundAssets
             case betaAppLocalizations
             case betaAppReviewDetail
+            case betaFeedbackCrashSubmissions
+            case betaFeedbackScreenshotSubmissions
             case betaGroups
             case betaLicenseAgreement
             case betaTesters
@@ -128,6 +137,7 @@ public enum ListBuildsV1 {
             case bundleId
             case ciProduct
             case contentRightsDeclaration
+            case customerReviewSummarizations
             case customerReviews
             case endUserLicenseAgreement
             case gameCenterDetail
@@ -150,6 +160,7 @@ public enum ListBuildsV1 {
             case subscriptionStatusUrlForSandbox
             case subscriptionStatusUrlVersion
             case subscriptionStatusUrlVersionForSandbox
+            case webhooks
         }
 
         public enum BetaAppReviewSubmissions: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -199,6 +210,7 @@ public enum ListBuildsV1 {
             case buildBetaDetail
             case buildBundles
             case computedMinMacOsVersion
+            case computedMinVisionOsVersion
             case diagnosticSignatures
             case expirationDate
             case expired
@@ -253,6 +265,14 @@ public enum ListBuildsV1 {
         case usesNonExemptEncryption([String])
         /// Filter by attribute 'version'
         case version([String])
+    }
+
+    /**
+     Attributes, relationships, and IDs to check for existence.
+     */
+    public enum Exist: ExistParameter {
+        /// Filter by attribute 'usesNonExemptEncryption'
+        case usesNonExemptEncryption(Bool)
     }
 
     /**

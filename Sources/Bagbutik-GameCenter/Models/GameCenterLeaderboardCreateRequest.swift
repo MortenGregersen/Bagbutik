@@ -55,6 +55,7 @@ public struct GameCenterLeaderboardCreateRequest: Codable, Sendable, RequestBody
         }
 
         public struct Attributes: Codable, Sendable {
+            public var activityProperties: [String: String]?
             public let defaultFormatter: GameCenterLeaderboardFormatter
             public var recurrenceDuration: String?
             public var recurrenceRule: String?
@@ -65,8 +66,10 @@ public struct GameCenterLeaderboardCreateRequest: Codable, Sendable, RequestBody
             public let scoreSortType: GameCenterLeaderboard.Attributes.ScoreSortType
             public let submissionType: GameCenterLeaderboard.Attributes.SubmissionType
             public let vendorIdentifier: String
+            public var visibility: GameCenterLeaderboard.Attributes.Visibility?
 
-            public init(defaultFormatter: GameCenterLeaderboardFormatter,
+            public init(activityProperties: [String: String]? = nil,
+                        defaultFormatter: GameCenterLeaderboardFormatter,
                         recurrenceDuration: String? = nil,
                         recurrenceRule: String? = nil,
                         recurrenceStartDate: Date? = nil,
@@ -75,8 +78,10 @@ public struct GameCenterLeaderboardCreateRequest: Codable, Sendable, RequestBody
                         scoreRangeStart: String? = nil,
                         scoreSortType: GameCenterLeaderboard.Attributes.ScoreSortType,
                         submissionType: GameCenterLeaderboard.Attributes.SubmissionType,
-                        vendorIdentifier: String)
+                        vendorIdentifier: String,
+                        visibility: GameCenterLeaderboard.Attributes.Visibility? = nil)
             {
+                self.activityProperties = activityProperties
                 self.defaultFormatter = defaultFormatter
                 self.recurrenceDuration = recurrenceDuration
                 self.recurrenceRule = recurrenceRule
@@ -87,10 +92,12 @@ public struct GameCenterLeaderboardCreateRequest: Codable, Sendable, RequestBody
                 self.scoreSortType = scoreSortType
                 self.submissionType = submissionType
                 self.vendorIdentifier = vendorIdentifier
+                self.visibility = visibility
             }
 
             public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                activityProperties = try container.decodeIfPresent([String: String].self, forKey: "activityProperties")
                 defaultFormatter = try container.decode(GameCenterLeaderboardFormatter.self, forKey: "defaultFormatter")
                 recurrenceDuration = try container.decodeIfPresent(String.self, forKey: "recurrenceDuration")
                 recurrenceRule = try container.decodeIfPresent(String.self, forKey: "recurrenceRule")
@@ -101,10 +108,12 @@ public struct GameCenterLeaderboardCreateRequest: Codable, Sendable, RequestBody
                 scoreSortType = try container.decode(GameCenterLeaderboard.Attributes.ScoreSortType.self, forKey: "scoreSortType")
                 submissionType = try container.decode(GameCenterLeaderboard.Attributes.SubmissionType.self, forKey: "submissionType")
                 vendorIdentifier = try container.decode(String.self, forKey: "vendorIdentifier")
+                visibility = try container.decodeIfPresent(GameCenterLeaderboard.Attributes.Visibility.self, forKey: "visibility")
             }
 
             public func encode(to encoder: Encoder) throws {
                 var container = encoder.container(keyedBy: AnyCodingKey.self)
+                try container.encodeIfPresent(activityProperties, forKey: "activityProperties")
                 try container.encode(defaultFormatter, forKey: "defaultFormatter")
                 try container.encodeIfPresent(recurrenceDuration, forKey: "recurrenceDuration")
                 try container.encodeIfPresent(recurrenceRule, forKey: "recurrenceRule")
@@ -115,6 +124,7 @@ public struct GameCenterLeaderboardCreateRequest: Codable, Sendable, RequestBody
                 try container.encode(scoreSortType, forKey: "scoreSortType")
                 try container.encode(submissionType, forKey: "submissionType")
                 try container.encode(vendorIdentifier, forKey: "vendorIdentifier")
+                try container.encodeIfPresent(visibility, forKey: "visibility")
             }
         }
 

@@ -2,6 +2,13 @@ import Bagbutik_Core
 import Bagbutik_Models
 import Foundation
 
+/**
+ # SubscriptionPricesLinkagesRequest
+ The data structure that represents a subscription prices linkages request resource.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/subscriptionpriceslinkagesrequest>
+ */
 public struct SubscriptionPricesLinkagesRequest: Codable, Sendable, RequestBody {
     public let data: [Data]
 

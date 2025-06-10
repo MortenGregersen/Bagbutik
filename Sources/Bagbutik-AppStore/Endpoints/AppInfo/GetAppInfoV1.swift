@@ -46,11 +46,9 @@ public enum GetAppInfoV1 {
         case appInfos([AppInfos])
 
         public enum AgeRatingDeclarations: String, Sendable, ParameterValue, Codable, CaseIterable {
-            case ageRatingOverride
             case alcoholTobaccoOrDrugUseOrReferences
             case contests
             case gambling
-            case gamblingAndContests
             case gamblingSimulated
             case horrorOrFearThemes
             case kidsAgeBand
@@ -59,7 +57,6 @@ public enum GetAppInfoV1 {
             case matureOrSuggestiveThemes
             case medicalOrTreatmentInformation
             case profanityOrCrudeHumor
-            case seventeenPlus
             case sexualContentGraphicAndNudity
             case sexualContentOrNudity
             case unrestrictedWebAccess

@@ -61,7 +61,10 @@ public enum ListGameCenterLeaderboardSetMemberLocalizationsV1 {
         }
 
         public enum GameCenterLeaderboards: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case activity
+            case activityProperties
             case archived
+            case challenge
             case defaultFormatter
             case gameCenterDetail
             case gameCenterGroup
@@ -78,6 +81,7 @@ public enum ListGameCenterLeaderboardSetMemberLocalizationsV1 {
             case scoreSortType
             case submissionType
             case vendorIdentifier
+            case visibility
         }
     }
 

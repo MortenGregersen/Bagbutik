@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read compatible app versions
+     # GET /v1/gameCenterAppVersions/{id}/relationships/compatibilityVersions
      List all compatible verisons for an app version.
 
      Full documentation:

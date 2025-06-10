@@ -12,6 +12,7 @@ public extension Request {
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types
      - Parameter filters: Attributes, relationships, and IDs by which to filter
+     - Parameter includes: Relationship data to include in the response
      - Parameter sorts: Attributes by which to sort
      - Parameter limit: Maximum resources per page - maximum 200
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
@@ -19,6 +20,7 @@ public extension Request {
     static func listCertificatesForMerchantIdV1(id: String,
                                                 fields: [ListCertificatesForMerchantIdV1.Field]? = nil,
                                                 filters: [ListCertificatesForMerchantIdV1.Filter]? = nil,
+                                                includes: [ListCertificatesForMerchantIdV1.Include]? = nil,
                                                 sorts: [ListCertificatesForMerchantIdV1.Sort]? = nil,
                                                 limit: Int? = nil) -> Request<CertificatesResponse, ErrorResponse> {
         .init(
@@ -27,6 +29,7 @@ public extension Request {
             parameters: .init(
                 fields: fields,
                 filters: filters,
+                includes: includes,
                 sorts: sorts,
                 limit: limit))
     }
@@ -39,6 +42,8 @@ public enum ListCertificatesForMerchantIdV1 {
     public enum Field: FieldParameter {
         /// The fields to include for returned resources of type certificates
         case certificates([Certificates])
+        /// The fields to include for returned resources of type passTypeIds
+        case passTypeIds([PassTypeIds])
 
         public enum Certificates: String, Sendable, ParameterValue, Codable, CaseIterable {
             case activated
@@ -47,8 +52,15 @@ public enum ListCertificatesForMerchantIdV1 {
             case displayName
             case expirationDate
             case name
+            case passTypeId
             case platform
             case serialNumber
+        }
+
+        public enum PassTypeIds: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case certificates
+            case identifier
+            case name
         }
     }
 
@@ -64,6 +76,13 @@ public enum ListCertificatesForMerchantIdV1 {
         case id([String])
         /// Filter by attribute 'serialNumber'
         case serialNumber([String])
+    }
+
+    /**
+     Relationship data to include in the response.
+     */
+    public enum Include: String, IncludeParameter, CaseIterable {
+        case passTypeId
     }
 
     /**

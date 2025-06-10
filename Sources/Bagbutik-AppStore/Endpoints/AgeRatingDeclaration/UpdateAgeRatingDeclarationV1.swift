@@ -9,7 +9,7 @@ public extension Request {
      Every app store version has an age rating declaration. Use this endpoint to edit the declaration and provide app-characteristic information so App Store Connect can determine the appropriate age rating for the app.
      Use this endpoint to indicate whether an app is Made for Kids.
      When calling this endpoint, only include the attributes that you’re modifying.
-     For example, in an app that has a `FREQUENT_OR_INTENSE` declaration for contests, the age rating for the `AppInfos` is 12+. If you declare a value of true for `gamblingAndContests` instead, the age rating for the `AppInfos` is 17+.
+     For example, in an app that has a `FREQUENT_OR_INTENSE` declaration for contests, the age rating for the `AppInfos` is 12+. If you declare a value of true for `gambling`, the age rating for the `AppInfos` is 17+.
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/patch-v1-ageRatingDeclarations-_id_>

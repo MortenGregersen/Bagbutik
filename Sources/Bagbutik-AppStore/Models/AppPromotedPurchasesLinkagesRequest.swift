@@ -2,6 +2,13 @@ import Bagbutik_Core
 import Bagbutik_Models
 import Foundation
 
+/**
+ # AppPromotedPurchasesLinkagesRequest
+ The data structure that represents an app promoted purchases linkages request resource.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/apppromotedpurchaseslinkagesrequest>
+ */
 public struct AppPromotedPurchasesLinkagesRequest: Codable, Sendable, RequestBody {
     public let data: [Data]
 

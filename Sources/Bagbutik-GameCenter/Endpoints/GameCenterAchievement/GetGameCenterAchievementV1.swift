@@ -57,6 +57,8 @@ public enum GetGameCenterAchievementV1 {
         }
 
         public enum GameCenterAchievements: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case activity
+            case activityProperties
             case archived
             case gameCenterDetail
             case gameCenterGroup
@@ -75,6 +77,7 @@ public enum GetGameCenterAchievementV1 {
      Relationship data to include in the response.
      */
     public enum Include: String, IncludeParameter, CaseIterable {
+        case activity
         case gameCenterDetail
         case gameCenterGroup
         case groupAchievement

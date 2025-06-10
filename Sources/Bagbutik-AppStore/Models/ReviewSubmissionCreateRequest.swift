@@ -21,10 +21,10 @@ public struct ReviewSubmissionCreateRequest: Codable, Sendable, RequestBody {
 
     public struct Data: Codable, Sendable {
         public var type: String { "reviewSubmissions" }
-        public let attributes: Attributes
+        public var attributes: Attributes?
         public let relationships: Relationships
 
-        public init(attributes: Attributes,
+        public init(attributes: Attributes? = nil,
                     relationships: Relationships)
         {
             self.attributes = attributes
@@ -33,7 +33,7 @@ public struct ReviewSubmissionCreateRequest: Codable, Sendable, RequestBody {
 
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: AnyCodingKey.self)
-            attributes = try container.decode(Attributes.self, forKey: "attributes")
+            attributes = try container.decodeIfPresent(Attributes.self, forKey: "attributes")
             relationships = try container.decode(Relationships.self, forKey: "relationships")
             if try container.decode(String.self, forKey: "type") != type {
                 throw DecodingError.dataCorruptedError(forKey: "type", in: container, debugDescription: "Not matching \(type)")
@@ -43,25 +43,25 @@ public struct ReviewSubmissionCreateRequest: Codable, Sendable, RequestBody {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: AnyCodingKey.self)
             try container.encode(type, forKey: "type")
-            try container.encode(attributes, forKey: "attributes")
+            try container.encodeIfPresent(attributes, forKey: "attributes")
             try container.encode(relationships, forKey: "relationships")
         }
 
         public struct Attributes: Codable, Sendable {
-            public let platform: Platform
+            public var platform: Platform?
 
-            public init(platform: Platform) {
+            public init(platform: Platform? = nil) {
                 self.platform = platform
             }
 
             public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: AnyCodingKey.self)
-                platform = try container.decode(Platform.self, forKey: "platform")
+                platform = try container.decodeIfPresent(Platform.self, forKey: "platform")
             }
 
             public func encode(to encoder: Encoder) throws {
                 var container = encoder.container(keyedBy: AnyCodingKey.self)
-                try container.encode(platform, forKey: "platform")
+                try container.encodeIfPresent(platform, forKey: "platform")
             }
         }
 

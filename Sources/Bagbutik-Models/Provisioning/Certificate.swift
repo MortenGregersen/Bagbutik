@@ -17,14 +17,17 @@ public struct Certificate: Codable, Sendable, Identifiable {
     public var type: String { "certificates" }
     /// The resource’s attributes.
     public var attributes: Attributes?
+    public var relationships: Relationships?
 
     public init(id: String,
                 links: ResourceLinks? = nil,
-                attributes: Attributes? = nil)
+                attributes: Attributes? = nil,
+                relationships: Relationships? = nil)
     {
         self.id = id
         self.links = links
         self.attributes = attributes
+        self.relationships = relationships
     }
 
     public init(from decoder: Decoder) throws {
@@ -32,6 +35,7 @@ public struct Certificate: Codable, Sendable, Identifiable {
         id = try container.decode(String.self, forKey: "id")
         links = try container.decodeIfPresent(ResourceLinks.self, forKey: "links")
         attributes = try container.decodeIfPresent(Attributes.self, forKey: "attributes")
+        relationships = try container.decodeIfPresent(Relationships.self, forKey: "relationships")
         if try container.decode(String.self, forKey: "type") != type {
             throw DecodingError.dataCorruptedError(forKey: "type", in: container, debugDescription: "Not matching \(type)")
         }
@@ -43,6 +47,7 @@ public struct Certificate: Codable, Sendable, Identifiable {
         try container.encodeIfPresent(links, forKey: "links")
         try container.encode(type, forKey: "type")
         try container.encodeIfPresent(attributes, forKey: "attributes")
+        try container.encodeIfPresent(relationships, forKey: "relationships")
     }
 
     public struct Attributes: Codable, Sendable {
@@ -96,6 +101,71 @@ public struct Certificate: Codable, Sendable, Identifiable {
             try container.encodeIfPresent(name, forKey: "name")
             try container.encodeIfPresent(platform, forKey: "platform")
             try container.encodeIfPresent(serialNumber, forKey: "serialNumber")
+        }
+    }
+
+    public struct Relationships: Codable, Sendable {
+        public var passTypeId: PassTypeId?
+
+        public init(passTypeId: PassTypeId? = nil) {
+            self.passTypeId = passTypeId
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: AnyCodingKey.self)
+            passTypeId = try container.decodeIfPresent(PassTypeId.self, forKey: "passTypeId")
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: AnyCodingKey.self)
+            try container.encodeIfPresent(passTypeId, forKey: "passTypeId")
+        }
+
+        public struct PassTypeId: Codable, Sendable {
+            @NullCodable public var data: Data?
+            public var links: RelationshipLinks?
+
+            public init(data: Data? = nil,
+                        links: RelationshipLinks? = nil)
+            {
+                self.data = data
+                self.links = links
+            }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                data = try container.decodeIfPresent(Data.self, forKey: "data")
+                links = try container.decodeIfPresent(RelationshipLinks.self, forKey: "links")
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: AnyCodingKey.self)
+                try container.encode(data, forKey: "data")
+                try container.encodeIfPresent(links, forKey: "links")
+            }
+
+            public struct Data: Codable, Sendable, Identifiable {
+                public let id: String
+                public var type: String { "passTypeIds" }
+
+                public init(id: String) {
+                    self.id = id
+                }
+
+                public init(from decoder: Decoder) throws {
+                    let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                    id = try container.decode(String.self, forKey: "id")
+                    if try container.decode(String.self, forKey: "type") != type {
+                        throw DecodingError.dataCorruptedError(forKey: "type", in: container, debugDescription: "Not matching \(type)")
+                    }
+                }
+
+                public func encode(to encoder: Encoder) throws {
+                    var container = encoder.container(keyedBy: AnyCodingKey.self)
+                    try container.encode(id, forKey: "id")
+                    try container.encode(type, forKey: "type")
+                }
+            }
         }
     }
 }
