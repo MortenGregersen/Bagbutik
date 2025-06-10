@@ -178,19 +178,6 @@ public struct Spec: Decodable {
                 deviceSchema.properties["attributes"]?.type = .schema(deviceAttributesSchema)
                 components.schemas["Device"] = .object(deviceSchema)
             }
-            // FB15681740: Add the case `APPLE_VISION_PRO` to DeviceClass
-            // Apple's OpenAPI spec doesn't include the Apple Vision Pro for Device class.
-            if var classProperty = deviceAttributesSchema.properties["deviceClass"],
-               case .enumSchema(var classEnum) = classProperty.type {
-                var values = classEnum.cases
-                values.append(EnumCase(id: "appleVisionPro", value: "APPLE_VISION_PRO"))
-                classEnum.cases = values
-                classProperty.type = PropertyType.enumSchema(classEnum)
-                deviceAttributesSchema.properties["deviceClass"] = classProperty
-                deviceSchema.properties["attributes"]?.type = .schema(deviceAttributesSchema)
-                components.schemas["Device"] = .object(deviceSchema)
-            }
-            patchedSchemas.append(.object(deviceSchema))
         }
 
         // Fix up the names of the sub schemas of ErrorResponse.Errors

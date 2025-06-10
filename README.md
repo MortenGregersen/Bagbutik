@@ -167,12 +167,6 @@ On 12/1/23 some errors (with status code 409) has been observed, with no `detail
 In Apple's OpenAPI spec and documentation the `associatedErrors` is not mentioned in `meta` property (last checked 12/1/23).
 But it is observed when creating a `ReviewSubmissionItem` with an `AppStoreVersion` fails.
 
-#### **FB15681740**: App Store Connect API Spec is missing "APPLE_VISION_PRO" type for the Device class type schema
-
-* Submitted: November 4th 2024.
-
-In the OpenAPI spec for the App Store Connect API the “Device.deviceClass” schema is said to not include "APPLE_VISION_PRO”. This is not right as “Devices” endpoints can have a “APPLE_VISION_PRO” type.
-
 #### **FB16699896**: App Store Connect API is missing "XKS" (Kosovo) for the TerritoryCode enum
 
 * Submitted: March 3rd, 2025.
@@ -216,3 +210,7 @@ In version 4.0 of the App Store Connect API spec, the the properties of the AgeR
 * **FB13701181**: App Store Connect API Spec is missing "DEVELOPER_ID_APPLICATION_G2" type for the Certificate Type schema
   * Submitted: March 28th 2024.
   * Resolved: November 12th 2024 (Spec version 3.7).
+
+* **FB15681740**: App Store Connect API Spec is missing "APPLE_VISION_PRO" type for the Device class type schema
+  * Submitted: November 4th 2024.
+  * Resolved: June 10th 2025 (Spec version 4.0).
