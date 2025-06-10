@@ -11,27 +11,30 @@ public class EnumSchemaRenderer: Renderer {
      - Returns: The rendered enum schema
      */
     public func render(enumSchema: EnumSchema) async throws -> String {
-        var rendered = ""
+        var renderedDocumentation = ""
         var documentation: EnumDocumentation?
         if let url = enumSchema.url,
            case .enum(let enumDocumentation) = try await docsLoader.resolveDocumentationForSchema(withDocsUrl: url),
            let abstract = enumDocumentation.abstract {
             documentation = enumDocumentation
-            rendered += await renderDocumentationBlock(title: enumDocumentation.title) {
-                var documentationContent = abstract
+            renderedDocumentation += await renderDocumentationBlock(title: enumDocumentation.title) {
+                var documentationContent = [abstract]
                 if let discussion = enumDocumentation.discussion {
-                    documentationContent += "\n\n\(discussion)"
+                    documentationContent.append(discussion)
                 }
-                documentationContent += "\n\nFull documentation:\n<\(url)>"
-                return documentationContent
-            } + "\n"
+                documentationContent.append("""
+                Full documentation:
+                <\(url)>
+                """)
+                return documentationContent.joined(separator: "\n\n")
+            }
         }
         let protocols = enumSchema.additionalProtocols
             .union(["Codable", "CaseIterable", "Sendable"])
             .sorted()
             .reversed()
             .joined(separator: ", ")
-        rendered += "public enum \(enumSchema.name): \(enumSchema.type.capitalized), \(protocols) {\n"
+        var renderedEnum = "public enum \(enumSchema.name): \(enumSchema.type.capitalized), \(protocols) {\n"
         enumSchema.cases
             .sorted(by: { $0.id < $1.id })
             .map { enumCase -> EnumCase in
@@ -41,11 +44,18 @@ public class EnumSchemaRenderer: Renderer {
             }
             .forEach {
                 if let caseDocumentation = $0.documentation {
-                    rendered += "///\(caseDocumentation)\n"
+                    renderedEnum += "    /// \(caseDocumentation)\n"
                 }
-                rendered += "case \($0.id) = \"\($0.value)\"\n"
+                renderedEnum += "    case \($0.id)"
+                if $0.id != $0.value {
+                    renderedEnum += " = \"\($0.value)\""
+                }
+                renderedEnum += "\n"
             }
-        rendered += "}"
-        return try format(rendered)
+        renderedEnum += "}"
+        if !renderedDocumentation.isEmpty {
+            renderedEnum = [renderedDocumentation, renderedEnum].joined(separator: "\n")
+        }
+        return renderedEnum
     }
 }

@@ -33,8 +33,11 @@ final class OneOfSchemaRendererTests: XCTestCase {
                 } else if let test = try? Test(from: decoder) {
                     self = .test(test)
                 } else {
-                    throw DecodingError.typeMismatch(Included.self, DecodingError.Context(codingPath: decoder.codingPath,
-                                                                                          debugDescription: "Unknown Included"))
+                    throw DecodingError.typeMismatch(
+                        Included.self,
+                        DecodingError.Context(
+                            codingPath: decoder.codingPath,
+                            debugDescription: "Unknown Included"))
                 }
             }
 
@@ -99,7 +102,6 @@ final class OneOfSchemaRendererTests: XCTestCase {
                 }
             }
         }
-
         """#)
     }
     
@@ -124,8 +126,11 @@ final class OneOfSchemaRendererTests: XCTestCase {
                 } else if let string = try? String(from: decoder) {
                     self = .string(string)
                 } else {
-                    throw DecodingError.typeMismatch(Included.self, DecodingError.Context(codingPath: decoder.codingPath,
-                                                                                          debugDescription: "Unknown Included"))
+                    throw DecodingError.typeMismatch(
+                        Included.self,
+                        DecodingError.Context(
+                            codingPath: decoder.codingPath,
+                            debugDescription: "Unknown Included"))
                 }
             }
 
@@ -138,7 +143,6 @@ final class OneOfSchemaRendererTests: XCTestCase {
                 }
             }
         }
-        
         """#)
     }
 }

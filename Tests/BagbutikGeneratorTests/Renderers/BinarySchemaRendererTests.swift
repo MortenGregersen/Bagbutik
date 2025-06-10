@@ -33,7 +33,6 @@ final class BinarySchemaRendererTests: XCTestCase {
                 data = try container.decode(Data.self, forKey: "data")
             }
         }
-
         """#)
     }
 
@@ -62,7 +61,6 @@ final class BinarySchemaRendererTests: XCTestCase {
                 data = try container.decode(Data.self, forKey: "data")
             }
         }
-
         """#)
     }
 }

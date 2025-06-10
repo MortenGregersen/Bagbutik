@@ -34,7 +34,6 @@ final class ObjectSchemaRendererTests: XCTestCase {
                 try container.encodeIfPresent(name, forKey: "name")
             }
         }
-
         """#)
     }
 
@@ -78,7 +77,6 @@ final class ObjectSchemaRendererTests: XCTestCase {
                 try container.encodeIfPresent(name, forKey: "name")
             }
         }
-
         """#)
     }
 
@@ -137,7 +135,6 @@ final class ObjectSchemaRendererTests: XCTestCase {
                 try container.encodeIfPresent(name, forKey: "name")
             }
         }
-
         """#)
     }
 
@@ -188,7 +185,6 @@ final class ObjectSchemaRendererTests: XCTestCase {
                 try container.encodeIfPresent(name, forKey: "name")
             }
         }
-
         """#)
     }
 
@@ -267,7 +263,6 @@ final class ObjectSchemaRendererTests: XCTestCase {
                 }
             }
         }
-
         """#)
     }
 
@@ -345,7 +340,6 @@ final class ObjectSchemaRendererTests: XCTestCase {
                 case tuesday = "TUESDAY"
             }
         }
-
         """#)
     }
 
@@ -419,7 +413,6 @@ final class ObjectSchemaRendererTests: XCTestCase {
                 }
             }
         }
-
         """#)
     }
 
@@ -503,7 +496,6 @@ final class ObjectSchemaRendererTests: XCTestCase {
                 }
             }
         }
-
         """#)
     }
 
@@ -583,8 +575,11 @@ final class ObjectSchemaRendererTests: XCTestCase {
                     } else if let phone = try? Phone(from: decoder) {
                         self = .phone(phone)
                     } else {
-                        throw DecodingError.typeMismatch(Connection.self, DecodingError.Context(codingPath: decoder.codingPath,
-                                                                                                debugDescription: "Unknown Connection"))
+                        throw DecodingError.typeMismatch(
+                            Connection.self,
+                            DecodingError.Context(
+                                codingPath: decoder.codingPath,
+                                debugDescription: "Unknown Connection"))
                     }
                 }
 
@@ -621,7 +616,6 @@ final class ObjectSchemaRendererTests: XCTestCase {
                 case tabs = "TABS"
             }
         }
-
         """#)
     }
 
@@ -663,7 +657,6 @@ final class ObjectSchemaRendererTests: XCTestCase {
                 try container.encode(links, forKey: "links")
             }
         }
-
         """#)
     }
 
@@ -797,8 +790,11 @@ final class ObjectSchemaRendererTests: XCTestCase {
                     } else if let prereleaseVersion = try? PrereleaseVersion(from: decoder) {
                         self = .prereleaseVersion(prereleaseVersion)
                     } else {
-                        throw DecodingError.typeMismatch(Included.self, DecodingError.Context(codingPath: decoder.codingPath,
-                                                                                              debugDescription: "Unknown Included"))
+                        throw DecodingError.typeMismatch(
+                            Included.self,
+                            DecodingError.Context(
+                                codingPath: decoder.codingPath,
+                                debugDescription: "Unknown Included"))
                     }
                 }
 
@@ -816,17 +812,12 @@ final class ObjectSchemaRendererTests: XCTestCase {
                 public struct App: Codable, Sendable {
                     public init() {}
 
-                    public init(from decoder: Decoder) throws {
-                        let container = try decoder.container(keyedBy: AnyCodingKey.self)
-                    }
+                    public init(from decoder: Decoder) throws {}
 
-                    public func encode(to encoder: Encoder) throws {
-                        var container = encoder.container(keyedBy: AnyCodingKey.self)
-                    }
+                    public func encode(to encoder: Encoder) throws {}
                 }
             }
         }
-
         """#)
     }
 
@@ -983,8 +974,11 @@ final class ObjectSchemaRendererTests: XCTestCase {
                     } else if let somethingOld = try? SomethingOld(from: decoder) {
                         self = .somethingOld(somethingOld)
                     } else {
-                        throw DecodingError.typeMismatch(Included.self, DecodingError.Context(codingPath: decoder.codingPath,
-                                                                                              debugDescription: "Unknown Included"))
+                        throw DecodingError.typeMismatch(
+                            Included.self,
+                            DecodingError.Context(
+                                codingPath: decoder.codingPath,
+                                debugDescription: "Unknown Included"))
                     }
                 }
 
@@ -1000,7 +994,6 @@ final class ObjectSchemaRendererTests: XCTestCase {
                 }
             }
         }
-
         """#)
     }
 
@@ -1098,7 +1091,6 @@ final class ObjectSchemaRendererTests: XCTestCase {
                 return included?.filter { localizationIds.contains($0.id) } ?? []
             }
         }
-
         """#)
     }
     
@@ -1195,7 +1187,6 @@ final class ObjectSchemaRendererTests: XCTestCase {
                 included?.first { $0.id == appEvent.relationships?.localization?.data?.id }
             }
         }
-        
         """#)
     }
 
@@ -1324,7 +1315,6 @@ final class ObjectSchemaRendererTests: XCTestCase {
                 }
             }
         }
-
         """#)
     }
 
@@ -1448,7 +1438,6 @@ final class ObjectSchemaRendererTests: XCTestCase {
                 }
             }
         }
-
         """#)
     }
 
@@ -1515,7 +1504,6 @@ final class ObjectSchemaRendererTests: XCTestCase {
                 case tollfree = "TOLLFREE"
             }
         }
-
         """#)
     }
 
@@ -1531,15 +1519,10 @@ final class ObjectSchemaRendererTests: XCTestCase {
         public struct PhoneNumber: Codable, Sendable, Fooable {
             public init() {}
 
-            public init(from decoder: Decoder) throws {
-                let container = try decoder.container(keyedBy: AnyCodingKey.self)
-            }
+            public init(from decoder: Decoder) throws {}
 
-            public func encode(to encoder: Encoder) throws {
-                var container = encoder.container(keyedBy: AnyCodingKey.self)
-            }
+            public func encode(to encoder: Encoder) throws {}
         }
-
         """#)
     }
 
@@ -1643,7 +1626,6 @@ final class ObjectSchemaRendererTests: XCTestCase {
                 }
             }
         }
-
         """#)
     }
 
@@ -1814,7 +1796,6 @@ final class ObjectSchemaRendererTests: XCTestCase {
                 }
             }
         }
-
         """#)
     }
 
@@ -1989,7 +1970,6 @@ final class ObjectSchemaRendererTests: XCTestCase {
                 }
             }
         }
-
         """#)
     }
 }

@@ -20,61 +20,53 @@ public class OneOfSchemaRenderer: Renderer {
             return objectSchema
         }
 
-        var rendered = "public init(from decoder: Decoder) throws {\n"
-        for item in options.enumerated() {
-            let option = item.element
-            var renderedOption = """
-            if let \(option.id) = try? \(option.value)(from: decoder) {
-                self = .\(option.id)(\(option.id))
+        var enumContent = [String]()
+        enumContent.append(renderInitializer(parameters: [.init(prefix: "from", name: "decoder", type: "Decoder")], throwing: true, content: {
+            var rendered = ""
+            for item in options.enumerated() {
+                let option = item.element
+                var renderedOption = """
+                if let \(option.id) = try? \(option.value)(from: decoder) {
+                    self = .\(option.id)(\(option.id))
 
-            """
-            if item.offset != 0 {
-                renderedOption = "} else " + renderedOption
+                """
+                if item.offset != 0 {
+                    renderedOption = "} else " + renderedOption
+                }
+                rendered += renderedOption
             }
-            rendered += renderedOption
-        }
-        rendered += """
-            } else {
-                throw DecodingError.typeMismatch(\(name).self, DecodingError.Context(codingPath: decoder.codingPath,
-                                                                                     debugDescription: "Unknown \(name)"))
-            }
-        }
 
-        """
-        rendered += """
-
-        public func encode(to encoder: Encoder) throws {
-            switch self {
-
-        """
-        for option in options {
             rendered += """
-            case .\(option.id)(let value):
-                try value.encode(to: encoder)
-
-            """
-        }
-        rendered += """
+            } else {
+                throw DecodingError.typeMismatch(
+                    \(name).self,
+                    DecodingError.Context(
+                        codingPath: decoder.codingPath,
+                        debugDescription: "Unknown \(name)"))
             }
-        }
-        """
-
+            """
+            return rendered
+        }))
+        enumContent.append(renderFunction(named: "encode", parameters: [.init(prefix: "to", name: "encoder", type: "Encoder")], throwing: true, content: {
+            var rendered = "switch self {\n"
+            rendered += options.map { option in
+                """
+                case let .\(option.id)(value):
+                    try value.encode(to: encoder)
+                """
+            }.joined(separator: "\n")
+            rendered += "\n}"
+            return rendered
+        }))
         let objectRenderer = ObjectSchemaRenderer(docsLoader: docsLoader, shouldFormat: false)
-        var renderedSubSchemas = [String]()
         for subSchema in subSchemas {
-            try await renderedSubSchemas.append(objectRenderer.render(objectSchema: subSchema, otherSchemas: [:]))
-        }
-        if !renderedSubSchemas.isEmpty {
-            rendered += "\n\n" + renderedSubSchemas.joined(separator: "\n\n")
+            try await enumContent.append(objectRenderer.render(objectSchema: subSchema, otherSchemas: [:]))
         }
         let protocols = ["Codable", "Sendable"] + oneOfSchema.additionalProtocols
-
-        rendered = renderEnum(named: name,
-                              protocols: protocols,
-                              cases: options,
-                              caseValueIsAssociated: true,
-                              content: rendered)
-
-        return try format(rendered)
+        return renderEnum(named: name,
+                          protocols: protocols,
+                          cases: options,
+                          caseValueIsAssociated: true,
+                          content: enumContent.joined(separator: "\n\n"))
     }
 }
