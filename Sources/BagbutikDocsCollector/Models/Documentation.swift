@@ -95,7 +95,7 @@ public enum Documentation: Codable, Equatable, Sendable {
         let id = try container.decode(Identifier.self, forKey: .identifier).url
         let hierarchy = try container.decode(Hierarchy.self, forKey: .hierarchy)
         let metadata = try container.decode(Metadata.self, forKey: .metadata)
-        let abstract = try container.decodeIfPresent([Abstract].self, forKey: .abstract)?.first?.text
+        let abstract = try container.decodeIfPresent([Abstract].self, forKey: .abstract)?.map(\.text).joined()
         let references = try container.decodeIfPresent([String: Reference].self, forKey: .references)
         let formatContent: (Content?) -> String? = { content in
             content?.inlineContent.reduce(into: "") { contentResult, inlineContent in
@@ -243,13 +243,13 @@ public enum Documentation: Codable, Equatable, Sendable {
             let pathParameters = documentation.pathParameters.map { keyValue in
                 Parameter(name: keyValue.key, contents: [.init(text: keyValue.value)])
             }
-            if pathParameters.count > 0 {
+            if !pathParameters.isEmpty {
                 contentSections.append(.pathParameters(pathParameters))
             }
             let queryParameters = documentation.queryParameters.map { keyValue in
                 Parameter(name: keyValue.key, contents: [.init(text: keyValue.value)])
             }
-            if queryParameters.count > 0 {
+            if !queryParameters.isEmpty {
                 contentSections.append(.queryParameters(queryParameters))
             }
             if let body = documentation.body.map({ Content(text: $0) }) {
@@ -279,8 +279,50 @@ public enum Documentation: Codable, Equatable, Sendable {
         let symbolKind: String
     }
 
-    private struct Abstract: Codable {
-        let text: String
+    private enum Abstract: Codable {
+        case text(String)
+        case code(String)
+
+        var text: String {
+            switch self {
+            case .text(let text): text
+            case .code(let code): code
+            }
+        }
+        
+        init(text: String) {
+            self = .text(text)
+        }
+
+        init(from decoder: any Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            let type = try container.decode(String.self, forKey: .type)
+            if type == "text" {
+                self = try .text(container.decode(String.self, forKey: .text))
+            } else if type == "codeVoice" {
+                self = try .code(container.decode(String.self, forKey: .code))
+            } else {
+                throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Unknown type '\(type)' for Abstract")
+            }
+        }
+
+        func encode(to encoder: any Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            switch self {
+            case .text(let text):
+                try container.encode("text", forKey: .type)
+                try container.encode(text, forKey: .text)
+            case .code(let code):
+                try container.encode("codeVoice", forKey: .type)
+                try container.encode(code, forKey: .code)
+            }
+        }
+
+        enum CodingKeys: CodingKey {
+            case text
+            case code
+            case type
+        }
     }
 
     public struct Hierarchy: Codable, Equatable, Sendable {
@@ -352,7 +394,7 @@ public enum Documentation: Codable, Equatable, Sendable {
                 let contents = try container
                     .decode([Content].self, forKey: .content)
                     .filter { $0.type != "heading" }
-                guard contents.count > 0 else {
+                guard !contents.isEmpty else {
                     throw DecodingError.dataCorruptedError(forKey: .kind, in: container, debugDescription: "Content section of kind '\(kind)' has no content")
                 }
                 self = .discussion(contents)
@@ -539,7 +581,7 @@ public enum Documentation: Codable, Equatable, Sendable {
             type = types.first!
             required = try container.decodeIfPresent(Bool.self, forKey: .required) ?? false
             contents = try (container.decodeIfPresent([Content].self, forKey: .content) ?? [])
-                .filter { $0.inlineContent.count > 0 }
+                .filter { !$0.inlineContent.isEmpty }
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -577,7 +619,7 @@ public enum Documentation: Codable, Equatable, Sendable {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             name = try container.decode(String.self, forKey: .name)
             contents = try (container.decodeIfPresent([Content].self, forKey: .content) ?? [])
-                .filter { $0.inlineContent.count > 0 }
+                .filter { !$0.inlineContent.isEmpty }
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -611,7 +653,7 @@ public enum Documentation: Codable, Equatable, Sendable {
             status = try container.decode(Int.self, forKey: .status)
             reason = try container.decodeIfPresent(String.self, forKey: .reason)
             contents = try (container.decodeIfPresent([Content].self, forKey: .content) ?? [])
-                .filter { $0.inlineContent.count > 0 }
+                .filter { !$0.inlineContent.isEmpty }
         }
 
         public func encode(to encoder: Encoder) throws {
