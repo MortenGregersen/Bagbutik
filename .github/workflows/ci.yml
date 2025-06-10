@@ -64,9 +64,9 @@ jobs:
     - name: Setup SwiftWasm SDK
       uses: swiftwasm/setup-swiftwasm@v2
     - name: Build tests
-      run: swift build --triple wasm32-unknown-wasi --build-tests
+      run: swift build --swift-sdk wasm32-unknown-wasi --build-tests
     - name: Run tests
-      run: swift test --triple wasm32-unknown-wasi
+      run: swift test --swift-sdk wasm32-unknown-wasi
     - name: Install Wasmtime
       uses: bytecodealliance/actions/wasmtime/setup@v1
     - name: List wasm files
