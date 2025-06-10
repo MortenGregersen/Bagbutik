@@ -1,3 +1,5 @@
+import Bagbutik_Core
+import Bagbutik_Models
 import Foundation
 
 public struct WebhookDeliveriesLinkagesResponse: Codable, Sendable, PagedResponse {

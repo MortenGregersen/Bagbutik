@@ -149,7 +149,8 @@ public enum PackageName: CaseIterable, Codable, Equatable {
             return .reporting
         } else if resource.hasPrefix("user") {
             return .users
-        } else if resource.hasPrefix("webhook") {
+        } else if resource.hasPrefix("webhook")
+            || resource.hasPrefix("deliveries") {
             return .webhooks
         } else if resource.hasPrefix("action")
             || resource.hasPrefix("additionalRepositor")
