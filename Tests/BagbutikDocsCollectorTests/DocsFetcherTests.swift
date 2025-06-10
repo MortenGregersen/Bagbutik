@@ -42,7 +42,7 @@ final class DocsFetcherTests: XCTestCase {
         let printer = Printer()
         #endif
         let docsFetcher = DocsFetcher(loadSpec: { _ in self.testSpec },
-                                      fetchData: urlSession.data(from:),
+                                      fetchData: urlSession.data(from:delegate:),
                                       fileManager: fileManager,
                                       print: printer.print)
         urlSession.dataByUrl[URL(string: "https://developer.apple.com/tutorials/data/documentation/AppStoreConnectAPI/get-v1-users.json")!] =
@@ -223,7 +223,7 @@ final class DocsFetcherTests: XCTestCase {
         #else
         let printer = Printer()
         #endif
-        let docsFetcher = DocsFetcher(loadSpec: { _ in try Spec(paths: [:], components: .init(schemas: [:])) }, fetchData: urlSession.data(from:), fileManager: fileManager, print: printer.print)
+        let docsFetcher = DocsFetcher(loadSpec: { _ in try Spec(paths: [:], components: .init(schemas: [:])) }, fetchData: urlSession.data(from:delegate:), fileManager: fileManager, print: printer.print)
         // When
         await XCTAssertAsyncThrowsError(try await docsFetcher.fetchAllDocs(specFileURL: validSpecFileURL, outputDirURL: validOutputDirURL, dryRun: false)) {
             // Then
@@ -248,7 +248,7 @@ final class DocsFetcherTests: XCTestCase {
     class MockURLSession {
         var dataByUrl: [URL: Data] = [:]
         
-        func data(from url: URL) async throws -> (Data, URLResponse) {
+        func data(from url: URL, delegate: URLSessionTaskDelegate? = nil) async throws -> (Data, URLResponse) {
             let data = dataByUrl[url]!
             return (data, HTTPURLResponse(url: url, statusCode: 200, httpVersion: nil, headerFields: nil)!)
         }

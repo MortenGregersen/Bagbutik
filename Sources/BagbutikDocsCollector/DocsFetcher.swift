@@ -44,7 +44,7 @@ typealias LoadSpec = (_ fileUrl: URL) throws -> Spec
     - delegate: Task-specific delegate.
  - Returns: Data and response.
  */
-public typealias FetchData = (_ url: URL) async throws -> (Data, URLResponse)
+public typealias FetchData = (_ url: URL, _ delegate: URLSessionTaskDelegate?) async throws -> (Data, URLResponse)
 
 public enum DocsFilename: String {
     case schemaMapping = "SchemaIndex.json"
@@ -75,7 +75,7 @@ public class DocsFetcher {
 
     init(
         loadSpec: @escaping LoadSpec,
-        fetchData: @escaping FetchData = { url in try await URLSession.shared.data(from: url, delegate: nil) },
+        fetchData: @escaping FetchData = URLSession.shared.data(from:delegate:),
         fileManager: TestableFileManager = FileManager.default,
         print: @escaping (String) -> Void = { Swift.print($0) }) {
         self.loadSpec = loadSpec
@@ -167,7 +167,7 @@ public class DocsFetcher {
     }
 
     private func fetchDocumentation(for url: URL) async throws -> Documentation {
-        let (data, _) = try await fetchData(url)
+        let (data, _) = try await fetchData(url, nil)
         do {
             return try JSONDecoder().decode(Documentation.self, from: data)
         } catch {
@@ -179,7 +179,7 @@ public class DocsFetcher {
                 throw error
             }
             try await Task.sleep(nanoseconds: 2_000_000_000)
-            let (data, _) = try await fetchData(url)
+            let (data, _) = try await fetchData(url, nil)
             return try JSONDecoder().decode(Documentation.self, from: data)
             #endif
         }
