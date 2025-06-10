@@ -16,9 +16,11 @@ public extension Request {
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func getCiTestResultV1(id: String,
-                                  fields: [GetCiTestResultV1.Field]? = nil) -> Request<CiTestResultResponse, ErrorResponse>
-    {
-        .init(path: "/v1/ciTestResults/\(id)", method: .get, parameters: .init(fields: fields))
+                                  fields: [GetCiTestResultV1.Field]? = nil) -> Request<CiTestResultResponse, ErrorResponse> {
+        .init(
+            path: "/v1/ciTestResults/\(id)",
+            method: .get,
+            parameters: .init(fields: fields))
     }
 }
 

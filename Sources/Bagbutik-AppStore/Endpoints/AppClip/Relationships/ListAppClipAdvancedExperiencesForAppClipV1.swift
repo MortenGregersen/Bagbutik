@@ -20,12 +20,15 @@ public extension Request {
                                                            fields: [ListAppClipAdvancedExperiencesForAppClipV1.Field]? = nil,
                                                            filters: [ListAppClipAdvancedExperiencesForAppClipV1.Filter]? = nil,
                                                            includes: [ListAppClipAdvancedExperiencesForAppClipV1.Include]? = nil,
-                                                           limits: [ListAppClipAdvancedExperiencesForAppClipV1.Limit]? = nil) -> Request<AppClipAdvancedExperiencesResponse, ErrorResponse>
-    {
-        .init(path: "/v1/appClips/\(id)/appClipAdvancedExperiences", method: .get, parameters: .init(fields: fields,
-                                                                                                     filters: filters,
-                                                                                                     includes: includes,
-                                                                                                     limits: limits))
+                                                           limits: [ListAppClipAdvancedExperiencesForAppClipV1.Limit]? = nil) -> Request<AppClipAdvancedExperiencesResponse, ErrorResponse> {
+        .init(
+            path: "/v1/appClips/\(id)/appClipAdvancedExperiences",
+            method: .get,
+            parameters: .init(
+                fields: fields,
+                filters: filters,
+                includes: includes,
+                limits: limits))
     }
 }
 

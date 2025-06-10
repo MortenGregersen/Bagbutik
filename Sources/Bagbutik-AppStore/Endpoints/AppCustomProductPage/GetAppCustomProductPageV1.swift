@@ -18,11 +18,14 @@ public extension Request {
     static func getAppCustomProductPageV1(id: String,
                                           fields: [GetAppCustomProductPageV1.Field]? = nil,
                                           includes: [GetAppCustomProductPageV1.Include]? = nil,
-                                          limit: GetAppCustomProductPageV1.Limit? = nil) -> Request<AppCustomProductPageResponse, ErrorResponse>
-    {
-        .init(path: "/v1/appCustomProductPages/\(id)", method: .get, parameters: .init(fields: fields,
-                                                                                       includes: includes,
-                                                                                       limits: limit.map { [$0] }))
+                                          limit: GetAppCustomProductPageV1.Limit? = nil) -> Request<AppCustomProductPageResponse, ErrorResponse> {
+        .init(
+            path: "/v1/appCustomProductPages/\(id)",
+            method: .get,
+            parameters: .init(
+                fields: fields,
+                includes: includes,
+                limits: limit.map { [$0] }))
     }
 }
 

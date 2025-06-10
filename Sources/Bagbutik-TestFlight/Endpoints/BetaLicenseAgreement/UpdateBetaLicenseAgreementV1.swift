@@ -14,8 +14,10 @@ public extension Request {
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func updateBetaLicenseAgreementV1(id: String,
-                                             requestBody: BetaLicenseAgreementUpdateRequest) -> Request<BetaLicenseAgreementResponse, ErrorResponse>
-    {
-        .init(path: "/v1/betaLicenseAgreements/\(id)", method: .patch, requestBody: requestBody)
+                                             requestBody: BetaLicenseAgreementUpdateRequest) -> Request<BetaLicenseAgreementResponse, ErrorResponse> {
+        .init(
+            path: "/v1/betaLicenseAgreements/\(id)",
+            method: .patch,
+            requestBody: requestBody)
     }
 }

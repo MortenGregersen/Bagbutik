@@ -24,7 +24,7 @@ public class BinarySchemaRenderer: Renderer {
 
             public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: AnyCodingKey.self)
-                self.data = try container.decode(Data.self, forKey: "data")
+                data = try container.decode(Data.self, forKey: "data")
             }
         }
         """
@@ -33,6 +33,6 @@ public class BinarySchemaRenderer: Renderer {
            let abstract = objectDocumentation.abstract {
             rendered = "/// \(abstract)\n" + rendered
         }
-        return try format(rendered)
+        return rendered
     }
 }

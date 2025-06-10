@@ -14,8 +14,10 @@ public extension Request {
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func deleteIndividualTestersForBuildV1(id: String,
-                                                  requestBody: BuildIndividualTestersLinkagesRequest) -> Request<EmptyResponse, ErrorResponse>
-    {
-        .init(path: "/v1/builds/\(id)/relationships/individualTesters", method: .delete, requestBody: requestBody)
+                                                  requestBody: BuildIndividualTestersLinkagesRequest) -> Request<EmptyResponse, ErrorResponse> {
+        .init(
+            path: "/v1/builds/\(id)/relationships/individualTesters",
+            method: .delete,
+            requestBody: requestBody)
     }
 }

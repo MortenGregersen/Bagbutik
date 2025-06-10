@@ -16,10 +16,13 @@ public extension Request {
      */
     static func listDeltasForAlternativeDistributionPackageVersionV1(id: String,
                                                                      fields: [ListDeltasForAlternativeDistributionPackageVersionV1.Field]? = nil,
-                                                                     limit: Int? = nil) -> Request<AlternativeDistributionPackageDeltasResponse, ErrorResponse>
-    {
-        .init(path: "/v1/alternativeDistributionPackageVersions/\(id)/deltas", method: .get, parameters: .init(fields: fields,
-                                                                                                               limit: limit))
+                                                                     limit: Int? = nil) -> Request<AlternativeDistributionPackageDeltasResponse, ErrorResponse> {
+        .init(
+            path: "/v1/alternativeDistributionPackageVersions/\(id)/deltas",
+            method: .get,
+            parameters: .init(
+                fields: fields,
+                limit: limit))
     }
 }
 

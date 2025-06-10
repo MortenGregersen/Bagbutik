@@ -14,8 +14,10 @@ public extension Request {
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func deleteBuildsForBetaGroupV1(id: String,
-                                           requestBody: BetaGroupBuildsLinkagesRequest) -> Request<EmptyResponse, ErrorResponse>
-    {
-        .init(path: "/v1/betaGroups/\(id)/relationships/builds", method: .delete, requestBody: requestBody)
+                                           requestBody: BetaGroupBuildsLinkagesRequest) -> Request<EmptyResponse, ErrorResponse> {
+        .init(
+            path: "/v1/betaGroups/\(id)/relationships/builds",
+            method: .delete,
+            requestBody: requestBody)
     }
 }

@@ -16,10 +16,13 @@ public extension Request {
      */
     static func listArtifactsForCiBuildActionV1(id: String,
                                                 fields: [ListArtifactsForCiBuildActionV1.Field]? = nil,
-                                                limit: Int? = nil) -> Request<CiArtifactsResponse, ErrorResponse>
-    {
-        .init(path: "/v1/ciBuildActions/\(id)/artifacts", method: .get, parameters: .init(fields: fields,
-                                                                                          limit: limit))
+                                                limit: Int? = nil) -> Request<CiArtifactsResponse, ErrorResponse> {
+        .init(
+            path: "/v1/ciBuildActions/\(id)/artifacts",
+            method: .get,
+            parameters: .init(
+                fields: fields,
+                limit: limit))
     }
 }
 

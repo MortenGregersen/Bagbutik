@@ -88,8 +88,11 @@ public struct BetaTesterResponse: Codable, Sendable {
             } else if let build = try? Build(from: decoder) {
                 self = .build(build)
             } else {
-                throw DecodingError.typeMismatch(Included.self, DecodingError.Context(codingPath: decoder.codingPath,
-                                                                                      debugDescription: "Unknown Included"))
+                throw DecodingError.typeMismatch(
+                    Included.self,
+                    DecodingError.Context(
+                        codingPath: decoder.codingPath,
+                        debugDescription: "Unknown Included"))
             }
         }
 

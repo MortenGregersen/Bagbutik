@@ -16,10 +16,13 @@ public extension Request {
      */
     static func listPreReleaseVersionsForAppV1(id: String,
                                                fields: [ListPreReleaseVersionsForAppV1.Field]? = nil,
-                                               limit: Int? = nil) -> Request<PreReleaseVersionsWithoutIncludesResponse, ErrorResponse>
-    {
-        .init(path: "/v1/apps/\(id)/preReleaseVersions", method: .get, parameters: .init(fields: fields,
-                                                                                         limit: limit))
+                                               limit: Int? = nil) -> Request<PreReleaseVersionsWithoutIncludesResponse, ErrorResponse> {
+        .init(
+            path: "/v1/apps/\(id)/preReleaseVersions",
+            method: .get,
+            parameters: .init(
+                fields: fields,
+                limit: limit))
     }
 }
 

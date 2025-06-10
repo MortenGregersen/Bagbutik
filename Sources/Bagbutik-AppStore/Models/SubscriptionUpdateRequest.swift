@@ -263,8 +263,11 @@ public struct SubscriptionUpdateRequest: Codable, Sendable, RequestBody {
             } else if let subscriptionPromotionalOfferInlineCreate = try? SubscriptionPromotionalOfferInlineCreate(from: decoder) {
                 self = .subscriptionPromotionalOfferInlineCreate(subscriptionPromotionalOfferInlineCreate)
             } else {
-                throw DecodingError.typeMismatch(Included.self, DecodingError.Context(codingPath: decoder.codingPath,
-                                                                                      debugDescription: "Unknown Included"))
+                throw DecodingError.typeMismatch(
+                    Included.self,
+                    DecodingError.Context(
+                        codingPath: decoder.codingPath,
+                        debugDescription: "Unknown Included"))
             }
         }
 

@@ -13,6 +13,9 @@ public extension Request {
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func createProfileV1(requestBody: ProfileCreateRequest) -> Request<ProfileResponse, ErrorResponse> {
-        .init(path: "/v1/profiles", method: .post, requestBody: requestBody)
+        .init(
+            path: "/v1/profiles",
+            method: .post,
+            requestBody: requestBody)
     }
 }

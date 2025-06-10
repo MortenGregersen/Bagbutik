@@ -16,9 +16,11 @@ public extension Request {
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func getCiIssueV1(id: String,
-                             fields: [GetCiIssueV1.Field]? = nil) -> Request<CiIssueResponse, ErrorResponse>
-    {
-        .init(path: "/v1/ciIssues/\(id)", method: .get, parameters: .init(fields: fields))
+                             fields: [GetCiIssueV1.Field]? = nil) -> Request<CiIssueResponse, ErrorResponse> {
+        .init(
+            path: "/v1/ciIssues/\(id)",
+            method: .get,
+            parameters: .init(fields: fields))
     }
 }
 

@@ -18,10 +18,13 @@ public extension Request {
      */
     static func getRepositoryForCiWorkflowV1(id: String,
                                              fields: [GetRepositoryForCiWorkflowV1.Field]? = nil,
-                                             includes: [GetRepositoryForCiWorkflowV1.Include]? = nil) -> Request<ScmRepositoryResponse, ErrorResponse>
-    {
-        .init(path: "/v1/ciWorkflows/\(id)/repository", method: .get, parameters: .init(fields: fields,
-                                                                                        includes: includes))
+                                             includes: [GetRepositoryForCiWorkflowV1.Include]? = nil) -> Request<ScmRepositoryResponse, ErrorResponse> {
+        .init(
+            path: "/v1/ciWorkflows/\(id)/repository",
+            method: .get,
+            parameters: .init(
+                fields: fields,
+                includes: includes))
     }
 }
 

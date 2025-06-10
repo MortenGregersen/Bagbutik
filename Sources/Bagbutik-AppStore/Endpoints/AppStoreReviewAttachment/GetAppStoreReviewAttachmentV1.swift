@@ -16,10 +16,13 @@ public extension Request {
      */
     static func getAppStoreReviewAttachmentV1(id: String,
                                               fields: [GetAppStoreReviewAttachmentV1.Field]? = nil,
-                                              includes: [GetAppStoreReviewAttachmentV1.Include]? = nil) -> Request<AppStoreReviewAttachmentResponse, ErrorResponse>
-    {
-        .init(path: "/v1/appStoreReviewAttachments/\(id)", method: .get, parameters: .init(fields: fields,
-                                                                                           includes: includes))
+                                              includes: [GetAppStoreReviewAttachmentV1.Include]? = nil) -> Request<AppStoreReviewAttachmentResponse, ErrorResponse> {
+        .init(
+            path: "/v1/appStoreReviewAttachments/\(id)",
+            method: .get,
+            parameters: .init(
+                fields: fields,
+                includes: includes))
     }
 }
 

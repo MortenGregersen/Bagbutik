@@ -14,9 +14,11 @@ public extension Request {
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func getAppForBetaAppReviewDetailV1(id: String,
-                                               fields: [GetAppForBetaAppReviewDetailV1.Field]? = nil) -> Request<AppWithoutIncludesResponse, ErrorResponse>
-    {
-        .init(path: "/v1/betaAppReviewDetails/\(id)/app", method: .get, parameters: .init(fields: fields))
+                                               fields: [GetAppForBetaAppReviewDetailV1.Field]? = nil) -> Request<AppWithoutIncludesResponse, ErrorResponse> {
+        .init(
+            path: "/v1/betaAppReviewDetails/\(id)/app",
+            method: .get,
+            parameters: .init(fields: fields))
     }
 }
 

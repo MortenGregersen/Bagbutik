@@ -20,12 +20,15 @@ public extension Request {
                                                       fields: [ListPrimaryRepositoriesForCiProductV1.Field]? = nil,
                                                       filters: [ListPrimaryRepositoriesForCiProductV1.Filter]? = nil,
                                                       includes: [ListPrimaryRepositoriesForCiProductV1.Include]? = nil,
-                                                      limit: Int? = nil) -> Request<ScmRepositoriesResponse, ErrorResponse>
-    {
-        .init(path: "/v1/ciProducts/\(id)/primaryRepositories", method: .get, parameters: .init(fields: fields,
-                                                                                                filters: filters,
-                                                                                                includes: includes,
-                                                                                                limit: limit))
+                                                      limit: Int? = nil) -> Request<ScmRepositoriesResponse, ErrorResponse> {
+        .init(
+            path: "/v1/ciProducts/\(id)/primaryRepositories",
+            method: .get,
+            parameters: .init(
+                fields: fields,
+                filters: filters,
+                includes: includes,
+                limit: limit))
     }
 }
 

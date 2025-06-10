@@ -18,11 +18,14 @@ public extension Request {
     static func listImagesForInAppPurchasesV2(id: String,
                                               fields: [ListImagesForInAppPurchasesV2.Field]? = nil,
                                               includes: [ListImagesForInAppPurchasesV2.Include]? = nil,
-                                              limit: Int? = nil) -> Request<InAppPurchaseImagesResponse, ErrorResponse>
-    {
-        .init(path: "/v2/inAppPurchases/\(id)/images", method: .get, parameters: .init(fields: fields,
-                                                                                       includes: includes,
-                                                                                       limit: limit))
+                                              limit: Int? = nil) -> Request<InAppPurchaseImagesResponse, ErrorResponse> {
+        .init(
+            path: "/v2/inAppPurchases/\(id)/images",
+            method: .get,
+            parameters: .init(
+                fields: fields,
+                includes: includes,
+                limit: limit))
     }
 }
 

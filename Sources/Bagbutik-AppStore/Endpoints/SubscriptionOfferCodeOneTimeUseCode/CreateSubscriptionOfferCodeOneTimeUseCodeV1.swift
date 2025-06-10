@@ -13,6 +13,9 @@ public extension Request {
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func createSubscriptionOfferCodeOneTimeUseCodeV1(requestBody: SubscriptionOfferCodeOneTimeUseCodeCreateRequest) -> Request<SubscriptionOfferCodeOneTimeUseCodeResponse, ErrorResponse> {
-        .init(path: "/v1/subscriptionOfferCodeOneTimeUseCodes", method: .post, requestBody: requestBody)
+        .init(
+            path: "/v1/subscriptionOfferCodeOneTimeUseCodes",
+            method: .post,
+            requestBody: requestBody)
     }
 }

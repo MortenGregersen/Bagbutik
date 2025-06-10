@@ -20,12 +20,15 @@ public extension Request {
                                                    fields: [ListPricePointsForInAppPurchasesV2.Field]? = nil,
                                                    filters: [ListPricePointsForInAppPurchasesV2.Filter]? = nil,
                                                    includes: [ListPricePointsForInAppPurchasesV2.Include]? = nil,
-                                                   limit: Int? = nil) -> Request<InAppPurchasePricePointsResponse, ErrorResponse>
-    {
-        .init(path: "/v2/inAppPurchases/\(id)/pricePoints", method: .get, parameters: .init(fields: fields,
-                                                                                            filters: filters,
-                                                                                            includes: includes,
-                                                                                            limit: limit))
+                                                   limit: Int? = nil) -> Request<InAppPurchasePricePointsResponse, ErrorResponse> {
+        .init(
+            path: "/v2/inAppPurchases/\(id)/pricePoints",
+            method: .get,
+            parameters: .init(
+                fields: fields,
+                filters: filters,
+                includes: includes,
+                limit: limit))
     }
 }
 

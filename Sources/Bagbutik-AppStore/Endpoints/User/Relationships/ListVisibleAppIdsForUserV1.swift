@@ -14,8 +14,10 @@ public extension Request {
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func listVisibleAppIdsForUserV1(id: String,
-                                           limit: Int? = nil) -> Request<UserVisibleAppsLinkagesResponse, ErrorResponse>
-    {
-        .init(path: "/v1/users/\(id)/relationships/visibleApps", method: .get, parameters: .init(limit: limit))
+                                           limit: Int? = nil) -> Request<UserVisibleAppsLinkagesResponse, ErrorResponse> {
+        .init(
+            path: "/v1/users/\(id)/relationships/visibleApps",
+            method: .get,
+            parameters: .init(limit: limit))
     }
 }

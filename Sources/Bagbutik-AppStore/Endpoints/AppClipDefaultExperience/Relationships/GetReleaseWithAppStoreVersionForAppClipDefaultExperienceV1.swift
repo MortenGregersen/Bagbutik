@@ -18,11 +18,14 @@ public extension Request {
     static func getReleaseWithAppStoreVersionForAppClipDefaultExperienceV1(id: String,
                                                                            fields: [GetReleaseWithAppStoreVersionForAppClipDefaultExperienceV1.Field]? = nil,
                                                                            includes: [GetReleaseWithAppStoreVersionForAppClipDefaultExperienceV1.Include]? = nil,
-                                                                           limits: [GetReleaseWithAppStoreVersionForAppClipDefaultExperienceV1.Limit]? = nil) -> Request<AppStoreVersionResponse, ErrorResponse>
-    {
-        .init(path: "/v1/appClipDefaultExperiences/\(id)/releaseWithAppStoreVersion", method: .get, parameters: .init(fields: fields,
-                                                                                                                      includes: includes,
-                                                                                                                      limits: limits))
+                                                                           limits: [GetReleaseWithAppStoreVersionForAppClipDefaultExperienceV1.Limit]? = nil) -> Request<AppStoreVersionResponse, ErrorResponse> {
+        .init(
+            path: "/v1/appClipDefaultExperiences/\(id)/releaseWithAppStoreVersion",
+            method: .get,
+            parameters: .init(
+                fields: fields,
+                includes: includes,
+                limits: limits))
     }
 }
 

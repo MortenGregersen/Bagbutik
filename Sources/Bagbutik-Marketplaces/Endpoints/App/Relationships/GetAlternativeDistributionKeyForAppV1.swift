@@ -14,9 +14,11 @@ public extension Request {
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func getAlternativeDistributionKeyForAppV1(id: String,
-                                                      fields: [GetAlternativeDistributionKeyForAppV1.Field]? = nil) -> Request<AlternativeDistributionKeyResponse, ErrorResponse>
-    {
-        .init(path: "/v1/apps/\(id)/alternativeDistributionKey", method: .get, parameters: .init(fields: fields))
+                                                      fields: [GetAlternativeDistributionKeyForAppV1.Field]? = nil) -> Request<AlternativeDistributionKeyResponse, ErrorResponse> {
+        .init(
+            path: "/v1/apps/\(id)/alternativeDistributionKey",
+            method: .get,
+            parameters: .init(fields: fields))
     }
 }
 

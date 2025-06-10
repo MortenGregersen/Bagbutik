@@ -19,12 +19,15 @@ public extension Request {
                                       fields: [ListAppEventsForAppV1.Field]? = nil,
                                       filters: [ListAppEventsForAppV1.Filter]? = nil,
                                       includes: [ListAppEventsForAppV1.Include]? = nil,
-                                      limits: [ListAppEventsForAppV1.Limit]? = nil) -> Request<AppEventsResponse, ErrorResponse>
-    {
-        .init(path: "/v1/apps/\(id)/appEvents", method: .get, parameters: .init(fields: fields,
-                                                                                filters: filters,
-                                                                                includes: includes,
-                                                                                limits: limits))
+                                      limits: [ListAppEventsForAppV1.Limit]? = nil) -> Request<AppEventsResponse, ErrorResponse> {
+        .init(
+            path: "/v1/apps/\(id)/appEvents",
+            method: .get,
+            parameters: .init(
+                fields: fields,
+                filters: filters,
+                includes: includes,
+                limits: limits))
     }
 }
 

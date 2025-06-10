@@ -13,6 +13,9 @@ public extension Request {
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func createNominationV1(requestBody: NominationCreateRequest) -> Request<NominationResponse, ErrorResponse> {
-        .init(path: "/v1/nominations", method: .post, requestBody: requestBody)
+        .init(
+            path: "/v1/nominations",
+            method: .post,
+            requestBody: requestBody)
     }
 }

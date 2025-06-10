@@ -16,10 +16,13 @@ public extension Request {
      */
     static func listBetaBuildLocalizationsForBuildV1(id: String,
                                                      fields: [ListBetaBuildLocalizationsForBuildV1.Field]? = nil,
-                                                     limit: Int? = nil) -> Request<BetaBuildLocalizationsWithoutIncludesResponse, ErrorResponse>
-    {
-        .init(path: "/v1/builds/\(id)/betaBuildLocalizations", method: .get, parameters: .init(fields: fields,
-                                                                                               limit: limit))
+                                                     limit: Int? = nil) -> Request<BetaBuildLocalizationsWithoutIncludesResponse, ErrorResponse> {
+        .init(
+            path: "/v1/builds/\(id)/betaBuildLocalizations",
+            method: .get,
+            parameters: .init(
+                fields: fields,
+                limit: limit))
     }
 }
 

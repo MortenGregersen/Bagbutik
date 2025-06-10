@@ -20,12 +20,15 @@ public extension Request {
                                                                fields: [ListGameCenterAchievementsForGameCenterGroupV1.Field]? = nil,
                                                                filters: [ListGameCenterAchievementsForGameCenterGroupV1.Filter]? = nil,
                                                                includes: [ListGameCenterAchievementsForGameCenterGroupV1.Include]? = nil,
-                                                               limits: [ListGameCenterAchievementsForGameCenterGroupV1.Limit]? = nil) -> Request<GameCenterAchievementsResponse, ErrorResponse>
-    {
-        .init(path: "/v1/gameCenterGroups/\(id)/gameCenterAchievements", method: .get, parameters: .init(fields: fields,
-                                                                                                         filters: filters,
-                                                                                                         includes: includes,
-                                                                                                         limits: limits))
+                                                               limits: [ListGameCenterAchievementsForGameCenterGroupV1.Limit]? = nil) -> Request<GameCenterAchievementsResponse, ErrorResponse> {
+        .init(
+            path: "/v1/gameCenterGroups/\(id)/gameCenterAchievements",
+            method: .get,
+            parameters: .init(
+                fields: fields,
+                filters: filters,
+                includes: includes,
+                limits: limits))
     }
 }
 

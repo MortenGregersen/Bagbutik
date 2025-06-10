@@ -22,13 +22,16 @@ public extension Request {
                                                         filters: [ListSubscriptionsForSubscriptionGroupV1.Filter]? = nil,
                                                         includes: [ListSubscriptionsForSubscriptionGroupV1.Include]? = nil,
                                                         sorts: [ListSubscriptionsForSubscriptionGroupV1.Sort]? = nil,
-                                                        limits: [ListSubscriptionsForSubscriptionGroupV1.Limit]? = nil) -> Request<SubscriptionsResponse, ErrorResponse>
-    {
-        .init(path: "/v1/subscriptionGroups/\(id)/subscriptions", method: .get, parameters: .init(fields: fields,
-                                                                                                  filters: filters,
-                                                                                                  includes: includes,
-                                                                                                  sorts: sorts,
-                                                                                                  limits: limits))
+                                                        limits: [ListSubscriptionsForSubscriptionGroupV1.Limit]? = nil) -> Request<SubscriptionsResponse, ErrorResponse> {
+        .init(
+            path: "/v1/subscriptionGroups/\(id)/subscriptions",
+            method: .get,
+            parameters: .init(
+                fields: fields,
+                filters: filters,
+                includes: includes,
+                sorts: sorts,
+                limits: limits))
     }
 }
 

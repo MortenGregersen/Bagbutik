@@ -79,8 +79,11 @@ public struct CiProductResponse: Codable, Sendable {
             } else if let scmRepository = try? ScmRepository(from: decoder) {
                 self = .scmRepository(scmRepository)
             } else {
-                throw DecodingError.typeMismatch(Included.self, DecodingError.Context(codingPath: decoder.codingPath,
-                                                                                      debugDescription: "Unknown Included"))
+                throw DecodingError.typeMismatch(
+                    Included.self,
+                    DecodingError.Context(
+                        codingPath: decoder.codingPath,
+                        debugDescription: "Unknown Included"))
             }
         }
 

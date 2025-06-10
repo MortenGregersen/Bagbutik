@@ -14,8 +14,10 @@ public extension Request {
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func listAppIdsForBetaTesterV1(id: String,
-                                          limit: Int? = nil) -> Request<BetaTesterAppsLinkagesResponse, ErrorResponse>
-    {
-        .init(path: "/v1/betaTesters/\(id)/relationships/apps", method: .get, parameters: .init(limit: limit))
+                                          limit: Int? = nil) -> Request<BetaTesterAppsLinkagesResponse, ErrorResponse> {
+        .init(
+            path: "/v1/betaTesters/\(id)/relationships/apps",
+            method: .get,
+            parameters: .init(limit: limit))
     }
 }

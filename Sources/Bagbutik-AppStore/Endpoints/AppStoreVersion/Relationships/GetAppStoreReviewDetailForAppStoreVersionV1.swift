@@ -18,11 +18,14 @@ public extension Request {
     static func getAppStoreReviewDetailForAppStoreVersionV1(id: String,
                                                             fields: [GetAppStoreReviewDetailForAppStoreVersionV1.Field]? = nil,
                                                             includes: [GetAppStoreReviewDetailForAppStoreVersionV1.Include]? = nil,
-                                                            limit: GetAppStoreReviewDetailForAppStoreVersionV1.Limit? = nil) -> Request<AppStoreReviewDetailResponse, ErrorResponse>
-    {
-        .init(path: "/v1/appStoreVersions/\(id)/appStoreReviewDetail", method: .get, parameters: .init(fields: fields,
-                                                                                                       includes: includes,
-                                                                                                       limits: limit.map { [$0] }))
+                                                            limit: GetAppStoreReviewDetailForAppStoreVersionV1.Limit? = nil) -> Request<AppStoreReviewDetailResponse, ErrorResponse> {
+        .init(
+            path: "/v1/appStoreVersions/\(id)/appStoreReviewDetail",
+            method: .get,
+            parameters: .init(
+                fields: fields,
+                includes: includes,
+                limits: limit.map { [$0] }))
     }
 }
 

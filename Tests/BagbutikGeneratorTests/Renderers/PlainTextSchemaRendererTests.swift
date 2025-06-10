@@ -33,7 +33,6 @@ final class PlainTextSchemaRendererTests: XCTestCase {
                 text = try container.decode(String.self, forKey: "text")
             }
         }
-
         """#)
     }
 
@@ -62,7 +61,6 @@ final class PlainTextSchemaRendererTests: XCTestCase {
                 text = try container.decode(String.self, forKey: "text")
             }
         }
-
         """#)
     }
 }

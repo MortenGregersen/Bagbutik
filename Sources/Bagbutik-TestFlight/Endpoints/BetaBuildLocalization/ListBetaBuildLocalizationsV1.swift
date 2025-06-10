@@ -18,12 +18,15 @@ public extension Request {
     static func listBetaBuildLocalizationsV1(fields: [ListBetaBuildLocalizationsV1.Field]? = nil,
                                              filters: [ListBetaBuildLocalizationsV1.Filter]? = nil,
                                              includes: [ListBetaBuildLocalizationsV1.Include]? = nil,
-                                             limit: Int? = nil) -> Request<BetaBuildLocalizationsResponse, ErrorResponse>
-    {
-        .init(path: "/v1/betaBuildLocalizations", method: .get, parameters: .init(fields: fields,
-                                                                                  filters: filters,
-                                                                                  includes: includes,
-                                                                                  limit: limit))
+                                             limit: Int? = nil) -> Request<BetaBuildLocalizationsResponse, ErrorResponse> {
+        .init(
+            path: "/v1/betaBuildLocalizations",
+            method: .get,
+            parameters: .init(
+                fields: fields,
+                filters: filters,
+                includes: includes,
+                limit: limit))
     }
 }
 

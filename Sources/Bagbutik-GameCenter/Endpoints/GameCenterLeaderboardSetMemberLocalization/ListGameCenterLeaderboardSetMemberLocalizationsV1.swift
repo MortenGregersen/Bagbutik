@@ -18,12 +18,15 @@ public extension Request {
     static func listGameCenterLeaderboardSetMemberLocalizationsV1(fields: [ListGameCenterLeaderboardSetMemberLocalizationsV1.Field]? = nil,
                                                                   filters: [ListGameCenterLeaderboardSetMemberLocalizationsV1.Filter]? = nil,
                                                                   includes: [ListGameCenterLeaderboardSetMemberLocalizationsV1.Include]? = nil,
-                                                                  limit: Int? = nil) -> Request<GameCenterLeaderboardSetMemberLocalizationsResponse, ErrorResponse>
-    {
-        .init(path: "/v1/gameCenterLeaderboardSetMemberLocalizations", method: .get, parameters: .init(fields: fields,
-                                                                                                       filters: filters,
-                                                                                                       includes: includes,
-                                                                                                       limit: limit))
+                                                                  limit: Int? = nil) -> Request<GameCenterLeaderboardSetMemberLocalizationsResponse, ErrorResponse> {
+        .init(
+            path: "/v1/gameCenterLeaderboardSetMemberLocalizations",
+            method: .get,
+            parameters: .init(
+                fields: fields,
+                filters: filters,
+                includes: includes,
+                limit: limit))
     }
 }
 

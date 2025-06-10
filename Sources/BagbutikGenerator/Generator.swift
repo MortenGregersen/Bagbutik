@@ -108,7 +108,7 @@ public class Generator {
                         guard let documentation = try await docsLoader.resolveDocumentationForOperation(withId: operation.id) else {
                             throw GeneratorError.noDocumentationForOperation(operation.id)
                         }
-                        let renderedOperation = try await operationRenderer.render(operation: operation, in: path)
+                        let renderedOperation = try await operationRenderer.render(operation: operation, in: path) + "\n"
                         let packageName = try DocsLoader.resolvePackageName(for: Documentation.operation(documentation))
                         let packageDirURL = outputDirURL.appendingPathComponent(packageName.name).appendingPathComponent("Endpoints")
                         let operationDirURL = Self.getOperationsDirURL(for: path, in: packageDirURL)
@@ -212,6 +212,7 @@ public class Generator {
         \(imports.sorted().joined(separator: "\n"))
 
         \(renderedSchema)
+        
         """
         return (name: schema.name, contents: contents, url: schema.url)
     }

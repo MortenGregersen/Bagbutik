@@ -18,11 +18,14 @@ public extension Request {
      */
     static func listCiXcodeVersionsV1(fields: [ListCiXcodeVersionsV1.Field]? = nil,
                                       includes: [ListCiXcodeVersionsV1.Include]? = nil,
-                                      limits: [ListCiXcodeVersionsV1.Limit]? = nil) -> Request<CiXcodeVersionsResponse, ErrorResponse>
-    {
-        .init(path: "/v1/ciXcodeVersions", method: .get, parameters: .init(fields: fields,
-                                                                           includes: includes,
-                                                                           limits: limits))
+                                      limits: [ListCiXcodeVersionsV1.Limit]? = nil) -> Request<CiXcodeVersionsResponse, ErrorResponse> {
+        .init(
+            path: "/v1/ciXcodeVersions",
+            method: .get,
+            parameters: .init(
+                fields: fields,
+                includes: includes,
+                limits: limits))
     }
 }
 

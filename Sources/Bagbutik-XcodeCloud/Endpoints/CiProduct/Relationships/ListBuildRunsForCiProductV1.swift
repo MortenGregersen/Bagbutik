@@ -22,13 +22,16 @@ public extension Request {
                                             filters: [ListBuildRunsForCiProductV1.Filter]? = nil,
                                             includes: [ListBuildRunsForCiProductV1.Include]? = nil,
                                             sorts: [ListBuildRunsForCiProductV1.Sort]? = nil,
-                                            limits: [ListBuildRunsForCiProductV1.Limit]? = nil) -> Request<CiBuildRunsResponse, ErrorResponse>
-    {
-        .init(path: "/v1/ciProducts/\(id)/buildRuns", method: .get, parameters: .init(fields: fields,
-                                                                                      filters: filters,
-                                                                                      includes: includes,
-                                                                                      sorts: sorts,
-                                                                                      limits: limits))
+                                            limits: [ListBuildRunsForCiProductV1.Limit]? = nil) -> Request<CiBuildRunsResponse, ErrorResponse> {
+        .init(
+            path: "/v1/ciProducts/\(id)/buildRuns",
+            method: .get,
+            parameters: .init(
+                fields: fields,
+                filters: filters,
+                includes: includes,
+                sorts: sorts,
+                limits: limits))
     }
 }
 

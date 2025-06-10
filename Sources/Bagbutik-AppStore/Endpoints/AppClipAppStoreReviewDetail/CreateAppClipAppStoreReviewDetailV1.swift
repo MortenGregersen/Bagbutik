@@ -13,6 +13,9 @@ public extension Request {
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func createAppClipAppStoreReviewDetailV1(requestBody: AppClipAppStoreReviewDetailCreateRequest) -> Request<AppClipAppStoreReviewDetailResponse, ErrorResponse> {
-        .init(path: "/v1/appClipAppStoreReviewDetails", method: .post, requestBody: requestBody)
+        .init(
+            path: "/v1/appClipAppStoreReviewDetails",
+            method: .post,
+            requestBody: requestBody)
     }
 }

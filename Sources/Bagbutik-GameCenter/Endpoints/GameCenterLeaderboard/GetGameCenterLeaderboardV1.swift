@@ -18,11 +18,14 @@ public extension Request {
     static func getGameCenterLeaderboardV1(id: String,
                                            fields: [GetGameCenterLeaderboardV1.Field]? = nil,
                                            includes: [GetGameCenterLeaderboardV1.Include]? = nil,
-                                           limits: [GetGameCenterLeaderboardV1.Limit]? = nil) -> Request<GameCenterLeaderboardResponse, ErrorResponse>
-    {
-        .init(path: "/v1/gameCenterLeaderboards/\(id)", method: .get, parameters: .init(fields: fields,
-                                                                                        includes: includes,
-                                                                                        limits: limits))
+                                           limits: [GetGameCenterLeaderboardV1.Limit]? = nil) -> Request<GameCenterLeaderboardResponse, ErrorResponse> {
+        .init(
+            path: "/v1/gameCenterLeaderboards/\(id)",
+            method: .get,
+            parameters: .init(
+                fields: fields,
+                includes: includes,
+                limits: limits))
     }
 }
 

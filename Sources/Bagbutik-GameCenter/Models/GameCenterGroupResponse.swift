@@ -101,8 +101,11 @@ public struct GameCenterGroupResponse: Codable, Sendable {
             } else if let gameCenterLeaderboardSet = try? GameCenterLeaderboardSet(from: decoder) {
                 self = .gameCenterLeaderboardSet(gameCenterLeaderboardSet)
             } else {
-                throw DecodingError.typeMismatch(Included.self, DecodingError.Context(codingPath: decoder.codingPath,
-                                                                                      debugDescription: "Unknown Included"))
+                throw DecodingError.typeMismatch(
+                    Included.self,
+                    DecodingError.Context(
+                        codingPath: decoder.codingPath,
+                        debugDescription: "Unknown Included"))
             }
         }
 

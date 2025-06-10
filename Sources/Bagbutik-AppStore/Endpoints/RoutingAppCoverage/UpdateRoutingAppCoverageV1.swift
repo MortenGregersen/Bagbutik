@@ -14,8 +14,10 @@ public extension Request {
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func updateRoutingAppCoverageV1(id: String,
-                                           requestBody: RoutingAppCoverageUpdateRequest) -> Request<RoutingAppCoverageResponse, ErrorResponse>
-    {
-        .init(path: "/v1/routingAppCoverages/\(id)", method: .patch, requestBody: requestBody)
+                                           requestBody: RoutingAppCoverageUpdateRequest) -> Request<RoutingAppCoverageResponse, ErrorResponse> {
+        .init(
+            path: "/v1/routingAppCoverages/\(id)",
+            method: .patch,
+            requestBody: requestBody)
     }
 }

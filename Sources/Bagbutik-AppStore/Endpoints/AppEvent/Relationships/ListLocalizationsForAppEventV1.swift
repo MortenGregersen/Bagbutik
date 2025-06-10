@@ -17,11 +17,14 @@ public extension Request {
     static func listLocalizationsForAppEventV1(id: String,
                                                fields: [ListLocalizationsForAppEventV1.Field]? = nil,
                                                includes: [ListLocalizationsForAppEventV1.Include]? = nil,
-                                               limits: [ListLocalizationsForAppEventV1.Limit]? = nil) -> Request<AppEventLocalizationsResponse, ErrorResponse>
-    {
-        .init(path: "/v1/appEvents/\(id)/localizations", method: .get, parameters: .init(fields: fields,
-                                                                                         includes: includes,
-                                                                                         limits: limits))
+                                               limits: [ListLocalizationsForAppEventV1.Limit]? = nil) -> Request<AppEventLocalizationsResponse, ErrorResponse> {
+        .init(
+            path: "/v1/appEvents/\(id)/localizations",
+            method: .get,
+            parameters: .init(
+                fields: fields,
+                includes: includes,
+                limits: limits))
     }
 }
 

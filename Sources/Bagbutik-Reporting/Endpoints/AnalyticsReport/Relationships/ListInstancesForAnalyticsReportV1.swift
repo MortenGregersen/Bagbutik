@@ -18,11 +18,14 @@ public extension Request {
     static func listInstancesForAnalyticsReportV1(id: String,
                                                   fields: [ListInstancesForAnalyticsReportV1.Field]? = nil,
                                                   filters: [ListInstancesForAnalyticsReportV1.Filter]? = nil,
-                                                  limit: Int? = nil) -> Request<AnalyticsReportInstancesResponse, ErrorResponse>
-    {
-        .init(path: "/v1/analyticsReports/\(id)/instances", method: .get, parameters: .init(fields: fields,
-                                                                                            filters: filters,
-                                                                                            limit: limit))
+                                                  limit: Int? = nil) -> Request<AnalyticsReportInstancesResponse, ErrorResponse> {
+        .init(
+            path: "/v1/analyticsReports/\(id)/instances",
+            method: .get,
+            parameters: .init(
+                fields: fields,
+                filters: filters,
+                limit: limit))
     }
 }
 

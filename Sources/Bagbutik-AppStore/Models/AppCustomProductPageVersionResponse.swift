@@ -66,8 +66,11 @@ public struct AppCustomProductPageVersionResponse: Codable, Sendable {
             } else if let appCustomProductPageLocalization = try? AppCustomProductPageLocalization(from: decoder) {
                 self = .appCustomProductPageLocalization(appCustomProductPageLocalization)
             } else {
-                throw DecodingError.typeMismatch(Included.self, DecodingError.Context(codingPath: decoder.codingPath,
-                                                                                      debugDescription: "Unknown Included"))
+                throw DecodingError.typeMismatch(
+                    Included.self,
+                    DecodingError.Context(
+                        codingPath: decoder.codingPath,
+                        debugDescription: "Unknown Included"))
             }
         }
 

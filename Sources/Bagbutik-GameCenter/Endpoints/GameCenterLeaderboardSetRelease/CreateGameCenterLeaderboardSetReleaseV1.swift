@@ -13,6 +13,9 @@ public extension Request {
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func createGameCenterLeaderboardSetReleaseV1(requestBody: GameCenterLeaderboardSetReleaseCreateRequest) -> Request<GameCenterLeaderboardSetReleaseResponse, ErrorResponse> {
-        .init(path: "/v1/gameCenterLeaderboardSetReleases", method: .post, requestBody: requestBody)
+        .init(
+            path: "/v1/gameCenterLeaderboardSetReleases",
+            method: .post,
+            requestBody: requestBody)
     }
 }

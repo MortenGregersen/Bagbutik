@@ -16,9 +16,11 @@ public extension Request {
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func getAgeRatingDeclarationForAppInfoV1(id: String,
-                                                    fields: [GetAgeRatingDeclarationForAppInfoV1.Field]? = nil) -> Request<AgeRatingDeclarationResponse, ErrorResponse>
-    {
-        .init(path: "/v1/appInfos/\(id)/ageRatingDeclaration", method: .get, parameters: .init(fields: fields))
+                                                    fields: [GetAgeRatingDeclarationForAppInfoV1.Field]? = nil) -> Request<AgeRatingDeclarationResponse, ErrorResponse> {
+        .init(
+            path: "/v1/appInfos/\(id)/ageRatingDeclaration",
+            method: .get,
+            parameters: .init(fields: fields))
     }
 }
 

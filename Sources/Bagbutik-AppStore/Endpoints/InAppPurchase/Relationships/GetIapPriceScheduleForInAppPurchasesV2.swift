@@ -18,11 +18,14 @@ public extension Request {
     static func getIapPriceScheduleForInAppPurchasesV2(id: String,
                                                        fields: [GetIapPriceScheduleForInAppPurchasesV2.Field]? = nil,
                                                        includes: [GetIapPriceScheduleForInAppPurchasesV2.Include]? = nil,
-                                                       limits: [GetIapPriceScheduleForInAppPurchasesV2.Limit]? = nil) -> Request<InAppPurchasePriceScheduleResponse, ErrorResponse>
-    {
-        .init(path: "/v2/inAppPurchases/\(id)/iapPriceSchedule", method: .get, parameters: .init(fields: fields,
-                                                                                                 includes: includes,
-                                                                                                 limits: limits))
+                                                       limits: [GetIapPriceScheduleForInAppPurchasesV2.Limit]? = nil) -> Request<InAppPurchasePriceScheduleResponse, ErrorResponse> {
+        .init(
+            path: "/v2/inAppPurchases/\(id)/iapPriceSchedule",
+            method: .get,
+            parameters: .init(
+                fields: fields,
+                includes: includes,
+                limits: limits))
     }
 }
 

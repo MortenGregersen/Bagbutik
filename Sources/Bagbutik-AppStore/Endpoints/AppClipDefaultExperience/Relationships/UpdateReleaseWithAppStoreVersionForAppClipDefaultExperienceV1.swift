@@ -14,8 +14,10 @@ public extension Request {
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func updateReleaseWithAppStoreVersionForAppClipDefaultExperienceV1(id: String,
-                                                                              requestBody: AppClipDefaultExperienceReleaseWithAppStoreVersionLinkageRequest) -> Request<EmptyResponse, ErrorResponse>
-    {
-        .init(path: "/v1/appClipDefaultExperiences/\(id)/relationships/releaseWithAppStoreVersion", method: .patch, requestBody: requestBody)
+                                                                              requestBody: AppClipDefaultExperienceReleaseWithAppStoreVersionLinkageRequest) -> Request<EmptyResponse, ErrorResponse> {
+        .init(
+            path: "/v1/appClipDefaultExperiences/\(id)/relationships/releaseWithAppStoreVersion",
+            method: .patch,
+            requestBody: requestBody)
     }
 }

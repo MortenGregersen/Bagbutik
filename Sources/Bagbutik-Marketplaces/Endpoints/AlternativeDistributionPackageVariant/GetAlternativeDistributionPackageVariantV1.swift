@@ -14,9 +14,11 @@ public extension Request {
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func getAlternativeDistributionPackageVariantV1(id: String,
-                                                           fields: [GetAlternativeDistributionPackageVariantV1.Field]? = nil) -> Request<AlternativeDistributionPackageVariantResponse, ErrorResponse>
-    {
-        .init(path: "/v1/alternativeDistributionPackageVariants/\(id)", method: .get, parameters: .init(fields: fields))
+                                                           fields: [GetAlternativeDistributionPackageVariantV1.Field]? = nil) -> Request<AlternativeDistributionPackageVariantResponse, ErrorResponse> {
+        .init(
+            path: "/v1/alternativeDistributionPackageVariants/\(id)",
+            method: .get,
+            parameters: .init(fields: fields))
     }
 }
 

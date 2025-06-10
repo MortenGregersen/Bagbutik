@@ -20,11 +20,14 @@ public extension Request {
     static func getCiProductV1(id: String,
                                fields: [GetCiProductV1.Field]? = nil,
                                includes: [GetCiProductV1.Include]? = nil,
-                               limit: GetCiProductV1.Limit? = nil) -> Request<CiProductResponse, ErrorResponse>
-    {
-        .init(path: "/v1/ciProducts/\(id)", method: .get, parameters: .init(fields: fields,
-                                                                            includes: includes,
-                                                                            limits: limit.map { [$0] }))
+                               limit: GetCiProductV1.Limit? = nil) -> Request<CiProductResponse, ErrorResponse> {
+        .init(
+            path: "/v1/ciProducts/\(id)",
+            method: .get,
+            parameters: .init(
+                fields: fields,
+                includes: includes,
+                limits: limit.map { [$0] }))
     }
 }
 

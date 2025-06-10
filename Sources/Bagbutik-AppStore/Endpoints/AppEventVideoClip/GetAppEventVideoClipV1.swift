@@ -15,10 +15,13 @@ public extension Request {
      */
     static func getAppEventVideoClipV1(id: String,
                                        fields: [GetAppEventVideoClipV1.Field]? = nil,
-                                       includes: [GetAppEventVideoClipV1.Include]? = nil) -> Request<AppEventVideoClipResponse, ErrorResponse>
-    {
-        .init(path: "/v1/appEventVideoClips/\(id)", method: .get, parameters: .init(fields: fields,
-                                                                                    includes: includes))
+                                       includes: [GetAppEventVideoClipV1.Include]? = nil) -> Request<AppEventVideoClipResponse, ErrorResponse> {
+        .init(
+            path: "/v1/appEventVideoClips/\(id)",
+            method: .get,
+            parameters: .init(
+                fields: fields,
+                includes: includes))
     }
 }
 

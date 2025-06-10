@@ -14,8 +14,10 @@ public extension Request {
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func updateGameCenterAppVersionV1(id: String,
-                                             requestBody: GameCenterAppVersionUpdateRequest) -> Request<GameCenterAppVersionResponse, ErrorResponse>
-    {
-        .init(path: "/v1/gameCenterAppVersions/\(id)", method: .patch, requestBody: requestBody)
+                                             requestBody: GameCenterAppVersionUpdateRequest) -> Request<GameCenterAppVersionResponse, ErrorResponse> {
+        .init(
+            path: "/v1/gameCenterAppVersions/\(id)",
+            method: .patch,
+            requestBody: requestBody)
     }
 }

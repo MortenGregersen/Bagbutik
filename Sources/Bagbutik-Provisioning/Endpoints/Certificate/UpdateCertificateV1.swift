@@ -14,8 +14,10 @@ public extension Request {
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func updateCertificateV1(id: String,
-                                    requestBody: CertificateUpdateRequest) -> Request<CertificateResponse, ErrorResponse>
-    {
-        .init(path: "/v1/certificates/\(id)", method: .patch, requestBody: requestBody)
+                                    requestBody: CertificateUpdateRequest) -> Request<CertificateResponse, ErrorResponse> {
+        .init(
+            path: "/v1/certificates/\(id)",
+            method: .patch,
+            requestBody: requestBody)
     }
 }

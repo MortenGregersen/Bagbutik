@@ -20,12 +20,15 @@ public extension Request {
                                                                    fields: [ListGameCenterLeaderboardSetsForGameCenterDetailV1.Field]? = nil,
                                                                    filters: [ListGameCenterLeaderboardSetsForGameCenterDetailV1.Filter]? = nil,
                                                                    includes: [ListGameCenterLeaderboardSetsForGameCenterDetailV1.Include]? = nil,
-                                                                   limits: [ListGameCenterLeaderboardSetsForGameCenterDetailV1.Limit]? = nil) -> Request<GameCenterLeaderboardSetsResponse, ErrorResponse>
-    {
-        .init(path: "/v1/gameCenterDetails/\(id)/gameCenterLeaderboardSets", method: .get, parameters: .init(fields: fields,
-                                                                                                             filters: filters,
-                                                                                                             includes: includes,
-                                                                                                             limits: limits))
+                                                                   limits: [ListGameCenterLeaderboardSetsForGameCenterDetailV1.Limit]? = nil) -> Request<GameCenterLeaderboardSetsResponse, ErrorResponse> {
+        .init(
+            path: "/v1/gameCenterDetails/\(id)/gameCenterLeaderboardSets",
+            method: .get,
+            parameters: .init(
+                fields: fields,
+                filters: filters,
+                includes: includes,
+                limits: limits))
     }
 }
 

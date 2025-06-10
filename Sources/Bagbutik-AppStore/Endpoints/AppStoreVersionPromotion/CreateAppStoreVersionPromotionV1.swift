@@ -12,6 +12,9 @@ public extension Request {
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func createAppStoreVersionPromotionV1(requestBody: AppStoreVersionPromotionCreateRequest) -> Request<AppStoreVersionPromotionResponse, ErrorResponse> {
-        .init(path: "/v1/appStoreVersionPromotions", method: .post, requestBody: requestBody)
+        .init(
+            path: "/v1/appStoreVersionPromotions",
+            method: .post,
+            requestBody: requestBody)
     }
 }

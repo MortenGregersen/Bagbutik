@@ -20,12 +20,15 @@ public extension Request {
                                             fields: [ListPricesForWinBackOfferV1.Field]? = nil,
                                             filters: [ListPricesForWinBackOfferV1.Filter]? = nil,
                                             includes: [ListPricesForWinBackOfferV1.Include]? = nil,
-                                            limit: Int? = nil) -> Request<WinBackOfferPricesResponse, ErrorResponse>
-    {
-        .init(path: "/v1/winBackOffers/\(id)/prices", method: .get, parameters: .init(fields: fields,
-                                                                                      filters: filters,
-                                                                                      includes: includes,
-                                                                                      limit: limit))
+                                            limit: Int? = nil) -> Request<WinBackOfferPricesResponse, ErrorResponse> {
+        .init(
+            path: "/v1/winBackOffers/\(id)/prices",
+            method: .get,
+            parameters: .init(
+                fields: fields,
+                filters: filters,
+                includes: includes,
+                limit: limit))
     }
 }
 

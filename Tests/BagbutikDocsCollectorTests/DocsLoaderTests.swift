@@ -26,7 +26,7 @@ class DocsLoaderTests: XCTestCase {
         await XCTAssertAsyncThrowsError(try await docsLoader.loadDocs(documentationDirURL: validDocumentationDirURL)) {
             // Then
             let nsError = $0 as NSError
-            #if os(Linux) && compiler(<6.0)
+            #if (os(Linux) || os(Android) || os(Windows)) && compiler(<6.0)
                 XCTAssertEqual(nsError.domain, "NSPOSIXErrorDomain")
                 XCTAssertEqual(nsError.code, 2)
             #else

@@ -13,9 +13,11 @@ public extension Request {
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func getAppForBundleIdV1(id: String,
-                                    fields: [GetAppForBundleIdV1.Field]? = nil) -> Request<AppWithoutIncludesResponse, ErrorResponse>
-    {
-        .init(path: "/v1/bundleIds/\(id)/app", method: .get, parameters: .init(fields: fields))
+                                    fields: [GetAppForBundleIdV1.Field]? = nil) -> Request<AppWithoutIncludesResponse, ErrorResponse> {
+        .init(
+            path: "/v1/bundleIds/\(id)/app",
+            method: .get,
+            parameters: .init(fields: fields))
     }
 }
 

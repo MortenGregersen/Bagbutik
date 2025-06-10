@@ -40,10 +40,12 @@ final class OperationRendererTests: XCTestCase {
              - Returns: A ``Request`` to send to an instance of ``BagbutikService``
              */
             static func listUsersV1(limit: Int? = nil) -> Request<UsersResponse, ErrorResponse> {
-                .init(path: "/users", method: .get, parameters: .init(limit: limit))
+                .init(
+                    path: "/users",
+                    method: .get,
+                    parameters: .init(limit: limit))
             }
         }
-
         """#)
     }
 
@@ -80,10 +82,13 @@ final class OperationRendererTests: XCTestCase {
              - Returns: A ``Request`` to send to an instance of ``BagbutikService``
              */
             static func listUsersV1(includes: [ListUsersV1.Include]? = nil,
-                                    limit: ListUsersV1.Limit? = nil) -> Request<UsersResponse, ErrorResponse>
-            {
-                .init(path: "/users", method: .get, parameters: .init(includes: includes,
-                                                                      limits: limit.map { [$0] }))
+                                    limit: ListUsersV1.Limit? = nil) -> Request<UsersResponse, ErrorResponse> {
+                .init(
+                    path: "/users",
+                    method: .get,
+                    parameters: .init(
+                        includes: includes,
+                        limits: limit.map { [$0] }))
             }
         }
         
@@ -103,7 +108,6 @@ final class OperationRendererTests: XCTestCase {
                 case pets(Int)
             }
         }
-
         """#)
     }
 
@@ -146,13 +150,16 @@ final class OperationRendererTests: XCTestCase {
              */
             static func listUsersV1(groupBy: ListUsersV1.GroupBy? = nil,
                                     period: String? = nil,
-                                    limit: Int? = nil) -> Request<UsersResponse, ErrorResponse>
-            {
+                                    limit: Int? = nil) -> Request<UsersResponse, ErrorResponse> {
                 var customs = [String: String]()
                 if let groupBy { customs["groupBy"] = groupBy.rawValue }
                 if let period { customs["period"] = period }
-                return .init(path: "/users", method: .get, parameters: .init(limit: limit,
-                                                                             customs: customs))
+                return .init(
+                    path: "/users",
+                    method: .get,
+                    parameters: .init(
+                        limit: limit,
+                        customs: customs))
             }
         }
 
@@ -164,7 +171,6 @@ final class OperationRendererTests: XCTestCase {
                 case betaTesters
             }
         }
-
         """#)
     }
 
@@ -195,10 +201,12 @@ final class OperationRendererTests: XCTestCase {
              - Returns: A ``Request`` to send to an instance of ``BagbutikService``
              */
             static func listUsersV1(limit: Int? = nil) -> Request<UsersResponse, ErrorResponse> {
-                .init(path: "/users", method: .get, parameters: .init(limit: limit))
+                .init(
+                    path: "/users",
+                    method: .get,
+                    parameters: .init(limit: limit))
             }
         }
-
         """#)
     }
 
@@ -230,10 +238,12 @@ final class OperationRendererTests: XCTestCase {
              */
             @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
             static func listUsersV1(limit: Int? = nil) -> Request<UsersResponse, ErrorResponse> {
-                .init(path: "/users", method: .get, parameters: .init(limit: limit))
+                .init(
+                    path: "/users",
+                    method: .get,
+                    parameters: .init(limit: limit))
             }
         }
-
         """#)
     }
 
@@ -289,14 +299,17 @@ final class OperationRendererTests: XCTestCase {
                                     exists: [ListUsersV1.Exist]? = nil,
                                     includes: [ListUsersV1.Include]? = nil,
                                     sorts: [ListUsersV1.Sort]? = nil,
-                                    limits: [ListUsersV1.Limit]? = nil) -> Request<UsersResponse, ErrorResponse>
-            {
-                .init(path: "/users", method: .get, parameters: .init(fields: fields,
-                                                                      filters: filters,
-                                                                      exists: exists,
-                                                                      includes: includes,
-                                                                      sorts: sorts,
-                                                                      limits: limits))
+                                    limits: [ListUsersV1.Limit]? = nil) -> Request<UsersResponse, ErrorResponse> {
+                .init(
+                    path: "/users",
+                    method: .get,
+                    parameters: .init(
+                        fields: fields,
+                        filters: filters,
+                        exists: exists,
+                        includes: includes,
+                        sorts: sorts,
+                        limits: limits))
             }
         }
 
@@ -386,7 +399,6 @@ final class OperationRendererTests: XCTestCase {
                 case limit(Int)
             }
         }
-
         """#)
     }
 
@@ -422,12 +434,13 @@ final class OperationRendererTests: XCTestCase {
              - Returns: A ``Request`` to send to an instance of ``BagbutikService``
              */
             static func updateUserV1(id: String,
-                                     requestBody: UserUpdateRequest) -> Request<UpdateUserResponse, ErrorResponse>
-            {
-                .init(path: "/users/\(id)", method: .patch, requestBody: requestBody)
+                                     requestBody: UserUpdateRequest) -> Request<UpdateUserResponse, ErrorResponse> {
+                .init(
+                    path: "/users/\(id)",
+                    method: .patch,
+                    requestBody: requestBody)
             }
         }
-
         """#)
     }
 
@@ -520,10 +533,13 @@ final class OperationRendererTests: XCTestCase {
              */
             static func getSubscriptionOfferCodeOneTimeUseCodesV1(id: String,
                                                                   fields: [GetSubscriptionOfferCodeOneTimeUseCodesV1.Field]? = nil,
-                                                                  includes: [GetSubscriptionOfferCodeOneTimeUseCodesV1.Include]? = nil) -> Request<SubscriptionOfferCodeOneTimeUseCodeResponse, ErrorResponse>
-            {
-                .init(path: "/v1/subscriptionOfferCodeOneTimeUseCodes/\(id)", method: .get, parameters: .init(fields: fields,
-                                                                                                              includes: includes))
+                                                                  includes: [GetSubscriptionOfferCodeOneTimeUseCodesV1.Include]? = nil) -> Request<SubscriptionOfferCodeOneTimeUseCodeResponse, ErrorResponse> {
+                .init(
+                    path: "/v1/subscriptionOfferCodeOneTimeUseCodes/\(id)",
+                    method: .get,
+                    parameters: .init(
+                        fields: fields,
+                        includes: includes))
             }
         }
 
@@ -532,7 +548,6 @@ final class OperationRendererTests: XCTestCase {
              Fields to return for included related types.
              */
             public enum Field: FieldParameter {
-                ///
                 case subscriptionOfferCodeOneTimeUseCodes([SubscriptionOfferCodeOneTimeUseCodes])
 
                 public enum SubscriptionOfferCodeOneTimeUseCodes: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -552,7 +567,6 @@ final class OperationRendererTests: XCTestCase {
                 case offerCode
             }
         }
-
         """#)
     }
 }

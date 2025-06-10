@@ -18,11 +18,14 @@ public extension Request {
     static func getBuildForBuildBetaDetailV1(id: String,
                                              fields: [GetBuildForBuildBetaDetailV1.Field]? = nil,
                                              includes: [GetBuildForBuildBetaDetailV1.Include]? = nil,
-                                             limits: [GetBuildForBuildBetaDetailV1.Limit]? = nil) -> Request<BuildResponse, ErrorResponse>
-    {
-        .init(path: "/v1/buildBetaDetails/\(id)/build", method: .get, parameters: .init(fields: fields,
-                                                                                        includes: includes,
-                                                                                        limits: limits))
+                                             limits: [GetBuildForBuildBetaDetailV1.Limit]? = nil) -> Request<BuildResponse, ErrorResponse> {
+        .init(
+            path: "/v1/buildBetaDetails/\(id)/build",
+            method: .get,
+            parameters: .init(
+                fields: fields,
+                includes: includes,
+                limits: limits))
     }
 }
 

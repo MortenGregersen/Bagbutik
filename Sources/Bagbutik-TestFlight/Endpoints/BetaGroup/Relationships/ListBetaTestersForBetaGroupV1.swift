@@ -16,10 +16,13 @@ public extension Request {
      */
     static func listBetaTestersForBetaGroupV1(id: String,
                                               fields: [ListBetaTestersForBetaGroupV1.Field]? = nil,
-                                              limit: Int? = nil) -> Request<BetaTestersWithoutIncludesResponse, ErrorResponse>
-    {
-        .init(path: "/v1/betaGroups/\(id)/betaTesters", method: .get, parameters: .init(fields: fields,
-                                                                                        limit: limit))
+                                              limit: Int? = nil) -> Request<BetaTestersWithoutIncludesResponse, ErrorResponse> {
+        .init(
+            path: "/v1/betaGroups/\(id)/betaTesters",
+            method: .get,
+            parameters: .init(
+                fields: fields,
+                limit: limit))
     }
 }
 

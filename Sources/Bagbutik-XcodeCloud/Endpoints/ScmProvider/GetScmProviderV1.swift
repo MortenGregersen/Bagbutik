@@ -16,9 +16,11 @@ public extension Request {
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func getScmProviderV1(id: String,
-                                 fields: [GetScmProviderV1.Field]? = nil) -> Request<ScmProviderResponse, ErrorResponse>
-    {
-        .init(path: "/v1/scmProviders/\(id)", method: .get, parameters: .init(fields: fields))
+                                 fields: [GetScmProviderV1.Field]? = nil) -> Request<ScmProviderResponse, ErrorResponse> {
+        .init(
+            path: "/v1/scmProviders/\(id)",
+            method: .get,
+            parameters: .init(fields: fields))
     }
 }
 

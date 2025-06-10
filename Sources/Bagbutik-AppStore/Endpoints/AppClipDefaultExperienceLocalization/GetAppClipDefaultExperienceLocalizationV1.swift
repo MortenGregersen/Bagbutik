@@ -16,10 +16,13 @@ public extension Request {
      */
     static func getAppClipDefaultExperienceLocalizationV1(id: String,
                                                           fields: [GetAppClipDefaultExperienceLocalizationV1.Field]? = nil,
-                                                          includes: [GetAppClipDefaultExperienceLocalizationV1.Include]? = nil) -> Request<AppClipDefaultExperienceLocalizationResponse, ErrorResponse>
-    {
-        .init(path: "/v1/appClipDefaultExperienceLocalizations/\(id)", method: .get, parameters: .init(fields: fields,
-                                                                                                       includes: includes))
+                                                          includes: [GetAppClipDefaultExperienceLocalizationV1.Include]? = nil) -> Request<AppClipDefaultExperienceLocalizationResponse, ErrorResponse> {
+        .init(
+            path: "/v1/appClipDefaultExperienceLocalizations/\(id)",
+            method: .get,
+            parameters: .init(
+                fields: fields,
+                includes: includes))
     }
 }
 

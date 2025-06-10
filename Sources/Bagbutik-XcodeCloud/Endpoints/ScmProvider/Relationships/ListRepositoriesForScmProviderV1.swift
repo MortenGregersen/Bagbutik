@@ -20,12 +20,15 @@ public extension Request {
                                                  fields: [ListRepositoriesForScmProviderV1.Field]? = nil,
                                                  filters: [ListRepositoriesForScmProviderV1.Filter]? = nil,
                                                  includes: [ListRepositoriesForScmProviderV1.Include]? = nil,
-                                                 limit: Int? = nil) -> Request<ScmRepositoriesResponse, ErrorResponse>
-    {
-        .init(path: "/v1/scmProviders/\(id)/repositories", method: .get, parameters: .init(fields: fields,
-                                                                                           filters: filters,
-                                                                                           includes: includes,
-                                                                                           limit: limit))
+                                                 limit: Int? = nil) -> Request<ScmRepositoriesResponse, ErrorResponse> {
+        .init(
+            path: "/v1/scmProviders/\(id)/repositories",
+            method: .get,
+            parameters: .init(
+                fields: fields,
+                filters: filters,
+                includes: includes,
+                limit: limit))
     }
 }
 

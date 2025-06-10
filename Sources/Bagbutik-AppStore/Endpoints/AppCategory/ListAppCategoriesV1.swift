@@ -23,13 +23,16 @@ public extension Request {
                                     filters: [ListAppCategoriesV1.Filter]? = nil,
                                     exists: [ListAppCategoriesV1.Exist]? = nil,
                                     includes: [ListAppCategoriesV1.Include]? = nil,
-                                    limits: [ListAppCategoriesV1.Limit]? = nil) -> Request<AppCategoriesResponse, ErrorResponse>
-    {
-        .init(path: "/v1/appCategories", method: .get, parameters: .init(fields: fields,
-                                                                         filters: filters,
-                                                                         exists: exists,
-                                                                         includes: includes,
-                                                                         limits: limits))
+                                    limits: [ListAppCategoriesV1.Limit]? = nil) -> Request<AppCategoriesResponse, ErrorResponse> {
+        .init(
+            path: "/v1/appCategories",
+            method: .get,
+            parameters: .init(
+                fields: fields,
+                filters: filters,
+                exists: exists,
+                includes: includes,
+                limits: limits))
     }
 }
 

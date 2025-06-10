@@ -16,8 +16,10 @@ public extension Request {
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func updateBuildForAppStoreVersionV1(id: String,
-                                                requestBody: AppStoreVersionBuildLinkageRequest) -> Request<EmptyResponse, ErrorResponse>
-    {
-        .init(path: "/v1/appStoreVersions/\(id)/relationships/build", method: .patch, requestBody: requestBody)
+                                                requestBody: AppStoreVersionBuildLinkageRequest) -> Request<EmptyResponse, ErrorResponse> {
+        .init(
+            path: "/v1/appStoreVersions/\(id)/relationships/build",
+            method: .patch,
+            requestBody: requestBody)
     }
 }

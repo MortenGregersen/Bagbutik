@@ -18,11 +18,14 @@ public extension Request {
     static func getAlternativeDistributionPackageForAppStoreVersionV1(id: String,
                                                                       fields: [GetAlternativeDistributionPackageForAppStoreVersionV1.Field]? = nil,
                                                                       includes: [GetAlternativeDistributionPackageForAppStoreVersionV1.Include]? = nil,
-                                                                      limit: GetAlternativeDistributionPackageForAppStoreVersionV1.Limit? = nil) -> Request<AlternativeDistributionPackageResponse, ErrorResponse>
-    {
-        .init(path: "/v1/appStoreVersions/\(id)/alternativeDistributionPackage", method: .get, parameters: .init(fields: fields,
-                                                                                                                 includes: includes,
-                                                                                                                 limits: limit.map { [$0] }))
+                                                                      limit: GetAlternativeDistributionPackageForAppStoreVersionV1.Limit? = nil) -> Request<AlternativeDistributionPackageResponse, ErrorResponse> {
+        .init(
+            path: "/v1/appStoreVersions/\(id)/alternativeDistributionPackage",
+            method: .get,
+            parameters: .init(
+                fields: fields,
+                includes: includes,
+                limits: limit.map { [$0] }))
     }
 }
 

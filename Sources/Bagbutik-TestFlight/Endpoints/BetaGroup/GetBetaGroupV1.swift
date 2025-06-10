@@ -18,11 +18,14 @@ public extension Request {
     static func getBetaGroupV1(id: String,
                                fields: [GetBetaGroupV1.Field]? = nil,
                                includes: [GetBetaGroupV1.Include]? = nil,
-                               limits: [GetBetaGroupV1.Limit]? = nil) -> Request<BetaGroupResponse, ErrorResponse>
-    {
-        .init(path: "/v1/betaGroups/\(id)", method: .get, parameters: .init(fields: fields,
-                                                                            includes: includes,
-                                                                            limits: limits))
+                               limits: [GetBetaGroupV1.Limit]? = nil) -> Request<BetaGroupResponse, ErrorResponse> {
+        .init(
+            path: "/v1/betaGroups/\(id)",
+            method: .get,
+            parameters: .init(
+                fields: fields,
+                includes: includes,
+                limits: limits))
     }
 }
 

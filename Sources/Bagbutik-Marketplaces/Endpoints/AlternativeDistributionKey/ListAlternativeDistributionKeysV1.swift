@@ -16,11 +16,14 @@ public extension Request {
      */
     static func listAlternativeDistributionKeysV1(fields: [ListAlternativeDistributionKeysV1.Field]? = nil,
                                                   exists: [ListAlternativeDistributionKeysV1.Exist]? = nil,
-                                                  limit: Int? = nil) -> Request<AlternativeDistributionKeysResponse, ErrorResponse>
-    {
-        .init(path: "/v1/alternativeDistributionKeys", method: .get, parameters: .init(fields: fields,
-                                                                                       exists: exists,
-                                                                                       limit: limit))
+                                                  limit: Int? = nil) -> Request<AlternativeDistributionKeysResponse, ErrorResponse> {
+        .init(
+            path: "/v1/alternativeDistributionKeys",
+            method: .get,
+            parameters: .init(
+                fields: fields,
+                exists: exists,
+                limit: limit))
     }
 }
 

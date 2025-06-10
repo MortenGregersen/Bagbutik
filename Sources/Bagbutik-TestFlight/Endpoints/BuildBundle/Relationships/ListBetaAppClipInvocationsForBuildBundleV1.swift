@@ -18,11 +18,14 @@ public extension Request {
     static func listBetaAppClipInvocationsForBuildBundleV1(id: String,
                                                            fields: [ListBetaAppClipInvocationsForBuildBundleV1.Field]? = nil,
                                                            includes: [ListBetaAppClipInvocationsForBuildBundleV1.Include]? = nil,
-                                                           limits: [ListBetaAppClipInvocationsForBuildBundleV1.Limit]? = nil) -> Request<BetaAppClipInvocationsResponse, ErrorResponse>
-    {
-        .init(path: "/v1/buildBundles/\(id)/betaAppClipInvocations", method: .get, parameters: .init(fields: fields,
-                                                                                                     includes: includes,
-                                                                                                     limits: limits))
+                                                           limits: [ListBetaAppClipInvocationsForBuildBundleV1.Limit]? = nil) -> Request<BetaAppClipInvocationsResponse, ErrorResponse> {
+        .init(
+            path: "/v1/buildBundles/\(id)/betaAppClipInvocations",
+            method: .get,
+            parameters: .init(
+                fields: fields,
+                includes: includes,
+                limits: limits))
     }
 }
 

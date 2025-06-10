@@ -18,11 +18,14 @@ public extension Request {
     static func getAppV1(id: String,
                          fields: [GetAppV1.Field]? = nil,
                          includes: [GetAppV1.Include]? = nil,
-                         limits: [GetAppV1.Limit]? = nil) -> Request<AppResponse, ErrorResponse>
-    {
-        .init(path: "/v1/apps/\(id)", method: .get, parameters: .init(fields: fields,
-                                                                      includes: includes,
-                                                                      limits: limits))
+                         limits: [GetAppV1.Limit]? = nil) -> Request<AppResponse, ErrorResponse> {
+        .init(
+            path: "/v1/apps/\(id)",
+            method: .get,
+            parameters: .init(
+                fields: fields,
+                includes: includes,
+                limits: limits))
     }
 }
 

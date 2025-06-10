@@ -14,8 +14,10 @@ public extension Request {
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func replaceAppScreenshotsForAppScreenshotSetV1(id: String,
-                                                           requestBody: AppScreenshotSetAppScreenshotsLinkagesRequest) -> Request<EmptyResponse, ErrorResponse>
-    {
-        .init(path: "/v1/appScreenshotSets/\(id)/relationships/appScreenshots", method: .patch, requestBody: requestBody)
+                                                           requestBody: AppScreenshotSetAppScreenshotsLinkagesRequest) -> Request<EmptyResponse, ErrorResponse> {
+        .init(
+            path: "/v1/appScreenshotSets/\(id)/relationships/appScreenshots",
+            method: .patch,
+            requestBody: requestBody)
     }
 }

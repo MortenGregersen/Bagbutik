@@ -13,6 +13,9 @@ public extension Request {
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func createAppClipDefaultExperienceV1(requestBody: AppClipDefaultExperienceCreateRequest) -> Request<AppClipDefaultExperienceResponse, ErrorResponse> {
-        .init(path: "/v1/appClipDefaultExperiences", method: .post, requestBody: requestBody)
+        .init(
+            path: "/v1/appClipDefaultExperiences",
+            method: .post,
+            requestBody: requestBody)
     }
 }

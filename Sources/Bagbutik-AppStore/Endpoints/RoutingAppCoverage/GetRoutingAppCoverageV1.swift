@@ -16,10 +16,13 @@ public extension Request {
      */
     static func getRoutingAppCoverageV1(id: String,
                                         fields: [GetRoutingAppCoverageV1.Field]? = nil,
-                                        includes: [GetRoutingAppCoverageV1.Include]? = nil) -> Request<RoutingAppCoverageResponse, ErrorResponse>
-    {
-        .init(path: "/v1/routingAppCoverages/\(id)", method: .get, parameters: .init(fields: fields,
-                                                                                     includes: includes))
+                                        includes: [GetRoutingAppCoverageV1.Include]? = nil) -> Request<RoutingAppCoverageResponse, ErrorResponse> {
+        .init(
+            path: "/v1/routingAppCoverages/\(id)",
+            method: .get,
+            parameters: .init(
+                fields: fields,
+                includes: includes))
     }
 }
 

@@ -1,6 +1,6 @@
 import Foundation
 #if canImport(FoundationNetworking) && compiler(<6.0)
-// Linux support
+// Non-Apple platform support
 import FoundationNetworking
 
 public extension URLSession {

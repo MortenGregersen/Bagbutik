@@ -22,14 +22,17 @@ public extension Request {
                            exists: [ListAppsV1.Exist]? = nil,
                            includes: [ListAppsV1.Include]? = nil,
                            sorts: [ListAppsV1.Sort]? = nil,
-                           limits: [ListAppsV1.Limit]? = nil) -> Request<AppsResponse, ErrorResponse>
-    {
-        .init(path: "/v1/apps", method: .get, parameters: .init(fields: fields,
-                                                                filters: filters,
-                                                                exists: exists,
-                                                                includes: includes,
-                                                                sorts: sorts,
-                                                                limits: limits))
+                           limits: [ListAppsV1.Limit]? = nil) -> Request<AppsResponse, ErrorResponse> {
+        .init(
+            path: "/v1/apps",
+            method: .get,
+            parameters: .init(
+                fields: fields,
+                filters: filters,
+                exists: exists,
+                includes: includes,
+                sorts: sorts,
+                limits: limits))
     }
 }
 

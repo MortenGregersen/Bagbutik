@@ -13,6 +13,9 @@ public extension Request {
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func createInAppPurchaseImageV1(requestBody: InAppPurchaseImageCreateRequest) -> Request<InAppPurchaseImageResponse, ErrorResponse> {
-        .init(path: "/v1/inAppPurchaseImages", method: .post, requestBody: requestBody)
+        .init(
+            path: "/v1/inAppPurchaseImages",
+            method: .post,
+            requestBody: requestBody)
     }
 }

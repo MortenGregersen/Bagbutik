@@ -13,6 +13,9 @@ public extension Request {
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func createGameCenterMatchmakingRuleSetV1(requestBody: GameCenterMatchmakingRuleSetCreateRequest) -> Request<GameCenterMatchmakingRuleSetResponse, ErrorResponse> {
-        .init(path: "/v1/gameCenterMatchmakingRuleSets", method: .post, requestBody: requestBody)
+        .init(
+            path: "/v1/gameCenterMatchmakingRuleSets",
+            method: .post,
+            requestBody: requestBody)
     }
 }

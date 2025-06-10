@@ -16,10 +16,13 @@ public extension Request {
      */
     static func listIconsForBuildV1(id: String,
                                     fields: [ListIconsForBuildV1.Field]? = nil,
-                                    limit: Int? = nil) -> Request<BuildIconsWithoutIncludesResponse, ErrorResponse>
-    {
-        .init(path: "/v1/builds/\(id)/icons", method: .get, parameters: .init(fields: fields,
-                                                                              limit: limit))
+                                    limit: Int? = nil) -> Request<BuildIconsWithoutIncludesResponse, ErrorResponse> {
+        .init(
+            path: "/v1/builds/\(id)/icons",
+            method: .get,
+            parameters: .init(
+                fields: fields,
+                limit: limit))
     }
 }
 

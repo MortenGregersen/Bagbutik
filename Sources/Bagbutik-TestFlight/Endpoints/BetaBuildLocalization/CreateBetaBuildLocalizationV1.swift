@@ -13,6 +13,9 @@ public extension Request {
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func createBetaBuildLocalizationV1(requestBody: BetaBuildLocalizationCreateRequest) -> Request<BetaBuildLocalizationResponse, ErrorResponse> {
-        .init(path: "/v1/betaBuildLocalizations", method: .post, requestBody: requestBody)
+        .init(
+            path: "/v1/betaBuildLocalizations",
+            method: .post,
+            requestBody: requestBody)
     }
 }

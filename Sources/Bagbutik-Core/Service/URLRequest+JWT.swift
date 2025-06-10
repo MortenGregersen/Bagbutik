@@ -1,6 +1,6 @@
 import Foundation
 #if canImport(FoundationNetworking)
-// Linux support
+// Non-Apple platform support
 import FoundationNetworking
 #endif
 

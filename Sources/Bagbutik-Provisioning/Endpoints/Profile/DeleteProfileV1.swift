@@ -15,6 +15,8 @@ public extension Request {
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func deleteProfileV1(id: String) -> Request<EmptyResponse, ErrorResponse> {
-        .init(path: "/v1/profiles/\(id)", method: .delete)
+        .init(
+            path: "/v1/profiles/\(id)",
+            method: .delete)
     }
 }

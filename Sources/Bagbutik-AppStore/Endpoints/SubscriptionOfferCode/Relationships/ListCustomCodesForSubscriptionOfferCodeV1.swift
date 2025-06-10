@@ -18,11 +18,14 @@ public extension Request {
     static func listCustomCodesForSubscriptionOfferCodeV1(id: String,
                                                           fields: [ListCustomCodesForSubscriptionOfferCodeV1.Field]? = nil,
                                                           includes: [ListCustomCodesForSubscriptionOfferCodeV1.Include]? = nil,
-                                                          limit: Int? = nil) -> Request<SubscriptionOfferCodeCustomCodesResponse, ErrorResponse>
-    {
-        .init(path: "/v1/subscriptionOfferCodes/\(id)/customCodes", method: .get, parameters: .init(fields: fields,
-                                                                                                    includes: includes,
-                                                                                                    limit: limit))
+                                                          limit: Int? = nil) -> Request<SubscriptionOfferCodeCustomCodesResponse, ErrorResponse> {
+        .init(
+            path: "/v1/subscriptionOfferCodes/\(id)/customCodes",
+            method: .get,
+            parameters: .init(
+                fields: fields,
+                includes: includes,
+                limit: limit))
     }
 }
 

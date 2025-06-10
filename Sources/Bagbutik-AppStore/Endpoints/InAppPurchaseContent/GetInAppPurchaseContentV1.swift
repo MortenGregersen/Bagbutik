@@ -16,10 +16,13 @@ public extension Request {
      */
     static func getInAppPurchaseContentV1(id: String,
                                           fields: [GetInAppPurchaseContentV1.Field]? = nil,
-                                          includes: [GetInAppPurchaseContentV1.Include]? = nil) -> Request<InAppPurchaseContentResponse, ErrorResponse>
-    {
-        .init(path: "/v1/inAppPurchaseContents/\(id)", method: .get, parameters: .init(fields: fields,
-                                                                                       includes: includes))
+                                          includes: [GetInAppPurchaseContentV1.Include]? = nil) -> Request<InAppPurchaseContentResponse, ErrorResponse> {
+        .init(
+            path: "/v1/inAppPurchaseContents/\(id)",
+            method: .get,
+            parameters: .init(
+                fields: fields,
+                includes: includes))
     }
 }
 

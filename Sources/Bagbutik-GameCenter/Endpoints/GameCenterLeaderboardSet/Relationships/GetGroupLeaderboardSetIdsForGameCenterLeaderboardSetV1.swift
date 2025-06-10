@@ -14,6 +14,8 @@ public extension Request {
      */
     @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
     static func getGroupLeaderboardSetIdsForGameCenterLeaderboardSetV1(id: String) -> Request<GameCenterLeaderboardSetGroupLeaderboardSetLinkageResponse, ErrorResponse> {
-        .init(path: "/v1/gameCenterLeaderboardSets/\(id)/relationships/groupLeaderboardSet", method: .get)
+        .init(
+            path: "/v1/gameCenterLeaderboardSets/\(id)/relationships/groupLeaderboardSet",
+            method: .get)
     }
 }

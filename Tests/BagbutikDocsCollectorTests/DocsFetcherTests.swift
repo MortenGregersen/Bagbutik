@@ -2,8 +2,8 @@
 @testable import BagbutikSpecDecoder
 import XCTest
 #if canImport(FoundationNetworking)
-    // Linux support
-    import FoundationNetworking
+// Non-Apple platform support
+import FoundationNetworking
 #endif
 
 final class DocsFetcherTests: XCTestCase {
@@ -203,12 +203,12 @@ final class DocsFetcherTests: XCTestCase {
         await XCTAssertAsyncThrowsError(try await docsFetcher.fetchAllDocs(specFileURL: specFileURL, outputDirURL: outputDirURL, dryRun: false)) {
             // Then
             let nsError = $0 as NSError
-            #if os(Linux) && compiler(<6.0)
-                XCTAssertEqual(nsError.domain, "NSPOSIXErrorDomain")
-                XCTAssertEqual(nsError.code, 2)
+            #if (os(Linux) || os(Android) || os(Windows)) && compiler(<6.0)
+            XCTAssertEqual(nsError.domain, "NSPOSIXErrorDomain")
+            XCTAssertEqual(nsError.code, 2)
             #else
-                XCTAssertEqual(nsError.domain, "NSCocoaErrorDomain")
-                XCTAssertEqual(nsError.code, 260)
+            XCTAssertEqual(nsError.domain, "NSCocoaErrorDomain")
+            XCTAssertEqual(nsError.code, 260)
             #endif
         }
     }
@@ -261,7 +261,7 @@ final class DocsFetcherTests: XCTestCase {
         var fileNameToFailCreating: String?
         
         func createDirectory(at url: URL, withIntermediateDirectories createIntermediates: Bool, attributes: [FileAttributeKey: Any]?) throws {
-            self.directoriesCreated.append(url.lastPathComponent)
+            directoriesCreated.append(url.lastPathComponent)
         }
         
         func createFile(atPath path: String, contents data: Data?, attributes attr: [FileAttributeKey: Any]?) -> Bool {

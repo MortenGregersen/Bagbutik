@@ -13,6 +13,9 @@ public extension Request {
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func createAppEncryptionDeclarationV1(requestBody: AppEncryptionDeclarationCreateRequest) -> Request<AppEncryptionDeclarationResponse, ErrorResponse> {
-        .init(path: "/v1/appEncryptionDeclarations", method: .post, requestBody: requestBody)
+        .init(
+            path: "/v1/appEncryptionDeclarations",
+            method: .post,
+            requestBody: requestBody)
     }
 }

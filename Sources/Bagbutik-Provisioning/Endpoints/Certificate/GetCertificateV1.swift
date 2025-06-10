@@ -14,9 +14,11 @@ public extension Request {
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func getCertificateV1(id: String,
-                                 fields: [GetCertificateV1.Field]? = nil) -> Request<CertificateResponse, ErrorResponse>
-    {
-        .init(path: "/v1/certificates/\(id)", method: .get, parameters: .init(fields: fields))
+                                 fields: [GetCertificateV1.Field]? = nil) -> Request<CertificateResponse, ErrorResponse> {
+        .init(
+            path: "/v1/certificates/\(id)",
+            method: .get,
+            parameters: .init(fields: fields))
     }
 }
 

@@ -13,6 +13,9 @@ public extension Request {
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func createAppStoreReviewAttachmentV1(requestBody: AppStoreReviewAttachmentCreateRequest) -> Request<AppStoreReviewAttachmentResponse, ErrorResponse> {
-        .init(path: "/v1/appStoreReviewAttachments", method: .post, requestBody: requestBody)
+        .init(
+            path: "/v1/appStoreReviewAttachments",
+            method: .post,
+            requestBody: requestBody)
     }
 }

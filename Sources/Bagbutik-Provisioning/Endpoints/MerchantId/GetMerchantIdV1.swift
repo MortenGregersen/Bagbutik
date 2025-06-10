@@ -18,11 +18,14 @@ public extension Request {
     static func getMerchantIdV1(id: String,
                                 fields: [GetMerchantIdV1.Field]? = nil,
                                 includes: [GetMerchantIdV1.Include]? = nil,
-                                limit: GetMerchantIdV1.Limit? = nil) -> Request<MerchantIdResponse, ErrorResponse>
-    {
-        .init(path: "/v1/merchantIds/\(id)", method: .get, parameters: .init(fields: fields,
-                                                                             includes: includes,
-                                                                             limits: limit.map { [$0] }))
+                                limit: GetMerchantIdV1.Limit? = nil) -> Request<MerchantIdResponse, ErrorResponse> {
+        .init(
+            path: "/v1/merchantIds/\(id)",
+            method: .get,
+            parameters: .init(
+                fields: fields,
+                includes: includes,
+                limits: limit.map { [$0] }))
     }
 }
 

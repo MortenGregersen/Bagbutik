@@ -18,11 +18,14 @@ public extension Request {
     static func getBundleIdV1(id: String,
                               fields: [GetBundleIdV1.Field]? = nil,
                               includes: [GetBundleIdV1.Include]? = nil,
-                              limits: [GetBundleIdV1.Limit]? = nil) -> Request<BundleIdResponse, ErrorResponse>
-    {
-        .init(path: "/v1/bundleIds/\(id)", method: .get, parameters: .init(fields: fields,
-                                                                           includes: includes,
-                                                                           limits: limits))
+                              limits: [GetBundleIdV1.Limit]? = nil) -> Request<BundleIdResponse, ErrorResponse> {
+        .init(
+            path: "/v1/bundleIds/\(id)",
+            method: .get,
+            parameters: .init(
+                fields: fields,
+                includes: includes,
+                limits: limits))
     }
 }
 

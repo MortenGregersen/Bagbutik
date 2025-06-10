@@ -20,7 +20,7 @@ public class ObjectSchemaRenderer: Renderer {
             documentation = objectDocumentation
             rendered += await renderDocumentationBlock(title: objectDocumentation.title) {
                 var documentationContent = [abstract]
-                if let discussion = objectDocumentation.discussion {
+                if let discussion = objectDocumentation.discussion, !discussion.isEmpty {
                     documentationContent.append(discussion)
                 }
                 documentationContent.append("""
@@ -47,13 +47,16 @@ public class ObjectSchemaRenderer: Renderer {
             if case .arrayOfSchemaRef(let schemaRef) = objectSchema.properties["data"]?.type {
                 structContent.append("public typealias Data = \(schemaRef)")
             }
-            structContent.append(propertiesInfo.properties.map { property in
+            let renderedProperties = propertiesInfo.properties.map { property in
                 guard let description = property.documentation?.description, description.lengthOfBytes(using: .utf8) > 0 else { return property.rendered }
                 return """
                 /// \(description)
                 \(property.rendered)
                 """
-            }.joined(separator: "\n"))
+            }.joined(separator: "\n")
+            if !renderedProperties.isEmpty {
+                structContent.append(renderedProperties)
+            }
             let createInitContent = { (propertyNames: [PropertyName]) -> String in
                 propertyNames.map {
                     "self.\($0.safeName) = \($0.safeName)"
@@ -66,35 +69,41 @@ public class ObjectSchemaRenderer: Renderer {
                 structContent.append(renderInitializer(parameters: propertiesInfo.publicInitParameters, content: { createInitContent(propertiesInfo.publicInitPropertyNames) }))
             }
             structContent.append(renderInitializer(parameters: [.init(prefix: "from", name: "decoder", type: "Decoder")], throwing: true, content: {
-                var functionContent = "let container = try decoder.container(keyedBy: AnyCodingKey.self)\n"
-                functionContent += propertiesInfo.decodableProperties.map { decodableProperty in
-                    if decodableProperty.clearable {
-                        "\(decodableProperty.name.safeName) = try container.decodeIfPresent(Clearable<\(decodableProperty.type)>.self, forKey: \"\(decodableProperty.name.idealName)\")"
-                    } else if decodableProperty.optional {
-                        "\(decodableProperty.name.safeName) = try container.decodeIfPresent(\(decodableProperty.type).self, forKey: \"\(decodableProperty.name.idealName)\")"
-                    } else {
-                        "\(decodableProperty.name.safeName) = try container.decode(\(decodableProperty.type).self, forKey: \"\(decodableProperty.name.idealName)\")"
-                    }
-                }.joined(separator: "\n")
-                if propertiesInfo.hasTypeConstant {
-                    functionContent += #"""
-
+                var functionContent = ""
+                if propertiesInfo.properties.count > 0 {
+                    functionContent += "let container = try decoder.container(keyedBy: AnyCodingKey.self)\n"
+                    functionContent += propertiesInfo.decodableProperties.map { decodableProperty in
+                        if decodableProperty.clearable {
+                            "\(decodableProperty.name.safeName) = try container.decodeIfPresent(Clearable<\(decodableProperty.type)>.self, forKey: \"\(decodableProperty.name.idealName)\")"
+                        } else if decodableProperty.optional {
+                            "\(decodableProperty.name.safeName) = try container.decodeIfPresent(\(decodableProperty.type).self, forKey: \"\(decodableProperty.name.idealName)\")"
+                        } else {
+                            "\(decodableProperty.name.safeName) = try container.decode(\(decodableProperty.type).self, forKey: \"\(decodableProperty.name.idealName)\")"
+                        }
+                    }.joined(separator: "\n")
+                    if propertiesInfo.hasTypeConstant {
+                        functionContent += #"""
+                    
                     if try container.decode(String.self, forKey: "type") != type {
                         throw DecodingError.dataCorruptedError(forKey: "type", in: container, debugDescription: "Not matching \(type)")
                     }
                     """#
+                    }
                 }
                 return functionContent
             }))
             structContent.append(renderFunction(named: "encode", parameters: [.init(prefix: "to", name: "encoder", type: "Encoder")], throwing: true, content: {
-                var functionContent = "var container = encoder.container(keyedBy: AnyCodingKey.self)\n"
-                functionContent += propertiesInfo.encodableProperties.map { encodableProperty in
-                    if encodableProperty.clearable || encodableProperty.optional, !encodableProperty.nullCodable {
-                        "try container.encodeIfPresent(\(encodableProperty.name.safeName), forKey: \"\(encodableProperty.name.idealName)\")"
-                    } else {
-                        "try container.encode(\(encodableProperty.name.safeName), forKey: \"\(encodableProperty.name.idealName)\")"
-                    }
-                }.joined(separator: "\n")
+                var functionContent = ""
+                if propertiesInfo.properties.count > 0 {
+                    functionContent += "var container = encoder.container(keyedBy: AnyCodingKey.self)\n"
+                    functionContent += propertiesInfo.encodableProperties.map { encodableProperty in
+                        if encodableProperty.clearable || encodableProperty.optional, !encodableProperty.nullCodable {
+                            "try container.encodeIfPresent(\(encodableProperty.name.safeName), forKey: \"\(encodableProperty.name.idealName)\")"
+                        } else {
+                            "try container.encode(\(encodableProperty.name.safeName), forKey: \"\(encodableProperty.name.idealName)\")"
+                        }
+                    }.joined(separator: "\n")
+                }
                 return functionContent
             }))
             structContent.append(contentsOf: createIncludedGetters(for: objectSchema, otherSchemas: otherSchemas))
@@ -111,7 +120,7 @@ public class ObjectSchemaRenderer: Renderer {
             }
             return structContent.joined(separator: "\n\n")
         }
-        return try format(rendered)
+        return rendered
     }
 
     private struct PropertiesInfo {
@@ -285,7 +294,8 @@ public class ObjectSchemaRenderer: Renderer {
                           let \(relationship.key) = included?.compactMap({ relationship -> \(includedSchemaName)? in
                               guard case let .\(includedCase)(\(relationshipSingular)) = relationship else { return nil }
                               return \(relationshipSingular)Ids.contains(\(relationshipSingular).id) ? \(relationshipSingular) : nil
-                          }) else {
+                          })
+                    else {
                         return []
                     }
                     return \(relationship.key)

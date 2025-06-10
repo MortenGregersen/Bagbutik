@@ -18,11 +18,14 @@ public extension Request {
     static func getInAppPurchaseAvailabilityV1(id: String,
                                                fields: [GetInAppPurchaseAvailabilityV1.Field]? = nil,
                                                includes: [GetInAppPurchaseAvailabilityV1.Include]? = nil,
-                                               limit: GetInAppPurchaseAvailabilityV1.Limit? = nil) -> Request<InAppPurchaseAvailabilityResponse, ErrorResponse>
-    {
-        .init(path: "/v1/inAppPurchaseAvailabilities/\(id)", method: .get, parameters: .init(fields: fields,
-                                                                                             includes: includes,
-                                                                                             limits: limit.map { [$0] }))
+                                               limit: GetInAppPurchaseAvailabilityV1.Limit? = nil) -> Request<InAppPurchaseAvailabilityResponse, ErrorResponse> {
+        .init(
+            path: "/v1/inAppPurchaseAvailabilities/\(id)",
+            method: .get,
+            parameters: .init(
+                fields: fields,
+                includes: includes,
+                limits: limit.map { [$0] }))
     }
 }
 

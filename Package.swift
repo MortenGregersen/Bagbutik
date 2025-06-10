@@ -1,4 +1,4 @@
-// swift-tools-version:5.5
+// swift-tools-version:5.10
 
 import PackageDescription
 
@@ -63,15 +63,14 @@ let package = Package(
             targets: ["BagbutikCLI"])
     ],
     dependencies: [
-        .package(url: "https://github.com/apple/swift-argument-parser", from: "1.5.0"),
-        .package(url: "https://github.com/nicklockwood/SwiftFormat", from: "0.54.5"),
-        .package(url: "https://github.com/apple/swift-crypto", from: "3.8.0"),
+        .package(url: "https://github.com/apple/swift-argument-parser", from: "1.5.1"),
+        .package(url: "https://github.com/apple/swift-crypto", from: "3.12.3"),
     ],
     targets: [
         .target(name: "Bagbutik-Core", dependencies: [
-            .product(name: "Crypto", package: "swift-crypto", condition: .when(platforms: [.linux])),
-            .target(name: "system-zlib", condition: .when(platforms: [.linux])),
-            .target(name: "BagbutikPolyfill", condition: .when(platforms: [.linux]))
+            .product(name: "Crypto", package: "swift-crypto", condition: .when(platforms: [.linux, .android])),
+            .target(name: "system-zlib", condition: .when(platforms: [.linux, .android])),
+            .target(name: "BagbutikPolyfill", condition: .when(platforms: [.linux, .android]))
         ]),
         .target(name: "Bagbutik-Models", dependencies: ["Bagbutik-Core"]),
         .target(name: "Bagbutik-AppStore", dependencies: ["Bagbutik-Core", "Bagbutik-Models"]),
@@ -87,7 +86,7 @@ let package = Package(
             dependencies: [
                 "BagbutikGenerator",
                 "BagbutikDocsCollector",
-                .target(name: "BagbutikPolyfill", condition: .when(platforms: [.linux])),
+                .target(name: "BagbutikPolyfill", condition: .when(platforms: [.linux, .android])),
                 .product(name: "ArgumentParser", package: "swift-argument-parser")
             ]),
         // Internal targets
@@ -96,12 +95,11 @@ let package = Package(
             dependencies: [
                 "BagbutikDocsCollector",
                 "BagbutikSpecDecoder",
-                "BagbutikStringExtensions",
-                "SwiftFormat"
+                "BagbutikStringExtensions"
             ]),
         .target(name: "BagbutikDocsCollector", dependencies: [
             "BagbutikSpecDecoder",
-            .target(name: "BagbutikPolyfill", condition: .when(platforms: [.linux]))
+            .target(name: "BagbutikPolyfill", condition: .when(platforms: [.linux, .android]))
         ]),
         .target(name: "BagbutikSpecDecoder", dependencies: ["BagbutikStringExtensions"]),
         .target(name: "BagbutikStringExtensions"),
@@ -113,7 +111,7 @@ let package = Package(
             dependencies: [
                 "Bagbutik-Core",
                 "Bagbutik-AppStore",
-                .product(name: "Crypto", package: "swift-crypto", condition: .when(platforms: [.linux]))
+                .product(name: "Crypto", package: "swift-crypto", condition: .when(platforms: [.linux, .android]))
             ],
             resources: [.copy("test-private-key.p8")]),
         .testTarget(name: "Bagbutik-ModelsTests", dependencies: ["Bagbutik-Models"]),

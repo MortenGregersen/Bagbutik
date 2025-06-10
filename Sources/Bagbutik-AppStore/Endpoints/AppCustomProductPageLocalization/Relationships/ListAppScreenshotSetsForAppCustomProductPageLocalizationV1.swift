@@ -20,12 +20,15 @@ public extension Request {
                                                                            fields: [ListAppScreenshotSetsForAppCustomProductPageLocalizationV1.Field]? = nil,
                                                                            filters: [ListAppScreenshotSetsForAppCustomProductPageLocalizationV1.Filter]? = nil,
                                                                            includes: [ListAppScreenshotSetsForAppCustomProductPageLocalizationV1.Include]? = nil,
-                                                                           limits: [ListAppScreenshotSetsForAppCustomProductPageLocalizationV1.Limit]? = nil) -> Request<AppScreenshotSetsResponse, ErrorResponse>
-    {
-        .init(path: "/v1/appCustomProductPageLocalizations/\(id)/appScreenshotSets", method: .get, parameters: .init(fields: fields,
-                                                                                                                     filters: filters,
-                                                                                                                     includes: includes,
-                                                                                                                     limits: limits))
+                                                                           limits: [ListAppScreenshotSetsForAppCustomProductPageLocalizationV1.Limit]? = nil) -> Request<AppScreenshotSetsResponse, ErrorResponse> {
+        .init(
+            path: "/v1/appCustomProductPageLocalizations/\(id)/appScreenshotSets",
+            method: .get,
+            parameters: .init(
+                fields: fields,
+                filters: filters,
+                includes: includes,
+                limits: limits))
     }
 }
 

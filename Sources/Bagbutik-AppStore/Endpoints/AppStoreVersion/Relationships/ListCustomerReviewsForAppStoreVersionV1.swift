@@ -24,14 +24,17 @@ public extension Request {
                                                         exists: [ListCustomerReviewsForAppStoreVersionV1.Exist]? = nil,
                                                         includes: [ListCustomerReviewsForAppStoreVersionV1.Include]? = nil,
                                                         sorts: [ListCustomerReviewsForAppStoreVersionV1.Sort]? = nil,
-                                                        limit: Int? = nil) -> Request<CustomerReviewsResponse, ErrorResponse>
-    {
-        .init(path: "/v1/appStoreVersions/\(id)/customerReviews", method: .get, parameters: .init(fields: fields,
-                                                                                                  filters: filters,
-                                                                                                  exists: exists,
-                                                                                                  includes: includes,
-                                                                                                  sorts: sorts,
-                                                                                                  limit: limit))
+                                                        limit: Int? = nil) -> Request<CustomerReviewsResponse, ErrorResponse> {
+        .init(
+            path: "/v1/appStoreVersions/\(id)/customerReviews",
+            method: .get,
+            parameters: .init(
+                fields: fields,
+                filters: filters,
+                exists: exists,
+                includes: includes,
+                sorts: sorts,
+                limit: limit))
     }
 }
 

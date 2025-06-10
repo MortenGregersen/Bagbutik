@@ -16,6 +16,9 @@ public extension Request {
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func createCustomerReviewResponseV1(requestBody: CustomerReviewResponseV1CreateRequest) -> Request<CustomerReviewResponseV1Response, ErrorResponse> {
-        .init(path: "/v1/customerReviewResponses", method: .post, requestBody: requestBody)
+        .init(
+            path: "/v1/customerReviewResponses",
+            method: .post,
+            requestBody: requestBody)
     }
 }

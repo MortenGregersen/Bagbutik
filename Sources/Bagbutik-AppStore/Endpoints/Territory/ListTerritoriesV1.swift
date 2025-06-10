@@ -14,10 +14,13 @@ public extension Request {
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func listTerritoriesV1(fields: [ListTerritoriesV1.Field]? = nil,
-                                  limit: Int? = nil) -> Request<TerritoriesResponse, ErrorResponse>
-    {
-        .init(path: "/v1/territories", method: .get, parameters: .init(fields: fields,
-                                                                       limit: limit))
+                                  limit: Int? = nil) -> Request<TerritoriesResponse, ErrorResponse> {
+        .init(
+            path: "/v1/territories",
+            method: .get,
+            parameters: .init(
+                fields: fields,
+                limit: limit))
     }
 }
 

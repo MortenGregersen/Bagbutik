@@ -17,6 +17,9 @@ public extension Request {
      */
     @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
     static func createAppStoreVersionSubmissionV1(requestBody: AppStoreVersionSubmissionCreateRequest) -> Request<AppStoreVersionSubmissionResponse, ErrorResponse> {
-        .init(path: "/v1/appStoreVersionSubmissions", method: .post, requestBody: requestBody)
+        .init(
+            path: "/v1/appStoreVersionSubmissions",
+            method: .post,
+            requestBody: requestBody)
     }
 }

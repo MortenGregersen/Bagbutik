@@ -14,6 +14,9 @@ public extension Request {
      */
     @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
     static func createAppStoreVersionExperimentV1(requestBody: AppStoreVersionExperimentCreateRequest) -> Request<AppStoreVersionExperimentResponse, ErrorResponse> {
-        .init(path: "/v1/appStoreVersionExperiments", method: .post, requestBody: requestBody)
+        .init(
+            path: "/v1/appStoreVersionExperiments",
+            method: .post,
+            requestBody: requestBody)
     }
 }

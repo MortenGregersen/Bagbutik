@@ -16,7 +16,7 @@ public class PlainTextSchemaRenderer: Renderer {
             public let text: String
 
             public static func from(text: String) -> \(plainTextSchema.name) {
-                return Self.init(text: text)
+                return Self(text: text)
             }
 
             public init(text: String) {
@@ -25,7 +25,7 @@ public class PlainTextSchemaRenderer: Renderer {
 
             public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: AnyCodingKey.self)
-                self.text = try container.decode(String.self, forKey: "text")
+                text = try container.decode(String.self, forKey: "text")
             }
         }
         """
@@ -34,6 +34,6 @@ public class PlainTextSchemaRenderer: Renderer {
            let abstract = objectDocumentation.abstract {
             rendered = "/// \(abstract)\n" + rendered
         }
-        return try format(rendered)
+        return rendered
     }
 }

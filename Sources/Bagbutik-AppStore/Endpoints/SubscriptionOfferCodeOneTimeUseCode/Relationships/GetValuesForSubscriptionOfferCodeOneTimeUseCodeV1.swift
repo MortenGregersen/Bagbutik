@@ -13,6 +13,8 @@ public extension Request {
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func getValuesForSubscriptionOfferCodeOneTimeUseCodeV1(id: String) -> Request<Csv, ErrorResponse> {
-        .init(path: "/v1/subscriptionOfferCodeOneTimeUseCodes/\(id)/values", method: .get)
+        .init(
+            path: "/v1/subscriptionOfferCodeOneTimeUseCodes/\(id)/values",
+            method: .get)
     }
 }

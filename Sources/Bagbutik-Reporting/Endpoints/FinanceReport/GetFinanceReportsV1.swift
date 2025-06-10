@@ -15,7 +15,10 @@ public extension Request {
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func getFinanceReportsV1(filters: [GetFinanceReportsV1.Filter]? = nil) -> Request<Gzip, ErrorResponse> {
-        .init(path: "/v1/financeReports", method: .get, parameters: .init(filters: filters))
+        .init(
+            path: "/v1/financeReports",
+            method: .get,
+            parameters: .init(filters: filters))
     }
 }
 

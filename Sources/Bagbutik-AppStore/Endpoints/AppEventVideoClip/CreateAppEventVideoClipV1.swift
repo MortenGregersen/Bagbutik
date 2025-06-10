@@ -12,6 +12,9 @@ public extension Request {
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func createAppEventVideoClipV1(requestBody: AppEventVideoClipCreateRequest) -> Request<AppEventVideoClipResponse, ErrorResponse> {
-        .init(path: "/v1/appEventVideoClips", method: .post, requestBody: requestBody)
+        .init(
+            path: "/v1/appEventVideoClips",
+            method: .post,
+            requestBody: requestBody)
     }
 }

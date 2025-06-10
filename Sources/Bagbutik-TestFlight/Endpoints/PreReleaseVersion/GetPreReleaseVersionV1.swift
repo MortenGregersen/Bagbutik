@@ -18,11 +18,14 @@ public extension Request {
     static func getPreReleaseVersionV1(id: String,
                                        fields: [GetPreReleaseVersionV1.Field]? = nil,
                                        includes: [GetPreReleaseVersionV1.Include]? = nil,
-                                       limit: GetPreReleaseVersionV1.Limit? = nil) -> Request<PrereleaseVersionResponse, ErrorResponse>
-    {
-        .init(path: "/v1/preReleaseVersions/\(id)", method: .get, parameters: .init(fields: fields,
-                                                                                    includes: includes,
-                                                                                    limits: limit.map { [$0] }))
+                                       limit: GetPreReleaseVersionV1.Limit? = nil) -> Request<PrereleaseVersionResponse, ErrorResponse> {
+        .init(
+            path: "/v1/preReleaseVersions/\(id)",
+            method: .get,
+            parameters: .init(
+                fields: fields,
+                includes: includes,
+                limits: limit.map { [$0] }))
     }
 }
 

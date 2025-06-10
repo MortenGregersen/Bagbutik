@@ -87,8 +87,11 @@ public struct AppClipAdvancedExperiencesResponse: Codable, Sendable, PagedRespon
             } else if let appClipAdvancedExperienceLocalization = try? AppClipAdvancedExperienceLocalization(from: decoder) {
                 self = .appClipAdvancedExperienceLocalization(appClipAdvancedExperienceLocalization)
             } else {
-                throw DecodingError.typeMismatch(Included.self, DecodingError.Context(codingPath: decoder.codingPath,
-                                                                                      debugDescription: "Unknown Included"))
+                throw DecodingError.typeMismatch(
+                    Included.self,
+                    DecodingError.Context(
+                        codingPath: decoder.codingPath,
+                        debugDescription: "Unknown Included"))
             }
         }
 

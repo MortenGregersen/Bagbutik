@@ -18,11 +18,14 @@ public extension Request {
      */
     static func listActorsV1(fields: [ListActorsV1.Field]? = nil,
                              filters: [ListActorsV1.Filter]? = nil,
-                             limit: Int? = nil) -> Request<ActorsResponse, ErrorResponse>
-    {
-        .init(path: "/v1/actors", method: .get, parameters: .init(fields: fields,
-                                                                  filters: filters,
-                                                                  limit: limit))
+                             limit: Int? = nil) -> Request<ActorsResponse, ErrorResponse> {
+        .init(
+            path: "/v1/actors",
+            method: .get,
+            parameters: .init(
+                fields: fields,
+                filters: filters,
+                limit: limit))
     }
 }
 

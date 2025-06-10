@@ -64,8 +64,11 @@ public struct ScmRepositoryResponse: Codable, Sendable {
             } else if let scmProvider = try? ScmProvider(from: decoder) {
                 self = .scmProvider(scmProvider)
             } else {
-                throw DecodingError.typeMismatch(Included.self, DecodingError.Context(codingPath: decoder.codingPath,
-                                                                                      debugDescription: "Unknown Included"))
+                throw DecodingError.typeMismatch(
+                    Included.self,
+                    DecodingError.Context(
+                        codingPath: decoder.codingPath,
+                        debugDescription: "Unknown Included"))
             }
         }
 

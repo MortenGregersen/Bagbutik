@@ -20,9 +20,9 @@ final class EnumSchemaRendererTests: XCTestCase {
         /**
          # Platform
          Strings that represent Apple operating systems.
-
+        
          All platforms are nice...
-
+        
          Full documentation:
          </platform>
          */
@@ -34,7 +34,6 @@ final class EnumSchemaRendererTests: XCTestCase {
             /// A string that represents tvOS.
             case tvOS = "TV_OS"
         }
-
         """#)
     }
 
@@ -51,7 +50,6 @@ final class EnumSchemaRendererTests: XCTestCase {
             case platforms
             case subcategories
         }
-
         """#)
     }
 }

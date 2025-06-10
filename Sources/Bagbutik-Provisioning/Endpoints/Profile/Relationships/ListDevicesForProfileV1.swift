@@ -16,10 +16,13 @@ public extension Request {
      */
     static func listDevicesForProfileV1(id: String,
                                         fields: [ListDevicesForProfileV1.Field]? = nil,
-                                        limit: Int? = nil) -> Request<DevicesWithoutIncludesResponse, ErrorResponse>
-    {
-        .init(path: "/v1/profiles/\(id)/devices", method: .get, parameters: .init(fields: fields,
-                                                                                  limit: limit))
+                                        limit: Int? = nil) -> Request<DevicesWithoutIncludesResponse, ErrorResponse> {
+        .init(
+            path: "/v1/profiles/\(id)/devices",
+            method: .get,
+            parameters: .init(
+                fields: fields,
+                limit: limit))
     }
 }
 

@@ -16,10 +16,13 @@ public extension Request {
      */
     static func getResponseForCustomerReviewV1(id: String,
                                                fields: [GetResponseForCustomerReviewV1.Field]? = nil,
-                                               includes: [GetResponseForCustomerReviewV1.Include]? = nil) -> Request<CustomerReviewResponseV1Response, ErrorResponse>
-    {
-        .init(path: "/v1/customerReviews/\(id)/response", method: .get, parameters: .init(fields: fields,
-                                                                                          includes: includes))
+                                               includes: [GetResponseForCustomerReviewV1.Include]? = nil) -> Request<CustomerReviewResponseV1Response, ErrorResponse> {
+        .init(
+            path: "/v1/customerReviews/\(id)/response",
+            method: .get,
+            parameters: .init(
+                fields: fields,
+                includes: includes))
     }
 }
 

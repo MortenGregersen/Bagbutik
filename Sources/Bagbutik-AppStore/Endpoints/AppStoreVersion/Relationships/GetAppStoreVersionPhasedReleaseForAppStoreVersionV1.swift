@@ -14,9 +14,11 @@ public extension Request {
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func getAppStoreVersionPhasedReleaseForAppStoreVersionV1(id: String,
-                                                                    fields: [GetAppStoreVersionPhasedReleaseForAppStoreVersionV1.Field]? = nil) -> Request<AppStoreVersionPhasedReleaseWithoutIncludesResponse, ErrorResponse>
-    {
-        .init(path: "/v1/appStoreVersions/\(id)/appStoreVersionPhasedRelease", method: .get, parameters: .init(fields: fields))
+                                                                    fields: [GetAppStoreVersionPhasedReleaseForAppStoreVersionV1.Field]? = nil) -> Request<AppStoreVersionPhasedReleaseWithoutIncludesResponse, ErrorResponse> {
+        .init(
+            path: "/v1/appStoreVersions/\(id)/appStoreVersionPhasedRelease",
+            method: .get,
+            parameters: .init(fields: fields))
     }
 }
 

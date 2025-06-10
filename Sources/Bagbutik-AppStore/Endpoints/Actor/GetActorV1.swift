@@ -14,9 +14,11 @@ public extension Request {
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func getActorV1(id: String,
-                           fields: [GetActorV1.Field]? = nil) -> Request<ActorResponse, ErrorResponse>
-    {
-        .init(path: "/v1/actors/\(id)", method: .get, parameters: .init(fields: fields))
+                           fields: [GetActorV1.Field]? = nil) -> Request<ActorResponse, ErrorResponse> {
+        .init(
+            path: "/v1/actors/\(id)",
+            method: .get,
+            parameters: .init(fields: fields))
     }
 }
 

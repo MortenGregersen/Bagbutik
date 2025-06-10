@@ -20,12 +20,15 @@ public extension Request {
                                            fields: [ListAppPricePointsForAppV1.Field]? = nil,
                                            filters: [ListAppPricePointsForAppV1.Filter]? = nil,
                                            includes: [ListAppPricePointsForAppV1.Include]? = nil,
-                                           limit: Int? = nil) -> Request<AppPricePointsV3Response, ErrorResponse>
-    {
-        .init(path: "/v1/apps/\(id)/appPricePoints", method: .get, parameters: .init(fields: fields,
-                                                                                     filters: filters,
-                                                                                     includes: includes,
-                                                                                     limit: limit))
+                                           limit: Int? = nil) -> Request<AppPricePointsV3Response, ErrorResponse> {
+        .init(
+            path: "/v1/apps/\(id)/appPricePoints",
+            method: .get,
+            parameters: .init(
+                fields: fields,
+                filters: filters,
+                includes: includes,
+                limit: limit))
     }
 }
 

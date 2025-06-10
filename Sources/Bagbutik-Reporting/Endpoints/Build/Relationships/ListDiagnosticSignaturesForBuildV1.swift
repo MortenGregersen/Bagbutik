@@ -20,11 +20,14 @@ public extension Request {
     static func listDiagnosticSignaturesForBuildV1(id: String,
                                                    fields: [ListDiagnosticSignaturesForBuildV1.Field]? = nil,
                                                    filters: [ListDiagnosticSignaturesForBuildV1.Filter]? = nil,
-                                                   limit: Int? = nil) -> Request<DiagnosticSignaturesResponse, ErrorResponse>
-    {
-        .init(path: "/v1/builds/\(id)/diagnosticSignatures", method: .get, parameters: .init(fields: fields,
-                                                                                             filters: filters,
-                                                                                             limit: limit))
+                                                   limit: Int? = nil) -> Request<DiagnosticSignaturesResponse, ErrorResponse> {
+        .init(
+            path: "/v1/builds/\(id)/diagnosticSignatures",
+            method: .get,
+            parameters: .init(
+                fields: fields,
+                filters: filters,
+                limit: limit))
     }
 }
 

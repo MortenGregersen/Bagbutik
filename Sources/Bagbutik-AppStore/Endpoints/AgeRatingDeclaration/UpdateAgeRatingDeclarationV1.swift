@@ -19,8 +19,10 @@ public extension Request {
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func updateAgeRatingDeclarationV1(id: String,
-                                             requestBody: AgeRatingDeclarationUpdateRequest) -> Request<AgeRatingDeclarationResponse, ErrorResponse>
-    {
-        .init(path: "/v1/ageRatingDeclarations/\(id)", method: .patch, requestBody: requestBody)
+                                             requestBody: AgeRatingDeclarationUpdateRequest) -> Request<AgeRatingDeclarationResponse, ErrorResponse> {
+        .init(
+            path: "/v1/ageRatingDeclarations/\(id)",
+            method: .patch,
+            requestBody: requestBody)
     }
 }

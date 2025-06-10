@@ -20,11 +20,14 @@ public extension Request {
     static func getCiBuildRunV1(id: String,
                                 fields: [GetCiBuildRunV1.Field]? = nil,
                                 includes: [GetCiBuildRunV1.Include]? = nil,
-                                limit: GetCiBuildRunV1.Limit? = nil) -> Request<CiBuildRunResponse, ErrorResponse>
-    {
-        .init(path: "/v1/ciBuildRuns/\(id)", method: .get, parameters: .init(fields: fields,
-                                                                             includes: includes,
-                                                                             limits: limit.map { [$0] }))
+                                limit: GetCiBuildRunV1.Limit? = nil) -> Request<CiBuildRunResponse, ErrorResponse> {
+        .init(
+            path: "/v1/ciBuildRuns/\(id)",
+            method: .get,
+            parameters: .init(
+                fields: fields,
+                includes: includes,
+                limits: limit.map { [$0] }))
     }
 }
 

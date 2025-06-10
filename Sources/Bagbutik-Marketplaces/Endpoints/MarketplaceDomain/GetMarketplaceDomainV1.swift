@@ -15,9 +15,11 @@ public extension Request {
      */
     @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
     static func getMarketplaceDomainV1(id: String,
-                                       fields: [GetMarketplaceDomainV1.Field]? = nil) -> Request<MarketplaceDomainResponse, ErrorResponse>
-    {
-        .init(path: "/v1/marketplaceDomains/\(id)", method: .get, parameters: .init(fields: fields))
+                                       fields: [GetMarketplaceDomainV1.Field]? = nil) -> Request<MarketplaceDomainResponse, ErrorResponse> {
+        .init(
+            path: "/v1/marketplaceDomains/\(id)",
+            method: .get,
+            parameters: .init(fields: fields))
     }
 }
 

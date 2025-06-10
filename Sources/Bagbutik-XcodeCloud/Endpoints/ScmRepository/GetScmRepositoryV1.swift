@@ -18,10 +18,13 @@ public extension Request {
      */
     static func getScmRepositoryV1(id: String,
                                    fields: [GetScmRepositoryV1.Field]? = nil,
-                                   includes: [GetScmRepositoryV1.Include]? = nil) -> Request<ScmRepositoryResponse, ErrorResponse>
-    {
-        .init(path: "/v1/scmRepositories/\(id)", method: .get, parameters: .init(fields: fields,
-                                                                                 includes: includes))
+                                   includes: [GetScmRepositoryV1.Include]? = nil) -> Request<ScmRepositoryResponse, ErrorResponse> {
+        .init(
+            path: "/v1/scmRepositories/\(id)",
+            method: .get,
+            parameters: .init(
+                fields: fields,
+                includes: includes))
     }
 }
 

@@ -14,9 +14,11 @@ public extension Request {
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func getAlternativeDistributionPackageDeltaV1(id: String,
-                                                         fields: [GetAlternativeDistributionPackageDeltaV1.Field]? = nil) -> Request<AlternativeDistributionPackageDeltaResponse, ErrorResponse>
-    {
-        .init(path: "/v1/alternativeDistributionPackageDeltas/\(id)", method: .get, parameters: .init(fields: fields))
+                                                         fields: [GetAlternativeDistributionPackageDeltaV1.Field]? = nil) -> Request<AlternativeDistributionPackageDeltaResponse, ErrorResponse> {
+        .init(
+            path: "/v1/alternativeDistributionPackageDeltas/\(id)",
+            method: .get,
+            parameters: .init(fields: fields))
     }
 }
 

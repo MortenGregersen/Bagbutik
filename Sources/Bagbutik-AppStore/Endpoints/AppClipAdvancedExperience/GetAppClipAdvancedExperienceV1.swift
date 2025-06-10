@@ -18,11 +18,14 @@ public extension Request {
     static func getAppClipAdvancedExperienceV1(id: String,
                                                fields: [GetAppClipAdvancedExperienceV1.Field]? = nil,
                                                includes: [GetAppClipAdvancedExperienceV1.Include]? = nil,
-                                               limit: GetAppClipAdvancedExperienceV1.Limit? = nil) -> Request<AppClipAdvancedExperienceResponse, ErrorResponse>
-    {
-        .init(path: "/v1/appClipAdvancedExperiences/\(id)", method: .get, parameters: .init(fields: fields,
-                                                                                            includes: includes,
-                                                                                            limits: limit.map { [$0] }))
+                                               limit: GetAppClipAdvancedExperienceV1.Limit? = nil) -> Request<AppClipAdvancedExperienceResponse, ErrorResponse> {
+        .init(
+            path: "/v1/appClipAdvancedExperiences/\(id)",
+            method: .get,
+            parameters: .init(
+                fields: fields,
+                includes: includes,
+                limits: limit.map { [$0] }))
     }
 }
 

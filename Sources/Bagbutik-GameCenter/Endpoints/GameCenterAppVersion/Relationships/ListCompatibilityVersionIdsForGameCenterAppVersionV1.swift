@@ -14,8 +14,10 @@ public extension Request {
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func listCompatibilityVersionIdsForGameCenterAppVersionV1(id: String,
-                                                                     limit: Int? = nil) -> Request<GameCenterAppVersionCompatibilityVersionsLinkagesResponse, ErrorResponse>
-    {
-        .init(path: "/v1/gameCenterAppVersions/\(id)/relationships/compatibilityVersions", method: .get, parameters: .init(limit: limit))
+                                                                     limit: Int? = nil) -> Request<GameCenterAppVersionCompatibilityVersionsLinkagesResponse, ErrorResponse> {
+        .init(
+            path: "/v1/gameCenterAppVersions/\(id)/relationships/compatibilityVersions",
+            method: .get,
+            parameters: .init(limit: limit))
     }
 }

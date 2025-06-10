@@ -16,9 +16,11 @@ public extension Request {
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func getAnalyticsReportSegmentV1(id: String,
-                                            fields: [GetAnalyticsReportSegmentV1.Field]? = nil) -> Request<AnalyticsReportSegmentResponse, ErrorResponse>
-    {
-        .init(path: "/v1/analyticsReportSegments/\(id)", method: .get, parameters: .init(fields: fields))
+                                            fields: [GetAnalyticsReportSegmentV1.Field]? = nil) -> Request<AnalyticsReportSegmentResponse, ErrorResponse> {
+        .init(
+            path: "/v1/analyticsReportSegments/\(id)",
+            method: .get,
+            parameters: .init(fields: fields))
     }
 }
 

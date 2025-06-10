@@ -18,11 +18,14 @@ public extension Request {
     static func listMatchmakingQueuesForGameCenterMatchmakingRuleSetV1(id: String,
                                                                        fields: [ListMatchmakingQueuesForGameCenterMatchmakingRuleSetV1.Field]? = nil,
                                                                        includes: [ListMatchmakingQueuesForGameCenterMatchmakingRuleSetV1.Include]? = nil,
-                                                                       limit: Int? = nil) -> Request<GameCenterMatchmakingQueuesResponse, ErrorResponse>
-    {
-        .init(path: "/v1/gameCenterMatchmakingRuleSets/\(id)/matchmakingQueues", method: .get, parameters: .init(fields: fields,
-                                                                                                                 includes: includes,
-                                                                                                                 limit: limit))
+                                                                       limit: Int? = nil) -> Request<GameCenterMatchmakingQueuesResponse, ErrorResponse> {
+        .init(
+            path: "/v1/gameCenterMatchmakingRuleSets/\(id)/matchmakingQueues",
+            method: .get,
+            parameters: .init(
+                fields: fields,
+                includes: includes,
+                limit: limit))
     }
 }
 

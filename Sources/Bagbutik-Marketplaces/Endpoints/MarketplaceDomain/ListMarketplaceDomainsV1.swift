@@ -15,10 +15,13 @@ public extension Request {
      */
     @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
     static func listMarketplaceDomainsV1(fields: [ListMarketplaceDomainsV1.Field]? = nil,
-                                         limit: Int? = nil) -> Request<MarketplaceDomainsResponse, ErrorResponse>
-    {
-        .init(path: "/v1/marketplaceDomains", method: .get, parameters: .init(fields: fields,
-                                                                              limit: limit))
+                                         limit: Int? = nil) -> Request<MarketplaceDomainsResponse, ErrorResponse> {
+        .init(
+            path: "/v1/marketplaceDomains",
+            method: .get,
+            parameters: .init(
+                fields: fields,
+                limit: limit))
     }
 }
 

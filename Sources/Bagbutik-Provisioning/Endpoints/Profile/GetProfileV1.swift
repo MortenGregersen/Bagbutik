@@ -18,11 +18,14 @@ public extension Request {
     static func getProfileV1(id: String,
                              fields: [GetProfileV1.Field]? = nil,
                              includes: [GetProfileV1.Include]? = nil,
-                             limits: [GetProfileV1.Limit]? = nil) -> Request<ProfileResponse, ErrorResponse>
-    {
-        .init(path: "/v1/profiles/\(id)", method: .get, parameters: .init(fields: fields,
-                                                                          includes: includes,
-                                                                          limits: limits))
+                             limits: [GetProfileV1.Limit]? = nil) -> Request<ProfileResponse, ErrorResponse> {
+        .init(
+            path: "/v1/profiles/\(id)",
+            method: .get,
+            parameters: .init(
+                fields: fields,
+                includes: includes,
+                limits: limits))
     }
 }
 

@@ -66,8 +66,11 @@ public struct EndUserLicenseAgreementResponse: Codable, Sendable {
             } else if let territory = try? Territory(from: decoder) {
                 self = .territory(territory)
             } else {
-                throw DecodingError.typeMismatch(Included.self, DecodingError.Context(codingPath: decoder.codingPath,
-                                                                                      debugDescription: "Unknown Included"))
+                throw DecodingError.typeMismatch(
+                    Included.self,
+                    DecodingError.Context(
+                        codingPath: decoder.codingPath,
+                        debugDescription: "Unknown Included"))
             }
         }
 

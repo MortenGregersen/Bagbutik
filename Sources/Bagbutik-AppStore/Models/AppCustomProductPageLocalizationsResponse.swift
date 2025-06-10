@@ -88,8 +88,11 @@ public struct AppCustomProductPageLocalizationsResponse: Codable, Sendable, Page
             } else if let appScreenshotSet = try? AppScreenshotSet(from: decoder) {
                 self = .appScreenshotSet(appScreenshotSet)
             } else {
-                throw DecodingError.typeMismatch(Included.self, DecodingError.Context(codingPath: decoder.codingPath,
-                                                                                      debugDescription: "Unknown Included"))
+                throw DecodingError.typeMismatch(
+                    Included.self,
+                    DecodingError.Context(
+                        codingPath: decoder.codingPath,
+                        debugDescription: "Unknown Included"))
             }
         }
 

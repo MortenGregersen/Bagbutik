@@ -18,12 +18,15 @@ public extension Request {
     static func listAppEncryptionDeclarationsV1(fields: [ListAppEncryptionDeclarationsV1.Field]? = nil,
                                                 filters: [ListAppEncryptionDeclarationsV1.Filter]? = nil,
                                                 includes: [ListAppEncryptionDeclarationsV1.Include]? = nil,
-                                                limits: [ListAppEncryptionDeclarationsV1.Limit]? = nil) -> Request<AppEncryptionDeclarationsResponse, ErrorResponse>
-    {
-        .init(path: "/v1/appEncryptionDeclarations", method: .get, parameters: .init(fields: fields,
-                                                                                     filters: filters,
-                                                                                     includes: includes,
-                                                                                     limits: limits))
+                                                limits: [ListAppEncryptionDeclarationsV1.Limit]? = nil) -> Request<AppEncryptionDeclarationsResponse, ErrorResponse> {
+        .init(
+            path: "/v1/appEncryptionDeclarations",
+            method: .get,
+            parameters: .init(
+                fields: fields,
+                filters: filters,
+                includes: includes,
+                limits: limits))
     }
 }
 

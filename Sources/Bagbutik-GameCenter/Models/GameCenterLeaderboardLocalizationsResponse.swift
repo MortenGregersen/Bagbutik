@@ -68,8 +68,11 @@ public struct GameCenterLeaderboardLocalizationsResponse: Codable, Sendable, Pag
             } else if let gameCenterLeaderboardImage = try? GameCenterLeaderboardImage(from: decoder) {
                 self = .gameCenterLeaderboardImage(gameCenterLeaderboardImage)
             } else {
-                throw DecodingError.typeMismatch(Included.self, DecodingError.Context(codingPath: decoder.codingPath,
-                                                                                      debugDescription: "Unknown Included"))
+                throw DecodingError.typeMismatch(
+                    Included.self,
+                    DecodingError.Context(
+                        codingPath: decoder.codingPath,
+                        debugDescription: "Unknown Included"))
             }
         }
 

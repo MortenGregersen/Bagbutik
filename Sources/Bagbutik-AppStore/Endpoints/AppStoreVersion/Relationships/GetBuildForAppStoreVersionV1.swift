@@ -14,9 +14,11 @@ public extension Request {
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func getBuildForAppStoreVersionV1(id: String,
-                                             fields: [GetBuildForAppStoreVersionV1.Field]? = nil) -> Request<BuildWithoutIncludesResponse, ErrorResponse>
-    {
-        .init(path: "/v1/appStoreVersions/\(id)/build", method: .get, parameters: .init(fields: fields))
+                                             fields: [GetBuildForAppStoreVersionV1.Field]? = nil) -> Request<BuildWithoutIncludesResponse, ErrorResponse> {
+        .init(
+            path: "/v1/appStoreVersions/\(id)/build",
+            method: .get,
+            parameters: .init(fields: fields))
     }
 }
 

@@ -14,8 +14,10 @@ public extension Request {
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func replaceGameCenterLeaderboardsForGameCenterDetailV1(id: String,
-                                                                   requestBody: GameCenterDetailGameCenterLeaderboardsLinkagesRequest) -> Request<EmptyResponse, ErrorResponse>
-    {
-        .init(path: "/v1/gameCenterDetails/\(id)/relationships/gameCenterLeaderboards", method: .patch, requestBody: requestBody)
+                                                                   requestBody: GameCenterDetailGameCenterLeaderboardsLinkagesRequest) -> Request<EmptyResponse, ErrorResponse> {
+        .init(
+            path: "/v1/gameCenterDetails/\(id)/relationships/gameCenterLeaderboards",
+            method: .patch,
+            requestBody: requestBody)
     }
 }

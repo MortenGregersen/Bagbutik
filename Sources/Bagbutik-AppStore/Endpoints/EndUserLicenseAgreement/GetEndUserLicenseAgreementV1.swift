@@ -18,11 +18,14 @@ public extension Request {
     static func getEndUserLicenseAgreementV1(id: String,
                                              fields: [GetEndUserLicenseAgreementV1.Field]? = nil,
                                              includes: [GetEndUserLicenseAgreementV1.Include]? = nil,
-                                             limit: GetEndUserLicenseAgreementV1.Limit? = nil) -> Request<EndUserLicenseAgreementResponse, ErrorResponse>
-    {
-        .init(path: "/v1/endUserLicenseAgreements/\(id)", method: .get, parameters: .init(fields: fields,
-                                                                                          includes: includes,
-                                                                                          limits: limit.map { [$0] }))
+                                             limit: GetEndUserLicenseAgreementV1.Limit? = nil) -> Request<EndUserLicenseAgreementResponse, ErrorResponse> {
+        .init(
+            path: "/v1/endUserLicenseAgreements/\(id)",
+            method: .get,
+            parameters: .init(
+                fields: fields,
+                includes: includes,
+                limits: limit.map { [$0] }))
     }
 }
 

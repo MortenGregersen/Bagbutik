@@ -1,7 +1,6 @@
 import BagbutikDocsCollector
 import BagbutikSpecDecoder
 import Foundation
-import SwiftFormat
 
 /// A base class for the renderes which contains a default environment for Swift code rendering
 public class Renderer {
@@ -13,40 +12,40 @@ public class Renderer {
         self.shouldFormat = shouldFormat
     }
 
-    internal func escapeReservedKeywords(in searchString: String) -> String {
+    func escapeReservedKeywords(in searchString: String) -> String {
         guard Self.reservedKeywords.contains(searchString) else { return searchString }
         return "`\(searchString)`"
     }
     
-    internal func renderStruct(named name: String, access: String = "public", protocols: [String]? = nil, content: () async throws -> String) async rethrows -> String {
+    func renderStruct(named name: String, access: String = "public", protocols: [String]? = nil, content: () async throws -> String) async rethrows -> String {
         var protocolsString: String?
-        if let protocols = protocols, protocols.count > 0 {
+        if let protocols, !protocols.isEmpty {
             protocolsString = ": " + protocols.joined(separator: ", ")
         }
-        return """
+        return try await """
         \(access) struct \(name)\(protocolsString ?? "") {
-            \(try await content())
+        \(content().indentedLines)
         }
         """
     }
     
-    internal func renderEnum(named name: String, access: String = "public", rawType: String? = nil, protocols: [String]? = nil, cases: [EnumCase], caseValueIsAssociated: Bool = false, content: String? = nil) -> String {
+    func renderEnum(named name: String, access: String = "public", rawType: String? = nil, protocols: [String]? = nil, cases: [EnumCase], caseValueIsAssociated: Bool = false, content: String? = nil) -> String {
         var inheritance = [String]()
-        if let rawType = rawType {
+        if let rawType {
             inheritance.append(rawType)
         }
-        if let protocols = protocols {
+        if let protocols {
             inheritance.append(contentsOf: protocols)
         }
         var inheritanceString = ""
-        if inheritance.count > 0 {
+        if !inheritance.isEmpty {
             inheritanceString = ": " + inheritance.joined(separator: ", ")
         }
         var casesAndContent = cases
             .sorted(by: { $0.id < $1.id })
             .map { enumCase in
                 var formattedCase = [String]()
-                if let documentation = enumCase.documentation {
+                if let documentation = enumCase.documentation, !documentation.isEmpty {
                     formattedCase.append("/// \(documentation)")
                 }
                 if enumCase.deprecated {
@@ -55,92 +54,114 @@ public class Renderer {
                 var caseLine = "case \(enumCase.id)"
                 if caseValueIsAssociated {
                     caseLine += "(\(enumCase.value))"
-                } else {
+                } else if !(rawType == "String" && enumCase.id == enumCase.value) {
                     caseLine += " = \"\(enumCase.value)\""
                 }
                 formattedCase.append(caseLine)
                 return formattedCase.joined(separator: "\n")
             }
             .joined(separator: "\n")
-        if let content = content {
+        if let content {
             casesAndContent += "\n\n\(content)"
         }
         return """
         \(access) enum \(name)\(inheritanceString) {
-            \(casesAndContent)
+        \(casesAndContent.indentedLines.trimmingCharacters(in: .newlines))
         }
         """
     }
     
-    internal func renderExtension(on extendedType: String, access: String = "public", content: () async throws -> String) async rethrows -> String {
+    func renderEnumWrapper(named name: String, access: String = "public", content: () async throws -> String) async rethrows -> String {
+        return try await """
+        \(access) enum \(name) {
+        \(content().indentedLines)
+        }
         """
+    }
+    
+    func renderExtension(on extendedType: String, access: String = "public", content: () async throws -> String) async rethrows -> String {
+        try await """
         \(access) extension \(extendedType) {
-            \(try await content())
+        \(content().indentedLines)
         }
         """
     }
     
-    internal func renderDocumentationBlock(content: () async throws -> String) async rethrows -> String {
-        """
+    func renderDocumentationBlock(content: () async throws -> String) async rethrows -> String {
+        try await """
         /**
-        \(try await content())
-        */
+        \(content().indented(bySpaces: 1))
+         */
         """
     }
     
-    internal func renderDocumentationBlock(title: String, content: () async throws -> String) async rethrows -> String {
+    func renderDocumentationBlock(title: String, content: () async throws -> String) async rethrows -> String {
         try await renderDocumentationBlock {
-            """
+            try await """
             # \(title)
-            \(try await content())
+            \(content())
             """
         }
     }
     
-    internal func renderDocumentationParameterLine(name: String, description: String) -> String {
+    func renderDocumentationParameterLine(name: String, description: String) -> String {
         "- Parameter \(name): \(description.capitalizingFirstLetter())"
     }
     
-    internal func renderInitializer(parameters: [FunctionParameter], throwing: Bool = false, deprecated: Bool = false, content: () throws -> String) rethrows -> String {
+    func renderInitializer(parameters: [FunctionParameter], throwing: Bool = false, deprecated: Bool = false, content: () throws -> String) rethrows -> String {
         var rendered = ""
         if deprecated {
             rendered += #"@available(*, deprecated, message: "This uses a property Apple has marked as deprecated.")"#
             rendered += "\n"
         }
-        return rendered + """
-        public init(\(parameters.formatted))\(throwing ? " throws" : "") {
-            \(try content())
+        let formattedParameters = parameters
+            .formatted(subsequentLinesIndentedBySpaces: "public init(".lengthOfBytes(using: .utf8))
+        rendered += "public init(\(formattedParameters))\(throwing ? " throws" : "")"
+        let content = try content()
+        if content.isEmpty {
+            rendered += " {}"
+        } else {
+            if parameters.count > 1 {
+                rendered += "\n{\n"
+            } else {
+                rendered += " {\n"
+            }
+            rendered += content.indentedLines
+            rendered += "\n}"
         }
-        """
+        return rendered
     }
     
-    internal func renderFunction(named name: String, parameters: [FunctionParameter], returnType: String? = nil, static isStatic: Bool = false, throwing: Bool = false, deprecated: Bool = false, content: () throws -> String) rethrows -> String {
+    func renderFunction(named name: String, parameters: [FunctionParameter], returnType: String? = nil, static isStatic: Bool = false, addAccessibilityModifier: Bool = true, throwing: Bool = false, deprecated: Bool = false, content: () throws -> String) rethrows -> String {
         var rendered = ""
         if deprecated {
             rendered += #"@available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")"#
             rendered += "\n"
         }
-        var prefix = "public"
+        var prefix = [String]()
+        if addAccessibilityModifier {
+            prefix.append("public")
+        }
         if isStatic {
-            prefix += " static"
+            prefix.append("static")
         }
         var postfix = ""
         if throwing {
             postfix += " throws"
         }
-        if let returnType = returnType {
+        if let returnType {
             postfix += " -> \(returnType)"
         }
-        return rendered + """
-        \(prefix) func \(name.lowercasedFirstLetter())(\(parameters.formatted))\(postfix) {
-            \(try content())
+        let functionDeclarationStart = "\(prefix.joined(separator: " ")) func \(name.lowercasedFirstLetter())("
+        let formattedParameters = parameters
+            .formatted(subsequentLinesIndentedBySpaces: functionDeclarationStart.lengthOfBytes(using: .utf8))
+        let content = try content()
+        rendered += "\(functionDeclarationStart)\(formattedParameters))\(postfix) {"
+        if content.isEmpty {
+            return rendered + "}"
+        } else {
+            return rendered + "\n\(content.indentedLines)\n}"
         }
-        """
-    }
-    
-    internal func format(_ source: String) throws -> String {
-        guard shouldFormat else { return source }
-        return try SwiftFormat.format(source)
     }
     
     struct FunctionParameter: Equatable {
@@ -176,8 +197,8 @@ public class Renderer {
     ]
 }
 
-private extension Collection where Element == Renderer.FunctionParameter {
-    var formatted: String {
+private extension Collection<Renderer.FunctionParameter> {
+    func formatted(subsequentLinesIndentedBySpaces spacesAmount: Int) -> String {
         reduce(into: [String]()) { partialResult, parameter in
             let name: String
             let type: String
@@ -191,7 +212,28 @@ private extension Collection where Element == Renderer.FunctionParameter {
             } else {
                 type = parameter.type
             }
-            partialResult.append("\(name): \(type)\(parameter.optional ? "? = nil" : "")")
+            let formattedParameter = "\(name): \(type)\(parameter.optional ? "? = nil" : "")"
+            if partialResult.isEmpty {
+                partialResult.append(formattedParameter)
+            } else {
+                partialResult.append(formattedParameter.indented(bySpaces: spacesAmount))
+            }
         }.joined(separator: ",\n")
+    }
+}
+
+extension String {
+    var indentedLines: String {
+        indented(bySpaces: 4)
+    }
+    
+    func indented(bySpaces amount: Int) -> String {
+        let indention = String(repeating: " ", count: amount)
+        return components(separatedBy: "\n")
+            .map {
+                guard !$0.isEmpty else { return $0 }
+                return "\(indention)\($0)"
+            }
+            .joined(separator: "\n")
     }
 }

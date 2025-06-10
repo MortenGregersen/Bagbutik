@@ -14,8 +14,10 @@ public extension Request {
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func deletePricesForSubscriptionV1(id: String,
-                                              requestBody: SubscriptionPricesLinkagesRequest) -> Request<EmptyResponse, ErrorResponse>
-    {
-        .init(path: "/v1/subscriptions/\(id)/relationships/prices", method: .delete, requestBody: requestBody)
+                                              requestBody: SubscriptionPricesLinkagesRequest) -> Request<EmptyResponse, ErrorResponse> {
+        .init(
+            path: "/v1/subscriptions/\(id)/relationships/prices",
+            method: .delete,
+            requestBody: requestBody)
     }
 }

@@ -13,8 +13,10 @@ public extension Request {
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func updateAppEventVideoClipV1(id: String,
-                                          requestBody: AppEventVideoClipUpdateRequest) -> Request<AppEventVideoClipResponse, ErrorResponse>
-    {
-        .init(path: "/v1/appEventVideoClips/\(id)", method: .patch, requestBody: requestBody)
+                                          requestBody: AppEventVideoClipUpdateRequest) -> Request<AppEventVideoClipResponse, ErrorResponse> {
+        .init(
+            path: "/v1/appEventVideoClips/\(id)",
+            method: .patch,
+            requestBody: requestBody)
     }
 }

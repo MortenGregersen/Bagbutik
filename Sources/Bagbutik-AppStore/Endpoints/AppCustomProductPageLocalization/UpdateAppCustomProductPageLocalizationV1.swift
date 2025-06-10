@@ -14,8 +14,10 @@ public extension Request {
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func updateAppCustomProductPageLocalizationV1(id: String,
-                                                         requestBody: AppCustomProductPageLocalizationUpdateRequest) -> Request<AppCustomProductPageLocalizationResponse, ErrorResponse>
-    {
-        .init(path: "/v1/appCustomProductPageLocalizations/\(id)", method: .patch, requestBody: requestBody)
+                                                         requestBody: AppCustomProductPageLocalizationUpdateRequest) -> Request<AppCustomProductPageLocalizationResponse, ErrorResponse> {
+        .init(
+            path: "/v1/appCustomProductPageLocalizations/\(id)",
+            method: .patch,
+            requestBody: requestBody)
     }
 }

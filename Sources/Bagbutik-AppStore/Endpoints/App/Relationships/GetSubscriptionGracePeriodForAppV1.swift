@@ -14,9 +14,11 @@ public extension Request {
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func getSubscriptionGracePeriodForAppV1(id: String,
-                                                   fields: [GetSubscriptionGracePeriodForAppV1.Field]? = nil) -> Request<SubscriptionGracePeriodResponse, ErrorResponse>
-    {
-        .init(path: "/v1/apps/\(id)/subscriptionGracePeriod", method: .get, parameters: .init(fields: fields))
+                                                   fields: [GetSubscriptionGracePeriodForAppV1.Field]? = nil) -> Request<SubscriptionGracePeriodResponse, ErrorResponse> {
+        .init(
+            path: "/v1/apps/\(id)/subscriptionGracePeriod",
+            method: .get,
+            parameters: .init(fields: fields))
     }
 }
 

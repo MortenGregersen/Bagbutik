@@ -16,10 +16,13 @@ public extension Request {
      */
     static func listVisibleAppsForUserInvitationV1(id: String,
                                                    fields: [ListVisibleAppsForUserInvitationV1.Field]? = nil,
-                                                   limit: Int? = nil) -> Request<AppsWithoutIncludesResponse, ErrorResponse>
-    {
-        .init(path: "/v1/userInvitations/\(id)/visibleApps", method: .get, parameters: .init(fields: fields,
-                                                                                             limit: limit))
+                                                   limit: Int? = nil) -> Request<AppsWithoutIncludesResponse, ErrorResponse> {
+        .init(
+            path: "/v1/userInvitations/\(id)/visibleApps",
+            method: .get,
+            parameters: .init(
+                fields: fields,
+                limit: limit))
     }
 }
 

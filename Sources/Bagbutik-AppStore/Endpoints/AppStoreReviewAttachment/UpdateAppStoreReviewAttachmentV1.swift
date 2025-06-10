@@ -14,8 +14,10 @@ public extension Request {
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func updateAppStoreReviewAttachmentV1(id: String,
-                                                 requestBody: AppStoreReviewAttachmentUpdateRequest) -> Request<AppStoreReviewAttachmentResponse, ErrorResponse>
-    {
-        .init(path: "/v1/appStoreReviewAttachments/\(id)", method: .patch, requestBody: requestBody)
+                                                 requestBody: AppStoreReviewAttachmentUpdateRequest) -> Request<AppStoreReviewAttachmentResponse, ErrorResponse> {
+        .init(
+            path: "/v1/appStoreReviewAttachments/\(id)",
+            method: .patch,
+            requestBody: requestBody)
     }
 }

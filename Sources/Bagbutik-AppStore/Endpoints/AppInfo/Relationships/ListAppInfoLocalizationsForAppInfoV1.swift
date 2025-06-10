@@ -20,12 +20,15 @@ public extension Request {
                                                      fields: [ListAppInfoLocalizationsForAppInfoV1.Field]? = nil,
                                                      filters: [ListAppInfoLocalizationsForAppInfoV1.Filter]? = nil,
                                                      includes: [ListAppInfoLocalizationsForAppInfoV1.Include]? = nil,
-                                                     limit: Int? = nil) -> Request<AppInfoLocalizationsResponse, ErrorResponse>
-    {
-        .init(path: "/v1/appInfos/\(id)/appInfoLocalizations", method: .get, parameters: .init(fields: fields,
-                                                                                               filters: filters,
-                                                                                               includes: includes,
-                                                                                               limit: limit))
+                                                     limit: Int? = nil) -> Request<AppInfoLocalizationsResponse, ErrorResponse> {
+        .init(
+            path: "/v1/appInfos/\(id)/appInfoLocalizations",
+            method: .get,
+            parameters: .init(
+                fields: fields,
+                filters: filters,
+                includes: includes,
+                limit: limit))
     }
 }
 

@@ -64,8 +64,11 @@ public struct SubscriptionGroupResponse: Codable, Sendable {
             } else if let subscriptionGroupLocalization = try? SubscriptionGroupLocalization(from: decoder) {
                 self = .subscriptionGroupLocalization(subscriptionGroupLocalization)
             } else {
-                throw DecodingError.typeMismatch(Included.self, DecodingError.Context(codingPath: decoder.codingPath,
-                                                                                      debugDescription: "Unknown Included"))
+                throw DecodingError.typeMismatch(
+                    Included.self,
+                    DecodingError.Context(
+                        codingPath: decoder.codingPath,
+                        debugDescription: "Unknown Included"))
             }
         }
 

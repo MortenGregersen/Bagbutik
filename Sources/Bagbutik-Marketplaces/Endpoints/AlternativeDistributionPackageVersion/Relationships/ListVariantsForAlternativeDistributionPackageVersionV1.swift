@@ -16,10 +16,13 @@ public extension Request {
      */
     static func listVariantsForAlternativeDistributionPackageVersionV1(id: String,
                                                                        fields: [ListVariantsForAlternativeDistributionPackageVersionV1.Field]? = nil,
-                                                                       limit: Int? = nil) -> Request<AlternativeDistributionPackageVariantsResponse, ErrorResponse>
-    {
-        .init(path: "/v1/alternativeDistributionPackageVersions/\(id)/variants", method: .get, parameters: .init(fields: fields,
-                                                                                                                 limit: limit))
+                                                                       limit: Int? = nil) -> Request<AlternativeDistributionPackageVariantsResponse, ErrorResponse> {
+        .init(
+            path: "/v1/alternativeDistributionPackageVersions/\(id)/variants",
+            method: .get,
+            parameters: .init(
+                fields: fields,
+                limit: limit))
     }
 }
 

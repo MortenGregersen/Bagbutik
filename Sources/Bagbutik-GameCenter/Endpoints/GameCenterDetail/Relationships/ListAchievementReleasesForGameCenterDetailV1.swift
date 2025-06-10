@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # List achievement releases
+     # List achievement releases 
      Read information about the achievement releases for specific Game Center detail.
 
      Full documentation:
@@ -20,12 +20,15 @@ public extension Request {
                                                              fields: [ListAchievementReleasesForGameCenterDetailV1.Field]? = nil,
                                                              filters: [ListAchievementReleasesForGameCenterDetailV1.Filter]? = nil,
                                                              includes: [ListAchievementReleasesForGameCenterDetailV1.Include]? = nil,
-                                                             limit: Int? = nil) -> Request<GameCenterAchievementReleasesResponse, ErrorResponse>
-    {
-        .init(path: "/v1/gameCenterDetails/\(id)/achievementReleases", method: .get, parameters: .init(fields: fields,
-                                                                                                       filters: filters,
-                                                                                                       includes: includes,
-                                                                                                       limit: limit))
+                                                             limit: Int? = nil) -> Request<GameCenterAchievementReleasesResponse, ErrorResponse> {
+        .init(
+            path: "/v1/gameCenterDetails/\(id)/achievementReleases",
+            method: .get,
+            parameters: .init(
+                fields: fields,
+                filters: filters,
+                includes: includes,
+                limit: limit))
     }
 }
 

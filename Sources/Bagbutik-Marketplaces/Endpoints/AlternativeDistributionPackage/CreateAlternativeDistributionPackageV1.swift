@@ -13,6 +13,9 @@ public extension Request {
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func createAlternativeDistributionPackageV1(requestBody: AlternativeDistributionPackageCreateRequest) -> Request<AlternativeDistributionPackageResponse, ErrorResponse> {
-        .init(path: "/v1/alternativeDistributionPackages", method: .post, requestBody: requestBody)
+        .init(
+            path: "/v1/alternativeDistributionPackages",
+            method: .post,
+            requestBody: requestBody)
     }
 }

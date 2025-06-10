@@ -14,8 +14,10 @@ public extension Request {
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func updateSandboxTestersV2(id: String,
-                                       requestBody: SandboxTesterV2UpdateRequest) -> Request<SandboxTesterV2Response, ErrorResponse>
-    {
-        .init(path: "/v2/sandboxTesters/\(id)", method: .patch, requestBody: requestBody)
+                                       requestBody: SandboxTesterV2UpdateRequest) -> Request<SandboxTesterV2Response, ErrorResponse> {
+        .init(
+            path: "/v2/sandboxTesters/\(id)",
+            method: .patch,
+            requestBody: requestBody)
     }
 }

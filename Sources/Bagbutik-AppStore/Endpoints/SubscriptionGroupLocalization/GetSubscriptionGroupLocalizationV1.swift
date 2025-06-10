@@ -16,10 +16,13 @@ public extension Request {
      */
     static func getSubscriptionGroupLocalizationV1(id: String,
                                                    fields: [GetSubscriptionGroupLocalizationV1.Field]? = nil,
-                                                   includes: [GetSubscriptionGroupLocalizationV1.Include]? = nil) -> Request<SubscriptionGroupLocalizationResponse, ErrorResponse>
-    {
-        .init(path: "/v1/subscriptionGroupLocalizations/\(id)", method: .get, parameters: .init(fields: fields,
-                                                                                                includes: includes))
+                                                   includes: [GetSubscriptionGroupLocalizationV1.Include]? = nil) -> Request<SubscriptionGroupLocalizationResponse, ErrorResponse> {
+        .init(
+            path: "/v1/subscriptionGroupLocalizations/\(id)",
+            method: .get,
+            parameters: .init(
+                fields: fields,
+                includes: includes))
     }
 }
 

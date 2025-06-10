@@ -3,7 +3,7 @@ import BagbutikDocsCollector
 import BagbutikGenerator
 import Foundation
 #if canImport(FoundationNetworking)
-// Linux support
+// Non-Apple platform support
 import BagbutikPolyfill
 import FoundationNetworking
 #endif

@@ -14,10 +14,13 @@ public extension Request {
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func listScmProvidersV1(fields: [ListScmProvidersV1.Field]? = nil,
-                                   limit: Int? = nil) -> Request<ScmProvidersResponse, ErrorResponse>
-    {
-        .init(path: "/v1/scmProviders", method: .get, parameters: .init(fields: fields,
-                                                                        limit: limit))
+                                   limit: Int? = nil) -> Request<ScmProvidersResponse, ErrorResponse> {
+        .init(
+            path: "/v1/scmProviders",
+            method: .get,
+            parameters: .init(
+                fields: fields,
+                limit: limit))
     }
 }
 

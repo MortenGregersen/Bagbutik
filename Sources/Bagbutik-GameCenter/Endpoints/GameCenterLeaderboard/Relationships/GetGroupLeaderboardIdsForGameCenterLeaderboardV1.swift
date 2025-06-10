@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # List all groups to which a leaderboard belongs
+     # List all groups to which a leaderboard belongs 
      List associated group leaderboards for a specific leaderboard.
 
      Full documentation:
@@ -14,6 +14,8 @@ public extension Request {
      */
     @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
     static func getGroupLeaderboardIdsForGameCenterLeaderboardV1(id: String) -> Request<GameCenterLeaderboardGroupLeaderboardLinkageResponse, ErrorResponse> {
-        .init(path: "/v1/gameCenterLeaderboards/\(id)/relationships/groupLeaderboard", method: .get)
+        .init(
+            path: "/v1/gameCenterLeaderboards/\(id)/relationships/groupLeaderboard",
+            method: .get)
     }
 }

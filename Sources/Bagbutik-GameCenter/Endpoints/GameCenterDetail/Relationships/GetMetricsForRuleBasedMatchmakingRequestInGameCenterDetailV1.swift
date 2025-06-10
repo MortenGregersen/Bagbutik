@@ -22,15 +22,18 @@ public extension Request {
                                                                              sorts: [GetMetricsForRuleBasedMatchmakingRequestInGameCenterDetailV1.Sort]? = nil,
                                                                              granularity: GetMetricsForRuleBasedMatchmakingRequestInGameCenterDetailV1.Granularity? = nil,
                                                                              groupBy: GetMetricsForRuleBasedMatchmakingRequestInGameCenterDetailV1.GroupBy? = nil,
-                                                                             limit: Int? = nil) -> Request<GameCenterMatchmakingAppRequestsV1MetricResponse, ErrorResponse>
-    {
+                                                                             limit: Int? = nil) -> Request<GameCenterMatchmakingAppRequestsV1MetricResponse, ErrorResponse> {
         var customs = [String: String]()
         if let granularity { customs["granularity"] = granularity.rawValue }
         if let groupBy { customs["groupBy"] = groupBy.rawValue }
-        return .init(path: "/v1/gameCenterDetails/\(id)/metrics/ruleBasedMatchmakingRequests", method: .get, parameters: .init(filters: filters,
-                                                                                                                               sorts: sorts,
-                                                                                                                               limit: limit,
-                                                                                                                               customs: customs))
+        return .init(
+            path: "/v1/gameCenterDetails/\(id)/metrics/ruleBasedMatchmakingRequests",
+            method: .get,
+            parameters: .init(
+                filters: filters,
+                sorts: sorts,
+                limit: limit,
+                customs: customs))
     }
 }
 

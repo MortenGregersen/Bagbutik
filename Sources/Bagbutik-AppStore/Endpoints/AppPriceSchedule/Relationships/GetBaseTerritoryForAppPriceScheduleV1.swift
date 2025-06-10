@@ -14,9 +14,11 @@ public extension Request {
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func getBaseTerritoryForAppPriceScheduleV1(id: String,
-                                                      fields: [GetBaseTerritoryForAppPriceScheduleV1.Field]? = nil) -> Request<TerritoryResponse, ErrorResponse>
-    {
-        .init(path: "/v1/appPriceSchedules/\(id)/baseTerritory", method: .get, parameters: .init(fields: fields))
+                                                      fields: [GetBaseTerritoryForAppPriceScheduleV1.Field]? = nil) -> Request<TerritoryResponse, ErrorResponse> {
+        .init(
+            path: "/v1/appPriceSchedules/\(id)/baseTerritory",
+            method: .get,
+            parameters: .init(fields: fields))
     }
 }
 

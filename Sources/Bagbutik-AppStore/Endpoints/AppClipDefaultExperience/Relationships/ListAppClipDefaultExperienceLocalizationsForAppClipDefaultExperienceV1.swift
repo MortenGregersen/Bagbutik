@@ -20,12 +20,15 @@ public extension Request {
                                                                                        fields: [ListAppClipDefaultExperienceLocalizationsForAppClipDefaultExperienceV1.Field]? = nil,
                                                                                        filters: [ListAppClipDefaultExperienceLocalizationsForAppClipDefaultExperienceV1.Filter]? = nil,
                                                                                        includes: [ListAppClipDefaultExperienceLocalizationsForAppClipDefaultExperienceV1.Include]? = nil,
-                                                                                       limit: Int? = nil) -> Request<AppClipDefaultExperienceLocalizationsResponse, ErrorResponse>
-    {
-        .init(path: "/v1/appClipDefaultExperiences/\(id)/appClipDefaultExperienceLocalizations", method: .get, parameters: .init(fields: fields,
-                                                                                                                                 filters: filters,
-                                                                                                                                 includes: includes,
-                                                                                                                                 limit: limit))
+                                                                                       limit: Int? = nil) -> Request<AppClipDefaultExperienceLocalizationsResponse, ErrorResponse> {
+        .init(
+            path: "/v1/appClipDefaultExperiences/\(id)/appClipDefaultExperienceLocalizations",
+            method: .get,
+            parameters: .init(
+                fields: fields,
+                filters: filters,
+                includes: includes,
+                limit: limit))
     }
 }
 
