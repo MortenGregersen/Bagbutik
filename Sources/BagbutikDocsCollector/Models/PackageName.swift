@@ -9,6 +9,7 @@ public enum PackageName: CaseIterable, Codable, Equatable {
     case reporting
     case testFlight
     case users
+    case webhooks
     case xcodeCloud
 
     public var name: String {
@@ -17,24 +18,16 @@ public enum PackageName: CaseIterable, Codable, Equatable {
 
     public var docsSectionName: String {
         switch self {
-        case .appStore:
-            "AppStore"
-        case .core:
-            "Core"
-        case .gameCenter:
-            "GameCenter"
-        case .marketplaces:
-            "Marketplaces"
-        case .provisioning:
-            "Provisioning"
-        case .reporting:
-            "Reporting"
-        case .testFlight:
-            "TestFlight"
-        case .users:
-            "Users"
-        case .xcodeCloud:
-            "XcodeCloud"
+        case .appStore: "AppStore"
+        case .core: "Core"
+        case .gameCenter: "GameCenter"
+        case .marketplaces: "Marketplaces"
+        case .provisioning: "Provisioning"
+        case .reporting: "Reporting"
+        case .testFlight: "TestFlight"
+        case .users: "Users"
+        case .webhooks: "Webhooks"
+        case .xcodeCloud: "XcodeCloud"
         }
     }
 
@@ -156,6 +149,8 @@ public enum PackageName: CaseIterable, Codable, Equatable {
             return .reporting
         } else if resource.hasPrefix("user") {
             return .users
+        } else if resource.hasPrefix("webhook") {
+            return .webhooks
         } else if resource.hasPrefix("action")
             || resource.hasPrefix("additionalRepositor")
             || resource.hasPrefix("artifact")

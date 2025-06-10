@@ -33,6 +33,10 @@ class PackageNameTests: XCTestCase {
     func testResolvePackageNameUsers() {
         XCTAssertEqual(PackageName.resolvePackageName(from: "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/UserMambo"), .users)
     }
+    
+    func testResolvePackageNameWebhooks() {
+        XCTAssertEqual(PackageName.resolvePackageName(from: "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/WebHookBob"), .webhooks)
+    }
 
     func testResolvePackageNameXcodeCloud() {
         XCTAssertEqual(PackageName.resolvePackageName(from: "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/CiFun"), .xcodeCloud)
