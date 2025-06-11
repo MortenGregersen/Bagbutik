@@ -185,6 +185,12 @@ In the OpenAPI spec (and documentation) for the App Store Connect API the `purch
 
 In version 4.0 of the App Store Connect API spec, the the properties of the AgeRatingDeclaration.Attributes type schema, does not have the “INFREQUENT_OR_MILD” and ”FREQUENT_OR_INTENSE”, as can be seen in the documentation, and was present in previous versions of the spec. Now the only possible value is “NONE”.
 
+### **FB17925890**: The "ageRatingOverride" property of "AgeRatingDeclaration.Attributes" is missing
+
+* Submitted: June 11th 2025.
+
+In version 4.0 of the App Store Connect API spec, the the “ageRatingOverride” property of the AgeRatingDeclaration.Attributes schema has disappeared.
+
 ### Closed feedback (removed patches)
 
 * **FB9963088**: The xcodeMetrics schema has no properties or attributes in the OpenAPI spec

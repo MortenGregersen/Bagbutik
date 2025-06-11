@@ -258,9 +258,11 @@ public struct Spec: Decodable {
             appEventAttributesSchema.properties["purchaseRequirement"] = purchaseRequirementProperty
             appEventSchema.properties["attributes"]?.type = .schema(appEventAttributesSchema)
             components.schemas["AppEvent"] = .object(appEventSchema)
+            patchedSchemas.append(.object(appEventSchema))
         }
 
         // FB17874677: Adds "INFREQUENT_OR_MILD" and "FREQUENT_OR_INTENSE" to AgeRatingDeclaration.Attributes properties.
+        // FB17925890: Adds "ageRatingOverride" property to AgeRatingDeclaration.Attributes.
         if case .object(var ageRatingDeclarationSchema) = components.schemas["AgeRatingDeclaration"],
            case .schema(var ageRatingDeclarationAttributesSchema) = ageRatingDeclarationSchema.properties["attributes"]?.type {
             let missingCases = [
@@ -277,8 +279,16 @@ public struct Spec: Decodable {
                     ageRatingDeclarationAttributesSchema.properties[propertyName] = property
                 }
             }
+            if ageRatingDeclarationAttributesSchema.properties["ageRatingOverride"] == nil {
+                ageRatingDeclarationAttributesSchema.properties["ageRatingOverride"] = .init(
+                    type: .enumSchema(EnumSchema(
+                        name: "AgeRatingOverride",
+                        type: "String",
+                        caseValues: ["NONE", "SEVENTEEN_PLUS", "UNRATED"])))
+            }
             ageRatingDeclarationSchema.properties["attributes"]?.type = .schema(ageRatingDeclarationAttributesSchema)
             components.schemas["AgeRatingDeclaration"] = .object(ageRatingDeclarationSchema)
+            patchedSchemas.append(.object(ageRatingDeclarationSchema))
         }
 
         // Remove "StringToStringMap" - this is replaced with a [String: String] in the generated code

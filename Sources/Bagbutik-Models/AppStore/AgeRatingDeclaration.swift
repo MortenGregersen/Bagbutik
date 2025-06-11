@@ -46,6 +46,7 @@ public struct AgeRatingDeclaration: Codable, Sendable, Identifiable {
     }
 
     public struct Attributes: Codable, Sendable {
+        public var ageRatingOverride: AgeRatingOverride?
         public var alcoholTobaccoOrDrugUseOrReferences: AlcoholTobaccoOrDrugUseOrReferences?
         public var contests: Contests?
         public var gambling: Bool?
@@ -64,7 +65,8 @@ public struct AgeRatingDeclaration: Codable, Sendable, Identifiable {
         public var violenceRealistic: ViolenceRealistic?
         public var violenceRealisticProlongedGraphicOrSadistic: ViolenceRealisticProlongedGraphicOrSadistic?
 
-        public init(alcoholTobaccoOrDrugUseOrReferences: AlcoholTobaccoOrDrugUseOrReferences? = nil,
+        public init(ageRatingOverride: AgeRatingOverride? = nil,
+                    alcoholTobaccoOrDrugUseOrReferences: AlcoholTobaccoOrDrugUseOrReferences? = nil,
                     contests: Contests? = nil,
                     gambling: Bool? = nil,
                     gamblingSimulated: GamblingSimulated? = nil,
@@ -82,6 +84,7 @@ public struct AgeRatingDeclaration: Codable, Sendable, Identifiable {
                     violenceRealistic: ViolenceRealistic? = nil,
                     violenceRealisticProlongedGraphicOrSadistic: ViolenceRealisticProlongedGraphicOrSadistic? = nil)
         {
+            self.ageRatingOverride = ageRatingOverride
             self.alcoholTobaccoOrDrugUseOrReferences = alcoholTobaccoOrDrugUseOrReferences
             self.contests = contests
             self.gambling = gambling
@@ -103,6 +106,7 @@ public struct AgeRatingDeclaration: Codable, Sendable, Identifiable {
 
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: AnyCodingKey.self)
+            ageRatingOverride = try container.decodeIfPresent(AgeRatingOverride.self, forKey: "ageRatingOverride")
             alcoholTobaccoOrDrugUseOrReferences = try container.decodeIfPresent(AlcoholTobaccoOrDrugUseOrReferences.self, forKey: "alcoholTobaccoOrDrugUseOrReferences")
             contests = try container.decodeIfPresent(Contests.self, forKey: "contests")
             gambling = try container.decodeIfPresent(Bool.self, forKey: "gambling")
@@ -124,6 +128,7 @@ public struct AgeRatingDeclaration: Codable, Sendable, Identifiable {
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: AnyCodingKey.self)
+            try container.encodeIfPresent(ageRatingOverride, forKey: "ageRatingOverride")
             try container.encodeIfPresent(alcoholTobaccoOrDrugUseOrReferences, forKey: "alcoholTobaccoOrDrugUseOrReferences")
             try container.encodeIfPresent(contests, forKey: "contests")
             try container.encodeIfPresent(gambling, forKey: "gambling")
@@ -141,6 +146,12 @@ public struct AgeRatingDeclaration: Codable, Sendable, Identifiable {
             try container.encodeIfPresent(violenceCartoonOrFantasy, forKey: "violenceCartoonOrFantasy")
             try container.encodeIfPresent(violenceRealistic, forKey: "violenceRealistic")
             try container.encodeIfPresent(violenceRealisticProlongedGraphicOrSadistic, forKey: "violenceRealisticProlongedGraphicOrSadistic")
+        }
+
+        public enum AgeRatingOverride: String, Sendable, Codable, CaseIterable {
+            case none = "NONE"
+            case seventeenPlus = "SEVENTEEN_PLUS"
+            case unrated = "UNRATED"
         }
 
         public enum AlcoholTobaccoOrDrugUseOrReferences: String, Sendable, Codable, CaseIterable {
