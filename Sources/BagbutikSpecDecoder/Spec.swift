@@ -299,7 +299,7 @@ public struct Spec: Decodable {
             }
         }
 
-        // FB16908301: Adds list og `PurchaseRequirement` to `AppEvent`.
+        // FB16908301: Adds list of `PurchaseRequirement` to `AppEvent`.
         if case .object(var appEventSchema) = components.schemas["AppEvent"],
            case .schema(var appEventAttributesSchema) = appEventSchema.properties["attributes"]?.type,
            var purchaseRequirementProperty = appEventAttributesSchema.properties["purchaseRequirement"],
@@ -407,26 +407,26 @@ public struct Spec: Decodable {
             "/v1/subscriptions/{id}/offerCodes",
         ]
         for path in pathsMissingTotalNumberOfCodesFieldParameter {
-            if var getAppInfo = paths[path],
-               let operationIndex = getAppInfo.operations.firstIndex(where: { $0.method == .get }),
-               let parameterIndex = getAppInfo.operations[operationIndex].parameters?.firstIndex(where: {
+            if var getPath = paths[path],
+               let operationIndex = getPath.operations.firstIndex(where: { $0.method == .get }),
+               let parameterIndex = getPath.operations[operationIndex].parameters?.firstIndex(where: {
                    if case .fields(let name, _, _, _) = $0 {
                        name == "subscriptionOfferCodes"
                    } else {
                        false
                    }
                }),
-               case .fields(let name, let type, let deprecated, let documentation) = getAppInfo.operations[operationIndex].parameters?[parameterIndex],
+               case .fields(let name, let type, let deprecated, let documentation) = getPath.operations[operationIndex].parameters?[parameterIndex],
                case .enum(let valueType, var values) = type {
-                var operation = getAppInfo.operations[operationIndex]
+                var operation = getPath.operations[operationIndex]
                 values.append("totalNumberOfCodes")
                 operation.parameters?[parameterIndex] = .fields(
                     name: name,
                     type: .enum(type: valueType, values: values),
                     deprecated: deprecated,
                     documentation: documentation)
-                getAppInfo.operations[operationIndex] = operation
-                paths[path] = getAppInfo
+                getPath.operations[operationIndex] = operation
+                paths[path] = getPath
             }
         }
 

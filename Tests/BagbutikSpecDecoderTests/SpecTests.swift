@@ -745,6 +745,223 @@ final class SpecTests: XCTestCase {
                         "required" : true
                     } ]
                 },
+                "/v1/subscriptions/{id}" : {
+                    "get" : {
+                        "tags" : [ "Subscriptions" ],
+                        "operationId" : "subscriptions_getInstance",
+                        "parameters" : [ {
+                            "name" : "limit[winBackOffers]",
+                            "in" : "query",
+                            "description" : "maximum number of related winBackOffers returned (when they are included)",
+                            "schema" : {
+                                "type" : "integer",
+                                "maximum" : 50
+                            },
+                            "style" : "form",
+                            "required" : false
+                        }, {
+                            "name" : "fields[subscriptionOfferCodes]",
+                            "in" : "query",
+                            "description" : "the fields to include for returned resources of type subscriptionOfferCodes",
+                            "schema" : {
+                                "type" : "array",
+                                "items" : {
+                                    "type" : "string",
+                                    "enum" : [ "name", "customerEligibilities", "offerEligibility", "duration", "offerMode", "numberOfPeriods", "active", "subscription", "oneTimeUseCodes", "customCodes", "prices" ]
+                                }
+                            },
+                            "style" : "form",
+                            "explode" : false,
+                            "required" : false
+                        } ],
+                        "responses" : {
+                            "404" : {
+                                "description" : "Not found error",
+                                "content" : {
+                                    "application/json" : {
+                                        "schema" : {
+                                            "$ref" : "#/components/schemas/ErrorResponse"
+                                        }
+                                    }
+                                }
+                            },
+                            "200" : {
+                                "description" : "Single Subscription",
+                                "content" : {
+                                    "application/json" : {
+                                        "schema" : {
+                                            "$ref" : "#/components/schemas/SubscriptionResponse"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "/v1/appInfos/{id}" : {
+                    "get" : {
+                        "tags" : [ "AppInfos" ],
+                        "operationId" : "appInfos_getInstance",
+                        "parameters" : [ {
+                            "name" : "include",
+                            "in" : "query",
+                            "description" : "comma-separated list of relationships to include",
+                            "schema" : {
+                                "type" : "array",
+                                "items" : {
+                                    "type" : "string",
+                                    "enum" : [ "app", "ageRatingDeclaration", "appInfoLocalizations", "primaryCategory", "primarySubcategoryOne", "primarySubcategoryTwo", "secondaryCategory", "secondarySubcategoryOne", "secondarySubcategoryTwo" ]
+                                }
+                            },
+                            "style" : "form",
+                            "explode" : false,
+                            "required" : false
+                        }, {
+                            "name" : "fields[ageRatingDeclarations]",
+                            "in" : "query",
+                            "description" : "the fields to include for returned resources of type ageRatingDeclarations",
+                            "schema" : {
+                                "type" : "array",
+                                "items" : {
+                                    "type" : "string",
+                                    "enum" : [ "alcoholTobaccoOrDrugUseOrReferences", "contests", "gambling", "gamblingSimulated", "kidsAgeBand", "lootBox", "medicalOrTreatmentInformation", "profanityOrCrudeHumor", "sexualContentGraphicAndNudity", "sexualContentOrNudity", "horrorOrFearThemes", "matureOrSuggestiveThemes", "unrestrictedWebAccess", "violenceCartoonOrFantasy", "violenceRealisticProlongedGraphicOrSadistic", "violenceRealistic", "koreaAgeRatingOverride" ]
+                                }
+                            },
+                            "style" : "form",
+                            "explode" : false,
+                            "required" : false,
+                            "deprecated" : true
+                        } ],
+                        "responses" : {
+                            "404" : {
+                                "description" : "Not found error",
+                                "content" : {
+                                    "application/json" : {
+                                        "schema" : {
+                                            "$ref" : "#/components/schemas/ErrorResponse"
+                                        }
+                                    }
+                                }
+                            },
+                            "200" : {
+                                "description" : "Single AppInfo",
+                                "content" : {
+                                    "application/json" : {
+                                        "schema" : {
+                                            "$ref" : "#/components/schemas/AppInfoResponse"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "/v1/apps/{id}/customerReviews" : {
+                    "get" : {
+                        "tags" : [ "Apps" ],
+                        "operationId" : "apps_customerReviews_getToManyRelated",
+                        "parameters" : [ {
+                            "name" : "include",
+                            "in" : "query",
+                            "description" : "comma-separated list of relationships to include",
+                            "schema" : {
+                                "type" : "array",
+                                "items" : {
+                                    "type" : "string",
+                                    "enum" : [ "response" ]
+                                }
+                            },
+                            "style" : "form",
+                            "explode" : false
+                        }, {
+                            "name" : "filter[territory]",
+                            "in" : "query",
+                            "description" : "filter by attribute 'territory'",
+                            "schema" : {
+                                "type" : "array",
+                                "items" : {
+                                    "type" : "string",
+                                    "enum" : [ "ABW", "AFG", "AGO", "AIA", "ALB", "AND", "ANT", "ARE", "ARG", "ARM", "ASM", "ATG", "AUS", "AUT", "AZE", "BDI", "BEL", "BEN", "BES", "BFA", "BGD", "BGR", "BHR", "BHS", "BIH", "BLR", "BLZ", "BMU", "BOL", "BRA", "BRB", "BRN", "BTN", "BWA", "CAF", "CAN", "CHE", "CHL", "CHN", "CIV", "CMR", "COD", "COG", "COK", "COL", "COM", "CPV", "CRI", "CUB", "CUW", "CXR", "CYM", "CYP", "CZE", "DEU", "DJI", "DMA", "DNK", "DOM", "DZA", "ECU", "EGY", "ERI", "ESP", "EST", "ETH", "FIN", "FJI", "FLK", "FRA", "FRO", "FSM", "GAB", "GBR", "GEO", "GGY", "GHA", "GIB", "GIN", "GLP", "GMB", "GNB", "GNQ", "GRC", "GRD", "GRL", "GTM", "GUF", "GUM", "GUY", "HKG", "HND", "HRV", "HTI", "HUN", "IDN", "IMN", "IND", "IRL", "IRQ", "ISL", "ISR", "ITA", "JAM", "JEY", "JOR", "JPN", "KAZ", "KEN", "KGZ", "KHM", "KIR", "KNA", "KOR", "KWT", "LAO", "LBN", "LBR", "LBY", "LCA", "LIE", "LKA", "LSO", "LTU", "LUX", "LVA", "MAC", "MAR", "MCO", "MDA", "MDG", "MDV", "MEX", "MHL", "MKD", "MLI", "MLT", "MMR", "MNE", "MNG", "MNP", "MOZ", "MRT", "MSR", "MTQ", "MUS", "MWI", "MYS", "MYT", "NAM", "NCL", "NER", "NFK", "NGA", "NIC", "NIU", "NLD", "NOR", "NPL", "NRU", "NZL", "OMN", "PAK", "PAN", "PER", "PHL", "PLW", "PNG", "POL", "PRI", "PRT", "PRY", "PSE", "PYF", "QAT", "REU", "ROU", "RUS", "RWA", "SAU", "SEN", "SGP", "SHN", "SLB", "SLE", "SLV", "SMR", "SOM", "SPM", "SRB", "SSD", "STP", "SUR", "SVK", "SVN", "SWE", "SWZ", "SXM", "SYC", "TCA", "TCD", "TGO", "THA", "TJK", "TKM", "TLS", "TON", "TTO", "TUN", "TUR", "TUV", "TWN", "TZA", "UGA", "UKR", "UMI", "URY", "USA", "UZB", "VAT", "VCT", "VEN", "VGB", "VIR", "VNM", "VUT", "WLF", "WSM", "YEM", "ZAF", "ZMB", "ZWE" ]
+                                }
+                            },
+                            "style" : "form",
+                            "explode" : false
+                        } ],
+                        "responses" : {
+                            "404" : {
+                                "description" : "Not found error",
+                                "content" : {
+                                    "application/json" : {
+                                        "schema" : {
+                                            "$ref" : "#/components/schemas/ErrorResponse"
+                                        }
+                                    }
+                                }
+                            },
+                            "200" : {
+                                "description" : "Single AppInfo",
+                                "content" : {
+                                    "application/json" : {
+                                        "schema" : {
+                                            "$ref" : "#/components/schemas/AppInfoResponse"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "/v1/devices" : {
+                    "get" : {
+                        "tags" : [ "Devices" ],
+                        "operationId" : "devices_getCollection",
+                        "parameters" : [ {
+                            "name" : "limit",
+                            "in" : "query",
+                            "description" : "maximum resources per page",
+                            "schema" : {
+                                "type" : "integer",
+                                "maximum" : 200
+                            },
+                            "style" : "form"
+                        }, {
+                            "name" : "filter[platform]",
+                            "in" : "query",
+                            "description" : "filter by attribute 'platform'",
+                            "schema" : {
+                                "type" : "array",
+                                "items" : {
+                                    "type" : "string",
+                                    "enum" : [ "IOS", "MAC_OS", "UNIVERSAL" ]
+                                }
+                            },
+                            "style" : "form",
+                            "explode" : false
+                        } ],
+                        "responses" : {
+                            "404" : {
+                                "description" : "Not found error",
+                                "content" : {
+                                    "application/json" : {
+                                        "schema" : {
+                                            "$ref" : "#/components/schemas/ErrorResponse"
+                                        }
+                                    }
+                                }
+                            },
+                            "200" : {
+                                "description" : "Single AppInfo",
+                                "content" : {
+                                    "application/json" : {
+                                        "schema" : {
+                                            "$ref" : "#/components/schemas/AppInfoResponse"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
             },
             "components": {
                 "schemas": {
@@ -925,6 +1142,31 @@ final class SpecTests: XCTestCase {
                             }
                         },
                         "required" : [ "id", "type" ]
+                    },
+                    "SubscriptionOfferCode" : {
+                        "type" : "object",
+                        "title" : "SubscriptionOfferCode",
+                        "properties" : {
+                            "type" : {
+                                "type" : "string",
+                                "enum" : [ "subscriptionOfferCodes" ]
+                            },
+                            "id" : {
+                                "type" : "string"
+                            },
+                            "attributes" : {
+                                "type" : "object",
+                                "properties" : {}
+                            },
+                            "relationships" : {
+                                "type" : "object",
+                                "properties" : {}
+                            },
+                            "links" : {
+                                "$ref" : "#/components/schemas/ResourceLinks"
+                            }
+                        },
+                        "required" : [ "id", "type" ]
                     }
                 }
             }
@@ -933,7 +1175,7 @@ final class SpecTests: XCTestCase {
         let jsonDecoder = JSONDecoder()
         var spec = try jsonDecoder.decode(Spec.self, from: specString.data(using: .utf8)!)
         try spec.applyManualPatches()
-        XCTAssertEqual(spec.paths.count, 0)
+        XCTAssertEqual(spec.paths.count, 4)
 
         guard case .enum(let bundleIdPlatformSchema) = spec.components.schemas["BundleIdPlatform"] else {
             XCTFail(); return
@@ -1036,6 +1278,13 @@ final class SpecTests: XCTestCase {
                            EnumCase(id: "seventeenPlus", value: "SEVENTEEN_PLUS"),
                            EnumCase(id: "unrated", value: "UNRATED"),
                        ])
+        
+        guard case .object(let subscriptionOfferCodeSchema) = spec.components.schemas["SubscriptionOfferCode"],
+              case .schema(let subscriptionOfferCodeAttributesSchema) = subscriptionOfferCodeSchema.properties["attributes"]?.type
+        else {
+            XCTFail(); return
+        }
+        XCTAssertTrue(subscriptionOfferCodeAttributesSchema.properties.count == 1)
     }
 
     func testApplyManualPatches_Error() throws {
