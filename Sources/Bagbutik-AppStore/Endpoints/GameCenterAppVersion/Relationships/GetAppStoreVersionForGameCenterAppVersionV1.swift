@@ -62,6 +62,7 @@ public enum GetAppStoreVersionForGameCenterAppVersionV1 {
         case routingAppCoverages([RoutingAppCoverages])
 
         public enum AgeRatingDeclarations: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case ageRatingOverride
             case alcoholTobaccoOrDrugUseOrReferences
             case contests
             case gambling

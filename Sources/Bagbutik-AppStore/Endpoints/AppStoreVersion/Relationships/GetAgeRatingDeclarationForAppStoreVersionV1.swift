@@ -32,6 +32,7 @@ public enum GetAgeRatingDeclarationForAppStoreVersionV1 {
         case ageRatingDeclarations([AgeRatingDeclarations])
 
         public enum AgeRatingDeclarations: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case ageRatingOverride
             case alcoholTobaccoOrDrugUseOrReferences
             case contests
             case gambling
