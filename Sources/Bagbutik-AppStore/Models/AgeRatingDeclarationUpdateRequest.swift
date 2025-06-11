@@ -56,6 +56,7 @@ public struct AgeRatingDeclarationUpdateRequest: Codable, Sendable, RequestBody 
         }
 
         public struct Attributes: Codable, Sendable {
+            public var ageRatingOverride: AgeRatingOverride?
             public var alcoholTobaccoOrDrugUseOrReferences: AgeRatingDeclaration.Attributes.AlcoholTobaccoOrDrugUseOrReferences?
             public var contests: AgeRatingDeclaration.Attributes.Contests?
             public var gambling: Bool?
@@ -74,7 +75,8 @@ public struct AgeRatingDeclarationUpdateRequest: Codable, Sendable, RequestBody 
             public var violenceRealistic: AgeRatingDeclaration.Attributes.ViolenceRealistic?
             public var violenceRealisticProlongedGraphicOrSadistic: AgeRatingDeclaration.Attributes.ViolenceRealisticProlongedGraphicOrSadistic?
 
-            public init(alcoholTobaccoOrDrugUseOrReferences: AgeRatingDeclaration.Attributes.AlcoholTobaccoOrDrugUseOrReferences? = nil,
+            public init(ageRatingOverride: AgeRatingOverride? = nil,
+                        alcoholTobaccoOrDrugUseOrReferences: AgeRatingDeclaration.Attributes.AlcoholTobaccoOrDrugUseOrReferences? = nil,
                         contests: AgeRatingDeclaration.Attributes.Contests? = nil,
                         gambling: Bool? = nil,
                         gamblingSimulated: AgeRatingDeclaration.Attributes.GamblingSimulated? = nil,
@@ -92,6 +94,7 @@ public struct AgeRatingDeclarationUpdateRequest: Codable, Sendable, RequestBody 
                         violenceRealistic: AgeRatingDeclaration.Attributes.ViolenceRealistic? = nil,
                         violenceRealisticProlongedGraphicOrSadistic: AgeRatingDeclaration.Attributes.ViolenceRealisticProlongedGraphicOrSadistic? = nil)
             {
+                self.ageRatingOverride = ageRatingOverride
                 self.alcoholTobaccoOrDrugUseOrReferences = alcoholTobaccoOrDrugUseOrReferences
                 self.contests = contests
                 self.gambling = gambling
@@ -113,6 +116,7 @@ public struct AgeRatingDeclarationUpdateRequest: Codable, Sendable, RequestBody 
 
             public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                ageRatingOverride = try container.decodeIfPresent(AgeRatingOverride.self, forKey: "ageRatingOverride")
                 alcoholTobaccoOrDrugUseOrReferences = try container.decodeIfPresent(AgeRatingDeclaration.Attributes.AlcoholTobaccoOrDrugUseOrReferences.self, forKey: "alcoholTobaccoOrDrugUseOrReferences")
                 contests = try container.decodeIfPresent(AgeRatingDeclaration.Attributes.Contests.self, forKey: "contests")
                 gambling = try container.decodeIfPresent(Bool.self, forKey: "gambling")
@@ -134,6 +138,7 @@ public struct AgeRatingDeclarationUpdateRequest: Codable, Sendable, RequestBody 
 
             public func encode(to encoder: Encoder) throws {
                 var container = encoder.container(keyedBy: AnyCodingKey.self)
+                try container.encodeIfPresent(ageRatingOverride, forKey: "ageRatingOverride")
                 try container.encodeIfPresent(alcoholTobaccoOrDrugUseOrReferences, forKey: "alcoholTobaccoOrDrugUseOrReferences")
                 try container.encodeIfPresent(contests, forKey: "contests")
                 try container.encodeIfPresent(gambling, forKey: "gambling")
@@ -151,6 +156,12 @@ public struct AgeRatingDeclarationUpdateRequest: Codable, Sendable, RequestBody 
                 try container.encodeIfPresent(violenceCartoonOrFantasy, forKey: "violenceCartoonOrFantasy")
                 try container.encodeIfPresent(violenceRealistic, forKey: "violenceRealistic")
                 try container.encodeIfPresent(violenceRealisticProlongedGraphicOrSadistic, forKey: "violenceRealisticProlongedGraphicOrSadistic")
+            }
+
+            public enum AgeRatingOverride: String, Sendable, Codable, CaseIterable {
+                case none = "NONE"
+                case seventeenPlus = "SEVENTEEN_PLUS"
+                case unrated = "UNRATED"
             }
         }
     }
