@@ -35,7 +35,7 @@ class PackageNameTests: XCTestCase {
     }
     
     func testResolvePackageNameWebhooks() {
-        XCTAssertEqual(PackageName.resolvePackageName(from: "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/WebHookBob"), .webhooks)
+        XCTAssertEqual(PackageName.resolvePackageName(from: "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/WebhookBob"), .webhooks)
     }
 
     func testResolvePackageNameXcodeCloud() {

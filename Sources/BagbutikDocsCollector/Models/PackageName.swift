@@ -35,41 +35,51 @@ public enum PackageName: CaseIterable, Codable, Equatable {
         // Form of identifier: doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-betaAppReviewDetails-_id_-app
         guard let identifier = identifier.components(separatedBy: "/").last else { return nil }
         let resource: String?
-        if (identifier.hasSuffix("Request") || identifier.hasSuffix("Response")) && !identifier.hasPrefix("POST") {
-            if identifier.hasSuffix("LinkagesRequest") || identifier.hasSuffix("LinkagesResponse") {
-                let possibleResourceComponents = Array(identifier.splitCamelCase().dropLast(2).dropFirst())
-                for i in 0 ..< possibleResourceComponents.count {
-                    let subset = possibleResourceComponents[i...].joined()
-                    if let packageName = resolvePackageName(from: subset) {
-                        return packageName
-                    }
-                }
+        if identifier.hasSuffix("Request") || identifier.hasSuffix("Response"), !identifier.hasPrefix("POST") {
+            if identifier.hasSuffix("LinkagesRequest") || identifier.hasSuffix("LinkagesResponse")
+                || identifier.hasSuffix("LinkageRequest") || identifier.hasSuffix("LinkageResponse") {
                 return nil
             } else {
                 resource = identifier.lowercasedFirstLetter()
             }
         } else {
-            resource = identifier.split(separator: "-").filter { $0 != "_id_" }.map(String.init).last?.lowercasedFirstLetter()
+            resource = identifier
+                .split(separator: "-")
+                .filter { $0 != "_id_" }
+                .map(String.init)
+                .last?.lowercasedFirstLetter()
         }
         guard let resource else { return nil }
+        return resolvePackageName(from: resource, identifier: identifier)
+    }
+
+    private static func resolvePackageName(from resource: String, identifier: String) -> PackageName? {
         if resource.hasPrefix("accessibilityDeclaration")
             || resource.hasPrefix("actor")
             || resource.lowercased().contains("agerating")
+            || resource.hasPrefix("asset")
             || resource.hasPrefix("backgroundAsset")
-            || (resource.hasPrefix("build") && !resource.hasPrefix("buildBeta") && !resource.hasPrefix("buildRun"))
+            || (resource.hasPrefix("build")
+                && !identifier.lowercased().contains("buildbeta")
+                && !resource.hasPrefix("buildRun")
+                && !resource.hasPrefix("buildAction"))
+            || resource == "build"
+            || resource == "builds"
+            || resource.hasSuffix("Build")
+            || resource.hasSuffix("Builds")
             || (resource.hasPrefix("app") && !resource.lowercased().contains("beta"))
             || resource.hasPrefix("automaticPrices")
             || resource.hasPrefix("baseTerritory")
             || resource.hasPrefix("brazil")
-            || resource.hasPrefix("customCode")
-            || resource.hasPrefix("customer")
+            || resource.hasPrefix("custom")
             || resource.hasPrefix("content")
             || resource.lowercased().contains("deliveryfile")
             || resource.hasPrefix("end")
             || resource.hasPrefix("equalizations")
             || resource.hasPrefix("iap")
             || resource.hasPrefix("icon")
-            || resource.hasPrefix("image")
+            || (resource.hasPrefix("image")
+                && !identifier.lowercased().contains("gamecenter"))
             || resource.hasPrefix("inAppPurchase")
             || resource.hasPrefix("introductoryOffer")
             || resource.hasPrefix("item")
@@ -92,29 +102,40 @@ public enum PackageName: CaseIterable, Codable, Equatable {
             || resource.hasPrefix("routingAppCoverage")
             || resource.hasPrefix("screenshot")
             || resource.hasPrefix("secondary")
+            || (resource.hasPrefix("storeVersion")
+                && !identifier.lowercased().contains("alternativedistribution")
+                && !identifier.lowercased().contains("gamecenterappversion"))
             || resource.hasPrefix("subcategories")
             || resource.hasPrefix("subscription")
             || resource.lowercased().contains("territor")
             || resource.hasPrefix("value")
+            || (resource.hasPrefix("version")
+                && identifier.contains("backgroundAsset"))
             || resource.hasPrefix("visibleApp")
             || resource.hasPrefix("winBackOffer") {
             return .appStore
         } else if resource.lowercased().contains("achievement")
-            || resource.hasPrefix("activity")
+            || resource.lowercased().contains("activit")
             || resource.lowercased().contains("challenge")
             || resource.lowercased().contains("compatibleversion")
             || resource.lowercased().contains("compatibilityversion")
             || resource.hasPrefix("defaultImage")
             || resource.hasPrefix("gameCenter")
+            || resource.hasPrefix("image")
             || resource.hasPrefix("localization")
             || resource.lowercased().contains("leaderboard")
             || resource.lowercased().contains("matchmaking")
             || resource == "property"
             || resource.hasPrefix("release")
             || resource.lowercased().contains("rule")
-            || resource.hasPrefix("team") {
+            || resource.hasPrefix("team")
+            || (resource.hasPrefix("version")
+                && identifier.lowercased().contains("gamecenter")) {
             return .gameCenter
         } else if resource.lowercased().contains("beta")
+            || (resource.hasPrefix("build")
+                && !identifier.lowercased().contains("buildaction")
+                && !identifier.lowercased().contains("buildrun"))
             || resource.hasPrefix("crashLog")
             || resource.hasPrefix("individualTester")
             || resource.lowercased().hasPrefix("prerelease")
@@ -123,7 +144,9 @@ public enum PackageName: CaseIterable, Codable, Equatable {
             return .testFlight
         } else if resource.hasPrefix("alternative")
             || resource.hasPrefix("marketplace")
-            || resource.hasPrefix("version")
+            || (resource.hasPrefix("version")
+                && !identifier.lowercased().contains("prerelease")
+                && !identifier.contains("XcodeVersion"))
             || resource.hasPrefix("delta")
             || resource.hasPrefix("variant") {
             return .marketplaces

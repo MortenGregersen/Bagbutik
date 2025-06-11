@@ -26,6 +26,7 @@ final class GeneratorTests: XCTestCase {
     components: .init(schemas: [
         "UsersResponse": .object(.init(name: "UsersResponse", url: "some://url", properties: ["users": .init(type: .arrayOfSchemaRef("User"))])),
         "ReplaceUsersResponse": .enum(.init(name: "ReplaceUsersResponse", type: "String", caseValues: ["none", "some"])),
+        "BuildAppLinkageResponse": .enum(.init(name: "BuildAppLinkageResponse", type: "String", caseValues: ["none", "some"])),
         "Gzip": .binary(.init(name: "Gzip", url: "other://url")),
         "Csv": .plainText(.init(name: "Csv", url: "other://url")),
         "ErrorResponse": .object(.init(name: "ErrorResponse", url: "some://url"))
@@ -63,6 +64,8 @@ final class GeneratorTests: XCTestCase {
             "/Users/steve/output/Bagbutik-Models/TestFlight",
             "/Users/steve/output/Bagbutik-Users",
             "/Users/steve/output/Bagbutik-Models/Users",
+            "/Users/steve/output/Bagbutik-Webhooks",
+            "/Users/steve/output/Bagbutik-Models/Webhooks",
             "/Users/steve/output/Bagbutik-XcodeCloud",
             "/Users/steve/output/Bagbutik-Models/XcodeCloud"
         ])
@@ -73,6 +76,7 @@ final class GeneratorTests: XCTestCase {
             "/Users/steve/output/Bagbutik-GameCenter",
             "/Users/steve/output/Bagbutik-Marketplaces",
             "/Users/steve/output/Bagbutik-Models",
+            "/Users/steve/output/Bagbutik-Models/LinkageResponses",
             "/Users/steve/output/Bagbutik-Provisioning",
             "/Users/steve/output/Bagbutik-Reporting",
             "/Users/steve/output/Bagbutik-TestFlight",
@@ -80,9 +84,11 @@ final class GeneratorTests: XCTestCase {
             "/Users/steve/output/Bagbutik-Users/Endpoints/Users",
             "/Users/steve/output/Bagbutik-Users/Endpoints/Users/Relationships",
             "/Users/steve/output/Bagbutik-Users/Models",
+            "/Users/steve/output/Bagbutik-Webhooks",
             "/Users/steve/output/Bagbutik-XcodeCloud"
         ])
         XCTAssertEqual(fileManager.filesCreated.map(\.name).sorted(), [
+            "BuildAppLinkageResponse.swift",
             "Csv.swift",
             "ErrorResponse.swift",
             "Gzip.swift",
@@ -93,20 +99,21 @@ final class GeneratorTests: XCTestCase {
         ])
         let firstLogLine = await printer.printedLogs[0]
         let secondLogLine = await printer.printedLogs[1]
-        let nextLogLines = await printer.printedLogs[2 ... 8]
-        let lastLogLine = await printer.printedLogs[9]
+        let nextLogLines = await printer.printedLogs[2 ... 9]
+        let lastLogLine = await printer.printedLogs[10]
         XCTAssertEqual(firstLogLine, "🔍 Loading spec /Users/steve/spec.json...")
         XCTAssertEqual(secondLogLine, "🔍 Loading docs /Users/steve/documentation...")
         XCTAssertEqual(nextLogLines.sorted(), [
             "⚡️ Generating endpoint ListUsersV1...",
             "⚡️ Generating endpoint ListVisibleAppIdsForUserV2...",
+            "⚡️ Generating model BuildAppLinkageResponse...",
             "⚡️ Generating model Csv...",
             "⚡️ Generating model ErrorResponse...",
             "⚡️ Generating model Gzip...",
             "⚡️ Generating model ReplaceUsersResponse...",
             "⚡️ Generating model UsersResponse...",
         ])
-        XCTAssertEqual(lastLogLine, "🎉 Finished generating 2 endpoints and 5 models! 🎉")
+        XCTAssertEqual(lastLogLine, "🎉 Finished generating 2 endpoints and 6 models! 🎉")
     }
 
     func testInvalidSpecFileURL() async throws {
@@ -366,6 +373,15 @@ final class GeneratorTests: XCTestCase {
         title: "ReplaceUsersResponse"
     )
     
+    static let buildAppLinkageResponseDocumentation = ObjectDocumentation(
+        id: "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/buildapplinkageresponse",
+        hierarchy: .init(paths: [[
+            "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI",
+            "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store"
+        ]]),
+        title: "BuildAppLinkageResponse"
+    )
+    
     static let csvSchemaDocumentation = ObjectDocumentation(
         id: "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/csv",
         hierarchy: .init(paths: [[
@@ -405,6 +421,7 @@ final class GeneratorTests: XCTestCase {
                 "UsersResponse": usersResponseSchemaDocumentation.id,
                 "UserVisibleAppsLinkagesResponse": userVisibleAppsLinkagesResponseSchemaDocumentation.id,
                 "ReplaceUsersResponse": replaceUsersResponseSchemaDocumentation.id,
+                "BuildAppLinkageResponse": buildAppLinkageResponseDocumentation.id,
                 "Csv": csvSchemaDocumentation.id,
                 "Gzip": gzipSchemaDocumentation.id,
                 "ErrorResponse": errorResponseSchemaDocumentation.id
@@ -415,6 +432,7 @@ final class GeneratorTests: XCTestCase {
                 usersResponseSchemaDocumentation.id: Documentation.object(usersResponseSchemaDocumentation),
                 userVisibleAppsLinkagesResponseSchemaDocumentation.id: Documentation.object(userVisibleAppsLinkagesResponseSchemaDocumentation),
                 replaceUsersResponseSchemaDocumentation.id: Documentation.object(replaceUsersResponseSchemaDocumentation),
+                buildAppLinkageResponseDocumentation.id: Documentation.object(buildAppLinkageResponseDocumentation),
                 csvSchemaDocumentation.id: Documentation.object(csvSchemaDocumentation),
                 gzipSchemaDocumentation.id: Documentation.object(gzipSchemaDocumentation),
                 errorResponseSchemaDocumentation.id: Documentation.object(errorResponseSchemaDocumentation)
