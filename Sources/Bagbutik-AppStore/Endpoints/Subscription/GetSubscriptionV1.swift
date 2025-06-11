@@ -124,6 +124,7 @@ public enum GetSubscriptionV1 {
             case oneTimeUseCodes
             case prices
             case subscription
+            case totalNumberOfCodes
         }
 
         public enum SubscriptionPrices: String, Sendable, ParameterValue, Codable, CaseIterable {

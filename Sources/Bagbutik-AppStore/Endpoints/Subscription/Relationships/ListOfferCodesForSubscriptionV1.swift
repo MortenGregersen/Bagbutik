@@ -83,6 +83,7 @@ public enum ListOfferCodesForSubscriptionV1 {
             case oneTimeUseCodes
             case prices
             case subscription
+            case totalNumberOfCodes
         }
 
         public enum Subscriptions: String, Sendable, ParameterValue, Codable, CaseIterable {

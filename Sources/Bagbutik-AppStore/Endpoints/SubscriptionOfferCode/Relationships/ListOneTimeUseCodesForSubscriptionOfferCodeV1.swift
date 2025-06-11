@@ -60,6 +60,7 @@ public enum ListOneTimeUseCodesForSubscriptionOfferCodeV1 {
             case oneTimeUseCodes
             case prices
             case subscription
+            case totalNumberOfCodes
         }
     }
 

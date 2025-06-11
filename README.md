@@ -191,6 +191,12 @@ In version 4.0 of the App Store Connect API spec, the the properties of the AgeR
 
 In version 4.0 of the App Store Connect API spec, the the “ageRatingOverride” property of the AgeRatingDeclaration.Attributes schema has disappeared.
 
+### **FB17932433**: The "totalNumberOfCodes" property of "SubscriptionOfferCode.Attributes" is missing
+
+* Submitted: June 11th 2025.
+
+In version 4.0 of the App Store Connect API spec, the the “totalNumberOfCodes” property of the SubscriptionOfferCode.Attributes schema has disappeared.
+
 ### Closed feedback (removed patches)
 
 * **FB9963088**: The xcodeMetrics schema has no properties or attributes in the OpenAPI spec

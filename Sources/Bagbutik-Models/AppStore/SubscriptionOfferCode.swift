@@ -47,6 +47,7 @@ public struct SubscriptionOfferCode: Codable, Sendable, Identifiable {
         public var numberOfPeriods: Int?
         public var offerEligibility: SubscriptionOfferEligibility?
         public var offerMode: SubscriptionOfferMode?
+        public var totalNumberOfCodes: Int?
 
         public init(active: Bool? = nil,
                     customerEligibilities: [SubscriptionCustomerEligibility]? = nil,
@@ -54,7 +55,8 @@ public struct SubscriptionOfferCode: Codable, Sendable, Identifiable {
                     name: String? = nil,
                     numberOfPeriods: Int? = nil,
                     offerEligibility: SubscriptionOfferEligibility? = nil,
-                    offerMode: SubscriptionOfferMode? = nil)
+                    offerMode: SubscriptionOfferMode? = nil,
+                    totalNumberOfCodes: Int? = nil)
         {
             self.active = active
             self.customerEligibilities = customerEligibilities
@@ -63,6 +65,7 @@ public struct SubscriptionOfferCode: Codable, Sendable, Identifiable {
             self.numberOfPeriods = numberOfPeriods
             self.offerEligibility = offerEligibility
             self.offerMode = offerMode
+            self.totalNumberOfCodes = totalNumberOfCodes
         }
 
         public init(from decoder: Decoder) throws {
@@ -74,6 +77,7 @@ public struct SubscriptionOfferCode: Codable, Sendable, Identifiable {
             numberOfPeriods = try container.decodeIfPresent(Int.self, forKey: "numberOfPeriods")
             offerEligibility = try container.decodeIfPresent(SubscriptionOfferEligibility.self, forKey: "offerEligibility")
             offerMode = try container.decodeIfPresent(SubscriptionOfferMode.self, forKey: "offerMode")
+            totalNumberOfCodes = try container.decodeIfPresent(Int.self, forKey: "totalNumberOfCodes")
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -85,6 +89,7 @@ public struct SubscriptionOfferCode: Codable, Sendable, Identifiable {
             try container.encodeIfPresent(numberOfPeriods, forKey: "numberOfPeriods")
             try container.encodeIfPresent(offerEligibility, forKey: "offerEligibility")
             try container.encodeIfPresent(offerMode, forKey: "offerMode")
+            try container.encodeIfPresent(totalNumberOfCodes, forKey: "totalNumberOfCodes")
         }
     }
 
