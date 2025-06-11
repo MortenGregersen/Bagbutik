@@ -103,7 +103,7 @@ public struct Device: Codable, Sendable, Identifiable {
             case mac = "MAC"
         }
 
-        public enum Status: String, Sendable, ParameterValue, Codable, CaseIterable {
+        public enum Status: String, Sendable, Codable, CaseIterable {
             case disabled = "DISABLED"
             case enabled = "ENABLED"
             case processing = "PROCESSING"

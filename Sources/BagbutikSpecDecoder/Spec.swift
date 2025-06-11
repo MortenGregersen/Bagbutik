@@ -62,7 +62,7 @@ public struct Spec: Decodable {
     /**
      Flatten the schemas used in schemas for create request and update request and in filter parameters when they are identical to the schemas used in main type.
 
-     Eg. CreateProfile.Attributes.ProfileType is equal to Profile.Attributes.ProfileType, the first one should be removed and the latter one should be used.
+     Eg. ProfileCreateRequest.Attributes.ProfileType is equal to Profile.Attributes.ProfileType, the first one should be removed and the latter one should be used.
      */
     public mutating func flattenIdenticalSchemas() {
         for (pathKey, path) in paths {
@@ -78,7 +78,7 @@ public struct Spec: Decodable {
                         let parameterEnumSchema = EnumSchema(name: parameterName.capitalizingFirstLetter(), type: type.lowercased(), caseValues: values)
                         var newType: String?
                         if let enumSchema: EnumSchema = components.schemas.compactMap({ _, schema in
-                            if case .enum(let enumSchema) = schema, enumSchema.cases == parameterEnumSchema.cases {
+                            if case .enum(let enumSchema) = schema, enumSchema.cases.map(\.value) == parameterEnumSchema.cases.map(\.value) {
                                 return enumSchema
                             }
                             return nil
@@ -156,6 +156,30 @@ public struct Spec: Decodable {
             }
             components.schemas["BundleIdPlatform"] = .enum(bundleIdPlatformSchema)
             patchedSchemas.append(.enum(bundleIdPlatformSchema))
+        }
+        let pathsMissingServicesPlatformParameter = ["/v1/bundleIds", "/v1/devices"]
+        for path in pathsMissingServicesPlatformParameter {
+            if var getPath = paths[path],
+               let operationIndex = getPath.operations.firstIndex(where: { $0.method == .get }),
+               let parameterIndex = getPath.operations[operationIndex].parameters?.firstIndex(where: {
+                   if case .filter(let name, _, _, _) = $0 {
+                       name == "platform"
+                   } else {
+                       false
+                   }
+               }),
+               case .filter(let name, let type, let required, let documentation) = getPath.operations[operationIndex].parameters?[parameterIndex],
+               case .enum(let valueType, var values) = type {
+                var operation = getPath.operations[operationIndex]
+                values.append("SERVICES")
+                operation.parameters?[parameterIndex] = .filter(
+                    name: name,
+                    type: .enum(type: valueType, values: values),
+                    required: required,
+                    documentation: documentation)
+                getPath.operations[operationIndex] = operation
+                paths[path] = getPath
+            }
         }
 
         if case .object(var deviceSchema) = components.schemas["Device"],
@@ -246,6 +270,33 @@ public struct Spec: Decodable {
             territoryCode.cases.append(.init(id: "xks", value: "XKS"))
             components.schemas["TerritoryCode"] = .enum(territoryCode)
             patchedSchemas.append(.enum(territoryCode))
+        }
+        let pathsMissingKosovoTerritoryCode = [
+            "/v1/appStoreVersions/{id}/customerReviews",
+            "/v1/apps/{id}/customerReviews"
+        ]
+        for path in pathsMissingKosovoTerritoryCode {
+            if var getCustomerReviews = paths[path],
+               let operationIndex = getCustomerReviews.operations.firstIndex(where: { $0.method == .get }),
+               let parameterIndex = getCustomerReviews.operations[operationIndex].parameters?.firstIndex(where: {
+                   if case .filter(let name, _, _, _) = $0 {
+                       name == "territory"
+                   } else {
+                       false
+                   }
+               }),
+               case .filter(let name, let type, let required, let documentation) = getCustomerReviews.operations[operationIndex].parameters?[parameterIndex],
+               case .enum(let valueType, var values) = type {
+                var operation = getCustomerReviews.operations[operationIndex]
+                values.append("XKS")
+                operation.parameters?[parameterIndex] = .filter(
+                    name: name,
+                    type: .enum(type: valueType, values: values),
+                    required: required,
+                    documentation: documentation)
+                getCustomerReviews.operations[operationIndex] = operation
+                paths[path] = getCustomerReviews
+            }
         }
 
         // FB16908301: Adds list og `PurchaseRequirement` to `AppEvent`.

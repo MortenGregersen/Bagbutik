@@ -56,7 +56,7 @@ public struct AgeRatingDeclarationUpdateRequest: Codable, Sendable, RequestBody 
         }
 
         public struct Attributes: Codable, Sendable {
-            public var ageRatingOverride: AgeRatingOverride?
+            public var ageRatingOverride: AgeRatingDeclaration.Attributes.AgeRatingOverride?
             public var alcoholTobaccoOrDrugUseOrReferences: AgeRatingDeclaration.Attributes.AlcoholTobaccoOrDrugUseOrReferences?
             public var contests: AgeRatingDeclaration.Attributes.Contests?
             public var gambling: Bool?
@@ -75,7 +75,7 @@ public struct AgeRatingDeclarationUpdateRequest: Codable, Sendable, RequestBody 
             public var violenceRealistic: AgeRatingDeclaration.Attributes.ViolenceRealistic?
             public var violenceRealisticProlongedGraphicOrSadistic: AgeRatingDeclaration.Attributes.ViolenceRealisticProlongedGraphicOrSadistic?
 
-            public init(ageRatingOverride: AgeRatingOverride? = nil,
+            public init(ageRatingOverride: AgeRatingDeclaration.Attributes.AgeRatingOverride? = nil,
                         alcoholTobaccoOrDrugUseOrReferences: AgeRatingDeclaration.Attributes.AlcoholTobaccoOrDrugUseOrReferences? = nil,
                         contests: AgeRatingDeclaration.Attributes.Contests? = nil,
                         gambling: Bool? = nil,
@@ -116,7 +116,7 @@ public struct AgeRatingDeclarationUpdateRequest: Codable, Sendable, RequestBody 
 
             public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: AnyCodingKey.self)
-                ageRatingOverride = try container.decodeIfPresent(AgeRatingOverride.self, forKey: "ageRatingOverride")
+                ageRatingOverride = try container.decodeIfPresent(AgeRatingDeclaration.Attributes.AgeRatingOverride.self, forKey: "ageRatingOverride")
                 alcoholTobaccoOrDrugUseOrReferences = try container.decodeIfPresent(AgeRatingDeclaration.Attributes.AlcoholTobaccoOrDrugUseOrReferences.self, forKey: "alcoholTobaccoOrDrugUseOrReferences")
                 contests = try container.decodeIfPresent(AgeRatingDeclaration.Attributes.Contests.self, forKey: "contests")
                 gambling = try container.decodeIfPresent(Bool.self, forKey: "gambling")
@@ -156,12 +156,6 @@ public struct AgeRatingDeclarationUpdateRequest: Codable, Sendable, RequestBody 
                 try container.encodeIfPresent(violenceCartoonOrFantasy, forKey: "violenceCartoonOrFantasy")
                 try container.encodeIfPresent(violenceRealistic, forKey: "violenceRealistic")
                 try container.encodeIfPresent(violenceRealisticProlongedGraphicOrSadistic, forKey: "violenceRealisticProlongedGraphicOrSadistic")
-            }
-
-            public enum AgeRatingOverride: String, Sendable, Codable, CaseIterable {
-                case none = "NONE"
-                case seventeenPlus = "SEVENTEEN_PLUS"
-                case unrated = "UNRATED"
             }
         }
     }
