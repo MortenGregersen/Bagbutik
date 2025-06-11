@@ -2,18 +2,19 @@ public extension ExternalBetaState {
     /// A pretty name for the case.
     var prettyName: String {
         switch self {
-        case .processing: return "Processing"
-        case .processingException: return "Processing Exception"
-        case .missingExportCompliance: return "Missing Compliance"
-        case .readyForBetaTesting: return "Ready to Test"
-        case .inBetaTesting: return "Testing"
-        case .expired: return "Expired"
-        case .readyForBetaSubmission: return "Ready to Submit"
-        case .inExportComplianceReview: return "Waiting for Export Compliance Review"
-        case .waitingForBetaReview: return "Waiting for Review"
-        case .inBetaReview: return "In Beta Review"
-        case .betaRejected: return "Rejected"
-        case .betaApproved: return "Approved"
+        case .processing: "Processing"
+        case .processingException: "Processing Exception"
+        case .missingExportCompliance: "Missing Compliance"
+        case .readyForBetaTesting: "Ready to Test"
+        case .inBetaTesting: "Testing"
+        case .expired: "Expired"
+        case .readyForBetaSubmission: "Ready to Submit"
+        case .inExportComplianceReview: "Waiting for Export Compliance Review"
+        case .waitingForBetaReview: "Waiting for Review"
+        case .inBetaReview: "In Beta Review"
+        case .betaRejected: "Rejected"
+        case .betaApproved: "Approved"
+        case .notApplicable: "Not Applicable"
         }
     }
 }

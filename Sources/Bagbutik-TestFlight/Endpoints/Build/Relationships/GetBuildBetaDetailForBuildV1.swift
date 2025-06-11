@@ -54,6 +54,7 @@ public enum GetBuildBetaDetailForBuildV1 {
             case buildBetaDetail
             case buildBundles
             case computedMinMacOsVersion
+            case computedMinVisionOsVersion
             case diagnosticSignatures
             case expirationDate
             case expired

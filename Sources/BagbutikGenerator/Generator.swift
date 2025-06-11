@@ -45,8 +45,8 @@ public class Generator {
             let specData = try Data(contentsOf: fileUrl)
             var spec = try JSONDecoder().decode(Spec.self, from: specData)
             spec.addForgottenIncludeParameters()
-            spec.flattenIdenticalSchemas()
             try spec.applyManualPatches()
+            spec.flattenIdenticalSchemas()
             return spec
         }
         self.init(loadSpec: loadSpec, fileManager: FileManager.default, docsLoader: DocsLoader(), print: { Swift.print($0) })
@@ -139,7 +139,16 @@ public class Generator {
                     let packageName = try DocsLoader.resolvePackageName(for: documentation)
                     let model = try await Generator.generateModel(for: schema, packageName: packageName, otherSchemas: schemas, docsLoader: docsLoader)
                     let fileName = model.name + ".swift"
-                    let modelsDirURL: URL = if packageName == .core || schema.name.hasSuffix("Request") || schema.name.hasSuffix("Response") {
+
+                    let modelsDirURL: URL = if schema.name.hasSuffix("LinkagesRequest") || schema.name.hasSuffix("LinkageRequest") {
+                        outputDirURL
+                            .appendingPathComponent("Bagbutik-Models")
+                            .appendingPathComponent("LinkageRequests")
+                    } else if schema.name.hasSuffix("LinkagesResponse") || schema.name.hasSuffix("LinkageResponse") {
+                        outputDirURL
+                            .appendingPathComponent("Bagbutik-Models")
+                            .appendingPathComponent("LinkageResponses")
+                    } else if packageName == .core || schema.name.hasSuffix("Request") || schema.name.hasSuffix("Response") {
                         outputDirURL
                             .appendingPathComponent(packageName.name)
                             .appendingPathComponent("Models")
@@ -207,6 +216,9 @@ public class Generator {
             if schema.name.hasSuffix("Request") || schema.name.hasSuffix("Response") {
                 imports.append("import Bagbutik_Models")
             }
+        } else if schema.name.hasSuffix("LinkagesRequest") || schema.name.hasSuffix("LinkageRequest")
+            || schema.name.hasSuffix("LinkagesResponse") || schema.name.hasSuffix("LinkageResponse") {
+            imports.append("import Bagbutik_Core")
         }
         let contents = """
         \(imports.sorted().joined(separator: "\n"))

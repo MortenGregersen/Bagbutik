@@ -60,9 +60,14 @@ public enum ListDevicesV1 {
         /// Filter by attribute 'platform'
         case platform([BundleIdPlatform])
         /// Filter by attribute 'status'
-        case status([Device.Attributes.Status])
+        case status([Status])
         /// Filter by attribute 'udid'
         case udid([String])
+
+        public enum Status: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case disabled = "DISABLED"
+            case enabled = "ENABLED"
+        }
     }
 
     /**

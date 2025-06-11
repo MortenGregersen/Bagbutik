@@ -4,7 +4,7 @@ import Bagbutik_Models
 public extension Request {
     /**
      # List achievements
-     List the achievements for a Game center detail.
+     List the achievements for a Game Center detail.
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-gameCenterDetails-_id_-relationships-gameCenterAchievements>

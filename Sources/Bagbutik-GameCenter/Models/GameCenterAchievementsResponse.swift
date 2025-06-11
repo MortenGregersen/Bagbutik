@@ -44,6 +44,13 @@ public struct GameCenterAchievementsResponse: Codable, Sendable, PagedResponse {
         try container.encodeIfPresent(meta, forKey: "meta")
     }
 
+    public func getActivity(for gameCenterAchievement: GameCenterAchievement) -> GameCenterActivity? {
+        included?.compactMap { relationship -> GameCenterActivity? in
+            guard case let .gameCenterActivity(activity) = relationship else { return nil }
+            return activity
+        }.first { $0.id == gameCenterAchievement.relationships?.activity?.data?.id }
+    }
+
     public func getGameCenterDetail(for gameCenterAchievement: GameCenterAchievement) -> GameCenterDetail? {
         included?.compactMap { relationship -> GameCenterDetail? in
             guard case let .gameCenterDetail(gameCenterDetail) = relationship else { return nil }
@@ -86,6 +93,7 @@ public struct GameCenterAchievementsResponse: Codable, Sendable, PagedResponse {
         case gameCenterAchievement(GameCenterAchievement)
         case gameCenterAchievementLocalization(GameCenterAchievementLocalization)
         case gameCenterAchievementRelease(GameCenterAchievementRelease)
+        case gameCenterActivity(GameCenterActivity)
         case gameCenterDetail(GameCenterDetail)
         case gameCenterGroup(GameCenterGroup)
 
@@ -96,6 +104,8 @@ public struct GameCenterAchievementsResponse: Codable, Sendable, PagedResponse {
                 self = .gameCenterAchievementLocalization(gameCenterAchievementLocalization)
             } else if let gameCenterAchievementRelease = try? GameCenterAchievementRelease(from: decoder) {
                 self = .gameCenterAchievementRelease(gameCenterAchievementRelease)
+            } else if let gameCenterActivity = try? GameCenterActivity(from: decoder) {
+                self = .gameCenterActivity(gameCenterActivity)
             } else if let gameCenterDetail = try? GameCenterDetail(from: decoder) {
                 self = .gameCenterDetail(gameCenterDetail)
             } else if let gameCenterGroup = try? GameCenterGroup(from: decoder) {
@@ -116,6 +126,8 @@ public struct GameCenterAchievementsResponse: Codable, Sendable, PagedResponse {
             case let .gameCenterAchievementLocalization(value):
                 try value.encode(to: encoder)
             case let .gameCenterAchievementRelease(value):
+                try value.encode(to: encoder)
+            case let .gameCenterActivity(value):
                 try value.encode(to: encoder)
             case let .gameCenterDetail(value):
                 try value.encode(to: encoder)

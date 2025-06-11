@@ -52,8 +52,10 @@ public struct BuildBundle: Codable, Sendable, Identifiable {
     }
 
     public struct Attributes: Codable, Sendable {
+        public var baDownloadAllowance: Int?
+        public var baMaxInstallSize: Int?
         public var bundleId: String?
-        public var bundleType: BundleType?
+        public var bundleType: BuildBundleType?
         public var dSYMUrl: String?
         public var deviceProtocols: [String]?
         public var entitlements: [String: [String: String]]?
@@ -70,8 +72,10 @@ public struct BuildBundle: Codable, Sendable, Identifiable {
         public var supportedArchitectures: [String]?
         public var usesLocationServices: Bool?
 
-        public init(bundleId: String? = nil,
-                    bundleType: BundleType? = nil,
+        public init(baDownloadAllowance: Int? = nil,
+                    baMaxInstallSize: Int? = nil,
+                    bundleId: String? = nil,
+                    bundleType: BuildBundleType? = nil,
                     dSYMUrl: String? = nil,
                     deviceProtocols: [String]? = nil,
                     entitlements: [String: [String: String]]? = nil,
@@ -88,6 +92,8 @@ public struct BuildBundle: Codable, Sendable, Identifiable {
                     supportedArchitectures: [String]? = nil,
                     usesLocationServices: Bool? = nil)
         {
+            self.baDownloadAllowance = baDownloadAllowance
+            self.baMaxInstallSize = baMaxInstallSize
             self.bundleId = bundleId
             self.bundleType = bundleType
             self.dSYMUrl = dSYMUrl
@@ -109,8 +115,10 @@ public struct BuildBundle: Codable, Sendable, Identifiable {
 
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: AnyCodingKey.self)
+            baDownloadAllowance = try container.decodeIfPresent(Int.self, forKey: "baDownloadAllowance")
+            baMaxInstallSize = try container.decodeIfPresent(Int.self, forKey: "baMaxInstallSize")
             bundleId = try container.decodeIfPresent(String.self, forKey: "bundleId")
-            bundleType = try container.decodeIfPresent(BundleType.self, forKey: "bundleType")
+            bundleType = try container.decodeIfPresent(BuildBundleType.self, forKey: "bundleType")
             dSYMUrl = try container.decodeIfPresent(String.self, forKey: "dSYMUrl")
             deviceProtocols = try container.decodeIfPresent([String].self, forKey: "deviceProtocols")
             entitlements = try container.decodeIfPresent([String: [String: String]].self, forKey: "entitlements")
@@ -130,6 +138,8 @@ public struct BuildBundle: Codable, Sendable, Identifiable {
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: AnyCodingKey.self)
+            try container.encodeIfPresent(baDownloadAllowance, forKey: "baDownloadAllowance")
+            try container.encodeIfPresent(baMaxInstallSize, forKey: "baMaxInstallSize")
             try container.encodeIfPresent(bundleId, forKey: "bundleId")
             try container.encodeIfPresent(bundleType, forKey: "bundleType")
             try container.encodeIfPresent(dSYMUrl, forKey: "dSYMUrl")
@@ -147,11 +157,6 @@ public struct BuildBundle: Codable, Sendable, Identifiable {
             try container.encodeIfPresent(sdkBuild, forKey: "sdkBuild")
             try container.encodeIfPresent(supportedArchitectures, forKey: "supportedArchitectures")
             try container.encodeIfPresent(usesLocationServices, forKey: "usesLocationServices")
-        }
-
-        public enum BundleType: String, Sendable, Codable, CaseIterable {
-            case app = "APP"
-            case appClip = "APP_CLIP"
         }
     }
 

@@ -65,7 +65,27 @@ public struct AppStoreVersionUpdateRequest: Codable, Sendable, RequestBody {
             public var earliestReleaseDate: Date?
             public var releaseType: AppStoreVersion.Attributes.ReleaseType?
             public var reviewType: AppStoreVersion.Attributes.ReviewType?
+            @available(*, deprecated, message: "Apple has marked this property deprecated and it will be removed sometime in the future.")
+            public var usesIdfa: Bool? = nil
             public var versionString: String?
+
+            @available(*, deprecated, message: "This uses a property Apple has marked as deprecated.")
+            public init(copyright: String? = nil,
+                        downloadable: Bool? = nil,
+                        earliestReleaseDate: Date? = nil,
+                        releaseType: AppStoreVersion.Attributes.ReleaseType? = nil,
+                        reviewType: AppStoreVersion.Attributes.ReviewType? = nil,
+                        usesIdfa: Bool? = nil,
+                        versionString: String? = nil)
+            {
+                self.copyright = copyright
+                self.downloadable = downloadable
+                self.earliestReleaseDate = earliestReleaseDate
+                self.releaseType = releaseType
+                self.reviewType = reviewType
+                self.usesIdfa = usesIdfa
+                self.versionString = versionString
+            }
 
             public init(copyright: String? = nil,
                         downloadable: Bool? = nil,
@@ -89,6 +109,7 @@ public struct AppStoreVersionUpdateRequest: Codable, Sendable, RequestBody {
                 earliestReleaseDate = try container.decodeIfPresent(Date.self, forKey: "earliestReleaseDate")
                 releaseType = try container.decodeIfPresent(AppStoreVersion.Attributes.ReleaseType.self, forKey: "releaseType")
                 reviewType = try container.decodeIfPresent(AppStoreVersion.Attributes.ReviewType.self, forKey: "reviewType")
+                usesIdfa = try container.decodeIfPresent(Bool.self, forKey: "usesIdfa")
                 versionString = try container.decodeIfPresent(String.self, forKey: "versionString")
             }
 
@@ -99,6 +120,7 @@ public struct AppStoreVersionUpdateRequest: Codable, Sendable, RequestBody {
                 try container.encodeIfPresent(earliestReleaseDate, forKey: "earliestReleaseDate")
                 try container.encodeIfPresent(releaseType, forKey: "releaseType")
                 try container.encodeIfPresent(reviewType, forKey: "reviewType")
+                try container.encodeIfPresent(usesIdfa, forKey: "usesIdfa")
                 try container.encodeIfPresent(versionString, forKey: "versionString")
             }
         }

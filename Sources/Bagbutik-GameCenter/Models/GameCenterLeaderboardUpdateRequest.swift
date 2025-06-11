@@ -55,6 +55,7 @@ public struct GameCenterLeaderboardUpdateRequest: Codable, Sendable, RequestBody
         }
 
         public struct Attributes: Codable, Sendable {
+            public var activityProperties: [String: String]?
             public var archived: Bool?
             public var defaultFormatter: GameCenterLeaderboardFormatter?
             public var recurrenceDuration: String?
@@ -65,8 +66,10 @@ public struct GameCenterLeaderboardUpdateRequest: Codable, Sendable, RequestBody
             public var scoreRangeStart: String?
             public var scoreSortType: GameCenterLeaderboard.Attributes.ScoreSortType?
             public var submissionType: GameCenterLeaderboard.Attributes.SubmissionType?
+            public var visibility: GameCenterLeaderboard.Attributes.Visibility?
 
-            public init(archived: Bool? = nil,
+            public init(activityProperties: [String: String]? = nil,
+                        archived: Bool? = nil,
                         defaultFormatter: GameCenterLeaderboardFormatter? = nil,
                         recurrenceDuration: String? = nil,
                         recurrenceRule: String? = nil,
@@ -75,8 +78,10 @@ public struct GameCenterLeaderboardUpdateRequest: Codable, Sendable, RequestBody
                         scoreRangeEnd: String? = nil,
                         scoreRangeStart: String? = nil,
                         scoreSortType: GameCenterLeaderboard.Attributes.ScoreSortType? = nil,
-                        submissionType: GameCenterLeaderboard.Attributes.SubmissionType? = nil)
+                        submissionType: GameCenterLeaderboard.Attributes.SubmissionType? = nil,
+                        visibility: GameCenterLeaderboard.Attributes.Visibility? = nil)
             {
+                self.activityProperties = activityProperties
                 self.archived = archived
                 self.defaultFormatter = defaultFormatter
                 self.recurrenceDuration = recurrenceDuration
@@ -87,10 +92,12 @@ public struct GameCenterLeaderboardUpdateRequest: Codable, Sendable, RequestBody
                 self.scoreRangeStart = scoreRangeStart
                 self.scoreSortType = scoreSortType
                 self.submissionType = submissionType
+                self.visibility = visibility
             }
 
             public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                activityProperties = try container.decodeIfPresent([String: String].self, forKey: "activityProperties")
                 archived = try container.decodeIfPresent(Bool.self, forKey: "archived")
                 defaultFormatter = try container.decodeIfPresent(GameCenterLeaderboardFormatter.self, forKey: "defaultFormatter")
                 recurrenceDuration = try container.decodeIfPresent(String.self, forKey: "recurrenceDuration")
@@ -101,10 +108,12 @@ public struct GameCenterLeaderboardUpdateRequest: Codable, Sendable, RequestBody
                 scoreRangeStart = try container.decodeIfPresent(String.self, forKey: "scoreRangeStart")
                 scoreSortType = try container.decodeIfPresent(GameCenterLeaderboard.Attributes.ScoreSortType.self, forKey: "scoreSortType")
                 submissionType = try container.decodeIfPresent(GameCenterLeaderboard.Attributes.SubmissionType.self, forKey: "submissionType")
+                visibility = try container.decodeIfPresent(GameCenterLeaderboard.Attributes.Visibility.self, forKey: "visibility")
             }
 
             public func encode(to encoder: Encoder) throws {
                 var container = encoder.container(keyedBy: AnyCodingKey.self)
+                try container.encodeIfPresent(activityProperties, forKey: "activityProperties")
                 try container.encodeIfPresent(archived, forKey: "archived")
                 try container.encodeIfPresent(defaultFormatter, forKey: "defaultFormatter")
                 try container.encodeIfPresent(recurrenceDuration, forKey: "recurrenceDuration")
@@ -115,6 +124,7 @@ public struct GameCenterLeaderboardUpdateRequest: Codable, Sendable, RequestBody
                 try container.encodeIfPresent(scoreRangeStart, forKey: "scoreRangeStart")
                 try container.encodeIfPresent(scoreSortType, forKey: "scoreSortType")
                 try container.encodeIfPresent(submissionType, forKey: "submissionType")
+                try container.encodeIfPresent(visibility, forKey: "visibility")
             }
         }
     }

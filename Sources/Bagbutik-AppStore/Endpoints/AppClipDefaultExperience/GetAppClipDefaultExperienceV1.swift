@@ -87,6 +87,7 @@ public enum GetAppClipDefaultExperienceV1 {
             case releaseType
             case reviewType
             case routingAppCoverage
+            case usesIdfa
             case versionString
         }
     }

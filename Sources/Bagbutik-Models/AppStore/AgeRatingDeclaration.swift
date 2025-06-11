@@ -50,8 +50,6 @@ public struct AgeRatingDeclaration: Codable, Sendable, Identifiable {
         public var alcoholTobaccoOrDrugUseOrReferences: AlcoholTobaccoOrDrugUseOrReferences?
         public var contests: Contests?
         public var gambling: Bool?
-        @available(*, deprecated, message: "Apple has marked this property deprecated and it will be removed sometime in the future.")
-        public var gamblingAndContests: Bool? = nil
         public var gamblingSimulated: GamblingSimulated?
         public var horrorOrFearThemes: HorrorOrFearThemes?
         public var kidsAgeBand: KidsAgeBand?
@@ -60,58 +58,12 @@ public struct AgeRatingDeclaration: Codable, Sendable, Identifiable {
         public var matureOrSuggestiveThemes: MatureOrSuggestiveThemes?
         public var medicalOrTreatmentInformation: MedicalOrTreatmentInformation?
         public var profanityOrCrudeHumor: ProfanityOrCrudeHumor?
-        @available(*, deprecated, message: "Apple has marked this property deprecated and it will be removed sometime in the future.")
-        public var seventeenPlus: Bool? = nil
         public var sexualContentGraphicAndNudity: SexualContentGraphicAndNudity?
         public var sexualContentOrNudity: SexualContentOrNudity?
         public var unrestrictedWebAccess: Bool?
         public var violenceCartoonOrFantasy: ViolenceCartoonOrFantasy?
         public var violenceRealistic: ViolenceRealistic?
         public var violenceRealisticProlongedGraphicOrSadistic: ViolenceRealisticProlongedGraphicOrSadistic?
-
-        @available(*, deprecated, message: "This uses a property Apple has marked as deprecated.")
-        public init(ageRatingOverride: AgeRatingOverride? = nil,
-                    alcoholTobaccoOrDrugUseOrReferences: AlcoholTobaccoOrDrugUseOrReferences? = nil,
-                    contests: Contests? = nil,
-                    gambling: Bool? = nil,
-                    gamblingAndContests: Bool? = nil,
-                    gamblingSimulated: GamblingSimulated? = nil,
-                    horrorOrFearThemes: HorrorOrFearThemes? = nil,
-                    kidsAgeBand: KidsAgeBand? = nil,
-                    koreaAgeRatingOverride: KoreaAgeRatingOverride? = nil,
-                    lootBox: Bool? = nil,
-                    matureOrSuggestiveThemes: MatureOrSuggestiveThemes? = nil,
-                    medicalOrTreatmentInformation: MedicalOrTreatmentInformation? = nil,
-                    profanityOrCrudeHumor: ProfanityOrCrudeHumor? = nil,
-                    seventeenPlus: Bool? = nil,
-                    sexualContentGraphicAndNudity: SexualContentGraphicAndNudity? = nil,
-                    sexualContentOrNudity: SexualContentOrNudity? = nil,
-                    unrestrictedWebAccess: Bool? = nil,
-                    violenceCartoonOrFantasy: ViolenceCartoonOrFantasy? = nil,
-                    violenceRealistic: ViolenceRealistic? = nil,
-                    violenceRealisticProlongedGraphicOrSadistic: ViolenceRealisticProlongedGraphicOrSadistic? = nil)
-        {
-            self.ageRatingOverride = ageRatingOverride
-            self.alcoholTobaccoOrDrugUseOrReferences = alcoholTobaccoOrDrugUseOrReferences
-            self.contests = contests
-            self.gambling = gambling
-            self.gamblingAndContests = gamblingAndContests
-            self.gamblingSimulated = gamblingSimulated
-            self.horrorOrFearThemes = horrorOrFearThemes
-            self.kidsAgeBand = kidsAgeBand
-            self.koreaAgeRatingOverride = koreaAgeRatingOverride
-            self.lootBox = lootBox
-            self.matureOrSuggestiveThemes = matureOrSuggestiveThemes
-            self.medicalOrTreatmentInformation = medicalOrTreatmentInformation
-            self.profanityOrCrudeHumor = profanityOrCrudeHumor
-            self.seventeenPlus = seventeenPlus
-            self.sexualContentGraphicAndNudity = sexualContentGraphicAndNudity
-            self.sexualContentOrNudity = sexualContentOrNudity
-            self.unrestrictedWebAccess = unrestrictedWebAccess
-            self.violenceCartoonOrFantasy = violenceCartoonOrFantasy
-            self.violenceRealistic = violenceRealistic
-            self.violenceRealisticProlongedGraphicOrSadistic = violenceRealisticProlongedGraphicOrSadistic
-        }
 
         public init(ageRatingOverride: AgeRatingOverride? = nil,
                     alcoholTobaccoOrDrugUseOrReferences: AlcoholTobaccoOrDrugUseOrReferences? = nil,
@@ -158,7 +110,6 @@ public struct AgeRatingDeclaration: Codable, Sendable, Identifiable {
             alcoholTobaccoOrDrugUseOrReferences = try container.decodeIfPresent(AlcoholTobaccoOrDrugUseOrReferences.self, forKey: "alcoholTobaccoOrDrugUseOrReferences")
             contests = try container.decodeIfPresent(Contests.self, forKey: "contests")
             gambling = try container.decodeIfPresent(Bool.self, forKey: "gambling")
-            gamblingAndContests = try container.decodeIfPresent(Bool.self, forKey: "gamblingAndContests")
             gamblingSimulated = try container.decodeIfPresent(GamblingSimulated.self, forKey: "gamblingSimulated")
             horrorOrFearThemes = try container.decodeIfPresent(HorrorOrFearThemes.self, forKey: "horrorOrFearThemes")
             kidsAgeBand = try container.decodeIfPresent(KidsAgeBand.self, forKey: "kidsAgeBand")
@@ -167,7 +118,6 @@ public struct AgeRatingDeclaration: Codable, Sendable, Identifiable {
             matureOrSuggestiveThemes = try container.decodeIfPresent(MatureOrSuggestiveThemes.self, forKey: "matureOrSuggestiveThemes")
             medicalOrTreatmentInformation = try container.decodeIfPresent(MedicalOrTreatmentInformation.self, forKey: "medicalOrTreatmentInformation")
             profanityOrCrudeHumor = try container.decodeIfPresent(ProfanityOrCrudeHumor.self, forKey: "profanityOrCrudeHumor")
-            seventeenPlus = try container.decodeIfPresent(Bool.self, forKey: "seventeenPlus")
             sexualContentGraphicAndNudity = try container.decodeIfPresent(SexualContentGraphicAndNudity.self, forKey: "sexualContentGraphicAndNudity")
             sexualContentOrNudity = try container.decodeIfPresent(SexualContentOrNudity.self, forKey: "sexualContentOrNudity")
             unrestrictedWebAccess = try container.decodeIfPresent(Bool.self, forKey: "unrestrictedWebAccess")
@@ -182,7 +132,6 @@ public struct AgeRatingDeclaration: Codable, Sendable, Identifiable {
             try container.encodeIfPresent(alcoholTobaccoOrDrugUseOrReferences, forKey: "alcoholTobaccoOrDrugUseOrReferences")
             try container.encodeIfPresent(contests, forKey: "contests")
             try container.encodeIfPresent(gambling, forKey: "gambling")
-            try container.encodeIfPresent(gamblingAndContests, forKey: "gamblingAndContests")
             try container.encodeIfPresent(gamblingSimulated, forKey: "gamblingSimulated")
             try container.encodeIfPresent(horrorOrFearThemes, forKey: "horrorOrFearThemes")
             try container.encodeIfPresent(kidsAgeBand, forKey: "kidsAgeBand")
@@ -191,7 +140,6 @@ public struct AgeRatingDeclaration: Codable, Sendable, Identifiable {
             try container.encodeIfPresent(matureOrSuggestiveThemes, forKey: "matureOrSuggestiveThemes")
             try container.encodeIfPresent(medicalOrTreatmentInformation, forKey: "medicalOrTreatmentInformation")
             try container.encodeIfPresent(profanityOrCrudeHumor, forKey: "profanityOrCrudeHumor")
-            try container.encodeIfPresent(seventeenPlus, forKey: "seventeenPlus")
             try container.encodeIfPresent(sexualContentGraphicAndNudity, forKey: "sexualContentGraphicAndNudity")
             try container.encodeIfPresent(sexualContentOrNudity, forKey: "sexualContentOrNudity")
             try container.encodeIfPresent(unrestrictedWebAccess, forKey: "unrestrictedWebAccess")

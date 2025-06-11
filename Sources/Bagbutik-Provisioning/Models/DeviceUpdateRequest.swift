@@ -57,10 +57,10 @@ public struct DeviceUpdateRequest: Codable, Sendable, RequestBody {
 
         public struct Attributes: Codable, Sendable {
             public var name: String?
-            public var status: Device.Attributes.Status?
+            public var status: Status?
 
             public init(name: String? = nil,
-                        status: Device.Attributes.Status? = nil)
+                        status: Status? = nil)
             {
                 self.name = name
                 self.status = status
@@ -69,13 +69,18 @@ public struct DeviceUpdateRequest: Codable, Sendable, RequestBody {
             public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: AnyCodingKey.self)
                 name = try container.decodeIfPresent(String.self, forKey: "name")
-                status = try container.decodeIfPresent(Device.Attributes.Status.self, forKey: "status")
+                status = try container.decodeIfPresent(Status.self, forKey: "status")
             }
 
             public func encode(to encoder: Encoder) throws {
                 var container = encoder.container(keyedBy: AnyCodingKey.self)
                 try container.encodeIfPresent(name, forKey: "name")
                 try container.encodeIfPresent(status, forKey: "status")
+            }
+
+            public enum Status: String, Sendable, Codable, CaseIterable {
+                case disabled = "DISABLED"
+                case enabled = "ENABLED"
             }
         }
     }

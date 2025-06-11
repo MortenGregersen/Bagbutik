@@ -52,6 +52,7 @@ public struct App: Codable, Sendable, Identifiable {
     }
 
     public struct Attributes: Codable, Sendable {
+        public var accessibilityUrl: String?
         public var bundleId: String?
         public var contentRightsDeclaration: ContentRightsDeclaration?
         public var isOrEverWasMadeForKids: Bool?
@@ -64,7 +65,8 @@ public struct App: Codable, Sendable, Identifiable {
         public var subscriptionStatusUrlVersion: SubscriptionStatusUrlVersion?
         public var subscriptionStatusUrlVersionForSandbox: SubscriptionStatusUrlVersion?
 
-        public init(bundleId: String? = nil,
+        public init(accessibilityUrl: String? = nil,
+                    bundleId: String? = nil,
                     contentRightsDeclaration: ContentRightsDeclaration? = nil,
                     isOrEverWasMadeForKids: Bool? = nil,
                     name: String? = nil,
@@ -76,6 +78,7 @@ public struct App: Codable, Sendable, Identifiable {
                     subscriptionStatusUrlVersion: SubscriptionStatusUrlVersion? = nil,
                     subscriptionStatusUrlVersionForSandbox: SubscriptionStatusUrlVersion? = nil)
         {
+            self.accessibilityUrl = accessibilityUrl
             self.bundleId = bundleId
             self.contentRightsDeclaration = contentRightsDeclaration
             self.isOrEverWasMadeForKids = isOrEverWasMadeForKids
@@ -91,6 +94,7 @@ public struct App: Codable, Sendable, Identifiable {
 
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: AnyCodingKey.self)
+            accessibilityUrl = try container.decodeIfPresent(String.self, forKey: "accessibilityUrl")
             bundleId = try container.decodeIfPresent(String.self, forKey: "bundleId")
             contentRightsDeclaration = try container.decodeIfPresent(ContentRightsDeclaration.self, forKey: "contentRightsDeclaration")
             isOrEverWasMadeForKids = try container.decodeIfPresent(Bool.self, forKey: "isOrEverWasMadeForKids")
@@ -106,6 +110,7 @@ public struct App: Codable, Sendable, Identifiable {
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: AnyCodingKey.self)
+            try container.encodeIfPresent(accessibilityUrl, forKey: "accessibilityUrl")
             try container.encodeIfPresent(bundleId, forKey: "bundleId")
             try container.encodeIfPresent(contentRightsDeclaration, forKey: "contentRightsDeclaration")
             try container.encodeIfPresent(isOrEverWasMadeForKids, forKey: "isOrEverWasMadeForKids")
@@ -126,6 +131,7 @@ public struct App: Codable, Sendable, Identifiable {
     }
 
     public struct Relationships: Codable, Sendable {
+        public var accessibilityDeclarations: AccessibilityDeclarations?
         public var alternativeDistributionKey: AlternativeDistributionKey?
         public var analyticsReportRequests: AnalyticsReportRequests?
         public var appAvailabilityV2: AppAvailabilityV2?
@@ -138,13 +144,17 @@ public struct App: Codable, Sendable, Identifiable {
         public var appPriceSchedule: AppPriceSchedule?
         public var appStoreVersionExperimentsV2: AppStoreVersionExperimentsV2?
         public var appStoreVersions: AppStoreVersions?
+        public var backgroundAssets: BackgroundAssets?
         public var betaAppLocalizations: BetaAppLocalizations?
         public var betaAppReviewDetail: BetaAppReviewDetail?
+        public var betaFeedbackCrashSubmissions: BetaFeedbackCrashSubmissions?
+        public var betaFeedbackScreenshotSubmissions: BetaFeedbackScreenshotSubmissions?
         public var betaGroups: BetaGroups?
         public var betaLicenseAgreement: BetaLicenseAgreement?
         public var betaTesters: BetaTesters?
         public var builds: Builds?
         public var ciProduct: CiProduct?
+        public var customerReviewSummarizations: CustomerReviewSummarizations?
         public var customerReviews: CustomerReviews?
         public var endUserLicenseAgreement: EndUserLicenseAgreement?
         public var gameCenterDetail: GameCenterDetail?
@@ -159,9 +169,11 @@ public struct App: Codable, Sendable, Identifiable {
         public var reviewSubmissions: ReviewSubmissions?
         public var subscriptionGracePeriod: SubscriptionGracePeriod?
         public var subscriptionGroups: SubscriptionGroups?
+        public var webhooks: Webhooks?
 
         @available(*, deprecated, message: "This uses a property Apple has marked as deprecated.")
-        public init(alternativeDistributionKey: AlternativeDistributionKey? = nil,
+        public init(accessibilityDeclarations: AccessibilityDeclarations? = nil,
+                    alternativeDistributionKey: AlternativeDistributionKey? = nil,
                     analyticsReportRequests: AnalyticsReportRequests? = nil,
                     appAvailabilityV2: AppAvailabilityV2? = nil,
                     appClips: AppClips? = nil,
@@ -173,13 +185,17 @@ public struct App: Codable, Sendable, Identifiable {
                     appPriceSchedule: AppPriceSchedule? = nil,
                     appStoreVersionExperimentsV2: AppStoreVersionExperimentsV2? = nil,
                     appStoreVersions: AppStoreVersions? = nil,
+                    backgroundAssets: BackgroundAssets? = nil,
                     betaAppLocalizations: BetaAppLocalizations? = nil,
                     betaAppReviewDetail: BetaAppReviewDetail? = nil,
+                    betaFeedbackCrashSubmissions: BetaFeedbackCrashSubmissions? = nil,
+                    betaFeedbackScreenshotSubmissions: BetaFeedbackScreenshotSubmissions? = nil,
                     betaGroups: BetaGroups? = nil,
                     betaLicenseAgreement: BetaLicenseAgreement? = nil,
                     betaTesters: BetaTesters? = nil,
                     builds: Builds? = nil,
                     ciProduct: CiProduct? = nil,
+                    customerReviewSummarizations: CustomerReviewSummarizations? = nil,
                     customerReviews: CustomerReviews? = nil,
                     endUserLicenseAgreement: EndUserLicenseAgreement? = nil,
                     gameCenterDetail: GameCenterDetail? = nil,
@@ -192,8 +208,10 @@ public struct App: Codable, Sendable, Identifiable {
                     promotedPurchases: PromotedPurchases? = nil,
                     reviewSubmissions: ReviewSubmissions? = nil,
                     subscriptionGracePeriod: SubscriptionGracePeriod? = nil,
-                    subscriptionGroups: SubscriptionGroups? = nil)
+                    subscriptionGroups: SubscriptionGroups? = nil,
+                    webhooks: Webhooks? = nil)
         {
+            self.accessibilityDeclarations = accessibilityDeclarations
             self.alternativeDistributionKey = alternativeDistributionKey
             self.analyticsReportRequests = analyticsReportRequests
             self.appAvailabilityV2 = appAvailabilityV2
@@ -206,13 +224,17 @@ public struct App: Codable, Sendable, Identifiable {
             self.appPriceSchedule = appPriceSchedule
             self.appStoreVersionExperimentsV2 = appStoreVersionExperimentsV2
             self.appStoreVersions = appStoreVersions
+            self.backgroundAssets = backgroundAssets
             self.betaAppLocalizations = betaAppLocalizations
             self.betaAppReviewDetail = betaAppReviewDetail
+            self.betaFeedbackCrashSubmissions = betaFeedbackCrashSubmissions
+            self.betaFeedbackScreenshotSubmissions = betaFeedbackScreenshotSubmissions
             self.betaGroups = betaGroups
             self.betaLicenseAgreement = betaLicenseAgreement
             self.betaTesters = betaTesters
             self.builds = builds
             self.ciProduct = ciProduct
+            self.customerReviewSummarizations = customerReviewSummarizations
             self.customerReviews = customerReviews
             self.endUserLicenseAgreement = endUserLicenseAgreement
             self.gameCenterDetail = gameCenterDetail
@@ -226,9 +248,11 @@ public struct App: Codable, Sendable, Identifiable {
             self.reviewSubmissions = reviewSubmissions
             self.subscriptionGracePeriod = subscriptionGracePeriod
             self.subscriptionGroups = subscriptionGroups
+            self.webhooks = webhooks
         }
 
-        public init(alternativeDistributionKey: AlternativeDistributionKey? = nil,
+        public init(accessibilityDeclarations: AccessibilityDeclarations? = nil,
+                    alternativeDistributionKey: AlternativeDistributionKey? = nil,
                     analyticsReportRequests: AnalyticsReportRequests? = nil,
                     appAvailabilityV2: AppAvailabilityV2? = nil,
                     appClips: AppClips? = nil,
@@ -240,13 +264,17 @@ public struct App: Codable, Sendable, Identifiable {
                     appPriceSchedule: AppPriceSchedule? = nil,
                     appStoreVersionExperimentsV2: AppStoreVersionExperimentsV2? = nil,
                     appStoreVersions: AppStoreVersions? = nil,
+                    backgroundAssets: BackgroundAssets? = nil,
                     betaAppLocalizations: BetaAppLocalizations? = nil,
                     betaAppReviewDetail: BetaAppReviewDetail? = nil,
+                    betaFeedbackCrashSubmissions: BetaFeedbackCrashSubmissions? = nil,
+                    betaFeedbackScreenshotSubmissions: BetaFeedbackScreenshotSubmissions? = nil,
                     betaGroups: BetaGroups? = nil,
                     betaLicenseAgreement: BetaLicenseAgreement? = nil,
                     betaTesters: BetaTesters? = nil,
                     builds: Builds? = nil,
                     ciProduct: CiProduct? = nil,
+                    customerReviewSummarizations: CustomerReviewSummarizations? = nil,
                     customerReviews: CustomerReviews? = nil,
                     endUserLicenseAgreement: EndUserLicenseAgreement? = nil,
                     gameCenterDetail: GameCenterDetail? = nil,
@@ -258,8 +286,10 @@ public struct App: Codable, Sendable, Identifiable {
                     promotedPurchases: PromotedPurchases? = nil,
                     reviewSubmissions: ReviewSubmissions? = nil,
                     subscriptionGracePeriod: SubscriptionGracePeriod? = nil,
-                    subscriptionGroups: SubscriptionGroups? = nil)
+                    subscriptionGroups: SubscriptionGroups? = nil,
+                    webhooks: Webhooks? = nil)
         {
+            self.accessibilityDeclarations = accessibilityDeclarations
             self.alternativeDistributionKey = alternativeDistributionKey
             self.analyticsReportRequests = analyticsReportRequests
             self.appAvailabilityV2 = appAvailabilityV2
@@ -272,13 +302,17 @@ public struct App: Codable, Sendable, Identifiable {
             self.appPriceSchedule = appPriceSchedule
             self.appStoreVersionExperimentsV2 = appStoreVersionExperimentsV2
             self.appStoreVersions = appStoreVersions
+            self.backgroundAssets = backgroundAssets
             self.betaAppLocalizations = betaAppLocalizations
             self.betaAppReviewDetail = betaAppReviewDetail
+            self.betaFeedbackCrashSubmissions = betaFeedbackCrashSubmissions
+            self.betaFeedbackScreenshotSubmissions = betaFeedbackScreenshotSubmissions
             self.betaGroups = betaGroups
             self.betaLicenseAgreement = betaLicenseAgreement
             self.betaTesters = betaTesters
             self.builds = builds
             self.ciProduct = ciProduct
+            self.customerReviewSummarizations = customerReviewSummarizations
             self.customerReviews = customerReviews
             self.endUserLicenseAgreement = endUserLicenseAgreement
             self.gameCenterDetail = gameCenterDetail
@@ -291,10 +325,12 @@ public struct App: Codable, Sendable, Identifiable {
             self.reviewSubmissions = reviewSubmissions
             self.subscriptionGracePeriod = subscriptionGracePeriod
             self.subscriptionGroups = subscriptionGroups
+            self.webhooks = webhooks
         }
 
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: AnyCodingKey.self)
+            accessibilityDeclarations = try container.decodeIfPresent(AccessibilityDeclarations.self, forKey: "accessibilityDeclarations")
             alternativeDistributionKey = try container.decodeIfPresent(AlternativeDistributionKey.self, forKey: "alternativeDistributionKey")
             analyticsReportRequests = try container.decodeIfPresent(AnalyticsReportRequests.self, forKey: "analyticsReportRequests")
             appAvailabilityV2 = try container.decodeIfPresent(AppAvailabilityV2.self, forKey: "appAvailabilityV2")
@@ -307,13 +343,17 @@ public struct App: Codable, Sendable, Identifiable {
             appPriceSchedule = try container.decodeIfPresent(AppPriceSchedule.self, forKey: "appPriceSchedule")
             appStoreVersionExperimentsV2 = try container.decodeIfPresent(AppStoreVersionExperimentsV2.self, forKey: "appStoreVersionExperimentsV2")
             appStoreVersions = try container.decodeIfPresent(AppStoreVersions.self, forKey: "appStoreVersions")
+            backgroundAssets = try container.decodeIfPresent(BackgroundAssets.self, forKey: "backgroundAssets")
             betaAppLocalizations = try container.decodeIfPresent(BetaAppLocalizations.self, forKey: "betaAppLocalizations")
             betaAppReviewDetail = try container.decodeIfPresent(BetaAppReviewDetail.self, forKey: "betaAppReviewDetail")
+            betaFeedbackCrashSubmissions = try container.decodeIfPresent(BetaFeedbackCrashSubmissions.self, forKey: "betaFeedbackCrashSubmissions")
+            betaFeedbackScreenshotSubmissions = try container.decodeIfPresent(BetaFeedbackScreenshotSubmissions.self, forKey: "betaFeedbackScreenshotSubmissions")
             betaGroups = try container.decodeIfPresent(BetaGroups.self, forKey: "betaGroups")
             betaLicenseAgreement = try container.decodeIfPresent(BetaLicenseAgreement.self, forKey: "betaLicenseAgreement")
             betaTesters = try container.decodeIfPresent(BetaTesters.self, forKey: "betaTesters")
             builds = try container.decodeIfPresent(Builds.self, forKey: "builds")
             ciProduct = try container.decodeIfPresent(CiProduct.self, forKey: "ciProduct")
+            customerReviewSummarizations = try container.decodeIfPresent(CustomerReviewSummarizations.self, forKey: "customerReviewSummarizations")
             customerReviews = try container.decodeIfPresent(CustomerReviews.self, forKey: "customerReviews")
             endUserLicenseAgreement = try container.decodeIfPresent(EndUserLicenseAgreement.self, forKey: "endUserLicenseAgreement")
             gameCenterDetail = try container.decodeIfPresent(GameCenterDetail.self, forKey: "gameCenterDetail")
@@ -327,10 +367,12 @@ public struct App: Codable, Sendable, Identifiable {
             reviewSubmissions = try container.decodeIfPresent(ReviewSubmissions.self, forKey: "reviewSubmissions")
             subscriptionGracePeriod = try container.decodeIfPresent(SubscriptionGracePeriod.self, forKey: "subscriptionGracePeriod")
             subscriptionGroups = try container.decodeIfPresent(SubscriptionGroups.self, forKey: "subscriptionGroups")
+            webhooks = try container.decodeIfPresent(Webhooks.self, forKey: "webhooks")
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: AnyCodingKey.self)
+            try container.encodeIfPresent(accessibilityDeclarations, forKey: "accessibilityDeclarations")
             try container.encodeIfPresent(alternativeDistributionKey, forKey: "alternativeDistributionKey")
             try container.encodeIfPresent(analyticsReportRequests, forKey: "analyticsReportRequests")
             try container.encodeIfPresent(appAvailabilityV2, forKey: "appAvailabilityV2")
@@ -343,13 +385,17 @@ public struct App: Codable, Sendable, Identifiable {
             try container.encodeIfPresent(appPriceSchedule, forKey: "appPriceSchedule")
             try container.encodeIfPresent(appStoreVersionExperimentsV2, forKey: "appStoreVersionExperimentsV2")
             try container.encodeIfPresent(appStoreVersions, forKey: "appStoreVersions")
+            try container.encodeIfPresent(backgroundAssets, forKey: "backgroundAssets")
             try container.encodeIfPresent(betaAppLocalizations, forKey: "betaAppLocalizations")
             try container.encodeIfPresent(betaAppReviewDetail, forKey: "betaAppReviewDetail")
+            try container.encodeIfPresent(betaFeedbackCrashSubmissions, forKey: "betaFeedbackCrashSubmissions")
+            try container.encodeIfPresent(betaFeedbackScreenshotSubmissions, forKey: "betaFeedbackScreenshotSubmissions")
             try container.encodeIfPresent(betaGroups, forKey: "betaGroups")
             try container.encodeIfPresent(betaLicenseAgreement, forKey: "betaLicenseAgreement")
             try container.encodeIfPresent(betaTesters, forKey: "betaTesters")
             try container.encodeIfPresent(builds, forKey: "builds")
             try container.encodeIfPresent(ciProduct, forKey: "ciProduct")
+            try container.encodeIfPresent(customerReviewSummarizations, forKey: "customerReviewSummarizations")
             try container.encodeIfPresent(customerReviews, forKey: "customerReviews")
             try container.encodeIfPresent(endUserLicenseAgreement, forKey: "endUserLicenseAgreement")
             try container.encodeIfPresent(gameCenterDetail, forKey: "gameCenterDetail")
@@ -363,6 +409,25 @@ public struct App: Codable, Sendable, Identifiable {
             try container.encodeIfPresent(reviewSubmissions, forKey: "reviewSubmissions")
             try container.encodeIfPresent(subscriptionGracePeriod, forKey: "subscriptionGracePeriod")
             try container.encodeIfPresent(subscriptionGroups, forKey: "subscriptionGroups")
+            try container.encodeIfPresent(webhooks, forKey: "webhooks")
+        }
+
+        public struct AccessibilityDeclarations: Codable, Sendable {
+            public var links: RelationshipLinks?
+
+            public init(links: RelationshipLinks? = nil) {
+                self.links = links
+            }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                links = try container.decodeIfPresent(RelationshipLinks.self, forKey: "links")
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: AnyCodingKey.self)
+                try container.encodeIfPresent(links, forKey: "links")
+            }
         }
 
         public struct AlternativeDistributionKey: Codable, Sendable {
@@ -819,6 +884,24 @@ public struct App: Codable, Sendable, Identifiable {
             }
         }
 
+        public struct BackgroundAssets: Codable, Sendable {
+            public var links: RelationshipLinks?
+
+            public init(links: RelationshipLinks? = nil) {
+                self.links = links
+            }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                links = try container.decodeIfPresent(RelationshipLinks.self, forKey: "links")
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: AnyCodingKey.self)
+                try container.encodeIfPresent(links, forKey: "links")
+            }
+        }
+
         public struct BetaAppLocalizations: Codable, Sendable {
             @NullCodable public var data: [Data]?
             public var links: RelationshipLinks?
@@ -915,6 +998,42 @@ public struct App: Codable, Sendable, Identifiable {
                     try container.encode(id, forKey: "id")
                     try container.encode(type, forKey: "type")
                 }
+            }
+        }
+
+        public struct BetaFeedbackCrashSubmissions: Codable, Sendable {
+            public var links: RelationshipLinks?
+
+            public init(links: RelationshipLinks? = nil) {
+                self.links = links
+            }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                links = try container.decodeIfPresent(RelationshipLinks.self, forKey: "links")
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: AnyCodingKey.self)
+                try container.encodeIfPresent(links, forKey: "links")
+            }
+        }
+
+        public struct BetaFeedbackScreenshotSubmissions: Codable, Sendable {
+            public var links: RelationshipLinks?
+
+            public init(links: RelationshipLinks? = nil) {
+                self.links = links
+            }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                links = try container.decodeIfPresent(RelationshipLinks.self, forKey: "links")
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: AnyCodingKey.self)
+                try container.encodeIfPresent(links, forKey: "links")
             }
         }
 
@@ -1131,6 +1250,24 @@ public struct App: Codable, Sendable, Identifiable {
                     try container.encode(id, forKey: "id")
                     try container.encode(type, forKey: "type")
                 }
+            }
+        }
+
+        public struct CustomerReviewSummarizations: Codable, Sendable {
+            public var links: RelationshipLinks?
+
+            public init(links: RelationshipLinks? = nil) {
+                self.links = links
+            }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                links = try container.decodeIfPresent(RelationshipLinks.self, forKey: "links")
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: AnyCodingKey.self)
+                try container.encodeIfPresent(links, forKey: "links")
             }
         }
 
@@ -1690,6 +1827,24 @@ public struct App: Codable, Sendable, Identifiable {
                     try container.encode(id, forKey: "id")
                     try container.encode(type, forKey: "type")
                 }
+            }
+        }
+
+        public struct Webhooks: Codable, Sendable {
+            public var links: RelationshipLinks?
+
+            public init(links: RelationshipLinks? = nil) {
+                self.links = links
+            }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                links = try container.decodeIfPresent(RelationshipLinks.self, forKey: "links")
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: AnyCodingKey.self)
+                try container.encodeIfPresent(links, forKey: "links")
             }
         }
     }

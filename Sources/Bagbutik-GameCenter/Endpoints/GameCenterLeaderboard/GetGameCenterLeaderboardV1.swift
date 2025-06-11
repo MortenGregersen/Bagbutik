@@ -58,7 +58,10 @@ public enum GetGameCenterLeaderboardV1 {
         }
 
         public enum GameCenterLeaderboards: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case activity
+            case activityProperties
             case archived
+            case challenge
             case defaultFormatter
             case gameCenterDetail
             case gameCenterGroup
@@ -75,6 +78,7 @@ public enum GetGameCenterLeaderboardV1 {
             case scoreSortType
             case submissionType
             case vendorIdentifier
+            case visibility
         }
     }
 
@@ -82,6 +86,8 @@ public enum GetGameCenterLeaderboardV1 {
      Relationship data to include in the response.
      */
     public enum Include: String, IncludeParameter, CaseIterable {
+        case activity
+        case challenge
         case gameCenterDetail
         case gameCenterGroup
         case gameCenterLeaderboardSets

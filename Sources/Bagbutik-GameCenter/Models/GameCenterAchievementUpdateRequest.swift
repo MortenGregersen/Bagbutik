@@ -55,18 +55,21 @@ public struct GameCenterAchievementUpdateRequest: Codable, Sendable, RequestBody
         }
 
         public struct Attributes: Codable, Sendable {
+            public var activityProperties: [String: String]?
             public var archived: Bool?
             public var points: Int?
             public var referenceName: String?
             public var repeatable: Bool?
             public var showBeforeEarned: Bool?
 
-            public init(archived: Bool? = nil,
+            public init(activityProperties: [String: String]? = nil,
+                        archived: Bool? = nil,
                         points: Int? = nil,
                         referenceName: String? = nil,
                         repeatable: Bool? = nil,
                         showBeforeEarned: Bool? = nil)
             {
+                self.activityProperties = activityProperties
                 self.archived = archived
                 self.points = points
                 self.referenceName = referenceName
@@ -76,6 +79,7 @@ public struct GameCenterAchievementUpdateRequest: Codable, Sendable, RequestBody
 
             public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                activityProperties = try container.decodeIfPresent([String: String].self, forKey: "activityProperties")
                 archived = try container.decodeIfPresent(Bool.self, forKey: "archived")
                 points = try container.decodeIfPresent(Int.self, forKey: "points")
                 referenceName = try container.decodeIfPresent(String.self, forKey: "referenceName")
@@ -85,6 +89,7 @@ public struct GameCenterAchievementUpdateRequest: Codable, Sendable, RequestBody
 
             public func encode(to encoder: Encoder) throws {
                 var container = encoder.container(keyedBy: AnyCodingKey.self)
+                try container.encodeIfPresent(activityProperties, forKey: "activityProperties")
                 try container.encodeIfPresent(archived, forKey: "archived")
                 try container.encodeIfPresent(points, forKey: "points")
                 try container.encodeIfPresent(referenceName, forKey: "referenceName")

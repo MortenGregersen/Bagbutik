@@ -1018,7 +1018,6 @@
   "ScmRepositoryPullRequestsLinkagesResponse" : "doc:\/\/com.apple.appstoreconnectapi\/documentation\/AppStoreConnectAPI\/ScmRepositoryPullRequestsLinkagesResponse",
   "ScmRepositoryResponse" : "doc:\/\/com.apple.appstoreconnectapi\/documentation\/AppStoreConnectAPI\/ScmRepositoryResponse",
   "ScreenshotDisplayType" : "doc:\/\/com.apple.appstoreconnectapi\/documentation\/AppStoreConnectAPI\/ScreenshotDisplayType",
-  "StringToStringMap" : "doc:\/\/com.apple.appstoreconnectapi\/documentation\/AppStoreConnectAPI\/StringToStringMap",
   "Subscription" : "doc:\/\/com.apple.appstoreconnectapi\/documentation\/AppStoreConnectAPI\/Subscription",
   "SubscriptionAppStoreReviewScreenshot" : "doc:\/\/com.apple.appstoreconnectapi\/documentation\/AppStoreConnectAPI\/SubscriptionAppStoreReviewScreenshot",
   "SubscriptionAppStoreReviewScreenshotCreateRequest" : "doc:\/\/com.apple.appstoreconnectapi\/documentation\/AppStoreConnectAPI\/SubscriptionAppStoreReviewScreenshotCreateRequest",

@@ -41,6 +41,8 @@ public enum GetGroupAchievementForGameCenterAchievementV1 {
         case gameCenterAchievementReleases([GameCenterAchievementReleases])
         /// The fields to include for returned resources of type gameCenterAchievements
         case gameCenterAchievements([GameCenterAchievements])
+        /// The fields to include for returned resources of type gameCenterActivities
+        case gameCenterActivities([GameCenterActivities])
         /// The fields to include for returned resources of type gameCenterDetails
         case gameCenterDetails([GameCenterDetails])
         /// The fields to include for returned resources of type gameCenterGroups
@@ -62,6 +64,8 @@ public enum GetGroupAchievementForGameCenterAchievementV1 {
         }
 
         public enum GameCenterAchievements: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case activity
+            case activityProperties
             case archived
             case gameCenterDetail
             case gameCenterGroup
@@ -75,15 +79,36 @@ public enum GetGroupAchievementForGameCenterAchievementV1 {
             case vendorIdentifier
         }
 
+        public enum GameCenterActivities: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case achievements
+            case archived
+            case gameCenterDetail
+            case gameCenterGroup
+            case leaderboards
+            case maximumPlayersCount
+            case minimumPlayersCount
+            case playStyle
+            case properties
+            case referenceName
+            case supportsPartyCode
+            case vendorIdentifier
+            case versions
+        }
+
         public enum GameCenterDetails: String, Sendable, ParameterValue, Codable, CaseIterable {
             case achievementReleases
+            case activityReleases
             case app
             case arcadeEnabled
             case challengeEnabled
+            case challengeReleases
+            case challengesMinimumPlatformVersions
             case defaultGroupLeaderboard
             case defaultLeaderboard
             case gameCenterAchievements
+            case gameCenterActivities
             case gameCenterAppVersions
+            case gameCenterChallenges
             case gameCenterGroup
             case gameCenterLeaderboardSets
             case gameCenterLeaderboards
@@ -93,6 +118,8 @@ public enum GetGroupAchievementForGameCenterAchievementV1 {
 
         public enum GameCenterGroups: String, Sendable, ParameterValue, Codable, CaseIterable {
             case gameCenterAchievements
+            case gameCenterActivities
+            case gameCenterChallenges
             case gameCenterDetails
             case gameCenterLeaderboardSets
             case gameCenterLeaderboards
@@ -104,6 +131,7 @@ public enum GetGroupAchievementForGameCenterAchievementV1 {
      Relationship data to include in the response.
      */
     public enum Include: String, IncludeParameter, CaseIterable {
+        case activity
         case gameCenterDetail
         case gameCenterGroup
         case groupAchievement

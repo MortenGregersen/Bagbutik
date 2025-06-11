@@ -128,7 +128,7 @@ Because the models from the API are used from many different endpoints, they are
 
 The endpoints of all the areas of the App Store Connect API are located in different libraries with a describing name.
 
-Right now there are 7 libraries with endpoints:
+Right now there are 9 libraries with endpoints:
 
 * `Bagbutik-AppStore`: Manage all [aspects of your app, App Clips, in-app purchases, and customer reviews in the App Store](https://developer.apple.com/documentation/appstoreconnectapi/app_store).
 * `Bagbutik-GameCenter`: Manage [Game Center data and configurations for your apps](https://developer.apple.com/documentation/appstoreconnectapi/game_center).
@@ -137,6 +137,7 @@ Right now there are 7 libraries with endpoints:
 * `Bagbutik-Reporting`: Download your [sales and financial reports](https://developer.apple.com/documentation/appstoreconnectapi/sales_and_finance_reports) and [get power and performance metrics, logs, and signatures](https://developer.apple.com/documentation/appstoreconnectapi/power_and_performance_metrics_and_logs). 
 * `Bagbutik-TestFlight`: Manage your [beta testing program, including beta testers and groups, apps, App Clips, and builds](https://developer.apple.com/documentation/appstoreconnectapi/prerelease_versions_and_beta_testers).
 * `Bagbutik-Users`: Manage [users](https://developer.apple.com/documentation/appstoreconnectapi/users) and [email invitations to join](https://developer.apple.com/documentation/appstoreconnectapi/user_invitations) your App Store Connect team.
+* `Bagbutik-Webhooks`: Manage [notifications](https://developer.apple.com/documentation/appstoreconnectapi/webhook-notifications) from App Store about your apps and their statuses.
 * `Bagbutik-XcodeCloud`: Automate [reading Xcode Cloud data, managing workflows, and starting builds](https://developer.apple.com/documentation/appstoreconnectapi/xcode_cloud_workflows_and_builds).
 
 ## Manual patches applied to OpenAPI Spec
@@ -167,12 +168,6 @@ On 12/1/23 some errors (with status code 409) has been observed, with no `detail
 In Apple's OpenAPI spec and documentation the `associatedErrors` is not mentioned in `meta` property (last checked 12/1/23).
 But it is observed when creating a `ReviewSubmissionItem` with an `AppStoreVersion` fails.
 
-#### **FB15681740**: App Store Connect API Spec is missing "APPLE_VISION_PRO" type for the Device class type schema
-
-* Submitted: November 4th 2024.
-
-In the OpenAPI spec for the App Store Connect API the “Device.deviceClass” schema is said to not include "APPLE_VISION_PRO”. This is not right as “Devices” endpoints can have a “APPLE_VISION_PRO” type.
-
 #### **FB16699896**: App Store Connect API is missing "XKS" (Kosovo) for the TerritoryCode enum
 
 * Submitted: March 3rd, 2025.
@@ -190,6 +185,18 @@ In the OpenAPI spec (and documentation) for the App Store Connect API the `purch
 * Submitted: June 10th 2025.
 
 In version 4.0 of the App Store Connect API spec, the the properties of the AgeRatingDeclaration.Attributes type schema, does not have the “INFREQUENT_OR_MILD” and ”FREQUENT_OR_INTENSE”, as can be seen in the documentation, and was present in previous versions of the spec. Now the only possible value is “NONE”.
+
+### **FB17925890**: The "ageRatingOverride" property of "AgeRatingDeclaration.Attributes" is missing
+
+* Submitted: June 11th 2025.
+
+In version 4.0 of the App Store Connect API spec, the the “ageRatingOverride” property of the AgeRatingDeclaration.Attributes schema has disappeared.
+
+### **FB17932433**: The "totalNumberOfCodes" property of "SubscriptionOfferCode.Attributes" is missing
+
+* Submitted: June 11th 2025.
+
+In version 4.0 of the App Store Connect API spec, the the “totalNumberOfCodes” property of the SubscriptionOfferCode.Attributes schema has disappeared.
 
 ### Closed feedback (removed patches)
 
@@ -216,3 +223,7 @@ In version 4.0 of the App Store Connect API spec, the the properties of the AgeR
 * **FB13701181**: App Store Connect API Spec is missing "DEVELOPER_ID_APPLICATION_G2" type for the Certificate Type schema
   * Submitted: March 28th 2024.
   * Resolved: November 12th 2024 (Spec version 3.7).
+
+* **FB15681740**: App Store Connect API Spec is missing "APPLE_VISION_PRO" type for the Device class type schema
+  * Submitted: November 4th 2024.
+  * Resolved: June 10th 2025 (Spec version 4.0).

@@ -1,0 +1,8 @@
+import Bagbutik_Core
+import Foundation
+
+public enum WebhookEventType: String, Sendable, Codable, CaseIterable {
+    case appStoreVersionAppVersionStateUpdated = "APP_STORE_VERSION_APP_VERSION_STATE_UPDATED"
+    case betaFeedbackCrashSubmissionCreated = "BETA_FEEDBACK_CRASH_SUBMISSION_CREATED"
+    case betaFeedbackScreenshotSubmissionCreated = "BETA_FEEDBACK_SCREENSHOT_SUBMISSION_CREATED"
+}

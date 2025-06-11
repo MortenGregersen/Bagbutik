@@ -47,6 +47,7 @@ public struct GameCenterLeaderboard: Codable, Sendable, Identifiable {
     }
 
     public struct Attributes: Codable, Sendable {
+        public var activityProperties: [String: String]?
         public var archived: Bool?
         public var defaultFormatter: GameCenterLeaderboardFormatter?
         public var recurrenceDuration: String?
@@ -58,8 +59,10 @@ public struct GameCenterLeaderboard: Codable, Sendable, Identifiable {
         public var scoreSortType: ScoreSortType?
         public var submissionType: SubmissionType?
         public var vendorIdentifier: String?
+        public var visibility: Visibility?
 
-        public init(archived: Bool? = nil,
+        public init(activityProperties: [String: String]? = nil,
+                    archived: Bool? = nil,
                     defaultFormatter: GameCenterLeaderboardFormatter? = nil,
                     recurrenceDuration: String? = nil,
                     recurrenceRule: String? = nil,
@@ -69,8 +72,10 @@ public struct GameCenterLeaderboard: Codable, Sendable, Identifiable {
                     scoreRangeStart: String? = nil,
                     scoreSortType: ScoreSortType? = nil,
                     submissionType: SubmissionType? = nil,
-                    vendorIdentifier: String? = nil)
+                    vendorIdentifier: String? = nil,
+                    visibility: Visibility? = nil)
         {
+            self.activityProperties = activityProperties
             self.archived = archived
             self.defaultFormatter = defaultFormatter
             self.recurrenceDuration = recurrenceDuration
@@ -82,10 +87,12 @@ public struct GameCenterLeaderboard: Codable, Sendable, Identifiable {
             self.scoreSortType = scoreSortType
             self.submissionType = submissionType
             self.vendorIdentifier = vendorIdentifier
+            self.visibility = visibility
         }
 
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: AnyCodingKey.self)
+            activityProperties = try container.decodeIfPresent([String: String].self, forKey: "activityProperties")
             archived = try container.decodeIfPresent(Bool.self, forKey: "archived")
             defaultFormatter = try container.decodeIfPresent(GameCenterLeaderboardFormatter.self, forKey: "defaultFormatter")
             recurrenceDuration = try container.decodeIfPresent(String.self, forKey: "recurrenceDuration")
@@ -97,10 +104,12 @@ public struct GameCenterLeaderboard: Codable, Sendable, Identifiable {
             scoreSortType = try container.decodeIfPresent(ScoreSortType.self, forKey: "scoreSortType")
             submissionType = try container.decodeIfPresent(SubmissionType.self, forKey: "submissionType")
             vendorIdentifier = try container.decodeIfPresent(String.self, forKey: "vendorIdentifier")
+            visibility = try container.decodeIfPresent(Visibility.self, forKey: "visibility")
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: AnyCodingKey.self)
+            try container.encodeIfPresent(activityProperties, forKey: "activityProperties")
             try container.encodeIfPresent(archived, forKey: "archived")
             try container.encodeIfPresent(defaultFormatter, forKey: "defaultFormatter")
             try container.encodeIfPresent(recurrenceDuration, forKey: "recurrenceDuration")
@@ -112,6 +121,7 @@ public struct GameCenterLeaderboard: Codable, Sendable, Identifiable {
             try container.encodeIfPresent(scoreSortType, forKey: "scoreSortType")
             try container.encodeIfPresent(submissionType, forKey: "submissionType")
             try container.encodeIfPresent(vendorIdentifier, forKey: "vendorIdentifier")
+            try container.encodeIfPresent(visibility, forKey: "visibility")
         }
 
         public enum ScoreSortType: String, Sendable, Codable, CaseIterable {
@@ -123,9 +133,16 @@ public struct GameCenterLeaderboard: Codable, Sendable, Identifiable {
             case bestScore = "BEST_SCORE"
             case mostRecentScore = "MOST_RECENT_SCORE"
         }
+
+        public enum Visibility: String, Sendable, Codable, CaseIterable {
+            case hideForAll = "HIDE_FOR_ALL"
+            case showForAll = "SHOW_FOR_ALL"
+        }
     }
 
     public struct Relationships: Codable, Sendable {
+        public var activity: Activity?
+        public var challenge: Challenge?
         public var gameCenterDetail: GameCenterDetail?
         public var gameCenterGroup: GameCenterGroup?
         public var gameCenterLeaderboardSets: GameCenterLeaderboardSets?
@@ -135,13 +152,17 @@ public struct GameCenterLeaderboard: Codable, Sendable, Identifiable {
         public var releases: Releases?
 
         @available(*, deprecated, message: "This uses a property Apple has marked as deprecated.")
-        public init(gameCenterDetail: GameCenterDetail? = nil,
+        public init(activity: Activity? = nil,
+                    challenge: Challenge? = nil,
+                    gameCenterDetail: GameCenterDetail? = nil,
                     gameCenterGroup: GameCenterGroup? = nil,
                     gameCenterLeaderboardSets: GameCenterLeaderboardSets? = nil,
                     groupLeaderboard: GroupLeaderboard? = nil,
                     localizations: Localizations? = nil,
                     releases: Releases? = nil)
         {
+            self.activity = activity
+            self.challenge = challenge
             self.gameCenterDetail = gameCenterDetail
             self.gameCenterGroup = gameCenterGroup
             self.gameCenterLeaderboardSets = gameCenterLeaderboardSets
@@ -150,12 +171,16 @@ public struct GameCenterLeaderboard: Codable, Sendable, Identifiable {
             self.releases = releases
         }
 
-        public init(gameCenterDetail: GameCenterDetail? = nil,
+        public init(activity: Activity? = nil,
+                    challenge: Challenge? = nil,
+                    gameCenterDetail: GameCenterDetail? = nil,
                     gameCenterGroup: GameCenterGroup? = nil,
                     gameCenterLeaderboardSets: GameCenterLeaderboardSets? = nil,
                     localizations: Localizations? = nil,
                     releases: Releases? = nil)
         {
+            self.activity = activity
+            self.challenge = challenge
             self.gameCenterDetail = gameCenterDetail
             self.gameCenterGroup = gameCenterGroup
             self.gameCenterLeaderboardSets = gameCenterLeaderboardSets
@@ -165,6 +190,8 @@ public struct GameCenterLeaderboard: Codable, Sendable, Identifiable {
 
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: AnyCodingKey.self)
+            activity = try container.decodeIfPresent(Activity.self, forKey: "activity")
+            challenge = try container.decodeIfPresent(Challenge.self, forKey: "challenge")
             gameCenterDetail = try container.decodeIfPresent(GameCenterDetail.self, forKey: "gameCenterDetail")
             gameCenterGroup = try container.decodeIfPresent(GameCenterGroup.self, forKey: "gameCenterGroup")
             gameCenterLeaderboardSets = try container.decodeIfPresent(GameCenterLeaderboardSets.self, forKey: "gameCenterLeaderboardSets")
@@ -175,12 +202,108 @@ public struct GameCenterLeaderboard: Codable, Sendable, Identifiable {
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: AnyCodingKey.self)
+            try container.encodeIfPresent(activity, forKey: "activity")
+            try container.encodeIfPresent(challenge, forKey: "challenge")
             try container.encodeIfPresent(gameCenterDetail, forKey: "gameCenterDetail")
             try container.encodeIfPresent(gameCenterGroup, forKey: "gameCenterGroup")
             try container.encodeIfPresent(gameCenterLeaderboardSets, forKey: "gameCenterLeaderboardSets")
             try container.encodeIfPresent(groupLeaderboard, forKey: "groupLeaderboard")
             try container.encodeIfPresent(localizations, forKey: "localizations")
             try container.encodeIfPresent(releases, forKey: "releases")
+        }
+
+        public struct Activity: Codable, Sendable {
+            @NullCodable public var data: Data?
+            public var links: RelationshipLinks?
+
+            public init(data: Data? = nil,
+                        links: RelationshipLinks? = nil)
+            {
+                self.data = data
+                self.links = links
+            }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                data = try container.decodeIfPresent(Data.self, forKey: "data")
+                links = try container.decodeIfPresent(RelationshipLinks.self, forKey: "links")
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: AnyCodingKey.self)
+                try container.encode(data, forKey: "data")
+                try container.encodeIfPresent(links, forKey: "links")
+            }
+
+            public struct Data: Codable, Sendable, Identifiable {
+                public let id: String
+                public var type: String { "gameCenterActivities" }
+
+                public init(id: String) {
+                    self.id = id
+                }
+
+                public init(from decoder: Decoder) throws {
+                    let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                    id = try container.decode(String.self, forKey: "id")
+                    if try container.decode(String.self, forKey: "type") != type {
+                        throw DecodingError.dataCorruptedError(forKey: "type", in: container, debugDescription: "Not matching \(type)")
+                    }
+                }
+
+                public func encode(to encoder: Encoder) throws {
+                    var container = encoder.container(keyedBy: AnyCodingKey.self)
+                    try container.encode(id, forKey: "id")
+                    try container.encode(type, forKey: "type")
+                }
+            }
+        }
+
+        public struct Challenge: Codable, Sendable {
+            @NullCodable public var data: Data?
+            public var links: RelationshipLinks?
+
+            public init(data: Data? = nil,
+                        links: RelationshipLinks? = nil)
+            {
+                self.data = data
+                self.links = links
+            }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                data = try container.decodeIfPresent(Data.self, forKey: "data")
+                links = try container.decodeIfPresent(RelationshipLinks.self, forKey: "links")
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: AnyCodingKey.self)
+                try container.encode(data, forKey: "data")
+                try container.encodeIfPresent(links, forKey: "links")
+            }
+
+            public struct Data: Codable, Sendable, Identifiable {
+                public let id: String
+                public var type: String { "gameCenterChallenges" }
+
+                public init(id: String) {
+                    self.id = id
+                }
+
+                public init(from decoder: Decoder) throws {
+                    let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                    id = try container.decode(String.self, forKey: "id")
+                    if try container.decode(String.self, forKey: "type") != type {
+                        throw DecodingError.dataCorruptedError(forKey: "type", in: container, debugDescription: "Not matching \(type)")
+                    }
+                }
+
+                public func encode(to encoder: Encoder) throws {
+                    var container = encoder.container(keyedBy: AnyCodingKey.self)
+                    try container.encode(id, forKey: "id")
+                    try container.encode(type, forKey: "type")
+                }
+            }
         }
 
         public struct GameCenterDetail: Codable, Sendable {

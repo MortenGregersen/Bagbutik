@@ -60,11 +60,15 @@ public struct GameCenterDetailUpdateRequest: Codable, Sendable, RequestBody {
         }
 
         public struct Attributes: Codable, Sendable {
-            public var challengeEnabled: Bool?
+            @available(*, deprecated, message: "Apple has marked this property deprecated and it will be removed sometime in the future.")
+            public var challengeEnabled: Bool? = nil
 
+            @available(*, deprecated, message: "This uses a property Apple has marked as deprecated.")
             public init(challengeEnabled: Bool? = nil) {
                 self.challengeEnabled = challengeEnabled
             }
+
+            public init() {}
 
             public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: AnyCodingKey.self)

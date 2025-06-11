@@ -81,19 +81,25 @@ public struct CertificateCreateRequest: Codable, Sendable, RequestBody {
 
         public struct Relationships: Codable, Sendable {
             public var merchantId: MerchantId?
+            public var passTypeId: PassTypeId?
 
-            public init(merchantId: MerchantId? = nil) {
+            public init(merchantId: MerchantId? = nil,
+                        passTypeId: PassTypeId? = nil)
+            {
                 self.merchantId = merchantId
+                self.passTypeId = passTypeId
             }
 
             public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: AnyCodingKey.self)
                 merchantId = try container.decodeIfPresent(MerchantId.self, forKey: "merchantId")
+                passTypeId = try container.decodeIfPresent(PassTypeId.self, forKey: "passTypeId")
             }
 
             public func encode(to encoder: Encoder) throws {
                 var container = encoder.container(keyedBy: AnyCodingKey.self)
                 try container.encodeIfPresent(merchantId, forKey: "merchantId")
+                try container.encodeIfPresent(passTypeId, forKey: "passTypeId")
             }
 
             public struct MerchantId: Codable, Sendable {
@@ -116,6 +122,47 @@ public struct CertificateCreateRequest: Codable, Sendable, RequestBody {
                 public struct Data: Codable, Sendable, Identifiable {
                     public let id: String
                     public var type: String { "merchantIds" }
+
+                    public init(id: String) {
+                        self.id = id
+                    }
+
+                    public init(from decoder: Decoder) throws {
+                        let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                        id = try container.decode(String.self, forKey: "id")
+                        if try container.decode(String.self, forKey: "type") != type {
+                            throw DecodingError.dataCorruptedError(forKey: "type", in: container, debugDescription: "Not matching \(type)")
+                        }
+                    }
+
+                    public func encode(to encoder: Encoder) throws {
+                        var container = encoder.container(keyedBy: AnyCodingKey.self)
+                        try container.encode(id, forKey: "id")
+                        try container.encode(type, forKey: "type")
+                    }
+                }
+            }
+
+            public struct PassTypeId: Codable, Sendable {
+                @NullCodable public var data: Data?
+
+                public init(data: Data? = nil) {
+                    self.data = data
+                }
+
+                public init(from decoder: Decoder) throws {
+                    let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                    data = try container.decodeIfPresent(Data.self, forKey: "data")
+                }
+
+                public func encode(to encoder: Encoder) throws {
+                    var container = encoder.container(keyedBy: AnyCodingKey.self)
+                    try container.encode(data, forKey: "data")
+                }
+
+                public struct Data: Codable, Sendable, Identifiable {
+                    public let id: String
+                    public var type: String { "passTypeIds" }
 
                     public init(id: String) {
                         self.id = id

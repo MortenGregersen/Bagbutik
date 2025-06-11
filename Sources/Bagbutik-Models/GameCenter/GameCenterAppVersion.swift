@@ -1,13 +1,6 @@
 import Bagbutik_Core
 import Foundation
 
-/**
- # GameCenterAppVersion
- The data structure that represents a Game Center app version resource.
-
- Full documentation:
- <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterappversion>
- */
 public struct GameCenterAppVersion: Codable, Sendable, Identifiable {
     public let id: String
     public var links: ResourceLinks?

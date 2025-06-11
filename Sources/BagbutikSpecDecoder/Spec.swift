@@ -62,7 +62,7 @@ public struct Spec: Decodable {
     /**
      Flatten the schemas used in schemas for create request and update request and in filter parameters when they are identical to the schemas used in main type.
 
-     Eg. CreateProfile.Attributes.ProfileType is equal to Profile.Attributes.ProfileType, the first one should be removed and the latter one should be used.
+     Eg. ProfileCreateRequest.Attributes.ProfileType is equal to Profile.Attributes.ProfileType, the first one should be removed and the latter one should be used.
      */
     public mutating func flattenIdenticalSchemas() {
         for (pathKey, path) in paths {
@@ -78,7 +78,7 @@ public struct Spec: Decodable {
                         let parameterEnumSchema = EnumSchema(name: parameterName.capitalizingFirstLetter(), type: type.lowercased(), caseValues: values)
                         var newType: String?
                         if let enumSchema: EnumSchema = components.schemas.compactMap({ _, schema in
-                            if case .enum(let enumSchema) = schema, enumSchema.cases == parameterEnumSchema.cases {
+                            if case .enum(let enumSchema) = schema, enumSchema.cases.map(\.value) == parameterEnumSchema.cases.map(\.value) {
                                 return enumSchema
                             }
                             return nil
@@ -157,6 +157,30 @@ public struct Spec: Decodable {
             components.schemas["BundleIdPlatform"] = .enum(bundleIdPlatformSchema)
             patchedSchemas.append(.enum(bundleIdPlatformSchema))
         }
+        let pathsMissingServicesPlatformParameter = ["/v1/bundleIds", "/v1/devices"]
+        for path in pathsMissingServicesPlatformParameter {
+            if var getPath = paths[path],
+               let operationIndex = getPath.operations.firstIndex(where: { $0.method == .get }),
+               let parameterIndex = getPath.operations[operationIndex].parameters?.firstIndex(where: {
+                   if case .filter(let name, _, _, _) = $0 {
+                       name == "platform"
+                   } else {
+                       false
+                   }
+               }),
+               case .filter(let name, let type, let required, let documentation) = getPath.operations[operationIndex].parameters?[parameterIndex],
+               case .enum(let valueType, var values) = type {
+                var operation = getPath.operations[operationIndex]
+                values.append("SERVICES")
+                operation.parameters?[parameterIndex] = .filter(
+                    name: name,
+                    type: .enum(type: valueType, values: values),
+                    required: required,
+                    documentation: documentation)
+                getPath.operations[operationIndex] = operation
+                paths[path] = getPath
+            }
+        }
 
         if case .object(var deviceSchema) = components.schemas["Device"],
            var deviceAttributesSchema: ObjectSchema = deviceSchema.subSchemas.compactMap({ (subSchema: SubSchema) -> ObjectSchema? in
@@ -178,19 +202,6 @@ public struct Spec: Decodable {
                 deviceSchema.properties["attributes"]?.type = .schema(deviceAttributesSchema)
                 components.schemas["Device"] = .object(deviceSchema)
             }
-            // FB15681740: Add the case `APPLE_VISION_PRO` to DeviceClass
-            // Apple's OpenAPI spec doesn't include the Apple Vision Pro for Device class.
-            if var classProperty = deviceAttributesSchema.properties["deviceClass"],
-               case .enumSchema(var classEnum) = classProperty.type {
-                var values = classEnum.cases
-                values.append(EnumCase(id: "appleVisionPro", value: "APPLE_VISION_PRO"))
-                classEnum.cases = values
-                classProperty.type = PropertyType.enumSchema(classEnum)
-                deviceAttributesSchema.properties["deviceClass"] = classProperty
-                deviceSchema.properties["attributes"]?.type = .schema(deviceAttributesSchema)
-                components.schemas["Device"] = .object(deviceSchema)
-            }
-            patchedSchemas.append(.object(deviceSchema))
         }
 
         // Fix up the names of the sub schemas of ErrorResponse.Errors
@@ -260,8 +271,35 @@ public struct Spec: Decodable {
             components.schemas["TerritoryCode"] = .enum(territoryCode)
             patchedSchemas.append(.enum(territoryCode))
         }
+        let pathsMissingKosovoTerritoryCode = [
+            "/v1/appStoreVersions/{id}/customerReviews",
+            "/v1/apps/{id}/customerReviews"
+        ]
+        for path in pathsMissingKosovoTerritoryCode {
+            if var getCustomerReviews = paths[path],
+               let operationIndex = getCustomerReviews.operations.firstIndex(where: { $0.method == .get }),
+               let parameterIndex = getCustomerReviews.operations[operationIndex].parameters?.firstIndex(where: {
+                   if case .filter(let name, _, _, _) = $0 {
+                       name == "territory"
+                   } else {
+                       false
+                   }
+               }),
+               case .filter(let name, let type, let required, let documentation) = getCustomerReviews.operations[operationIndex].parameters?[parameterIndex],
+               case .enum(let valueType, var values) = type {
+                var operation = getCustomerReviews.operations[operationIndex]
+                values.append("XKS")
+                operation.parameters?[parameterIndex] = .filter(
+                    name: name,
+                    type: .enum(type: valueType, values: values),
+                    required: required,
+                    documentation: documentation)
+                getCustomerReviews.operations[operationIndex] = operation
+                paths[path] = getCustomerReviews
+            }
+        }
 
-        // FB16908301: Adds list og `PurchaseRequirement` to `AppEvent`.
+        // FB16908301: Adds list of `PurchaseRequirement` to `AppEvent`.
         if case .object(var appEventSchema) = components.schemas["AppEvent"],
            case .schema(var appEventAttributesSchema) = appEventSchema.properties["attributes"]?.type,
            var purchaseRequirementProperty = appEventAttributesSchema.properties["purchaseRequirement"],
@@ -271,11 +309,12 @@ public struct Spec: Decodable {
             appEventAttributesSchema.properties["purchaseRequirement"] = purchaseRequirementProperty
             appEventSchema.properties["attributes"]?.type = .schema(appEventAttributesSchema)
             components.schemas["AppEvent"] = .object(appEventSchema)
+            patchedSchemas.append(.object(appEventSchema))
         }
 
         // FB17874677: Adds "INFREQUENT_OR_MILD" and "FREQUENT_OR_INTENSE" to AgeRatingDeclaration.Attributes properties.
-        if case .object(var ageRatingDeclarationSchema) = components.schemas["AgeRatingDeclaration"],
-           case .schema(var ageRatingDeclarationAttributesSchema) = ageRatingDeclarationSchema.properties["attributes"]?.type {
+        // FB17925890: Adds "ageRatingOverride" property to AgeRatingDeclaration.Attributes.
+        let fixAgeRatingDeclarationAttributes = { (ageRatingDeclarationAttributesSchema: inout ObjectSchema) in
             let missingCases = [
                 EnumCase(id: "infrequentOrMild", value: "INFREQUENT_OR_MILD"),
                 EnumCase(id: "frequentOrIntense", value: "FREQUENT_OR_INTENSE")
@@ -290,8 +329,105 @@ public struct Spec: Decodable {
                     ageRatingDeclarationAttributesSchema.properties[propertyName] = property
                 }
             }
+            if ageRatingDeclarationAttributesSchema.properties["ageRatingOverride"] == nil {
+                ageRatingDeclarationAttributesSchema.properties["ageRatingOverride"] = .init(
+                    type: .enumSchema(EnumSchema(
+                        name: "AgeRatingOverride",
+                        type: "String",
+                        caseValues: ["NONE", "SEVENTEEN_PLUS", "UNRATED"])))
+            }
+        }
+        if case .object(var ageRatingDeclarationSchema) = components.schemas["AgeRatingDeclaration"],
+           case .schema(var ageRatingDeclarationAttributesSchema) = ageRatingDeclarationSchema.properties["attributes"]?.type {
+            fixAgeRatingDeclarationAttributes(&ageRatingDeclarationAttributesSchema)
             ageRatingDeclarationSchema.properties["attributes"]?.type = .schema(ageRatingDeclarationAttributesSchema)
             components.schemas["AgeRatingDeclaration"] = .object(ageRatingDeclarationSchema)
+            patchedSchemas.append(.object(ageRatingDeclarationSchema))
+        }
+        if case .object(var ageRatingDeclarationUpdateRequestSchema) = components.schemas["AgeRatingDeclarationUpdateRequest"],
+           case .schema(var dataSchema) = ageRatingDeclarationUpdateRequestSchema.properties["data"]?.type,
+           case .schema(var ageRatingDeclarationAttributesSchema) = dataSchema.properties["attributes"]?.type {
+            fixAgeRatingDeclarationAttributes(&ageRatingDeclarationAttributesSchema)
+            dataSchema.properties["attributes"]?.type = .schema(ageRatingDeclarationAttributesSchema)
+            ageRatingDeclarationUpdateRequestSchema.properties["data"]?.type = .schema(dataSchema)
+            components.schemas["AgeRatingDeclarationUpdateRequest"] = .object(ageRatingDeclarationUpdateRequestSchema)
+            patchedSchemas.append(.object(ageRatingDeclarationUpdateRequestSchema))
+        }
+        let pathsMissingAgeRatingFieldParameter = [
+            "/v1/appInfos/{id}",
+            "/v1/appStoreVersions/{id}",
+            "/v1/appClipDefaultExperiences/{id}/releaseWithAppStoreVersion",
+            "/v1/appInfos/{id}/ageRatingDeclaration",
+            "/v1/appStoreVersions/{id}/ageRatingDeclaration",
+            "/v1/apps/{id}/appInfos",
+            "/v1/apps/{id}/appStoreVersions",
+            "/v1/builds/{id}/appStoreVersion",
+            "/v1/gameCenterAppVersions/{id}/appStoreVersion",
+        ]
+        for path in pathsMissingAgeRatingFieldParameter {
+            if var getAppInfo = paths[path],
+               let operationIndex = getAppInfo.operations.firstIndex(where: { $0.method == .get }),
+               let parameterIndex = getAppInfo.operations[operationIndex].parameters?.firstIndex(where: {
+                   if case .fields(let name, _, _, _) = $0 {
+                       name == "ageRatingDeclarations"
+                   } else {
+                       false
+                   }
+               }),
+               case .fields(let name, let type, let deprecated, let documentation) = getAppInfo.operations[operationIndex].parameters?[parameterIndex],
+               case .enum(let valueType, var values) = type {
+                var operation = getAppInfo.operations[operationIndex]
+                values.append("ageRatingOverride")
+                operation.parameters?[parameterIndex] = .fields(
+                    name: name,
+                    type: .enum(type: valueType, values: values),
+                    deprecated: deprecated,
+                    documentation: documentation)
+                getAppInfo.operations[operationIndex] = operation
+                paths[path] = getAppInfo
+            }
+        }
+
+        // FB17932433: Adds "totalNumberOfCodes" property to SubscriptionOfferCode.Attributes.
+        if case .object(var subscriptionOfferCodeSchema) = components.schemas["SubscriptionOfferCode"],
+           case .schema(var subscriptionOfferCodeAttributesSchema) = subscriptionOfferCodeSchema.properties["attributes"]?.type {
+            if subscriptionOfferCodeAttributesSchema.properties["totalNumberOfCodes"] == nil {
+                subscriptionOfferCodeAttributesSchema.properties["totalNumberOfCodes"] = .init(type: .simple(.integer()))
+            }
+            subscriptionOfferCodeSchema.properties["attributes"]?.type = .schema(subscriptionOfferCodeAttributesSchema)
+            components.schemas["SubscriptionOfferCode"] = .object(subscriptionOfferCodeSchema)
+            patchedSchemas.append(.object(subscriptionOfferCodeSchema))
+        }
+        let pathsMissingTotalNumberOfCodesFieldParameter = [
+            "/v1/subscriptionOfferCodes/{id}",
+            "/v1/subscriptions/{id}",
+            "/v1/subscriptionGroups/{id}/subscriptions",
+            "/v1/subscriptionOfferCodes/{id}/customCodes",
+            "/v1/subscriptionOfferCodes/{id}/oneTimeUseCodes",
+            "/v1/subscriptions/{id}/offerCodes",
+        ]
+        for path in pathsMissingTotalNumberOfCodesFieldParameter {
+            if var getPath = paths[path],
+               let operationIndex = getPath.operations.firstIndex(where: { $0.method == .get }),
+               let parameterIndex = getPath.operations[operationIndex].parameters?.firstIndex(where: {
+                   if case .fields(let name, _, _, _) = $0 {
+                       name == "subscriptionOfferCodes"
+                   } else {
+                       false
+                   }
+               }),
+               case .fields(let name, let type, let deprecated, let documentation) = getPath.operations[operationIndex].parameters?[parameterIndex],
+               case .enum(let valueType, var values) = type {
+                var operation = getPath.operations[operationIndex]
+                values.append("totalNumberOfCodes")
+                operation.parameters?[parameterIndex] = .fields(
+                    name: name,
+                    type: .enum(type: valueType, values: values),
+                    deprecated: deprecated,
+                    documentation: documentation)
+                getPath.operations[operationIndex] = operation
+                paths[path] = getPath
+            }
         }
 
         // Remove "StringToStringMap" - this is replaced with a [String: String] in the generated code

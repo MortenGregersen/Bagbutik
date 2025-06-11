@@ -145,24 +145,29 @@ public struct XcodeMetrics: Codable, Sendable {
                 public struct Datasets: Codable, Sendable {
                     public var filterCriteria: FilterCriteria?
                     public var points: [Points]?
+                    public var recommendedMetricGoal: RecommendedMetricGoal?
 
                     public init(filterCriteria: FilterCriteria? = nil,
-                                points: [Points]? = nil)
+                                points: [Points]? = nil,
+                                recommendedMetricGoal: RecommendedMetricGoal? = nil)
                     {
                         self.filterCriteria = filterCriteria
                         self.points = points
+                        self.recommendedMetricGoal = recommendedMetricGoal
                     }
 
                     public init(from decoder: Decoder) throws {
                         let container = try decoder.container(keyedBy: AnyCodingKey.self)
                         filterCriteria = try container.decodeIfPresent(FilterCriteria.self, forKey: "filterCriteria")
                         points = try container.decodeIfPresent([Points].self, forKey: "points")
+                        recommendedMetricGoal = try container.decodeIfPresent(RecommendedMetricGoal.self, forKey: "recommendedMetricGoal")
                     }
 
                     public func encode(to encoder: Encoder) throws {
                         var container = encoder.container(keyedBy: AnyCodingKey.self)
                         try container.encodeIfPresent(filterCriteria, forKey: "filterCriteria")
                         try container.encodeIfPresent(points, forKey: "points")
+                        try container.encodeIfPresent(recommendedMetricGoal, forKey: "recommendedMetricGoal")
                     }
 
                     public struct FilterCriteria: Codable, Sendable {
@@ -254,6 +259,30 @@ public struct XcodeMetrics: Codable, Sendable {
                                 try container.encodeIfPresent(subSystemLabel, forKey: "subSystemLabel")
                                 try container.encodeIfPresent(value, forKey: "value")
                             }
+                        }
+                    }
+
+                    public struct RecommendedMetricGoal: Codable, Sendable {
+                        public var detail: String?
+                        public var value: Double?
+
+                        public init(detail: String? = nil,
+                                    value: Double? = nil)
+                        {
+                            self.detail = detail
+                            self.value = value
+                        }
+
+                        public init(from decoder: Decoder) throws {
+                            let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                            detail = try container.decodeIfPresent(String.self, forKey: "detail")
+                            value = try container.decodeIfPresent(Double.self, forKey: "value")
+                        }
+
+                        public func encode(to encoder: Encoder) throws {
+                            var container = encoder.container(keyedBy: AnyCodingKey.self)
+                            try container.encodeIfPresent(detail, forKey: "detail")
+                            try container.encodeIfPresent(value, forKey: "value")
                         }
                     }
                 }

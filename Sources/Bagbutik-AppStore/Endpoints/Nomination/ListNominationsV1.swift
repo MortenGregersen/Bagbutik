@@ -119,7 +119,7 @@ public enum ListNominationsV1 {
         case limit(Int)
         /// Maximum number of related relatedApps returned (when they are included) - maximum 50
         case relatedApps(Int)
-        /// Maximum number of related supportedTerritories returned (when they are included) - maximum 50
+        /// Maximum number of related supportedTerritories returned (when they are included) - maximum 200
         case supportedTerritories(Int)
     }
 }

@@ -37,6 +37,10 @@ public enum ListGameCenterLeaderboardsForGameCenterDetailV1 {
      Fields to return for included related types.
      */
     public enum Field: FieldParameter {
+        /// The fields to include for returned resources of type gameCenterActivities
+        case gameCenterActivities([GameCenterActivities])
+        /// The fields to include for returned resources of type gameCenterChallenges
+        case gameCenterChallenges([GameCenterChallenges])
         /// The fields to include for returned resources of type gameCenterDetails
         case gameCenterDetails([GameCenterDetails])
         /// The fields to include for returned resources of type gameCenterGroups
@@ -50,15 +54,49 @@ public enum ListGameCenterLeaderboardsForGameCenterDetailV1 {
         /// The fields to include for returned resources of type gameCenterLeaderboards
         case gameCenterLeaderboards([GameCenterLeaderboards])
 
+        public enum GameCenterActivities: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case achievements
+            case archived
+            case gameCenterDetail
+            case gameCenterGroup
+            case leaderboards
+            case maximumPlayersCount
+            case minimumPlayersCount
+            case playStyle
+            case properties
+            case referenceName
+            case supportsPartyCode
+            case vendorIdentifier
+            case versions
+        }
+
+        public enum GameCenterChallenges: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case allowedDurations
+            case archived
+            case challengeType
+            case gameCenterDetail
+            case gameCenterGroup
+            case leaderboard
+            case referenceName
+            case repeatable
+            case vendorIdentifier
+            case versions
+        }
+
         public enum GameCenterDetails: String, Sendable, ParameterValue, Codable, CaseIterable {
             case achievementReleases
+            case activityReleases
             case app
             case arcadeEnabled
             case challengeEnabled
+            case challengeReleases
+            case challengesMinimumPlatformVersions
             case defaultGroupLeaderboard
             case defaultLeaderboard
             case gameCenterAchievements
+            case gameCenterActivities
             case gameCenterAppVersions
+            case gameCenterChallenges
             case gameCenterGroup
             case gameCenterLeaderboardSets
             case gameCenterLeaderboards
@@ -68,6 +106,8 @@ public enum ListGameCenterLeaderboardsForGameCenterDetailV1 {
 
         public enum GameCenterGroups: String, Sendable, ParameterValue, Codable, CaseIterable {
             case gameCenterAchievements
+            case gameCenterActivities
+            case gameCenterChallenges
             case gameCenterDetails
             case gameCenterLeaderboardSets
             case gameCenterLeaderboards
@@ -102,7 +142,10 @@ public enum ListGameCenterLeaderboardsForGameCenterDetailV1 {
         }
 
         public enum GameCenterLeaderboards: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case activity
+            case activityProperties
             case archived
+            case challenge
             case defaultFormatter
             case gameCenterDetail
             case gameCenterGroup
@@ -119,6 +162,7 @@ public enum ListGameCenterLeaderboardsForGameCenterDetailV1 {
             case scoreSortType
             case submissionType
             case vendorIdentifier
+            case visibility
         }
     }
 
@@ -138,6 +182,8 @@ public enum ListGameCenterLeaderboardsForGameCenterDetailV1 {
      Relationship data to include in the response.
      */
     public enum Include: String, IncludeParameter, CaseIterable {
+        case activity
+        case challenge
         case gameCenterDetail
         case gameCenterGroup
         case gameCenterLeaderboardSets

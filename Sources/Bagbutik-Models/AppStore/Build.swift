@@ -54,6 +54,7 @@ public struct Build: Codable, Sendable, Identifiable {
     public struct Attributes: Codable, Sendable {
         public var buildAudienceType: BuildAudienceType?
         public var computedMinMacOsVersion: String?
+        public var computedMinVisionOsVersion: String?
         public var expirationDate: Date?
         public var expired: Bool?
         public var iconAssetToken: ImageAsset?
@@ -66,6 +67,7 @@ public struct Build: Codable, Sendable, Identifiable {
 
         public init(buildAudienceType: BuildAudienceType? = nil,
                     computedMinMacOsVersion: String? = nil,
+                    computedMinVisionOsVersion: String? = nil,
                     expirationDate: Date? = nil,
                     expired: Bool? = nil,
                     iconAssetToken: ImageAsset? = nil,
@@ -78,6 +80,7 @@ public struct Build: Codable, Sendable, Identifiable {
         {
             self.buildAudienceType = buildAudienceType
             self.computedMinMacOsVersion = computedMinMacOsVersion
+            self.computedMinVisionOsVersion = computedMinVisionOsVersion
             self.expirationDate = expirationDate
             self.expired = expired
             self.iconAssetToken = iconAssetToken
@@ -93,6 +96,7 @@ public struct Build: Codable, Sendable, Identifiable {
             let container = try decoder.container(keyedBy: AnyCodingKey.self)
             buildAudienceType = try container.decodeIfPresent(BuildAudienceType.self, forKey: "buildAudienceType")
             computedMinMacOsVersion = try container.decodeIfPresent(String.self, forKey: "computedMinMacOsVersion")
+            computedMinVisionOsVersion = try container.decodeIfPresent(String.self, forKey: "computedMinVisionOsVersion")
             expirationDate = try container.decodeIfPresent(Date.self, forKey: "expirationDate")
             expired = try container.decodeIfPresent(Bool.self, forKey: "expired")
             iconAssetToken = try container.decodeIfPresent(ImageAsset.self, forKey: "iconAssetToken")
@@ -108,6 +112,7 @@ public struct Build: Codable, Sendable, Identifiable {
             var container = encoder.container(keyedBy: AnyCodingKey.self)
             try container.encodeIfPresent(buildAudienceType, forKey: "buildAudienceType")
             try container.encodeIfPresent(computedMinMacOsVersion, forKey: "computedMinMacOsVersion")
+            try container.encodeIfPresent(computedMinVisionOsVersion, forKey: "computedMinVisionOsVersion")
             try container.encodeIfPresent(expirationDate, forKey: "expirationDate")
             try container.encodeIfPresent(expired, forKey: "expired")
             try container.encodeIfPresent(iconAssetToken, forKey: "iconAssetToken")

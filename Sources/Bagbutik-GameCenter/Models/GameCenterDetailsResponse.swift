@@ -56,11 +56,47 @@ public struct GameCenterDetailsResponse: Codable, Sendable, PagedResponse {
         return achievementReleases
     }
 
+    public func getActivityReleases(for gameCenterDetail: GameCenterDetail) -> [GameCenterActivityVersionRelease] {
+        guard let activityReleaseIds = gameCenterDetail.relationships?.activityReleases?.data?.map(\.id),
+              let activityReleases = included?.compactMap({ relationship -> GameCenterActivityVersionRelease? in
+                  guard case let .gameCenterActivityVersionRelease(activityRelease) = relationship else { return nil }
+                  return activityReleaseIds.contains(activityRelease.id) ? activityRelease : nil
+              })
+        else {
+            return []
+        }
+        return activityReleases
+    }
+
     public func getApp(for gameCenterDetail: GameCenterDetail) -> App? {
         included?.compactMap { relationship -> App? in
             guard case let .app(app) = relationship else { return nil }
             return app
         }.first { $0.id == gameCenterDetail.relationships?.app?.data?.id }
+    }
+
+    public func getChallengeReleases(for gameCenterDetail: GameCenterDetail) -> [GameCenterChallengeVersionRelease] {
+        guard let challengeReleaseIds = gameCenterDetail.relationships?.challengeReleases?.data?.map(\.id),
+              let challengeReleases = included?.compactMap({ relationship -> GameCenterChallengeVersionRelease? in
+                  guard case let .gameCenterChallengeVersionRelease(challengeRelease) = relationship else { return nil }
+                  return challengeReleaseIds.contains(challengeRelease.id) ? challengeRelease : nil
+              })
+        else {
+            return []
+        }
+        return challengeReleases
+    }
+
+    public func getChallengesMinimumPlatformVersions(for gameCenterDetail: GameCenterDetail) -> [AppStoreVersion] {
+        guard let challengesMinimumPlatformVersionIds = gameCenterDetail.relationships?.challengesMinimumPlatformVersions?.data?.map(\.id),
+              let challengesMinimumPlatformVersions = included?.compactMap({ relationship -> AppStoreVersion? in
+                  guard case let .appStoreVersion(challengesMinimumPlatformVersion) = relationship else { return nil }
+                  return challengesMinimumPlatformVersionIds.contains(challengesMinimumPlatformVersion.id) ? challengesMinimumPlatformVersion : nil
+              })
+        else {
+            return []
+        }
+        return challengesMinimumPlatformVersions
     }
 
     public func getDefaultGroupLeaderboard(for gameCenterDetail: GameCenterDetail) -> GameCenterLeaderboard? {
@@ -89,6 +125,18 @@ public struct GameCenterDetailsResponse: Codable, Sendable, PagedResponse {
         return gameCenterAchievements
     }
 
+    public func getGameCenterActivities(for gameCenterDetail: GameCenterDetail) -> [GameCenterActivity] {
+        guard let gameCenterActivityIds = gameCenterDetail.relationships?.gameCenterActivities?.data?.map(\.id),
+              let gameCenterActivities = included?.compactMap({ relationship -> GameCenterActivity? in
+                  guard case let .gameCenterActivity(gameCenterActivity) = relationship else { return nil }
+                  return gameCenterActivityIds.contains(gameCenterActivity.id) ? gameCenterActivity : nil
+              })
+        else {
+            return []
+        }
+        return gameCenterActivities
+    }
+
     public func getGameCenterAppVersions(for gameCenterDetail: GameCenterDetail) -> [GameCenterAppVersion] {
         guard let gameCenterAppVersionIds = gameCenterDetail.relationships?.gameCenterAppVersions?.data?.map(\.id),
               let gameCenterAppVersions = included?.compactMap({ relationship -> GameCenterAppVersion? in
@@ -99,6 +147,18 @@ public struct GameCenterDetailsResponse: Codable, Sendable, PagedResponse {
             return []
         }
         return gameCenterAppVersions
+    }
+
+    public func getGameCenterChallenges(for gameCenterDetail: GameCenterDetail) -> [GameCenterChallenge] {
+        guard let gameCenterChallengeIds = gameCenterDetail.relationships?.gameCenterChallenges?.data?.map(\.id),
+              let gameCenterChallenges = included?.compactMap({ relationship -> GameCenterChallenge? in
+                  guard case let .gameCenterChallenge(gameCenterChallenge) = relationship else { return nil }
+                  return gameCenterChallengeIds.contains(gameCenterChallenge.id) ? gameCenterChallenge : nil
+              })
+        else {
+            return []
+        }
+        return gameCenterChallenges
     }
 
     public func getGameCenterGroup(for gameCenterDetail: GameCenterDetail) -> GameCenterGroup? {
@@ -158,9 +218,14 @@ public struct GameCenterDetailsResponse: Codable, Sendable, PagedResponse {
 
     public enum Included: Codable, Sendable {
         case app(App)
+        case appStoreVersion(AppStoreVersion)
         case gameCenterAchievement(GameCenterAchievement)
         case gameCenterAchievementRelease(GameCenterAchievementRelease)
+        case gameCenterActivity(GameCenterActivity)
+        case gameCenterActivityVersionRelease(GameCenterActivityVersionRelease)
         case gameCenterAppVersion(GameCenterAppVersion)
+        case gameCenterChallenge(GameCenterChallenge)
+        case gameCenterChallengeVersionRelease(GameCenterChallengeVersionRelease)
         case gameCenterGroup(GameCenterGroup)
         case gameCenterLeaderboard(GameCenterLeaderboard)
         case gameCenterLeaderboardRelease(GameCenterLeaderboardRelease)
@@ -170,12 +235,22 @@ public struct GameCenterDetailsResponse: Codable, Sendable, PagedResponse {
         public init(from decoder: Decoder) throws {
             if let app = try? App(from: decoder) {
                 self = .app(app)
+            } else if let appStoreVersion = try? AppStoreVersion(from: decoder) {
+                self = .appStoreVersion(appStoreVersion)
             } else if let gameCenterAchievement = try? GameCenterAchievement(from: decoder) {
                 self = .gameCenterAchievement(gameCenterAchievement)
             } else if let gameCenterAchievementRelease = try? GameCenterAchievementRelease(from: decoder) {
                 self = .gameCenterAchievementRelease(gameCenterAchievementRelease)
+            } else if let gameCenterActivity = try? GameCenterActivity(from: decoder) {
+                self = .gameCenterActivity(gameCenterActivity)
+            } else if let gameCenterActivityVersionRelease = try? GameCenterActivityVersionRelease(from: decoder) {
+                self = .gameCenterActivityVersionRelease(gameCenterActivityVersionRelease)
             } else if let gameCenterAppVersion = try? GameCenterAppVersion(from: decoder) {
                 self = .gameCenterAppVersion(gameCenterAppVersion)
+            } else if let gameCenterChallenge = try? GameCenterChallenge(from: decoder) {
+                self = .gameCenterChallenge(gameCenterChallenge)
+            } else if let gameCenterChallengeVersionRelease = try? GameCenterChallengeVersionRelease(from: decoder) {
+                self = .gameCenterChallengeVersionRelease(gameCenterChallengeVersionRelease)
             } else if let gameCenterGroup = try? GameCenterGroup(from: decoder) {
                 self = .gameCenterGroup(gameCenterGroup)
             } else if let gameCenterLeaderboard = try? GameCenterLeaderboard(from: decoder) {
@@ -199,11 +274,21 @@ public struct GameCenterDetailsResponse: Codable, Sendable, PagedResponse {
             switch self {
             case let .app(value):
                 try value.encode(to: encoder)
+            case let .appStoreVersion(value):
+                try value.encode(to: encoder)
             case let .gameCenterAchievement(value):
                 try value.encode(to: encoder)
             case let .gameCenterAchievementRelease(value):
                 try value.encode(to: encoder)
+            case let .gameCenterActivity(value):
+                try value.encode(to: encoder)
+            case let .gameCenterActivityVersionRelease(value):
+                try value.encode(to: encoder)
             case let .gameCenterAppVersion(value):
+                try value.encode(to: encoder)
+            case let .gameCenterChallenge(value):
+                try value.encode(to: encoder)
+            case let .gameCenterChallengeVersionRelease(value):
                 try value.encode(to: encoder)
             case let .gameCenterGroup(value):
                 try value.encode(to: encoder)

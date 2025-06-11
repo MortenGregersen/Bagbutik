@@ -37,6 +37,13 @@ public struct GameCenterAchievementResponse: Codable, Sendable {
         try container.encode(links, forKey: "links")
     }
 
+    public func getActivity() -> GameCenterActivity? {
+        included?.compactMap { relationship -> GameCenterActivity? in
+            guard case let .gameCenterActivity(activity) = relationship else { return nil }
+            return activity
+        }.first { $0.id == data.relationships?.activity?.data?.id }
+    }
+
     public func getGameCenterDetail() -> GameCenterDetail? {
         included?.compactMap { relationship -> GameCenterDetail? in
             guard case let .gameCenterDetail(gameCenterDetail) = relationship else { return nil }
@@ -79,6 +86,7 @@ public struct GameCenterAchievementResponse: Codable, Sendable {
         case gameCenterAchievement(GameCenterAchievement)
         case gameCenterAchievementLocalization(GameCenterAchievementLocalization)
         case gameCenterAchievementRelease(GameCenterAchievementRelease)
+        case gameCenterActivity(GameCenterActivity)
         case gameCenterDetail(GameCenterDetail)
         case gameCenterGroup(GameCenterGroup)
 
@@ -89,6 +97,8 @@ public struct GameCenterAchievementResponse: Codable, Sendable {
                 self = .gameCenterAchievementLocalization(gameCenterAchievementLocalization)
             } else if let gameCenterAchievementRelease = try? GameCenterAchievementRelease(from: decoder) {
                 self = .gameCenterAchievementRelease(gameCenterAchievementRelease)
+            } else if let gameCenterActivity = try? GameCenterActivity(from: decoder) {
+                self = .gameCenterActivity(gameCenterActivity)
             } else if let gameCenterDetail = try? GameCenterDetail(from: decoder) {
                 self = .gameCenterDetail(gameCenterDetail)
             } else if let gameCenterGroup = try? GameCenterGroup(from: decoder) {
@@ -109,6 +119,8 @@ public struct GameCenterAchievementResponse: Codable, Sendable {
             case let .gameCenterAchievementLocalization(value):
                 try value.encode(to: encoder)
             case let .gameCenterAchievementRelease(value):
+                try value.encode(to: encoder)
+            case let .gameCenterActivity(value):
                 try value.encode(to: encoder)
             case let .gameCenterDetail(value):
                 try value.encode(to: encoder)

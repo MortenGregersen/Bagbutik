@@ -60,7 +60,27 @@ public struct AppStoreVersionCreateRequest: Codable, Sendable, RequestBody {
             public let platform: Platform
             public var releaseType: AppStoreVersion.Attributes.ReleaseType?
             public var reviewType: AppStoreVersion.Attributes.ReviewType?
+            @available(*, deprecated, message: "Apple has marked this property deprecated and it will be removed sometime in the future.")
+            public var usesIdfa: Bool? = nil
             public let versionString: String
+
+            @available(*, deprecated, message: "This uses a property Apple has marked as deprecated.")
+            public init(copyright: String? = nil,
+                        earliestReleaseDate: Date? = nil,
+                        platform: Platform,
+                        releaseType: AppStoreVersion.Attributes.ReleaseType? = nil,
+                        reviewType: AppStoreVersion.Attributes.ReviewType? = nil,
+                        usesIdfa: Bool? = nil,
+                        versionString: String)
+            {
+                self.copyright = copyright
+                self.earliestReleaseDate = earliestReleaseDate
+                self.platform = platform
+                self.releaseType = releaseType
+                self.reviewType = reviewType
+                self.usesIdfa = usesIdfa
+                self.versionString = versionString
+            }
 
             public init(copyright: String? = nil,
                         earliestReleaseDate: Date? = nil,
@@ -84,6 +104,7 @@ public struct AppStoreVersionCreateRequest: Codable, Sendable, RequestBody {
                 platform = try container.decode(Platform.self, forKey: "platform")
                 releaseType = try container.decodeIfPresent(AppStoreVersion.Attributes.ReleaseType.self, forKey: "releaseType")
                 reviewType = try container.decodeIfPresent(AppStoreVersion.Attributes.ReviewType.self, forKey: "reviewType")
+                usesIdfa = try container.decodeIfPresent(Bool.self, forKey: "usesIdfa")
                 versionString = try container.decode(String.self, forKey: "versionString")
             }
 
@@ -94,6 +115,7 @@ public struct AppStoreVersionCreateRequest: Codable, Sendable, RequestBody {
                 try container.encode(platform, forKey: "platform")
                 try container.encodeIfPresent(releaseType, forKey: "releaseType")
                 try container.encodeIfPresent(reviewType, forKey: "reviewType")
+                try container.encodeIfPresent(usesIdfa, forKey: "usesIdfa")
                 try container.encode(versionString, forKey: "versionString")
             }
         }

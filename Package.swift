@@ -24,6 +24,7 @@ let package = Package(
                 "Bagbutik-Reporting",
                 "Bagbutik-TestFlight",
                 "Bagbutik-Users",
+                "Bagbutik-Webhooks",
                 "Bagbutik-XcodeCloud",
             ]),
         .library(
@@ -56,6 +57,9 @@ let package = Package(
             name: "Bagbutik-Users",
             targets: ["Bagbutik-Users"]),
         .library(
+            name: "Bagbutik-Webhooks",
+            targets: ["Bagbutik-Webhooks"]),
+        .library(
             name: "Bagbutik-XcodeCloud",
             targets: ["Bagbutik-XcodeCloud"]),
         .executable(
@@ -80,6 +84,7 @@ let package = Package(
         .target(name: "Bagbutik-Reporting", dependencies: ["Bagbutik-Core", "Bagbutik-Models"]),
         .target(name: "Bagbutik-TestFlight", dependencies: ["Bagbutik-Core", "Bagbutik-Models"]),
         .target(name: "Bagbutik-Users", dependencies: ["Bagbutik-Core", "Bagbutik-Models"]),
+        .target(name: "Bagbutik-Webhooks", dependencies: ["Bagbutik-Core", "Bagbutik-Models"]),
         .target(name: "Bagbutik-XcodeCloud", dependencies: ["Bagbutik-Core", "Bagbutik-Models"]),
         .executableTarget(
             name: "BagbutikCLI",
