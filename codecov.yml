@@ -10,6 +10,7 @@ ignore:
   - "Sources/Bagbutik-Models/Reporting"
   - "Sources/Bagbutik-Models/TestFlight"
   - "Sources/Bagbutik-Models/Users"
+  - "Sources/Bagbutik-Models/Webhooks"
   - "Sources/Bagbutik-Models/XcodeCloud"
   - "Sources/Bagbutik-Models/Extensions/*+PrettyName.swift"
   - "Sources/Bagbutik-AppStore"
