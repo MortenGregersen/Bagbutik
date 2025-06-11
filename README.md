@@ -128,7 +128,7 @@ Because the models from the API are used from many different endpoints, they are
 
 The endpoints of all the areas of the App Store Connect API are located in different libraries with a describing name.
 
-Right now there are 7 libraries with endpoints:
+Right now there are 9 libraries with endpoints:
 
 * `Bagbutik-AppStore`: Manage all [aspects of your app, App Clips, in-app purchases, and customer reviews in the App Store](https://developer.apple.com/documentation/appstoreconnectapi/app_store).
 * `Bagbutik-GameCenter`: Manage [Game Center data and configurations for your apps](https://developer.apple.com/documentation/appstoreconnectapi/game_center).
@@ -137,6 +137,7 @@ Right now there are 7 libraries with endpoints:
 * `Bagbutik-Reporting`: Download your [sales and financial reports](https://developer.apple.com/documentation/appstoreconnectapi/sales_and_finance_reports) and [get power and performance metrics, logs, and signatures](https://developer.apple.com/documentation/appstoreconnectapi/power_and_performance_metrics_and_logs). 
 * `Bagbutik-TestFlight`: Manage your [beta testing program, including beta testers and groups, apps, App Clips, and builds](https://developer.apple.com/documentation/appstoreconnectapi/prerelease_versions_and_beta_testers).
 * `Bagbutik-Users`: Manage [users](https://developer.apple.com/documentation/appstoreconnectapi/users) and [email invitations to join](https://developer.apple.com/documentation/appstoreconnectapi/user_invitations) your App Store Connect team.
+* `Bagbutik-Webhooks`: Manage [notifications](https://developer.apple.com/documentation/appstoreconnectapi/webhook-notifications) from App Store about your apps and their statuses.
 * `Bagbutik-XcodeCloud`: Automate [reading Xcode Cloud data, managing workflows, and starting builds](https://developer.apple.com/documentation/appstoreconnectapi/xcode_cloud_workflows_and_builds).
 
 ## Manual patches applied to OpenAPI Spec

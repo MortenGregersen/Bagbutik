@@ -57,6 +57,9 @@ let package = Package(
             name: "Bagbutik-Users",
             targets: ["Bagbutik-Users"]),
         .library(
+            name: "Bagbutik-Webhooks",
+            targets: ["Bagbutik-Webhooks"]),
+        .library(
             name: "Bagbutik-XcodeCloud",
             targets: ["Bagbutik-XcodeCloud"]),
         .executable(
