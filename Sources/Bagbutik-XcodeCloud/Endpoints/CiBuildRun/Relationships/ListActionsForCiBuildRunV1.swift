@@ -83,9 +83,6 @@ public enum ListActionsForCiBuildRunV1 {
      Relationship data to include in the response.
      */
     public enum Include: String, IncludeParameter, CaseIterable {
-        case artifacts
         case buildRun
-        case issues
-        case testResults
     }
 }

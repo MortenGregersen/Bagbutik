@@ -123,7 +123,6 @@ public enum ListEqualizationsForAppPricePointsV3 {
      */
     public enum Include: String, IncludeParameter, CaseIterable {
         case app
-        case equalizations
         case territory
     }
 }

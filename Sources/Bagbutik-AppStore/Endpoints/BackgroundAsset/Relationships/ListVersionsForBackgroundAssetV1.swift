@@ -96,7 +96,6 @@ public enum ListVersionsForBackgroundAssetV1 {
      */
     public enum Include: String, IncludeParameter, CaseIterable {
         case assetFile
-        case backgroundAssetUploadFiles
         case internalBetaRelease
         case manifestFile
     }

@@ -49,6 +49,5 @@ public enum GetWebhookV1 {
      */
     public enum Include: String, IncludeParameter, CaseIterable {
         case app
-        case deliveries
     }
 }

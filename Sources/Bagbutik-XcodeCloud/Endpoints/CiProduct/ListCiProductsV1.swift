@@ -136,12 +136,9 @@ public enum ListCiProductsV1 {
      Relationship data to include in the response.
      */
     public enum Include: String, IncludeParameter, CaseIterable {
-        case additionalRepositories
         case app
-        case buildRuns
         case bundleId
         case primaryRepositories
-        case workflows
     }
 
     /**

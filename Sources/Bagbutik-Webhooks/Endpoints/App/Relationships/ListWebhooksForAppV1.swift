@@ -107,6 +107,5 @@ public enum ListWebhooksForAppV1 {
      */
     public enum Include: String, IncludeParameter, CaseIterable {
         case app
-        case deliveries
     }
 }

@@ -484,44 +484,29 @@ public enum ListAppsV1 {
      Relationship data to include in the response.
      */
     public enum Include: String, IncludeParameter, CaseIterable {
-        case accessibilityDeclarations
-        case alternativeDistributionKey
-        case analyticsReportRequests
-        case appAvailabilityV2
         case appClips
         case appCustomProductPages
         case appEncryptionDeclarations
         case appEvents
         case appInfos
-        case appPricePoints
-        case appPriceSchedule
         case appStoreVersionExperimentsV2
         case appStoreVersions
-        case backgroundAssets
         case betaAppLocalizations
         case betaAppReviewDetail
-        case betaFeedbackCrashSubmissions
-        case betaFeedbackScreenshotSubmissions
         case betaGroups
         case betaLicenseAgreement
-        case betaTesters
         case builds
         case ciProduct
-        case customerReviewSummarizations
-        case customerReviews
         case endUserLicenseAgreement
         case gameCenterDetail
         case gameCenterEnabledVersions
         case inAppPurchases
         case inAppPurchasesV2
-        case marketplaceSearchDetail
-        case perfPowerMetrics
         case preReleaseVersions
         case promotedPurchases
         case reviewSubmissions
         case subscriptionGracePeriod
         case subscriptionGroups
-        case webhooks
     }
 
     /**

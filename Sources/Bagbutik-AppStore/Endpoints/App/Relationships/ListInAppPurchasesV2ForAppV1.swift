@@ -158,7 +158,6 @@ public enum ListInAppPurchasesV2ForAppV1 {
         case images
         case inAppPurchaseAvailability
         case inAppPurchaseLocalizations
-        case pricePoints
         case promotedPurchase
     }
 

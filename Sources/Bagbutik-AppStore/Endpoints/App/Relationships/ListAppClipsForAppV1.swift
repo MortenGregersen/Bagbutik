@@ -126,7 +126,6 @@ public enum ListAppClipsForAppV1 {
      */
     public enum Include: String, IncludeParameter, CaseIterable {
         case app
-        case appClipAdvancedExperiences
         case appClipDefaultExperiences
     }
 

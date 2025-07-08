@@ -21,45 +21,6 @@ public struct Spec: Decodable {
     }
 
     /**
-     Adds include parameters which looks like they are forgotten in the spec.
-
-     This is done by adding the name of the properties in the Relationships on the response schema.
-     Eg. ListAppInfosForApp doesn't list the different types of categories.
-     */
-    public mutating func addForgottenIncludeParameters() {
-        for (pathKey, path) in paths {
-            var path = path
-            for operation in path.operations {
-                let operationIndex = path.operations.firstIndex(of: operation)!
-                var operation = operation
-                let responseSchemaName = operation.successResponseType
-                guard case .object(let responseSchema) = components.schemas[responseSchemaName] else { continue }
-                let dataSchemaName: String
-                guard let dataProperty = responseSchema.properties["data"] else { continue }
-                if case .arrayOfSchemaRef(let theDataSchemaName) = dataProperty.type {
-                    dataSchemaName = theDataSchemaName
-                } else if case .schemaRef(let theDataSchemaName) = dataProperty.type {
-                    dataSchemaName = theDataSchemaName
-                } else { continue }
-                guard case .object(let dataSchema) = components.schemas[dataSchemaName],
-                      case .schema(let dataRelationshipsSchema) = dataSchema.properties["relationships"]?.type
-                else { continue }
-                let includeNamesFromResponse = dataRelationshipsSchema.properties.map(\.key)
-                operation.parameters?.forEach { parameter in
-                    guard let parameterIndex = operation.parameters?.firstIndex(of: parameter),
-                          case .include(let parameterValueType) = parameter,
-                          case .enum(let includeType, let includeValues) = parameterValueType
-                    else { return }
-                    let allValues = Array(Set<String>(includeValues).union(includeNamesFromResponse)).sorted()
-                    operation.parameters?[parameterIndex] = .include(type: .enum(type: includeType, values: allValues))
-                }
-                path.operations[operationIndex] = operation
-            }
-            paths[pathKey] = path
-        }
-    }
-
-    /**
      Flatten the schemas used in schemas for create request and update request and in filter parameters when they are identical to the schemas used in main type.
 
      Eg. ProfileCreateRequest.Attributes.ProfileType is equal to Profile.Attributes.ProfileType, the first one should be removed and the latter one should be used.

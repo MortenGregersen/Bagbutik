@@ -74,6 +74,5 @@ public enum ListBackgroundAssetsForAppV1 {
      */
     public enum Include: String, IncludeParameter, CaseIterable {
         case internalBetaVersion
-        case versions
     }
 }

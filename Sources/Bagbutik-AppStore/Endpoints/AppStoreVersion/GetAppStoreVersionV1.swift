@@ -233,7 +233,6 @@ public enum GetAppStoreVersionV1 {
         case appStoreVersionPhasedRelease
         case appStoreVersionSubmission
         case build
-        case customerReviews
         case gameCenterAppVersion
         case routingAppCoverage
     }

@@ -138,7 +138,6 @@ public enum ListBetaFeedbackCrashSubmissionsForAppV1 {
      */
     public enum Include: String, IncludeParameter, CaseIterable {
         case build
-        case crashLog
         case tester
     }
 

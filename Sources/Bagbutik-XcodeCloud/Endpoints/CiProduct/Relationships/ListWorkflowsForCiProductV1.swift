@@ -110,7 +110,6 @@ public enum ListWorkflowsForCiProductV1 {
      Relationship data to include in the response.
      */
     public enum Include: String, IncludeParameter, CaseIterable {
-        case buildRuns
         case macOsVersion
         case product
         case repository
