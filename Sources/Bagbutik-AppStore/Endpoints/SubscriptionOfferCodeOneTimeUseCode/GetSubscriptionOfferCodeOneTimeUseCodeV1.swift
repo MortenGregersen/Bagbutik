@@ -49,6 +49,5 @@ public enum GetSubscriptionOfferCodeOneTimeUseCodeV1 {
      */
     public enum Include: String, IncludeParameter, CaseIterable {
         case offerCode
-        case values
     }
 }

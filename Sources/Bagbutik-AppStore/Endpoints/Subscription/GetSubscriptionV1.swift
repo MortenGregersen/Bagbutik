@@ -192,7 +192,6 @@ public enum GetSubscriptionV1 {
         case images
         case introductoryOffers
         case offerCodes
-        case pricePoints
         case prices
         case promotedPurchase
         case promotionalOffers

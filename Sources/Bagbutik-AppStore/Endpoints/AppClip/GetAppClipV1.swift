@@ -60,7 +60,6 @@ public enum GetAppClipV1 {
      */
     public enum Include: String, IncludeParameter, CaseIterable {
         case app
-        case appClipAdvancedExperiences
         case appClipDefaultExperiences
     }
 

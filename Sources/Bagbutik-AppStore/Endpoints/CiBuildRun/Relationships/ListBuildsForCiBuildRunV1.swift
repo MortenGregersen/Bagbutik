@@ -346,10 +346,8 @@ public enum ListBuildsForCiBuildRunV1 {
         case betaGroups
         case buildBetaDetail
         case buildBundles
-        case diagnosticSignatures
         case icons
         case individualTesters
-        case perfPowerMetrics
         case preReleaseVersion
     }
 

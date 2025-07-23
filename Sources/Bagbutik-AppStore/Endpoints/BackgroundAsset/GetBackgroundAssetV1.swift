@@ -47,6 +47,5 @@ public enum GetBackgroundAssetV1 {
      */
     public enum Include: String, IncludeParameter, CaseIterable {
         case internalBetaVersion
-        case versions
     }
 }

@@ -195,7 +195,6 @@ public enum ListBetaGroupsV1 {
     public enum Include: String, IncludeParameter, CaseIterable {
         case app
         case betaRecruitmentCriteria
-        case betaRecruitmentCriterionCompatibleBuildCheck
         case betaTesters
         case builds
     }

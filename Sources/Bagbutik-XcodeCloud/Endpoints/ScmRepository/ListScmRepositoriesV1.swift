@@ -64,8 +64,6 @@ public enum ListScmRepositoriesV1 {
      */
     public enum Include: String, IncludeParameter, CaseIterable {
         case defaultBranch
-        case gitReferences
-        case pullRequests
         case scmProvider
     }
 }

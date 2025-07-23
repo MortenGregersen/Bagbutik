@@ -174,7 +174,6 @@ public enum ListBuildRunsForCiWorkflowV1 {
      Relationship data to include in the response.
      */
     public enum Include: String, IncludeParameter, CaseIterable {
-        case actions
         case builds
         case destinationBranch
         case product
