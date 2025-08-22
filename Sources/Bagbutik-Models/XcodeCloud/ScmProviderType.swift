@@ -46,5 +46,20 @@ public struct ScmProviderType: Codable, Sendable {
         case githubEnterprise = "GITHUB_ENTERPRISE"
         case gitlabCloud = "GITLAB_CLOUD"
         case gitlabSelfManaged = "GITLAB_SELF_MANAGED"
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.singleValueContainer()
+            let string = try container.decode(String.self)
+            if let value = Kind(rawValue: string) {
+                self = value
+            } else if let value = Kind(rawValue: string.uppercased()) {
+                self = value
+            } else {
+                throw DecodingError.dataCorruptedError(
+                    in: container,
+                    debugDescription: "Invalid Kind value: \(string)"
+                )
+            }
+        }
     }
 }

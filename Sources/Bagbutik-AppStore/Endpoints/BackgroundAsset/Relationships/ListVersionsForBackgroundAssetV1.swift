@@ -55,11 +55,41 @@ public enum ListVersionsForBackgroundAssetV1 {
             case fileSize
             case sourceFileChecksum
             case uploadOperations
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = BackgroundAssetUploadFiles(rawValue: string) {
+                    self = value
+                } else if let value = BackgroundAssetUploadFiles(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid BackgroundAssetUploadFiles value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum BackgroundAssetVersionInternalBetaReleases: String, Sendable, ParameterValue, Codable, CaseIterable {
             case backgroundAssetVersion
             case state
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = BackgroundAssetVersionInternalBetaReleases(rawValue: string) {
+                    self = value
+                } else if let value = BackgroundAssetVersionInternalBetaReleases(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid BackgroundAssetVersionInternalBetaReleases value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum BackgroundAssetVersions: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -71,6 +101,21 @@ public enum ListVersionsForBackgroundAssetV1 {
             case platforms
             case state
             case version
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = BackgroundAssetVersions(rawValue: string) {
+                    self = value
+                } else if let value = BackgroundAssetVersions(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid BackgroundAssetVersions value: \(string)"
+                    )
+                }
+            }
         }
     }
 
@@ -88,6 +133,21 @@ public enum ListVersionsForBackgroundAssetV1 {
         public enum InternalBetaReleaseState: String, Sendable, ParameterValue, Codable, CaseIterable {
             case readyForTesting = "READY_FOR_TESTING"
             case superseded = "SUPERSEDED"
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = InternalBetaReleaseState(rawValue: string) {
+                    self = value
+                } else if let value = InternalBetaReleaseState(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid InternalBetaReleaseState value: \(string)"
+                    )
+                }
+            }
         }
     }
 

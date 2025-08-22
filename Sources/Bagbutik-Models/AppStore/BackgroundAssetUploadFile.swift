@@ -92,6 +92,21 @@ public struct BackgroundAssetUploadFile: Codable, Sendable, Identifiable {
         public enum AssetType: String, Sendable, Codable, CaseIterable {
             case asset = "ASSET"
             case manifest = "MANIFEST"
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = AssetType(rawValue: string) {
+                    self = value
+                } else if let value = AssetType(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid AssetType value: \(string)"
+                    )
+                }
+            }
         }
     }
 }

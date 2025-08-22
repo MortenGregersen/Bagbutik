@@ -49,6 +49,21 @@ public enum ListWorkflowsForCiProductV1 {
             case name
             case version
             case xcodeVersions
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = CiMacOsVersions(rawValue: string) {
+                    self = value
+                } else if let value = CiMacOsVersions(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid CiMacOsVersions value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum CiProducts: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -61,6 +76,21 @@ public enum ListWorkflowsForCiProductV1 {
             case primaryRepositories
             case productType
             case workflows
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = CiProducts(rawValue: string) {
+                    self = value
+                } else if let value = CiProducts(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid CiProducts value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum CiWorkflows: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -84,6 +114,21 @@ public enum ListWorkflowsForCiProductV1 {
             case scheduledStartCondition
             case tagStartCondition
             case xcodeVersion
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = CiWorkflows(rawValue: string) {
+                    self = value
+                } else if let value = CiWorkflows(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid CiWorkflows value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum CiXcodeVersions: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -91,6 +136,21 @@ public enum ListWorkflowsForCiProductV1 {
             case name
             case testDestinations
             case version
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = CiXcodeVersions(rawValue: string) {
+                    self = value
+                } else if let value = CiXcodeVersions(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid CiXcodeVersions value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum ScmRepositories: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -103,6 +163,21 @@ public enum ListWorkflowsForCiProductV1 {
             case repositoryName
             case scmProvider
             case sshCloneUrl
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = ScmRepositories(rawValue: string) {
+                    self = value
+                } else if let value = ScmRepositories(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid ScmRepositories value: \(string)"
+                    )
+                }
+            }
         }
     }
 

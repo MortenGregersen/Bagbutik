@@ -127,6 +127,21 @@ public struct CiBuildRun: Codable, Sendable, Identifiable {
         public enum CancelReason: String, Sendable, Codable, CaseIterable {
             case automaticallyByNewerBuild = "AUTOMATICALLY_BY_NEWER_BUILD"
             case manuallyByUser = "MANUALLY_BY_USER"
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = CancelReason(rawValue: string) {
+                    self = value
+                } else if let value = CancelReason(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid CancelReason value: \(string)"
+                    )
+                }
+            }
         }
 
         public struct DestinationCommit: Codable, Sendable {
@@ -214,6 +229,21 @@ public struct CiBuildRun: Codable, Sendable, Identifiable {
             case pullRequestOpen = "PULL_REQUEST_OPEN"
             case pullRequestUpdate = "PULL_REQUEST_UPDATE"
             case schedule = "SCHEDULE"
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = StartReason(rawValue: string) {
+                    self = value
+                } else if let value = StartReason(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid StartReason value: \(string)"
+                    )
+                }
+            }
         }
     }
 

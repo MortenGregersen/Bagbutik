@@ -48,6 +48,21 @@ public enum GetGameCenterMatchmakingRuleSetV1 {
             case experimentRuleSet
             case referenceName
             case ruleSet
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = GameCenterMatchmakingQueues(rawValue: string) {
+                    self = value
+                } else if let value = GameCenterMatchmakingQueues(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid GameCenterMatchmakingQueues value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum GameCenterMatchmakingRuleSets: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -58,6 +73,21 @@ public enum GetGameCenterMatchmakingRuleSetV1 {
             case ruleLanguageVersion
             case rules
             case teams
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = GameCenterMatchmakingRuleSets(rawValue: string) {
+                    self = value
+                } else if let value = GameCenterMatchmakingRuleSets(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid GameCenterMatchmakingRuleSets value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum GameCenterMatchmakingRules: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -66,12 +96,42 @@ public enum GetGameCenterMatchmakingRuleSetV1 {
             case referenceName
             case type
             case weight
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = GameCenterMatchmakingRules(rawValue: string) {
+                    self = value
+                } else if let value = GameCenterMatchmakingRules(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid GameCenterMatchmakingRules value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum GameCenterMatchmakingTeams: String, Sendable, ParameterValue, Codable, CaseIterable {
             case maxPlayers
             case minPlayers
             case referenceName
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = GameCenterMatchmakingTeams(rawValue: string) {
+                    self = value
+                } else if let value = GameCenterMatchmakingTeams(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid GameCenterMatchmakingTeams value: \(string)"
+                    )
+                }
+            }
         }
     }
 

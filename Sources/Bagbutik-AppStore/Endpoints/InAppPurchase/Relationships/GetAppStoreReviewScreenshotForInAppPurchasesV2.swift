@@ -46,6 +46,21 @@ public enum GetAppStoreReviewScreenshotForInAppPurchasesV2 {
             case inAppPurchaseV2
             case sourceFileChecksum
             case uploadOperations
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = InAppPurchaseAppStoreReviewScreenshots(rawValue: string) {
+                    self = value
+                } else if let value = InAppPurchaseAppStoreReviewScreenshots(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid InAppPurchaseAppStoreReviewScreenshots value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum InAppPurchases: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -64,6 +79,21 @@ public enum GetAppStoreReviewScreenshotForInAppPurchasesV2 {
             case promotedPurchase
             case reviewNote
             case state
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = InAppPurchases(rawValue: string) {
+                    self = value
+                } else if let value = InAppPurchases(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid InAppPurchases value: \(string)"
+                    )
+                }
+            }
         }
     }
 

@@ -48,6 +48,21 @@ public enum ListLocalizationsForGameCenterLeaderboardSetV1 {
             case gameCenterLeaderboardSetLocalization
             case imageAsset
             case uploadOperations
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = GameCenterLeaderboardSetImages(rawValue: string) {
+                    self = value
+                } else if let value = GameCenterLeaderboardSetImages(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid GameCenterLeaderboardSetImages value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum GameCenterLeaderboardSetLocalizations: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -55,6 +70,21 @@ public enum ListLocalizationsForGameCenterLeaderboardSetV1 {
             case gameCenterLeaderboardSetImage
             case locale
             case name
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = GameCenterLeaderboardSetLocalizations(rawValue: string) {
+                    self = value
+                } else if let value = GameCenterLeaderboardSetLocalizations(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid GameCenterLeaderboardSetLocalizations value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum GameCenterLeaderboardSets: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -66,6 +96,21 @@ public enum ListLocalizationsForGameCenterLeaderboardSetV1 {
             case referenceName
             case releases
             case vendorIdentifier
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = GameCenterLeaderboardSets(rawValue: string) {
+                    self = value
+                } else if let value = GameCenterLeaderboardSets(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid GameCenterLeaderboardSets value: \(string)"
+                    )
+                }
+            }
         }
     }
 

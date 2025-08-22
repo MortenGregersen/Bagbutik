@@ -120,6 +120,21 @@ public struct AppClipDomainStatus: Codable, Sendable, Identifiable {
                 case tlsError = "TLS_ERROR"
                 case tooManyRedirects = "TOO_MANY_REDIRECTS"
                 case unexpectedError = "UNEXPECTED_ERROR"
+
+                public init(from decoder: Decoder) throws {
+                    let container = try decoder.singleValueContainer()
+                    let string = try container.decode(String.self)
+                    if let value = ErrorCode(rawValue: string) {
+                        self = value
+                    } else if let value = ErrorCode(rawValue: string.uppercased()) {
+                        self = value
+                    } else {
+                        throw DecodingError.dataCorruptedError(
+                            in: container,
+                            debugDescription: "Invalid ErrorCode value: \(string)"
+                        )
+                    }
+                }
             }
         }
     }

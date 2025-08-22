@@ -35,4 +35,19 @@ public enum ScreenshotDisplayType: String, Sendable, ParameterValue, Codable, Ca
     case iMessageAppIphone61 = "IMESSAGE_APP_IPHONE_61"
     case iMessageAppIphone65 = "IMESSAGE_APP_IPHONE_65"
     case iMessageAppIphone67 = "IMESSAGE_APP_IPHONE_67"
+
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.singleValueContainer()
+        let string = try container.decode(String.self)
+        if let value = ScreenshotDisplayType(rawValue: string) {
+            self = value
+        } else if let value = ScreenshotDisplayType(rawValue: string.uppercased()) {
+            self = value
+        } else {
+            throw DecodingError.dataCorruptedError(
+                in: container,
+                debugDescription: "Invalid ScreenshotDisplayType value: \(string)"
+            )
+        }
+    }
 }

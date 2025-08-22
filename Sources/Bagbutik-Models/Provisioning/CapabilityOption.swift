@@ -58,5 +58,20 @@ public struct CapabilityOption: Codable, Sendable {
         case protectedUntilFirstUserAuth = "PROTECTED_UNTIL_FIRST_USER_AUTH"
         case xcode5 = "XCODE_5"
         case xcode6 = "XCODE_6"
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.singleValueContainer()
+            let string = try container.decode(String.self)
+            if let value = Key(rawValue: string) {
+                self = value
+            } else if let value = Key(rawValue: string.uppercased()) {
+                self = value
+            } else {
+                throw DecodingError.dataCorruptedError(
+                    in: container,
+                    debugDescription: "Invalid Key value: \(string)"
+                )
+            }
+        }
     }
 }

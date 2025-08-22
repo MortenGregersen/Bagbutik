@@ -65,6 +65,21 @@ public enum GetGameCenterDetailV1 {
             case gameCenterAchievement
             case gameCenterDetail
             case live
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = GameCenterAchievementReleases(rawValue: string) {
+                    self = value
+                } else if let value = GameCenterAchievementReleases(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid GameCenterAchievementReleases value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum GameCenterAchievements: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -81,6 +96,21 @@ public enum GetGameCenterDetailV1 {
             case repeatable
             case showBeforeEarned
             case vendorIdentifier
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = GameCenterAchievements(rawValue: string) {
+                    self = value
+                } else if let value = GameCenterAchievements(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid GameCenterAchievements value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum GameCenterActivities: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -97,20 +127,80 @@ public enum GetGameCenterDetailV1 {
             case supportsPartyCode
             case vendorIdentifier
             case versions
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = GameCenterActivities(rawValue: string) {
+                    self = value
+                } else if let value = GameCenterActivities(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid GameCenterActivities value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum GameCenterActivityVersionReleases: String, Sendable, ParameterValue, Codable, CaseIterable {
             case version
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = GameCenterActivityVersionReleases(rawValue: string) {
+                    self = value
+                } else if let value = GameCenterActivityVersionReleases(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid GameCenterActivityVersionReleases value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum GameCenterAppVersions: String, Sendable, ParameterValue, Codable, CaseIterable {
             case appStoreVersion
             case compatibilityVersions
             case enabled
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = GameCenterAppVersions(rawValue: string) {
+                    self = value
+                } else if let value = GameCenterAppVersions(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid GameCenterAppVersions value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum GameCenterChallengeVersionReleases: String, Sendable, ParameterValue, Codable, CaseIterable {
             case version
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = GameCenterChallengeVersionReleases(rawValue: string) {
+                    self = value
+                } else if let value = GameCenterChallengeVersionReleases(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid GameCenterChallengeVersionReleases value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum GameCenterChallenges: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -124,6 +214,21 @@ public enum GetGameCenterDetailV1 {
             case repeatable
             case vendorIdentifier
             case versions
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = GameCenterChallenges(rawValue: string) {
+                    self = value
+                } else if let value = GameCenterChallenges(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid GameCenterChallenges value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum GameCenterDetails: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -145,6 +250,21 @@ public enum GetGameCenterDetailV1 {
             case gameCenterLeaderboards
             case leaderboardReleases
             case leaderboardSetReleases
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = GameCenterDetails(rawValue: string) {
+                    self = value
+                } else if let value = GameCenterDetails(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid GameCenterDetails value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum GameCenterGroups: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -155,18 +275,63 @@ public enum GetGameCenterDetailV1 {
             case gameCenterLeaderboardSets
             case gameCenterLeaderboards
             case referenceName
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = GameCenterGroups(rawValue: string) {
+                    self = value
+                } else if let value = GameCenterGroups(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid GameCenterGroups value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum GameCenterLeaderboardReleases: String, Sendable, ParameterValue, Codable, CaseIterable {
             case gameCenterDetail
             case gameCenterLeaderboard
             case live
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = GameCenterLeaderboardReleases(rawValue: string) {
+                    self = value
+                } else if let value = GameCenterLeaderboardReleases(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid GameCenterLeaderboardReleases value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum GameCenterLeaderboardSetReleases: String, Sendable, ParameterValue, Codable, CaseIterable {
             case gameCenterDetail
             case gameCenterLeaderboardSet
             case live
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = GameCenterLeaderboardSetReleases(rawValue: string) {
+                    self = value
+                } else if let value = GameCenterLeaderboardSetReleases(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid GameCenterLeaderboardSetReleases value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum GameCenterLeaderboardSets: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -178,6 +343,21 @@ public enum GetGameCenterDetailV1 {
             case referenceName
             case releases
             case vendorIdentifier
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = GameCenterLeaderboardSets(rawValue: string) {
+                    self = value
+                } else if let value = GameCenterLeaderboardSets(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid GameCenterLeaderboardSets value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum GameCenterLeaderboards: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -202,6 +382,21 @@ public enum GetGameCenterDetailV1 {
             case submissionType
             case vendorIdentifier
             case visibility
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = GameCenterLeaderboards(rawValue: string) {
+                    self = value
+                } else if let value = GameCenterLeaderboards(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid GameCenterLeaderboards value: \(string)"
+                    )
+                }
+            }
         }
     }
 

@@ -40,6 +40,21 @@ public enum GetBetaAppReviewSubmissionV1 {
             case betaReviewState
             case build
             case submittedDate
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = BetaAppReviewSubmissions(rawValue: string) {
+                    self = value
+                } else if let value = BetaAppReviewSubmissions(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid BetaAppReviewSubmissions value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum Builds: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -68,6 +83,21 @@ public enum GetBetaAppReviewSubmissionV1 {
             case uploadedDate
             case usesNonExemptEncryption
             case version
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = Builds(rawValue: string) {
+                    self = value
+                } else if let value = Builds(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid Builds value: \(string)"
+                    )
+                }
+            }
         }
     }
 

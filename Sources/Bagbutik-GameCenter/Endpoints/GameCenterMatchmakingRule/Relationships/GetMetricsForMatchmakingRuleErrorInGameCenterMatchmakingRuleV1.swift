@@ -61,6 +61,21 @@ public enum GetMetricsForMatchmakingRuleErrorInGameCenterMatchmakingRuleV1 {
         case P1D
         case PT15M
         case PT1H
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.singleValueContainer()
+            let string = try container.decode(String.self)
+            if let value = Granularity(rawValue: string) {
+                self = value
+            } else if let value = Granularity(rawValue: string.uppercased()) {
+                self = value
+            } else {
+                throw DecodingError.dataCorruptedError(
+                    in: container,
+                    debugDescription: "Invalid Granularity value: \(string)"
+                )
+            }
+        }
     }
 
     /**
@@ -68,5 +83,20 @@ public enum GetMetricsForMatchmakingRuleErrorInGameCenterMatchmakingRuleV1 {
      */
     public enum GroupBy: String, Sendable, ParameterValue, Codable, CaseIterable {
         case gameCenterMatchmakingQueue
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.singleValueContainer()
+            let string = try container.decode(String.self)
+            if let value = GroupBy(rawValue: string) {
+                self = value
+            } else if let value = GroupBy(rawValue: string.uppercased()) {
+                self = value
+            } else {
+                throw DecodingError.dataCorruptedError(
+                    in: container,
+                    debugDescription: "Invalid GroupBy value: \(string)"
+                )
+            }
+        }
     }
 }

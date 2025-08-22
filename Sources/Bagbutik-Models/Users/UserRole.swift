@@ -15,4 +15,19 @@ public enum UserRole: String, Sendable, ParameterValue, Codable, CaseIterable {
     case generateIndividualKeys = "GENERATE_INDIVIDUAL_KEYS"
     case marketing = "MARKETING"
     case sales = "SALES"
+
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.singleValueContainer()
+        let string = try container.decode(String.self)
+        if let value = UserRole(rawValue: string) {
+            self = value
+        } else if let value = UserRole(rawValue: string.uppercased()) {
+            self = value
+        } else {
+            throw DecodingError.dataCorruptedError(
+                in: container,
+                debugDescription: "Invalid UserRole value: \(string)"
+            )
+        }
+    }
 }

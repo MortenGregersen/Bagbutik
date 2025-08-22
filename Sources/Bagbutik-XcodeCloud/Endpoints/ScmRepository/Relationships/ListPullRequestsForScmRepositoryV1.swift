@@ -52,6 +52,21 @@ public enum ListPullRequestsForScmRepositoryV1 {
             case sourceRepositoryOwner
             case title
             case webUrl
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = ScmPullRequests(rawValue: string) {
+                    self = value
+                } else if let value = ScmPullRequests(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid ScmPullRequests value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum ScmRepositories: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -64,6 +79,21 @@ public enum ListPullRequestsForScmRepositoryV1 {
             case repositoryName
             case scmProvider
             case sshCloneUrl
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = ScmRepositories(rawValue: string) {
+                    self = value
+                } else if let value = ScmRepositories(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid ScmRepositories value: \(string)"
+                    )
+                }
+            }
         }
     }
 

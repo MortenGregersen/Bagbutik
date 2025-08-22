@@ -46,6 +46,21 @@ public enum ListProfilesForBundleIdV1 {
             case profileState
             case profileType
             case uuid
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = Profiles(rawValue: string) {
+                    self = value
+                } else if let value = Profiles(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid Profiles value: \(string)"
+                    )
+                }
+            }
         }
     }
 }

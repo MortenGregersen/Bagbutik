@@ -34,6 +34,21 @@ public enum ListBetaRecruitmentCriterionOptionsV1 {
 
         public enum BetaRecruitmentCriterionOptions: String, Sendable, ParameterValue, Codable, CaseIterable {
             case deviceFamilyOsVersions
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = BetaRecruitmentCriterionOptions(rawValue: string) {
+                    self = value
+                } else if let value = BetaRecruitmentCriterionOptions(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid BetaRecruitmentCriterionOptions value: \(string)"
+                    )
+                }
+            }
         }
     }
 }

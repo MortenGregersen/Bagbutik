@@ -53,6 +53,21 @@ public enum ListAppPreviewSetsForAppStoreVersionExperimentTreatmentLocalizationV
             case appScreenshotSets
             case locale
             case promotionalText
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = AppCustomProductPageLocalizations(rawValue: string) {
+                    self = value
+                } else if let value = AppCustomProductPageLocalizations(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid AppCustomProductPageLocalizations value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum AppPreviewSets: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -61,6 +76,21 @@ public enum ListAppPreviewSetsForAppStoreVersionExperimentTreatmentLocalizationV
             case appStoreVersionExperimentTreatmentLocalization
             case appStoreVersionLocalization
             case previewType
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = AppPreviewSets(rawValue: string) {
+                    self = value
+                } else if let value = AppPreviewSets(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid AppPreviewSets value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum AppPreviews: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -76,6 +106,21 @@ public enum ListAppPreviewSetsForAppStoreVersionExperimentTreatmentLocalizationV
             case uploadOperations
             case videoDeliveryState
             case videoUrl
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = AppPreviews(rawValue: string) {
+                    self = value
+                } else if let value = AppPreviews(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid AppPreviews value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum AppStoreVersionExperimentTreatmentLocalizations: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -83,6 +128,21 @@ public enum ListAppPreviewSetsForAppStoreVersionExperimentTreatmentLocalizationV
             case appScreenshotSets
             case appStoreVersionExperimentTreatment
             case locale
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = AppStoreVersionExperimentTreatmentLocalizations(rawValue: string) {
+                    self = value
+                } else if let value = AppStoreVersionExperimentTreatmentLocalizations(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid AppStoreVersionExperimentTreatmentLocalizations value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum AppStoreVersionLocalizations: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -96,6 +156,21 @@ public enum ListAppPreviewSetsForAppStoreVersionExperimentTreatmentLocalizationV
             case promotionalText
             case supportUrl
             case whatsNew
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = AppStoreVersionLocalizations(rawValue: string) {
+                    self = value
+                } else if let value = AppStoreVersionLocalizations(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid AppStoreVersionLocalizations value: \(string)"
+                    )
+                }
+            }
         }
     }
 

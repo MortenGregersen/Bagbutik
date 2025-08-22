@@ -41,6 +41,21 @@ public enum GetGameCenterAchievementImageV1 {
             case gameCenterAchievementLocalization
             case imageAsset
             case uploadOperations
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = GameCenterAchievementImages(rawValue: string) {
+                    self = value
+                } else if let value = GameCenterAchievementImages(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid GameCenterAchievementImages value: \(string)"
+                    )
+                }
+            }
         }
     }
 

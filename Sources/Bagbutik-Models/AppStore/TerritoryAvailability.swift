@@ -115,6 +115,21 @@ public struct TerritoryAvailability: Codable, Sendable, Identifiable {
             case traderStatusVerificationFailed = "TRADER_STATUS_VERIFICATION_FAILED"
             case traderStatusVerificationStatusMissing = "TRADER_STATUS_VERIFICATION_STATUS_MISSING"
             case unverifiedGrn = "UNVERIFIED_GRN"
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = ContentStatuses(rawValue: string) {
+                    self = value
+                } else if let value = ContentStatuses(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid ContentStatuses value: \(string)"
+                    )
+                }
+            }
         }
     }
 

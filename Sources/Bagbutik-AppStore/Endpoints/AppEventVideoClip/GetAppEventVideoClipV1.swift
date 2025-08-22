@@ -45,6 +45,21 @@ public enum GetAppEventVideoClipV1 {
             case uploadOperations
             case videoDeliveryState
             case videoUrl
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = AppEventVideoClips(rawValue: string) {
+                    self = value
+                } else if let value = AppEventVideoClips(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid AppEventVideoClips value: \(string)"
+                    )
+                }
+            }
         }
     }
 

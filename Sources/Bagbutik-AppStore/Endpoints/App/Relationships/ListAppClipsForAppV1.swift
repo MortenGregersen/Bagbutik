@@ -50,6 +50,21 @@ public enum ListAppClipsForAppV1 {
             case appClipAppStoreReviewDetail
             case appClipDefaultExperienceLocalizations
             case releaseWithAppStoreVersion
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = AppClipDefaultExperiences(rawValue: string) {
+                    self = value
+                } else if let value = AppClipDefaultExperiences(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid AppClipDefaultExperiences value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum AppClips: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -57,6 +72,21 @@ public enum ListAppClipsForAppV1 {
             case appClipAdvancedExperiences
             case appClipDefaultExperiences
             case bundleId
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = AppClips(rawValue: string) {
+                    self = value
+                } else if let value = AppClips(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid AppClips value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum Apps: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -110,6 +140,21 @@ public enum ListAppClipsForAppV1 {
             case subscriptionStatusUrlVersion
             case subscriptionStatusUrlVersionForSandbox
             case webhooks
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = Apps(rawValue: string) {
+                    self = value
+                } else if let value = Apps(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid Apps value: \(string)"
+                    )
+                }
+            }
         }
     }
 

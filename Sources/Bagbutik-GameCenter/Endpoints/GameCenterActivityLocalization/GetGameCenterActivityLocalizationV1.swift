@@ -42,6 +42,21 @@ public enum GetGameCenterActivityLocalizationV1 {
             case fileSize
             case imageAsset
             case uploadOperations
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = GameCenterActivityImages(rawValue: string) {
+                    self = value
+                } else if let value = GameCenterActivityImages(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid GameCenterActivityImages value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum GameCenterActivityLocalizations: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -50,6 +65,21 @@ public enum GetGameCenterActivityLocalizationV1 {
             case locale
             case name
             case version
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = GameCenterActivityLocalizations(rawValue: string) {
+                    self = value
+                } else if let value = GameCenterActivityLocalizations(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid GameCenterActivityLocalizations value: \(string)"
+                    )
+                }
+            }
         }
     }
 

@@ -43,6 +43,21 @@ public enum ListIndividualTestersForBuildV1 {
             case inviteType
             case lastName
             case state
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = BetaTesters(rawValue: string) {
+                    self = value
+                } else if let value = BetaTesters(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid BetaTesters value: \(string)"
+                    )
+                }
+            }
         }
     }
 }

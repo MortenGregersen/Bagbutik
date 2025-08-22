@@ -86,6 +86,21 @@ public enum GetAppForCiProductV1 {
             case appClipAdvancedExperiences
             case appClipDefaultExperiences
             case bundleId
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = AppClips(rawValue: string) {
+                    self = value
+                } else if let value = AppClips(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid AppClips value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum AppCustomProductPages: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -94,6 +109,21 @@ public enum GetAppForCiProductV1 {
             case name
             case url
             case visible
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = AppCustomProductPages(rawValue: string) {
+                    self = value
+                } else if let value = AppCustomProductPages(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid AppCustomProductPages value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum AppEncryptionDeclarations: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -114,6 +144,21 @@ public enum GetAppForCiProductV1 {
             case platform
             case uploadedDate
             case usesEncryption
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = AppEncryptionDeclarations(rawValue: string) {
+                    self = value
+                } else if let value = AppEncryptionDeclarations(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid AppEncryptionDeclarations value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum AppEvents: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -128,6 +173,21 @@ public enum GetAppForCiProductV1 {
             case purpose
             case referenceName
             case territorySchedules
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = AppEvents(rawValue: string) {
+                    self = value
+                } else if let value = AppEvents(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid AppEvents value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum AppInfos: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -149,6 +209,21 @@ public enum GetAppForCiProductV1 {
             case secondarySubcategoryOne
             case secondarySubcategoryTwo
             case state
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = AppInfos(rawValue: string) {
+                    self = value
+                } else if let value = AppInfos(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid AppInfos value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum AppStoreVersionExperiments: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -163,6 +238,21 @@ public enum GetAppForCiProductV1 {
             case startDate
             case state
             case trafficProportion
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = AppStoreVersionExperiments(rawValue: string) {
+                    self = value
+                } else if let value = AppStoreVersionExperiments(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid AppStoreVersionExperiments value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum AppStoreVersions: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -191,6 +281,21 @@ public enum GetAppForCiProductV1 {
             case routingAppCoverage
             case usesIdfa
             case versionString
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = AppStoreVersions(rawValue: string) {
+                    self = value
+                } else if let value = AppStoreVersions(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid AppStoreVersions value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum Apps: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -244,6 +349,21 @@ public enum GetAppForCiProductV1 {
             case subscriptionStatusUrlVersion
             case subscriptionStatusUrlVersionForSandbox
             case webhooks
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = Apps(rawValue: string) {
+                    self = value
+                } else if let value = Apps(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid Apps value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum BetaAppLocalizations: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -254,6 +374,21 @@ public enum GetAppForCiProductV1 {
             case marketingUrl
             case privacyPolicyUrl
             case tvOsPrivacyPolicy
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = BetaAppLocalizations(rawValue: string) {
+                    self = value
+                } else if let value = BetaAppLocalizations(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid BetaAppLocalizations value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum BetaAppReviewDetails: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -266,6 +401,21 @@ public enum GetAppForCiProductV1 {
             case demoAccountPassword
             case demoAccountRequired
             case notes
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = BetaAppReviewDetails(rawValue: string) {
+                    self = value
+                } else if let value = BetaAppReviewDetails(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid BetaAppReviewDetails value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum BetaGroups: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -286,11 +436,41 @@ public enum GetAppForCiProductV1 {
             case publicLinkId
             case publicLinkLimit
             case publicLinkLimitEnabled
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = BetaGroups(rawValue: string) {
+                    self = value
+                } else if let value = BetaGroups(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid BetaGroups value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum BetaLicenseAgreements: String, Sendable, ParameterValue, Codable, CaseIterable {
             case agreementText
             case app
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = BetaLicenseAgreements(rawValue: string) {
+                    self = value
+                } else if let value = BetaLicenseAgreements(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid BetaLicenseAgreements value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum Builds: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -319,6 +499,21 @@ public enum GetAppForCiProductV1 {
             case uploadedDate
             case usesNonExemptEncryption
             case version
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = Builds(rawValue: string) {
+                    self = value
+                } else if let value = Builds(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid Builds value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum CiProducts: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -331,12 +526,42 @@ public enum GetAppForCiProductV1 {
             case primaryRepositories
             case productType
             case workflows
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = CiProducts(rawValue: string) {
+                    self = value
+                } else if let value = CiProducts(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid CiProducts value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum EndUserLicenseAgreements: String, Sendable, ParameterValue, Codable, CaseIterable {
             case agreementText
             case app
             case territories
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = EndUserLicenseAgreements(rawValue: string) {
+                    self = value
+                } else if let value = EndUserLicenseAgreements(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid EndUserLicenseAgreements value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum GameCenterDetails: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -358,6 +583,21 @@ public enum GetAppForCiProductV1 {
             case gameCenterLeaderboards
             case leaderboardReleases
             case leaderboardSetReleases
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = GameCenterDetails(rawValue: string) {
+                    self = value
+                } else if let value = GameCenterDetails(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid GameCenterDetails value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum GameCenterEnabledVersions: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -366,6 +606,21 @@ public enum GetAppForCiProductV1 {
             case iconAsset
             case platform
             case versionString
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = GameCenterEnabledVersions(rawValue: string) {
+                    self = value
+                } else if let value = GameCenterEnabledVersions(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid GameCenterEnabledVersions value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum InAppPurchases: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -386,6 +641,21 @@ public enum GetAppForCiProductV1 {
             case referenceName
             case reviewNote
             case state
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = InAppPurchases(rawValue: string) {
+                    self = value
+                } else if let value = InAppPurchases(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid InAppPurchases value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum PreReleaseVersions: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -393,6 +663,21 @@ public enum GetAppForCiProductV1 {
             case builds
             case platform
             case version
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = PreReleaseVersions(rawValue: string) {
+                    self = value
+                } else if let value = PreReleaseVersions(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid PreReleaseVersions value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum PromotedPurchases: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -401,6 +686,21 @@ public enum GetAppForCiProductV1 {
             case state
             case subscription
             case visibleForAllUsers
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = PromotedPurchases(rawValue: string) {
+                    self = value
+                } else if let value = PromotedPurchases(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid PromotedPurchases value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum ReviewSubmissions: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -412,6 +712,21 @@ public enum GetAppForCiProductV1 {
             case state
             case submittedByActor
             case submittedDate
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = ReviewSubmissions(rawValue: string) {
+                    self = value
+                } else if let value = ReviewSubmissions(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid ReviewSubmissions value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum SubscriptionGracePeriods: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -419,12 +734,42 @@ public enum GetAppForCiProductV1 {
             case optIn
             case renewalType
             case sandboxOptIn
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = SubscriptionGracePeriods(rawValue: string) {
+                    self = value
+                } else if let value = SubscriptionGracePeriods(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid SubscriptionGracePeriods value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum SubscriptionGroups: String, Sendable, ParameterValue, Codable, CaseIterable {
             case referenceName
             case subscriptionGroupLocalizations
             case subscriptions
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = SubscriptionGroups(rawValue: string) {
+                    self = value
+                } else if let value = SubscriptionGroups(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid SubscriptionGroups value: \(string)"
+                    )
+                }
+            }
         }
     }
 

@@ -44,6 +44,21 @@ public enum ListCertificatesForProfileV1 {
             case passTypeId
             case platform
             case serialNumber
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = Certificates(rawValue: string) {
+                    self = value
+                } else if let value = Certificates(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid Certificates value: \(string)"
+                    )
+                }
+            }
         }
     }
 }

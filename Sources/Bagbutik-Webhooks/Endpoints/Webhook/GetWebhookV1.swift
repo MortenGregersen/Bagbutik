@@ -41,6 +41,21 @@ public enum GetWebhookV1 {
             case eventTypes
             case name
             case url
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = Webhooks(rawValue: string) {
+                    self = value
+                } else if let value = Webhooks(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid Webhooks value: \(string)"
+                    )
+                }
+            }
         }
     }
 

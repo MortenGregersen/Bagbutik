@@ -46,6 +46,21 @@ public enum GetAppStoreReviewScreenshotForSubscriptionV1 {
             case sourceFileChecksum
             case subscription
             case uploadOperations
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = SubscriptionAppStoreReviewScreenshots(rawValue: string) {
+                    self = value
+                } else if let value = SubscriptionAppStoreReviewScreenshots(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid SubscriptionAppStoreReviewScreenshots value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum Subscriptions: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -68,6 +83,21 @@ public enum GetAppStoreReviewScreenshotForSubscriptionV1 {
             case subscriptionLocalizations
             case subscriptionPeriod
             case winBackOffers
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = Subscriptions(rawValue: string) {
+                    self = value
+                } else if let value = Subscriptions(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid Subscriptions value: \(string)"
+                    )
+                }
+            }
         }
     }
 

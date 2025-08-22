@@ -45,6 +45,21 @@ public enum ListAppScreenshotsForAppScreenshotSetV1 {
             case appStoreVersionExperimentTreatmentLocalization
             case appStoreVersionLocalization
             case screenshotDisplayType
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = AppScreenshotSets(rawValue: string) {
+                    self = value
+                } else if let value = AppScreenshotSets(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid AppScreenshotSets value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum AppScreenshots: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -57,6 +72,21 @@ public enum ListAppScreenshotsForAppScreenshotSetV1 {
             case imageAsset
             case sourceFileChecksum
             case uploadOperations
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = AppScreenshots(rawValue: string) {
+                    self = value
+                } else if let value = AppScreenshots(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid AppScreenshots value: \(string)"
+                    )
+                }
+            }
         }
     }
 

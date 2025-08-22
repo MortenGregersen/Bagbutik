@@ -95,6 +95,21 @@ public enum ListCiProductsV1 {
             case subscriptionStatusUrlVersion
             case subscriptionStatusUrlVersionForSandbox
             case webhooks
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = Apps(rawValue: string) {
+                    self = value
+                } else if let value = Apps(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid Apps value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum CiProducts: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -107,6 +122,21 @@ public enum ListCiProductsV1 {
             case primaryRepositories
             case productType
             case workflows
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = CiProducts(rawValue: string) {
+                    self = value
+                } else if let value = CiProducts(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid CiProducts value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum ScmRepositories: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -119,6 +149,21 @@ public enum ListCiProductsV1 {
             case repositoryName
             case scmProvider
             case sshCloneUrl
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = ScmRepositories(rawValue: string) {
+                    self = value
+                } else if let value = ScmRepositories(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid ScmRepositories value: \(string)"
+                    )
+                }
+            }
         }
     }
 

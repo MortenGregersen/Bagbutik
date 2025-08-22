@@ -38,6 +38,21 @@ public enum ListSegmentsForAnalyticsReportInstanceV1 {
             case checksum
             case sizeInBytes
             case url
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = AnalyticsReportSegments(rawValue: string) {
+                    self = value
+                } else if let value = AnalyticsReportSegments(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid AnalyticsReportSegments value: \(string)"
+                    )
+                }
+            }
         }
     }
 }

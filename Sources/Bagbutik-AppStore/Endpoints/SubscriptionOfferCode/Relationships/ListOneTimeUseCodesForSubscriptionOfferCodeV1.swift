@@ -46,6 +46,21 @@ public enum ListOneTimeUseCodesForSubscriptionOfferCodeV1 {
             case numberOfCodes
             case offerCode
             case values
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = SubscriptionOfferCodeOneTimeUseCodes(rawValue: string) {
+                    self = value
+                } else if let value = SubscriptionOfferCodeOneTimeUseCodes(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid SubscriptionOfferCodeOneTimeUseCodes value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum SubscriptionOfferCodes: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -61,6 +76,21 @@ public enum ListOneTimeUseCodesForSubscriptionOfferCodeV1 {
             case prices
             case subscription
             case totalNumberOfCodes
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = SubscriptionOfferCodes(rawValue: string) {
+                    self = value
+                } else if let value = SubscriptionOfferCodes(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid SubscriptionOfferCodes value: \(string)"
+                    )
+                }
+            }
         }
     }
 

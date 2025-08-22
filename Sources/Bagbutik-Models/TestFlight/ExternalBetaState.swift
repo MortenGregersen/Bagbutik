@@ -15,4 +15,19 @@ public enum ExternalBetaState: String, Sendable, Codable, CaseIterable {
     case readyForBetaSubmission = "READY_FOR_BETA_SUBMISSION"
     case readyForBetaTesting = "READY_FOR_BETA_TESTING"
     case waitingForBetaReview = "WAITING_FOR_BETA_REVIEW"
+
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.singleValueContainer()
+        let string = try container.decode(String.self)
+        if let value = ExternalBetaState(rawValue: string) {
+            self = value
+        } else if let value = ExternalBetaState(rawValue: string.uppercased()) {
+            self = value
+        } else {
+            throw DecodingError.dataCorruptedError(
+                in: container,
+                debugDescription: "Invalid ExternalBetaState value: \(string)"
+            )
+        }
+    }
 }

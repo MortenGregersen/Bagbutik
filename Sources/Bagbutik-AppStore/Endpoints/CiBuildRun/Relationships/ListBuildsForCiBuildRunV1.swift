@@ -86,6 +86,21 @@ public enum ListBuildsForCiBuildRunV1 {
             case platform
             case uploadedDate
             case usesEncryption
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = AppEncryptionDeclarations(rawValue: string) {
+                    self = value
+                } else if let value = AppEncryptionDeclarations(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid AppEncryptionDeclarations value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum AppStoreVersions: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -114,6 +129,21 @@ public enum ListBuildsForCiBuildRunV1 {
             case routingAppCoverage
             case usesIdfa
             case versionString
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = AppStoreVersions(rawValue: string) {
+                    self = value
+                } else if let value = AppStoreVersions(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid AppStoreVersions value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum Apps: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -167,18 +197,63 @@ public enum ListBuildsForCiBuildRunV1 {
             case subscriptionStatusUrlVersion
             case subscriptionStatusUrlVersionForSandbox
             case webhooks
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = Apps(rawValue: string) {
+                    self = value
+                } else if let value = Apps(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid Apps value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum BetaAppReviewSubmissions: String, Sendable, ParameterValue, Codable, CaseIterable {
             case betaReviewState
             case build
             case submittedDate
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = BetaAppReviewSubmissions(rawValue: string) {
+                    self = value
+                } else if let value = BetaAppReviewSubmissions(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid BetaAppReviewSubmissions value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum BetaBuildLocalizations: String, Sendable, ParameterValue, Codable, CaseIterable {
             case build
             case locale
             case whatsNew
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = BetaBuildLocalizations(rawValue: string) {
+                    self = value
+                } else if let value = BetaBuildLocalizations(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid BetaBuildLocalizations value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum BetaGroups: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -199,6 +274,21 @@ public enum ListBuildsForCiBuildRunV1 {
             case publicLinkId
             case publicLinkLimit
             case publicLinkLimitEnabled
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = BetaGroups(rawValue: string) {
+                    self = value
+                } else if let value = BetaGroups(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid BetaGroups value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum BetaTesters: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -210,6 +300,21 @@ public enum ListBuildsForCiBuildRunV1 {
             case inviteType
             case lastName
             case state
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = BetaTesters(rawValue: string) {
+                    self = value
+                } else if let value = BetaTesters(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid BetaTesters value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum BuildBetaDetails: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -217,6 +322,21 @@ public enum ListBuildsForCiBuildRunV1 {
             case build
             case externalBuildState
             case internalBuildState
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = BuildBetaDetails(rawValue: string) {
+                    self = value
+                } else if let value = BuildBetaDetails(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid BuildBetaDetails value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum BuildBundles: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -243,12 +363,42 @@ public enum ListBuildsForCiBuildRunV1 {
             case sdkBuild
             case supportedArchitectures
             case usesLocationServices
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = BuildBundles(rawValue: string) {
+                    self = value
+                } else if let value = BuildBundles(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid BuildBundles value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum BuildIcons: String, Sendable, ParameterValue, Codable, CaseIterable {
             case iconAsset
             case iconType
             case name
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = BuildIcons(rawValue: string) {
+                    self = value
+                } else if let value = BuildIcons(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid BuildIcons value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum Builds: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -277,6 +427,21 @@ public enum ListBuildsForCiBuildRunV1 {
             case uploadedDate
             case usesNonExemptEncryption
             case version
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = Builds(rawValue: string) {
+                    self = value
+                } else if let value = Builds(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid Builds value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum PreReleaseVersions: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -284,6 +449,21 @@ public enum ListBuildsForCiBuildRunV1 {
             case builds
             case platform
             case version
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = PreReleaseVersions(rawValue: string) {
+                    self = value
+                } else if let value = PreReleaseVersions(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid PreReleaseVersions value: \(string)"
+                    )
+                }
+            }
         }
     }
 
@@ -323,6 +503,21 @@ public enum ListBuildsForCiBuildRunV1 {
             case invalid = "INVALID"
             case processing = "PROCESSING"
             case valid = "VALID"
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = ProcessingState(rawValue: string) {
+                    self = value
+                } else if let value = ProcessingState(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid ProcessingState value: \(string)"
+                    )
+                }
+            }
         }
     }
 

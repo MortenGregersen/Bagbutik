@@ -97,6 +97,21 @@ public enum ListInAppPurchasesForAppV1 {
             case subscriptionStatusUrlVersion
             case subscriptionStatusUrlVersionForSandbox
             case webhooks
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = Apps(rawValue: string) {
+                    self = value
+                } else if let value = Apps(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid Apps value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum InAppPurchases: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -105,6 +120,21 @@ public enum ListInAppPurchasesForAppV1 {
             case productId
             case referenceName
             case state
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = InAppPurchases(rawValue: string) {
+                    self = value
+                } else if let value = InAppPurchases(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid InAppPurchases value: \(string)"
+                    )
+                }
+            }
         }
     }
 
@@ -123,6 +153,21 @@ public enum ListInAppPurchasesForAppV1 {
             case freeSubscription = "FREE_SUBSCRIPTION"
             case nonConsumable = "NON_CONSUMABLE"
             case nonRenewingSubscription = "NON_RENEWING_SUBSCRIPTION"
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = InAppPurchaseType(rawValue: string) {
+                    self = value
+                } else if let value = InAppPurchaseType(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid InAppPurchaseType value: \(string)"
+                    )
+                }
+            }
         }
     }
 

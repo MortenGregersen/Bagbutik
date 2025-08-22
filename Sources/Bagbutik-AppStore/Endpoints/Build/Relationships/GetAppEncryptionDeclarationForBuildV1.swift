@@ -48,6 +48,21 @@ public enum GetAppEncryptionDeclarationForBuildV1 {
             case platform
             case uploadedDate
             case usesEncryption
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = AppEncryptionDeclarations(rawValue: string) {
+                    self = value
+                } else if let value = AppEncryptionDeclarations(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid AppEncryptionDeclarations value: \(string)"
+                    )
+                }
+            }
         }
     }
 }

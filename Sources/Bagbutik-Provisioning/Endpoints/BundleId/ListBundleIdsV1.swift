@@ -98,11 +98,41 @@ public enum ListBundleIdsV1 {
             case subscriptionStatusUrlVersion
             case subscriptionStatusUrlVersionForSandbox
             case webhooks
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = Apps(rawValue: string) {
+                    self = value
+                } else if let value = Apps(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid Apps value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum BundleIdCapabilities: String, Sendable, ParameterValue, Codable, CaseIterable {
             case capabilityType
             case settings
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = BundleIdCapabilities(rawValue: string) {
+                    self = value
+                } else if let value = BundleIdCapabilities(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid BundleIdCapabilities value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum BundleIds: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -113,6 +143,21 @@ public enum ListBundleIdsV1 {
             case platform
             case profiles
             case seedId
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = BundleIds(rawValue: string) {
+                    self = value
+                } else if let value = BundleIds(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid BundleIds value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum Profiles: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -127,6 +172,21 @@ public enum ListBundleIdsV1 {
             case profileState
             case profileType
             case uuid
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = Profiles(rawValue: string) {
+                    self = value
+                } else if let value = Profiles(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid Profiles value: \(string)"
+                    )
+                }
+            }
         }
     }
 

@@ -46,6 +46,21 @@ public enum ListAppEventScreenshotsForAppEventLocalizationV1 {
             case longDescription
             case name
             case shortDescription
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = AppEventLocalizations(rawValue: string) {
+                    self = value
+                } else if let value = AppEventLocalizations(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid AppEventLocalizations value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum AppEventScreenshots: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -57,6 +72,21 @@ public enum ListAppEventScreenshotsForAppEventLocalizationV1 {
             case fileSize
             case imageAsset
             case uploadOperations
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = AppEventScreenshots(rawValue: string) {
+                    self = value
+                } else if let value = AppEventScreenshots(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid AppEventScreenshots value: \(string)"
+                    )
+                }
+            }
         }
     }
 

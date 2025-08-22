@@ -98,6 +98,21 @@ public struct WebhookDelivery: Codable, Sendable, Identifiable {
             case failed = "FAILED"
             case pending = "PENDING"
             case succeeded = "SUCCEEDED"
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = DeliveryState(rawValue: string) {
+                    self = value
+                } else if let value = DeliveryState(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid DeliveryState value: \(string)"
+                    )
+                }
+            }
         }
 
         public struct Request: Codable, Sendable, RequestBody {

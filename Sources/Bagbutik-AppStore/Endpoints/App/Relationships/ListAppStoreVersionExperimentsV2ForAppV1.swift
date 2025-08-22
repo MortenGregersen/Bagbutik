@@ -53,6 +53,21 @@ public enum ListAppStoreVersionExperimentsV2ForAppV1 {
             case appStoreVersionExperimentV2
             case name
             case promotedDate
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = AppStoreVersionExperimentTreatments(rawValue: string) {
+                    self = value
+                } else if let value = AppStoreVersionExperimentTreatments(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid AppStoreVersionExperimentTreatments value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum AppStoreVersionExperiments: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -67,6 +82,21 @@ public enum ListAppStoreVersionExperimentsV2ForAppV1 {
             case startDate
             case state
             case trafficProportion
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = AppStoreVersionExperiments(rawValue: string) {
+                    self = value
+                } else if let value = AppStoreVersionExperiments(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid AppStoreVersionExperiments value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum AppStoreVersions: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -95,6 +125,21 @@ public enum ListAppStoreVersionExperimentsV2ForAppV1 {
             case routingAppCoverage
             case usesIdfa
             case versionString
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = AppStoreVersions(rawValue: string) {
+                    self = value
+                } else if let value = AppStoreVersions(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid AppStoreVersions value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum Apps: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -148,6 +193,21 @@ public enum ListAppStoreVersionExperimentsV2ForAppV1 {
             case subscriptionStatusUrlVersion
             case subscriptionStatusUrlVersionForSandbox
             case webhooks
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = Apps(rawValue: string) {
+                    self = value
+                } else if let value = Apps(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid Apps value: \(string)"
+                    )
+                }
+            }
         }
     }
 
@@ -168,6 +228,21 @@ public enum ListAppStoreVersionExperimentsV2ForAppV1 {
             case rejected = "REJECTED"
             case stopped = "STOPPED"
             case waitingForReview = "WAITING_FOR_REVIEW"
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = State(rawValue: string) {
+                    self = value
+                } else if let value = State(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid State value: \(string)"
+                    )
+                }
+            }
         }
     }
 

@@ -71,6 +71,21 @@ public enum ListBetaFeedbackScreenshotSubmissionsForAppV1 {
             case screenshots
             case tester
             case timeZone
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = BetaFeedbackScreenshotSubmissions(rawValue: string) {
+                    self = value
+                } else if let value = BetaFeedbackScreenshotSubmissions(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid BetaFeedbackScreenshotSubmissions value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum BetaTesters: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -82,6 +97,21 @@ public enum ListBetaFeedbackScreenshotSubmissionsForAppV1 {
             case inviteType
             case lastName
             case state
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = BetaTesters(rawValue: string) {
+                    self = value
+                } else if let value = BetaTesters(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid BetaTesters value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum Builds: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -110,6 +140,21 @@ public enum ListBetaFeedbackScreenshotSubmissionsForAppV1 {
             case uploadedDate
             case usesNonExemptEncryption
             case version
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = Builds(rawValue: string) {
+                    self = value
+                } else if let value = Builds(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid Builds value: \(string)"
+                    )
+                }
+            }
         }
     }
 

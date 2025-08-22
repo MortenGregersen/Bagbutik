@@ -45,6 +45,21 @@ public enum GetAppClipV1 {
             case appClipAppStoreReviewDetail
             case appClipDefaultExperienceLocalizations
             case releaseWithAppStoreVersion
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = AppClipDefaultExperiences(rawValue: string) {
+                    self = value
+                } else if let value = AppClipDefaultExperiences(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid AppClipDefaultExperiences value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum AppClips: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -52,6 +67,21 @@ public enum GetAppClipV1 {
             case appClipAdvancedExperiences
             case appClipDefaultExperiences
             case bundleId
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = AppClips(rawValue: string) {
+                    self = value
+                } else if let value = AppClips(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid AppClips value: \(string)"
+                    )
+                }
+            }
         }
     }
 

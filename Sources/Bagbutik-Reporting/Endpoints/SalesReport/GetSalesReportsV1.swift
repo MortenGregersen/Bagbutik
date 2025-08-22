@@ -47,6 +47,21 @@ public enum GetSalesReportsV1 {
             case monthly = "MONTHLY"
             case weekly = "WEEKLY"
             case yearly = "YEARLY"
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = Frequency(rawValue: string) {
+                    self = value
+                } else if let value = Frequency(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid Frequency value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum ReportSubType: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -55,6 +70,21 @@ public enum GetSalesReportsV1 {
             case summaryChannel = "SUMMARY_CHANNEL"
             case summaryInstallType = "SUMMARY_INSTALL_TYPE"
             case summaryTerritory = "SUMMARY_TERRITORY"
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = ReportSubType(rawValue: string) {
+                    self = value
+                } else if let value = ReportSubType(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid ReportSubType value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum ReportType: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -68,6 +98,21 @@ public enum GetSalesReportsV1 {
             case subscriptionEvent = "SUBSCRIPTION_EVENT"
             case subscriptionOfferCodeRedemption = "SUBSCRIPTION_OFFER_CODE_REDEMPTION"
             case winBackEligibility = "WIN_BACK_ELIGIBILITY"
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = ReportType(rawValue: string) {
+                    self = value
+                } else if let value = ReportType(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid ReportType value: \(string)"
+                    )
+                }
+            }
         }
     }
 }

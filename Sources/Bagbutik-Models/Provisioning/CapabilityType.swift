@@ -30,4 +30,19 @@ public enum CapabilityType: String, Sendable, Codable, CaseIterable {
     case userManagement = "USER_MANAGEMENT"
     case wallet = "WALLET"
     case wirelessAccessoryConfiguration = "WIRELESS_ACCESSORY_CONFIGURATION"
+
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.singleValueContainer()
+        let string = try container.decode(String.self)
+        if let value = CapabilityType(rawValue: string) {
+            self = value
+        } else if let value = CapabilityType(rawValue: string.uppercased()) {
+            self = value
+        } else {
+            throw DecodingError.dataCorruptedError(
+                in: container,
+                debugDescription: "Invalid CapabilityType value: \(string)"
+            )
+        }
+    }
 }

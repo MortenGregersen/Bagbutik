@@ -49,12 +49,42 @@ public enum GetMerchantIdV1 {
             case passTypeId
             case platform
             case serialNumber
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = Certificates(rawValue: string) {
+                    self = value
+                } else if let value = Certificates(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid Certificates value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum MerchantIds: String, Sendable, ParameterValue, Codable, CaseIterable {
             case certificates
             case identifier
             case name
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = MerchantIds(rawValue: string) {
+                    self = value
+                } else if let value = MerchantIds(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid MerchantIds value: \(string)"
+                    )
+                }
+            }
         }
     }
 

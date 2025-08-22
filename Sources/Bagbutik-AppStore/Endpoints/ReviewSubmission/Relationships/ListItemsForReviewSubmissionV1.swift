@@ -51,6 +51,21 @@ public enum ListItemsForReviewSubmissionV1 {
             case deepLink
             case state
             case version
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = AppCustomProductPageVersions(rawValue: string) {
+                    self = value
+                } else if let value = AppCustomProductPageVersions(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid AppCustomProductPageVersions value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum AppEvents: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -65,6 +80,21 @@ public enum ListItemsForReviewSubmissionV1 {
             case purpose
             case referenceName
             case territorySchedules
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = AppEvents(rawValue: string) {
+                    self = value
+                } else if let value = AppEvents(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid AppEvents value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum AppStoreVersionExperiments: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -80,6 +110,21 @@ public enum ListItemsForReviewSubmissionV1 {
             case startDate
             case state
             case trafficProportion
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = AppStoreVersionExperiments(rawValue: string) {
+                    self = value
+                } else if let value = AppStoreVersionExperiments(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid AppStoreVersionExperiments value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum AppStoreVersions: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -108,6 +153,21 @@ public enum ListItemsForReviewSubmissionV1 {
             case routingAppCoverage
             case usesIdfa
             case versionString
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = AppStoreVersions(rawValue: string) {
+                    self = value
+                } else if let value = AppStoreVersions(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid AppStoreVersions value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum ReviewSubmissionItems: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -117,6 +177,21 @@ public enum ListItemsForReviewSubmissionV1 {
             case appStoreVersionExperiment
             case appStoreVersionExperimentV2
             case state
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = ReviewSubmissionItems(rawValue: string) {
+                    self = value
+                } else if let value = ReviewSubmissionItems(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid ReviewSubmissionItems value: \(string)"
+                    )
+                }
+            }
         }
     }
 

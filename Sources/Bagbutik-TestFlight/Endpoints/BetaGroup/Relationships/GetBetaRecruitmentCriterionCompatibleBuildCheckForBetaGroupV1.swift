@@ -32,6 +32,21 @@ public enum GetBetaRecruitmentCriterionCompatibleBuildCheckForBetaGroupV1 {
 
         public enum BetaRecruitmentCriterionCompatibleBuildChecks: String, Sendable, ParameterValue, Codable, CaseIterable {
             case hasCompatibleBuild
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = BetaRecruitmentCriterionCompatibleBuildChecks(rawValue: string) {
+                    self = value
+                } else if let value = BetaRecruitmentCriterionCompatibleBuildChecks(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid BetaRecruitmentCriterionCompatibleBuildChecks value: \(string)"
+                    )
+                }
+            }
         }
     }
 }

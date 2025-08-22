@@ -46,6 +46,21 @@ public enum GetGameCenterChallengeV1 {
             case releases
             case state
             case version
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = GameCenterChallengeVersions(rawValue: string) {
+                    self = value
+                } else if let value = GameCenterChallengeVersions(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid GameCenterChallengeVersions value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum GameCenterChallenges: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -59,6 +74,21 @@ public enum GetGameCenterChallengeV1 {
             case repeatable
             case vendorIdentifier
             case versions
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = GameCenterChallenges(rawValue: string) {
+                    self = value
+                } else if let value = GameCenterChallenges(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid GameCenterChallenges value: \(string)"
+                    )
+                }
+            }
         }
     }
 

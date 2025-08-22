@@ -213,6 +213,21 @@ public struct AppClipAdvancedExperienceCreateRequest: Codable, Sendable, Request
                     public enum Source: String, Sendable, Codable, CaseIterable {
                         case calculated = "CALCULATED"
                         case manuallyPlaced = "MANUALLY_PLACED"
+
+                        public init(from decoder: Decoder) throws {
+                            let container = try decoder.singleValueContainer()
+                            let string = try container.decode(String.self)
+                            if let value = Source(rawValue: string) {
+                                self = value
+                            } else if let value = Source(rawValue: string.uppercased()) {
+                                self = value
+                            } else {
+                                throw DecodingError.dataCorruptedError(
+                                    in: container,
+                                    debugDescription: "Invalid Source value: \(string)"
+                                )
+                            }
+                        }
                     }
                 }
 
@@ -330,6 +345,21 @@ public struct AppClipAdvancedExperienceCreateRequest: Codable, Sendable, Request
                     case theaterNowPlaying = "THEATER_NOW_PLAYING"
                     case viewAvailability = "VIEW_AVAILABILITY"
                     case viewPricing = "VIEW_PRICING"
+
+                    public init(from decoder: Decoder) throws {
+                        let container = try decoder.singleValueContainer()
+                        let string = try container.decode(String.self)
+                        if let value = MapAction(rawValue: string) {
+                            self = value
+                        } else if let value = MapAction(rawValue: string.uppercased()) {
+                            self = value
+                        } else {
+                            throw DecodingError.dataCorruptedError(
+                                in: container,
+                                debugDescription: "Invalid MapAction value: \(string)"
+                            )
+                        }
+                    }
                 }
 
                 public struct PhoneNumber: Codable, Sendable {
@@ -365,6 +395,21 @@ public struct AppClipAdvancedExperienceCreateRequest: Codable, Sendable, Request
                         case landline = "LANDLINE"
                         case mobile = "MOBILE"
                         case tollfree = "TOLLFREE"
+
+                        public init(from decoder: Decoder) throws {
+                            let container = try decoder.singleValueContainer()
+                            let string = try container.decode(String.self)
+                            if let value = PhoneNumberType(rawValue: string) {
+                                self = value
+                            } else if let value = PhoneNumberType(rawValue: string.uppercased()) {
+                                self = value
+                            } else {
+                                throw DecodingError.dataCorruptedError(
+                                    in: container,
+                                    debugDescription: "Invalid PhoneNumberType value: \(string)"
+                                )
+                            }
+                        }
                     }
                 }
 
@@ -372,6 +417,21 @@ public struct AppClipAdvancedExperienceCreateRequest: Codable, Sendable, Request
                     case authorized = "AUTHORIZED"
                     case other = "OTHER"
                     case owner = "OWNER"
+
+                    public init(from decoder: Decoder) throws {
+                        let container = try decoder.singleValueContainer()
+                        let string = try container.decode(String.self)
+                        if let value = Relationship(rawValue: string) {
+                            self = value
+                        } else if let value = Relationship(rawValue: string.uppercased()) {
+                            self = value
+                        } else {
+                            throw DecodingError.dataCorruptedError(
+                                in: container,
+                                debugDescription: "Invalid Relationship value: \(string)"
+                            )
+                        }
+                    }
                 }
             }
         }

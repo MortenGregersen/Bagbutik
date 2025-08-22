@@ -38,6 +38,21 @@ public enum GetGameCenterLeaderboardSetReleaseV1 {
             case gameCenterDetail
             case gameCenterLeaderboardSet
             case live
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = GameCenterLeaderboardSetReleases(rawValue: string) {
+                    self = value
+                } else if let value = GameCenterLeaderboardSetReleases(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid GameCenterLeaderboardSetReleases value: \(string)"
+                    )
+                }
+            }
         }
     }
 

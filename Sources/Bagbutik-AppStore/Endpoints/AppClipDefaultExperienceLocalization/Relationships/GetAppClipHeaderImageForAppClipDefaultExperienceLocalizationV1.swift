@@ -41,6 +41,21 @@ public enum GetAppClipHeaderImageForAppClipDefaultExperienceLocalizationV1 {
             case appClipHeaderImage
             case locale
             case subtitle
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = AppClipDefaultExperienceLocalizations(rawValue: string) {
+                    self = value
+                } else if let value = AppClipDefaultExperienceLocalizations(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid AppClipDefaultExperienceLocalizations value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum AppClipHeaderImages: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -51,6 +66,21 @@ public enum GetAppClipHeaderImageForAppClipDefaultExperienceLocalizationV1 {
             case imageAsset
             case sourceFileChecksum
             case uploadOperations
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = AppClipHeaderImages(rawValue: string) {
+                    self = value
+                } else if let value = AppClipHeaderImages(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid AppClipHeaderImages value: \(string)"
+                    )
+                }
+            }
         }
     }
 

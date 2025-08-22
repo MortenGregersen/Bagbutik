@@ -54,6 +54,21 @@ public enum ListReviewSubmissionsForAppV1 {
             case userEmail
             case userFirstName
             case userLastName
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = Actors(rawValue: string) {
+                    self = value
+                } else if let value = Actors(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid Actors value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum AppStoreVersions: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -82,6 +97,21 @@ public enum ListReviewSubmissionsForAppV1 {
             case routingAppCoverage
             case usesIdfa
             case versionString
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = AppStoreVersions(rawValue: string) {
+                    self = value
+                } else if let value = AppStoreVersions(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid AppStoreVersions value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum Apps: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -135,6 +165,21 @@ public enum ListReviewSubmissionsForAppV1 {
             case subscriptionStatusUrlVersion
             case subscriptionStatusUrlVersionForSandbox
             case webhooks
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = Apps(rawValue: string) {
+                    self = value
+                } else if let value = Apps(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid Apps value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum ReviewSubmissionItems: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -144,6 +189,21 @@ public enum ListReviewSubmissionsForAppV1 {
             case appStoreVersionExperiment
             case appStoreVersionExperimentV2
             case state
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = ReviewSubmissionItems(rawValue: string) {
+                    self = value
+                } else if let value = ReviewSubmissionItems(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid ReviewSubmissionItems value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum ReviewSubmissions: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -155,6 +215,21 @@ public enum ListReviewSubmissionsForAppV1 {
             case state
             case submittedByActor
             case submittedDate
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = ReviewSubmissions(rawValue: string) {
+                    self = value
+                } else if let value = ReviewSubmissions(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid ReviewSubmissions value: \(string)"
+                    )
+                }
+            }
         }
     }
 
@@ -175,6 +250,21 @@ public enum ListReviewSubmissionsForAppV1 {
             case readyForReview = "READY_FOR_REVIEW"
             case unresolvedIssues = "UNRESOLVED_ISSUES"
             case waitingForReview = "WAITING_FOR_REVIEW"
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = State(rawValue: string) {
+                    self = value
+                } else if let value = State(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid State value: \(string)"
+                    )
+                }
+            }
         }
     }
 

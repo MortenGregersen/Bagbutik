@@ -55,6 +55,21 @@ public enum ListCustomerReviewsForAppV1 {
             case responseBody
             case review
             case state
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = CustomerReviewResponses(rawValue: string) {
+                    self = value
+                } else if let value = CustomerReviewResponses(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid CustomerReviewResponses value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum CustomerReviews: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -65,6 +80,21 @@ public enum ListCustomerReviewsForAppV1 {
             case reviewerNickname
             case territory
             case title
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = CustomerReviews(rawValue: string) {
+                    self = value
+                } else if let value = CustomerReviews(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid CustomerReviews value: \(string)"
+                    )
+                }
+            }
         }
     }
 

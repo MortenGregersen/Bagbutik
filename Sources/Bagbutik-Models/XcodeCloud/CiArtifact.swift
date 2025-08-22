@@ -86,6 +86,21 @@ public struct CiArtifact: Codable, Sendable, Identifiable {
             case stapledNotarizedArchive = "STAPLED_NOTARIZED_ARCHIVE"
             case testProducts = "TEST_PRODUCTS"
             case xcodebuildProducts = "XCODEBUILD_PRODUCTS"
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = FileType(rawValue: string) {
+                    self = value
+                } else if let value = FileType(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid FileType value: \(string)"
+                    )
+                }
+            }
         }
     }
 }

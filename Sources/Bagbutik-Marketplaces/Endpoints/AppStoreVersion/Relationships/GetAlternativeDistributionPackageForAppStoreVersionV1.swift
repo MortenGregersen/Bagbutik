@@ -48,10 +48,40 @@ public enum GetAlternativeDistributionPackageForAppStoreVersionV1 {
             case urlExpirationDate
             case variants
             case version
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = AlternativeDistributionPackageVersions(rawValue: string) {
+                    self = value
+                } else if let value = AlternativeDistributionPackageVersions(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid AlternativeDistributionPackageVersions value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum AlternativeDistributionPackages: String, Sendable, ParameterValue, Codable, CaseIterable {
             case versions
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = AlternativeDistributionPackages(rawValue: string) {
+                    self = value
+                } else if let value = AlternativeDistributionPackages(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid AlternativeDistributionPackages value: \(string)"
+                    )
+                }
+            }
         }
     }
 

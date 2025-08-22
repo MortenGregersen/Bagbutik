@@ -143,12 +143,42 @@ public struct Nomination: Codable, Sendable, Identifiable {
             case appEnhancements = "APP_ENHANCEMENTS"
             case appLaunch = "APP_LAUNCH"
             case newContent = "NEW_CONTENT"
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = AttributesType(rawValue: string) {
+                    self = value
+                } else if let value = AttributesType(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid AttributesType value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum State: String, Sendable, ParameterValue, Codable, CaseIterable {
             case archived = "ARCHIVED"
             case draft = "DRAFT"
             case submitted = "SUBMITTED"
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = State(rawValue: string) {
+                    self = value
+                } else if let value = State(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid State value: \(string)"
+                    )
+                }
+            }
         }
     }
 

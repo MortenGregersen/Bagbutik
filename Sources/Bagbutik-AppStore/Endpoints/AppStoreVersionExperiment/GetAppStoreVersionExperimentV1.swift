@@ -48,6 +48,21 @@ public enum GetAppStoreVersionExperimentV1 {
             case appStoreVersionExperimentV2
             case name
             case promotedDate
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = AppStoreVersionExperimentTreatments(rawValue: string) {
+                    self = value
+                } else if let value = AppStoreVersionExperimentTreatments(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid AppStoreVersionExperimentTreatments value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum AppStoreVersionExperiments: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -59,6 +74,21 @@ public enum GetAppStoreVersionExperimentV1 {
             case startDate
             case state
             case trafficProportion
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = AppStoreVersionExperiments(rawValue: string) {
+                    self = value
+                } else if let value = AppStoreVersionExperiments(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid AppStoreVersionExperiments value: \(string)"
+                    )
+                }
+            }
         }
     }
 

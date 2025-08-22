@@ -101,12 +101,42 @@ public struct Device: Codable, Sendable, Identifiable {
             case iPhone = "IPHONE"
             case iPod = "IPOD"
             case mac = "MAC"
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = DeviceClass(rawValue: string) {
+                    self = value
+                } else if let value = DeviceClass(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid DeviceClass value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum Status: String, Sendable, Codable, CaseIterable {
             case disabled = "DISABLED"
             case enabled = "ENABLED"
             case processing = "PROCESSING"
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = Status(rawValue: string) {
+                    self = value
+                } else if let value = Status(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid Status value: \(string)"
+                    )
+                }
+            }
         }
     }
 }

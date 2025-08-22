@@ -45,6 +45,21 @@ public enum ListGitReferencesForScmRepositoryV1 {
             case kind
             case name
             case repository
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = ScmGitReferences(rawValue: string) {
+                    self = value
+                } else if let value = ScmGitReferences(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid ScmGitReferences value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum ScmRepositories: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -57,6 +72,21 @@ public enum ListGitReferencesForScmRepositoryV1 {
             case repositoryName
             case scmProvider
             case sshCloneUrl
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = ScmRepositories(rawValue: string) {
+                    self = value
+                } else if let value = ScmRepositories(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid ScmRepositories value: \(string)"
+                    )
+                }
+            }
         }
     }
 

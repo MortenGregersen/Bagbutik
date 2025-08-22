@@ -51,6 +51,21 @@ public enum ListBackgroundAssetsForAppV1 {
             case platforms
             case state
             case version
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = BackgroundAssetVersions(rawValue: string) {
+                    self = value
+                } else if let value = BackgroundAssetVersions(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid BackgroundAssetVersions value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum BackgroundAssets: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -58,6 +73,21 @@ public enum ListBackgroundAssetsForAppV1 {
             case createdDate
             case internalBetaVersion
             case versions
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = BackgroundAssets(rawValue: string) {
+                    self = value
+                } else if let value = BackgroundAssets(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid BackgroundAssets value: \(string)"
+                    )
+                }
+            }
         }
     }
 

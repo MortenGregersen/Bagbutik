@@ -50,15 +50,60 @@ public enum ListPricesForSubscriptionPromotionalOfferV1 {
             case proceeds
             case proceedsYear2
             case territory
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = SubscriptionPricePoints(rawValue: string) {
+                    self = value
+                } else if let value = SubscriptionPricePoints(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid SubscriptionPricePoints value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum SubscriptionPromotionalOfferPrices: String, Sendable, ParameterValue, Codable, CaseIterable {
             case subscriptionPricePoint
             case territory
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = SubscriptionPromotionalOfferPrices(rawValue: string) {
+                    self = value
+                } else if let value = SubscriptionPromotionalOfferPrices(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid SubscriptionPromotionalOfferPrices value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum Territories: String, Sendable, ParameterValue, Codable, CaseIterable {
             case currency
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = Territories(rawValue: string) {
+                    self = value
+                } else if let value = Territories(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid Territories value: \(string)"
+                    )
+                }
+            }
         }
     }
 

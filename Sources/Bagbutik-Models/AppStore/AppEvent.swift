@@ -144,6 +144,21 @@ public struct AppEvent: Codable, Sendable, Identifiable {
             case newSeason = "NEW_SEASON"
             case premiere = "PREMIERE"
             case specialEvent = "SPECIAL_EVENT"
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = Badge(rawValue: string) {
+                    self = value
+                } else if let value = Badge(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid Badge value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum EventState: String, Sendable, Codable, CaseIterable {
@@ -157,16 +172,61 @@ public struct AppEvent: Codable, Sendable, Identifiable {
             case readyForReview = "READY_FOR_REVIEW"
             case rejected = "REJECTED"
             case waitingForReview = "WAITING_FOR_REVIEW"
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = EventState(rawValue: string) {
+                    self = value
+                } else if let value = EventState(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid EventState value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum Priority: String, Sendable, Codable, CaseIterable {
             case high = "HIGH"
             case normal = "NORMAL"
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = Priority(rawValue: string) {
+                    self = value
+                } else if let value = Priority(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid Priority value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum PurchaseRequirement: String, Sendable, Codable, CaseIterable {
             case inAppPurchase = "IN_APP_PURCHASE"
             case noCostAssociated = "NO_COST_ASSOCIATED"
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = PurchaseRequirement(rawValue: string) {
+                    self = value
+                } else if let value = PurchaseRequirement(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid PurchaseRequirement value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum Purpose: String, Sendable, Codable, CaseIterable {
@@ -174,6 +234,21 @@ public struct AppEvent: Codable, Sendable, Identifiable {
             case attractNewUsers = "ATTRACT_NEW_USERS"
             case bringBackLapsedUsers = "BRING_BACK_LAPSED_USERS"
             case keepActiveUsersInformed = "KEEP_ACTIVE_USERS_INFORMED"
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = Purpose(rawValue: string) {
+                    self = value
+                } else if let value = Purpose(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid Purpose value: \(string)"
+                    )
+                }
+            }
         }
 
         public struct TerritorySchedules: Codable, Sendable {

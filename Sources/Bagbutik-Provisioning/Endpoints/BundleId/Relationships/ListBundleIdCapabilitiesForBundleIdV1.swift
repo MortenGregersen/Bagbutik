@@ -37,6 +37,21 @@ public enum ListBundleIdCapabilitiesForBundleIdV1 {
         public enum BundleIdCapabilities: String, Sendable, ParameterValue, Codable, CaseIterable {
             case capabilityType
             case settings
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = BundleIdCapabilities(rawValue: string) {
+                    self = value
+                } else if let value = BundleIdCapabilities(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid BundleIdCapabilities value: \(string)"
+                    )
+                }
+            }
         }
     }
 }

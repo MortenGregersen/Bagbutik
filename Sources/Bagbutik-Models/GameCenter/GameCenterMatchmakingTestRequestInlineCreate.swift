@@ -148,6 +148,21 @@ public struct GameCenterMatchmakingTestRequestInlineCreate: Codable, Sendable, I
             case ZH_CN = "ZH-CN"
             case ZH_HK = "ZH-HK"
             case ZH_TW = "ZH-TW"
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = Locale(rawValue: string) {
+                    self = value
+                } else if let value = Locale(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid Locale value: \(string)"
+                    )
+                }
+            }
         }
     }
 

@@ -43,12 +43,42 @@ public enum GetAnalyticsReportRequestV1 {
             case accessType
             case reports
             case stoppedDueToInactivity
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = AnalyticsReportRequests(rawValue: string) {
+                    self = value
+                } else if let value = AnalyticsReportRequests(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid AnalyticsReportRequests value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum AnalyticsReports: String, Sendable, ParameterValue, Codable, CaseIterable {
             case category
             case instances
             case name
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = AnalyticsReports(rawValue: string) {
+                    self = value
+                } else if let value = AnalyticsReports(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid AnalyticsReports value: \(string)"
+                    )
+                }
+            }
         }
     }
 

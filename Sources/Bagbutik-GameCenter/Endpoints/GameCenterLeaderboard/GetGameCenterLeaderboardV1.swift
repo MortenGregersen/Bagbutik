@@ -49,12 +49,42 @@ public enum GetGameCenterLeaderboardV1 {
             case gameCenterLeaderboardImage
             case locale
             case name
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = GameCenterLeaderboardLocalizations(rawValue: string) {
+                    self = value
+                } else if let value = GameCenterLeaderboardLocalizations(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid GameCenterLeaderboardLocalizations value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum GameCenterLeaderboardReleases: String, Sendable, ParameterValue, Codable, CaseIterable {
             case gameCenterDetail
             case gameCenterLeaderboard
             case live
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = GameCenterLeaderboardReleases(rawValue: string) {
+                    self = value
+                } else if let value = GameCenterLeaderboardReleases(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid GameCenterLeaderboardReleases value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum GameCenterLeaderboards: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -79,6 +109,21 @@ public enum GetGameCenterLeaderboardV1 {
             case submissionType
             case vendorIdentifier
             case visibility
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = GameCenterLeaderboards(rawValue: string) {
+                    self = value
+                } else if let value = GameCenterLeaderboards(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid GameCenterLeaderboards value: \(string)"
+                    )
+                }
+            }
         }
     }
 

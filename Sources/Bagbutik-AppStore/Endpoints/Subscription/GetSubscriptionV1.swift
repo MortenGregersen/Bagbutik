@@ -63,6 +63,21 @@ public enum GetSubscriptionV1 {
             case state
             case subscription
             case visibleForAllUsers
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = PromotedPurchases(rawValue: string) {
+                    self = value
+                } else if let value = PromotedPurchases(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid PromotedPurchases value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum SubscriptionAppStoreReviewScreenshots: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -75,11 +90,41 @@ public enum GetSubscriptionV1 {
             case sourceFileChecksum
             case subscription
             case uploadOperations
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = SubscriptionAppStoreReviewScreenshots(rawValue: string) {
+                    self = value
+                } else if let value = SubscriptionAppStoreReviewScreenshots(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid SubscriptionAppStoreReviewScreenshots value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum SubscriptionAvailabilities: String, Sendable, ParameterValue, Codable, CaseIterable {
             case availableInNewTerritories
             case availableTerritories
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = SubscriptionAvailabilities(rawValue: string) {
+                    self = value
+                } else if let value = SubscriptionAvailabilities(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid SubscriptionAvailabilities value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum SubscriptionImages: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -91,6 +136,21 @@ public enum GetSubscriptionV1 {
             case state
             case subscription
             case uploadOperations
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = SubscriptionImages(rawValue: string) {
+                    self = value
+                } else if let value = SubscriptionImages(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid SubscriptionImages value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum SubscriptionIntroductoryOffers: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -102,6 +162,21 @@ public enum GetSubscriptionV1 {
             case subscription
             case subscriptionPricePoint
             case territory
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = SubscriptionIntroductoryOffers(rawValue: string) {
+                    self = value
+                } else if let value = SubscriptionIntroductoryOffers(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid SubscriptionIntroductoryOffers value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum SubscriptionLocalizations: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -110,6 +185,21 @@ public enum GetSubscriptionV1 {
             case name
             case state
             case subscription
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = SubscriptionLocalizations(rawValue: string) {
+                    self = value
+                } else if let value = SubscriptionLocalizations(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid SubscriptionLocalizations value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum SubscriptionOfferCodes: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -125,6 +215,21 @@ public enum GetSubscriptionV1 {
             case prices
             case subscription
             case totalNumberOfCodes
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = SubscriptionOfferCodes(rawValue: string) {
+                    self = value
+                } else if let value = SubscriptionOfferCodes(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid SubscriptionOfferCodes value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum SubscriptionPrices: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -132,6 +237,21 @@ public enum GetSubscriptionV1 {
             case startDate
             case subscriptionPricePoint
             case territory
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = SubscriptionPrices(rawValue: string) {
+                    self = value
+                } else if let value = SubscriptionPrices(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid SubscriptionPrices value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum SubscriptionPromotionalOffers: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -142,6 +262,21 @@ public enum GetSubscriptionV1 {
             case offerMode
             case prices
             case subscription
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = SubscriptionPromotionalOffers(rawValue: string) {
+                    self = value
+                } else if let value = SubscriptionPromotionalOffers(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid SubscriptionPromotionalOffers value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum Subscriptions: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -164,6 +299,21 @@ public enum GetSubscriptionV1 {
             case subscriptionLocalizations
             case subscriptionPeriod
             case winBackOffers
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = Subscriptions(rawValue: string) {
+                    self = value
+                } else if let value = Subscriptions(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid Subscriptions value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum WinBackOffers: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -180,6 +330,21 @@ public enum GetSubscriptionV1 {
             case promotionIntent
             case referenceName
             case startDate
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = WinBackOffers(rawValue: string) {
+                    self = value
+                } else if let value = WinBackOffers(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid WinBackOffers value: \(string)"
+                    )
+                }
+            }
         }
     }
 

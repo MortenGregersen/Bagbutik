@@ -137,6 +137,21 @@ public struct AppClipAdvancedExperience: Codable, Sendable, Identifiable {
             case shopping = "SHOPPING"
             case ticketing = "TICKETING"
             case transit = "TRANSIT"
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = BusinessCategory(rawValue: string) {
+                    self = value
+                } else if let value = BusinessCategory(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid BusinessCategory value: \(string)"
+                    )
+                }
+            }
         }
 
         public struct Place: Codable, Sendable {
@@ -247,6 +262,21 @@ public struct AppClipAdvancedExperience: Codable, Sendable, Identifiable {
                 public enum Source: String, Sendable, Codable, CaseIterable {
                     case calculated = "CALCULATED"
                     case manuallyPlaced = "MANUALLY_PLACED"
+
+                    public init(from decoder: Decoder) throws {
+                        let container = try decoder.singleValueContainer()
+                        let string = try container.decode(String.self)
+                        if let value = Source(rawValue: string) {
+                            self = value
+                        } else if let value = Source(rawValue: string.uppercased()) {
+                            self = value
+                        } else {
+                            throw DecodingError.dataCorruptedError(
+                                in: container,
+                                debugDescription: "Invalid Source value: \(string)"
+                            )
+                        }
+                    }
                 }
             }
 
@@ -364,6 +394,21 @@ public struct AppClipAdvancedExperience: Codable, Sendable, Identifiable {
                 case theaterNowPlaying = "THEATER_NOW_PLAYING"
                 case viewAvailability = "VIEW_AVAILABILITY"
                 case viewPricing = "VIEW_PRICING"
+
+                public init(from decoder: Decoder) throws {
+                    let container = try decoder.singleValueContainer()
+                    let string = try container.decode(String.self)
+                    if let value = MapAction(rawValue: string) {
+                        self = value
+                    } else if let value = MapAction(rawValue: string.uppercased()) {
+                        self = value
+                    } else {
+                        throw DecodingError.dataCorruptedError(
+                            in: container,
+                            debugDescription: "Invalid MapAction value: \(string)"
+                        )
+                    }
+                }
             }
 
             public struct PhoneNumber: Codable, Sendable {
@@ -399,6 +444,21 @@ public struct AppClipAdvancedExperience: Codable, Sendable, Identifiable {
                     case landline = "LANDLINE"
                     case mobile = "MOBILE"
                     case tollfree = "TOLLFREE"
+
+                    public init(from decoder: Decoder) throws {
+                        let container = try decoder.singleValueContainer()
+                        let string = try container.decode(String.self)
+                        if let value = PhoneNumberType(rawValue: string) {
+                            self = value
+                        } else if let value = PhoneNumberType(rawValue: string.uppercased()) {
+                            self = value
+                        } else {
+                            throw DecodingError.dataCorruptedError(
+                                in: container,
+                                debugDescription: "Invalid PhoneNumberType value: \(string)"
+                            )
+                        }
+                    }
                 }
             }
 
@@ -406,6 +466,21 @@ public struct AppClipAdvancedExperience: Codable, Sendable, Identifiable {
                 case authorized = "AUTHORIZED"
                 case other = "OTHER"
                 case owner = "OWNER"
+
+                public init(from decoder: Decoder) throws {
+                    let container = try decoder.singleValueContainer()
+                    let string = try container.decode(String.self)
+                    if let value = Relationship(rawValue: string) {
+                        self = value
+                    } else if let value = Relationship(rawValue: string.uppercased()) {
+                        self = value
+                    } else {
+                        throw DecodingError.dataCorruptedError(
+                            in: container,
+                            debugDescription: "Invalid Relationship value: \(string)"
+                        )
+                    }
+                }
             }
         }
 
@@ -413,12 +488,42 @@ public struct AppClipAdvancedExperience: Codable, Sendable, Identifiable {
             case matched = "MATCHED"
             case noMatch = "NO_MATCH"
             case pending = "PENDING"
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = PlaceStatus(rawValue: string) {
+                    self = value
+                } else if let value = PlaceStatus(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid PlaceStatus value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum Status: String, Sendable, Codable, CaseIterable {
             case appTransferInProgress = "APP_TRANSFER_IN_PROGRESS"
             case deactivated = "DEACTIVATED"
             case received = "RECEIVED"
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = Status(rawValue: string) {
+                    self = value
+                } else if let value = Status(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid Status value: \(string)"
+                    )
+                }
+            }
         }
     }
 

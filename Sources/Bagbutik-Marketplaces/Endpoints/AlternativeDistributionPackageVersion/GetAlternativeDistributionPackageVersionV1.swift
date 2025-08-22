@@ -46,6 +46,21 @@ public enum GetAlternativeDistributionPackageVersionV1 {
             case fileChecksum
             case url
             case urlExpirationDate
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = AlternativeDistributionPackageDeltas(rawValue: string) {
+                    self = value
+                } else if let value = AlternativeDistributionPackageDeltas(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid AlternativeDistributionPackageDeltas value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum AlternativeDistributionPackageVariants: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -53,6 +68,21 @@ public enum GetAlternativeDistributionPackageVersionV1 {
             case fileChecksum
             case url
             case urlExpirationDate
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = AlternativeDistributionPackageVariants(rawValue: string) {
+                    self = value
+                } else if let value = AlternativeDistributionPackageVariants(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid AlternativeDistributionPackageVariants value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum AlternativeDistributionPackageVersions: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -64,6 +94,21 @@ public enum GetAlternativeDistributionPackageVersionV1 {
             case urlExpirationDate
             case variants
             case version
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = AlternativeDistributionPackageVersions(rawValue: string) {
+                    self = value
+                } else if let value = AlternativeDistributionPackageVersions(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid AlternativeDistributionPackageVersions value: \(string)"
+                    )
+                }
+            }
         }
     }
 

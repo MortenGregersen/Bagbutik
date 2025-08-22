@@ -65,11 +65,41 @@ public struct CapabilitySetting: Codable, Sendable {
         case entry = "ENTRY"
         case multiple = "MULTIPLE"
         case single = "SINGLE"
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.singleValueContainer()
+            let string = try container.decode(String.self)
+            if let value = AllowedInstances(rawValue: string) {
+                self = value
+            } else if let value = AllowedInstances(rawValue: string.uppercased()) {
+                self = value
+            } else {
+                throw DecodingError.dataCorruptedError(
+                    in: container,
+                    debugDescription: "Invalid AllowedInstances value: \(string)"
+                )
+            }
+        }
     }
 
     public enum Key: String, Sendable, Codable, CaseIterable {
         case appleIdAuthAppConsent = "APPLE_ID_AUTH_APP_CONSENT"
         case dataProtectionPermissionLevel = "DATA_PROTECTION_PERMISSION_LEVEL"
         case iCloudVersion = "ICLOUD_VERSION"
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.singleValueContainer()
+            let string = try container.decode(String.self)
+            if let value = Key(rawValue: string) {
+                self = value
+            } else if let value = Key(rawValue: string.uppercased()) {
+                self = value
+            } else {
+                throw DecodingError.dataCorruptedError(
+                    in: container,
+                    debugDescription: "Invalid Key value: \(string)"
+                )
+            }
+        }
     }
 }
