@@ -40,7 +40,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        swift: ["5.7", "6"]
+        swift: ["5", "6"]
     steps:
     - uses: swift-actions/setup-swift@v2
       with:
