@@ -42,7 +42,7 @@ jobs:
       matrix:
         swift: ["5", "6"]
     steps:
-    - uses: swift-actions/setup-swift@v2
+    - uses: swift-actions/setup-swift@next
       with:
         swift-version: ${{ matrix.swift }}
     - uses: actions/checkout@v4
