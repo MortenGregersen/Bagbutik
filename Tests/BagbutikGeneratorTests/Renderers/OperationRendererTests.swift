@@ -169,6 +169,21 @@ final class OperationRendererTests: XCTestCase {
              */
             public enum GroupBy: String, Sendable, ParameterValue, Codable, CaseIterable {
                 case betaTesters
+        
+                public init(from decoder: Decoder) throws {
+                    let container = try decoder.singleValueContainer()
+                    let string = try container.decode(String.self)
+                    if let value = GroupBy(rawValue: string) {
+                        self = value
+                    } else if let value = GroupBy(rawValue: string.uppercased()) {
+                        self = value
+                    } else {
+                        throw DecodingError.dataCorruptedError(
+                            in: container,
+                            debugDescription: "Invalid GroupBy value: \(string)"
+                        )
+                    }
+                }
             }
         }
         """#)
@@ -329,11 +344,41 @@ final class OperationRendererTests: XCTestCase {
                 public enum Devices: String, Sendable, ParameterValue, Codable, CaseIterable {
                     case model
                     case os
+        
+                    public init(from decoder: Decoder) throws {
+                        let container = try decoder.singleValueContainer()
+                        let string = try container.decode(String.self)
+                        if let value = Devices(rawValue: string) {
+                            self = value
+                        } else if let value = Devices(rawValue: string.uppercased()) {
+                            self = value
+                        } else {
+                            throw DecodingError.dataCorruptedError(
+                                in: container,
+                                debugDescription: "Invalid Devices value: \(string)"
+                            )
+                        }
+                    }
                 }
 
                 public enum Vehicles: String, Sendable, ParameterValue, Codable, CaseIterable {
                     case bicycle
                     case car
+        
+                    public init(from decoder: Decoder) throws {
+                        let container = try decoder.singleValueContainer()
+                        let string = try container.decode(String.self)
+                        if let value = Vehicles(rawValue: string) {
+                            self = value
+                        } else if let value = Vehicles(rawValue: string.uppercased()) {
+                            self = value
+                        } else {
+                            throw DecodingError.dataCorruptedError(
+                                in: container,
+                                debugDescription: "Invalid Vehicles value: \(string)"
+                            )
+                        }
+                    }
                 }
             }
 
@@ -353,11 +398,41 @@ final class OperationRendererTests: XCTestCase {
                 public enum DevicesProperties: String, Sendable, ParameterValue, Codable, CaseIterable {
                     case model
                     case os
+        
+                    public init(from decoder: Decoder) throws {
+                        let container = try decoder.singleValueContainer()
+                        let string = try container.decode(String.self)
+                        if let value = DevicesProperties(rawValue: string) {
+                            self = value
+                        } else if let value = DevicesProperties(rawValue: string.uppercased()) {
+                            self = value
+                        } else {
+                            throw DecodingError.dataCorruptedError(
+                                in: container,
+                                debugDescription: "Invalid DevicesProperties value: \(string)"
+                            )
+                        }
+                    }
                 }
 
                 public enum VehiclesProperties: String, Sendable, ParameterValue, Codable, CaseIterable {
                     case bicycle
                     case car
+        
+                    public init(from decoder: Decoder) throws {
+                        let container = try decoder.singleValueContainer()
+                        let string = try container.decode(String.self)
+                        if let value = VehiclesProperties(rawValue: string) {
+                            self = value
+                        } else if let value = VehiclesProperties(rawValue: string.uppercased()) {
+                            self = value
+                        } else {
+                            throw DecodingError.dataCorruptedError(
+                                in: container,
+                                debugDescription: "Invalid VehiclesProperties value: \(string)"
+                            )
+                        }
+                    }
                 }
             }
 
@@ -557,6 +632,21 @@ final class OperationRendererTests: XCTestCase {
                     case numberOfCodes
                     case offerCode
                     case values
+        
+                    public init(from decoder: Decoder) throws {
+                        let container = try decoder.singleValueContainer()
+                        let string = try container.decode(String.self)
+                        if let value = SubscriptionOfferCodeOneTimeUseCodes(rawValue: string) {
+                            self = value
+                        } else if let value = SubscriptionOfferCodeOneTimeUseCodes(rawValue: string.uppercased()) {
+                            self = value
+                        } else {
+                            throw DecodingError.dataCorruptedError(
+                                in: container,
+                                debugDescription: "Invalid SubscriptionOfferCodeOneTimeUseCodes value: \(string)"
+                            )
+                        }
+                    }
                 }
             }
 

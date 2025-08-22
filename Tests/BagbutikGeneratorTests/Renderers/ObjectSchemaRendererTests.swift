@@ -338,6 +338,21 @@ final class ObjectSchemaRendererTests: XCTestCase {
             public enum Days: String, Sendable, Codable, CaseIterable {
                 case monday = "MONDAY"
                 case tuesday = "TUESDAY"
+        
+                public init(from decoder: Decoder) throws {
+                    let container = try decoder.singleValueContainer()
+                    let string = try container.decode(String.self)
+                    if let value = Days(rawValue: string) {
+                        self = value
+                    } else if let value = Days(rawValue: string.uppercased()) {
+                        self = value
+                    } else {
+                        throw DecodingError.dataCorruptedError(
+                            in: container,
+                            debugDescription: "Invalid Days value: \(string)"
+                        )
+                    }
+                }
             }
         }
         """#)
@@ -614,6 +629,21 @@ final class ObjectSchemaRendererTests: XCTestCase {
             public enum Preference: String, Sendable, Codable, CaseIterable {
                 case spaces = "SPACES"
                 case tabs = "TABS"
+        
+                public init(from decoder: Decoder) throws {
+                    let container = try decoder.singleValueContainer()
+                    let string = try container.decode(String.self)
+                    if let value = Preference(rawValue: string) {
+                        self = value
+                    } else if let value = Preference(rawValue: string.uppercased()) {
+                        self = value
+                    } else {
+                        throw DecodingError.dataCorruptedError(
+                            in: container,
+                            debugDescription: "Invalid Preference value: \(string)"
+                        )
+                    }
+                }
             }
         }
         """#)
@@ -1502,6 +1532,21 @@ final class ObjectSchemaRendererTests: XCTestCase {
                 case landline = "LANDLINE"
                 case mobile = "MOBILE"
                 case tollfree = "TOLLFREE"
+        
+                public init(from decoder: Decoder) throws {
+                    let container = try decoder.singleValueContainer()
+                    let string = try container.decode(String.self)
+                    if let value = PhoneNumberType(rawValue: string) {
+                        self = value
+                    } else if let value = PhoneNumberType(rawValue: string.uppercased()) {
+                        self = value
+                    } else {
+                        throw DecodingError.dataCorruptedError(
+                            in: container,
+                            debugDescription: "Invalid PhoneNumberType value: \(string)"
+                        )
+                    }
+                }
             }
         }
         """#)
