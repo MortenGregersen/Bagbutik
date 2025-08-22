@@ -45,6 +45,21 @@ public enum GetGameCenterAchievementLocalizationV1 {
             case gameCenterAchievementLocalization
             case imageAsset
             case uploadOperations
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = GameCenterAchievementImages(rawValue: string) {
+                    self = value
+                } else if let value = GameCenterAchievementImages(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid GameCenterAchievementImages value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum GameCenterAchievementLocalizations: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -54,6 +69,21 @@ public enum GetGameCenterAchievementLocalizationV1 {
             case gameCenterAchievementImage
             case locale
             case name
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = GameCenterAchievementLocalizations(rawValue: string) {
+                    self = value
+                } else if let value = GameCenterAchievementLocalizations(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid GameCenterAchievementLocalizations value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum GameCenterAchievements: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -70,6 +100,21 @@ public enum GetGameCenterAchievementLocalizationV1 {
             case repeatable
             case showBeforeEarned
             case vendorIdentifier
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = GameCenterAchievements(rawValue: string) {
+                    self = value
+                } else if let value = GameCenterAchievements(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid GameCenterAchievements value: \(string)"
+                    )
+                }
+            }
         }
     }
 

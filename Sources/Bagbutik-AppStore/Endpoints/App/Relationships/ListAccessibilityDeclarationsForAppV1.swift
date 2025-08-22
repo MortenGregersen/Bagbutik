@@ -49,6 +49,21 @@ public enum ListAccessibilityDeclarationsForAppV1 {
             case supportsSufficientContrast
             case supportsVoiceControl
             case supportsVoiceover
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = AccessibilityDeclarations(rawValue: string) {
+                    self = value
+                } else if let value = AccessibilityDeclarations(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid AccessibilityDeclarations value: \(string)"
+                    )
+                }
+            }
         }
     }
 
@@ -65,6 +80,21 @@ public enum ListAccessibilityDeclarationsForAppV1 {
             case draft = "DRAFT"
             case published = "PUBLISHED"
             case replaced = "REPLACED"
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = State(rawValue: string) {
+                    self = value
+                } else if let value = State(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid State value: \(string)"
+                    )
+                }
+            }
         }
     }
 }

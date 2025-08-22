@@ -41,6 +41,21 @@ public enum GetBuildBetaDetailV1 {
             case build
             case externalBuildState
             case internalBuildState
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = BuildBetaDetails(rawValue: string) {
+                    self = value
+                } else if let value = BuildBetaDetails(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid BuildBetaDetails value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum Builds: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -69,6 +84,21 @@ public enum GetBuildBetaDetailV1 {
             case uploadedDate
             case usesNonExemptEncryption
             case version
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = Builds(rawValue: string) {
+                    self = value
+                } else if let value = Builds(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid Builds value: \(string)"
+                    )
+                }
+            }
         }
     }
 

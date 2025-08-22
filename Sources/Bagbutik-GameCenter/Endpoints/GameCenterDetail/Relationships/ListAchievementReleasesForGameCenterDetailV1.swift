@@ -48,6 +48,21 @@ public enum ListAchievementReleasesForGameCenterDetailV1 {
             case gameCenterAchievement
             case gameCenterDetail
             case live
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = GameCenterAchievementReleases(rawValue: string) {
+                    self = value
+                } else if let value = GameCenterAchievementReleases(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid GameCenterAchievementReleases value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum GameCenterAchievements: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -64,6 +79,21 @@ public enum ListAchievementReleasesForGameCenterDetailV1 {
             case repeatable
             case showBeforeEarned
             case vendorIdentifier
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = GameCenterAchievements(rawValue: string) {
+                    self = value
+                } else if let value = GameCenterAchievements(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid GameCenterAchievements value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum GameCenterDetails: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -85,6 +115,21 @@ public enum ListAchievementReleasesForGameCenterDetailV1 {
             case gameCenterLeaderboards
             case leaderboardReleases
             case leaderboardSetReleases
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = GameCenterDetails(rawValue: string) {
+                    self = value
+                } else if let value = GameCenterDetails(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid GameCenterDetails value: \(string)"
+                    )
+                }
+            }
         }
     }
 

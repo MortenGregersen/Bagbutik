@@ -54,6 +54,21 @@ public enum ListAppEncryptionDeclarationsForAppV1 {
             case fileSize
             case sourceFileChecksum
             case uploadOperations
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = AppEncryptionDeclarationDocuments(rawValue: string) {
+                    self = value
+                } else if let value = AppEncryptionDeclarationDocuments(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid AppEncryptionDeclarationDocuments value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum AppEncryptionDeclarations: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -74,6 +89,21 @@ public enum ListAppEncryptionDeclarationsForAppV1 {
             case platform
             case uploadedDate
             case usesEncryption
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = AppEncryptionDeclarations(rawValue: string) {
+                    self = value
+                } else if let value = AppEncryptionDeclarations(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid AppEncryptionDeclarations value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum Apps: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -127,6 +157,21 @@ public enum ListAppEncryptionDeclarationsForAppV1 {
             case subscriptionStatusUrlVersion
             case subscriptionStatusUrlVersionForSandbox
             case webhooks
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = Apps(rawValue: string) {
+                    self = value
+                } else if let value = Apps(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid Apps value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum Builds: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -155,6 +200,21 @@ public enum ListAppEncryptionDeclarationsForAppV1 {
             case uploadedDate
             case usesNonExemptEncryption
             case version
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = Builds(rawValue: string) {
+                    self = value
+                } else if let value = Builds(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid Builds value: \(string)"
+                    )
+                }
+            }
         }
     }
 

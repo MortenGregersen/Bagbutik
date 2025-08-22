@@ -127,6 +127,21 @@ public struct App: Codable, Sendable, Identifiable {
         public enum ContentRightsDeclaration: String, Sendable, Codable, CaseIterable {
             case doesNotUseThirdPartyContent = "DOES_NOT_USE_THIRD_PARTY_CONTENT"
             case usesThirdPartyContent = "USES_THIRD_PARTY_CONTENT"
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = ContentRightsDeclaration(rawValue: string) {
+                    self = value
+                } else if let value = ContentRightsDeclaration(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid ContentRightsDeclaration value: \(string)"
+                    )
+                }
+            }
         }
     }
 

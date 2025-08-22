@@ -79,12 +79,42 @@ public struct CiScheduledStartCondition: Codable, Sendable {
             case thursday = "THURSDAY"
             case tuesday = "TUESDAY"
             case wednesday = "WEDNESDAY"
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = Days(rawValue: string) {
+                    self = value
+                } else if let value = Days(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid Days value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum Frequency: String, Sendable, Codable, CaseIterable {
             case daily = "DAILY"
             case hourly = "HOURLY"
             case weekly = "WEEKLY"
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = Frequency(rawValue: string) {
+                    self = value
+                } else if let value = Frequency(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid Frequency value: \(string)"
+                    )
+                }
+            }
         }
     }
 }

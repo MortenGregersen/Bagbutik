@@ -38,6 +38,21 @@ public enum GetBackgroundAssetUploadFileV1 {
             case fileSize
             case sourceFileChecksum
             case uploadOperations
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = BackgroundAssetUploadFiles(rawValue: string) {
+                    self = value
+                } else if let value = BackgroundAssetUploadFiles(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid BackgroundAssetUploadFiles value: \(string)"
+                    )
+                }
+            }
         }
     }
 }

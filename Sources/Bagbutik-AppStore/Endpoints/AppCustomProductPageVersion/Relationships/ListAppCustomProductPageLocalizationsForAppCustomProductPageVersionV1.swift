@@ -52,6 +52,21 @@ public enum ListAppCustomProductPageLocalizationsForAppCustomProductPageVersionV
             case appScreenshotSets
             case locale
             case promotionalText
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = AppCustomProductPageLocalizations(rawValue: string) {
+                    self = value
+                } else if let value = AppCustomProductPageLocalizations(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid AppCustomProductPageLocalizations value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum AppCustomProductPageVersions: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -60,6 +75,21 @@ public enum ListAppCustomProductPageLocalizationsForAppCustomProductPageVersionV
             case deepLink
             case state
             case version
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = AppCustomProductPageVersions(rawValue: string) {
+                    self = value
+                } else if let value = AppCustomProductPageVersions(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid AppCustomProductPageVersions value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum AppPreviewSets: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -68,6 +98,21 @@ public enum ListAppCustomProductPageLocalizationsForAppCustomProductPageVersionV
             case appStoreVersionExperimentTreatmentLocalization
             case appStoreVersionLocalization
             case previewType
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = AppPreviewSets(rawValue: string) {
+                    self = value
+                } else if let value = AppPreviewSets(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid AppPreviewSets value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum AppScreenshotSets: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -76,6 +121,21 @@ public enum ListAppCustomProductPageLocalizationsForAppCustomProductPageVersionV
             case appStoreVersionExperimentTreatmentLocalization
             case appStoreVersionLocalization
             case screenshotDisplayType
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = AppScreenshotSets(rawValue: string) {
+                    self = value
+                } else if let value = AppScreenshotSets(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid AppScreenshotSets value: \(string)"
+                    )
+                }
+            }
         }
     }
 

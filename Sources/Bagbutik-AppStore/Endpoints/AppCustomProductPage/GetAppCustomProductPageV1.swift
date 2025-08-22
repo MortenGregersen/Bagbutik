@@ -45,6 +45,21 @@ public enum GetAppCustomProductPageV1 {
             case deepLink
             case state
             case version
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = AppCustomProductPageVersions(rawValue: string) {
+                    self = value
+                } else if let value = AppCustomProductPageVersions(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid AppCustomProductPageVersions value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum AppCustomProductPages: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -53,6 +68,21 @@ public enum GetAppCustomProductPageV1 {
             case name
             case url
             case visible
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = AppCustomProductPages(rawValue: string) {
+                    self = value
+                } else if let value = AppCustomProductPages(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid AppCustomProductPages value: \(string)"
+                    )
+                }
+            }
         }
     }
 

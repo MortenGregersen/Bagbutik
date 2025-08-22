@@ -54,6 +54,21 @@ public enum ListActionsForCiBuildRunV1 {
             case name
             case startedDate
             case testResults
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = CiBuildActions(rawValue: string) {
+                    self = value
+                } else if let value = CiBuildActions(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid CiBuildActions value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum CiBuildRuns: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -76,6 +91,21 @@ public enum ListActionsForCiBuildRunV1 {
             case startReason
             case startedDate
             case workflow
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = CiBuildRuns(rawValue: string) {
+                    self = value
+                } else if let value = CiBuildRuns(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid CiBuildRuns value: \(string)"
+                    )
+                }
+            }
         }
     }
 

@@ -66,12 +66,42 @@ public enum ListAppInfosForAppV1 {
             case violenceCartoonOrFantasy
             case violenceRealistic
             case violenceRealisticProlongedGraphicOrSadistic
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = AgeRatingDeclarations(rawValue: string) {
+                    self = value
+                } else if let value = AgeRatingDeclarations(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid AgeRatingDeclarations value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum AppCategories: String, Sendable, ParameterValue, Codable, CaseIterable {
             case parent
             case platforms
             case subcategories
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = AppCategories(rawValue: string) {
+                    self = value
+                } else if let value = AppCategories(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid AppCategories value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum AppInfoLocalizations: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -82,6 +112,21 @@ public enum ListAppInfosForAppV1 {
             case privacyPolicyText
             case privacyPolicyUrl
             case subtitle
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = AppInfoLocalizations(rawValue: string) {
+                    self = value
+                } else if let value = AppInfoLocalizations(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid AppInfoLocalizations value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum AppInfos: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -103,6 +148,21 @@ public enum ListAppInfosForAppV1 {
             case secondarySubcategoryOne
             case secondarySubcategoryTwo
             case state
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = AppInfos(rawValue: string) {
+                    self = value
+                } else if let value = AppInfos(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid AppInfos value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum Apps: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -156,6 +216,21 @@ public enum ListAppInfosForAppV1 {
             case subscriptionStatusUrlVersion
             case subscriptionStatusUrlVersionForSandbox
             case webhooks
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = Apps(rawValue: string) {
+                    self = value
+                } else if let value = Apps(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid Apps value: \(string)"
+                    )
+                }
+            }
         }
     }
 

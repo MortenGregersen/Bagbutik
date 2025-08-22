@@ -36,6 +36,21 @@ public enum GetDefaultImageForGameCenterChallengeVersionV1 {
             case fileSize
             case imageAsset
             case uploadOperations
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = GameCenterChallengeImages(rawValue: string) {
+                    self = value
+                } else if let value = GameCenterChallengeImages(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid GameCenterChallengeImages value: \(string)"
+                    )
+                }
+            }
         }
     }
 }

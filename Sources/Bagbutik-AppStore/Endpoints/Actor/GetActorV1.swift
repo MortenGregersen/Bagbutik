@@ -36,6 +36,21 @@ public enum GetActorV1 {
             case userEmail
             case userFirstName
             case userLastName
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = Actors(rawValue: string) {
+                    self = value
+                } else if let value = Actors(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid Actors value: \(string)"
+                    )
+                }
+            }
         }
     }
 }

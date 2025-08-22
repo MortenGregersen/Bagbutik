@@ -37,6 +37,21 @@ public enum GetAppClipAppStoreReviewDetailV1 {
         public enum AppClipAppStoreReviewDetails: String, Sendable, ParameterValue, Codable, CaseIterable {
             case appClipDefaultExperience
             case invocationUrls
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = AppClipAppStoreReviewDetails(rawValue: string) {
+                    self = value
+                } else if let value = AppClipAppStoreReviewDetails(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid AppClipAppStoreReviewDetails value: \(string)"
+                    )
+                }
+            }
         }
     }
 

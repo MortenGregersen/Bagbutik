@@ -52,6 +52,21 @@ public enum ListAppStoreVersionLocalizationsForAppStoreVersionV1 {
             case appStoreVersionExperimentTreatmentLocalization
             case appStoreVersionLocalization
             case previewType
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = AppPreviewSets(rawValue: string) {
+                    self = value
+                } else if let value = AppPreviewSets(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid AppPreviewSets value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum AppScreenshotSets: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -60,6 +75,21 @@ public enum ListAppStoreVersionLocalizationsForAppStoreVersionV1 {
             case appStoreVersionExperimentTreatmentLocalization
             case appStoreVersionLocalization
             case screenshotDisplayType
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = AppScreenshotSets(rawValue: string) {
+                    self = value
+                } else if let value = AppScreenshotSets(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid AppScreenshotSets value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum AppStoreVersionLocalizations: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -73,6 +103,21 @@ public enum ListAppStoreVersionLocalizationsForAppStoreVersionV1 {
             case promotionalText
             case supportUrl
             case whatsNew
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = AppStoreVersionLocalizations(rawValue: string) {
+                    self = value
+                } else if let value = AppStoreVersionLocalizations(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid AppStoreVersionLocalizations value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum AppStoreVersions: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -101,6 +146,21 @@ public enum ListAppStoreVersionLocalizationsForAppStoreVersionV1 {
             case routingAppCoverage
             case usesIdfa
             case versionString
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = AppStoreVersions(rawValue: string) {
+                    self = value
+                } else if let value = AppStoreVersions(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid AppStoreVersions value: \(string)"
+                    )
+                }
+            }
         }
     }
 

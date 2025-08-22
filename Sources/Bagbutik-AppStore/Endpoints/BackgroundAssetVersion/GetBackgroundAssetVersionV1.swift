@@ -42,6 +42,21 @@ public enum GetBackgroundAssetVersionV1 {
             case platforms
             case state
             case version
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = BackgroundAssetVersions(rawValue: string) {
+                    self = value
+                } else if let value = BackgroundAssetVersions(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid BackgroundAssetVersions value: \(string)"
+                    )
+                }
+            }
         }
     }
 

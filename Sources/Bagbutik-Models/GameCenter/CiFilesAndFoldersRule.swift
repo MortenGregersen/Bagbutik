@@ -36,5 +36,20 @@ public struct CiFilesAndFoldersRule: Codable, Sendable {
     public enum Mode: String, Sendable, Codable, CaseIterable {
         case doNotStartIfAllFilesMatch = "DO_NOT_START_IF_ALL_FILES_MATCH"
         case startIfAnyFileMatches = "START_IF_ANY_FILE_MATCHES"
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.singleValueContainer()
+            let string = try container.decode(String.self)
+            if let value = Mode(rawValue: string) {
+                self = value
+            } else if let value = Mode(rawValue: string.uppercased()) {
+                self = value
+            } else {
+                throw DecodingError.dataCorruptedError(
+                    in: container,
+                    debugDescription: "Invalid Mode value: \(string)"
+                )
+            }
+        }
     }
 }

@@ -50,6 +50,21 @@ public enum ListAppCustomProductPagesForAppV1 {
             case deepLink
             case state
             case version
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = AppCustomProductPageVersions(rawValue: string) {
+                    self = value
+                } else if let value = AppCustomProductPageVersions(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid AppCustomProductPageVersions value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum AppCustomProductPages: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -58,6 +73,21 @@ public enum ListAppCustomProductPagesForAppV1 {
             case name
             case url
             case visible
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = AppCustomProductPages(rawValue: string) {
+                    self = value
+                } else if let value = AppCustomProductPages(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid AppCustomProductPages value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum Apps: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -111,6 +141,21 @@ public enum ListAppCustomProductPagesForAppV1 {
             case subscriptionStatusUrlVersion
             case subscriptionStatusUrlVersionForSandbox
             case webhooks
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = Apps(rawValue: string) {
+                    self = value
+                } else if let value = Apps(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid Apps value: \(string)"
+                    )
+                }
+            }
         }
     }
 

@@ -41,6 +41,21 @@ public enum ListInstancesForAnalyticsReportV1 {
             case granularity
             case processingDate
             case segments
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = AnalyticsReportInstances(rawValue: string) {
+                    self = value
+                } else if let value = AnalyticsReportInstances(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid AnalyticsReportInstances value: \(string)"
+                    )
+                }
+            }
         }
     }
 
@@ -57,6 +72,21 @@ public enum ListInstancesForAnalyticsReportV1 {
             case daily = "DAILY"
             case monthly = "MONTHLY"
             case weekly = "WEEKLY"
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = Granularity(rawValue: string) {
+                    self = value
+                } else if let value = Granularity(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid Granularity value: \(string)"
+                    )
+                }
+            }
         }
     }
 }

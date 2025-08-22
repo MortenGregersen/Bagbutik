@@ -53,12 +53,42 @@ public enum ListAppClipAdvancedExperiencesForAppClipV1 {
             case imageAsset
             case sourceFileChecksum
             case uploadOperations
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = AppClipAdvancedExperienceImages(rawValue: string) {
+                    self = value
+                } else if let value = AppClipAdvancedExperienceImages(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid AppClipAdvancedExperienceImages value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum AppClipAdvancedExperienceLocalizations: String, Sendable, ParameterValue, Codable, CaseIterable {
             case language
             case subtitle
             case title
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = AppClipAdvancedExperienceLocalizations(rawValue: string) {
+                    self = value
+                } else if let value = AppClipAdvancedExperienceLocalizations(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid AppClipAdvancedExperienceLocalizations value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum AppClipAdvancedExperiences: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -74,6 +104,21 @@ public enum ListAppClipAdvancedExperiencesForAppClipV1 {
             case placeStatus
             case status
             case version
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = AppClipAdvancedExperiences(rawValue: string) {
+                    self = value
+                } else if let value = AppClipAdvancedExperiences(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid AppClipAdvancedExperiences value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum AppClips: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -81,6 +126,21 @@ public enum ListAppClipAdvancedExperiencesForAppClipV1 {
             case appClipAdvancedExperiences
             case appClipDefaultExperiences
             case bundleId
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = AppClips(rawValue: string) {
+                    self = value
+                } else if let value = AppClips(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid AppClips value: \(string)"
+                    )
+                }
+            }
         }
     }
 
@@ -99,12 +159,42 @@ public enum ListAppClipAdvancedExperiencesForAppClipV1 {
             case matched = "MATCHED"
             case noMatch = "NO_MATCH"
             case pending = "PENDING"
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = PlaceStatus(rawValue: string) {
+                    self = value
+                } else if let value = PlaceStatus(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid PlaceStatus value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum Status: String, Sendable, ParameterValue, Codable, CaseIterable {
             case appTransferInProgress = "APP_TRANSFER_IN_PROGRESS"
             case deactivated = "DEACTIVATED"
             case received = "RECEIVED"
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = Status(rawValue: string) {
+                    self = value
+                } else if let value = Status(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid Status value: \(string)"
+                    )
+                }
+            }
         }
     }
 

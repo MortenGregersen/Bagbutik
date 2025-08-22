@@ -40,6 +40,21 @@ public enum GetBetaAppReviewDetailForAppV1 {
             case demoAccountPassword
             case demoAccountRequired
             case notes
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = BetaAppReviewDetails(rawValue: string) {
+                    self = value
+                } else if let value = BetaAppReviewDetails(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid BetaAppReviewDetails value: \(string)"
+                    )
+                }
+            }
         }
     }
 }

@@ -48,6 +48,21 @@ public enum GetAppStoreReviewDetailForAppStoreVersionV1 {
             case fileSize
             case sourceFileChecksum
             case uploadOperations
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = AppStoreReviewAttachments(rawValue: string) {
+                    self = value
+                } else if let value = AppStoreReviewAttachments(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid AppStoreReviewAttachments value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum AppStoreReviewDetails: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -61,6 +76,21 @@ public enum GetAppStoreReviewDetailForAppStoreVersionV1 {
             case demoAccountPassword
             case demoAccountRequired
             case notes
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = AppStoreReviewDetails(rawValue: string) {
+                    self = value
+                } else if let value = AppStoreReviewDetails(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid AppStoreReviewDetails value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum AppStoreVersions: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -89,6 +119,21 @@ public enum GetAppStoreReviewDetailForAppStoreVersionV1 {
             case routingAppCoverage
             case usesIdfa
             case versionString
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = AppStoreVersions(rawValue: string) {
+                    self = value
+                } else if let value = AppStoreVersions(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid AppStoreVersions value: \(string)"
+                    )
+                }
+            }
         }
     }
 

@@ -37,6 +37,21 @@ public enum GetAppClipAdvancedExperienceImageV1 {
             case imageAsset
             case sourceFileChecksum
             case uploadOperations
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = AppClipAdvancedExperienceImages(rawValue: string) {
+                    self = value
+                } else if let value = AppClipAdvancedExperienceImages(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid AppClipAdvancedExperienceImages value: \(string)"
+                    )
+                }
+            }
         }
     }
 }

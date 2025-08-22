@@ -79,6 +79,21 @@ public enum ListBuildRunsForCiWorkflowV1 {
             case uploadedDate
             case usesNonExemptEncryption
             case version
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = Builds(rawValue: string) {
+                    self = value
+                } else if let value = Builds(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid Builds value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum CiBuildRuns: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -101,6 +116,21 @@ public enum ListBuildRunsForCiWorkflowV1 {
             case startReason
             case startedDate
             case workflow
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = CiBuildRuns(rawValue: string) {
+                    self = value
+                } else if let value = CiBuildRuns(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid CiBuildRuns value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum CiProducts: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -113,6 +143,21 @@ public enum ListBuildRunsForCiWorkflowV1 {
             case primaryRepositories
             case productType
             case workflows
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = CiProducts(rawValue: string) {
+                    self = value
+                } else if let value = CiProducts(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid CiProducts value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum CiWorkflows: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -136,6 +181,21 @@ public enum ListBuildRunsForCiWorkflowV1 {
             case scheduledStartCondition
             case tagStartCondition
             case xcodeVersion
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = CiWorkflows(rawValue: string) {
+                    self = value
+                } else if let value = CiWorkflows(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid CiWorkflows value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum ScmGitReferences: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -144,6 +204,21 @@ public enum ListBuildRunsForCiWorkflowV1 {
             case kind
             case name
             case repository
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = ScmGitReferences(rawValue: string) {
+                    self = value
+                } else if let value = ScmGitReferences(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid ScmGitReferences value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum ScmPullRequests: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -159,6 +234,21 @@ public enum ListBuildRunsForCiWorkflowV1 {
             case sourceRepositoryOwner
             case title
             case webUrl
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = ScmPullRequests(rawValue: string) {
+                    self = value
+                } else if let value = ScmPullRequests(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid ScmPullRequests value: \(string)"
+                    )
+                }
+            }
         }
     }
 

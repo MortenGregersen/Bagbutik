@@ -33,6 +33,21 @@ final class EnumSchemaRendererTests: XCTestCase {
             case macOS = "MAC_OS"
             /// A string that represents tvOS.
             case tvOS = "TV_OS"
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = Platform(rawValue: string) {
+                    self = value
+                } else if let value = Platform(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid Platform value: \(string)"
+                    )
+                }
+            }
         }
         """#)
     }
@@ -49,6 +64,21 @@ final class EnumSchemaRendererTests: XCTestCase {
             case parent
             case platforms
             case subcategories
+        
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = AppCategories(rawValue: string) {
+                    self = value
+                } else if let value = AppCategories(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid AppCategories value: \(string)"
+                    )
+                }
+            }
         }
         """#)
     }

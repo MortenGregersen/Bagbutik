@@ -83,10 +83,40 @@ public enum ListAppStoreVersionsForAppV1 {
             case violenceCartoonOrFantasy
             case violenceRealistic
             case violenceRealisticProlongedGraphicOrSadistic
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = AgeRatingDeclarations(rawValue: string) {
+                    self = value
+                } else if let value = AgeRatingDeclarations(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid AgeRatingDeclarations value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum AlternativeDistributionPackages: String, Sendable, ParameterValue, Codable, CaseIterable {
             case versions
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = AlternativeDistributionPackages(rawValue: string) {
+                    self = value
+                } else if let value = AlternativeDistributionPackages(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid AlternativeDistributionPackages value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum AppClipDefaultExperiences: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -95,6 +125,21 @@ public enum ListAppStoreVersionsForAppV1 {
             case appClipAppStoreReviewDetail
             case appClipDefaultExperienceLocalizations
             case releaseWithAppStoreVersion
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = AppClipDefaultExperiences(rawValue: string) {
+                    self = value
+                } else if let value = AppClipDefaultExperiences(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid AppClipDefaultExperiences value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum AppStoreReviewDetails: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -108,6 +153,21 @@ public enum ListAppStoreVersionsForAppV1 {
             case demoAccountPassword
             case demoAccountRequired
             case notes
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = AppStoreReviewDetails(rawValue: string) {
+                    self = value
+                } else if let value = AppStoreReviewDetails(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid AppStoreReviewDetails value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum AppStoreVersionExperiments: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -123,6 +183,21 @@ public enum ListAppStoreVersionsForAppV1 {
             case startDate
             case state
             case trafficProportion
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = AppStoreVersionExperiments(rawValue: string) {
+                    self = value
+                } else if let value = AppStoreVersionExperiments(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid AppStoreVersionExperiments value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum AppStoreVersionLocalizations: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -136,6 +211,21 @@ public enum ListAppStoreVersionsForAppV1 {
             case promotionalText
             case supportUrl
             case whatsNew
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = AppStoreVersionLocalizations(rawValue: string) {
+                    self = value
+                } else if let value = AppStoreVersionLocalizations(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid AppStoreVersionLocalizations value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum AppStoreVersionPhasedReleases: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -143,10 +233,40 @@ public enum ListAppStoreVersionsForAppV1 {
             case phasedReleaseState
             case startDate
             case totalPauseDuration
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = AppStoreVersionPhasedReleases(rawValue: string) {
+                    self = value
+                } else if let value = AppStoreVersionPhasedReleases(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid AppStoreVersionPhasedReleases value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum AppStoreVersionSubmissions: String, Sendable, ParameterValue, Codable, CaseIterable {
             case appStoreVersion
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = AppStoreVersionSubmissions(rawValue: string) {
+                    self = value
+                } else if let value = AppStoreVersionSubmissions(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid AppStoreVersionSubmissions value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum AppStoreVersions: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -175,6 +295,21 @@ public enum ListAppStoreVersionsForAppV1 {
             case routingAppCoverage
             case usesIdfa
             case versionString
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = AppStoreVersions(rawValue: string) {
+                    self = value
+                } else if let value = AppStoreVersions(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid AppStoreVersions value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum Apps: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -228,6 +363,21 @@ public enum ListAppStoreVersionsForAppV1 {
             case subscriptionStatusUrlVersion
             case subscriptionStatusUrlVersionForSandbox
             case webhooks
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = Apps(rawValue: string) {
+                    self = value
+                } else if let value = Apps(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid Apps value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum Builds: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -256,12 +406,42 @@ public enum ListAppStoreVersionsForAppV1 {
             case uploadedDate
             case usesNonExemptEncryption
             case version
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = Builds(rawValue: string) {
+                    self = value
+                } else if let value = Builds(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid Builds value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum GameCenterAppVersions: String, Sendable, ParameterValue, Codable, CaseIterable {
             case appStoreVersion
             case compatibilityVersions
             case enabled
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = GameCenterAppVersions(rawValue: string) {
+                    self = value
+                } else if let value = GameCenterAppVersions(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid GameCenterAppVersions value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum RoutingAppCoverages: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -271,6 +451,21 @@ public enum ListAppStoreVersionsForAppV1 {
             case fileSize
             case sourceFileChecksum
             case uploadOperations
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = RoutingAppCoverages(rawValue: string) {
+                    self = value
+                } else if let value = RoutingAppCoverages(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid RoutingAppCoverages value: \(string)"
+                    )
+                }
+            }
         }
     }
 

@@ -44,10 +44,40 @@ public enum ListPerfPowerMetricsForBuildV1 {
             case launch = "LAUNCH"
             case memory = "MEMORY"
             case termination = "TERMINATION"
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = MetricType(rawValue: string) {
+                    self = value
+                } else if let value = MetricType(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid MetricType value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum Platform: String, Sendable, ParameterValue, Codable, CaseIterable {
             case iOS = "IOS"
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = Platform(rawValue: string) {
+                    self = value
+                } else if let value = Platform(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid Platform value: \(string)"
+                    )
+                }
+            }
         }
     }
 }

@@ -59,6 +59,21 @@ public enum GetCiWorkflowV1 {
             case scheduledStartCondition
             case tagStartCondition
             case xcodeVersion
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = CiWorkflows(rawValue: string) {
+                    self = value
+                } else if let value = CiWorkflows(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid CiWorkflows value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum ScmRepositories: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -71,6 +86,21 @@ public enum GetCiWorkflowV1 {
             case repositoryName
             case scmProvider
             case sshCloneUrl
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = ScmRepositories(rawValue: string) {
+                    self = value
+                } else if let value = ScmRepositories(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid ScmRepositories value: \(string)"
+                    )
+                }
+            }
         }
     }
 

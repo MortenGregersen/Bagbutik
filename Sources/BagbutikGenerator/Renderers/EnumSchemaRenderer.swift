@@ -52,7 +52,24 @@ public class EnumSchemaRenderer: Renderer {
                 }
                 renderedEnum += "\n"
             }
-        renderedEnum += "}"
+        renderedEnum += "\n"
+        renderedEnum += renderInitializer(parameters: [.init(prefix: "from", name: "decoder", type: "Decoder")], throwing: true, content: {
+            """
+            let container = try decoder.singleValueContainer()
+            let string = try container.decode(String.self)
+            if let value = \(enumSchema.name)(rawValue: string) {
+                self = value
+            } else if let value = \(enumSchema.name)(rawValue: string.uppercased()) {
+                self = value
+            } else {
+                throw DecodingError.dataCorruptedError(
+                    in: container,
+                    debugDescription: "Invalid \(enumSchema.name) value: \\(string)"
+                )
+            }
+            """
+        }).indentedLines
+        renderedEnum += "\n}"
         if !renderedDocumentation.isEmpty {
             renderedEnum = [renderedDocumentation, renderedEnum].joined(separator: "\n")
         }

@@ -53,12 +53,42 @@ public enum ListSubscriptionGroupsForAppV1 {
             case name
             case state
             case subscriptionGroup
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = SubscriptionGroupLocalizations(rawValue: string) {
+                    self = value
+                } else if let value = SubscriptionGroupLocalizations(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid SubscriptionGroupLocalizations value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum SubscriptionGroups: String, Sendable, ParameterValue, Codable, CaseIterable {
             case referenceName
             case subscriptionGroupLocalizations
             case subscriptions
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = SubscriptionGroups(rawValue: string) {
+                    self = value
+                } else if let value = SubscriptionGroups(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid SubscriptionGroups value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum Subscriptions: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -81,6 +111,21 @@ public enum ListSubscriptionGroupsForAppV1 {
             case subscriptionLocalizations
             case subscriptionPeriod
             case winBackOffers
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = Subscriptions(rawValue: string) {
+                    self = value
+                } else if let value = Subscriptions(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid Subscriptions value: \(string)"
+                    )
+                }
+            }
         }
     }
 
@@ -104,6 +149,21 @@ public enum ListSubscriptionGroupsForAppV1 {
             case rejected = "REJECTED"
             case removedFromSale = "REMOVED_FROM_SALE"
             case waitingForReview = "WAITING_FOR_REVIEW"
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = SubscriptionsState(rawValue: string) {
+                    self = value
+                } else if let value = SubscriptionsState(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid SubscriptionsState value: \(string)"
+                    )
+                }
+            }
         }
     }
 

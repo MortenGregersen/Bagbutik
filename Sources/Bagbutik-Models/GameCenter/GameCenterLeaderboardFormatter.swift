@@ -20,4 +20,19 @@ public enum GameCenterLeaderboardFormatter: String, Sendable, Codable, CaseItera
     case moneyPound = "MONEY_POUND"
     case moneyPoundDecimal = "MONEY_POUND_DECIMAL"
     case moneyYen = "MONEY_YEN"
+
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.singleValueContainer()
+        let string = try container.decode(String.self)
+        if let value = GameCenterLeaderboardFormatter(rawValue: string) {
+            self = value
+        } else if let value = GameCenterLeaderboardFormatter(rawValue: string.uppercased()) {
+            self = value
+        } else {
+            throw DecodingError.dataCorruptedError(
+                in: container,
+                debugDescription: "Invalid GameCenterLeaderboardFormatter value: \(string)"
+            )
+        }
+    }
 }

@@ -52,6 +52,21 @@ public enum ListBetaGroupsForAppV1 {
             case publicLinkId
             case publicLinkLimit
             case publicLinkLimitEnabled
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = BetaGroups(rawValue: string) {
+                    self = value
+                } else if let value = BetaGroups(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid BetaGroups value: \(string)"
+                    )
+                }
+            }
         }
     }
 }

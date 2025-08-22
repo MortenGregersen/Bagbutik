@@ -33,6 +33,21 @@ public enum GetBetaRecruitmentCriteriaForBetaGroupV1 {
         public enum BetaRecruitmentCriteria: String, Sendable, ParameterValue, Codable, CaseIterable {
             case deviceFamilyOsVersionFilters
             case lastModifiedDate
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = BetaRecruitmentCriteria(rawValue: string) {
+                    self = value
+                } else if let value = BetaRecruitmentCriteria(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid BetaRecruitmentCriteria value: \(string)"
+                    )
+                }
+            }
         }
     }
 }

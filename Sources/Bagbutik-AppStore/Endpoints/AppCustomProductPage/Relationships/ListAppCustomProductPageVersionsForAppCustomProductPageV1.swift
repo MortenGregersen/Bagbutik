@@ -50,6 +50,21 @@ public enum ListAppCustomProductPageVersionsForAppCustomProductPageV1 {
             case appScreenshotSets
             case locale
             case promotionalText
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = AppCustomProductPageLocalizations(rawValue: string) {
+                    self = value
+                } else if let value = AppCustomProductPageLocalizations(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid AppCustomProductPageLocalizations value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum AppCustomProductPageVersions: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -58,6 +73,21 @@ public enum ListAppCustomProductPageVersionsForAppCustomProductPageV1 {
             case deepLink
             case state
             case version
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = AppCustomProductPageVersions(rawValue: string) {
+                    self = value
+                } else if let value = AppCustomProductPageVersions(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid AppCustomProductPageVersions value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum AppCustomProductPages: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -66,6 +96,21 @@ public enum ListAppCustomProductPageVersionsForAppCustomProductPageV1 {
             case name
             case url
             case visible
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = AppCustomProductPages(rawValue: string) {
+                    self = value
+                } else if let value = AppCustomProductPages(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid AppCustomProductPages value: \(string)"
+                    )
+                }
+            }
         }
     }
 
@@ -85,6 +130,21 @@ public enum ListAppCustomProductPageVersionsForAppCustomProductPageV1 {
             case rejected = "REJECTED"
             case replacedWithNewVersion = "REPLACED_WITH_NEW_VERSION"
             case waitingForReview = "WAITING_FOR_REVIEW"
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = State(rawValue: string) {
+                    self = value
+                } else if let value = State(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid State value: \(string)"
+                    )
+                }
+            }
         }
     }
 

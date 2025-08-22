@@ -45,6 +45,21 @@ public enum ListXcodeVersionsForCiMacOsVersionV1 {
             case name
             case version
             case xcodeVersions
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = CiMacOsVersions(rawValue: string) {
+                    self = value
+                } else if let value = CiMacOsVersions(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid CiMacOsVersions value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum CiXcodeVersions: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -52,6 +67,21 @@ public enum ListXcodeVersionsForCiMacOsVersionV1 {
             case name
             case testDestinations
             case version
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = CiXcodeVersions(rawValue: string) {
+                    self = value
+                } else if let value = CiXcodeVersions(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid CiXcodeVersions value: \(string)"
+                    )
+                }
+            }
         }
     }
 

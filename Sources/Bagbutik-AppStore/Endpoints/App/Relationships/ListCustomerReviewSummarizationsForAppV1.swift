@@ -48,10 +48,40 @@ public enum ListCustomerReviewSummarizationsForAppV1 {
             case platform
             case territory
             case text
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = CustomerReviewSummarizations(rawValue: string) {
+                    self = value
+                } else if let value = CustomerReviewSummarizations(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid CustomerReviewSummarizations value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum Territories: String, Sendable, ParameterValue, Codable, CaseIterable {
             case currency
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = Territories(rawValue: string) {
+                    self = value
+                } else if let value = Territories(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid Territories value: \(string)"
+                    )
+                }
+            }
         }
     }
 

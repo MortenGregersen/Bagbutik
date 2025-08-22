@@ -70,6 +70,21 @@ public struct SubscriptionGracePeriod: Codable, Sendable, Identifiable {
         public enum RenewalType: String, Sendable, Codable, CaseIterable {
             case allRenewals = "ALL_RENEWALS"
             case paidToPaidOnly = "PAID_TO_PAID_ONLY"
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = RenewalType(rawValue: string) {
+                    self = value
+                } else if let value = RenewalType(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid RenewalType value: \(string)"
+                    )
+                }
+            }
         }
     }
 }

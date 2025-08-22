@@ -35,6 +35,21 @@ public enum GetSubscriptionGracePeriodForAppV1 {
             case optIn
             case renewalType
             case sandboxOptIn
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = SubscriptionGracePeriods(rawValue: string) {
+                    self = value
+                } else if let value = SubscriptionGracePeriods(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid SubscriptionGracePeriods value: \(string)"
+                    )
+                }
+            }
         }
     }
 }

@@ -42,10 +42,40 @@ public enum GetSubscriptionAvailabilityForSubscriptionV1 {
         public enum SubscriptionAvailabilities: String, Sendable, ParameterValue, Codable, CaseIterable {
             case availableInNewTerritories
             case availableTerritories
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = SubscriptionAvailabilities(rawValue: string) {
+                    self = value
+                } else if let value = SubscriptionAvailabilities(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid SubscriptionAvailabilities value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum Territories: String, Sendable, ParameterValue, Codable, CaseIterable {
             case currency
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = Territories(rawValue: string) {
+                    self = value
+                } else if let value = Territories(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid Territories value: \(string)"
+                    )
+                }
+            }
         }
     }
 

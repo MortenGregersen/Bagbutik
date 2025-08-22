@@ -82,6 +82,21 @@ public struct CiProduct: Codable, Sendable, Identifiable {
         public enum ProductType: String, Sendable, ParameterValue, Codable, CaseIterable {
             case app = "APP"
             case framework = "FRAMEWORK"
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = ProductType(rawValue: string) {
+                    self = value
+                } else if let value = ProductType(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid ProductType value: \(string)"
+                    )
+                }
+            }
         }
     }
 

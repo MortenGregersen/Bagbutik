@@ -127,16 +127,61 @@ public struct GameCenterLeaderboard: Codable, Sendable, Identifiable {
         public enum ScoreSortType: String, Sendable, Codable, CaseIterable {
             case asc = "ASC"
             case desc = "DESC"
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = ScoreSortType(rawValue: string) {
+                    self = value
+                } else if let value = ScoreSortType(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid ScoreSortType value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum SubmissionType: String, Sendable, Codable, CaseIterable {
             case bestScore = "BEST_SCORE"
             case mostRecentScore = "MOST_RECENT_SCORE"
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = SubmissionType(rawValue: string) {
+                    self = value
+                } else if let value = SubmissionType(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid SubmissionType value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum Visibility: String, Sendable, Codable, CaseIterable {
             case hideForAll = "HIDE_FOR_ALL"
             case showForAll = "SHOW_FOR_ALL"
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = Visibility(rawValue: string) {
+                    self = value
+                } else if let value = Visibility(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid Visibility value: \(string)"
+                    )
+                }
+            }
         }
     }
 

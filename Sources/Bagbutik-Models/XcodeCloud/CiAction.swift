@@ -80,6 +80,21 @@ public struct CiAction: Codable, Sendable {
         case anyVisionosSimulator = "ANY_VISIONOS_SIMULATOR"
         case anyWatchosDevice = "ANY_WATCHOS_DEVICE"
         case anyWatchosSimulator = "ANY_WATCHOS_SIMULATOR"
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.singleValueContainer()
+            let string = try container.decode(String.self)
+            if let value = Destination(rawValue: string) {
+                self = value
+            } else if let value = Destination(rawValue: string.uppercased()) {
+                self = value
+            } else {
+                throw DecodingError.dataCorruptedError(
+                    in: container,
+                    debugDescription: "Invalid Destination value: \(string)"
+                )
+            }
+        }
     }
 
     public enum Platform: String, Sendable, Codable, CaseIterable {
@@ -88,6 +103,21 @@ public struct CiAction: Codable, Sendable {
         case tvOS = "TVOS"
         case visionos = "VISIONOS"
         case watchos = "WATCHOS"
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.singleValueContainer()
+            let string = try container.decode(String.self)
+            if let value = Platform(rawValue: string) {
+                self = value
+            } else if let value = Platform(rawValue: string.uppercased()) {
+                self = value
+            } else {
+                throw DecodingError.dataCorruptedError(
+                    in: container,
+                    debugDescription: "Invalid Platform value: \(string)"
+                )
+            }
+        }
     }
 
     public struct TestConfiguration: Codable, Sendable {
@@ -121,6 +151,21 @@ public struct CiAction: Codable, Sendable {
         public enum Kind: String, Sendable, Codable, CaseIterable {
             case specificTestPlans = "SPECIFIC_TEST_PLANS"
             case useSchemeSettings = "USE_SCHEME_SETTINGS"
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = Kind(rawValue: string) {
+                    self = value
+                } else if let value = Kind(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid Kind value: \(string)"
+                    )
+                }
+            }
         }
     }
 }

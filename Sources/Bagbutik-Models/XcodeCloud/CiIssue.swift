@@ -83,6 +83,21 @@ public struct CiIssue: Codable, Sendable, Identifiable {
             case error = "ERROR"
             case testFailure = "TEST_FAILURE"
             case warning = "WARNING"
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = IssueType(rawValue: string) {
+                    self = value
+                } else if let value = IssueType(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid IssueType value: \(string)"
+                    )
+                }
+            }
         }
     }
 }

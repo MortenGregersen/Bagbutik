@@ -53,6 +53,21 @@ public enum GetGameCenterActivityV1 {
             case supportsPartyCode
             case vendorIdentifier
             case versions
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = GameCenterActivities(rawValue: string) {
+                    self = value
+                } else if let value = GameCenterActivities(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid GameCenterActivities value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum GameCenterActivityVersions: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -63,6 +78,21 @@ public enum GetGameCenterActivityV1 {
             case releases
             case state
             case version
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = GameCenterActivityVersions(rawValue: string) {
+                    self = value
+                } else if let value = GameCenterActivityVersions(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid GameCenterActivityVersions value: \(string)"
+                    )
+                }
+            }
         }
     }
 

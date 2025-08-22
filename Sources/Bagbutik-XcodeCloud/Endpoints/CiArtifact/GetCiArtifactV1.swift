@@ -37,6 +37,21 @@ public enum GetCiArtifactV1 {
             case fileName
             case fileSize
             case fileType
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = CiArtifacts(rawValue: string) {
+                    self = value
+                } else if let value = CiArtifacts(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid CiArtifacts value: \(string)"
+                    )
+                }
+            }
         }
     }
 }

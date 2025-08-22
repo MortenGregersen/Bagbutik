@@ -34,6 +34,21 @@ public enum GetBetaAppReviewSubmissionForBuildV1 {
             case betaReviewState
             case build
             case submittedDate
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = BetaAppReviewSubmissions(rawValue: string) {
+                    self = value
+                } else if let value = BetaAppReviewSubmissions(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid BetaAppReviewSubmissions value: \(string)"
+                    )
+                }
+            }
         }
     }
 }

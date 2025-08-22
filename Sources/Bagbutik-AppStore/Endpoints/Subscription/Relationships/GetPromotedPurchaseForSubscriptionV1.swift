@@ -54,6 +54,21 @@ public enum GetPromotedPurchaseForSubscriptionV1 {
             case promotedPurchase
             case reviewNote
             case state
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = InAppPurchases(rawValue: string) {
+                    self = value
+                } else if let value = InAppPurchases(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid InAppPurchases value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum PromotedPurchases: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -62,6 +77,21 @@ public enum GetPromotedPurchaseForSubscriptionV1 {
             case state
             case subscription
             case visibleForAllUsers
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = PromotedPurchases(rawValue: string) {
+                    self = value
+                } else if let value = PromotedPurchases(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid PromotedPurchases value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum Subscriptions: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -84,6 +114,21 @@ public enum GetPromotedPurchaseForSubscriptionV1 {
             case subscriptionLocalizations
             case subscriptionPeriod
             case winBackOffers
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = Subscriptions(rawValue: string) {
+                    self = value
+                } else if let value = Subscriptions(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid Subscriptions value: \(string)"
+                    )
+                }
+            }
         }
     }
 

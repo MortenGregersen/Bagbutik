@@ -100,6 +100,21 @@ public enum ListBetaGroupsV1 {
             case subscriptionStatusUrlVersion
             case subscriptionStatusUrlVersionForSandbox
             case webhooks
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = Apps(rawValue: string) {
+                    self = value
+                } else if let value = Apps(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid Apps value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum BetaGroups: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -120,11 +135,41 @@ public enum ListBetaGroupsV1 {
             case publicLinkId
             case publicLinkLimit
             case publicLinkLimitEnabled
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = BetaGroups(rawValue: string) {
+                    self = value
+                } else if let value = BetaGroups(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid BetaGroups value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum BetaRecruitmentCriteria: String, Sendable, ParameterValue, Codable, CaseIterable {
             case deviceFamilyOsVersionFilters
             case lastModifiedDate
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = BetaRecruitmentCriteria(rawValue: string) {
+                    self = value
+                } else if let value = BetaRecruitmentCriteria(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid BetaRecruitmentCriteria value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum BetaTesters: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -136,6 +181,21 @@ public enum ListBetaGroupsV1 {
             case inviteType
             case lastName
             case state
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = BetaTesters(rawValue: string) {
+                    self = value
+                } else if let value = BetaTesters(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid BetaTesters value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum Builds: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -164,6 +224,21 @@ public enum ListBetaGroupsV1 {
             case uploadedDate
             case usesNonExemptEncryption
             case version
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = Builds(rawValue: string) {
+                    self = value
+                } else if let value = Builds(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid Builds value: \(string)"
+                    )
+                }
+            }
         }
     }
 

@@ -129,6 +129,21 @@ public struct Build: Codable, Sendable, Identifiable {
             case invalid = "INVALID"
             case processing = "PROCESSING"
             case valid = "VALID"
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = ProcessingState(rawValue: string) {
+                    self = value
+                } else if let value = ProcessingState(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid ProcessingState value: \(string)"
+                    )
+                }
+            }
         }
     }
 

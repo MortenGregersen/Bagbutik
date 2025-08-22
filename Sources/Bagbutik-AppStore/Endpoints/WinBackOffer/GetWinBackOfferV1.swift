@@ -42,6 +42,21 @@ public enum GetWinBackOfferV1 {
         public enum WinBackOfferPrices: String, Sendable, ParameterValue, Codable, CaseIterable {
             case subscriptionPricePoint
             case territory
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = WinBackOfferPrices(rawValue: string) {
+                    self = value
+                } else if let value = WinBackOfferPrices(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid WinBackOfferPrices value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum WinBackOffers: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -58,6 +73,21 @@ public enum GetWinBackOfferV1 {
             case promotionIntent
             case referenceName
             case startDate
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = WinBackOffers(rawValue: string) {
+                    self = value
+                } else if let value = WinBackOffers(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid WinBackOffers value: \(string)"
+                    )
+                }
+            }
         }
     }
 

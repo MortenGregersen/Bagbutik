@@ -46,6 +46,21 @@ public enum GetAppEventV1 {
             case longDescription
             case name
             case shortDescription
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = AppEventLocalizations(rawValue: string) {
+                    self = value
+                } else if let value = AppEventLocalizations(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid AppEventLocalizations value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum AppEvents: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -60,6 +75,21 @@ public enum GetAppEventV1 {
             case purpose
             case referenceName
             case territorySchedules
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = AppEvents(rawValue: string) {
+                    self = value
+                } else if let value = AppEvents(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid AppEvents value: \(string)"
+                    )
+                }
+            }
         }
     }
 

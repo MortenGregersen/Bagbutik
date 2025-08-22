@@ -142,11 +142,41 @@ public struct AppStoreVersion: Codable, Sendable, Identifiable {
             case afterApproval = "AFTER_APPROVAL"
             case manual = "MANUAL"
             case scheduled = "SCHEDULED"
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = ReleaseType(rawValue: string) {
+                    self = value
+                } else if let value = ReleaseType(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid ReleaseType value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum ReviewType: String, Sendable, Codable, CaseIterable {
             case appStore = "APP_STORE"
             case notarization = "NOTARIZATION"
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = ReviewType(rawValue: string) {
+                    self = value
+                } else if let value = ReviewType(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid ReviewType value: \(string)"
+                    )
+                }
+            }
         }
     }
 

@@ -63,12 +63,42 @@ public enum ListLeaderboardReleasesForGameCenterDetailV1 {
             case gameCenterLeaderboards
             case leaderboardReleases
             case leaderboardSetReleases
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = GameCenterDetails(rawValue: string) {
+                    self = value
+                } else if let value = GameCenterDetails(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid GameCenterDetails value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum GameCenterLeaderboardReleases: String, Sendable, ParameterValue, Codable, CaseIterable {
             case gameCenterDetail
             case gameCenterLeaderboard
             case live
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = GameCenterLeaderboardReleases(rawValue: string) {
+                    self = value
+                } else if let value = GameCenterLeaderboardReleases(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid GameCenterLeaderboardReleases value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum GameCenterLeaderboards: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -93,6 +123,21 @@ public enum ListLeaderboardReleasesForGameCenterDetailV1 {
             case submissionType
             case vendorIdentifier
             case visibility
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = GameCenterLeaderboards(rawValue: string) {
+                    self = value
+                } else if let value = GameCenterLeaderboards(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid GameCenterLeaderboards value: \(string)"
+                    )
+                }
+            }
         }
     }
 

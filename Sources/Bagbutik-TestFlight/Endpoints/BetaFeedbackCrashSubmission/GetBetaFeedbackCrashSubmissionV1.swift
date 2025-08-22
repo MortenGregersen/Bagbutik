@@ -58,6 +58,21 @@ public enum GetBetaFeedbackCrashSubmissionV1 {
             case screenWidthInPoints
             case tester
             case timeZone
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = BetaFeedbackCrashSubmissions(rawValue: string) {
+                    self = value
+                } else if let value = BetaFeedbackCrashSubmissions(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid BetaFeedbackCrashSubmissions value: \(string)"
+                    )
+                }
+            }
         }
     }
 

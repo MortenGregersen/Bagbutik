@@ -127,6 +127,21 @@ public struct AppInfo: Codable, Sendable, Identifiable {
         public enum AustraliaAgeRating: String, Sendable, Codable, CaseIterable {
             case eighteen = "EIGHTEEN"
             case fifteen = "FIFTEEN"
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = AustraliaAgeRating(rawValue: string) {
+                    self = value
+                } else if let value = AustraliaAgeRating(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid AustraliaAgeRating value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum BrazilAgeRatingV2: String, Sendable, Codable, CaseIterable {
@@ -142,10 +157,40 @@ public struct AppInfo: Codable, Sendable, Identifiable {
             case selfRatedSixteen = "SELF_RATED_SIXTEEN"
             case selfRatedTen = "SELF_RATED_TEN"
             case selfRatedTwelve = "SELF_RATED_TWELVE"
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = BrazilAgeRatingV2(rawValue: string) {
+                    self = value
+                } else if let value = BrazilAgeRatingV2(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid BrazilAgeRatingV2 value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum FranceAgeRating: String, Sendable, Codable, CaseIterable {
             case eighteen = "EIGHTEEN"
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = FranceAgeRating(rawValue: string) {
+                    self = value
+                } else if let value = FranceAgeRating(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid FranceAgeRating value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum KoreaAgeRating: String, Sendable, Codable, CaseIterable {
@@ -154,6 +199,21 @@ public struct AppInfo: Codable, Sendable, Identifiable {
             case nineteen = "NINETEEN"
             case notApplicable = "NOT_APPLICABLE"
             case twelve = "TWELVE"
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = KoreaAgeRating(rawValue: string) {
+                    self = value
+                } else if let value = KoreaAgeRating(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid KoreaAgeRating value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum State: String, Sendable, Codable, CaseIterable {
@@ -167,6 +227,21 @@ public struct AppInfo: Codable, Sendable, Identifiable {
             case rejected = "REJECTED"
             case replacedWithNewInfo = "REPLACED_WITH_NEW_INFO"
             case waitingForReview = "WAITING_FOR_REVIEW"
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = State(rawValue: string) {
+                    self = value
+                } else if let value = State(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid State value: \(string)"
+                    )
+                }
+            }
         }
     }
 

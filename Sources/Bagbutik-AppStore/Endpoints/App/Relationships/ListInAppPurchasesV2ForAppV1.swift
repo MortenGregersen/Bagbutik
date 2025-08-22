@@ -67,11 +67,41 @@ public enum ListInAppPurchasesV2ForAppV1 {
             case inAppPurchaseV2
             case sourceFileChecksum
             case uploadOperations
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = InAppPurchaseAppStoreReviewScreenshots(rawValue: string) {
+                    self = value
+                } else if let value = InAppPurchaseAppStoreReviewScreenshots(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid InAppPurchaseAppStoreReviewScreenshots value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum InAppPurchaseAvailabilities: String, Sendable, ParameterValue, Codable, CaseIterable {
             case availableInNewTerritories
             case availableTerritories
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = InAppPurchaseAvailabilities(rawValue: string) {
+                    self = value
+                } else if let value = InAppPurchaseAvailabilities(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid InAppPurchaseAvailabilities value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum InAppPurchaseContents: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -80,6 +110,21 @@ public enum ListInAppPurchasesV2ForAppV1 {
             case inAppPurchaseV2
             case lastModifiedDate
             case url
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = InAppPurchaseContents(rawValue: string) {
+                    self = value
+                } else if let value = InAppPurchaseContents(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid InAppPurchaseContents value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum InAppPurchaseImages: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -91,6 +136,21 @@ public enum ListInAppPurchasesV2ForAppV1 {
             case sourceFileChecksum
             case state
             case uploadOperations
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = InAppPurchaseImages(rawValue: string) {
+                    self = value
+                } else if let value = InAppPurchaseImages(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid InAppPurchaseImages value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum InAppPurchaseLocalizations: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -99,12 +159,42 @@ public enum ListInAppPurchasesV2ForAppV1 {
             case locale
             case name
             case state
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = InAppPurchaseLocalizations(rawValue: string) {
+                    self = value
+                } else if let value = InAppPurchaseLocalizations(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid InAppPurchaseLocalizations value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum InAppPurchasePriceSchedules: String, Sendable, ParameterValue, Codable, CaseIterable {
             case automaticPrices
             case baseTerritory
             case manualPrices
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = InAppPurchasePriceSchedules(rawValue: string) {
+                    self = value
+                } else if let value = InAppPurchasePriceSchedules(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid InAppPurchasePriceSchedules value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum InAppPurchases: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -123,6 +213,21 @@ public enum ListInAppPurchasesV2ForAppV1 {
             case promotedPurchase
             case reviewNote
             case state
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = InAppPurchases(rawValue: string) {
+                    self = value
+                } else if let value = InAppPurchases(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid InAppPurchases value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum PromotedPurchases: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -131,6 +236,21 @@ public enum ListInAppPurchasesV2ForAppV1 {
             case state
             case subscription
             case visibleForAllUsers
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = PromotedPurchases(rawValue: string) {
+                    self = value
+                } else if let value = PromotedPurchases(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid PromotedPurchases value: \(string)"
+                    )
+                }
+            }
         }
     }
 

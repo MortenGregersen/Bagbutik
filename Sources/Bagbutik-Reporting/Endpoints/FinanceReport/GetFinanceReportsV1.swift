@@ -41,6 +41,21 @@ public enum GetFinanceReportsV1 {
         public enum ReportType: String, Sendable, ParameterValue, Codable, CaseIterable {
             case financeDetail = "FINANCE_DETAIL"
             case financial = "FINANCIAL"
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = ReportType(rawValue: string) {
+                    self = value
+                } else if let value = ReportType(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid ReportType value: \(string)"
+                    )
+                }
+            }
         }
     }
 }

@@ -152,84 +152,294 @@ public struct AgeRatingDeclaration: Codable, Sendable, Identifiable {
             case none = "NONE"
             case seventeenPlus = "SEVENTEEN_PLUS"
             case unrated = "UNRATED"
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = AgeRatingOverride(rawValue: string) {
+                    self = value
+                } else if let value = AgeRatingOverride(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid AgeRatingOverride value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum AlcoholTobaccoOrDrugUseOrReferences: String, Sendable, Codable, CaseIterable {
             case frequentOrIntense = "FREQUENT_OR_INTENSE"
             case infrequentOrMild = "INFREQUENT_OR_MILD"
             case none = "NONE"
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = AlcoholTobaccoOrDrugUseOrReferences(rawValue: string) {
+                    self = value
+                } else if let value = AlcoholTobaccoOrDrugUseOrReferences(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid AlcoholTobaccoOrDrugUseOrReferences value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum Contests: String, Sendable, Codable, CaseIterable {
             case frequentOrIntense = "FREQUENT_OR_INTENSE"
             case infrequentOrMild = "INFREQUENT_OR_MILD"
             case none = "NONE"
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = Contests(rawValue: string) {
+                    self = value
+                } else if let value = Contests(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid Contests value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum GamblingSimulated: String, Sendable, Codable, CaseIterable {
             case frequentOrIntense = "FREQUENT_OR_INTENSE"
             case infrequentOrMild = "INFREQUENT_OR_MILD"
             case none = "NONE"
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = GamblingSimulated(rawValue: string) {
+                    self = value
+                } else if let value = GamblingSimulated(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid GamblingSimulated value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum HorrorOrFearThemes: String, Sendable, Codable, CaseIterable {
             case frequentOrIntense = "FREQUENT_OR_INTENSE"
             case infrequentOrMild = "INFREQUENT_OR_MILD"
             case none = "NONE"
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = HorrorOrFearThemes(rawValue: string) {
+                    self = value
+                } else if let value = HorrorOrFearThemes(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid HorrorOrFearThemes value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum KoreaAgeRatingOverride: String, Sendable, Codable, CaseIterable {
             case fifteenPlus = "FIFTEEN_PLUS"
             case nineteenPlus = "NINETEEN_PLUS"
             case none = "NONE"
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = KoreaAgeRatingOverride(rawValue: string) {
+                    self = value
+                } else if let value = KoreaAgeRatingOverride(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid KoreaAgeRatingOverride value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum MatureOrSuggestiveThemes: String, Sendable, Codable, CaseIterable {
             case frequentOrIntense = "FREQUENT_OR_INTENSE"
             case infrequentOrMild = "INFREQUENT_OR_MILD"
             case none = "NONE"
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = MatureOrSuggestiveThemes(rawValue: string) {
+                    self = value
+                } else if let value = MatureOrSuggestiveThemes(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid MatureOrSuggestiveThemes value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum MedicalOrTreatmentInformation: String, Sendable, Codable, CaseIterable {
             case frequentOrIntense = "FREQUENT_OR_INTENSE"
             case infrequentOrMild = "INFREQUENT_OR_MILD"
             case none = "NONE"
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = MedicalOrTreatmentInformation(rawValue: string) {
+                    self = value
+                } else if let value = MedicalOrTreatmentInformation(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid MedicalOrTreatmentInformation value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum ProfanityOrCrudeHumor: String, Sendable, Codable, CaseIterable {
             case frequentOrIntense = "FREQUENT_OR_INTENSE"
             case infrequentOrMild = "INFREQUENT_OR_MILD"
             case none = "NONE"
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = ProfanityOrCrudeHumor(rawValue: string) {
+                    self = value
+                } else if let value = ProfanityOrCrudeHumor(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid ProfanityOrCrudeHumor value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum SexualContentGraphicAndNudity: String, Sendable, Codable, CaseIterable {
             case frequentOrIntense = "FREQUENT_OR_INTENSE"
             case infrequentOrMild = "INFREQUENT_OR_MILD"
             case none = "NONE"
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = SexualContentGraphicAndNudity(rawValue: string) {
+                    self = value
+                } else if let value = SexualContentGraphicAndNudity(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid SexualContentGraphicAndNudity value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum SexualContentOrNudity: String, Sendable, Codable, CaseIterable {
             case frequentOrIntense = "FREQUENT_OR_INTENSE"
             case infrequentOrMild = "INFREQUENT_OR_MILD"
             case none = "NONE"
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = SexualContentOrNudity(rawValue: string) {
+                    self = value
+                } else if let value = SexualContentOrNudity(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid SexualContentOrNudity value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum ViolenceCartoonOrFantasy: String, Sendable, Codable, CaseIterable {
             case frequentOrIntense = "FREQUENT_OR_INTENSE"
             case infrequentOrMild = "INFREQUENT_OR_MILD"
             case none = "NONE"
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = ViolenceCartoonOrFantasy(rawValue: string) {
+                    self = value
+                } else if let value = ViolenceCartoonOrFantasy(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid ViolenceCartoonOrFantasy value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum ViolenceRealistic: String, Sendable, Codable, CaseIterable {
             case frequentOrIntense = "FREQUENT_OR_INTENSE"
             case infrequentOrMild = "INFREQUENT_OR_MILD"
             case none = "NONE"
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = ViolenceRealistic(rawValue: string) {
+                    self = value
+                } else if let value = ViolenceRealistic(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid ViolenceRealistic value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum ViolenceRealisticProlongedGraphicOrSadistic: String, Sendable, Codable, CaseIterable {
             case frequentOrIntense = "FREQUENT_OR_INTENSE"
             case infrequentOrMild = "INFREQUENT_OR_MILD"
             case none = "NONE"
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = ViolenceRealisticProlongedGraphicOrSadistic(rawValue: string) {
+                    self = value
+                } else if let value = ViolenceRealisticProlongedGraphicOrSadistic(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid ViolenceRealisticProlongedGraphicOrSadistic value: \(string)"
+                    )
+                }
+            }
         }
     }
 }

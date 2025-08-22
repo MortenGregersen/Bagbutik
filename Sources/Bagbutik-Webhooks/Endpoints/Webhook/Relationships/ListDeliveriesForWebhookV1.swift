@@ -51,6 +51,21 @@ public enum ListDeliveriesForWebhookV1 {
             case request
             case response
             case sentDate
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = WebhookDeliveries(rawValue: string) {
+                    self = value
+                } else if let value = WebhookDeliveries(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid WebhookDeliveries value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum WebhookEvents: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -58,6 +73,21 @@ public enum ListDeliveriesForWebhookV1 {
             case eventType
             case payload
             case ping
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = WebhookEvents(rawValue: string) {
+                    self = value
+                } else if let value = WebhookEvents(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid WebhookEvents value: \(string)"
+                    )
+                }
+            }
         }
     }
 
@@ -76,6 +106,21 @@ public enum ListDeliveriesForWebhookV1 {
             case failed = "FAILED"
             case pending = "PENDING"
             case succeeded = "SUCCEEDED"
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = DeliveryState(rawValue: string) {
+                    self = value
+                } else if let value = DeliveryState(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid DeliveryState value: \(string)"
+                    )
+                }
+            }
         }
     }
 

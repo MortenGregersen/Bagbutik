@@ -88,6 +88,21 @@ public struct SandboxTesterV2: Codable, Sendable, Identifiable {
             case monthlyRenewalEveryOneHour = "MONTHLY_RENEWAL_EVERY_ONE_HOUR"
             case monthlyRenewalEveryThirtyMinutes = "MONTHLY_RENEWAL_EVERY_THIRTY_MINUTES"
             case monthlyRenewalEveryThreeMinutes = "MONTHLY_RENEWAL_EVERY_THREE_MINUTES"
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = SubscriptionRenewalRate(rawValue: string) {
+                    self = value
+                } else if let value = SubscriptionRenewalRate(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid SubscriptionRenewalRate value: \(string)"
+                    )
+                }
+            }
         }
     }
 }

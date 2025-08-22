@@ -51,6 +51,21 @@ public enum ListAppClipDefaultExperiencesForAppClipV1 {
         public enum AppClipAppStoreReviewDetails: String, Sendable, ParameterValue, Codable, CaseIterable {
             case appClipDefaultExperience
             case invocationUrls
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = AppClipAppStoreReviewDetails(rawValue: string) {
+                    self = value
+                } else if let value = AppClipAppStoreReviewDetails(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid AppClipAppStoreReviewDetails value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum AppClipDefaultExperienceLocalizations: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -58,6 +73,21 @@ public enum ListAppClipDefaultExperiencesForAppClipV1 {
             case appClipHeaderImage
             case locale
             case subtitle
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = AppClipDefaultExperienceLocalizations(rawValue: string) {
+                    self = value
+                } else if let value = AppClipDefaultExperienceLocalizations(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid AppClipDefaultExperienceLocalizations value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum AppClipDefaultExperiences: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -66,6 +96,21 @@ public enum ListAppClipDefaultExperiencesForAppClipV1 {
             case appClipAppStoreReviewDetail
             case appClipDefaultExperienceLocalizations
             case releaseWithAppStoreVersion
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = AppClipDefaultExperiences(rawValue: string) {
+                    self = value
+                } else if let value = AppClipDefaultExperiences(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid AppClipDefaultExperiences value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum AppClips: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -73,6 +118,21 @@ public enum ListAppClipDefaultExperiencesForAppClipV1 {
             case appClipAdvancedExperiences
             case appClipDefaultExperiences
             case bundleId
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = AppClips(rawValue: string) {
+                    self = value
+                } else if let value = AppClips(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid AppClips value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum AppStoreVersions: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -101,6 +161,21 @@ public enum ListAppClipDefaultExperiencesForAppClipV1 {
             case routingAppCoverage
             case usesIdfa
             case versionString
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = AppStoreVersions(rawValue: string) {
+                    self = value
+                } else if let value = AppStoreVersions(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid AppStoreVersions value: \(string)"
+                    )
+                }
+            }
         }
     }
 

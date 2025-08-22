@@ -35,6 +35,21 @@ public enum GetAppStoreVersionPhasedReleaseForAppStoreVersionV1 {
             case phasedReleaseState
             case startDate
             case totalPauseDuration
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = AppStoreVersionPhasedReleases(rawValue: string) {
+                    self = value
+                } else if let value = AppStoreVersionPhasedReleases(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid AppStoreVersionPhasedReleases value: \(string)"
+                    )
+                }
+            }
         }
     }
 }

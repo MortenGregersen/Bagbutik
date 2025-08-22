@@ -42,6 +42,21 @@ public enum GetAppAvailabilityV2ForAppV1 {
         public enum AppAvailabilities: String, Sendable, ParameterValue, Codable, CaseIterable {
             case availableInNewTerritories
             case territoryAvailabilities
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = AppAvailabilities(rawValue: string) {
+                    self = value
+                } else if let value = AppAvailabilities(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid AppAvailabilities value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum TerritoryAvailabilities: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -51,6 +66,21 @@ public enum GetAppAvailabilityV2ForAppV1 {
             case preOrderPublishDate
             case releaseDate
             case territory
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = TerritoryAvailabilities(rawValue: string) {
+                    self = value
+                } else if let value = TerritoryAvailabilities(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid TerritoryAvailabilities value: \(string)"
+                    )
+                }
+            }
         }
     }
 

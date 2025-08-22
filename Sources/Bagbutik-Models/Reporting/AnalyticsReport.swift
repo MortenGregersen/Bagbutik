@@ -77,6 +77,21 @@ public struct AnalyticsReport: Codable, Sendable, Identifiable {
             case commerce = "COMMERCE"
             case frameworkUsage = "FRAMEWORK_USAGE"
             case performance = "PERFORMANCE"
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = Category(rawValue: string) {
+                    self = value
+                } else if let value = Category(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid Category value: \(string)"
+                    )
+                }
+            }
         }
     }
 

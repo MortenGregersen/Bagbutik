@@ -107,6 +107,21 @@ public struct Profile: Codable, Sendable, Identifiable {
         public enum ProfileState: String, Sendable, ParameterValue, Codable, CaseIterable {
             case active = "ACTIVE"
             case invalid = "INVALID"
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = ProfileState(rawValue: string) {
+                    self = value
+                } else if let value = ProfileState(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid ProfileState value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum ProfileType: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -124,6 +139,21 @@ public struct Profile: Codable, Sendable, Identifiable {
             case tvOSAppDevelopment = "TVOS_APP_DEVELOPMENT"
             case tvOSAppInhouse = "TVOS_APP_INHOUSE"
             case tvOSAppStore = "TVOS_APP_STORE"
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = ProfileType(rawValue: string) {
+                    self = value
+                } else if let value = ProfileType(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid ProfileType value: \(string)"
+                    )
+                }
+            }
         }
     }
 

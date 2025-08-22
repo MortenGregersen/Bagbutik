@@ -45,6 +45,21 @@ public enum ListInAppPurchaseLocalizationsForInAppPurchasesV2 {
             case locale
             case name
             case state
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = InAppPurchaseLocalizations(rawValue: string) {
+                    self = value
+                } else if let value = InAppPurchaseLocalizations(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid InAppPurchaseLocalizations value: \(string)"
+                    )
+                }
+            }
         }
 
         public enum InAppPurchases: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -63,6 +78,21 @@ public enum ListInAppPurchaseLocalizationsForInAppPurchasesV2 {
             case promotedPurchase
             case reviewNote
             case state
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = InAppPurchases(rawValue: string) {
+                    self = value
+                } else if let value = InAppPurchases(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid InAppPurchases value: \(string)"
+                    )
+                }
+            }
         }
     }
 

@@ -45,6 +45,21 @@ public enum ListDiagnosticSignaturesForBuildV1 {
             case logs
             case signature
             case weight
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = DiagnosticSignatures(rawValue: string) {
+                    self = value
+                } else if let value = DiagnosticSignatures(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid DiagnosticSignatures value: \(string)"
+                    )
+                }
+            }
         }
     }
 
@@ -59,6 +74,21 @@ public enum ListDiagnosticSignaturesForBuildV1 {
             case diskWrites = "DISK_WRITES"
             case hangs = "HANGS"
             case launches = "LAUNCHES"
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = DiagnosticType(rawValue: string) {
+                    self = value
+                } else if let value = DiagnosticType(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid DiagnosticType value: \(string)"
+                    )
+                }
+            }
         }
     }
 }

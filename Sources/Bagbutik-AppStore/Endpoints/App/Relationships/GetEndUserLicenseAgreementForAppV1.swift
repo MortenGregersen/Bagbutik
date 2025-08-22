@@ -34,6 +34,21 @@ public enum GetEndUserLicenseAgreementForAppV1 {
             case agreementText
             case app
             case territories
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = EndUserLicenseAgreements(rawValue: string) {
+                    self = value
+                } else if let value = EndUserLicenseAgreements(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid EndUserLicenseAgreements value: \(string)"
+                    )
+                }
+            }
         }
     }
 }
