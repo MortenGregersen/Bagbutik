@@ -40,7 +40,7 @@ public actor BagbutikService {
         - jwt: The JWT to use as authorization for the requests.
         - fetchData: The function to fetch the data for the requests. Defaults to using `URLSession.shared`.
      */
-    public init(jwt: JWT, fetchData: @escaping @Sendable FetchData = URLSession.shared.data(for:delegate:)) {
+    public init(jwt: JWT, fetchData: @escaping FetchData = URLSession.shared.data(for:delegate:)) {
         self.jwt = jwt
         self.fetchData = fetchData
     }
