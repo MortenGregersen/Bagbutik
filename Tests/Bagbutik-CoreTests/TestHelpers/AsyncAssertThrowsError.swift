@@ -5,11 +5,11 @@ import XCTest
 
 public extension XCTest {
     func XCTAssertAsyncThrowsError(
-        _ expression: @autoclosure () async throws -> Void,
+        _ expression: @Sendable @autoclosure () async throws -> Void,
         _ message: @autoclosure () -> String = "",
         file: StaticString = #filePath,
         line: UInt = #line,
-        _ errorHandler: (_ error: Error) -> Void = { _ in }
+        _ errorHandler: @Sendable (_ error: Error) -> Void = { _ in }
     ) async {
         do {
             _ = try await expression()
@@ -20,11 +20,11 @@ public extension XCTest {
     }
 
     func XCTAssertAsyncThrowsError<T>(
-        _ expression: @autoclosure () async throws -> T,
+        _ expression: @Sendable @autoclosure () async throws -> T,
         _ message: @autoclosure () -> String = "",
         file: StaticString = #filePath,
         line: UInt = #line,
-        _ errorHandler: (_ error: Error) -> Void = { _ in }
+        _ errorHandler: @Sendable (_ error: Error) -> Void = { _ in }
     ) async {
         do {
             _ = try await expression()

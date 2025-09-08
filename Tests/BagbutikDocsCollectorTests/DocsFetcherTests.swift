@@ -36,11 +36,7 @@ final class DocsFetcherTests: XCTestCase {
         // Given
         let fileManager = MockFileManager()
         let urlSession = MockURLSession()
-        #if compiler(<6.0)
-        let printer = await Printer()
-        #else
         let printer = Printer()
-        #endif
         let docsFetcher = DocsFetcher(loadSpec: { _ in self.testSpec },
                                       fetchData: urlSession.data(from:delegate:),
                                       fileManager: fileManager,
@@ -218,11 +214,7 @@ final class DocsFetcherTests: XCTestCase {
         let urlSession = MockURLSession()
         let fileManager = MockFileManager()
         fileManager.fileNameToFailCreating = DocsFilename.operationDocumentation.filename
-        #if compiler(<6.0)
-        let printer = await Printer()
-        #else
         let printer = Printer()
-        #endif
         let docsFetcher = DocsFetcher(loadSpec: { _ in try Spec(paths: [:], components: .init(schemas: [:])) }, fetchData: urlSession.data(from:delegate:), fileManager: fileManager, print: printer.print)
         // When
         await XCTAssertAsyncThrowsError(try await docsFetcher.fetchAllDocs(specFileURL: validSpecFileURL, outputDirURL: validOutputDirURL, dryRun: false)) {
