@@ -36,7 +36,11 @@ final class GeneratorTests: XCTestCase {
     func testGenerateAllSimple() async throws {
         // Given
         let fileManager = MockFileManager()
+        #if compiler(<6.0)
+        let printer = await Printer()
+        #else
         let printer = Printer()
+        #endif
         let generator = Generator(loadSpec: { _ in self.testSpec }, fileManager: fileManager, docsLoader: docsLoader, print: printer.print)
         // When
         try await generator.generateAll(specFileURL: validSpecFileURL, outputDirURL: validOutputDirURL, documentationDirURL: validDocumentationDirURL)
@@ -175,7 +179,11 @@ final class GeneratorTests: XCTestCase {
         // Given
         let fileManager = MockFileManager()
         fileManager.fileNameToFailCreating = "ListUsersV1.swift"
+        #if compiler(<6.0)
+        let printer = await Printer()
+        #else
         let printer = Printer()
+        #endif
         let generator = Generator(loadSpec: { _ in self.testSpec }, fileManager: fileManager, docsLoader: docsLoader, print: printer.print)
         // When
         await XCTAssertAsyncThrowsError(try await generator.generateAll(specFileURL: validSpecFileURL, outputDirURL: validOutputDirURL, documentationDirURL: validDocumentationDirURL)) {
@@ -188,7 +196,11 @@ final class GeneratorTests: XCTestCase {
         // Given
         let fileManager = MockFileManager()
         fileManager.fileNameToFailCreating = "UsersResponse.swift"
+        #if compiler(<6.0)
+        let printer = await Printer()
+        #else
         let printer = Printer()
+        #endif
         let generator = Generator(loadSpec: { _ in
             try Spec(paths: [:], components: .init(schemas: [
                 "UsersResponse": self.testSpec.components.schemas["UsersResponse"]!
@@ -205,7 +217,11 @@ final class GeneratorTests: XCTestCase {
         // Given
         let fileManager = MockFileManager()
         let docsLoader = DocsLoader(loadFile: { _ in "{}".data(using: .utf8)! })
+        #if compiler(<6.0)
+        let printer = await Printer()
+        #else
         let printer = Printer()
+        #endif
         let generator = Generator(loadSpec: { _ in
             try Spec(paths: [
                 "/v1/users": Path(path: "/v1/users", info: .init(mainType: "Users", version: "V1", isRelationship: false), operations: [
@@ -228,7 +244,11 @@ final class GeneratorTests: XCTestCase {
         // Given
         let fileManager = MockFileManager()
         let docsLoader = DocsLoader(loadFile: { _ in "{}".data(using: .utf8)! })
+        #if compiler(<6.0)
+        let printer = await Printer()
+        #else
         let printer = Printer()
+        #endif
         let generator = Generator(loadSpec: { _ in
             try Spec(
                 paths: [:],
