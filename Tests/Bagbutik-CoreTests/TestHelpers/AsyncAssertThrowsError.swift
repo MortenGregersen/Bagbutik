@@ -20,7 +20,7 @@ public extension XCTest {
     }
 
     func XCTAssertAsyncThrowsError<T>(
-        _ expression: @Sendable@autoclosure () async throws -> T,
+        _ expression: @Sendable @autoclosure () async throws -> T,
         _ message: @autoclosure () -> String = "",
         file: StaticString = #filePath,
         line: UInt = #line,
