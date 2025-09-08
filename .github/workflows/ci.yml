@@ -40,7 +40,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        swift: ["5.10", "6.0", "6.1", "6.2"]
+        swift: ["5.10", "6.0", "6.1", "6.2-snapshot"]
     steps:
     - uses: vapor/swiftly-action@v0.2
       with:
