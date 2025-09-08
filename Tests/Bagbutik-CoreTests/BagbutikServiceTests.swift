@@ -7,52 +7,46 @@ import XCTest
 import FoundationNetworking
 #endif
 
-final class BagbutikServiceTests: XCTestCase {
+@MainActor final class BagbutikServiceTests: XCTestCase, Sendable {
     var service: BagbutikService!
     var jwt: JWT!
-    var mockURLSession: MockURLSession!
     let jsonEncoder = JSONEncoder()
     let errorResponse = ErrorResponse(errors: [
         .init(code: "some-code", detail: "some-detail", status: "some-status", title: "some-title"),
     ])
 
-    func setUpService(expiredJWT: Bool = false) throws {
-        mockURLSession = .init()
+    func setUpService(expiredJWT: Bool = false, responsesByUrl: [URL: (data: Data, type: ResponseType)]) throws {
+        let mockURLSession = MockURLSession(responsesByUrl: responsesByUrl)
         let dateFactory = DateFactory(now: expiredJWT ? Date.distantPast : Date.now)
         jwt = try JWT(keyId: JWTTests.keyId, issuerId: JWTTests.issuerId, privateKey: JWTTests.privateKey, dateFactory: dateFactory)
-        nonisolated(unsafe) let fetchData = mockURLSession.data(for:delegate:)
+        let fetchData = mockURLSession.data(for:delegate:)
         service = .init(jwt: jwt, fetchData: fetchData)
     }
 
     func testRequest_PlainResponse() async throws {
-        try setUpService()
         let request: Request<AppResponse, ErrorResponse> = .getAppV1(id: "app-id")
         let expectedResponse = AppResponse(data: .init(id: "app-id", links: .init(self: "")), links: .init(self: ""))
-        mockURLSession.responsesByUrl[request.asUrlRequest().url!] = try (data: jsonEncoder.encode(expectedResponse),
-                                                                          type: .http(statusCode: 200))
+        try setUpService(responsesByUrl: [request.asUrlRequest().url!: (data: jsonEncoder.encode(expectedResponse), type: .http(statusCode: 200))])
         let response = try await service.request(request)
         XCTAssertEqual(response, expectedResponse)
     }
 
     func testRequest_GzipResponse() async throws {
-        try setUpService()
         let request: Request<GzipResponse, ErrorResponse> = .getAwesomeReports()
         let data = GunzipTests.gzipData
-        mockURLSession.responsesByUrl[request.asUrlRequest().url!] = (data: data, type: .http(statusCode: 200))
+        try setUpService(responsesByUrl: [request.asUrlRequest().url!: (data: data, type: .http(statusCode: 200))])
         let response = try await service.request(request)
         XCTAssertEqual(response.data, data)
     }
 
     func testRequest_EmptyResponse() async throws {
-        try setUpService()
         let request: Request<EmptyResponse, ErrorResponse> = .deleteAppEventV1(id: "some-id")
-        mockURLSession.responsesByUrl[request.asUrlRequest().url!] = (data: Data(), type: .http(statusCode: 200))
+        try setUpService(responsesByUrl: [request.asUrlRequest().url!: (data: Data(), type: .http(statusCode: 200))])
         let response = try await service.request(request)
         XCTAssertEqual(response, EmptyResponse())
     }
 
     func testRequest_StatusCodeMapping() async throws {
-        try setUpService()
         let data = try jsonEncoder.encode(errorResponse)
         let responses: [(statusCode: Int, error: ServiceError)] = [
             (statusCode: 400, error: .badRequest(errorResponse)),
@@ -65,7 +59,7 @@ final class BagbutikServiceTests: XCTestCase {
         ]
         for response in responses {
             let request: Request<AppsResponse, ErrorResponse> = .listAppsV1()
-            mockURLSession.responsesByUrl[request.asUrlRequest().url!] = (data: data, type: .http(statusCode: response.statusCode))
+            try setUpService(responsesByUrl: [request.asUrlRequest().url!: (data: data, type: .http(statusCode: response.statusCode))])
             await XCTAssertAsyncThrowsError(try await service.request(request)) { error in
                 XCTAssertEqual(error as! ServiceError, response.error)
             }
@@ -73,37 +67,31 @@ final class BagbutikServiceTests: XCTestCase {
     }
 
     func testRequest_UnknownResponseType() async throws {
-        try setUpService()
         let request: Request<AppsResponse, ErrorResponse> = .listAppsV1()
         let data = Data("Test".utf8)
-        mockURLSession.wrapInHTTPURLResponse = false
-        mockURLSession.responsesByUrl[request.asUrlRequest().url!] = (data: data, type: .url)
+        try setUpService(responsesByUrl: [request.asUrlRequest().url!: (data: data, type: .url)])
         await XCTAssertAsyncThrowsError(try await service.request(.listAppsV1())) { error in
             XCTAssertEqual(error as! ServiceError, .unknown(data: data))
         }
     }
 
     func testRequestAllPages() async throws {
-        try setUpService()
         let request: Request<AppsResponse, ErrorResponse> = .listAppsV1()
         let responses: [AppsResponse] = [
             .init(data: [.init(id: "app1", links: .init(self: ""))], links: .init(next: "https://next1", self: "")),
             .init(data: [.init(id: "app2", links: .init(self: ""))], links: .init(next: "https://next2", self: "")),
             .init(data: [.init(id: "app3", links: .init(self: ""))], links: .init(next: nil, self: "")),
         ]
-        mockURLSession.responsesByUrl[request.asUrlRequest().url!] = try (data: jsonEncoder.encode(responses[0]),
-                                                                          type: .http(statusCode: 200))
-        mockURLSession.responsesByUrl[URL(string: responses[0].links.next!)!] = try (data: jsonEncoder.encode(responses[1]),
-                                                                                     type: .http(statusCode: 200))
-        mockURLSession.responsesByUrl[URL(string: responses[1].links.next!)!] = try (data: jsonEncoder.encode(responses[2]),
-                                                                                     type: .http(statusCode: 200))
-
+        try setUpService(responsesByUrl: [
+            request.asUrlRequest().url!: (data: jsonEncoder.encode(responses[0]), type: .http(statusCode: 200)),
+            URL(string: responses[0].links.next!)!: (data: jsonEncoder.encode(responses[1]), type: .http(statusCode: 200)),
+            URL(string: responses[1].links.next!)!: (data: jsonEncoder.encode(responses[2]), type: .http(statusCode: 200))
+        ])
         let response = try await service.requestAllPages(request)
         XCTAssertEqual(response.data, responses.map(\.data).flatMap { $0 })
     }
 
     func testDateDecoding_ISO8601() async throws {
-        try setUpService()
         let dateString = "2021-09-13T13:01:52-07:00"
         let dateFormatter = ISO8601DateFormatter()
         let date = dateFormatter.date(from: dateString)!
@@ -113,13 +101,12 @@ final class BagbutikServiceTests: XCTestCase {
         }
         """
         let request: Request<CrazyDatesResponse, ErrorResponse> = .getCrazyDates()
-        mockURLSession.responsesByUrl[request.asUrlRequest().url!] = (data: Data(jsonString.utf8), type: .http(statusCode: 200))
+        try setUpService(responsesByUrl: [request.asUrlRequest().url!: (data: Data(jsonString.utf8), type: .http(statusCode: 200))])
         let response = try await service.request(request)
         XCTAssertEqual(response.date, date)
     }
 
     func testDateDecoding_CustomDate() async throws {
-        try setUpService()
         let dateString = "2021-07-31T21:49:11.000+00:00"
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSXXXXX"
@@ -130,20 +117,19 @@ final class BagbutikServiceTests: XCTestCase {
         }
         """
         let request: Request<CrazyDatesResponse, ErrorResponse> = .getCrazyDates()
-        mockURLSession.responsesByUrl[request.asUrlRequest().url!] = (data: Data(jsonString.utf8), type: .http(statusCode: 200))
+        try setUpService(responsesByUrl: [request.asUrlRequest().url!: (data: Data(jsonString.utf8), type: .http(statusCode: 200))])
         let response = try await service.request(request)
         XCTAssertEqual(response.date, date)
     }
 
     func testDateDecoding_InvalidDate() async throws {
-        try setUpService()
         let jsonString = """
         {
             "date": "invalid-date"
         }
         """
         let request: Request<CrazyDatesResponse, ErrorResponse> = .getCrazyDates()
-        mockURLSession.responsesByUrl[request.asUrlRequest().url!] = (data: Data(jsonString.utf8), type: .http(statusCode: 200))
+        try setUpService(responsesByUrl: [request.asUrlRequest().url!: (data: Data(jsonString.utf8), type: .http(statusCode: 200))])
         await XCTAssertAsyncThrowsError(try await service.request(request)) { error in
             XCTAssertEqual(error as! ServiceError, .wrongDateFormat(dateString: "invalid-date"))
         }
@@ -151,28 +137,24 @@ final class BagbutikServiceTests: XCTestCase {
 
     @MainActor
     func testJWTRenewal() async throws {
-        try setUpService(expiredJWT: true)
+        let request: Request<AppResponse, ErrorResponse> = .getAppV1(id: "app-id")
+        let expectedResponse = AppResponse(data: .init(id: "app-id", links: .init(self: "")), links: .init(self: ""))
+        try setUpService(expiredJWT: true, responsesByUrl: [request.asUrlRequest().url!: (data: jsonEncoder.encode(expectedResponse), type: .http(statusCode: 200))])
         let isExpiredBefore = await service.jwt.isExpired
         XCTAssertTrue(isExpiredBefore)
         jwt.dateFactory = .init()
         await service.replaceJWT(jwt)
-        let request: Request<AppResponse, ErrorResponse> = .getAppV1(id: "app-id")
-        let expectedResponse = AppResponse(data: .init(id: "app-id", links: .init(self: "")), links: .init(self: ""))
-        mockURLSession.responsesByUrl[request.asUrlRequest().url!] = try (data: jsonEncoder.encode(expectedResponse),
-                                                                          type: .http(statusCode: 200))
         _ = try await service.request(request)
         let isExpiredAfter = await service.jwt.isExpired
         XCTAssertFalse(isExpiredAfter)
     }
 }
 
-class MockURLSession {
-    var responsesByUrl: [URL: (data: Data, type: ResponseType)] = [:]
-    var wrapInHTTPURLResponse = true
+final class MockURLSession: Sendable {
+    let responsesByUrl: [URL: (data: Data, type: ResponseType)]
 
-    enum ResponseType {
-        case http(statusCode: Int)
-        case url
+    init(responsesByUrl: [URL: (data: Data, type: ResponseType)]) {
+        self.responsesByUrl = responsesByUrl
     }
 
     func data(for request: URLRequest, delegate: URLSessionTaskDelegate? = nil) async throws -> (Data, URLResponse) {
@@ -185,6 +167,11 @@ class MockURLSession {
             return (response.data, URLResponse(url: request.url!, mimeType: nil, expectedContentLength: 0, textEncodingName: nil))
         }
     }
+}
+
+enum ResponseType {
+    case http(statusCode: Int)
+    case url
 }
 
 extension AppResponse: Equatable {
