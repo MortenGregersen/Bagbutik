@@ -40,11 +40,11 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        swift: ["5", "6"]
+        swift: ["5.10", "6.0", "6.1", "6.2-snapshot"]
     steps:
-    - uses: swift-actions/setup-swift@next
+    - uses: vapor/swiftly-action@v0.2
       with:
-        swift-version: ${{ matrix.swift }}
+        toolchain: ${{ matrix.swift }}
     - uses: actions/checkout@v4
     - name: Test
       run: swift test -v
