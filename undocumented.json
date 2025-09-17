@@ -1,0 +1,26 @@
+{
+  "warnings": [
+    {
+      "file": "/Users/runner/work/Bagbutik/Bagbutik/Sources/Bagbutik-Core/AnyCodingKey.swift",
+      "line": 1,
+      "symbol": "AnyCodingKey",
+      "symbol_kind": "source.lang.swift.decl.struct",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/Bagbutik/Bagbutik/Sources/Bagbutik-Core/AnyCodingKey.swift",
+      "line": 14,
+      "symbol": "AnyCodingKey",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/Bagbutik/Bagbutik/Sources/Bagbutik-Core/Service/BagbutikService.swift",
+      "line": 79,
+      "symbol": "BagbutikService.request(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    }
+  ],
+  "source_directory": "/Users/runner/work/Bagbutik/Bagbutik"
+}
