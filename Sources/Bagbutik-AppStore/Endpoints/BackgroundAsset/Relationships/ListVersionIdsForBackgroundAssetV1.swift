@@ -3,7 +3,8 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # GET /v1/backgroundAssets/{id}/relationships/versions
+     # Read version IDs for a background asset
+     Get version IDs about a specific background asset version.
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-backgroundAssets-_id_-relationships-versions>

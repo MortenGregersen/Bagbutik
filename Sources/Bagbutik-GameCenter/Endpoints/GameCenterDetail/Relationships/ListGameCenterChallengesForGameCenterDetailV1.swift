@@ -73,7 +73,6 @@ public enum ListGameCenterChallengesForGameCenterDetailV1 {
         }
 
         public enum GameCenterChallenges: String, Sendable, ParameterValue, Codable, CaseIterable {
-            case allowedDurations
             case archived
             case challengeType
             case gameCenterDetail

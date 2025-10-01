@@ -96,6 +96,7 @@ public enum GetAppStoreVersionLocalizationV1 {
             case locale
             case marketingUrl
             case promotionalText
+            case searchKeywords
             case supportUrl
             case whatsNew
 
@@ -123,6 +124,7 @@ public enum GetAppStoreVersionLocalizationV1 {
         case appPreviewSets
         case appScreenshotSets
         case appStoreVersion
+        case searchKeywords
     }
 
     /**
@@ -133,5 +135,7 @@ public enum GetAppStoreVersionLocalizationV1 {
         case appPreviewSets(Int)
         /// Maximum number of related appScreenshotSets returned (when they are included) - maximum 50
         case appScreenshotSets(Int)
+        /// Maximum number of related searchKeywords returned (when they are included) - maximum 50
+        case searchKeywords(Int)
     }
 }

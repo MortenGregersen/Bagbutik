@@ -3,7 +3,8 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # GET /v1/apps/{id}/relationships/appCustomProductPages
+     # Get all custom product page resource IDs for an app
+     Get a list of custom product page resource IDs associated with an app.
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-apps-_id_-relationships-appCustomProductPages>

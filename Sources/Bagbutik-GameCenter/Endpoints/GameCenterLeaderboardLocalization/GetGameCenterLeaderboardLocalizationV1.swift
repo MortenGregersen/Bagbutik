@@ -61,6 +61,7 @@ public enum GetGameCenterLeaderboardLocalizationV1 {
         }
 
         public enum GameCenterLeaderboardLocalizations: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case description
             case formatterOverride
             case formatterSuffix
             case formatterSuffixSingular

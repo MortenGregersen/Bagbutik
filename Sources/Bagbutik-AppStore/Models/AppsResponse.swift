@@ -299,7 +299,6 @@ public struct AppsResponse: Codable, Sendable, PagedResponse {
         case gameCenterDetail(GameCenterDetail)
         case gameCenterEnabledVersion(GameCenterEnabledVersion)
         case inAppPurchase(InAppPurchase)
-        case inAppPurchaseV2(InAppPurchaseV2)
         case prereleaseVersion(PrereleaseVersion)
         case promotedPurchase(PromotedPurchase)
         case reviewSubmission(ReviewSubmission)
@@ -341,8 +340,6 @@ public struct AppsResponse: Codable, Sendable, PagedResponse {
                 self = .gameCenterEnabledVersion(gameCenterEnabledVersion)
             } else if let inAppPurchase = try? InAppPurchase(from: decoder) {
                 self = .inAppPurchase(inAppPurchase)
-            } else if let inAppPurchaseV2 = try? InAppPurchaseV2(from: decoder) {
-                self = .inAppPurchaseV2(inAppPurchaseV2)
             } else if let prereleaseVersion = try? PrereleaseVersion(from: decoder) {
                 self = .prereleaseVersion(prereleaseVersion)
             } else if let promotedPurchase = try? PromotedPurchase(from: decoder) {
@@ -397,8 +394,6 @@ public struct AppsResponse: Codable, Sendable, PagedResponse {
             case let .gameCenterEnabledVersion(value):
                 try value.encode(to: encoder)
             case let .inAppPurchase(value):
-                try value.encode(to: encoder)
-            case let .inAppPurchaseV2(value):
                 try value.encode(to: encoder)
             case let .prereleaseVersion(value):
                 try value.encode(to: encoder)

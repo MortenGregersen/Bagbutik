@@ -75,14 +75,29 @@ public struct AppCustomProductPageLocalizationsResponse: Codable, Sendable, Page
         return appScreenshotSets
     }
 
+    public func getSearchKeywords(for appCustomProductPageLocalization: AppCustomProductPageLocalization) -> [AppKeyword] {
+        guard let searchKeywordIds = appCustomProductPageLocalization.relationships?.searchKeywords?.data?.map(\.id),
+              let searchKeywords = included?.compactMap({ relationship -> AppKeyword? in
+                  guard case let .appKeyword(searchKeyword) = relationship else { return nil }
+                  return searchKeywordIds.contains(searchKeyword.id) ? searchKeyword : nil
+              })
+        else {
+            return []
+        }
+        return searchKeywords
+    }
+
     public enum Included: Codable, Sendable {
         case appCustomProductPageVersion(AppCustomProductPageVersion)
+        case appKeyword(AppKeyword)
         case appPreviewSet(AppPreviewSet)
         case appScreenshotSet(AppScreenshotSet)
 
         public init(from decoder: Decoder) throws {
             if let appCustomProductPageVersion = try? AppCustomProductPageVersion(from: decoder) {
                 self = .appCustomProductPageVersion(appCustomProductPageVersion)
+            } else if let appKeyword = try? AppKeyword(from: decoder) {
+                self = .appKeyword(appKeyword)
             } else if let appPreviewSet = try? AppPreviewSet(from: decoder) {
                 self = .appPreviewSet(appPreviewSet)
             } else if let appScreenshotSet = try? AppScreenshotSet(from: decoder) {
@@ -99,6 +114,8 @@ public struct AppCustomProductPageLocalizationsResponse: Codable, Sendable, Page
         public func encode(to encoder: Encoder) throws {
             switch self {
             case let .appCustomProductPageVersion(value):
+                try value.encode(to: encoder)
+            case let .appKeyword(value):
                 try value.encode(to: encoder)
             case let .appPreviewSet(value):
                 try value.encode(to: encoder)

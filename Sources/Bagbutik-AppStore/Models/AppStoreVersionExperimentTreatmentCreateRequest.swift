@@ -2,6 +2,13 @@ import Bagbutik_Core
 import Bagbutik_Models
 import Foundation
 
+/**
+ # AppStoreVersionExperimentTreatmentCreateRequest
+ The request body you use to create an store resource.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionexperimenttreatmentcreaterequest>
+ */
 public struct AppStoreVersionExperimentTreatmentCreateRequest: Codable, Sendable, RequestBody {
     public let data: Data
 

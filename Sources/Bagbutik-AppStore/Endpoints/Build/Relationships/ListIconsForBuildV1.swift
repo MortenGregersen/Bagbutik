@@ -37,6 +37,7 @@ public enum ListIconsForBuildV1 {
         public enum BuildIcons: String, Sendable, ParameterValue, Codable, CaseIterable {
             case iconAsset
             case iconType
+            case masked
             case name
 
             public init(from decoder: Decoder) throws {

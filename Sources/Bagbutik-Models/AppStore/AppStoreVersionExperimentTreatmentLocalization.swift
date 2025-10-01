@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # AppStoreVersionExperimentTreatmentLocalization
+ The data structure that represents an app store version experiment treatment localization resource.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionexperimenttreatmentlocalization>
+ */
 public struct AppStoreVersionExperimentTreatmentLocalization: Codable, Sendable, Identifiable {
     public let id: String
     public var links: ResourceLinks?

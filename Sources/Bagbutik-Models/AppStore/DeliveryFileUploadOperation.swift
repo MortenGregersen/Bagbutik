@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # DeliveryFileUploadOperation
+ The data structure that represents a delivery file upload operation resource.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/deliveryfileuploadoperation>
+ */
 public struct DeliveryFileUploadOperation: Codable, Sendable {
     public var entityTag: String?
     public var expiration: Date?

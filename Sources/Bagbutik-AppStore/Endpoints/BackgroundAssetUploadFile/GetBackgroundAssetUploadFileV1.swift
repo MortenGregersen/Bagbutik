@@ -37,6 +37,7 @@ public enum GetBackgroundAssetUploadFileV1 {
             case fileName
             case fileSize
             case sourceFileChecksum
+            case sourceFileChecksums
             case uploadOperations
 
             public init(from decoder: Decoder) throws {

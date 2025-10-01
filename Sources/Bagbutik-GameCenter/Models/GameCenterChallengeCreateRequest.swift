@@ -55,19 +55,16 @@ public struct GameCenterChallengeCreateRequest: Codable, Sendable, RequestBody {
         }
 
         public struct Attributes: Codable, Sendable {
-            public var allowedDurations: [AllowedDurations]?
             public let challengeType: GameCenterChallenge.Attributes.ChallengeType
             public let referenceName: String
             public var repeatable: Bool?
             public let vendorIdentifier: String
 
-            public init(allowedDurations: [AllowedDurations]? = nil,
-                        challengeType: GameCenterChallenge.Attributes.ChallengeType,
+            public init(challengeType: GameCenterChallenge.Attributes.ChallengeType,
                         referenceName: String,
                         repeatable: Bool? = nil,
                         vendorIdentifier: String)
             {
-                self.allowedDurations = allowedDurations
                 self.challengeType = challengeType
                 self.referenceName = referenceName
                 self.repeatable = repeatable
@@ -76,7 +73,6 @@ public struct GameCenterChallengeCreateRequest: Codable, Sendable, RequestBody {
 
             public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: AnyCodingKey.self)
-                allowedDurations = try container.decodeIfPresent([AllowedDurations].self, forKey: "allowedDurations")
                 challengeType = try container.decode(GameCenterChallenge.Attributes.ChallengeType.self, forKey: "challengeType")
                 referenceName = try container.decode(String.self, forKey: "referenceName")
                 repeatable = try container.decodeIfPresent(Bool.self, forKey: "repeatable")
@@ -85,32 +81,10 @@ public struct GameCenterChallengeCreateRequest: Codable, Sendable, RequestBody {
 
             public func encode(to encoder: Encoder) throws {
                 var container = encoder.container(keyedBy: AnyCodingKey.self)
-                try container.encodeIfPresent(allowedDurations, forKey: "allowedDurations")
                 try container.encode(challengeType, forKey: "challengeType")
                 try container.encode(referenceName, forKey: "referenceName")
                 try container.encodeIfPresent(repeatable, forKey: "repeatable")
                 try container.encode(vendorIdentifier, forKey: "vendorIdentifier")
-            }
-
-            public enum AllowedDurations: String, Sendable, Codable, CaseIterable {
-                case oneDay = "ONE_DAY"
-                case oneWeek = "ONE_WEEK"
-                case threeDays = "THREE_DAYS"
-
-                public init(from decoder: Decoder) throws {
-                    let container = try decoder.singleValueContainer()
-                    let string = try container.decode(String.self)
-                    if let value = AllowedDurations(rawValue: string) {
-                        self = value
-                    } else if let value = AllowedDurations(rawValue: string.uppercased()) {
-                        self = value
-                    } else {
-                        throw DecodingError.dataCorruptedError(
-                            in: container,
-                            debugDescription: "Invalid AllowedDurations value: \(string)"
-                        )
-                    }
-                }
             }
         }
 

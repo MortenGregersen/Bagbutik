@@ -3,7 +3,8 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # GET /v1/apps/{id}/relationships/inAppPurchasesV2
+     # List in-app purchases IDs for an app
+     Get a list of all in-app purchases IDs for a specific app.
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-apps-_id_-relationships-inAppPurchasesV2>

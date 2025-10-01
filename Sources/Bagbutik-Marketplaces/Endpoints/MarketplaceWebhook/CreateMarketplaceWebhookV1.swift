@@ -14,6 +14,7 @@ public extension Request {
      - Parameter requestBody: MarketplaceWebhook representation
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
+    @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
     static func createMarketplaceWebhookV1(requestBody: MarketplaceWebhookCreateRequest) -> Request<MarketplaceWebhookResponse, ErrorResponse> {
         .init(
             path: "/v1/marketplaceWebhooks",

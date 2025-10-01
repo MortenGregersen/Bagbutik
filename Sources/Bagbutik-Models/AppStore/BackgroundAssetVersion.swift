@@ -81,36 +81,92 @@ public struct BackgroundAssetVersion: Codable, Sendable, Identifiable {
     }
 
     public struct Relationships: Codable, Sendable {
+        public var appStoreRelease: AppStoreRelease?
         public var assetFile: AssetFile?
+        public var backgroundAsset: BackgroundAsset?
         public var backgroundAssetUploadFiles: BackgroundAssetUploadFiles?
+        public var externalBetaRelease: ExternalBetaRelease?
         public var internalBetaRelease: InternalBetaRelease?
         public var manifestFile: ManifestFile?
 
-        public init(assetFile: AssetFile? = nil,
+        public init(appStoreRelease: AppStoreRelease? = nil,
+                    assetFile: AssetFile? = nil,
+                    backgroundAsset: BackgroundAsset? = nil,
                     backgroundAssetUploadFiles: BackgroundAssetUploadFiles? = nil,
+                    externalBetaRelease: ExternalBetaRelease? = nil,
                     internalBetaRelease: InternalBetaRelease? = nil,
                     manifestFile: ManifestFile? = nil)
         {
+            self.appStoreRelease = appStoreRelease
             self.assetFile = assetFile
+            self.backgroundAsset = backgroundAsset
             self.backgroundAssetUploadFiles = backgroundAssetUploadFiles
+            self.externalBetaRelease = externalBetaRelease
             self.internalBetaRelease = internalBetaRelease
             self.manifestFile = manifestFile
         }
 
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: AnyCodingKey.self)
+            appStoreRelease = try container.decodeIfPresent(AppStoreRelease.self, forKey: "appStoreRelease")
             assetFile = try container.decodeIfPresent(AssetFile.self, forKey: "assetFile")
+            backgroundAsset = try container.decodeIfPresent(BackgroundAsset.self, forKey: "backgroundAsset")
             backgroundAssetUploadFiles = try container.decodeIfPresent(BackgroundAssetUploadFiles.self, forKey: "backgroundAssetUploadFiles")
+            externalBetaRelease = try container.decodeIfPresent(ExternalBetaRelease.self, forKey: "externalBetaRelease")
             internalBetaRelease = try container.decodeIfPresent(InternalBetaRelease.self, forKey: "internalBetaRelease")
             manifestFile = try container.decodeIfPresent(ManifestFile.self, forKey: "manifestFile")
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: AnyCodingKey.self)
+            try container.encodeIfPresent(appStoreRelease, forKey: "appStoreRelease")
             try container.encodeIfPresent(assetFile, forKey: "assetFile")
+            try container.encodeIfPresent(backgroundAsset, forKey: "backgroundAsset")
             try container.encodeIfPresent(backgroundAssetUploadFiles, forKey: "backgroundAssetUploadFiles")
+            try container.encodeIfPresent(externalBetaRelease, forKey: "externalBetaRelease")
             try container.encodeIfPresent(internalBetaRelease, forKey: "internalBetaRelease")
             try container.encodeIfPresent(manifestFile, forKey: "manifestFile")
+        }
+
+        public struct AppStoreRelease: Codable, Sendable {
+            @NullCodable public var data: Data?
+
+            public init(data: Data? = nil) {
+                self.data = data
+            }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                data = try container.decodeIfPresent(Data.self, forKey: "data")
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: AnyCodingKey.self)
+                try container.encode(data, forKey: "data")
+            }
+
+            public struct Data: Codable, Sendable, Identifiable {
+                public let id: String
+                public var type: String { "backgroundAssetVersionAppStoreReleases" }
+
+                public init(id: String) {
+                    self.id = id
+                }
+
+                public init(from decoder: Decoder) throws {
+                    let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                    id = try container.decode(String.self, forKey: "id")
+                    if try container.decode(String.self, forKey: "type") != type {
+                        throw DecodingError.dataCorruptedError(forKey: "type", in: container, debugDescription: "Not matching \(type)")
+                    }
+                }
+
+                public func encode(to encoder: Encoder) throws {
+                    var container = encoder.container(keyedBy: AnyCodingKey.self)
+                    try container.encode(id, forKey: "id")
+                    try container.encode(type, forKey: "type")
+                }
+            }
         }
 
         public struct AssetFile: Codable, Sendable {
@@ -154,6 +210,47 @@ public struct BackgroundAssetVersion: Codable, Sendable, Identifiable {
             }
         }
 
+        public struct BackgroundAsset: Codable, Sendable {
+            @NullCodable public var data: Data?
+
+            public init(data: Data? = nil) {
+                self.data = data
+            }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                data = try container.decodeIfPresent(Data.self, forKey: "data")
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: AnyCodingKey.self)
+                try container.encode(data, forKey: "data")
+            }
+
+            public struct Data: Codable, Sendable, Identifiable {
+                public let id: String
+                public var type: String { "backgroundAssets" }
+
+                public init(id: String) {
+                    self.id = id
+                }
+
+                public init(from decoder: Decoder) throws {
+                    let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                    id = try container.decode(String.self, forKey: "id")
+                    if try container.decode(String.self, forKey: "type") != type {
+                        throw DecodingError.dataCorruptedError(forKey: "type", in: container, debugDescription: "Not matching \(type)")
+                    }
+                }
+
+                public func encode(to encoder: Encoder) throws {
+                    var container = encoder.container(keyedBy: AnyCodingKey.self)
+                    try container.encode(id, forKey: "id")
+                    try container.encode(type, forKey: "type")
+                }
+            }
+        }
+
         public struct BackgroundAssetUploadFiles: Codable, Sendable {
             public var links: RelationshipLinks?
 
@@ -169,6 +266,47 @@ public struct BackgroundAssetVersion: Codable, Sendable, Identifiable {
             public func encode(to encoder: Encoder) throws {
                 var container = encoder.container(keyedBy: AnyCodingKey.self)
                 try container.encodeIfPresent(links, forKey: "links")
+            }
+        }
+
+        public struct ExternalBetaRelease: Codable, Sendable {
+            @NullCodable public var data: Data?
+
+            public init(data: Data? = nil) {
+                self.data = data
+            }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                data = try container.decodeIfPresent(Data.self, forKey: "data")
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: AnyCodingKey.self)
+                try container.encode(data, forKey: "data")
+            }
+
+            public struct Data: Codable, Sendable, Identifiable {
+                public let id: String
+                public var type: String { "backgroundAssetVersionExternalBetaReleases" }
+
+                public init(id: String) {
+                    self.id = id
+                }
+
+                public init(from decoder: Decoder) throws {
+                    let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                    id = try container.decode(String.self, forKey: "id")
+                    if try container.decode(String.self, forKey: "type") != type {
+                        throw DecodingError.dataCorruptedError(forKey: "type", in: container, debugDescription: "Not matching \(type)")
+                    }
+                }
+
+                public func encode(to encoder: Encoder) throws {
+                    var container = encoder.container(keyedBy: AnyCodingKey.self)
+                    try container.encode(id, forKey: "id")
+                    try container.encode(type, forKey: "type")
+                }
             }
         }
 

@@ -2,6 +2,13 @@ import Bagbutik_Core
 import Bagbutik_Models
 import Foundation
 
+/**
+ # AppStoreVersionExperimentTreatmentsResponse
+ A response that contains a list of app store version experiment treatments response resources.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionexperimenttreatmentsresponse>
+ */
 public struct AppStoreVersionExperimentTreatmentsResponse: Codable, Sendable, PagedResponse {
     public typealias Data = AppStoreVersionExperimentTreatment
 
@@ -66,15 +73,12 @@ public struct AppStoreVersionExperimentTreatmentsResponse: Codable, Sendable, Pa
     public enum Included: Codable, Sendable {
         case appStoreVersionExperiment(AppStoreVersionExperiment)
         case appStoreVersionExperimentTreatmentLocalization(AppStoreVersionExperimentTreatmentLocalization)
-        case appStoreVersionExperimentV2(AppStoreVersionExperimentV2)
 
         public init(from decoder: Decoder) throws {
             if let appStoreVersionExperiment = try? AppStoreVersionExperiment(from: decoder) {
                 self = .appStoreVersionExperiment(appStoreVersionExperiment)
             } else if let appStoreVersionExperimentTreatmentLocalization = try? AppStoreVersionExperimentTreatmentLocalization(from: decoder) {
                 self = .appStoreVersionExperimentTreatmentLocalization(appStoreVersionExperimentTreatmentLocalization)
-            } else if let appStoreVersionExperimentV2 = try? AppStoreVersionExperimentV2(from: decoder) {
-                self = .appStoreVersionExperimentV2(appStoreVersionExperimentV2)
             } else {
                 throw DecodingError.typeMismatch(
                     Included.self,
@@ -89,8 +93,6 @@ public struct AppStoreVersionExperimentTreatmentsResponse: Codable, Sendable, Pa
             case let .appStoreVersionExperiment(value):
                 try value.encode(to: encoder)
             case let .appStoreVersionExperimentTreatmentLocalization(value):
-                try value.encode(to: encoder)
-            case let .appStoreVersionExperimentV2(value):
                 try value.encode(to: encoder)
             }
         }

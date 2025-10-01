@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # AppEncryptionDeclarationDocument
+ The data structure that represents an app encryption declaration document resource.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appencryptiondeclarationdocument>
+ */
 public struct AppEncryptionDeclarationDocument: Codable, Sendable, Identifiable {
     public let id: String
     public var links: ResourceLinks?

@@ -2,6 +2,13 @@ import Bagbutik_Core
 import Bagbutik_Models
 import Foundation
 
+/**
+ # ReviewSubmissionResponse
+ A response that contains a single review submission resource.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/reviewsubmissionresponse>
+ */
 public struct ReviewSubmissionResponse: Codable, Sendable {
     public let data: ReviewSubmission
     public var included: [Included]?

@@ -3,6 +3,7 @@ import Foundation
 
 public enum GameCenterVersionState: String, Sendable, Codable, CaseIterable {
     case accepted = "ACCEPTED"
+    case developerRejected = "DEVELOPER_REJECTED"
     case inReview = "IN_REVIEW"
     case live = "LIVE"
     case pendingRelease = "PENDING_RELEASE"

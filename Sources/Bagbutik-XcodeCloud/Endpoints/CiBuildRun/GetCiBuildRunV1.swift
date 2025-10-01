@@ -51,6 +51,7 @@ public enum GetCiBuildRunV1 {
             case buildAudienceType
             case buildBetaDetail
             case buildBundles
+            case buildUpload
             case computedMinMacOsVersion
             case computedMinVisionOsVersion
             case diagnosticSignatures

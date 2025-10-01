@@ -3,7 +3,8 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # GET /v1/appCustomProductPageLocalizations/{id}/relationships/appScreenshotSets
+     # List app screenshot sets Ids for a custom product page localization
+     List the app screenshot set IDs for a specific custom product page localization.
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-appCustomProductPageLocalizations-_id_-relationships-appScreenshotSets>

@@ -46,6 +46,7 @@ public enum ListReviewSubmissionsV1 {
             case appStoreVersion
             case appStoreVersionExperiment
             case appStoreVersionExperimentV2
+            case backgroundAssetVersion
             case state
 
             public init(from decoder: Decoder) throws {

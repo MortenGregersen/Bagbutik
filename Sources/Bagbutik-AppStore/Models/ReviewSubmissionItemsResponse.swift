@@ -72,12 +72,19 @@ public struct ReviewSubmissionItemsResponse: Codable, Sendable, PagedResponse {
         }.first { $0.id == reviewSubmissionItem.relationships?.appStoreVersionExperimentV2?.data?.id }
     }
 
+    public func getBackgroundAssetVersion(for reviewSubmissionItem: ReviewSubmissionItem) -> BackgroundAssetVersion? {
+        included?.compactMap { relationship -> BackgroundAssetVersion? in
+            guard case let .backgroundAssetVersion(backgroundAssetVersion) = relationship else { return nil }
+            return backgroundAssetVersion
+        }.first { $0.id == reviewSubmissionItem.relationships?.backgroundAssetVersion?.data?.id }
+    }
+
     public enum Included: Codable, Sendable {
         case appCustomProductPageVersion(AppCustomProductPageVersion)
         case appEvent(AppEvent)
         case appStoreVersion(AppStoreVersion)
         case appStoreVersionExperiment(AppStoreVersionExperiment)
-        case appStoreVersionExperimentV2(AppStoreVersionExperimentV2)
+        case backgroundAssetVersion(BackgroundAssetVersion)
 
         public init(from decoder: Decoder) throws {
             if let appCustomProductPageVersion = try? AppCustomProductPageVersion(from: decoder) {
@@ -88,8 +95,8 @@ public struct ReviewSubmissionItemsResponse: Codable, Sendable, PagedResponse {
                 self = .appStoreVersion(appStoreVersion)
             } else if let appStoreVersionExperiment = try? AppStoreVersionExperiment(from: decoder) {
                 self = .appStoreVersionExperiment(appStoreVersionExperiment)
-            } else if let appStoreVersionExperimentV2 = try? AppStoreVersionExperimentV2(from: decoder) {
-                self = .appStoreVersionExperimentV2(appStoreVersionExperimentV2)
+            } else if let backgroundAssetVersion = try? BackgroundAssetVersion(from: decoder) {
+                self = .backgroundAssetVersion(backgroundAssetVersion)
             } else {
                 throw DecodingError.typeMismatch(
                     Included.self,
@@ -109,7 +116,7 @@ public struct ReviewSubmissionItemsResponse: Codable, Sendable, PagedResponse {
                 try value.encode(to: encoder)
             case let .appStoreVersionExperiment(value):
                 try value.encode(to: encoder)
-            case let .appStoreVersionExperimentV2(value):
+            case let .backgroundAssetVersion(value):
                 try value.encode(to: encoder)
             }
         }

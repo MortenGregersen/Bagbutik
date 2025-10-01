@@ -65,11 +65,14 @@ public struct AppCustomProductPagesResponse: Codable, Sendable, PagedResponse {
 
     public enum Included: Codable, Sendable {
         case app(App)
+        case appCustomProductPageLocalization(AppCustomProductPageLocalization)
         case appCustomProductPageVersion(AppCustomProductPageVersion)
 
         public init(from decoder: Decoder) throws {
             if let app = try? App(from: decoder) {
                 self = .app(app)
+            } else if let appCustomProductPageLocalization = try? AppCustomProductPageLocalization(from: decoder) {
+                self = .appCustomProductPageLocalization(appCustomProductPageLocalization)
             } else if let appCustomProductPageVersion = try? AppCustomProductPageVersion(from: decoder) {
                 self = .appCustomProductPageVersion(appCustomProductPageVersion)
             } else {
@@ -84,6 +87,8 @@ public struct AppCustomProductPagesResponse: Codable, Sendable, PagedResponse {
         public func encode(to encoder: Encoder) throws {
             switch self {
             case let .app(value):
+                try value.encode(to: encoder)
+            case let .appCustomProductPageLocalization(value):
                 try value.encode(to: encoder)
             case let .appCustomProductPageVersion(value):
                 try value.encode(to: encoder)

@@ -3,7 +3,7 @@ import Foundation
 
 /**
  # SubscriptionGroupSubscriptionsLinkagesResponse
- A response that contains a list of Ids of related resources.
+ A response that contains a list of IDs of related resources.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/subscriptiongroupsubscriptionslinkagesresponse>

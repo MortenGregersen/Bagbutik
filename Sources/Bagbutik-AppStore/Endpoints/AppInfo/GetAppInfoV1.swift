@@ -46,21 +46,31 @@ public enum GetAppInfoV1 {
         case appInfos([AppInfos])
 
         public enum AgeRatingDeclarations: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case advertising
+            case ageAssurance
             case ageRatingOverride
+            case ageRatingOverride
+            case ageRatingOverrideV2
             case alcoholTobaccoOrDrugUseOrReferences
             case contests
+            case developerAgeRatingInfoUrl
             case gambling
             case gamblingSimulated
+            case gunsOrOtherWeapons
+            case healthOrWellnessTopics
             case horrorOrFearThemes
             case kidsAgeBand
             case koreaAgeRatingOverride
             case lootBox
             case matureOrSuggestiveThemes
             case medicalOrTreatmentInformation
+            case messagingAndChat
+            case parentalControls
             case profanityOrCrudeHumor
             case sexualContentGraphicAndNudity
             case sexualContentOrNudity
             case unrestrictedWebAccess
+            case userGeneratedContent
             case violenceCartoonOrFantasy
             case violenceRealistic
             case violenceRealisticProlongedGraphicOrSadistic
@@ -146,6 +156,7 @@ public enum GetAppInfoV1 {
             case secondarySubcategoryOne
             case secondarySubcategoryTwo
             case state
+            case territoryAgeRatings
 
             public init(from decoder: Decoder) throws {
                 let container = try decoder.singleValueContainer()

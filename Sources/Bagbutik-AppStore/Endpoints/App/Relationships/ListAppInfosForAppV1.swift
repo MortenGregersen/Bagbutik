@@ -48,21 +48,31 @@ public enum ListAppInfosForAppV1 {
         case apps([Apps])
 
         public enum AgeRatingDeclarations: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case advertising
+            case ageAssurance
             case ageRatingOverride
+            case ageRatingOverride
+            case ageRatingOverrideV2
             case alcoholTobaccoOrDrugUseOrReferences
             case contests
+            case developerAgeRatingInfoUrl
             case gambling
             case gamblingSimulated
+            case gunsOrOtherWeapons
+            case healthOrWellnessTopics
             case horrorOrFearThemes
             case kidsAgeBand
             case koreaAgeRatingOverride
             case lootBox
             case matureOrSuggestiveThemes
             case medicalOrTreatmentInformation
+            case messagingAndChat
+            case parentalControls
             case profanityOrCrudeHumor
             case sexualContentGraphicAndNudity
             case sexualContentOrNudity
             case unrestrictedWebAccess
+            case userGeneratedContent
             case violenceCartoonOrFantasy
             case violenceRealistic
             case violenceRealisticProlongedGraphicOrSadistic
@@ -148,6 +158,7 @@ public enum ListAppInfosForAppV1 {
             case secondarySubcategoryOne
             case secondarySubcategoryTwo
             case state
+            case territoryAgeRatings
 
             public init(from decoder: Decoder) throws {
                 let container = try decoder.singleValueContainer()
@@ -180,6 +191,7 @@ public enum ListAppInfosForAppV1 {
             case appPriceSchedule
             case appStoreVersionExperimentsV2
             case appStoreVersions
+            case appTags
             case backgroundAssets
             case betaAppLocalizations
             case betaAppReviewDetail
@@ -188,6 +200,7 @@ public enum ListAppInfosForAppV1 {
             case betaGroups
             case betaLicenseAgreement
             case betaTesters
+            case buildUploads
             case builds
             case bundleId
             case ciProduct
@@ -207,6 +220,7 @@ public enum ListAppInfosForAppV1 {
             case primaryLocale
             case promotedPurchases
             case reviewSubmissions
+            case searchKeywords
             case sku
             case streamlinedPurchasingEnabled
             case subscriptionGracePeriod

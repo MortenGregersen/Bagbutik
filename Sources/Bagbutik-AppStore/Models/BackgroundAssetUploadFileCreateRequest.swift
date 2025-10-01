@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # BackgroundAssetUploadFileCreateRequest
- The request body you use to create a background asset upload file .
+ The request body you use to create a background asset upload file.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/backgroundassetuploadfilecreaterequest>

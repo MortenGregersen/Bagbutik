@@ -47,18 +47,21 @@ public struct GameCenterLeaderboardLocalization: Codable, Sendable, Identifiable
     }
 
     public struct Attributes: Codable, Sendable {
+        public var description: String?
         public var formatterOverride: GameCenterLeaderboardFormatter?
         public var formatterSuffix: String?
         public var formatterSuffixSingular: String?
         public var locale: String?
         public var name: String?
 
-        public init(formatterOverride: GameCenterLeaderboardFormatter? = nil,
+        public init(description: String? = nil,
+                    formatterOverride: GameCenterLeaderboardFormatter? = nil,
                     formatterSuffix: String? = nil,
                     formatterSuffixSingular: String? = nil,
                     locale: String? = nil,
                     name: String? = nil)
         {
+            self.description = description
             self.formatterOverride = formatterOverride
             self.formatterSuffix = formatterSuffix
             self.formatterSuffixSingular = formatterSuffixSingular
@@ -68,6 +71,7 @@ public struct GameCenterLeaderboardLocalization: Codable, Sendable, Identifiable
 
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: AnyCodingKey.self)
+            description = try container.decodeIfPresent(String.self, forKey: "description")
             formatterOverride = try container.decodeIfPresent(GameCenterLeaderboardFormatter.self, forKey: "formatterOverride")
             formatterSuffix = try container.decodeIfPresent(String.self, forKey: "formatterSuffix")
             formatterSuffixSingular = try container.decodeIfPresent(String.self, forKey: "formatterSuffixSingular")
@@ -77,6 +81,7 @@ public struct GameCenterLeaderboardLocalization: Codable, Sendable, Identifiable
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: AnyCodingKey.self)
+            try container.encodeIfPresent(description, forKey: "description")
             try container.encodeIfPresent(formatterOverride, forKey: "formatterOverride")
             try container.encodeIfPresent(formatterSuffix, forKey: "formatterSuffix")
             try container.encodeIfPresent(formatterSuffixSingular, forKey: "formatterSuffixSingular")

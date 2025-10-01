@@ -52,6 +52,7 @@ public enum ListAppCustomProductPageLocalizationsForAppCustomProductPageVersionV
             case appScreenshotSets
             case locale
             case promotionalText
+            case searchKeywords
 
             public init(from decoder: Decoder) throws {
                 let container = try decoder.singleValueContainer()
@@ -154,6 +155,7 @@ public enum ListAppCustomProductPageLocalizationsForAppCustomProductPageVersionV
         case appCustomProductPageVersion
         case appPreviewSets
         case appScreenshotSets
+        case searchKeywords
     }
 
     /**
@@ -166,5 +168,7 @@ public enum ListAppCustomProductPageLocalizationsForAppCustomProductPageVersionV
         case appScreenshotSets(Int)
         /// Maximum resources per page - maximum 200
         case limit(Int)
+        /// Maximum number of related searchKeywords returned (when they are included) - maximum 50
+        case searchKeywords(Int)
     }
 }

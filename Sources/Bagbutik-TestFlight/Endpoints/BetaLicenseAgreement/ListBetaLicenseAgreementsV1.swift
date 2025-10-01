@@ -55,6 +55,7 @@ public enum ListBetaLicenseAgreementsV1 {
             case appPriceSchedule
             case appStoreVersionExperimentsV2
             case appStoreVersions
+            case appTags
             case backgroundAssets
             case betaAppLocalizations
             case betaAppReviewDetail
@@ -63,6 +64,7 @@ public enum ListBetaLicenseAgreementsV1 {
             case betaGroups
             case betaLicenseAgreement
             case betaTesters
+            case buildUploads
             case builds
             case bundleId
             case ciProduct
@@ -82,6 +84,7 @@ public enum ListBetaLicenseAgreementsV1 {
             case primaryLocale
             case promotedPurchases
             case reviewSubmissions
+            case searchKeywords
             case sku
             case streamlinedPurchasingEnabled
             case subscriptionGracePeriod

@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read background asset upload file information for a background asset version.
+     # Read background asset upload file information for a background asset version
      Get details about a background asset upload file for a specific background asset version.
 
      Full documentation:
@@ -41,6 +41,7 @@ public enum ListBackgroundAssetUploadFilesForBackgroundAssetVersionV1 {
             case fileName
             case fileSize
             case sourceFileChecksum
+            case sourceFileChecksums
             case uploadOperations
 
             public init(from decoder: Decoder) throws {
