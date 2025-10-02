@@ -49,7 +49,6 @@ public enum GetAppInfoV1 {
             case advertising
             case ageAssurance
             case ageRatingOverride
-            case ageRatingOverride
             case ageRatingOverrideV2
             case alcoholTobaccoOrDrugUseOrReferences
             case contests

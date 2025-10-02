@@ -314,40 +314,6 @@ public struct Spec: Decodable {
             components.schemas["AgeRatingDeclarationUpdateRequest"] = .object(ageRatingDeclarationUpdateRequestSchema)
             patchedSchemas.append(.object(ageRatingDeclarationUpdateRequestSchema))
         }
-        let pathsMissingAgeRatingFieldParameter = [
-            "/v1/appInfos/{id}",
-            "/v1/appStoreVersions/{id}",
-            "/v1/appClipDefaultExperiences/{id}/releaseWithAppStoreVersion",
-            "/v1/appInfos/{id}/ageRatingDeclaration",
-            "/v1/appStoreVersions/{id}/ageRatingDeclaration",
-            "/v1/apps/{id}/appInfos",
-            "/v1/apps/{id}/appStoreVersions",
-            "/v1/builds/{id}/appStoreVersion",
-            "/v1/gameCenterAppVersions/{id}/appStoreVersion",
-        ]
-        for path in pathsMissingAgeRatingFieldParameter {
-            if var getAppInfo = paths[path],
-               let operationIndex = getAppInfo.operations.firstIndex(where: { $0.method == .get }),
-               let parameterIndex = getAppInfo.operations[operationIndex].parameters?.firstIndex(where: {
-                   if case .fields(let name, _, _, _) = $0 {
-                       name == "ageRatingDeclarations"
-                   } else {
-                       false
-                   }
-               }),
-               case .fields(let name, let type, let deprecated, let documentation) = getAppInfo.operations[operationIndex].parameters?[parameterIndex],
-               case .enum(let valueType, var values) = type {
-                var operation = getAppInfo.operations[operationIndex]
-                values.append("ageRatingOverride")
-                operation.parameters?[parameterIndex] = .fields(
-                    name: name,
-                    type: .enum(type: valueType, values: values),
-                    deprecated: deprecated,
-                    documentation: documentation)
-                getAppInfo.operations[operationIndex] = operation
-                paths[path] = getAppInfo
-            }
-        }
 
         // FB17932433: Adds "totalNumberOfCodes" property to SubscriptionOfferCode.Attributes.
         if case .object(var subscriptionOfferCodeSchema) = components.schemas["SubscriptionOfferCode"],
