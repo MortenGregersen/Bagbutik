@@ -286,48 +286,6 @@ public struct Spec: Decodable {
             patchedSchemas.append(.object(appEventSchema))
         }
 
-        // FB17874677: Adds "INFREQUENT_OR_MILD" and "FREQUENT_OR_INTENSE" to AgeRatingDeclaration.Attributes properties.
-        // FB17925890: Adds "ageRatingOverride" property to AgeRatingDeclaration.Attributes.
-        let fixAgeRatingDeclarationAttributes = { (ageRatingDeclarationAttributesSchema: inout ObjectSchema) in
-            let missingCases = [
-                EnumCase(id: "infrequentOrMild", value: "INFREQUENT_OR_MILD"),
-                EnumCase(id: "frequentOrIntense", value: "FREQUENT_OR_INTENSE")
-            ]
-            for (propertyName, property) in ageRatingDeclarationAttributesSchema.properties {
-                if case .enumSchema(var enumSchema) = property.type,
-                   enumSchema.cases.count == 1,
-                   enumSchema.cases.first?.value == "NONE" {
-                    var property = property
-                    enumSchema.cases.append(contentsOf: missingCases)
-                    property.type = .enumSchema(enumSchema)
-                    ageRatingDeclarationAttributesSchema.properties[propertyName] = property
-                }
-            }
-            if ageRatingDeclarationAttributesSchema.properties["ageRatingOverride"] == nil {
-                ageRatingDeclarationAttributesSchema.properties["ageRatingOverride"] = .init(
-                    type: .enumSchema(EnumSchema(
-                        name: "AgeRatingOverride",
-                        type: "String",
-                        caseValues: ["NONE", "SEVENTEEN_PLUS", "UNRATED"])))
-            }
-        }
-        if case .object(var ageRatingDeclarationSchema) = components.schemas["AgeRatingDeclaration"],
-           case .schema(var ageRatingDeclarationAttributesSchema) = ageRatingDeclarationSchema.properties["attributes"]?.type {
-            fixAgeRatingDeclarationAttributes(&ageRatingDeclarationAttributesSchema)
-            ageRatingDeclarationSchema.properties["attributes"]?.type = .schema(ageRatingDeclarationAttributesSchema)
-            components.schemas["AgeRatingDeclaration"] = .object(ageRatingDeclarationSchema)
-            patchedSchemas.append(.object(ageRatingDeclarationSchema))
-        }
-        if case .object(var ageRatingDeclarationUpdateRequestSchema) = components.schemas["AgeRatingDeclarationUpdateRequest"],
-           case .schema(var dataSchema) = ageRatingDeclarationUpdateRequestSchema.properties["data"]?.type,
-           case .schema(var ageRatingDeclarationAttributesSchema) = dataSchema.properties["attributes"]?.type {
-            fixAgeRatingDeclarationAttributes(&ageRatingDeclarationAttributesSchema)
-            dataSchema.properties["attributes"]?.type = .schema(ageRatingDeclarationAttributesSchema)
-            ageRatingDeclarationUpdateRequestSchema.properties["data"]?.type = .schema(dataSchema)
-            components.schemas["AgeRatingDeclarationUpdateRequest"] = .object(ageRatingDeclarationUpdateRequestSchema)
-            patchedSchemas.append(.object(ageRatingDeclarationUpdateRequestSchema))
-        }
-
         // Remove "StringToStringMap" - this is replaced with a [String: String] in the generated code
         components.schemas.removeValue(forKey: "StringToStringMap")
     }

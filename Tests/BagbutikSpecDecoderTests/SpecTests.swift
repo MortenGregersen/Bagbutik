@@ -643,36 +643,6 @@ final class SpecTests: XCTestCase {
                                 }
                             }
                         }
-                    },
-                    "AgeRatingDeclaration" : {
-                        "type" : "object",
-                        "title" : "AgeRatingDeclaration",
-                        "properties" : {
-                            "type" : {
-                                "type" : "string",
-                                "enum" : [ "ageRatingDeclarations" ]
-                            },
-                            "id" : {
-                                "type" : "string"
-                            },
-                            "attributes" : {
-                                "type" : "object",
-                                "properties" : {
-                                    "alcoholTobaccoOrDrugUseOrReferences" : {
-                                        "type" : "string",
-                                        "enum" : [ "NONE" ]
-                                    },
-                                    "contests" : {
-                                        "type" : "string",
-                                        "enum" : [ "NONE" ]
-                                    }
-                                }
-                            },
-                            "links" : {
-                                "$ref" : "#/components/schemas/ResourceLinks"
-                            }
-                        },
-                        "required" : [ "id", "type" ]
                     }
                 }
             }
@@ -754,36 +724,6 @@ final class SpecTests: XCTestCase {
         XCTAssertEqual(purchaseRequirementEnumSchema.cases.sorted(by: { $0.value < $1.value }),
                        [EnumCase(id: "inAppPurchase", value: "IN_APP_PURCHASE"),
                         EnumCase(id: "noCostAssociated", value: "NO_COST_ASSOCIATED")])
-
-        guard case .object(let ageRatingDeclarationSchema) = spec.components.schemas["AgeRatingDeclaration"],
-              case .schema(let ageRatingDeclarationAttributesSchema) = ageRatingDeclarationSchema.properties["attributes"]?.type,
-              case .enumSchema(let alcoholTobaccoOrDrugUseOrReferencesSchema) = ageRatingDeclarationAttributesSchema.properties["alcoholTobaccoOrDrugUseOrReferences"]?.type,
-              case .enumSchema(let contestsSchema) = ageRatingDeclarationAttributesSchema.properties["contests"]?.type,
-              case .enumSchema(let ageRatingOverrideSchema) = ageRatingDeclarationAttributesSchema.properties["ageRatingOverride"]?.type
-        else {
-            XCTFail(); return
-        }
-        XCTAssertTrue(alcoholTobaccoOrDrugUseOrReferencesSchema.cases.count == 3)
-        XCTAssertEqual(alcoholTobaccoOrDrugUseOrReferencesSchema.cases.sorted(by: { $0.value < $1.value }),
-                       [
-                           EnumCase(id: "frequentOrIntense", value: "FREQUENT_OR_INTENSE"),
-                           EnumCase(id: "infrequentOrMild", value: "INFREQUENT_OR_MILD"),
-                           EnumCase(id: "none", value: "NONE"),
-                       ])
-        XCTAssertTrue(contestsSchema.cases.count == 3)
-        XCTAssertEqual(contestsSchema.cases.sorted(by: { $0.value < $1.value }),
-                       [
-                           EnumCase(id: "frequentOrIntense", value: "FREQUENT_OR_INTENSE"),
-                           EnumCase(id: "infrequentOrMild", value: "INFREQUENT_OR_MILD"),
-                           EnumCase(id: "none", value: "NONE"),
-                       ])
-        XCTAssertTrue(ageRatingOverrideSchema.cases.count == 3)
-        XCTAssertEqual(ageRatingOverrideSchema.cases.sorted(by: { $0.value < $1.value }),
-                       [
-                           EnumCase(id: "none", value: "NONE"),
-                           EnumCase(id: "seventeenPlus", value: "SEVENTEEN_PLUS"),
-                           EnumCase(id: "unrated", value: "UNRATED"),
-                       ])
     }
 
     func testApplyManualPatches_Error() throws {
