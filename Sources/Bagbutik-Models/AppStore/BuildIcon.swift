@@ -44,14 +44,17 @@ public struct BuildIcon: Codable, Sendable, Identifiable {
     public struct Attributes: Codable, Sendable {
         public var iconAsset: ImageAsset?
         public var iconType: IconAssetType?
+        public var masked: Bool?
         public var name: String?
 
         public init(iconAsset: ImageAsset? = nil,
                     iconType: IconAssetType? = nil,
+                    masked: Bool? = nil,
                     name: String? = nil)
         {
             self.iconAsset = iconAsset
             self.iconType = iconType
+            self.masked = masked
             self.name = name
         }
 
@@ -59,6 +62,7 @@ public struct BuildIcon: Codable, Sendable, Identifiable {
             let container = try decoder.container(keyedBy: AnyCodingKey.self)
             iconAsset = try container.decodeIfPresent(ImageAsset.self, forKey: "iconAsset")
             iconType = try container.decodeIfPresent(IconAssetType.self, forKey: "iconType")
+            masked = try container.decodeIfPresent(Bool.self, forKey: "masked")
             name = try container.decodeIfPresent(String.self, forKey: "name")
         }
 
@@ -66,6 +70,7 @@ public struct BuildIcon: Codable, Sendable, Identifiable {
             var container = encoder.container(keyedBy: AnyCodingKey.self)
             try container.encodeIfPresent(iconAsset, forKey: "iconAsset")
             try container.encodeIfPresent(iconType, forKey: "iconType")
+            try container.encodeIfPresent(masked, forKey: "masked")
             try container.encodeIfPresent(name, forKey: "name")
         }
     }

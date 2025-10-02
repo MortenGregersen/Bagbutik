@@ -156,6 +156,7 @@ public struct Build: Codable, Sendable, Identifiable {
         public var betaGroups: BetaGroups?
         public var buildBetaDetail: BuildBetaDetail?
         public var buildBundles: BuildBundles?
+        public var buildUpload: BuildUpload?
         public var diagnosticSignatures: DiagnosticSignatures?
         public var icons: Icons?
         public var individualTesters: IndividualTesters?
@@ -170,6 +171,7 @@ public struct Build: Codable, Sendable, Identifiable {
                     betaGroups: BetaGroups? = nil,
                     buildBetaDetail: BuildBetaDetail? = nil,
                     buildBundles: BuildBundles? = nil,
+                    buildUpload: BuildUpload? = nil,
                     diagnosticSignatures: DiagnosticSignatures? = nil,
                     icons: Icons? = nil,
                     individualTesters: IndividualTesters? = nil,
@@ -184,6 +186,7 @@ public struct Build: Codable, Sendable, Identifiable {
             self.betaGroups = betaGroups
             self.buildBetaDetail = buildBetaDetail
             self.buildBundles = buildBundles
+            self.buildUpload = buildUpload
             self.diagnosticSignatures = diagnosticSignatures
             self.icons = icons
             self.individualTesters = individualTesters
@@ -201,6 +204,7 @@ public struct Build: Codable, Sendable, Identifiable {
             betaGroups = try container.decodeIfPresent(BetaGroups.self, forKey: "betaGroups")
             buildBetaDetail = try container.decodeIfPresent(BuildBetaDetail.self, forKey: "buildBetaDetail")
             buildBundles = try container.decodeIfPresent(BuildBundles.self, forKey: "buildBundles")
+            buildUpload = try container.decodeIfPresent(BuildUpload.self, forKey: "buildUpload")
             diagnosticSignatures = try container.decodeIfPresent(DiagnosticSignatures.self, forKey: "diagnosticSignatures")
             icons = try container.decodeIfPresent(Icons.self, forKey: "icons")
             individualTesters = try container.decodeIfPresent(IndividualTesters.self, forKey: "individualTesters")
@@ -218,6 +222,7 @@ public struct Build: Codable, Sendable, Identifiable {
             try container.encodeIfPresent(betaGroups, forKey: "betaGroups")
             try container.encodeIfPresent(buildBetaDetail, forKey: "buildBetaDetail")
             try container.encodeIfPresent(buildBundles, forKey: "buildBundles")
+            try container.encodeIfPresent(buildUpload, forKey: "buildUpload")
             try container.encodeIfPresent(diagnosticSignatures, forKey: "diagnosticSignatures")
             try container.encodeIfPresent(icons, forKey: "icons")
             try container.encodeIfPresent(individualTesters, forKey: "individualTesters")
@@ -590,6 +595,47 @@ public struct Build: Codable, Sendable, Identifiable {
             public struct Data: Codable, Sendable, Identifiable {
                 public let id: String
                 public var type: String { "buildBundles" }
+
+                public init(id: String) {
+                    self.id = id
+                }
+
+                public init(from decoder: Decoder) throws {
+                    let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                    id = try container.decode(String.self, forKey: "id")
+                    if try container.decode(String.self, forKey: "type") != type {
+                        throw DecodingError.dataCorruptedError(forKey: "type", in: container, debugDescription: "Not matching \(type)")
+                    }
+                }
+
+                public func encode(to encoder: Encoder) throws {
+                    var container = encoder.container(keyedBy: AnyCodingKey.self)
+                    try container.encode(id, forKey: "id")
+                    try container.encode(type, forKey: "type")
+                }
+            }
+        }
+
+        public struct BuildUpload: Codable, Sendable {
+            @NullCodable public var data: Data?
+
+            public init(data: Data? = nil) {
+                self.data = data
+            }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                data = try container.decodeIfPresent(Data.self, forKey: "data")
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: AnyCodingKey.self)
+                try container.encode(data, forKey: "data")
+            }
+
+            public struct Data: Codable, Sendable, Identifiable {
+                public let id: String
+                public var type: String { "buildUploads" }
 
                 public init(id: String) {
                     self.id = id

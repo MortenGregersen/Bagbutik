@@ -3,7 +3,8 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # GET /v1/builds/{id}/relationships/app
+     # Read the app ID of a build
+     Get the app ID for a specific build.
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-builds-_id_-relationships-app>

@@ -54,6 +54,7 @@ public enum ListAppPreviewSetsForAppCustomProductPageLocalizationV1 {
             case appScreenshotSets
             case locale
             case promotionalText
+            case searchKeywords
 
             public init(from decoder: Decoder) throws {
                 let container = try decoder.singleValueContainer()
@@ -155,6 +156,7 @@ public enum ListAppPreviewSetsForAppCustomProductPageLocalizationV1 {
             case locale
             case marketingUrl
             case promotionalText
+            case searchKeywords
             case supportUrl
             case whatsNew
 

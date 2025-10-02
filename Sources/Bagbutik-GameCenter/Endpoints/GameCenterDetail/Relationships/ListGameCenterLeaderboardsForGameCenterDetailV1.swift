@@ -86,7 +86,6 @@ public enum ListGameCenterLeaderboardsForGameCenterDetailV1 {
         }
 
         public enum GameCenterChallenges: String, Sendable, ParameterValue, Codable, CaseIterable {
-            case allowedDurations
             case archived
             case challengeType
             case gameCenterDetail
@@ -175,6 +174,7 @@ public enum ListGameCenterLeaderboardsForGameCenterDetailV1 {
         }
 
         public enum GameCenterLeaderboardLocalizations: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case description
             case formatterOverride
             case formatterSuffix
             case formatterSuffixSingular

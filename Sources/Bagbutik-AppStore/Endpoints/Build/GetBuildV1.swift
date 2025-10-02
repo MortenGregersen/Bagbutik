@@ -148,6 +148,7 @@ public enum GetBuildV1 {
             case appPriceSchedule
             case appStoreVersionExperimentsV2
             case appStoreVersions
+            case appTags
             case backgroundAssets
             case betaAppLocalizations
             case betaAppReviewDetail
@@ -156,6 +157,7 @@ public enum GetBuildV1 {
             case betaGroups
             case betaLicenseAgreement
             case betaTesters
+            case buildUploads
             case builds
             case bundleId
             case ciProduct
@@ -175,6 +177,7 @@ public enum GetBuildV1 {
             case primaryLocale
             case promotedPurchases
             case reviewSubmissions
+            case searchKeywords
             case sku
             case streamlinedPurchasingEnabled
             case subscriptionGracePeriod
@@ -294,6 +297,7 @@ public enum GetBuildV1 {
         public enum BuildIcons: String, Sendable, ParameterValue, Codable, CaseIterable {
             case iconAsset
             case iconType
+            case masked
             case name
 
             public init(from decoder: Decoder) throws {
@@ -322,6 +326,7 @@ public enum GetBuildV1 {
             case buildAudienceType
             case buildBetaDetail
             case buildBundles
+            case buildUpload
             case computedMinMacOsVersion
             case computedMinVisionOsVersion
             case diagnosticSignatures
@@ -390,6 +395,7 @@ public enum GetBuildV1 {
         case betaGroups
         case buildBetaDetail
         case buildBundles
+        case buildUpload
         case icons
         case individualTesters
         case preReleaseVersion

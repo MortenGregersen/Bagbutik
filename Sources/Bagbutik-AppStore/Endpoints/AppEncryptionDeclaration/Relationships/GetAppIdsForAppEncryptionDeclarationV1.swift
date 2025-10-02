@@ -3,7 +3,8 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # GET /v1/appEncryptionDeclarations/{id}/relationships/app
+     # Read the app id of an app encryption declaration
+     Get the app id from a specific app encryption declaration.
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-appEncryptionDeclarations-_id_-relationships-app>

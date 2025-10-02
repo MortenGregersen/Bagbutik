@@ -47,15 +47,19 @@ public struct BackgroundAssetUploadFile: Codable, Sendable, Identifiable {
         public var assetType: AssetType?
         public var fileName: String?
         public var fileSize: Int?
-        public var sourceFileChecksum: String?
+        @available(*, deprecated, message: "Apple has marked this property deprecated and it will be removed sometime in the future.")
+        public var sourceFileChecksum: String? = nil
+        public var sourceFileChecksums: Checksums?
         public var uploadOperations: [DeliveryFileUploadOperation]?
 
+        @available(*, deprecated, message: "This uses a property Apple has marked as deprecated.")
         public init(assetDeliveryState: AppMediaAssetState? = nil,
                     assetToken: String? = nil,
                     assetType: AssetType? = nil,
                     fileName: String? = nil,
                     fileSize: Int? = nil,
                     sourceFileChecksum: String? = nil,
+                    sourceFileChecksums: Checksums? = nil,
                     uploadOperations: [DeliveryFileUploadOperation]? = nil)
         {
             self.assetDeliveryState = assetDeliveryState
@@ -64,6 +68,24 @@ public struct BackgroundAssetUploadFile: Codable, Sendable, Identifiable {
             self.fileName = fileName
             self.fileSize = fileSize
             self.sourceFileChecksum = sourceFileChecksum
+            self.sourceFileChecksums = sourceFileChecksums
+            self.uploadOperations = uploadOperations
+        }
+
+        public init(assetDeliveryState: AppMediaAssetState? = nil,
+                    assetToken: String? = nil,
+                    assetType: AssetType? = nil,
+                    fileName: String? = nil,
+                    fileSize: Int? = nil,
+                    sourceFileChecksums: Checksums? = nil,
+                    uploadOperations: [DeliveryFileUploadOperation]? = nil)
+        {
+            self.assetDeliveryState = assetDeliveryState
+            self.assetToken = assetToken
+            self.assetType = assetType
+            self.fileName = fileName
+            self.fileSize = fileSize
+            self.sourceFileChecksums = sourceFileChecksums
             self.uploadOperations = uploadOperations
         }
 
@@ -75,6 +97,7 @@ public struct BackgroundAssetUploadFile: Codable, Sendable, Identifiable {
             fileName = try container.decodeIfPresent(String.self, forKey: "fileName")
             fileSize = try container.decodeIfPresent(Int.self, forKey: "fileSize")
             sourceFileChecksum = try container.decodeIfPresent(String.self, forKey: "sourceFileChecksum")
+            sourceFileChecksums = try container.decodeIfPresent(Checksums.self, forKey: "sourceFileChecksums")
             uploadOperations = try container.decodeIfPresent([DeliveryFileUploadOperation].self, forKey: "uploadOperations")
         }
 
@@ -86,6 +109,7 @@ public struct BackgroundAssetUploadFile: Codable, Sendable, Identifiable {
             try container.encodeIfPresent(fileName, forKey: "fileName")
             try container.encodeIfPresent(fileSize, forKey: "fileSize")
             try container.encodeIfPresent(sourceFileChecksum, forKey: "sourceFileChecksum")
+            try container.encodeIfPresent(sourceFileChecksums, forKey: "sourceFileChecksums")
             try container.encodeIfPresent(uploadOperations, forKey: "uploadOperations")
         }
 

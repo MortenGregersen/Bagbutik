@@ -4,6 +4,7 @@ import Bagbutik_Models
 public extension Request {
     /**
      # Read background assets information
+     Get details about a specific background asset version.
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-backgroundAssetVersions-_id_>
@@ -34,9 +35,12 @@ public enum GetBackgroundAssetVersionV1 {
         case backgroundAssetVersions([BackgroundAssetVersions])
 
         public enum BackgroundAssetVersions: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case appStoreRelease
             case assetFile
+            case backgroundAsset
             case backgroundAssetUploadFiles
             case createdDate
+            case externalBetaRelease
             case internalBetaRelease
             case manifestFile
             case platforms
@@ -64,7 +68,10 @@ public enum GetBackgroundAssetVersionV1 {
      Relationship data to include in the response.
      */
     public enum Include: String, IncludeParameter, CaseIterable {
+        case appStoreRelease
         case assetFile
+        case backgroundAsset
+        case externalBetaRelease
         case internalBetaRelease
         case manifestFile
     }

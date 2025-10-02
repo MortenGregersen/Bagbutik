@@ -50,6 +50,7 @@ public enum ListAppCustomProductPageVersionsForAppCustomProductPageV1 {
             case appScreenshotSets
             case locale
             case promotionalText
+            case searchKeywords
 
             public init(from decoder: Decoder) throws {
                 let container = try decoder.singleValueContainer()

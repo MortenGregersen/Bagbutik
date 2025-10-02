@@ -2,6 +2,13 @@ import Bagbutik_Core
 import Bagbutik_Models
 import Foundation
 
+/**
+ # AppEncryptionDeclarationDocumentUpdateRequest
+ The request body you use to update an app encryption declaration document update request.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appencryptiondeclarationdocumentupdaterequest>
+ */
 public struct AppEncryptionDeclarationDocumentUpdateRequest: Codable, Sendable, RequestBody {
     public let data: Data
 

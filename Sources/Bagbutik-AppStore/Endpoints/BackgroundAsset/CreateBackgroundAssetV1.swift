@@ -4,7 +4,7 @@ import Bagbutik_Models
 public extension Request {
     /**
      # Create asset pack record
-     Create an asset pack record for your Apple hosted background assets.
+     Create an asset pack record for your Apple-hosted background assets.
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/post-v1-backgroundAssets>

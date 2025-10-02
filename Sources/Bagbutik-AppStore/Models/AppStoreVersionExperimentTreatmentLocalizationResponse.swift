@@ -2,6 +2,13 @@ import Bagbutik_Core
 import Bagbutik_Models
 import Foundation
 
+/**
+ # AppStoreVersionExperimentTreatmentLocalizationResponse
+ A response that contains a single app store version experiment treatment localization response resource.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionexperimenttreatmentlocalizationresponse>
+ */
 public struct AppStoreVersionExperimentTreatmentLocalizationResponse: Codable, Sendable {
     public let data: AppStoreVersionExperimentTreatmentLocalization
     public var included: [Included]?

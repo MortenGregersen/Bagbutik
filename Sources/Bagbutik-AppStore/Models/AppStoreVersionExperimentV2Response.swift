@@ -2,6 +2,13 @@ import Bagbutik_Core
 import Bagbutik_Models
 import Foundation
 
+/**
+ # AppStoreVersionExperimentV2Response
+ A response that contains a single app store version experiment v2response resource.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionexperimentv2response>
+ */
 public struct AppStoreVersionExperimentV2Response: Codable, Sendable {
     public let data: AppStoreVersionExperimentV2
     public var included: [Included]?

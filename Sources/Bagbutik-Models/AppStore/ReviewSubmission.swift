@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # ReviewSubmission
+ The data structure that represents a review submission resource.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/reviewsubmission>
+ */
 public struct ReviewSubmission: Codable, Sendable, Identifiable {
     public let id: String
     public var links: ResourceLinks?

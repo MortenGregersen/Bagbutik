@@ -101,6 +101,7 @@ public enum ListAppStoreVersionLocalizationsForAppStoreVersionV1 {
             case locale
             case marketingUrl
             case promotionalText
+            case searchKeywords
             case supportUrl
             case whatsNew
 
@@ -179,6 +180,7 @@ public enum ListAppStoreVersionLocalizationsForAppStoreVersionV1 {
         case appPreviewSets
         case appScreenshotSets
         case appStoreVersion
+        case searchKeywords
     }
 
     /**
@@ -191,5 +193,7 @@ public enum ListAppStoreVersionLocalizationsForAppStoreVersionV1 {
         case appScreenshotSets(Int)
         /// Maximum resources per page - maximum 200
         case limit(Int)
+        /// Maximum number of related searchKeywords returned (when they are included) - maximum 50
+        case searchKeywords(Int)
     }
 }

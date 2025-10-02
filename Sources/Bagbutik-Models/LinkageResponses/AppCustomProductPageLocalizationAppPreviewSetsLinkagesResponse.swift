@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # AppCustomProductPageLocalizationAppPreviewSetsLinkagesResponse
+ A response that contains a list of IDs of related resources.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appcustomproductpagelocalizationapppreviewsetslinkagesresponse>
+ */
 public struct AppCustomProductPageLocalizationAppPreviewSetsLinkagesResponse: Codable, Sendable, PagedResponse {
     public let data: [Data]
     public let links: PagedDocumentLinks

@@ -3,7 +3,8 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # GET /v1/gameCenterLeaderboardSetMemberLocalizations/{id}/relationships/gameCenterLeaderboard
+     # Read tge leaderboard ID for a leaderboard set member localization
+     Get the leaderboard ID for a specific leaderboard set member localization.
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-gameCenterLeaderboardSetMemberLocalizations-_id_-relationships-gameCenterLeaderboard>

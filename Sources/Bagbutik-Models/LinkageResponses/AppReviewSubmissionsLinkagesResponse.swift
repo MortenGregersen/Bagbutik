@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # AppReviewSubmissionsLinkagesResponse
+ A response that contains a list of IDs of related resources.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appreviewsubmissionslinkagesresponse>
+ */
 public struct AppReviewSubmissionsLinkagesResponse: Codable, Sendable, PagedResponse {
     public let data: [Data]
     public let links: PagedDocumentLinks

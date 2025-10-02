@@ -86,6 +86,7 @@ public enum ListAppInfoLocalizationsForAppInfoV1 {
             case secondarySubcategoryOne
             case secondarySubcategoryTwo
             case state
+            case territoryAgeRatings
 
             public init(from decoder: Decoder) throws {
                 let container = try decoder.singleValueContainer()

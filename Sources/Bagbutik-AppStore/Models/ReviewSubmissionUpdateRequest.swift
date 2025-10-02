@@ -2,6 +2,13 @@ import Bagbutik_Core
 import Bagbutik_Models
 import Foundation
 
+/**
+ # ReviewSubmissionUpdateRequest
+ The request body you use to update a review submission update request.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/reviewsubmissionupdaterequest>
+ */
 public struct ReviewSubmissionUpdateRequest: Codable, Sendable, RequestBody {
     public let data: Data
 

@@ -63,6 +63,8 @@ public enum ListBuildsForCiBuildRunV1 {
         case buildBundles([BuildBundles])
         /// The fields to include for returned resources of type buildIcons
         case buildIcons([BuildIcons])
+        /// The fields to include for returned resources of type buildUploads
+        case buildUploads([BuildUploads])
         /// The fields to include for returned resources of type builds
         case builds([Builds])
         /// The fields to include for returned resources of type preReleaseVersions
@@ -161,6 +163,7 @@ public enum ListBuildsForCiBuildRunV1 {
             case appPriceSchedule
             case appStoreVersionExperimentsV2
             case appStoreVersions
+            case appTags
             case backgroundAssets
             case betaAppLocalizations
             case betaAppReviewDetail
@@ -169,6 +172,7 @@ public enum ListBuildsForCiBuildRunV1 {
             case betaGroups
             case betaLicenseAgreement
             case betaTesters
+            case buildUploads
             case builds
             case bundleId
             case ciProduct
@@ -188,6 +192,7 @@ public enum ListBuildsForCiBuildRunV1 {
             case primaryLocale
             case promotedPurchases
             case reviewSubmissions
+            case searchKeywords
             case sku
             case streamlinedPurchasingEnabled
             case subscriptionGracePeriod
@@ -383,6 +388,7 @@ public enum ListBuildsForCiBuildRunV1 {
         public enum BuildIcons: String, Sendable, ParameterValue, Codable, CaseIterable {
             case iconAsset
             case iconType
+            case masked
             case name
 
             public init(from decoder: Decoder) throws {
@@ -401,6 +407,35 @@ public enum ListBuildsForCiBuildRunV1 {
             }
         }
 
+        public enum BuildUploads: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case assetDescriptionFile
+            case assetFile
+            case assetSpiFile
+            case build
+            case buildUploadFiles
+            case cfBundleShortVersionString
+            case cfBundleVersion
+            case createdDate
+            case platform
+            case state
+            case uploadedDate
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = BuildUploads(rawValue: string) {
+                    self = value
+                } else if let value = BuildUploads(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid BuildUploads value: \(string)"
+                    )
+                }
+            }
+        }
+
         public enum Builds: String, Sendable, ParameterValue, Codable, CaseIterable {
             case app
             case appEncryptionDeclaration
@@ -411,6 +446,7 @@ public enum ListBuildsForCiBuildRunV1 {
             case buildAudienceType
             case buildBetaDetail
             case buildBundles
+            case buildUpload
             case computedMinMacOsVersion
             case computedMinVisionOsVersion
             case diagnosticSignatures
@@ -541,6 +577,7 @@ public enum ListBuildsForCiBuildRunV1 {
         case betaGroups
         case buildBetaDetail
         case buildBundles
+        case buildUpload
         case icons
         case individualTesters
         case preReleaseVersion

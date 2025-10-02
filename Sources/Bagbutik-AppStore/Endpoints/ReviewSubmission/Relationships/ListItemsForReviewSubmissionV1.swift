@@ -42,6 +42,8 @@ public enum ListItemsForReviewSubmissionV1 {
         case appStoreVersionExperiments([AppStoreVersionExperiments])
         /// The fields to include for returned resources of type appStoreVersions
         case appStoreVersions([AppStoreVersions])
+        /// The fields to include for returned resources of type backgroundAssetVersions
+        case backgroundAssetVersions([BackgroundAssetVersions])
         /// The fields to include for returned resources of type reviewSubmissionItems
         case reviewSubmissionItems([ReviewSubmissionItems])
 
@@ -170,12 +172,42 @@ public enum ListItemsForReviewSubmissionV1 {
             }
         }
 
+        public enum BackgroundAssetVersions: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case appStoreRelease
+            case assetFile
+            case backgroundAsset
+            case backgroundAssetUploadFiles
+            case createdDate
+            case externalBetaRelease
+            case internalBetaRelease
+            case manifestFile
+            case platforms
+            case state
+            case version
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = BackgroundAssetVersions(rawValue: string) {
+                    self = value
+                } else if let value = BackgroundAssetVersions(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid BackgroundAssetVersions value: \(string)"
+                    )
+                }
+            }
+        }
+
         public enum ReviewSubmissionItems: String, Sendable, ParameterValue, Codable, CaseIterable {
             case appCustomProductPageVersion
             case appEvent
             case appStoreVersion
             case appStoreVersionExperiment
             case appStoreVersionExperimentV2
+            case backgroundAssetVersion
             case state
 
             public init(from decoder: Decoder) throws {
@@ -204,5 +236,6 @@ public enum ListItemsForReviewSubmissionV1 {
         case appStoreVersion
         case appStoreVersionExperiment
         case appStoreVersionExperimentV2
+        case backgroundAssetVersion
     }
 }

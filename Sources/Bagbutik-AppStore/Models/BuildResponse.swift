@@ -110,6 +110,13 @@ public struct BuildResponse: Codable, Sendable {
         return buildBundles
     }
 
+    public func getBuildUpload() -> BuildUpload? {
+        included?.compactMap { relationship -> BuildUpload? in
+            guard case let .buildUpload(buildUpload) = relationship else { return nil }
+            return buildUpload
+        }.first { $0.id == data.relationships?.buildUpload?.data?.id }
+    }
+
     public func getIcons() -> [BuildIcon] {
         guard let iconIds = data.relationships?.icons?.data?.map(\.id),
               let icons = included?.compactMap({ relationship -> BuildIcon? in
@@ -152,6 +159,7 @@ public struct BuildResponse: Codable, Sendable {
         case buildBetaDetail(BuildBetaDetail)
         case buildBundle(BuildBundle)
         case buildIcon(BuildIcon)
+        case buildUpload(BuildUpload)
         case prereleaseVersion(PrereleaseVersion)
 
         public init(from decoder: Decoder) throws {
@@ -175,6 +183,8 @@ public struct BuildResponse: Codable, Sendable {
                 self = .buildBundle(buildBundle)
             } else if let buildIcon = try? BuildIcon(from: decoder) {
                 self = .buildIcon(buildIcon)
+            } else if let buildUpload = try? BuildUpload(from: decoder) {
+                self = .buildUpload(buildUpload)
             } else if let prereleaseVersion = try? PrereleaseVersion(from: decoder) {
                 self = .prereleaseVersion(prereleaseVersion)
             } else {
@@ -207,6 +217,8 @@ public struct BuildResponse: Codable, Sendable {
             case let .buildBundle(value):
                 try value.encode(to: encoder)
             case let .buildIcon(value):
+                try value.encode(to: encoder)
+            case let .buildUpload(value):
                 try value.encode(to: encoder)
             case let .prereleaseVersion(value):
                 try value.encode(to: encoder)

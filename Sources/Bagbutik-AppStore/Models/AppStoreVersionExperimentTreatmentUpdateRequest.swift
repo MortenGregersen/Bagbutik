@@ -2,6 +2,13 @@ import Bagbutik_Core
 import Bagbutik_Models
 import Foundation
 
+/**
+ # AppStoreVersionExperimentTreatmentUpdateRequest
+ The request body you use to update an app store version experiment treatment update request.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionexperimenttreatmentupdaterequest>
+ */
 public struct AppStoreVersionExperimentTreatmentUpdateRequest: Codable, Sendable, RequestBody {
     public let data: Data
 

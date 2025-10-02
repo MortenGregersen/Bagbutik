@@ -3,7 +3,8 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # GET /v1/appCustomProductPages/{id}/relationships/appCustomProductPageVersions
+     # Get all version IDs for an app custom product page
+     Get a list of custom product page version IDs associated with a custom product page.
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-appCustomProductPages-_id_-relationships-appCustomProductPageVersions>

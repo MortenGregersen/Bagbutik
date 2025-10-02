@@ -46,59 +46,143 @@ public struct AgeRatingDeclaration: Codable, Sendable, Identifiable {
     }
 
     public struct Attributes: Codable, Sendable {
-        public var ageRatingOverride: AgeRatingOverride?
+        public var advertising: Bool?
+        public var ageAssurance: Bool?
+        @available(*, deprecated, message: "Apple has marked this property deprecated and it will be removed sometime in the future.")
+        public var ageRatingOverride: AgeRatingOverride? = nil
+        public var ageRatingOverrideV2: AgeRatingOverrideV2?
         public var alcoholTobaccoOrDrugUseOrReferences: AlcoholTobaccoOrDrugUseOrReferences?
         public var contests: Contests?
+        public var developerAgeRatingInfoUrl: String?
         public var gambling: Bool?
         public var gamblingSimulated: GamblingSimulated?
+        public var gunsOrOtherWeapons: GunsOrOtherWeapons?
+        public var healthOrWellnessTopics: Bool?
         public var horrorOrFearThemes: HorrorOrFearThemes?
         public var kidsAgeBand: KidsAgeBand?
         public var koreaAgeRatingOverride: KoreaAgeRatingOverride?
         public var lootBox: Bool?
         public var matureOrSuggestiveThemes: MatureOrSuggestiveThemes?
         public var medicalOrTreatmentInformation: MedicalOrTreatmentInformation?
+        public var messagingAndChat: Bool?
+        public var parentalControls: Bool?
         public var profanityOrCrudeHumor: ProfanityOrCrudeHumor?
         public var sexualContentGraphicAndNudity: SexualContentGraphicAndNudity?
         public var sexualContentOrNudity: SexualContentOrNudity?
         public var unrestrictedWebAccess: Bool?
+        public var userGeneratedContent: Bool?
         public var violenceCartoonOrFantasy: ViolenceCartoonOrFantasy?
         public var violenceRealistic: ViolenceRealistic?
         public var violenceRealisticProlongedGraphicOrSadistic: ViolenceRealisticProlongedGraphicOrSadistic?
 
-        public init(ageRatingOverride: AgeRatingOverride? = nil,
+        @available(*, deprecated, message: "This uses a property Apple has marked as deprecated.")
+        public init(advertising: Bool? = nil,
+                    ageAssurance: Bool? = nil,
+                    ageRatingOverride: AgeRatingOverride? = nil,
+                    ageRatingOverrideV2: AgeRatingOverrideV2? = nil,
                     alcoholTobaccoOrDrugUseOrReferences: AlcoholTobaccoOrDrugUseOrReferences? = nil,
                     contests: Contests? = nil,
+                    developerAgeRatingInfoUrl: String? = nil,
                     gambling: Bool? = nil,
                     gamblingSimulated: GamblingSimulated? = nil,
+                    gunsOrOtherWeapons: GunsOrOtherWeapons? = nil,
+                    healthOrWellnessTopics: Bool? = nil,
                     horrorOrFearThemes: HorrorOrFearThemes? = nil,
                     kidsAgeBand: KidsAgeBand? = nil,
                     koreaAgeRatingOverride: KoreaAgeRatingOverride? = nil,
                     lootBox: Bool? = nil,
                     matureOrSuggestiveThemes: MatureOrSuggestiveThemes? = nil,
                     medicalOrTreatmentInformation: MedicalOrTreatmentInformation? = nil,
+                    messagingAndChat: Bool? = nil,
+                    parentalControls: Bool? = nil,
                     profanityOrCrudeHumor: ProfanityOrCrudeHumor? = nil,
                     sexualContentGraphicAndNudity: SexualContentGraphicAndNudity? = nil,
                     sexualContentOrNudity: SexualContentOrNudity? = nil,
                     unrestrictedWebAccess: Bool? = nil,
+                    userGeneratedContent: Bool? = nil,
                     violenceCartoonOrFantasy: ViolenceCartoonOrFantasy? = nil,
                     violenceRealistic: ViolenceRealistic? = nil,
                     violenceRealisticProlongedGraphicOrSadistic: ViolenceRealisticProlongedGraphicOrSadistic? = nil)
         {
+            self.advertising = advertising
+            self.ageAssurance = ageAssurance
             self.ageRatingOverride = ageRatingOverride
+            self.ageRatingOverrideV2 = ageRatingOverrideV2
             self.alcoholTobaccoOrDrugUseOrReferences = alcoholTobaccoOrDrugUseOrReferences
             self.contests = contests
+            self.developerAgeRatingInfoUrl = developerAgeRatingInfoUrl
             self.gambling = gambling
             self.gamblingSimulated = gamblingSimulated
+            self.gunsOrOtherWeapons = gunsOrOtherWeapons
+            self.healthOrWellnessTopics = healthOrWellnessTopics
             self.horrorOrFearThemes = horrorOrFearThemes
             self.kidsAgeBand = kidsAgeBand
             self.koreaAgeRatingOverride = koreaAgeRatingOverride
             self.lootBox = lootBox
             self.matureOrSuggestiveThemes = matureOrSuggestiveThemes
             self.medicalOrTreatmentInformation = medicalOrTreatmentInformation
+            self.messagingAndChat = messagingAndChat
+            self.parentalControls = parentalControls
             self.profanityOrCrudeHumor = profanityOrCrudeHumor
             self.sexualContentGraphicAndNudity = sexualContentGraphicAndNudity
             self.sexualContentOrNudity = sexualContentOrNudity
             self.unrestrictedWebAccess = unrestrictedWebAccess
+            self.userGeneratedContent = userGeneratedContent
+            self.violenceCartoonOrFantasy = violenceCartoonOrFantasy
+            self.violenceRealistic = violenceRealistic
+            self.violenceRealisticProlongedGraphicOrSadistic = violenceRealisticProlongedGraphicOrSadistic
+        }
+
+        public init(advertising: Bool? = nil,
+                    ageAssurance: Bool? = nil,
+                    ageRatingOverrideV2: AgeRatingOverrideV2? = nil,
+                    alcoholTobaccoOrDrugUseOrReferences: AlcoholTobaccoOrDrugUseOrReferences? = nil,
+                    contests: Contests? = nil,
+                    developerAgeRatingInfoUrl: String? = nil,
+                    gambling: Bool? = nil,
+                    gamblingSimulated: GamblingSimulated? = nil,
+                    gunsOrOtherWeapons: GunsOrOtherWeapons? = nil,
+                    healthOrWellnessTopics: Bool? = nil,
+                    horrorOrFearThemes: HorrorOrFearThemes? = nil,
+                    kidsAgeBand: KidsAgeBand? = nil,
+                    koreaAgeRatingOverride: KoreaAgeRatingOverride? = nil,
+                    lootBox: Bool? = nil,
+                    matureOrSuggestiveThemes: MatureOrSuggestiveThemes? = nil,
+                    medicalOrTreatmentInformation: MedicalOrTreatmentInformation? = nil,
+                    messagingAndChat: Bool? = nil,
+                    parentalControls: Bool? = nil,
+                    profanityOrCrudeHumor: ProfanityOrCrudeHumor? = nil,
+                    sexualContentGraphicAndNudity: SexualContentGraphicAndNudity? = nil,
+                    sexualContentOrNudity: SexualContentOrNudity? = nil,
+                    unrestrictedWebAccess: Bool? = nil,
+                    userGeneratedContent: Bool? = nil,
+                    violenceCartoonOrFantasy: ViolenceCartoonOrFantasy? = nil,
+                    violenceRealistic: ViolenceRealistic? = nil,
+                    violenceRealisticProlongedGraphicOrSadistic: ViolenceRealisticProlongedGraphicOrSadistic? = nil)
+        {
+            self.advertising = advertising
+            self.ageAssurance = ageAssurance
+            self.ageRatingOverrideV2 = ageRatingOverrideV2
+            self.alcoholTobaccoOrDrugUseOrReferences = alcoholTobaccoOrDrugUseOrReferences
+            self.contests = contests
+            self.developerAgeRatingInfoUrl = developerAgeRatingInfoUrl
+            self.gambling = gambling
+            self.gamblingSimulated = gamblingSimulated
+            self.gunsOrOtherWeapons = gunsOrOtherWeapons
+            self.healthOrWellnessTopics = healthOrWellnessTopics
+            self.horrorOrFearThemes = horrorOrFearThemes
+            self.kidsAgeBand = kidsAgeBand
+            self.koreaAgeRatingOverride = koreaAgeRatingOverride
+            self.lootBox = lootBox
+            self.matureOrSuggestiveThemes = matureOrSuggestiveThemes
+            self.medicalOrTreatmentInformation = medicalOrTreatmentInformation
+            self.messagingAndChat = messagingAndChat
+            self.parentalControls = parentalControls
+            self.profanityOrCrudeHumor = profanityOrCrudeHumor
+            self.sexualContentGraphicAndNudity = sexualContentGraphicAndNudity
+            self.sexualContentOrNudity = sexualContentOrNudity
+            self.unrestrictedWebAccess = unrestrictedWebAccess
+            self.userGeneratedContent = userGeneratedContent
             self.violenceCartoonOrFantasy = violenceCartoonOrFantasy
             self.violenceRealistic = violenceRealistic
             self.violenceRealisticProlongedGraphicOrSadistic = violenceRealisticProlongedGraphicOrSadistic
@@ -106,21 +190,30 @@ public struct AgeRatingDeclaration: Codable, Sendable, Identifiable {
 
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: AnyCodingKey.self)
+            advertising = try container.decodeIfPresent(Bool.self, forKey: "advertising")
+            ageAssurance = try container.decodeIfPresent(Bool.self, forKey: "ageAssurance")
             ageRatingOverride = try container.decodeIfPresent(AgeRatingOverride.self, forKey: "ageRatingOverride")
+            ageRatingOverrideV2 = try container.decodeIfPresent(AgeRatingOverrideV2.self, forKey: "ageRatingOverrideV2")
             alcoholTobaccoOrDrugUseOrReferences = try container.decodeIfPresent(AlcoholTobaccoOrDrugUseOrReferences.self, forKey: "alcoholTobaccoOrDrugUseOrReferences")
             contests = try container.decodeIfPresent(Contests.self, forKey: "contests")
+            developerAgeRatingInfoUrl = try container.decodeIfPresent(String.self, forKey: "developerAgeRatingInfoUrl")
             gambling = try container.decodeIfPresent(Bool.self, forKey: "gambling")
             gamblingSimulated = try container.decodeIfPresent(GamblingSimulated.self, forKey: "gamblingSimulated")
+            gunsOrOtherWeapons = try container.decodeIfPresent(GunsOrOtherWeapons.self, forKey: "gunsOrOtherWeapons")
+            healthOrWellnessTopics = try container.decodeIfPresent(Bool.self, forKey: "healthOrWellnessTopics")
             horrorOrFearThemes = try container.decodeIfPresent(HorrorOrFearThemes.self, forKey: "horrorOrFearThemes")
             kidsAgeBand = try container.decodeIfPresent(KidsAgeBand.self, forKey: "kidsAgeBand")
             koreaAgeRatingOverride = try container.decodeIfPresent(KoreaAgeRatingOverride.self, forKey: "koreaAgeRatingOverride")
             lootBox = try container.decodeIfPresent(Bool.self, forKey: "lootBox")
             matureOrSuggestiveThemes = try container.decodeIfPresent(MatureOrSuggestiveThemes.self, forKey: "matureOrSuggestiveThemes")
             medicalOrTreatmentInformation = try container.decodeIfPresent(MedicalOrTreatmentInformation.self, forKey: "medicalOrTreatmentInformation")
+            messagingAndChat = try container.decodeIfPresent(Bool.self, forKey: "messagingAndChat")
+            parentalControls = try container.decodeIfPresent(Bool.self, forKey: "parentalControls")
             profanityOrCrudeHumor = try container.decodeIfPresent(ProfanityOrCrudeHumor.self, forKey: "profanityOrCrudeHumor")
             sexualContentGraphicAndNudity = try container.decodeIfPresent(SexualContentGraphicAndNudity.self, forKey: "sexualContentGraphicAndNudity")
             sexualContentOrNudity = try container.decodeIfPresent(SexualContentOrNudity.self, forKey: "sexualContentOrNudity")
             unrestrictedWebAccess = try container.decodeIfPresent(Bool.self, forKey: "unrestrictedWebAccess")
+            userGeneratedContent = try container.decodeIfPresent(Bool.self, forKey: "userGeneratedContent")
             violenceCartoonOrFantasy = try container.decodeIfPresent(ViolenceCartoonOrFantasy.self, forKey: "violenceCartoonOrFantasy")
             violenceRealistic = try container.decodeIfPresent(ViolenceRealistic.self, forKey: "violenceRealistic")
             violenceRealisticProlongedGraphicOrSadistic = try container.decodeIfPresent(ViolenceRealisticProlongedGraphicOrSadistic.self, forKey: "violenceRealisticProlongedGraphicOrSadistic")
@@ -128,29 +221,41 @@ public struct AgeRatingDeclaration: Codable, Sendable, Identifiable {
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: AnyCodingKey.self)
+            try container.encodeIfPresent(advertising, forKey: "advertising")
+            try container.encodeIfPresent(ageAssurance, forKey: "ageAssurance")
             try container.encodeIfPresent(ageRatingOverride, forKey: "ageRatingOverride")
+            try container.encodeIfPresent(ageRatingOverrideV2, forKey: "ageRatingOverrideV2")
             try container.encodeIfPresent(alcoholTobaccoOrDrugUseOrReferences, forKey: "alcoholTobaccoOrDrugUseOrReferences")
             try container.encodeIfPresent(contests, forKey: "contests")
+            try container.encodeIfPresent(developerAgeRatingInfoUrl, forKey: "developerAgeRatingInfoUrl")
             try container.encodeIfPresent(gambling, forKey: "gambling")
             try container.encodeIfPresent(gamblingSimulated, forKey: "gamblingSimulated")
+            try container.encodeIfPresent(gunsOrOtherWeapons, forKey: "gunsOrOtherWeapons")
+            try container.encodeIfPresent(healthOrWellnessTopics, forKey: "healthOrWellnessTopics")
             try container.encodeIfPresent(horrorOrFearThemes, forKey: "horrorOrFearThemes")
             try container.encodeIfPresent(kidsAgeBand, forKey: "kidsAgeBand")
             try container.encodeIfPresent(koreaAgeRatingOverride, forKey: "koreaAgeRatingOverride")
             try container.encodeIfPresent(lootBox, forKey: "lootBox")
             try container.encodeIfPresent(matureOrSuggestiveThemes, forKey: "matureOrSuggestiveThemes")
             try container.encodeIfPresent(medicalOrTreatmentInformation, forKey: "medicalOrTreatmentInformation")
+            try container.encodeIfPresent(messagingAndChat, forKey: "messagingAndChat")
+            try container.encodeIfPresent(parentalControls, forKey: "parentalControls")
             try container.encodeIfPresent(profanityOrCrudeHumor, forKey: "profanityOrCrudeHumor")
             try container.encodeIfPresent(sexualContentGraphicAndNudity, forKey: "sexualContentGraphicAndNudity")
             try container.encodeIfPresent(sexualContentOrNudity, forKey: "sexualContentOrNudity")
             try container.encodeIfPresent(unrestrictedWebAccess, forKey: "unrestrictedWebAccess")
+            try container.encodeIfPresent(userGeneratedContent, forKey: "userGeneratedContent")
             try container.encodeIfPresent(violenceCartoonOrFantasy, forKey: "violenceCartoonOrFantasy")
             try container.encodeIfPresent(violenceRealistic, forKey: "violenceRealistic")
             try container.encodeIfPresent(violenceRealisticProlongedGraphicOrSadistic, forKey: "violenceRealisticProlongedGraphicOrSadistic")
         }
 
         public enum AgeRatingOverride: String, Sendable, Codable, CaseIterable {
+            case ninePlus = "NINE_PLUS"
             case none = "NONE"
             case seventeenPlus = "SEVENTEEN_PLUS"
+            case sixteenPlus = "SIXTEEN_PLUS"
+            case thirteenPlus = "THIRTEEN_PLUS"
             case unrated = "UNRATED"
 
             public init(from decoder: Decoder) throws {
@@ -169,8 +274,34 @@ public struct AgeRatingDeclaration: Codable, Sendable, Identifiable {
             }
         }
 
+        public enum AgeRatingOverrideV2: String, Sendable, Codable, CaseIterable {
+            case eighteenPlus = "EIGHTEEN_PLUS"
+            case ninePlus = "NINE_PLUS"
+            case none = "NONE"
+            case sixteenPlus = "SIXTEEN_PLUS"
+            case thirteenPlus = "THIRTEEN_PLUS"
+            case unrated = "UNRATED"
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = AgeRatingOverrideV2(rawValue: string) {
+                    self = value
+                } else if let value = AgeRatingOverrideV2(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid AgeRatingOverrideV2 value: \(string)"
+                    )
+                }
+            }
+        }
+
         public enum AlcoholTobaccoOrDrugUseOrReferences: String, Sendable, Codable, CaseIterable {
+            case frequent = "FREQUENT"
             case frequentOrIntense = "FREQUENT_OR_INTENSE"
+            case infrequent = "INFREQUENT"
             case infrequentOrMild = "INFREQUENT_OR_MILD"
             case none = "NONE"
 
@@ -191,7 +322,9 @@ public struct AgeRatingDeclaration: Codable, Sendable, Identifiable {
         }
 
         public enum Contests: String, Sendable, Codable, CaseIterable {
+            case frequent = "FREQUENT"
             case frequentOrIntense = "FREQUENT_OR_INTENSE"
+            case infrequent = "INFREQUENT"
             case infrequentOrMild = "INFREQUENT_OR_MILD"
             case none = "NONE"
 
@@ -212,7 +345,9 @@ public struct AgeRatingDeclaration: Codable, Sendable, Identifiable {
         }
 
         public enum GamblingSimulated: String, Sendable, Codable, CaseIterable {
+            case frequent = "FREQUENT"
             case frequentOrIntense = "FREQUENT_OR_INTENSE"
+            case infrequent = "INFREQUENT"
             case infrequentOrMild = "INFREQUENT_OR_MILD"
             case none = "NONE"
 
@@ -232,8 +367,33 @@ public struct AgeRatingDeclaration: Codable, Sendable, Identifiable {
             }
         }
 
-        public enum HorrorOrFearThemes: String, Sendable, Codable, CaseIterable {
+        public enum GunsOrOtherWeapons: String, Sendable, Codable, CaseIterable {
+            case frequent = "FREQUENT"
             case frequentOrIntense = "FREQUENT_OR_INTENSE"
+            case infrequent = "INFREQUENT"
+            case infrequentOrMild = "INFREQUENT_OR_MILD"
+            case none = "NONE"
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = GunsOrOtherWeapons(rawValue: string) {
+                    self = value
+                } else if let value = GunsOrOtherWeapons(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid GunsOrOtherWeapons value: \(string)"
+                    )
+                }
+            }
+        }
+
+        public enum HorrorOrFearThemes: String, Sendable, Codable, CaseIterable {
+            case frequent = "FREQUENT"
+            case frequentOrIntense = "FREQUENT_OR_INTENSE"
+            case infrequent = "INFREQUENT"
             case infrequentOrMild = "INFREQUENT_OR_MILD"
             case none = "NONE"
 
@@ -275,7 +435,9 @@ public struct AgeRatingDeclaration: Codable, Sendable, Identifiable {
         }
 
         public enum MatureOrSuggestiveThemes: String, Sendable, Codable, CaseIterable {
+            case frequent = "FREQUENT"
             case frequentOrIntense = "FREQUENT_OR_INTENSE"
+            case infrequent = "INFREQUENT"
             case infrequentOrMild = "INFREQUENT_OR_MILD"
             case none = "NONE"
 
@@ -296,7 +458,9 @@ public struct AgeRatingDeclaration: Codable, Sendable, Identifiable {
         }
 
         public enum MedicalOrTreatmentInformation: String, Sendable, Codable, CaseIterable {
+            case frequent = "FREQUENT"
             case frequentOrIntense = "FREQUENT_OR_INTENSE"
+            case infrequent = "INFREQUENT"
             case infrequentOrMild = "INFREQUENT_OR_MILD"
             case none = "NONE"
 
@@ -317,7 +481,9 @@ public struct AgeRatingDeclaration: Codable, Sendable, Identifiable {
         }
 
         public enum ProfanityOrCrudeHumor: String, Sendable, Codable, CaseIterable {
+            case frequent = "FREQUENT"
             case frequentOrIntense = "FREQUENT_OR_INTENSE"
+            case infrequent = "INFREQUENT"
             case infrequentOrMild = "INFREQUENT_OR_MILD"
             case none = "NONE"
 
@@ -338,7 +504,9 @@ public struct AgeRatingDeclaration: Codable, Sendable, Identifiable {
         }
 
         public enum SexualContentGraphicAndNudity: String, Sendable, Codable, CaseIterable {
+            case frequent = "FREQUENT"
             case frequentOrIntense = "FREQUENT_OR_INTENSE"
+            case infrequent = "INFREQUENT"
             case infrequentOrMild = "INFREQUENT_OR_MILD"
             case none = "NONE"
 
@@ -359,7 +527,9 @@ public struct AgeRatingDeclaration: Codable, Sendable, Identifiable {
         }
 
         public enum SexualContentOrNudity: String, Sendable, Codable, CaseIterable {
+            case frequent = "FREQUENT"
             case frequentOrIntense = "FREQUENT_OR_INTENSE"
+            case infrequent = "INFREQUENT"
             case infrequentOrMild = "INFREQUENT_OR_MILD"
             case none = "NONE"
 
@@ -380,7 +550,9 @@ public struct AgeRatingDeclaration: Codable, Sendable, Identifiable {
         }
 
         public enum ViolenceCartoonOrFantasy: String, Sendable, Codable, CaseIterable {
+            case frequent = "FREQUENT"
             case frequentOrIntense = "FREQUENT_OR_INTENSE"
+            case infrequent = "INFREQUENT"
             case infrequentOrMild = "INFREQUENT_OR_MILD"
             case none = "NONE"
 
@@ -401,7 +573,9 @@ public struct AgeRatingDeclaration: Codable, Sendable, Identifiable {
         }
 
         public enum ViolenceRealistic: String, Sendable, Codable, CaseIterable {
+            case frequent = "FREQUENT"
             case frequentOrIntense = "FREQUENT_OR_INTENSE"
+            case infrequent = "INFREQUENT"
             case infrequentOrMild = "INFREQUENT_OR_MILD"
             case none = "NONE"
 
@@ -422,7 +596,9 @@ public struct AgeRatingDeclaration: Codable, Sendable, Identifiable {
         }
 
         public enum ViolenceRealisticProlongedGraphicOrSadistic: String, Sendable, Codable, CaseIterable {
+            case frequent = "FREQUENT"
             case frequentOrIntense = "FREQUENT_OR_INTENSE"
+            case infrequent = "INFREQUENT"
             case infrequentOrMild = "INFREQUENT_OR_MILD"
             case none = "NONE"
 

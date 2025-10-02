@@ -44,11 +44,32 @@ public struct BackgroundAssetVersionsResponse: Codable, Sendable, PagedResponse 
         try container.encodeIfPresent(meta, forKey: "meta")
     }
 
+    public func getAppStoreRelease(for backgroundAssetVersion: BackgroundAssetVersion) -> BackgroundAssetVersionAppStoreRelease? {
+        included?.compactMap { relationship -> BackgroundAssetVersionAppStoreRelease? in
+            guard case let .backgroundAssetVersionAppStoreRelease(appStoreRelease) = relationship else { return nil }
+            return appStoreRelease
+        }.first { $0.id == backgroundAssetVersion.relationships?.appStoreRelease?.data?.id }
+    }
+
     public func getAssetFile(for backgroundAssetVersion: BackgroundAssetVersion) -> BackgroundAssetUploadFile? {
         included?.compactMap { relationship -> BackgroundAssetUploadFile? in
             guard case let .backgroundAssetUploadFile(assetFile) = relationship else { return nil }
             return assetFile
         }.first { $0.id == backgroundAssetVersion.relationships?.assetFile?.data?.id }
+    }
+
+    public func getBackgroundAsset(for backgroundAssetVersion: BackgroundAssetVersion) -> BackgroundAsset? {
+        included?.compactMap { relationship -> BackgroundAsset? in
+            guard case let .backgroundAsset(backgroundAsset) = relationship else { return nil }
+            return backgroundAsset
+        }.first { $0.id == backgroundAssetVersion.relationships?.backgroundAsset?.data?.id }
+    }
+
+    public func getExternalBetaRelease(for backgroundAssetVersion: BackgroundAssetVersion) -> BackgroundAssetVersionExternalBetaRelease? {
+        included?.compactMap { relationship -> BackgroundAssetVersionExternalBetaRelease? in
+            guard case let .backgroundAssetVersionExternalBetaRelease(externalBetaRelease) = relationship else { return nil }
+            return externalBetaRelease
+        }.first { $0.id == backgroundAssetVersion.relationships?.externalBetaRelease?.data?.id }
     }
 
     public func getInternalBetaRelease(for backgroundAssetVersion: BackgroundAssetVersion) -> BackgroundAssetVersionInternalBetaRelease? {
@@ -66,12 +87,21 @@ public struct BackgroundAssetVersionsResponse: Codable, Sendable, PagedResponse 
     }
 
     public enum Included: Codable, Sendable {
+        case backgroundAsset(BackgroundAsset)
         case backgroundAssetUploadFile(BackgroundAssetUploadFile)
+        case backgroundAssetVersionAppStoreRelease(BackgroundAssetVersionAppStoreRelease)
+        case backgroundAssetVersionExternalBetaRelease(BackgroundAssetVersionExternalBetaRelease)
         case backgroundAssetVersionInternalBetaRelease(BackgroundAssetVersionInternalBetaRelease)
 
         public init(from decoder: Decoder) throws {
-            if let backgroundAssetUploadFile = try? BackgroundAssetUploadFile(from: decoder) {
+            if let backgroundAsset = try? BackgroundAsset(from: decoder) {
+                self = .backgroundAsset(backgroundAsset)
+            } else if let backgroundAssetUploadFile = try? BackgroundAssetUploadFile(from: decoder) {
                 self = .backgroundAssetUploadFile(backgroundAssetUploadFile)
+            } else if let backgroundAssetVersionAppStoreRelease = try? BackgroundAssetVersionAppStoreRelease(from: decoder) {
+                self = .backgroundAssetVersionAppStoreRelease(backgroundAssetVersionAppStoreRelease)
+            } else if let backgroundAssetVersionExternalBetaRelease = try? BackgroundAssetVersionExternalBetaRelease(from: decoder) {
+                self = .backgroundAssetVersionExternalBetaRelease(backgroundAssetVersionExternalBetaRelease)
             } else if let backgroundAssetVersionInternalBetaRelease = try? BackgroundAssetVersionInternalBetaRelease(from: decoder) {
                 self = .backgroundAssetVersionInternalBetaRelease(backgroundAssetVersionInternalBetaRelease)
             } else {
@@ -85,7 +115,13 @@ public struct BackgroundAssetVersionsResponse: Codable, Sendable, PagedResponse 
 
         public func encode(to encoder: Encoder) throws {
             switch self {
+            case let .backgroundAsset(value):
+                try value.encode(to: encoder)
             case let .backgroundAssetUploadFile(value):
+                try value.encode(to: encoder)
+            case let .backgroundAssetVersionAppStoreRelease(value):
+                try value.encode(to: encoder)
+            case let .backgroundAssetVersionExternalBetaRelease(value):
                 try value.encode(to: encoder)
             case let .backgroundAssetVersionInternalBetaRelease(value):
                 try value.encode(to: encoder)

@@ -255,6 +255,7 @@ public struct AppInfo: Codable, Sendable, Identifiable {
         public var secondaryCategory: SecondaryCategory?
         public var secondarySubcategoryOne: SecondarySubcategoryOne?
         public var secondarySubcategoryTwo: SecondarySubcategoryTwo?
+        public var territoryAgeRatings: TerritoryAgeRatings?
 
         public init(ageRatingDeclaration: AgeRatingDeclaration? = nil,
                     app: App? = nil,
@@ -264,7 +265,8 @@ public struct AppInfo: Codable, Sendable, Identifiable {
                     primarySubcategoryTwo: PrimarySubcategoryTwo? = nil,
                     secondaryCategory: SecondaryCategory? = nil,
                     secondarySubcategoryOne: SecondarySubcategoryOne? = nil,
-                    secondarySubcategoryTwo: SecondarySubcategoryTwo? = nil)
+                    secondarySubcategoryTwo: SecondarySubcategoryTwo? = nil,
+                    territoryAgeRatings: TerritoryAgeRatings? = nil)
         {
             self.ageRatingDeclaration = ageRatingDeclaration
             self.app = app
@@ -275,6 +277,7 @@ public struct AppInfo: Codable, Sendable, Identifiable {
             self.secondaryCategory = secondaryCategory
             self.secondarySubcategoryOne = secondarySubcategoryOne
             self.secondarySubcategoryTwo = secondarySubcategoryTwo
+            self.territoryAgeRatings = territoryAgeRatings
         }
 
         public init(from decoder: Decoder) throws {
@@ -288,6 +291,7 @@ public struct AppInfo: Codable, Sendable, Identifiable {
             secondaryCategory = try container.decodeIfPresent(SecondaryCategory.self, forKey: "secondaryCategory")
             secondarySubcategoryOne = try container.decodeIfPresent(SecondarySubcategoryOne.self, forKey: "secondarySubcategoryOne")
             secondarySubcategoryTwo = try container.decodeIfPresent(SecondarySubcategoryTwo.self, forKey: "secondarySubcategoryTwo")
+            territoryAgeRatings = try container.decodeIfPresent(TerritoryAgeRatings.self, forKey: "territoryAgeRatings")
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -301,6 +305,7 @@ public struct AppInfo: Codable, Sendable, Identifiable {
             try container.encodeIfPresent(secondaryCategory, forKey: "secondaryCategory")
             try container.encodeIfPresent(secondarySubcategoryOne, forKey: "secondarySubcategoryOne")
             try container.encodeIfPresent(secondarySubcategoryTwo, forKey: "secondarySubcategoryTwo")
+            try container.encodeIfPresent(territoryAgeRatings, forKey: "territoryAgeRatings")
         }
 
         public struct AgeRatingDeclaration: Codable, Sendable {
@@ -722,6 +727,24 @@ public struct AppInfo: Codable, Sendable, Identifiable {
                     try container.encode(id, forKey: "id")
                     try container.encode(type, forKey: "type")
                 }
+            }
+        }
+
+        public struct TerritoryAgeRatings: Codable, Sendable {
+            public var links: RelationshipLinks?
+
+            public init(links: RelationshipLinks? = nil) {
+                self.links = links
+            }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                links = try container.decodeIfPresent(RelationshipLinks.self, forKey: "links")
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: AnyCodingKey.self)
+                try container.encodeIfPresent(links, forKey: "links")
             }
         }
     }

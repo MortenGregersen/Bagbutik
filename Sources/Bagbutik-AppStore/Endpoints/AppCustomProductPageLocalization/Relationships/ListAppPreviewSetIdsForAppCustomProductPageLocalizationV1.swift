@@ -3,7 +3,8 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # GET /v1/appCustomProductPageLocalizations/{id}/relationships/appPreviewSets
+     # List app preview set Ids for a custom product page localization
+     List the app preview set IDs for a specific custom product page localization.
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-appCustomProductPageLocalizations-_id_-relationships-appPreviewSets>

@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # AppBackgroundAssetsLinkagesResponse
+ A response that contains a list of IDs of related background assets.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appbackgroundassetslinkagesresponse>
+ */
 public struct AppBackgroundAssetsLinkagesResponse: Codable, Sendable, PagedResponse {
     public let data: [Data]
     public let links: PagedDocumentLinks

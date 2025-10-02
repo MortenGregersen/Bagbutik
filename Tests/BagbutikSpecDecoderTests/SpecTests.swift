@@ -72,6 +72,68 @@ final class SpecTests: XCTestCase {
                             }
                         }
                     }
+                },
+                "/v1/backgroundAssets/{id}/versions" : {
+                    "get" : {
+                        "tags" : [ "BackgroundAssets" ],
+                        "operationId" : "backgroundAssets_versions_getToManyRelated",
+                        "parameters" : [ {
+                            "name" : "filter[state]",
+                            "in" : "query",
+                            "description" : "filter by attribute 'state'",
+                            "schema" : {
+                                "type" : "array",
+                                "items" : {
+                                    "type" : "string",
+                                    "enum" : [ "AWAITING_UPLOAD", "PROCESSING", "FAILED", "COMPLETE" ]
+                                }
+                            },
+                            "style" : "form",
+                            "explode" : false
+                        } ],
+                        "responses" : {
+                            "400" : {
+                                "description" : "Parameter error(s)",
+                                "content" : {
+                                    "application/json" : {
+                                        "schema" : {
+                                            "$ref" : "#/components/schemas/ErrorResponse"
+                                        }
+                                    }
+                                }
+                            },
+                            "404" : {
+                                "description" : "Not found error",
+                                "content" : {
+                                    "application/json" : {
+                                        "schema" : {
+                                            "$ref" : "#/components/schemas/ErrorResponse"
+                                        }
+                                    }
+                                }
+                            },
+                            "200" : {
+                                "description" : "List of BackgroundAssetVersions",
+                                "content" : {
+                                    "application/json" : {
+                                        "schema" : {
+                                            "$ref" : "#/components/schemas/BackgroundAssetVersionsResponse"
+                                        }
+                                    }
+                                }
+                            },
+                        }
+                    },
+                    "parameters" : [ {
+                        "name" : "id",
+                        "in" : "path",
+                        "description" : "the id of the requested resource",
+                        "schema" : {
+                            "type" : "string"
+                        },
+                        "style" : "simple",
+                        "required" : true
+                    } ]
                 }
             },
             "components": {
@@ -99,6 +161,14 @@ final class SpecTests: XCTestCase {
                         "type" : "string",
                         "enum" : [ "IOS", "MAC_OS", "TV_OS" ]
                     },
+                    "BackgroundAssetVersionState" : {
+                        "type" : "string",
+                        "enum" : [ "AWAITING_UPLOAD", "PROCESSING", "FAILED", "COMPLETE" ]
+                    },
+                    "BuildUploadState": {
+                        "type": "string",
+                        "enum": [ "AWAITING_UPLOAD", "PROCESSING", "FAILED", "COMPLETE" ]
+                    }
                 }
             }
         }
@@ -116,6 +186,12 @@ final class SpecTests: XCTestCase {
         }
         XCTAssertEqual(profileTypeSimpleType.type, "Profile.Attributes.ProfileType")
         XCTAssertEqual(platformSimpleType.type, "Platform")
+        guard let assetVersionsOperation = spec.paths["/v1/backgroundAssets/{id}/versions"]?.operations[0],
+              case .filter(_, let state, _, _) = assetVersionsOperation.parameters?[0],
+              case .simple(let stateSimpleType) = state else {
+            XCTFail(); return
+        }
+        XCTAssertEqual(stateSimpleType.type, "BackgroundAssetVersionState")
     }
 
     func testFlattenIdenticalSchemas_InModels() throws {
@@ -567,61 +643,6 @@ final class SpecTests: XCTestCase {
                                 }
                             }
                         }
-                    },
-                    "AgeRatingDeclaration" : {
-                        "type" : "object",
-                        "title" : "AgeRatingDeclaration",
-                        "properties" : {
-                            "type" : {
-                                "type" : "string",
-                                "enum" : [ "ageRatingDeclarations" ]
-                            },
-                            "id" : {
-                                "type" : "string"
-                            },
-                            "attributes" : {
-                                "type" : "object",
-                                "properties" : {
-                                    "alcoholTobaccoOrDrugUseOrReferences" : {
-                                        "type" : "string",
-                                        "enum" : [ "NONE" ]
-                                    },
-                                    "contests" : {
-                                        "type" : "string",
-                                        "enum" : [ "NONE" ]
-                                    }
-                                }
-                            },
-                            "links" : {
-                                "$ref" : "#/components/schemas/ResourceLinks"
-                            }
-                        },
-                        "required" : [ "id", "type" ]
-                    },
-                    "SubscriptionOfferCode" : {
-                        "type" : "object",
-                        "title" : "SubscriptionOfferCode",
-                        "properties" : {
-                            "type" : {
-                                "type" : "string",
-                                "enum" : [ "subscriptionOfferCodes" ]
-                            },
-                            "id" : {
-                                "type" : "string"
-                            },
-                            "attributes" : {
-                                "type" : "object",
-                                "properties" : {}
-                            },
-                            "relationships" : {
-                                "type" : "object",
-                                "properties" : {}
-                            },
-                            "links" : {
-                                "$ref" : "#/components/schemas/ResourceLinks"
-                            }
-                        },
-                        "required" : [ "id", "type" ]
                     }
                 }
             }
@@ -703,43 +724,6 @@ final class SpecTests: XCTestCase {
         XCTAssertEqual(purchaseRequirementEnumSchema.cases.sorted(by: { $0.value < $1.value }),
                        [EnumCase(id: "inAppPurchase", value: "IN_APP_PURCHASE"),
                         EnumCase(id: "noCostAssociated", value: "NO_COST_ASSOCIATED")])
-
-        guard case .object(let ageRatingDeclarationSchema) = spec.components.schemas["AgeRatingDeclaration"],
-              case .schema(let ageRatingDeclarationAttributesSchema) = ageRatingDeclarationSchema.properties["attributes"]?.type,
-              case .enumSchema(let alcoholTobaccoOrDrugUseOrReferencesSchema) = ageRatingDeclarationAttributesSchema.properties["alcoholTobaccoOrDrugUseOrReferences"]?.type,
-              case .enumSchema(let contestsSchema) = ageRatingDeclarationAttributesSchema.properties["contests"]?.type,
-              case .enumSchema(let ageRatingOverrideSchema) = ageRatingDeclarationAttributesSchema.properties["ageRatingOverride"]?.type
-        else {
-            XCTFail(); return
-        }
-        XCTAssertTrue(alcoholTobaccoOrDrugUseOrReferencesSchema.cases.count == 3)
-        XCTAssertEqual(alcoholTobaccoOrDrugUseOrReferencesSchema.cases.sorted(by: { $0.value < $1.value }),
-                       [
-                           EnumCase(id: "frequentOrIntense", value: "FREQUENT_OR_INTENSE"),
-                           EnumCase(id: "infrequentOrMild", value: "INFREQUENT_OR_MILD"),
-                           EnumCase(id: "none", value: "NONE"),
-                       ])
-        XCTAssertTrue(contestsSchema.cases.count == 3)
-        XCTAssertEqual(contestsSchema.cases.sorted(by: { $0.value < $1.value }),
-                       [
-                           EnumCase(id: "frequentOrIntense", value: "FREQUENT_OR_INTENSE"),
-                           EnumCase(id: "infrequentOrMild", value: "INFREQUENT_OR_MILD"),
-                           EnumCase(id: "none", value: "NONE"),
-                       ])
-        XCTAssertTrue(ageRatingOverrideSchema.cases.count == 3)
-        XCTAssertEqual(ageRatingOverrideSchema.cases.sorted(by: { $0.value < $1.value }),
-                       [
-                           EnumCase(id: "none", value: "NONE"),
-                           EnumCase(id: "seventeenPlus", value: "SEVENTEEN_PLUS"),
-                           EnumCase(id: "unrated", value: "UNRATED"),
-                       ])
-        
-        guard case .object(let subscriptionOfferCodeSchema) = spec.components.schemas["SubscriptionOfferCode"],
-              case .schema(let subscriptionOfferCodeAttributesSchema) = subscriptionOfferCodeSchema.properties["attributes"]?.type
-        else {
-            XCTFail(); return
-        }
-        XCTAssertTrue(subscriptionOfferCodeAttributesSchema.properties.count == 1)
     }
 
     func testApplyManualPatches_Error() throws {

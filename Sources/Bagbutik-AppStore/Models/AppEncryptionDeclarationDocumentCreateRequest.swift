@@ -2,6 +2,13 @@ import Bagbutik_Core
 import Bagbutik_Models
 import Foundation
 
+/**
+ # AppEncryptionDeclarationDocumentCreateRequest
+ The request body you use to create an encryption resource.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appencryptiondeclarationdocumentcreaterequest>
+ */
 public struct AppEncryptionDeclarationDocumentCreateRequest: Codable, Sendable, RequestBody {
     public let data: Data
 

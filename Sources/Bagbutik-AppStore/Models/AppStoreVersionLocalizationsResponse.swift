@@ -75,13 +75,28 @@ public struct AppStoreVersionLocalizationsResponse: Codable, Sendable, PagedResp
         }.first { $0.id == appStoreVersionLocalization.relationships?.appStoreVersion?.data?.id }
     }
 
+    public func getSearchKeywords(for appStoreVersionLocalization: AppStoreVersionLocalization) -> [AppKeyword] {
+        guard let searchKeywordIds = appStoreVersionLocalization.relationships?.searchKeywords?.data?.map(\.id),
+              let searchKeywords = included?.compactMap({ relationship -> AppKeyword? in
+                  guard case let .appKeyword(searchKeyword) = relationship else { return nil }
+                  return searchKeywordIds.contains(searchKeyword.id) ? searchKeyword : nil
+              })
+        else {
+            return []
+        }
+        return searchKeywords
+    }
+
     public enum Included: Codable, Sendable {
+        case appKeyword(AppKeyword)
         case appPreviewSet(AppPreviewSet)
         case appScreenshotSet(AppScreenshotSet)
         case appStoreVersion(AppStoreVersion)
 
         public init(from decoder: Decoder) throws {
-            if let appPreviewSet = try? AppPreviewSet(from: decoder) {
+            if let appKeyword = try? AppKeyword(from: decoder) {
+                self = .appKeyword(appKeyword)
+            } else if let appPreviewSet = try? AppPreviewSet(from: decoder) {
                 self = .appPreviewSet(appPreviewSet)
             } else if let appScreenshotSet = try? AppScreenshotSet(from: decoder) {
                 self = .appScreenshotSet(appScreenshotSet)
@@ -98,6 +113,8 @@ public struct AppStoreVersionLocalizationsResponse: Codable, Sendable, PagedResp
 
         public func encode(to encoder: Encoder) throws {
             switch self {
+            case let .appKeyword(value):
+                try value.encode(to: encoder)
             case let .appPreviewSet(value):
                 try value.encode(to: encoder)
             case let .appScreenshotSet(value):

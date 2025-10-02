@@ -35,8 +35,11 @@ public enum GetBackgroundAssetV1 {
         case backgroundAssets([BackgroundAssets])
 
         public enum BackgroundAssets: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case app
+            case appStoreVersion
             case assetPackIdentifier
             case createdDate
+            case externalBetaVersion
             case internalBetaVersion
             case versions
 
@@ -61,6 +64,9 @@ public enum GetBackgroundAssetV1 {
      Relationship data to include in the response.
      */
     public enum Include: String, IncludeParameter, CaseIterable {
+        case app
+        case appStoreVersion
+        case externalBetaVersion
         case internalBetaVersion
     }
 }

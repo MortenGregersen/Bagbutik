@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # AppStoreVersionExperimentV2
+ The data structure that represents an app store version experiment v2 resource.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionexperimentv2>
+ */
 public struct AppStoreVersionExperimentV2: Codable, Sendable, Identifiable {
     public let id: String
     public var links: ResourceLinks?

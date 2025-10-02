@@ -2,6 +2,13 @@ import Bagbutik_Core
 import Bagbutik_Models
 import Foundation
 
+/**
+ # AppEncryptionDeclarationWithoutIncludesResponse
+ A response that contains a list of app encryption declaration without includes response resources.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appencryptiondeclarationwithoutincludesresponse>
+ */
 public struct AppEncryptionDeclarationWithoutIncludesResponse: Codable, Sendable {
     public let data: AppEncryptionDeclaration
     public let links: DocumentLinks

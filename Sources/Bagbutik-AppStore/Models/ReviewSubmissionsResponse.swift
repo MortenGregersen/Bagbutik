@@ -2,6 +2,13 @@ import Bagbutik_Core
 import Bagbutik_Models
 import Foundation
 
+/**
+ # ReviewSubmissionsResponse
+ A response that contains a list of review submission resources.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/reviewsubmissionsresponse>
+ */
 public struct ReviewSubmissionsResponse: Codable, Sendable, PagedResponse {
     public typealias Data = ReviewSubmission
 
