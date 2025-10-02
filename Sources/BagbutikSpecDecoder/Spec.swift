@@ -315,48 +315,6 @@ public struct Spec: Decodable {
             patchedSchemas.append(.object(ageRatingDeclarationUpdateRequestSchema))
         }
 
-        // FB17932433: Adds "totalNumberOfCodes" property to SubscriptionOfferCode.Attributes.
-        if case .object(var subscriptionOfferCodeSchema) = components.schemas["SubscriptionOfferCode"],
-           case .schema(var subscriptionOfferCodeAttributesSchema) = subscriptionOfferCodeSchema.properties["attributes"]?.type {
-            if subscriptionOfferCodeAttributesSchema.properties["totalNumberOfCodes"] == nil {
-                subscriptionOfferCodeAttributesSchema.properties["totalNumberOfCodes"] = .init(type: .simple(.integer()))
-            }
-            subscriptionOfferCodeSchema.properties["attributes"]?.type = .schema(subscriptionOfferCodeAttributesSchema)
-            components.schemas["SubscriptionOfferCode"] = .object(subscriptionOfferCodeSchema)
-            patchedSchemas.append(.object(subscriptionOfferCodeSchema))
-        }
-        let pathsMissingTotalNumberOfCodesFieldParameter = [
-            "/v1/subscriptionOfferCodes/{id}",
-            "/v1/subscriptions/{id}",
-            "/v1/subscriptionGroups/{id}/subscriptions",
-            "/v1/subscriptionOfferCodes/{id}/customCodes",
-            "/v1/subscriptionOfferCodes/{id}/oneTimeUseCodes",
-            "/v1/subscriptions/{id}/offerCodes",
-        ]
-        for path in pathsMissingTotalNumberOfCodesFieldParameter {
-            if var getPath = paths[path],
-               let operationIndex = getPath.operations.firstIndex(where: { $0.method == .get }),
-               let parameterIndex = getPath.operations[operationIndex].parameters?.firstIndex(where: {
-                   if case .fields(let name, _, _, _) = $0 {
-                       name == "subscriptionOfferCodes"
-                   } else {
-                       false
-                   }
-               }),
-               case .fields(let name, let type, let deprecated, let documentation) = getPath.operations[operationIndex].parameters?[parameterIndex],
-               case .enum(let valueType, var values) = type {
-                var operation = getPath.operations[operationIndex]
-                values.append("totalNumberOfCodes")
-                operation.parameters?[parameterIndex] = .fields(
-                    name: name,
-                    type: .enum(type: valueType, values: values),
-                    deprecated: deprecated,
-                    documentation: documentation)
-                getPath.operations[operationIndex] = operation
-                paths[path] = getPath
-            }
-        }
-
         // Remove "StringToStringMap" - this is replaced with a [String: String] in the generated code
         components.schemas.removeValue(forKey: "StringToStringMap")
     }

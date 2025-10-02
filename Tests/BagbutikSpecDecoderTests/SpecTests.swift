@@ -597,31 +597,6 @@ final class SpecTests: XCTestCase {
                             }
                         },
                         "required" : [ "id", "type" ]
-                    },
-                    "SubscriptionOfferCode" : {
-                        "type" : "object",
-                        "title" : "SubscriptionOfferCode",
-                        "properties" : {
-                            "type" : {
-                                "type" : "string",
-                                "enum" : [ "subscriptionOfferCodes" ]
-                            },
-                            "id" : {
-                                "type" : "string"
-                            },
-                            "attributes" : {
-                                "type" : "object",
-                                "properties" : {}
-                            },
-                            "relationships" : {
-                                "type" : "object",
-                                "properties" : {}
-                            },
-                            "links" : {
-                                "$ref" : "#/components/schemas/ResourceLinks"
-                            }
-                        },
-                        "required" : [ "id", "type" ]
                     }
                 }
             }
@@ -733,13 +708,6 @@ final class SpecTests: XCTestCase {
                            EnumCase(id: "seventeenPlus", value: "SEVENTEEN_PLUS"),
                            EnumCase(id: "unrated", value: "UNRATED"),
                        ])
-        
-        guard case .object(let subscriptionOfferCodeSchema) = spec.components.schemas["SubscriptionOfferCode"],
-              case .schema(let subscriptionOfferCodeAttributesSchema) = subscriptionOfferCodeSchema.properties["attributes"]?.type
-        else {
-            XCTFail(); return
-        }
-        XCTAssertTrue(subscriptionOfferCodeAttributesSchema.properties.count == 1)
     }
 
     func testApplyManualPatches_Error() throws {

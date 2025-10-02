@@ -76,7 +76,6 @@ public enum ListOneTimeUseCodesForSubscriptionOfferCodeV1 {
             case prices
             case subscription
             case totalNumberOfCodes
-            case totalNumberOfCodes
 
             public init(from decoder: Decoder) throws {
                 let container = try decoder.singleValueContainer()
