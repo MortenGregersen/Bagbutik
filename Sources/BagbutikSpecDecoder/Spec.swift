@@ -1,4 +1,5 @@
 import Foundation
+import BagbutikStringExtensions
 
 /// A representation of the spec file
 public struct Spec: Decodable {
@@ -38,12 +39,24 @@ public struct Spec: Decodable {
                               case .enum(let type, let values) = parameterValueType else { return }
                         let parameterEnumSchema = EnumSchema(name: parameterName.capitalizingFirstLetter(), type: type.lowercased(), caseValues: values)
                         var newType: String?
-                        if let enumSchema: EnumSchema = components.schemas.compactMap({ _, schema in
+                        let mainTypeComponents = path.info.mainType.splitCamelCase()
+                        let potentialEnumSchemas = components.schemas.compactMap { _, schema in
                             if case .enum(let enumSchema) = schema, enumSchema.cases.map(\.value) == parameterEnumSchema.cases.map(\.value) {
                                 return enumSchema
                             }
                             return nil
-                        }).first {
+                        }.sorted(by: { lhs, rhs in
+                            let lhsComponents = lhs.name.splitCamelCase()
+                            let lhsScore = zip(lhsComponents, mainTypeComponents)
+                                .filter { $0 == $1 }
+                                .count
+                            let rhsComponents = rhs.name.splitCamelCase()
+                            let rhsScore = zip(rhsComponents, mainTypeComponents)
+                                .filter { $0 == $1 }
+                                .count
+                            return lhsScore > rhsScore
+                        })
+                        if let enumSchema: EnumSchema = potentialEnumSchemas.first {
                             newType = enumSchema.name
                             var enumSchema = enumSchema
                             enumSchema.additionalProtocols.insert("ParameterValue")

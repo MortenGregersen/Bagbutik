@@ -72,6 +72,68 @@ final class SpecTests: XCTestCase {
                             }
                         }
                     }
+                },
+                "/v1/backgroundAssets/{id}/versions" : {
+                    "get" : {
+                        "tags" : [ "BackgroundAssets" ],
+                        "operationId" : "backgroundAssets_versions_getToManyRelated",
+                        "parameters" : [ {
+                            "name" : "filter[state]",
+                            "in" : "query",
+                            "description" : "filter by attribute 'state'",
+                            "schema" : {
+                                "type" : "array",
+                                "items" : {
+                                    "type" : "string",
+                                    "enum" : [ "AWAITING_UPLOAD", "PROCESSING", "FAILED", "COMPLETE" ]
+                                }
+                            },
+                            "style" : "form",
+                            "explode" : false
+                        } ],
+                        "responses" : {
+                            "400" : {
+                                "description" : "Parameter error(s)",
+                                "content" : {
+                                    "application/json" : {
+                                        "schema" : {
+                                            "$ref" : "#/components/schemas/ErrorResponse"
+                                        }
+                                    }
+                                }
+                            },
+                            "404" : {
+                                "description" : "Not found error",
+                                "content" : {
+                                    "application/json" : {
+                                        "schema" : {
+                                            "$ref" : "#/components/schemas/ErrorResponse"
+                                        }
+                                    }
+                                }
+                            },
+                            "200" : {
+                                "description" : "List of BackgroundAssetVersions",
+                                "content" : {
+                                    "application/json" : {
+                                        "schema" : {
+                                            "$ref" : "#/components/schemas/BackgroundAssetVersionsResponse"
+                                        }
+                                    }
+                                }
+                            },
+                        }
+                    },
+                    "parameters" : [ {
+                        "name" : "id",
+                        "in" : "path",
+                        "description" : "the id of the requested resource",
+                        "schema" : {
+                            "type" : "string"
+                        },
+                        "style" : "simple",
+                        "required" : true
+                    } ]
                 }
             },
             "components": {
@@ -99,6 +161,14 @@ final class SpecTests: XCTestCase {
                         "type" : "string",
                         "enum" : [ "IOS", "MAC_OS", "TV_OS" ]
                     },
+                    "BackgroundAssetVersionState" : {
+                        "type" : "string",
+                        "enum" : [ "AWAITING_UPLOAD", "PROCESSING", "FAILED", "COMPLETE" ]
+                    },
+                    "BuildUploadState": {
+                        "type": "string",
+                        "enum": [ "AWAITING_UPLOAD", "PROCESSING", "FAILED", "COMPLETE" ]
+                    }
                 }
             }
         }
@@ -116,6 +186,12 @@ final class SpecTests: XCTestCase {
         }
         XCTAssertEqual(profileTypeSimpleType.type, "Profile.Attributes.ProfileType")
         XCTAssertEqual(platformSimpleType.type, "Platform")
+        guard let assetVersionsOperation = spec.paths["/v1/backgroundAssets/{id}/versions"]?.operations[0],
+              case .filter(_, let state, _, _) = assetVersionsOperation.parameters?[0],
+              case .simple(let stateSimpleType) = state else {
+            XCTFail(); return
+        }
+        XCTAssertEqual(stateSimpleType.type, "BackgroundAssetVersionState")
     }
 
     func testFlattenIdenticalSchemas_InModels() throws {
