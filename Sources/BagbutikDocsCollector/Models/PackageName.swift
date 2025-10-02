@@ -101,6 +101,7 @@ public enum PackageName: CaseIterable, Codable, Equatable {
             || resource.hasPrefix("reviewSubmission")
             || resource.hasPrefix("routingAppCoverage")
             || resource.hasPrefix("screenshot")
+            || resource.hasPrefix("searchKeywords")
             || resource.hasPrefix("secondary")
             || (resource.hasPrefix("storeVersion")
                 && !identifier.lowercased().contains("alternativedistribution")
