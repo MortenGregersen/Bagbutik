@@ -63,7 +63,7 @@ public struct AgeRatingDeclarationUpdateRequest: Codable, Sendable, RequestBody 
             public var ageRatingOverrideV2: AgeRatingDeclaration.Attributes.AgeRatingOverrideV2?
             public var alcoholTobaccoOrDrugUseOrReferences: AgeRatingDeclaration.Attributes.AlcoholTobaccoOrDrugUseOrReferences?
             public var contests: AgeRatingDeclaration.Attributes.Contests?
-            public var developerAgeRatingInfoUrl: String?
+            public var developerAgeRatingInfoUrl: Clearable<String>?
             public var gambling: Bool?
             public var gamblingSimulated: AgeRatingDeclaration.Attributes.GamblingSimulated?
             public var gunsOrOtherWeapons: AgeRatingDeclaration.Attributes.GunsOrOtherWeapons?
@@ -92,7 +92,7 @@ public struct AgeRatingDeclarationUpdateRequest: Codable, Sendable, RequestBody 
                         ageRatingOverrideV2: AgeRatingDeclaration.Attributes.AgeRatingOverrideV2? = nil,
                         alcoholTobaccoOrDrugUseOrReferences: AgeRatingDeclaration.Attributes.AlcoholTobaccoOrDrugUseOrReferences? = nil,
                         contests: AgeRatingDeclaration.Attributes.Contests? = nil,
-                        developerAgeRatingInfoUrl: String? = nil,
+                        developerAgeRatingInfoUrl: Clearable<String>? = nil,
                         gambling: Bool? = nil,
                         gamblingSimulated: AgeRatingDeclaration.Attributes.GamblingSimulated? = nil,
                         gunsOrOtherWeapons: AgeRatingDeclaration.Attributes.GunsOrOtherWeapons? = nil,
@@ -148,7 +148,7 @@ public struct AgeRatingDeclarationUpdateRequest: Codable, Sendable, RequestBody 
                         ageRatingOverrideV2: AgeRatingDeclaration.Attributes.AgeRatingOverrideV2? = nil,
                         alcoholTobaccoOrDrugUseOrReferences: AgeRatingDeclaration.Attributes.AlcoholTobaccoOrDrugUseOrReferences? = nil,
                         contests: AgeRatingDeclaration.Attributes.Contests? = nil,
-                        developerAgeRatingInfoUrl: String? = nil,
+                        developerAgeRatingInfoUrl: Clearable<String>? = nil,
                         gambling: Bool? = nil,
                         gamblingSimulated: AgeRatingDeclaration.Attributes.GamblingSimulated? = nil,
                         gunsOrOtherWeapons: AgeRatingDeclaration.Attributes.GunsOrOtherWeapons? = nil,
@@ -206,7 +206,7 @@ public struct AgeRatingDeclarationUpdateRequest: Codable, Sendable, RequestBody 
                 ageRatingOverrideV2 = try container.decodeIfPresent(AgeRatingDeclaration.Attributes.AgeRatingOverrideV2.self, forKey: "ageRatingOverrideV2")
                 alcoholTobaccoOrDrugUseOrReferences = try container.decodeIfPresent(AgeRatingDeclaration.Attributes.AlcoholTobaccoOrDrugUseOrReferences.self, forKey: "alcoholTobaccoOrDrugUseOrReferences")
                 contests = try container.decodeIfPresent(AgeRatingDeclaration.Attributes.Contests.self, forKey: "contests")
-                developerAgeRatingInfoUrl = try container.decodeIfPresent(String.self, forKey: "developerAgeRatingInfoUrl")
+                developerAgeRatingInfoUrl = try container.decodeIfPresent(Clearable<String>.self, forKey: "developerAgeRatingInfoUrl")
                 gambling = try container.decodeIfPresent(Bool.self, forKey: "gambling")
                 gamblingSimulated = try container.decodeIfPresent(AgeRatingDeclaration.Attributes.GamblingSimulated.self, forKey: "gamblingSimulated")
                 gunsOrOtherWeapons = try container.decodeIfPresent(AgeRatingDeclaration.Attributes.GunsOrOtherWeapons.self, forKey: "gunsOrOtherWeapons")

@@ -355,7 +355,7 @@ final class SpecTests: XCTestCase {
                                 "type" : "array",
                                 "items" : {
                                     "type" : "string",
-                                    "enum" : [ "alcoholTobaccoOrDrugUseOrReferences", "contests", "gambling", "gamblingSimulated", "kidsAgeBand", "lootBox", "medicalOrTreatmentInformation", "profanityOrCrudeHumor", "sexualContentGraphicAndNudity", "sexualContentOrNudity", "horrorOrFearThemes", "matureOrSuggestiveThemes", "unrestrictedWebAccess", "violenceCartoonOrFantasy", "violenceRealisticProlongedGraphicOrSadistic", "violenceRealistic", "koreaAgeRatingOverride" ]
+                                    "enum" : [ "alcoholTobaccoOrDrugUseOrReferences", "contests", "developerAgeRatingInfoUrl", "gambling", "gamblingSimulated", "kidsAgeBand", "lootBox", "medicalOrTreatmentInformation", "profanityOrCrudeHumor", "sexualContentGraphicAndNudity", "sexualContentOrNudity", "horrorOrFearThemes", "matureOrSuggestiveThemes", "unrestrictedWebAccess", "violenceCartoonOrFantasy", "violenceRealisticProlongedGraphicOrSadistic", "violenceRealistic", "koreaAgeRatingOverride" ]
                                 }
                             },
                             "style" : "form",
@@ -608,6 +608,11 @@ final class SpecTests: XCTestCase {
                                                 "type" : "string",
                                                 "enum" : [ "NONE", "INFREQUENT_OR_MILD", "FREQUENT_OR_INTENSE" ]
                                             },
+                                            "developerAgeRatingInfoUrl": {
+                                                "type": "string",
+                                                "format": "uri",
+                                                "nullable": true
+                                            },
                                             "kidsAgeBand" : {
                                                 "$ref" : "#/components/schemas/KidsAgeBand"
                                             }
@@ -702,10 +707,12 @@ final class SpecTests: XCTestCase {
                   guard case .objectSchema(let subSchema) = subSchema, subSchema.name == "Attributes" else { return nil }
                   return subSchema
               }).first,
-              let kidsAgeBandProperty = ageRatingDeclarationUpdateRequestDataAttributesSchema.properties["kidsAgeBand"] else {
+              let kidsAgeBandProperty = ageRatingDeclarationUpdateRequestDataAttributesSchema.properties["kidsAgeBand"],
+              let developerAgeRatingInfoUrlProperty = ageRatingDeclarationUpdateRequestDataAttributesSchema.properties["developerAgeRatingInfoUrl"] else {
             XCTFail(); return
         }
         XCTAssertTrue(kidsAgeBandProperty.clearable)
+        XCTAssertTrue(developerAgeRatingInfoUrlProperty.clearable)
 
         guard case .enum(let territoryCodeSchema) = spec.components.schemas["TerritoryCode"] else {
             XCTFail(); return

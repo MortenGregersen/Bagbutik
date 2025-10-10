@@ -1,5 +1,5 @@
-import Foundation
 import BagbutikStringExtensions
+import Foundation
 
 /// A representation of the spec file
 public struct Spec: Decodable {
@@ -218,9 +218,10 @@ public struct Spec: Decodable {
         components.schemas["ErrorResponse"] = .object(errorResponseSchema)
         patchedSchemas.append(.object(errorResponseSchema))
 
-        // Marks the `kidsAgeBand` property on `AgeRatingDeclarationUpdateRequest.Data.Attributes` as clearable.
+        // Marks the `kidsAgeBand` and `developerAgeRatingInfoUrl` properties on `AgeRatingDeclarationUpdateRequest.Data.Attributes` as clearable.
         // Apple's OpenAPI spec has no information about how to clear a value in an update request.
         // To tell Apple to clear a value, it has to be `null`, but properties with `null` values normally get omitted.
+        // If the `developerAgeRatingInfoUrl` is set to empty string it complains about the format.
         if case .object(var ageRatingDeclarationUpdateRequestSchema) = components.schemas["AgeRatingDeclarationUpdateRequest"],
            var ageRatingDeclarationUpdateRequestDataSchema: ObjectSchema = ageRatingDeclarationUpdateRequestSchema.subSchemas.compactMap({ (subSchema: SubSchema) -> ObjectSchema? in
                guard case .objectSchema(let subSchema) = subSchema, subSchema.name == "Data" else { return nil }
@@ -230,8 +231,10 @@ public struct Spec: Decodable {
                guard case .objectSchema(let subSchema) = subSchema, subSchema.name == "Attributes" else { return nil }
                return subSchema
            }).first,
-           let kidsAgeBandProperty = ageRatingDeclarationUpdateRequestDataAttributesSchema.properties["kidsAgeBand"] {
+           let kidsAgeBandProperty = ageRatingDeclarationUpdateRequestDataAttributesSchema.properties["kidsAgeBand"],
+           let developerAgeRatingInfoUrlProperty = ageRatingDeclarationUpdateRequestDataAttributesSchema.properties["developerAgeRatingInfoUrl"] {
             ageRatingDeclarationUpdateRequestDataAttributesSchema.properties["kidsAgeBand"] = .init(type: kidsAgeBandProperty.type, deprecated: kidsAgeBandProperty.deprecated, clearable: true)
+            ageRatingDeclarationUpdateRequestDataAttributesSchema.properties["developerAgeRatingInfoUrl"] = .init(type: developerAgeRatingInfoUrlProperty.type, deprecated: developerAgeRatingInfoUrlProperty.deprecated, clearable: true)
             ageRatingDeclarationUpdateRequestDataSchema.properties["attributes"]?.type = .schema(ageRatingDeclarationUpdateRequestDataAttributesSchema)
             ageRatingDeclarationUpdateRequestSchema.properties["data"]?.type = .schema(ageRatingDeclarationUpdateRequestDataSchema)
             components.schemas["AgeRatingDeclarationUpdateRequest"] = .object(ageRatingDeclarationUpdateRequestSchema)
