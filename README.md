@@ -5,30 +5,16 @@
 
 <p align="center">
     <b>Generated Swift code for the <a href="https://developer.apple.com/documentation/appstoreconnectapi">App Store Connect API</a> based on the official <a href="https://en.wikipedia.org/wiki/OpenAPI_Specification">OpenAPI spec</a>.</b>
+    <br /><br />
+    <a href="https://swiftpackageindex.com/MortenGregersen/Bagbutik"><img src="https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2FMortenGregersen%2FBagbutik%2Fbadge%3Ftype%3Dswift-versions" alt="Swift versions" /></a>
+    <a href="https://swiftpackageindex.com/MortenGregersen/Bagbutik"><img src="https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2FMortenGregersen%2FBagbutik%2Fbadge%3Ftype%3Dplatforms" alt="Platforms" /></a>
     <br />
-    <a href="https://swiftpackageindex.com/MortenGregersen/Bagbutik">
-        <img src="https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2FMortenGregersen%2FBagbutik%2Fbadge%3Ftype%3Dswift-versions" alt="Swift versions" />
-    </a>
-    <a href="https://swiftpackageindex.com/MortenGregersen/Bagbutik">
-        <img src="https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2FMortenGregersen%2FBagbutik%2Fbadge%3Ftype%3Dplatforms" alt="Platforms" />
-    </a>
+    <a href="https://github.com/MortenGregersen/Bagbutik/actions/workflows/ci.yml"><img src="https://github.com/MortenGregersen/Bagbutik/workflows/CI/badge.svg" alt="CI" /></a>
+    <a href="https://bagbutik.dev"><img src="https://raw.githubusercontent.com/MortenGregersen/Bagbutik/gh-pages/badge.svg" alt="Documentation" /></a>
+    <a href="https://codecov.io/gh/MortenGregersen/Bagbutik"><img src="https://codecov.io/gh/MortenGregersen/Bagbutik/branch/main/graph/badge.svg?token=oJZWL49t0G"/></a>
     <br />
-    <a href="https://github.com/MortenGregersen/Bagbutik/actions/workflows/ci.yml">
-        <img src="https://github.com/MortenGregersen/Bagbutik/workflows/CI/badge.svg" alt="CI" />
-    </a>
-    <a href="https://bagbutik.dev">
-        <img src="https://raw.githubusercontent.com/MortenGregersen/Bagbutik/gh-pages/badge.svg" alt="Documentation" />
-    </a>
-    <a href="https://codecov.io/gh/MortenGregersen/Bagbutik">
-        <img src="https://codecov.io/gh/MortenGregersen/Bagbutik/branch/main/graph/badge.svg?token=oJZWL49t0G"/>
-    </a>
-    <br />
-    <a href="https://twitter.com/mortengregersen">
-        <img src="https://img.shields.io/badge/twitter-@mortengregersen-blue.svg?style=flat" alt="Twitter" />
-    </a>
-    <a href="https://mastodon.social/@mortengregersen">
-        <img src="https://img.shields.io/badge/mastodon-@mortengregersen-blueviolet.svg?style=flat" alt="Mastodon" />
-    </a>
+    <a href="https://x.com/mortengregersen"><img src="https://img.shields.io/badge/%40mortengregersen-black?logo=x" alt="X (Twitter)" /></a>
+    <a href="https://mastodon.social/@mortengregersen"><img src="https://img.shields.io/badge/%40mortengregersen-6364FF?logo=mastodon&logoColor=white" alt="Mastodon" /></a>
 </p>
 
 ## What is Bagbutik?
@@ -83,7 +69,7 @@ In your `Package.swift` add Bagbutik as a dependency:
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/MortenGregersen/Bagbutik", from: "8.0.0"),
+    .package(url: "https://github.com/MortenGregersen/Bagbutik", from: "18.0.0"),
 ```
 
 Then in `targets` add the libraries needed by your target:
