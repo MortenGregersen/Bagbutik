@@ -9,32 +9,26 @@ on:
     - main
 
 jobs:
-#  build-apple:
-#    name: Build and Test (Apple platforms)
-#    runs-on: macos-11
-#    env:
-#      DEVELOPER_DIR: /Applications/Xcode_13.1.app/Contents/Developer
-#    steps:
-#    - uses: actions/checkout@v2
-#    - name: Test
-#      run: swift test -v --enable-code-coverage
-#      continue-on-error: true
-#    - name: Debug
-#      run: |
-#        ls -la .build/debug
-#        ls -la .build/debug/BagbutikPackageTests.xctest
-#        ls -la .build/debug/BagbutikPackageTests.xctest/Contents/MacOS
-#        otool -L .build/debug/BagbutikPackageTests.xctest
-#    - name: Export coverage
-#      run: xcrun llvm-cov export -format="lcov" -instr-profile=.build/debug/codecov/default.profdata -ignore-filename-regex=".build|Tests" .build/debug/BagbutikPackageTests.xctest/Contents/MacOS/BagbutikPackageTests > coverage.lcov
-#    - name: Upload coverage
-#      uses: paambaati/codeclimate-action@v2.7.5
-#      env:
-#        CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
-#      with:
-#        coverageCommand: ls
-#        coverageLocations: coverage.lcov:lcov
-#        debug: true
+  build-apple:
+    name: Build and Test (macOS)
+    runs-on: macos-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Print Xcode & Swift Version
+      run: |
+        xcodebuild -version
+        swift --version
+    - name: Build & Test
+      run: swift test -v --enable-code-coverage
+    - name: Upload coverage reports to Codecov
+      uses: codecov/codecov-action@v5
+      with:
+        token: ${{ secrets.CODECOV_TOKEN }}
+    - name: Upload test results to Codecov
+      if: ${{ !cancelled() }}
+      uses: codecov/test-results-action@v1
+      with:
+        token: ${{ secrets.CODECOV_TOKEN }}
   build-linux:
     name: Build and Test (Linux) - Swift ${{ matrix.swift }}
     runs-on: ubuntu-latest
