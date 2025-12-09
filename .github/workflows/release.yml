@@ -50,6 +50,7 @@ jobs:
           )
           
           # Build all products for all Apple platforms
+          # Building the umbrella "Bagbutik" product will build all the individual library targets
           for platform_info in "${PLATFORMS[@]}"; do
             IFS=: read -r platform_name destination <<< "$platform_info"
             echo "Building for $platform_name..."
@@ -69,7 +70,9 @@ jobs:
             done < <(find .build -path "*-apple-*/release/lib${PRODUCT_UNDERSCORED}.a" 2>/dev/null)
             
             if [ ${#XCFRAMEWORK_ARGS[@]} -gt 0 ]; then
-              echo "Found ${#XCFRAMEWORK_ARGS[@]} libraries for $PRODUCT"
+              # XCFRAMEWORK_ARGS contains pairs of (-library, path), so divide by 2 for actual count
+              NUM_LIBS=$((${#XCFRAMEWORK_ARGS[@]} / 2))
+              echo "Found $NUM_LIBS platform libraries for $PRODUCT"
               xcodebuild -create-xcframework \
                 "${XCFRAMEWORK_ARGS[@]}" \
                 -output "output/${PRODUCT}.xcframework"
