@@ -49,6 +49,8 @@ jobs:
             "tvOS Simulator:generic/platform=tvOS Simulator"
             "watchOS:generic/platform=watchOS"
             "watchOS Simulator:generic/platform=watchOS Simulator"
+            "visionOS:generic/platform=visionOS"
+            "visionOS Simulator:generic/platform=visionOS Simulator"
           )
           
           # Build all products for all Apple platforms
