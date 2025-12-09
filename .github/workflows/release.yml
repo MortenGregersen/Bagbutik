@@ -9,7 +9,7 @@ jobs:
     name: Build and Attach XCFramework
     runs-on: macos-latest
     env:
-      DEVELOPER_DIR: /Applications/Xcode_16.2.app/Contents/Developer
+      DEVELOPER_DIR: /Applications/Xcode_16.1.app/Contents/Developer
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
