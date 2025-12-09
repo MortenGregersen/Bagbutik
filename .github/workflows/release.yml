@@ -38,27 +38,23 @@ jobs:
             "Bagbutik-XcodeCloud"
           )
           
+          # Define platforms to build for
+          PLATFORMS=(
+            "iOS:generic/platform=iOS"
+            "iOS Simulator:generic/platform=iOS Simulator"
+            "macOS:generic/platform=macOS"
+            "tvOS:generic/platform=tvOS"
+            "tvOS Simulator:generic/platform=tvOS Simulator"
+            "watchOS:generic/platform=watchOS"
+            "watchOS Simulator:generic/platform=watchOS Simulator"
+          )
+          
           # Build all products for all Apple platforms
-          echo "Building for iOS..."
-          swift build -c release --product Bagbutik --destination generic/platform=iOS
-          
-          echo "Building for iOS Simulator..."
-          swift build -c release --product Bagbutik --destination generic/platform=iOS\ Simulator
-          
-          echo "Building for macOS..."
-          swift build -c release --product Bagbutik --destination generic/platform=macOS
-          
-          echo "Building for tvOS..."
-          swift build -c release --product Bagbutik --destination generic/platform=tvOS
-          
-          echo "Building for tvOS Simulator..."
-          swift build -c release --product Bagbutik --destination generic/platform=tvOS\ Simulator
-          
-          echo "Building for watchOS..."
-          swift build -c release --product Bagbutik --destination generic/platform=watchOS
-          
-          echo "Building for watchOS Simulator..."
-          swift build -c release --product Bagbutik --destination generic/platform=watchOS\ Simulator
+          for platform_info in "${PLATFORMS[@]}"; do
+            IFS=: read -r platform_name destination <<< "$platform_info"
+            echo "Building for $platform_name..."
+            swift build -c release --product Bagbutik --destination "$destination"
+          done
           
           # Find build artifacts for each product and create XCFrameworks
           for PRODUCT in "${PRODUCTS[@]}"; do
@@ -67,30 +63,19 @@ jobs:
             PRODUCT_UNDERSCORED="${PRODUCT//-/_}"
             XCFRAMEWORK_ARGS=()
             
-            # Find libraries for each platform
-            IOS_LIB=$(find .build -path "*-apple-ios/release/lib${PRODUCT_UNDERSCORED}.a" 2>/dev/null | head -1)
-            IOS_SIM_LIB=$(find .build -path "*-apple-ios-simulator/release/lib${PRODUCT_UNDERSCORED}.a" 2>/dev/null | head -1)
-            MACOS_LIB=$(find .build -path "*-apple-macosx/release/lib${PRODUCT_UNDERSCORED}.a" 2>/dev/null | head -1)
-            TVOS_LIB=$(find .build -path "*-apple-tvos/release/lib${PRODUCT_UNDERSCORED}.a" 2>/dev/null | head -1)
-            TVOS_SIM_LIB=$(find .build -path "*-apple-tvos-simulator/release/lib${PRODUCT_UNDERSCORED}.a" 2>/dev/null | head -1)
-            WATCHOS_LIB=$(find .build -path "*-apple-watchos/release/lib${PRODUCT_UNDERSCORED}.a" 2>/dev/null | head -1)
-            WATCHOS_SIM_LIB=$(find .build -path "*-apple-watchos-simulator/release/lib${PRODUCT_UNDERSCORED}.a" 2>/dev/null | head -1)
-            
-            # Build arguments array
-            [ -n "$IOS_LIB" ] && XCFRAMEWORK_ARGS+=(-library "$IOS_LIB")
-            [ -n "$IOS_SIM_LIB" ] && XCFRAMEWORK_ARGS+=(-library "$IOS_SIM_LIB")
-            [ -n "$MACOS_LIB" ] && XCFRAMEWORK_ARGS+=(-library "$MACOS_LIB")
-            [ -n "$TVOS_LIB" ] && XCFRAMEWORK_ARGS+=(-library "$TVOS_LIB")
-            [ -n "$TVOS_SIM_LIB" ] && XCFRAMEWORK_ARGS+=(-library "$TVOS_SIM_LIB")
-            [ -n "$WATCHOS_LIB" ] && XCFRAMEWORK_ARGS+=(-library "$WATCHOS_LIB")
-            [ -n "$WATCHOS_SIM_LIB" ] && XCFRAMEWORK_ARGS+=(-library "$WATCHOS_SIM_LIB")
+            # Find all libraries for this product across platforms in one pass
+            while IFS= read -r lib; do
+              XCFRAMEWORK_ARGS+=(-library "$lib")
+            done < <(find .build -path "*-apple-*/release/lib${PRODUCT_UNDERSCORED}.a" 2>/dev/null)
             
             if [ ${#XCFRAMEWORK_ARGS[@]} -gt 0 ]; then
+              echo "Found ${#XCFRAMEWORK_ARGS[@]} libraries for $PRODUCT"
               xcodebuild -create-xcframework \
                 "${XCFRAMEWORK_ARGS[@]}" \
                 -output "output/${PRODUCT}.xcframework"
             else
-              echo "Warning: No libraries found for $PRODUCT"
+              echo "Error: No libraries found for $PRODUCT - this may indicate a build failure"
+              exit 1
             fi
           done
           
@@ -104,11 +89,6 @@ jobs:
           ls -lh output/
       
       - name: Upload XCFramework to Release
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        uses: softprops/action-gh-release@v2
         with:
-          upload_url: ${{ github.event.release.upload_url }}
-          asset_path: ./output/Bagbutik.xcframework.zip
-          asset_name: Bagbutik.xcframework.zip
-          asset_content_type: application/zip
+          files: ./output/Bagbutik.xcframework.zip
