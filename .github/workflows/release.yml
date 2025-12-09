@@ -58,7 +58,12 @@ jobs:
           for platform_info in "${PLATFORMS[@]}"; do
             IFS=: read -r platform_name destination <<< "$platform_info"
             echo "Building for $platform_name..."
-            swift build -c release --product Bagbutik --destination "$destination"
+            xcodebuild archive \
+              -scheme Bagbutik \
+              -destination "$destination" \
+              -archivePath "./build/$platform_name/BAGBUTIK.xcarchive" \
+              SKIP_INSTALL=NO \
+              BUILD_LIBRARY_FOR_DISTRIBUTION=YES
           done
           
           # Find build artifacts for each product and create XCFrameworks
