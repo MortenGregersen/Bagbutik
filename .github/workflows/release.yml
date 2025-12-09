@@ -1,0 +1,101 @@
+name: Release
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  build-xcframework:
+    name: Build and Attach XCFramework
+    runs-on: macos-latest
+    permissions:
+      contents: write
+    env:
+      DEVELOPER_DIR: /Applications/Xcode_26.1.app/Contents/Developer
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.release.tag_name }}
+      
+      - name: Build XCFramework
+        run: |
+          set -e
+          
+          # Create output directory
+          mkdir -p output
+          
+          # Define the library products to build
+          PRODUCTS=(
+            "Bagbutik-Core"
+            "Bagbutik-Models"
+            "Bagbutik-AppStore"
+            "Bagbutik-GameCenter"
+            "Bagbutik-Marketplaces"
+            "Bagbutik-Provisioning"
+            "Bagbutik-Reporting"
+            "Bagbutik-TestFlight"
+            "Bagbutik-Users"
+            "Bagbutik-Webhooks"
+            "Bagbutik-XcodeCloud"
+          )
+          
+          # Define platforms to build for
+          PLATFORMS=(
+            "iOS:generic/platform=iOS"
+            "iOS Simulator:generic/platform=iOS Simulator"
+            "macOS:generic/platform=macOS"
+            "tvOS:generic/platform=tvOS"
+            "tvOS Simulator:generic/platform=tvOS Simulator"
+            "watchOS:generic/platform=watchOS"
+            "watchOS Simulator:generic/platform=watchOS Simulator"
+            "visionOS:generic/platform=visionOS"
+            "visionOS Simulator:generic/platform=visionOS Simulator"
+          )
+          
+          # Build all products for all Apple platforms
+          # Building the umbrella "Bagbutik" product will build all the individual library targets
+          for platform_info in "${PLATFORMS[@]}"; do
+            IFS=: read -r platform_name destination <<< "$platform_info"
+            echo "Building for $platform_name..."
+            swift build -c release --product Bagbutik --destination "$destination"
+          done
+          
+          # Find build artifacts for each product and create XCFrameworks
+          for PRODUCT in "${PRODUCTS[@]}"; do
+            echo "Creating XCFramework for $PRODUCT..."
+            
+            PRODUCT_UNDERSCORED="${PRODUCT//-/_}"
+            XCFRAMEWORK_ARGS=()
+            
+            # Find all libraries for this product across platforms in one pass
+            while IFS= read -r lib; do
+              XCFRAMEWORK_ARGS+=(-library "$lib")
+            done < <(find .build -path "*-apple-*/release/lib${PRODUCT_UNDERSCORED}.a" 2>/dev/null)
+            
+            if [ ${#XCFRAMEWORK_ARGS[@]} -gt 0 ]; then
+              # XCFRAMEWORK_ARGS contains pairs of (-library, path), so divide by 2 for actual count
+              NUM_LIBS=$((${#XCFRAMEWORK_ARGS[@]} / 2))
+              echo "Found $NUM_LIBS platform libraries for $PRODUCT"
+              xcodebuild -create-xcframework \
+                "${XCFRAMEWORK_ARGS[@]}" \
+                -output "output/${PRODUCT}.xcframework"
+            else
+              echo "Error: No libraries found for $PRODUCT - this may indicate a build failure"
+              exit 1
+            fi
+          done
+          
+          # Create a zip archive of all XCFrameworks
+          cd output
+          zip -r Bagbutik.xcframework.zip *.xcframework
+          cd ..
+          
+          # Verify what was created
+          echo "Created XCFrameworks:"
+          ls -lh output/
+      
+      - name: Upload XCFramework to Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: ./output/Bagbutik.xcframework.zip
