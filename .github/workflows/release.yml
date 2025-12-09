@@ -8,8 +8,10 @@ jobs:
   build-xcframework:
     name: Build and Attach XCFramework
     runs-on: macos-latest
+    permissions:
+      contents: write
     env:
-      DEVELOPER_DIR: /Applications/Xcode_16.1.app/Contents/Developer
+      DEVELOPER_DIR: /Applications/Xcode_26.1.app/Contents/Developer
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
