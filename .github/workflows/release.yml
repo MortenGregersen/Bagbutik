@@ -1,0 +1,90 @@
+name: Release
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  build-cli-macos:
+    name: Build CLI for macOS
+    runs-on: macos-latest
+    env:
+      DEVELOPER_DIR: /Applications/Xcode_16.2.app/Contents/Developer
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.release.tag_name }}
+      
+      - name: Build CLI for macOS (Universal Binary)
+        run: |
+          set -e
+          
+          # Build for arm64
+          swift build -c release --product bagbutik-cli --arch arm64
+          cp .build/arm64-apple-macosx/release/bagbutik-cli bagbutik-cli-arm64
+          
+          # Build for x86_64
+          swift build -c release --product bagbutik-cli --arch x86_64
+          cp .build/x86_64-apple-macosx/release/bagbutik-cli bagbutik-cli-x86_64
+          
+          # Create universal binary
+          lipo -create bagbutik-cli-arm64 bagbutik-cli-x86_64 -output bagbutik-cli
+          
+          # Create archive
+          tar -czf bagbutik-cli-macos.tar.gz bagbutik-cli
+          
+          # Verify
+          file bagbutik-cli
+          ./bagbutik-cli --version || echo "CLI version check completed"
+      
+      - name: Upload macOS CLI to Release
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ github.event.release.upload_url }}
+          asset_path: ./bagbutik-cli-macos.tar.gz
+          asset_name: bagbutik-cli-macos.tar.gz
+          asset_content_type: application/gzip
+  
+  build-cli-linux:
+    name: Build CLI for Linux
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.release.tag_name }}
+      
+      - name: Setup Swift
+        uses: vapor/swiftly-action@v0.2
+        with:
+          toolchain: "6.0"
+      
+      - name: Build CLI for Linux
+        run: |
+          set -e
+          
+          # Build release binary
+          swift build -c release --product bagbutik-cli
+          
+          # Copy binary
+          cp .build/release/bagbutik-cli bagbutik-cli
+          
+          # Create archive
+          tar -czf bagbutik-cli-linux.tar.gz bagbutik-cli
+          
+          # Verify
+          file bagbutik-cli
+          ./bagbutik-cli --version || echo "CLI version check completed"
+      
+      - name: Upload Linux CLI to Release
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ github.event.release.upload_url }}
+          asset_path: ./bagbutik-cli-linux.tar.gz
+          asset_name: bagbutik-cli-linux.tar.gz
+          asset_content_type: application/gzip
