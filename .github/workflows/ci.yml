@@ -12,6 +12,8 @@ jobs:
   build-apple:
     name: Build and Test (macOS)
     runs-on: macos-latest
+    permissions:
+      contents: read
     steps:
     - uses: actions/checkout@v4
     - name: Print Xcode & Swift Version
@@ -32,6 +34,8 @@ jobs:
   build-linux:
     name: Build and Test (Linux) - Swift ${{ matrix.swift }}
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     strategy:
       matrix:
         swift: ["5.10", "6.0", "6.1", "6.2"]
@@ -45,6 +49,8 @@ jobs:
   build-android:
     name: "Build and Test (Android)"
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     steps:
     - uses: actions/checkout@v4
     - uses: skiptools/swift-android-action@v2
