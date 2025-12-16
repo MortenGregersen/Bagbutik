@@ -50,16 +50,19 @@ public struct BackgroundAssetVersion: Codable, Sendable, Identifiable {
         public var createdDate: Date?
         public var platforms: [Platform]?
         public var state: BackgroundAssetVersionState?
+        public var stateDetails: StateDetails?
         public var version: String?
 
         public init(createdDate: Date? = nil,
                     platforms: [Platform]? = nil,
                     state: BackgroundAssetVersionState? = nil,
+                    stateDetails: StateDetails? = nil,
                     version: String? = nil)
         {
             self.createdDate = createdDate
             self.platforms = platforms
             self.state = state
+            self.stateDetails = stateDetails
             self.version = version
         }
 
@@ -68,6 +71,7 @@ public struct BackgroundAssetVersion: Codable, Sendable, Identifiable {
             createdDate = try container.decodeIfPresent(Date.self, forKey: "createdDate")
             platforms = try container.decodeIfPresent([Platform].self, forKey: "platforms")
             state = try container.decodeIfPresent(BackgroundAssetVersionState.self, forKey: "state")
+            stateDetails = try container.decodeIfPresent(StateDetails.self, forKey: "stateDetails")
             version = try container.decodeIfPresent(String.self, forKey: "version")
         }
 
@@ -76,7 +80,37 @@ public struct BackgroundAssetVersion: Codable, Sendable, Identifiable {
             try container.encodeIfPresent(createdDate, forKey: "createdDate")
             try container.encodeIfPresent(platforms, forKey: "platforms")
             try container.encodeIfPresent(state, forKey: "state")
+            try container.encodeIfPresent(stateDetails, forKey: "stateDetails")
             try container.encodeIfPresent(version, forKey: "version")
+        }
+
+        public struct StateDetails: Codable, Sendable {
+            public var errors: [StateDetail]?
+            public var infos: [StateDetail]?
+            public var warnings: [StateDetail]?
+
+            public init(errors: [StateDetail]? = nil,
+                        infos: [StateDetail]? = nil,
+                        warnings: [StateDetail]? = nil)
+            {
+                self.errors = errors
+                self.infos = infos
+                self.warnings = warnings
+            }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                errors = try container.decodeIfPresent([StateDetail].self, forKey: "errors")
+                infos = try container.decodeIfPresent([StateDetail].self, forKey: "infos")
+                warnings = try container.decodeIfPresent([StateDetail].self, forKey: "warnings")
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: AnyCodingKey.self)
+                try container.encodeIfPresent(errors, forKey: "errors")
+                try container.encodeIfPresent(infos, forKey: "infos")
+                try container.encodeIfPresent(warnings, forKey: "warnings")
+            }
         }
     }
 

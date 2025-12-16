@@ -47,24 +47,29 @@ public struct BackgroundAsset: Codable, Sendable, Identifiable {
     }
 
     public struct Attributes: Codable, Sendable {
+        public var archived: Bool?
         public var assetPackIdentifier: String?
         public var createdDate: Date?
 
-        public init(assetPackIdentifier: String? = nil,
+        public init(archived: Bool? = nil,
+                    assetPackIdentifier: String? = nil,
                     createdDate: Date? = nil)
         {
+            self.archived = archived
             self.assetPackIdentifier = assetPackIdentifier
             self.createdDate = createdDate
         }
 
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: AnyCodingKey.self)
+            archived = try container.decodeIfPresent(Bool.self, forKey: "archived")
             assetPackIdentifier = try container.decodeIfPresent(String.self, forKey: "assetPackIdentifier")
             createdDate = try container.decodeIfPresent(Date.self, forKey: "createdDate")
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: AnyCodingKey.self)
+            try container.encodeIfPresent(archived, forKey: "archived")
             try container.encodeIfPresent(assetPackIdentifier, forKey: "assetPackIdentifier")
             try container.encodeIfPresent(createdDate, forKey: "createdDate")
         }

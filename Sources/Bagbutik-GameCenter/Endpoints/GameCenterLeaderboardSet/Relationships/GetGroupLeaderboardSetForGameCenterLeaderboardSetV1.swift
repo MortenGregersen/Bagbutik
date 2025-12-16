@@ -57,14 +57,19 @@ public enum GetGroupLeaderboardSetForGameCenterLeaderboardSetV1 {
             case challengeReleases
             case challengesMinimumPlatformVersions
             case defaultGroupLeaderboard
+            case defaultGroupLeaderboardV2
             case defaultLeaderboard
+            case defaultLeaderboardV2
             case gameCenterAchievements
+            case gameCenterAchievementsV2
             case gameCenterActivities
             case gameCenterAppVersions
             case gameCenterChallenges
             case gameCenterGroup
             case gameCenterLeaderboardSets
+            case gameCenterLeaderboardSetsV2
             case gameCenterLeaderboards
+            case gameCenterLeaderboardsV2
             case leaderboardReleases
             case leaderboardSetReleases
 
@@ -86,11 +91,14 @@ public enum GetGroupLeaderboardSetForGameCenterLeaderboardSetV1 {
 
         public enum GameCenterGroups: String, Sendable, ParameterValue, Codable, CaseIterable {
             case gameCenterAchievements
+            case gameCenterAchievementsV2
             case gameCenterActivities
             case gameCenterChallenges
             case gameCenterDetails
             case gameCenterLeaderboardSets
+            case gameCenterLeaderboardSetsV2
             case gameCenterLeaderboards
+            case gameCenterLeaderboardsV2
             case referenceName
 
             public init(from decoder: Decoder) throws {

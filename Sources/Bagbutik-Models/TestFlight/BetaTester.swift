@@ -52,18 +52,21 @@ public struct BetaTester: Codable, Sendable, Identifiable {
     }
 
     public struct Attributes: Codable, Sendable {
+        public var appDevices: [AppDevices]?
         public var email: String?
         public var firstName: String?
         public var inviteType: BetaInviteType?
         public var lastName: String?
         public var state: BetaTesterState?
 
-        public init(email: String? = nil,
+        public init(appDevices: [AppDevices]? = nil,
+                    email: String? = nil,
                     firstName: String? = nil,
                     inviteType: BetaInviteType? = nil,
                     lastName: String? = nil,
                     state: BetaTesterState? = nil)
         {
+            self.appDevices = appDevices
             self.email = email
             self.firstName = firstName
             self.inviteType = inviteType
@@ -73,6 +76,7 @@ public struct BetaTester: Codable, Sendable, Identifiable {
 
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: AnyCodingKey.self)
+            appDevices = try container.decodeIfPresent([AppDevices].self, forKey: "appDevices")
             email = try container.decodeIfPresent(String.self, forKey: "email")
             firstName = try container.decodeIfPresent(String.self, forKey: "firstName")
             inviteType = try container.decodeIfPresent(BetaInviteType.self, forKey: "inviteType")
@@ -82,11 +86,69 @@ public struct BetaTester: Codable, Sendable, Identifiable {
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: AnyCodingKey.self)
+            try container.encodeIfPresent(appDevices, forKey: "appDevices")
             try container.encodeIfPresent(email, forKey: "email")
             try container.encodeIfPresent(firstName, forKey: "firstName")
             try container.encodeIfPresent(inviteType, forKey: "inviteType")
             try container.encodeIfPresent(lastName, forKey: "lastName")
             try container.encodeIfPresent(state, forKey: "state")
+        }
+
+        public struct AppDevices: Codable, Sendable {
+            public var appBuildVersion: String?
+            public var model: String?
+            public var osVersion: String?
+            public var platform: Platform?
+
+            public init(appBuildVersion: String? = nil,
+                        model: String? = nil,
+                        osVersion: String? = nil,
+                        platform: Platform? = nil)
+            {
+                self.appBuildVersion = appBuildVersion
+                self.model = model
+                self.osVersion = osVersion
+                self.platform = platform
+            }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                appBuildVersion = try container.decodeIfPresent(String.self, forKey: "appBuildVersion")
+                model = try container.decodeIfPresent(String.self, forKey: "model")
+                osVersion = try container.decodeIfPresent(String.self, forKey: "osVersion")
+                platform = try container.decodeIfPresent(Platform.self, forKey: "platform")
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: AnyCodingKey.self)
+                try container.encodeIfPresent(appBuildVersion, forKey: "appBuildVersion")
+                try container.encodeIfPresent(model, forKey: "model")
+                try container.encodeIfPresent(osVersion, forKey: "osVersion")
+                try container.encodeIfPresent(platform, forKey: "platform")
+            }
+
+            public enum Platform: String, Sendable, Codable, CaseIterable {
+                case iOS = "IOS"
+                case macOS = "MAC_OS"
+                case tvOS = "TV_OS"
+                case visionOS = "VISION_OS"
+                case watchOS = "WATCH_OS"
+
+                public init(from decoder: Decoder) throws {
+                    let container = try decoder.singleValueContainer()
+                    let string = try container.decode(String.self)
+                    if let value = Platform(rawValue: string) {
+                        self = value
+                    } else if let value = Platform(rawValue: string.uppercased()) {
+                        self = value
+                    } else {
+                        throw DecodingError.dataCorruptedError(
+                            in: container,
+                            debugDescription: "Invalid Platform value: \(string)"
+                        )
+                    }
+                }
+            }
         }
     }
 

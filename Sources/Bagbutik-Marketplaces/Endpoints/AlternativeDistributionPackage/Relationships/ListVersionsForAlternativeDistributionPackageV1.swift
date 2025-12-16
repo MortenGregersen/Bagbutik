@@ -117,6 +117,7 @@ public enum ListVersionsForAlternativeDistributionPackageV1 {
         }
 
         public enum AlternativeDistributionPackages: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case sourceFileChecksum
             case versions
 
             public init(from decoder: Decoder) throws {

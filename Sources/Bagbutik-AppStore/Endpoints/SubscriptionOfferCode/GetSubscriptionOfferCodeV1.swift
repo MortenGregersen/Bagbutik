@@ -70,6 +70,7 @@ public enum GetSubscriptionOfferCodeV1 {
         public enum SubscriptionOfferCodeOneTimeUseCodes: String, Sendable, ParameterValue, Codable, CaseIterable {
             case active
             case createdDate
+            case environment
             case expirationDate
             case numberOfCodes
             case offerCode
@@ -113,6 +114,7 @@ public enum GetSubscriptionOfferCodeV1 {
 
         public enum SubscriptionOfferCodes: String, Sendable, ParameterValue, Codable, CaseIterable {
             case active
+            case autoRenewEnabled
             case customCodes
             case customerEligibilities
             case duration
@@ -122,6 +124,8 @@ public enum GetSubscriptionOfferCodeV1 {
             case offerMode
             case oneTimeUseCodes
             case prices
+            case productionCodeCount
+            case sandboxCodeCount
             case subscription
             case totalNumberOfCodes
 

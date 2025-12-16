@@ -11,14 +11,18 @@ public extension Request {
 
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types
+     - Parameter includes: Relationship data to include in the response
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func getRoutingAppCoverageForAppStoreVersionV1(id: String,
-                                                          fields: [GetRoutingAppCoverageForAppStoreVersionV1.Field]? = nil) -> Request<RoutingAppCoverageWithoutIncludesResponse, ErrorResponse> {
+                                                          fields: [GetRoutingAppCoverageForAppStoreVersionV1.Field]? = nil,
+                                                          includes: [GetRoutingAppCoverageForAppStoreVersionV1.Include]? = nil) -> Request<RoutingAppCoverageResponse, ErrorResponse> {
         .init(
             path: "/v1/appStoreVersions/\(id)/routingAppCoverage",
             method: .get,
-            parameters: .init(fields: fields))
+            parameters: .init(
+                fields: fields,
+                includes: includes))
     }
 }
 
@@ -27,8 +31,53 @@ public enum GetRoutingAppCoverageForAppStoreVersionV1 {
      Fields to return for included related types.
      */
     public enum Field: FieldParameter {
+        /// The fields to include for returned resources of type appStoreVersions
+        case appStoreVersions([AppStoreVersions])
         /// The fields to include for returned resources of type routingAppCoverages
         case routingAppCoverages([RoutingAppCoverages])
+
+        public enum AppStoreVersions: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case ageRatingDeclaration
+            case alternativeDistributionPackage
+            case app
+            case appClipDefaultExperience
+            case appStoreReviewDetail
+            case appStoreState
+            case appStoreVersionExperiments
+            case appStoreVersionExperimentsV2
+            case appStoreVersionLocalizations
+            case appStoreVersionPhasedRelease
+            case appStoreVersionSubmission
+            case appVersionState
+            case build
+            case copyright
+            case createdDate
+            case customerReviews
+            case downloadable
+            case earliestReleaseDate
+            case gameCenterAppVersion
+            case platform
+            case releaseType
+            case reviewType
+            case routingAppCoverage
+            case usesIdfa
+            case versionString
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = AppStoreVersions(rawValue: string) {
+                    self = value
+                } else if let value = AppStoreVersions(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid AppStoreVersions value: \(string)"
+                    )
+                }
+            }
+        }
 
         public enum RoutingAppCoverages: String, Sendable, ParameterValue, Codable, CaseIterable {
             case appStoreVersion
@@ -53,5 +102,12 @@ public enum GetRoutingAppCoverageForAppStoreVersionV1 {
                 }
             }
         }
+    }
+
+    /**
+     Relationship data to include in the response.
+     */
+    public enum Include: String, IncludeParameter, CaseIterable {
+        case appStoreVersion
     }
 }

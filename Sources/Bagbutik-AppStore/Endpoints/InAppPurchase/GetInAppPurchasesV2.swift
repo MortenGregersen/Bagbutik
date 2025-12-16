@@ -44,6 +44,8 @@ public enum GetInAppPurchasesV2 {
         case inAppPurchaseImages([InAppPurchaseImages])
         /// The fields to include for returned resources of type inAppPurchaseLocalizations
         case inAppPurchaseLocalizations([InAppPurchaseLocalizations])
+        /// The fields to include for returned resources of type inAppPurchaseOfferCodes
+        case inAppPurchaseOfferCodes([InAppPurchaseOfferCodes])
         /// The fields to include for returned resources of type inAppPurchasePricePoints
         case inAppPurchasePricePoints([InAppPurchasePricePoints])
         /// The fields to include for returned resources of type inAppPurchasePriceSchedules
@@ -172,6 +174,32 @@ public enum GetInAppPurchasesV2 {
             }
         }
 
+        public enum InAppPurchaseOfferCodes: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case active
+            case customCodes
+            case customerEligibilities
+            case name
+            case oneTimeUseCodes
+            case prices
+            case productionCodeCount
+            case sandboxCodeCount
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = InAppPurchaseOfferCodes(rawValue: string) {
+                    self = value
+                } else if let value = InAppPurchaseOfferCodes(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid InAppPurchaseOfferCodes value: \(string)"
+                    )
+                }
+            }
+        }
+
         public enum InAppPurchasePricePoints: String, Sendable, ParameterValue, Codable, CaseIterable {
             case customerPrice
             case equalizations
@@ -226,6 +254,7 @@ public enum GetInAppPurchasesV2 {
             case inAppPurchaseLocalizations
             case inAppPurchaseType
             case name
+            case offerCodes
             case pricePoints
             case productId
             case promotedPurchase
@@ -282,6 +311,7 @@ public enum GetInAppPurchasesV2 {
         case images
         case inAppPurchaseAvailability
         case inAppPurchaseLocalizations
+        case offerCodes
         case pricePoints
         case promotedPurchase
     }
@@ -294,6 +324,8 @@ public enum GetInAppPurchasesV2 {
         case images(Int)
         /// Maximum number of related inAppPurchaseLocalizations returned (when they are included) - maximum 50
         case inAppPurchaseLocalizations(Int)
+        /// Maximum number of related offerCodes returned (when they are included) - maximum 50
+        case offerCodes(Int)
         /// Maximum number of related pricePoints returned (when they are included) - maximum 8000
         case pricePoints(Int)
     }

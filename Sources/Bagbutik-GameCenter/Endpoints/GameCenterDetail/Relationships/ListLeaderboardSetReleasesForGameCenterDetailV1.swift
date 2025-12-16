@@ -53,14 +53,19 @@ public enum ListLeaderboardSetReleasesForGameCenterDetailV1 {
             case challengeReleases
             case challengesMinimumPlatformVersions
             case defaultGroupLeaderboard
+            case defaultGroupLeaderboardV2
             case defaultLeaderboard
+            case defaultLeaderboardV2
             case gameCenterAchievements
+            case gameCenterAchievementsV2
             case gameCenterActivities
             case gameCenterAppVersions
             case gameCenterChallenges
             case gameCenterGroup
             case gameCenterLeaderboardSets
+            case gameCenterLeaderboardSetsV2
             case gameCenterLeaderboards
+            case gameCenterLeaderboardsV2
             case leaderboardReleases
             case leaderboardSetReleases
 

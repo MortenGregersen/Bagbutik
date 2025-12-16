@@ -56,6 +56,18 @@ public struct GameCenterGroupsResponse: Codable, Sendable, PagedResponse {
         return gameCenterAchievements
     }
 
+    public func getGameCenterAchievementsV2(for gameCenterGroup: GameCenterGroup) -> [GameCenterAchievement] {
+        guard let gameCenterAchievementsV2Ids = gameCenterGroup.relationships?.gameCenterAchievementsV2?.data?.map(\.id),
+              let gameCenterAchievementsV2 = included?.compactMap({ relationship -> GameCenterAchievement? in
+                  guard case let .gameCenterAchievement(gameCenterAchievementsV2) = relationship else { return nil }
+                  return gameCenterAchievementsV2Ids.contains(gameCenterAchievementsV2.id) ? gameCenterAchievementsV2 : nil
+              })
+        else {
+            return []
+        }
+        return gameCenterAchievementsV2
+    }
+
     public func getGameCenterActivities(for gameCenterGroup: GameCenterGroup) -> [GameCenterActivity] {
         guard let gameCenterActivityIds = gameCenterGroup.relationships?.gameCenterActivities?.data?.map(\.id),
               let gameCenterActivities = included?.compactMap({ relationship -> GameCenterActivity? in
@@ -104,6 +116,18 @@ public struct GameCenterGroupsResponse: Codable, Sendable, PagedResponse {
         return gameCenterLeaderboardSets
     }
 
+    public func getGameCenterLeaderboardSetsV2(for gameCenterGroup: GameCenterGroup) -> [GameCenterLeaderboardSet] {
+        guard let gameCenterLeaderboardSetsV2Ids = gameCenterGroup.relationships?.gameCenterLeaderboardSetsV2?.data?.map(\.id),
+              let gameCenterLeaderboardSetsV2 = included?.compactMap({ relationship -> GameCenterLeaderboardSet? in
+                  guard case let .gameCenterLeaderboardSet(gameCenterLeaderboardSetsV2) = relationship else { return nil }
+                  return gameCenterLeaderboardSetsV2Ids.contains(gameCenterLeaderboardSetsV2.id) ? gameCenterLeaderboardSetsV2 : nil
+              })
+        else {
+            return []
+        }
+        return gameCenterLeaderboardSetsV2
+    }
+
     public func getGameCenterLeaderboards(for gameCenterGroup: GameCenterGroup) -> [GameCenterLeaderboard] {
         guard let gameCenterLeaderboardIds = gameCenterGroup.relationships?.gameCenterLeaderboards?.data?.map(\.id),
               let gameCenterLeaderboards = included?.compactMap({ relationship -> GameCenterLeaderboard? in
@@ -114,6 +138,18 @@ public struct GameCenterGroupsResponse: Codable, Sendable, PagedResponse {
             return []
         }
         return gameCenterLeaderboards
+    }
+
+    public func getGameCenterLeaderboardsV2(for gameCenterGroup: GameCenterGroup) -> [GameCenterLeaderboard] {
+        guard let gameCenterLeaderboardsV2Ids = gameCenterGroup.relationships?.gameCenterLeaderboardsV2?.data?.map(\.id),
+              let gameCenterLeaderboardsV2 = included?.compactMap({ relationship -> GameCenterLeaderboard? in
+                  guard case let .gameCenterLeaderboard(gameCenterLeaderboardsV2) = relationship else { return nil }
+                  return gameCenterLeaderboardsV2Ids.contains(gameCenterLeaderboardsV2.id) ? gameCenterLeaderboardsV2 : nil
+              })
+        else {
+            return []
+        }
+        return gameCenterLeaderboardsV2
     }
 
     public enum Included: Codable, Sendable {

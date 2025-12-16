@@ -377,6 +377,7 @@ public struct AppClipAdvancedExperience: Codable, Sendable, Identifiable {
                 case join = "JOIN"
                 case parkingAvailable = "PARKING_AVAILABLE"
                 case parkingReserveParking = "PARKING_RESERVE_PARKING"
+                case payToPark = "PAY_TO_PARK"
                 case restaurantJoinWaitlist = "RESTAURANT_JOIN_WAITLIST"
                 case restaurantOrderDelivery = "RESTAURANT_ORDER_DELIVERY"
                 case restaurantOrderFood = "RESTAURANT_ORDER_FOOD"

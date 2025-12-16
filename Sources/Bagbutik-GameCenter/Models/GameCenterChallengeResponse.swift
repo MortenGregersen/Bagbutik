@@ -58,6 +58,13 @@ public struct GameCenterChallengeResponse: Codable, Sendable {
         }.first { $0.id == data.relationships?.leaderboard?.data?.id }
     }
 
+    public func getLeaderboardV2() -> GameCenterLeaderboard? {
+        included?.compactMap { relationship -> GameCenterLeaderboard? in
+            guard case let .gameCenterLeaderboard(leaderboardV2) = relationship else { return nil }
+            return leaderboardV2
+        }.first { $0.id == data.relationships?.leaderboardV2?.data?.id }
+    }
+
     public func getVersions() -> [GameCenterChallengeVersion] {
         guard let versionIds = data.relationships?.versions?.data?.map(\.id),
               let versions = included?.compactMap({ relationship -> GameCenterChallengeVersion? in

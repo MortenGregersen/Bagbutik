@@ -37,6 +37,7 @@ public enum GetSubscriptionOfferCodeOneTimeUseCodeV1 {
         public enum SubscriptionOfferCodeOneTimeUseCodes: String, Sendable, ParameterValue, Codable, CaseIterable {
             case active
             case createdDate
+            case environment
             case expirationDate
             case numberOfCodes
             case offerCode

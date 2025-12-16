@@ -50,6 +50,8 @@ public enum ListInAppPurchasesV2ForAppV1 {
         case inAppPurchaseImages([InAppPurchaseImages])
         /// The fields to include for returned resources of type inAppPurchaseLocalizations
         case inAppPurchaseLocalizations([InAppPurchaseLocalizations])
+        /// The fields to include for returned resources of type inAppPurchaseOfferCodes
+        case inAppPurchaseOfferCodes([InAppPurchaseOfferCodes])
         /// The fields to include for returned resources of type inAppPurchasePriceSchedules
         case inAppPurchasePriceSchedules([InAppPurchasePriceSchedules])
         /// The fields to include for returned resources of type inAppPurchases
@@ -176,6 +178,32 @@ public enum ListInAppPurchasesV2ForAppV1 {
             }
         }
 
+        public enum InAppPurchaseOfferCodes: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case active
+            case customCodes
+            case customerEligibilities
+            case name
+            case oneTimeUseCodes
+            case prices
+            case productionCodeCount
+            case sandboxCodeCount
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = InAppPurchaseOfferCodes(rawValue: string) {
+                    self = value
+                } else if let value = InAppPurchaseOfferCodes(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid InAppPurchaseOfferCodes value: \(string)"
+                    )
+                }
+            }
+        }
+
         public enum InAppPurchasePriceSchedules: String, Sendable, ParameterValue, Codable, CaseIterable {
             case automaticPrices
             case baseTerritory
@@ -208,6 +236,7 @@ public enum ListInAppPurchasesV2ForAppV1 {
             case inAppPurchaseLocalizations
             case inAppPurchaseType
             case name
+            case offerCodes
             case pricePoints
             case productId
             case promotedPurchase
@@ -278,6 +307,7 @@ public enum ListInAppPurchasesV2ForAppV1 {
         case images
         case inAppPurchaseAvailability
         case inAppPurchaseLocalizations
+        case offerCodes
         case promotedPurchase
     }
 
@@ -301,5 +331,7 @@ public enum ListInAppPurchasesV2ForAppV1 {
         case inAppPurchaseLocalizations(Int)
         /// Maximum resources per page - maximum 200
         case limit(Int)
+        /// Maximum number of related offerCodes returned (when they are included) - maximum 50
+        case offerCodes(Int)
     }
 }

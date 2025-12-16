@@ -41,10 +41,12 @@ public enum GetGameCenterActivityV1 {
 
         public enum GameCenterActivities: String, Sendable, ParameterValue, Codable, CaseIterable {
             case achievements
+            case achievementsV2
             case archived
             case gameCenterDetail
             case gameCenterGroup
             case leaderboards
+            case leaderboardsV2
             case maximumPlayersCount
             case minimumPlayersCount
             case playStyle
@@ -101,9 +103,11 @@ public enum GetGameCenterActivityV1 {
      */
     public enum Include: String, IncludeParameter, CaseIterable {
         case achievements
+        case achievementsV2
         case gameCenterDetail
         case gameCenterGroup
         case leaderboards
+        case leaderboardsV2
         case versions
     }
 
@@ -113,8 +117,12 @@ public enum GetGameCenterActivityV1 {
     public enum Limit: LimitParameter {
         /// Maximum number of related achievements returned (when they are included) - maximum 50
         case achievements(Int)
+        /// Maximum number of related achievementsV2 returned (when they are included) - maximum 50
+        case achievementsV2(Int)
         /// Maximum number of related leaderboards returned (when they are included) - maximum 50
         case leaderboards(Int)
+        /// Maximum number of related leaderboardsV2 returned (when they are included) - maximum 50
+        case leaderboardsV2(Int)
         /// Maximum number of related versions returned (when they are included) - maximum 50
         case versions(Int)
     }

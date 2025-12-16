@@ -54,6 +54,7 @@ public struct SubscriptionOfferCodeCreateRequest: Codable, Sendable, RequestBody
         }
 
         public struct Attributes: Codable, Sendable {
+            public var autoRenewEnabled: Bool?
             public let customerEligibilities: [SubscriptionCustomerEligibility]
             public let duration: SubscriptionOfferDuration
             public let name: String
@@ -61,13 +62,15 @@ public struct SubscriptionOfferCodeCreateRequest: Codable, Sendable, RequestBody
             public let offerEligibility: SubscriptionOfferEligibility
             public let offerMode: SubscriptionOfferMode
 
-            public init(customerEligibilities: [SubscriptionCustomerEligibility],
+            public init(autoRenewEnabled: Bool? = nil,
+                        customerEligibilities: [SubscriptionCustomerEligibility],
                         duration: SubscriptionOfferDuration,
                         name: String,
                         numberOfPeriods: Int,
                         offerEligibility: SubscriptionOfferEligibility,
                         offerMode: SubscriptionOfferMode)
             {
+                self.autoRenewEnabled = autoRenewEnabled
                 self.customerEligibilities = customerEligibilities
                 self.duration = duration
                 self.name = name
@@ -78,6 +81,7 @@ public struct SubscriptionOfferCodeCreateRequest: Codable, Sendable, RequestBody
 
             public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                autoRenewEnabled = try container.decodeIfPresent(Bool.self, forKey: "autoRenewEnabled")
                 customerEligibilities = try container.decode([SubscriptionCustomerEligibility].self, forKey: "customerEligibilities")
                 duration = try container.decode(SubscriptionOfferDuration.self, forKey: "duration")
                 name = try container.decode(String.self, forKey: "name")
@@ -88,6 +92,7 @@ public struct SubscriptionOfferCodeCreateRequest: Codable, Sendable, RequestBody
 
             public func encode(to encoder: Encoder) throws {
                 var container = encoder.container(keyedBy: AnyCodingKey.self)
+                try container.encodeIfPresent(autoRenewEnabled, forKey: "autoRenewEnabled")
                 try container.encode(customerEligibilities, forKey: "customerEligibilities")
                 try container.encode(duration, forKey: "duration")
                 try container.encode(name, forKey: "name")

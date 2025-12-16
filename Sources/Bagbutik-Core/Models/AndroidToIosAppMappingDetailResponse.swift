@@ -1,12 +1,17 @@
-import Bagbutik_Core
-import Bagbutik_Models
 import Foundation
 
-public struct RoutingAppCoverageWithoutIncludesResponse: Codable, Sendable {
-    public let data: RoutingAppCoverage
+/**
+ # AndroidToIosAppMappingDetailResponse
+ A response that contains a single Android to iOS app mapping detail response resource.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/androidtoiosappmappingdetailresponse>
+ */
+public struct AndroidToIosAppMappingDetailResponse: Codable, Sendable {
+    public let data: AndroidToIosAppMappingDetail
     public let links: DocumentLinks
 
-    public init(data: RoutingAppCoverage,
+    public init(data: AndroidToIosAppMappingDetail,
                 links: DocumentLinks)
     {
         self.data = data
@@ -15,7 +20,7 @@ public struct RoutingAppCoverageWithoutIncludesResponse: Codable, Sendable {
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: AnyCodingKey.self)
-        data = try container.decode(RoutingAppCoverage.self, forKey: "data")
+        data = try container.decode(AndroidToIosAppMappingDetail.self, forKey: "data")
         links = try container.decode(DocumentLinks.self, forKey: "links")
     }
 

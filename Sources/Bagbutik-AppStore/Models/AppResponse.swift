@@ -39,6 +39,18 @@ public struct AppResponse: Codable, Sendable {
         try container.encode(links, forKey: "links")
     }
 
+    public func getAndroidToIosAppMappingDetails() -> [AndroidToIosAppMappingDetail] {
+        guard let androidToIosAppMappingDetailIds = data.relationships?.androidToIosAppMappingDetails?.data?.map(\.id),
+              let androidToIosAppMappingDetails = included?.compactMap({ relationship -> AndroidToIosAppMappingDetail? in
+                  guard case let .androidToIosAppMappingDetail(androidToIosAppMappingDetail) = relationship else { return nil }
+                  return androidToIosAppMappingDetailIds.contains(androidToIosAppMappingDetail.id) ? androidToIosAppMappingDetail : nil
+              })
+        else {
+            return []
+        }
+        return androidToIosAppMappingDetails
+    }
+
     public func getAppClips() -> [AppClip] {
         guard let appClipIds = data.relationships?.appClips?.data?.map(\.id),
               let appClips = included?.compactMap({ relationship -> AppClip? in
@@ -97,6 +109,13 @@ public struct AppResponse: Codable, Sendable {
             return []
         }
         return appInfos
+    }
+
+    public func getAppStoreIcon() -> BuildIcon? {
+        included?.compactMap { relationship -> BuildIcon? in
+            guard case let .buildIcon(appStoreIcon) = relationship else { return nil }
+            return appStoreIcon
+        }.first { $0.id == data.relationships?.appStoreIcon?.data?.id }
     }
 
     public func getAppStoreVersionExperimentsV2() -> [AppStoreVersionExperimentV2] {
@@ -274,6 +293,7 @@ public struct AppResponse: Codable, Sendable {
     }
 
     public enum Included: Codable, Sendable {
+        case androidToIosAppMappingDetail(AndroidToIosAppMappingDetail)
         case appClip(AppClip)
         case appCustomProductPage(AppCustomProductPage)
         case appEncryptionDeclaration(AppEncryptionDeclaration)
@@ -286,6 +306,7 @@ public struct AppResponse: Codable, Sendable {
         case betaGroup(BetaGroup)
         case betaLicenseAgreement(BetaLicenseAgreement)
         case build(Build)
+        case buildIcon(BuildIcon)
         case ciProduct(CiProduct)
         case endUserLicenseAgreement(EndUserLicenseAgreement)
         case gameCenterDetail(GameCenterDetail)
@@ -298,7 +319,9 @@ public struct AppResponse: Codable, Sendable {
         case subscriptionGroup(SubscriptionGroup)
 
         public init(from decoder: Decoder) throws {
-            if let appClip = try? AppClip(from: decoder) {
+            if let androidToIosAppMappingDetail = try? AndroidToIosAppMappingDetail(from: decoder) {
+                self = .androidToIosAppMappingDetail(androidToIosAppMappingDetail)
+            } else if let appClip = try? AppClip(from: decoder) {
                 self = .appClip(appClip)
             } else if let appCustomProductPage = try? AppCustomProductPage(from: decoder) {
                 self = .appCustomProductPage(appCustomProductPage)
@@ -322,6 +345,8 @@ public struct AppResponse: Codable, Sendable {
                 self = .betaLicenseAgreement(betaLicenseAgreement)
             } else if let build = try? Build(from: decoder) {
                 self = .build(build)
+            } else if let buildIcon = try? BuildIcon(from: decoder) {
+                self = .buildIcon(buildIcon)
             } else if let ciProduct = try? CiProduct(from: decoder) {
                 self = .ciProduct(ciProduct)
             } else if let endUserLicenseAgreement = try? EndUserLicenseAgreement(from: decoder) {
@@ -353,6 +378,8 @@ public struct AppResponse: Codable, Sendable {
 
         public func encode(to encoder: Encoder) throws {
             switch self {
+            case let .androidToIosAppMappingDetail(value):
+                try value.encode(to: encoder)
             case let .appClip(value):
                 try value.encode(to: encoder)
             case let .appCustomProductPage(value):
@@ -376,6 +403,8 @@ public struct AppResponse: Codable, Sendable {
             case let .betaLicenseAgreement(value):
                 try value.encode(to: encoder)
             case let .build(value):
+                try value.encode(to: encoder)
+            case let .buildIcon(value):
                 try value.encode(to: encoder)
             case let .ciProduct(value):
                 try value.encode(to: encoder)

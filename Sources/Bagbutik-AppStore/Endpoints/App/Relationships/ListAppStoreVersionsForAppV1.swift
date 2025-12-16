@@ -110,6 +110,7 @@ public enum ListAppStoreVersionsForAppV1 {
         }
 
         public enum AlternativeDistributionPackages: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case sourceFileChecksum
             case versions
 
             public init(from decoder: Decoder) throws {
@@ -327,6 +328,7 @@ public enum ListAppStoreVersionsForAppV1 {
             case accessibilityUrl
             case alternativeDistributionKey
             case analyticsReportRequests
+            case androidToIosAppMappingDetails
             case appAvailabilityV2
             case appClips
             case appCustomProductPages
@@ -335,6 +337,7 @@ public enum ListAppStoreVersionsForAppV1 {
             case appInfos
             case appPricePoints
             case appPriceSchedule
+            case appStoreIcon
             case appStoreVersionExperimentsV2
             case appStoreVersions
             case appTags

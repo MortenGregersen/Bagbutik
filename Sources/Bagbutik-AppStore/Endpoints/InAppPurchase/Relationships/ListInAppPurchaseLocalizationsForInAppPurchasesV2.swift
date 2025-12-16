@@ -73,6 +73,7 @@ public enum ListInAppPurchaseLocalizationsForInAppPurchasesV2 {
             case inAppPurchaseLocalizations
             case inAppPurchaseType
             case name
+            case offerCodes
             case pricePoints
             case productId
             case promotedPurchase

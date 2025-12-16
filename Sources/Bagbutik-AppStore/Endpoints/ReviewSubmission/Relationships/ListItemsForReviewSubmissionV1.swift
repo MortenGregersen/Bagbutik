@@ -44,6 +44,16 @@ public enum ListItemsForReviewSubmissionV1 {
         case appStoreVersions([AppStoreVersions])
         /// The fields to include for returned resources of type backgroundAssetVersions
         case backgroundAssetVersions([BackgroundAssetVersions])
+        /// The fields to include for returned resources of type gameCenterAchievementVersions
+        case gameCenterAchievementVersions([GameCenterAchievementVersions])
+        /// The fields to include for returned resources of type gameCenterActivityVersions
+        case gameCenterActivityVersions([GameCenterActivityVersions])
+        /// The fields to include for returned resources of type gameCenterChallengeVersions
+        case gameCenterChallengeVersions([GameCenterChallengeVersions])
+        /// The fields to include for returned resources of type gameCenterLeaderboardSetVersions
+        case gameCenterLeaderboardSetVersions([GameCenterLeaderboardSetVersions])
+        /// The fields to include for returned resources of type gameCenterLeaderboardVersions
+        case gameCenterLeaderboardVersions([GameCenterLeaderboardVersions])
         /// The fields to include for returned resources of type reviewSubmissionItems
         case reviewSubmissionItems([ReviewSubmissionItems])
 
@@ -183,6 +193,7 @@ public enum ListItemsForReviewSubmissionV1 {
             case manifestFile
             case platforms
             case state
+            case stateDetails
             case version
 
             public init(from decoder: Decoder) throws {
@@ -201,6 +212,121 @@ public enum ListItemsForReviewSubmissionV1 {
             }
         }
 
+        public enum GameCenterAchievementVersions: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case achievement
+            case localizations
+            case state
+            case version
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = GameCenterAchievementVersions(rawValue: string) {
+                    self = value
+                } else if let value = GameCenterAchievementVersions(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid GameCenterAchievementVersions value: \(string)"
+                    )
+                }
+            }
+        }
+
+        public enum GameCenterActivityVersions: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case activity
+            case defaultImage
+            case fallbackUrl
+            case localizations
+            case releases
+            case state
+            case version
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = GameCenterActivityVersions(rawValue: string) {
+                    self = value
+                } else if let value = GameCenterActivityVersions(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid GameCenterActivityVersions value: \(string)"
+                    )
+                }
+            }
+        }
+
+        public enum GameCenterChallengeVersions: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case challenge
+            case defaultImage
+            case localizations
+            case releases
+            case state
+            case version
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = GameCenterChallengeVersions(rawValue: string) {
+                    self = value
+                } else if let value = GameCenterChallengeVersions(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid GameCenterChallengeVersions value: \(string)"
+                    )
+                }
+            }
+        }
+
+        public enum GameCenterLeaderboardSetVersions: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case leaderboardSet
+            case localizations
+            case state
+            case version
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = GameCenterLeaderboardSetVersions(rawValue: string) {
+                    self = value
+                } else if let value = GameCenterLeaderboardSetVersions(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid GameCenterLeaderboardSetVersions value: \(string)"
+                    )
+                }
+            }
+        }
+
+        public enum GameCenterLeaderboardVersions: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case leaderboard
+            case localizations
+            case state
+            case version
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = GameCenterLeaderboardVersions(rawValue: string) {
+                    self = value
+                } else if let value = GameCenterLeaderboardVersions(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid GameCenterLeaderboardVersions value: \(string)"
+                    )
+                }
+            }
+        }
+
         public enum ReviewSubmissionItems: String, Sendable, ParameterValue, Codable, CaseIterable {
             case appCustomProductPageVersion
             case appEvent
@@ -208,6 +334,11 @@ public enum ListItemsForReviewSubmissionV1 {
             case appStoreVersionExperiment
             case appStoreVersionExperimentV2
             case backgroundAssetVersion
+            case gameCenterAchievementVersion
+            case gameCenterActivityVersion
+            case gameCenterChallengeVersion
+            case gameCenterLeaderboardSetVersion
+            case gameCenterLeaderboardVersion
             case state
 
             public init(from decoder: Decoder) throws {
@@ -237,5 +368,10 @@ public enum ListItemsForReviewSubmissionV1 {
         case appStoreVersionExperiment
         case appStoreVersionExperimentV2
         case backgroundAssetVersion
+        case gameCenterAchievementVersion
+        case gameCenterActivityVersion
+        case gameCenterChallengeVersion
+        case gameCenterLeaderboardSetVersion
+        case gameCenterLeaderboardVersion
     }
 }

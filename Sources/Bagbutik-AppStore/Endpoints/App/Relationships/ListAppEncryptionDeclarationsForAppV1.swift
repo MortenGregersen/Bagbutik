@@ -111,6 +111,7 @@ public enum ListAppEncryptionDeclarationsForAppV1 {
             case accessibilityUrl
             case alternativeDistributionKey
             case analyticsReportRequests
+            case androidToIosAppMappingDetails
             case appAvailabilityV2
             case appClips
             case appCustomProductPages
@@ -119,6 +120,7 @@ public enum ListAppEncryptionDeclarationsForAppV1 {
             case appInfos
             case appPricePoints
             case appPriceSchedule
+            case appStoreIcon
             case appStoreVersionExperimentsV2
             case appStoreVersions
             case appTags

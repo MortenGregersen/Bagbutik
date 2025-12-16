@@ -37,6 +37,7 @@ public enum GetBackgroundAssetV1 {
         public enum BackgroundAssets: String, Sendable, ParameterValue, Codable, CaseIterable {
             case app
             case appStoreVersion
+            case archived
             case assetPackIdentifier
             case createdDate
             case externalBetaVersion

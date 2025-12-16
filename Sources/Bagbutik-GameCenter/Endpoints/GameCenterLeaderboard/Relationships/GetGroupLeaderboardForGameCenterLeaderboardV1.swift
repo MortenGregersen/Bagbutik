@@ -54,10 +54,12 @@ public enum GetGroupLeaderboardForGameCenterLeaderboardV1 {
 
         public enum GameCenterActivities: String, Sendable, ParameterValue, Codable, CaseIterable {
             case achievements
+            case achievementsV2
             case archived
             case gameCenterDetail
             case gameCenterGroup
             case leaderboards
+            case leaderboardsV2
             case maximumPlayersCount
             case minimumPlayersCount
             case playStyle
@@ -89,6 +91,7 @@ public enum GetGroupLeaderboardForGameCenterLeaderboardV1 {
             case gameCenterDetail
             case gameCenterGroup
             case leaderboard
+            case leaderboardV2
             case referenceName
             case repeatable
             case vendorIdentifier
@@ -119,14 +122,19 @@ public enum GetGroupLeaderboardForGameCenterLeaderboardV1 {
             case challengeReleases
             case challengesMinimumPlatformVersions
             case defaultGroupLeaderboard
+            case defaultGroupLeaderboardV2
             case defaultLeaderboard
+            case defaultLeaderboardV2
             case gameCenterAchievements
+            case gameCenterAchievementsV2
             case gameCenterActivities
             case gameCenterAppVersions
             case gameCenterChallenges
             case gameCenterGroup
             case gameCenterLeaderboardSets
+            case gameCenterLeaderboardSetsV2
             case gameCenterLeaderboards
+            case gameCenterLeaderboardsV2
             case leaderboardReleases
             case leaderboardSetReleases
 
@@ -148,11 +156,14 @@ public enum GetGroupLeaderboardForGameCenterLeaderboardV1 {
 
         public enum GameCenterGroups: String, Sendable, ParameterValue, Codable, CaseIterable {
             case gameCenterAchievements
+            case gameCenterAchievementsV2
             case gameCenterActivities
             case gameCenterChallenges
             case gameCenterDetails
             case gameCenterLeaderboardSets
+            case gameCenterLeaderboardSetsV2
             case gameCenterLeaderboards
+            case gameCenterLeaderboardsV2
             case referenceName
 
             public init(from decoder: Decoder) throws {

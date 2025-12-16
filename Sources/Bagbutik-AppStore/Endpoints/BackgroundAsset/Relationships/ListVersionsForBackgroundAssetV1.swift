@@ -150,6 +150,7 @@ public enum ListVersionsForBackgroundAssetV1 {
             case manifestFile
             case platforms
             case state
+            case stateDetails
             case version
 
             public init(from decoder: Decoder) throws {
@@ -171,6 +172,7 @@ public enum ListVersionsForBackgroundAssetV1 {
         public enum BackgroundAssets: String, Sendable, ParameterValue, Codable, CaseIterable {
             case app
             case appStoreVersion
+            case archived
             case assetPackIdentifier
             case createdDate
             case externalBetaVersion

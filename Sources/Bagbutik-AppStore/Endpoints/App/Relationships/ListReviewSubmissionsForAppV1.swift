@@ -119,6 +119,7 @@ public enum ListReviewSubmissionsForAppV1 {
             case accessibilityUrl
             case alternativeDistributionKey
             case analyticsReportRequests
+            case androidToIosAppMappingDetails
             case appAvailabilityV2
             case appClips
             case appCustomProductPages
@@ -127,6 +128,7 @@ public enum ListReviewSubmissionsForAppV1 {
             case appInfos
             case appPricePoints
             case appPriceSchedule
+            case appStoreIcon
             case appStoreVersionExperimentsV2
             case appStoreVersions
             case appTags
@@ -192,6 +194,11 @@ public enum ListReviewSubmissionsForAppV1 {
             case appStoreVersionExperiment
             case appStoreVersionExperimentV2
             case backgroundAssetVersion
+            case gameCenterAchievementVersion
+            case gameCenterActivityVersion
+            case gameCenterChallengeVersion
+            case gameCenterLeaderboardSetVersion
+            case gameCenterLeaderboardVersion
             case state
 
             public init(from decoder: Decoder) throws {

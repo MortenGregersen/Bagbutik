@@ -1,0 +1,131 @@
+import Bagbutik_Core
+import Bagbutik_Models
+import Foundation
+
+/**
+ # GameCenterLeaderboardV2UpdateRequest
+ The request body you use to update a Game Center leaderboard v2.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterleaderboardv2updaterequest>
+ */
+public struct GameCenterLeaderboardV2UpdateRequest: Codable, Sendable, RequestBody {
+    public let data: Data
+
+    public init(data: Data) {
+        self.data = data
+    }
+
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: AnyCodingKey.self)
+        data = try container.decode(Data.self, forKey: "data")
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: AnyCodingKey.self)
+        try container.encode(data, forKey: "data")
+    }
+
+    public struct Data: Codable, Sendable, Identifiable {
+        public let id: String
+        public var type: String { "gameCenterLeaderboards" }
+        public var attributes: Attributes?
+
+        public init(id: String,
+                    attributes: Attributes? = nil)
+        {
+            self.id = id
+            self.attributes = attributes
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: AnyCodingKey.self)
+            id = try container.decode(String.self, forKey: "id")
+            attributes = try container.decodeIfPresent(Attributes.self, forKey: "attributes")
+            if try container.decode(String.self, forKey: "type") != type {
+                throw DecodingError.dataCorruptedError(forKey: "type", in: container, debugDescription: "Not matching \(type)")
+            }
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: AnyCodingKey.self)
+            try container.encode(id, forKey: "id")
+            try container.encode(type, forKey: "type")
+            try container.encodeIfPresent(attributes, forKey: "attributes")
+        }
+
+        public struct Attributes: Codable, Sendable {
+            public var activityProperties: [String: String]?
+            public var archived: Bool?
+            public var defaultFormatter: GameCenterLeaderboardFormatter?
+            public var recurrenceDuration: String?
+            public var recurrenceRule: String?
+            public var recurrenceStartDate: Date?
+            public var referenceName: String?
+            public var scoreRangeEnd: String?
+            public var scoreRangeStart: String?
+            public var scoreSortType: GameCenterLeaderboardV2.Attributes.ScoreSortType?
+            public var submissionType: GameCenterLeaderboardV2.Attributes.SubmissionType?
+            public var visibility: GameCenterLeaderboardV2.Attributes.Visibility?
+
+            public init(activityProperties: [String: String]? = nil,
+                        archived: Bool? = nil,
+                        defaultFormatter: GameCenterLeaderboardFormatter? = nil,
+                        recurrenceDuration: String? = nil,
+                        recurrenceRule: String? = nil,
+                        recurrenceStartDate: Date? = nil,
+                        referenceName: String? = nil,
+                        scoreRangeEnd: String? = nil,
+                        scoreRangeStart: String? = nil,
+                        scoreSortType: GameCenterLeaderboardV2.Attributes.ScoreSortType? = nil,
+                        submissionType: GameCenterLeaderboardV2.Attributes.SubmissionType? = nil,
+                        visibility: GameCenterLeaderboardV2.Attributes.Visibility? = nil)
+            {
+                self.activityProperties = activityProperties
+                self.archived = archived
+                self.defaultFormatter = defaultFormatter
+                self.recurrenceDuration = recurrenceDuration
+                self.recurrenceRule = recurrenceRule
+                self.recurrenceStartDate = recurrenceStartDate
+                self.referenceName = referenceName
+                self.scoreRangeEnd = scoreRangeEnd
+                self.scoreRangeStart = scoreRangeStart
+                self.scoreSortType = scoreSortType
+                self.submissionType = submissionType
+                self.visibility = visibility
+            }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                activityProperties = try container.decodeIfPresent([String: String].self, forKey: "activityProperties")
+                archived = try container.decodeIfPresent(Bool.self, forKey: "archived")
+                defaultFormatter = try container.decodeIfPresent(GameCenterLeaderboardFormatter.self, forKey: "defaultFormatter")
+                recurrenceDuration = try container.decodeIfPresent(String.self, forKey: "recurrenceDuration")
+                recurrenceRule = try container.decodeIfPresent(String.self, forKey: "recurrenceRule")
+                recurrenceStartDate = try container.decodeIfPresent(Date.self, forKey: "recurrenceStartDate")
+                referenceName = try container.decodeIfPresent(String.self, forKey: "referenceName")
+                scoreRangeEnd = try container.decodeIfPresent(String.self, forKey: "scoreRangeEnd")
+                scoreRangeStart = try container.decodeIfPresent(String.self, forKey: "scoreRangeStart")
+                scoreSortType = try container.decodeIfPresent(GameCenterLeaderboardV2.Attributes.ScoreSortType.self, forKey: "scoreSortType")
+                submissionType = try container.decodeIfPresent(GameCenterLeaderboardV2.Attributes.SubmissionType.self, forKey: "submissionType")
+                visibility = try container.decodeIfPresent(GameCenterLeaderboardV2.Attributes.Visibility.self, forKey: "visibility")
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: AnyCodingKey.self)
+                try container.encodeIfPresent(activityProperties, forKey: "activityProperties")
+                try container.encodeIfPresent(archived, forKey: "archived")
+                try container.encodeIfPresent(defaultFormatter, forKey: "defaultFormatter")
+                try container.encodeIfPresent(recurrenceDuration, forKey: "recurrenceDuration")
+                try container.encodeIfPresent(recurrenceRule, forKey: "recurrenceRule")
+                try container.encodeIfPresent(recurrenceStartDate, forKey: "recurrenceStartDate")
+                try container.encodeIfPresent(referenceName, forKey: "referenceName")
+                try container.encodeIfPresent(scoreRangeEnd, forKey: "scoreRangeEnd")
+                try container.encodeIfPresent(scoreRangeStart, forKey: "scoreRangeStart")
+                try container.encodeIfPresent(scoreSortType, forKey: "scoreSortType")
+                try container.encodeIfPresent(submissionType, forKey: "submissionType")
+                try container.encodeIfPresent(visibility, forKey: "visibility")
+            }
+        }
+    }
+}
