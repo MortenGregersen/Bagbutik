@@ -153,6 +153,7 @@ public enum ListBuildsForCiBuildRunV1 {
             case accessibilityUrl
             case alternativeDistributionKey
             case analyticsReportRequests
+            case androidToIosAppMappingDetails
             case appAvailabilityV2
             case appClips
             case appCustomProductPages
@@ -161,6 +162,7 @@ public enum ListBuildsForCiBuildRunV1 {
             case appInfos
             case appPricePoints
             case appPriceSchedule
+            case appStoreIcon
             case appStoreVersionExperimentsV2
             case appStoreVersions
             case appTags
@@ -297,6 +299,7 @@ public enum ListBuildsForCiBuildRunV1 {
         }
 
         public enum BetaTesters: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case appDevices
             case apps
             case betaGroups
             case builds

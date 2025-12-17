@@ -61,6 +61,7 @@ public enum ListGameCenterActivitiesForGameCenterDetailV1 {
             case repeatable
             case showBeforeEarned
             case vendorIdentifier
+            case versions
 
             public init(from decoder: Decoder) throws {
                 let container = try decoder.singleValueContainer()
@@ -80,10 +81,12 @@ public enum ListGameCenterActivitiesForGameCenterDetailV1 {
 
         public enum GameCenterActivities: String, Sendable, ParameterValue, Codable, CaseIterable {
             case achievements
+            case achievementsV2
             case archived
             case gameCenterDetail
             case gameCenterGroup
             case leaderboards
+            case leaderboardsV2
             case maximumPlayersCount
             case minimumPlayersCount
             case playStyle
@@ -143,14 +146,19 @@ public enum ListGameCenterActivitiesForGameCenterDetailV1 {
             case challengeReleases
             case challengesMinimumPlatformVersions
             case defaultGroupLeaderboard
+            case defaultGroupLeaderboardV2
             case defaultLeaderboard
+            case defaultLeaderboardV2
             case gameCenterAchievements
+            case gameCenterAchievementsV2
             case gameCenterActivities
             case gameCenterAppVersions
             case gameCenterChallenges
             case gameCenterGroup
             case gameCenterLeaderboardSets
+            case gameCenterLeaderboardSetsV2
             case gameCenterLeaderboards
+            case gameCenterLeaderboardsV2
             case leaderboardReleases
             case leaderboardSetReleases
 
@@ -172,11 +180,14 @@ public enum ListGameCenterActivitiesForGameCenterDetailV1 {
 
         public enum GameCenterGroups: String, Sendable, ParameterValue, Codable, CaseIterable {
             case gameCenterAchievements
+            case gameCenterAchievementsV2
             case gameCenterActivities
             case gameCenterChallenges
             case gameCenterDetails
             case gameCenterLeaderboardSets
+            case gameCenterLeaderboardSetsV2
             case gameCenterLeaderboards
+            case gameCenterLeaderboardsV2
             case referenceName
 
             public init(from decoder: Decoder) throws {
@@ -216,6 +227,7 @@ public enum ListGameCenterActivitiesForGameCenterDetailV1 {
             case scoreSortType
             case submissionType
             case vendorIdentifier
+            case versions
             case visibility
 
             public init(from decoder: Decoder) throws {
@@ -240,9 +252,11 @@ public enum ListGameCenterActivitiesForGameCenterDetailV1 {
      */
     public enum Include: String, IncludeParameter, CaseIterable {
         case achievements
+        case achievementsV2
         case gameCenterDetail
         case gameCenterGroup
         case leaderboards
+        case leaderboardsV2
         case versions
     }
 
@@ -252,8 +266,12 @@ public enum ListGameCenterActivitiesForGameCenterDetailV1 {
     public enum Limit: LimitParameter {
         /// Maximum number of related achievements returned (when they are included) - maximum 50
         case achievements(Int)
+        /// Maximum number of related achievementsV2 returned (when they are included) - maximum 50
+        case achievementsV2(Int)
         /// Maximum number of related leaderboards returned (when they are included) - maximum 50
         case leaderboards(Int)
+        /// Maximum number of related leaderboardsV2 returned (when they are included) - maximum 50
+        case leaderboardsV2(Int)
         /// Maximum resources per page - maximum 200
         case limit(Int)
         /// Maximum number of related versions returned (when they are included) - maximum 50

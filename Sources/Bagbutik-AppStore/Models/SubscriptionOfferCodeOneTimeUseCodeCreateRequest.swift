@@ -48,24 +48,29 @@ public struct SubscriptionOfferCodeOneTimeUseCodeCreateRequest: Codable, Sendabl
         }
 
         public struct Attributes: Codable, Sendable {
+            public var environment: OfferCodeEnvironment?
             public let expirationDate: String
             public let numberOfCodes: Int
 
-            public init(expirationDate: String,
+            public init(environment: OfferCodeEnvironment? = nil,
+                        expirationDate: String,
                         numberOfCodes: Int)
             {
+                self.environment = environment
                 self.expirationDate = expirationDate
                 self.numberOfCodes = numberOfCodes
             }
 
             public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                environment = try container.decodeIfPresent(OfferCodeEnvironment.self, forKey: "environment")
                 expirationDate = try container.decode(String.self, forKey: "expirationDate")
                 numberOfCodes = try container.decode(Int.self, forKey: "numberOfCodes")
             }
 
             public func encode(to encoder: Encoder) throws {
                 var container = encoder.container(keyedBy: AnyCodingKey.self)
+                try container.encodeIfPresent(environment, forKey: "environment")
                 try container.encode(expirationDate, forKey: "expirationDate")
                 try container.encode(numberOfCodes, forKey: "numberOfCodes")
             }

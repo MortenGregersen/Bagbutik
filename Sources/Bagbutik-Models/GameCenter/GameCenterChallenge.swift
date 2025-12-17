@@ -108,16 +108,19 @@ public struct GameCenterChallenge: Codable, Sendable, Identifiable {
         public var gameCenterDetail: GameCenterDetail?
         public var gameCenterGroup: GameCenterGroup?
         public var leaderboard: Leaderboard?
+        public var leaderboardV2: LeaderboardV2?
         public var versions: Versions?
 
         public init(gameCenterDetail: GameCenterDetail? = nil,
                     gameCenterGroup: GameCenterGroup? = nil,
                     leaderboard: Leaderboard? = nil,
+                    leaderboardV2: LeaderboardV2? = nil,
                     versions: Versions? = nil)
         {
             self.gameCenterDetail = gameCenterDetail
             self.gameCenterGroup = gameCenterGroup
             self.leaderboard = leaderboard
+            self.leaderboardV2 = leaderboardV2
             self.versions = versions
         }
 
@@ -126,6 +129,7 @@ public struct GameCenterChallenge: Codable, Sendable, Identifiable {
             gameCenterDetail = try container.decodeIfPresent(GameCenterDetail.self, forKey: "gameCenterDetail")
             gameCenterGroup = try container.decodeIfPresent(GameCenterGroup.self, forKey: "gameCenterGroup")
             leaderboard = try container.decodeIfPresent(Leaderboard.self, forKey: "leaderboard")
+            leaderboardV2 = try container.decodeIfPresent(LeaderboardV2.self, forKey: "leaderboardV2")
             versions = try container.decodeIfPresent(Versions.self, forKey: "versions")
         }
 
@@ -134,6 +138,7 @@ public struct GameCenterChallenge: Codable, Sendable, Identifiable {
             try container.encodeIfPresent(gameCenterDetail, forKey: "gameCenterDetail")
             try container.encodeIfPresent(gameCenterGroup, forKey: "gameCenterGroup")
             try container.encodeIfPresent(leaderboard, forKey: "leaderboard")
+            try container.encodeIfPresent(leaderboardV2, forKey: "leaderboardV2")
             try container.encodeIfPresent(versions, forKey: "versions")
         }
 
@@ -220,6 +225,53 @@ public struct GameCenterChallenge: Codable, Sendable, Identifiable {
         }
 
         public struct Leaderboard: Codable, Sendable {
+            @NullCodable public var data: Data?
+            public var links: RelationshipLinks?
+
+            public init(data: Data? = nil,
+                        links: RelationshipLinks? = nil)
+            {
+                self.data = data
+                self.links = links
+            }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                data = try container.decodeIfPresent(Data.self, forKey: "data")
+                links = try container.decodeIfPresent(RelationshipLinks.self, forKey: "links")
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: AnyCodingKey.self)
+                try container.encode(data, forKey: "data")
+                try container.encodeIfPresent(links, forKey: "links")
+            }
+
+            public struct Data: Codable, Sendable, Identifiable {
+                public let id: String
+                public var type: String { "gameCenterLeaderboards" }
+
+                public init(id: String) {
+                    self.id = id
+                }
+
+                public init(from decoder: Decoder) throws {
+                    let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                    id = try container.decode(String.self, forKey: "id")
+                    if try container.decode(String.self, forKey: "type") != type {
+                        throw DecodingError.dataCorruptedError(forKey: "type", in: container, debugDescription: "Not matching \(type)")
+                    }
+                }
+
+                public func encode(to encoder: Encoder) throws {
+                    var container = encoder.container(keyedBy: AnyCodingKey.self)
+                    try container.encode(id, forKey: "id")
+                    try container.encode(type, forKey: "type")
+                }
+            }
+        }
+
+        public struct LeaderboardV2: Codable, Sendable {
             @NullCodable public var data: Data?
             public var links: RelationshipLinks?
 

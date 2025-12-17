@@ -15,14 +15,17 @@ public struct AlternativeDistributionPackage: Codable, Sendable, Identifiable {
     public let id: String
     public var links: ResourceLinks?
     public var type: String { "alternativeDistributionPackages" }
+    public var attributes: Attributes?
     public var relationships: Relationships?
 
     public init(id: String,
                 links: ResourceLinks? = nil,
+                attributes: Attributes? = nil,
                 relationships: Relationships? = nil)
     {
         self.id = id
         self.links = links
+        self.attributes = attributes
         self.relationships = relationships
     }
 
@@ -30,6 +33,7 @@ public struct AlternativeDistributionPackage: Codable, Sendable, Identifiable {
         let container = try decoder.container(keyedBy: AnyCodingKey.self)
         id = try container.decode(String.self, forKey: "id")
         links = try container.decodeIfPresent(ResourceLinks.self, forKey: "links")
+        attributes = try container.decodeIfPresent(Attributes.self, forKey: "attributes")
         relationships = try container.decodeIfPresent(Relationships.self, forKey: "relationships")
         if try container.decode(String.self, forKey: "type") != type {
             throw DecodingError.dataCorruptedError(forKey: "type", in: container, debugDescription: "Not matching \(type)")
@@ -41,7 +45,26 @@ public struct AlternativeDistributionPackage: Codable, Sendable, Identifiable {
         try container.encode(id, forKey: "id")
         try container.encodeIfPresent(links, forKey: "links")
         try container.encode(type, forKey: "type")
+        try container.encodeIfPresent(attributes, forKey: "attributes")
         try container.encodeIfPresent(relationships, forKey: "relationships")
+    }
+
+    public struct Attributes: Codable, Sendable {
+        public var sourceFileChecksum: Checksums?
+
+        public init(sourceFileChecksum: Checksums? = nil) {
+            self.sourceFileChecksum = sourceFileChecksum
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: AnyCodingKey.self)
+            sourceFileChecksum = try container.decodeIfPresent(Checksums.self, forKey: "sourceFileChecksum")
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: AnyCodingKey.self)
+            try container.encodeIfPresent(sourceFileChecksum, forKey: "sourceFileChecksum")
+        }
     }
 
     public struct Relationships: Codable, Sendable {

@@ -34,6 +34,8 @@ public enum GetAppV1 {
      Fields to return for included related types.
      */
     public enum Field: FieldParameter {
+        /// The fields to include for returned resources of type androidToIosAppMappingDetails
+        case androidToIosAppMappingDetails([AndroidToIosAppMappingDetails])
         /// The fields to include for returned resources of type appClips
         case appClips([AppClips])
         /// The fields to include for returned resources of type appCustomProductPages
@@ -81,6 +83,26 @@ public enum GetAppV1 {
         case subscriptionGracePeriods([SubscriptionGracePeriods])
         /// The fields to include for returned resources of type subscriptionGroups
         case subscriptionGroups([SubscriptionGroups])
+
+        public enum AndroidToIosAppMappingDetails: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case appSigningKeyPublicCertificateSha256Fingerprints
+            case packageName
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = AndroidToIosAppMappingDetails(rawValue: string) {
+                    self = value
+                } else if let value = AndroidToIosAppMappingDetails(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid AndroidToIosAppMappingDetails value: \(string)"
+                    )
+                }
+            }
+        }
 
         public enum AppClips: String, Sendable, ParameterValue, Codable, CaseIterable {
             case app
@@ -305,6 +327,7 @@ public enum GetAppV1 {
             case accessibilityUrl
             case alternativeDistributionKey
             case analyticsReportRequests
+            case androidToIosAppMappingDetails
             case appAvailabilityV2
             case appClips
             case appCustomProductPages
@@ -313,6 +336,7 @@ public enum GetAppV1 {
             case appInfos
             case appPricePoints
             case appPriceSchedule
+            case appStoreIcon
             case appStoreVersionExperimentsV2
             case appStoreVersions
             case appTags
@@ -579,14 +603,19 @@ public enum GetAppV1 {
             case challengeReleases
             case challengesMinimumPlatformVersions
             case defaultGroupLeaderboard
+            case defaultGroupLeaderboardV2
             case defaultLeaderboard
+            case defaultLeaderboardV2
             case gameCenterAchievements
+            case gameCenterAchievementsV2
             case gameCenterActivities
             case gameCenterAppVersions
             case gameCenterChallenges
             case gameCenterGroup
             case gameCenterLeaderboardSets
+            case gameCenterLeaderboardSetsV2
             case gameCenterLeaderboards
+            case gameCenterLeaderboardsV2
             case leaderboardReleases
             case leaderboardSetReleases
 
@@ -641,6 +670,7 @@ public enum GetAppV1 {
             case inAppPurchaseLocalizations
             case inAppPurchaseType
             case name
+            case offerCodes
             case pricePoints
             case productId
             case promotedPurchase
@@ -783,11 +813,13 @@ public enum GetAppV1 {
      Relationship data to include in the response.
      */
     public enum Include: String, IncludeParameter, CaseIterable {
+        case androidToIosAppMappingDetails
         case appClips
         case appCustomProductPages
         case appEncryptionDeclarations
         case appEvents
         case appInfos
+        case appStoreIcon
         case appStoreVersionExperimentsV2
         case appStoreVersions
         case betaAppLocalizations
@@ -812,6 +844,8 @@ public enum GetAppV1 {
      Number of included related resources to return.
      */
     public enum Limit: LimitParameter {
+        /// Maximum number of related androidToIosAppMappingDetails returned (when they are included) - maximum 50
+        case androidToIosAppMappingDetails(Int)
         /// Maximum number of related appClips returned (when they are included) - maximum 50
         case appClips(Int)
         /// Maximum number of related appCustomProductPages returned (when they are included) - maximum 50

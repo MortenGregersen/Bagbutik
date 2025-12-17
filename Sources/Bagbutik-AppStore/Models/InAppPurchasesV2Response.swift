@@ -89,6 +89,18 @@ public struct InAppPurchasesV2Response: Codable, Sendable, PagedResponse {
         return inAppPurchaseLocalizations
     }
 
+    public func getOfferCodes(for inAppPurchaseV2: InAppPurchaseV2) -> [InAppPurchaseOfferCode] {
+        guard let offerCodeIds = inAppPurchaseV2.relationships?.offerCodes?.data?.map(\.id),
+              let offerCodes = included?.compactMap({ relationship -> InAppPurchaseOfferCode? in
+                  guard case let .inAppPurchaseOfferCode(offerCode) = relationship else { return nil }
+                  return offerCodeIds.contains(offerCode.id) ? offerCode : nil
+              })
+        else {
+            return []
+        }
+        return offerCodes
+    }
+
     public func getPricePoints(for inAppPurchaseV2: InAppPurchaseV2) -> [InAppPurchasePricePoint] {
         guard let pricePointIds = inAppPurchaseV2.relationships?.pricePoints?.data?.map(\.id),
               let pricePoints = included?.compactMap({ relationship -> InAppPurchasePricePoint? in
@@ -114,6 +126,7 @@ public struct InAppPurchasesV2Response: Codable, Sendable, PagedResponse {
         case inAppPurchaseContent(InAppPurchaseContent)
         case inAppPurchaseImage(InAppPurchaseImage)
         case inAppPurchaseLocalization(InAppPurchaseLocalization)
+        case inAppPurchaseOfferCode(InAppPurchaseOfferCode)
         case inAppPurchasePricePoint(InAppPurchasePricePoint)
         case inAppPurchasePriceSchedule(InAppPurchasePriceSchedule)
         case promotedPurchase(PromotedPurchase)
@@ -129,6 +142,8 @@ public struct InAppPurchasesV2Response: Codable, Sendable, PagedResponse {
                 self = .inAppPurchaseImage(inAppPurchaseImage)
             } else if let inAppPurchaseLocalization = try? InAppPurchaseLocalization(from: decoder) {
                 self = .inAppPurchaseLocalization(inAppPurchaseLocalization)
+            } else if let inAppPurchaseOfferCode = try? InAppPurchaseOfferCode(from: decoder) {
+                self = .inAppPurchaseOfferCode(inAppPurchaseOfferCode)
             } else if let inAppPurchasePricePoint = try? InAppPurchasePricePoint(from: decoder) {
                 self = .inAppPurchasePricePoint(inAppPurchasePricePoint)
             } else if let inAppPurchasePriceSchedule = try? InAppPurchasePriceSchedule(from: decoder) {
@@ -155,6 +170,8 @@ public struct InAppPurchasesV2Response: Codable, Sendable, PagedResponse {
             case let .inAppPurchaseImage(value):
                 try value.encode(to: encoder)
             case let .inAppPurchaseLocalization(value):
+                try value.encode(to: encoder)
+            case let .inAppPurchaseOfferCode(value):
                 try value.encode(to: encoder)
             case let .inAppPurchasePricePoint(value):
                 try value.encode(to: encoder)

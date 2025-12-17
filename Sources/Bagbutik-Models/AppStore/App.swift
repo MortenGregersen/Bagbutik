@@ -149,6 +149,7 @@ public struct App: Codable, Sendable, Identifiable {
         public var accessibilityDeclarations: AccessibilityDeclarations?
         public var alternativeDistributionKey: AlternativeDistributionKey?
         public var analyticsReportRequests: AnalyticsReportRequests?
+        public var androidToIosAppMappingDetails: AndroidToIosAppMappingDetails?
         public var appAvailabilityV2: AppAvailabilityV2?
         public var appClips: AppClips?
         public var appCustomProductPages: AppCustomProductPages?
@@ -157,6 +158,7 @@ public struct App: Codable, Sendable, Identifiable {
         public var appInfos: AppInfos?
         public var appPricePoints: AppPricePoints?
         public var appPriceSchedule: AppPriceSchedule?
+        public var appStoreIcon: AppStoreIcon?
         public var appStoreVersionExperimentsV2: AppStoreVersionExperimentsV2?
         public var appStoreVersions: AppStoreVersions?
         public var appTags: AppTags?
@@ -193,6 +195,7 @@ public struct App: Codable, Sendable, Identifiable {
         public init(accessibilityDeclarations: AccessibilityDeclarations? = nil,
                     alternativeDistributionKey: AlternativeDistributionKey? = nil,
                     analyticsReportRequests: AnalyticsReportRequests? = nil,
+                    androidToIosAppMappingDetails: AndroidToIosAppMappingDetails? = nil,
                     appAvailabilityV2: AppAvailabilityV2? = nil,
                     appClips: AppClips? = nil,
                     appCustomProductPages: AppCustomProductPages? = nil,
@@ -201,6 +204,7 @@ public struct App: Codable, Sendable, Identifiable {
                     appInfos: AppInfos? = nil,
                     appPricePoints: AppPricePoints? = nil,
                     appPriceSchedule: AppPriceSchedule? = nil,
+                    appStoreIcon: AppStoreIcon? = nil,
                     appStoreVersionExperimentsV2: AppStoreVersionExperimentsV2? = nil,
                     appStoreVersions: AppStoreVersions? = nil,
                     appTags: AppTags? = nil,
@@ -235,6 +239,7 @@ public struct App: Codable, Sendable, Identifiable {
             self.accessibilityDeclarations = accessibilityDeclarations
             self.alternativeDistributionKey = alternativeDistributionKey
             self.analyticsReportRequests = analyticsReportRequests
+            self.androidToIosAppMappingDetails = androidToIosAppMappingDetails
             self.appAvailabilityV2 = appAvailabilityV2
             self.appClips = appClips
             self.appCustomProductPages = appCustomProductPages
@@ -243,6 +248,7 @@ public struct App: Codable, Sendable, Identifiable {
             self.appInfos = appInfos
             self.appPricePoints = appPricePoints
             self.appPriceSchedule = appPriceSchedule
+            self.appStoreIcon = appStoreIcon
             self.appStoreVersionExperimentsV2 = appStoreVersionExperimentsV2
             self.appStoreVersions = appStoreVersions
             self.appTags = appTags
@@ -278,6 +284,7 @@ public struct App: Codable, Sendable, Identifiable {
         public init(accessibilityDeclarations: AccessibilityDeclarations? = nil,
                     alternativeDistributionKey: AlternativeDistributionKey? = nil,
                     analyticsReportRequests: AnalyticsReportRequests? = nil,
+                    androidToIosAppMappingDetails: AndroidToIosAppMappingDetails? = nil,
                     appAvailabilityV2: AppAvailabilityV2? = nil,
                     appClips: AppClips? = nil,
                     appCustomProductPages: AppCustomProductPages? = nil,
@@ -286,6 +293,7 @@ public struct App: Codable, Sendable, Identifiable {
                     appInfos: AppInfos? = nil,
                     appPricePoints: AppPricePoints? = nil,
                     appPriceSchedule: AppPriceSchedule? = nil,
+                    appStoreIcon: AppStoreIcon? = nil,
                     appStoreVersionExperimentsV2: AppStoreVersionExperimentsV2? = nil,
                     appStoreVersions: AppStoreVersions? = nil,
                     appTags: AppTags? = nil,
@@ -319,6 +327,7 @@ public struct App: Codable, Sendable, Identifiable {
             self.accessibilityDeclarations = accessibilityDeclarations
             self.alternativeDistributionKey = alternativeDistributionKey
             self.analyticsReportRequests = analyticsReportRequests
+            self.androidToIosAppMappingDetails = androidToIosAppMappingDetails
             self.appAvailabilityV2 = appAvailabilityV2
             self.appClips = appClips
             self.appCustomProductPages = appCustomProductPages
@@ -327,6 +336,7 @@ public struct App: Codable, Sendable, Identifiable {
             self.appInfos = appInfos
             self.appPricePoints = appPricePoints
             self.appPriceSchedule = appPriceSchedule
+            self.appStoreIcon = appStoreIcon
             self.appStoreVersionExperimentsV2 = appStoreVersionExperimentsV2
             self.appStoreVersions = appStoreVersions
             self.appTags = appTags
@@ -363,6 +373,7 @@ public struct App: Codable, Sendable, Identifiable {
             accessibilityDeclarations = try container.decodeIfPresent(AccessibilityDeclarations.self, forKey: "accessibilityDeclarations")
             alternativeDistributionKey = try container.decodeIfPresent(AlternativeDistributionKey.self, forKey: "alternativeDistributionKey")
             analyticsReportRequests = try container.decodeIfPresent(AnalyticsReportRequests.self, forKey: "analyticsReportRequests")
+            androidToIosAppMappingDetails = try container.decodeIfPresent(AndroidToIosAppMappingDetails.self, forKey: "androidToIosAppMappingDetails")
             appAvailabilityV2 = try container.decodeIfPresent(AppAvailabilityV2.self, forKey: "appAvailabilityV2")
             appClips = try container.decodeIfPresent(AppClips.self, forKey: "appClips")
             appCustomProductPages = try container.decodeIfPresent(AppCustomProductPages.self, forKey: "appCustomProductPages")
@@ -371,6 +382,7 @@ public struct App: Codable, Sendable, Identifiable {
             appInfos = try container.decodeIfPresent(AppInfos.self, forKey: "appInfos")
             appPricePoints = try container.decodeIfPresent(AppPricePoints.self, forKey: "appPricePoints")
             appPriceSchedule = try container.decodeIfPresent(AppPriceSchedule.self, forKey: "appPriceSchedule")
+            appStoreIcon = try container.decodeIfPresent(AppStoreIcon.self, forKey: "appStoreIcon")
             appStoreVersionExperimentsV2 = try container.decodeIfPresent(AppStoreVersionExperimentsV2.self, forKey: "appStoreVersionExperimentsV2")
             appStoreVersions = try container.decodeIfPresent(AppStoreVersions.self, forKey: "appStoreVersions")
             appTags = try container.decodeIfPresent(AppTags.self, forKey: "appTags")
@@ -408,6 +420,7 @@ public struct App: Codable, Sendable, Identifiable {
             try container.encodeIfPresent(accessibilityDeclarations, forKey: "accessibilityDeclarations")
             try container.encodeIfPresent(alternativeDistributionKey, forKey: "alternativeDistributionKey")
             try container.encodeIfPresent(analyticsReportRequests, forKey: "analyticsReportRequests")
+            try container.encodeIfPresent(androidToIosAppMappingDetails, forKey: "androidToIosAppMappingDetails")
             try container.encodeIfPresent(appAvailabilityV2, forKey: "appAvailabilityV2")
             try container.encodeIfPresent(appClips, forKey: "appClips")
             try container.encodeIfPresent(appCustomProductPages, forKey: "appCustomProductPages")
@@ -416,6 +429,7 @@ public struct App: Codable, Sendable, Identifiable {
             try container.encodeIfPresent(appInfos, forKey: "appInfos")
             try container.encodeIfPresent(appPricePoints, forKey: "appPricePoints")
             try container.encodeIfPresent(appPriceSchedule, forKey: "appPriceSchedule")
+            try container.encodeIfPresent(appStoreIcon, forKey: "appStoreIcon")
             try container.encodeIfPresent(appStoreVersionExperimentsV2, forKey: "appStoreVersionExperimentsV2")
             try container.encodeIfPresent(appStoreVersions, forKey: "appStoreVersions")
             try container.encodeIfPresent(appTags, forKey: "appTags")
@@ -499,6 +513,58 @@ public struct App: Codable, Sendable, Identifiable {
             public func encode(to encoder: Encoder) throws {
                 var container = encoder.container(keyedBy: AnyCodingKey.self)
                 try container.encodeIfPresent(links, forKey: "links")
+            }
+        }
+
+        public struct AndroidToIosAppMappingDetails: Codable, Sendable {
+            @NullCodable public var data: [Data]?
+            public var links: RelationshipLinks?
+            public var meta: PagingInformation?
+
+            public init(data: [Data]? = nil,
+                        links: RelationshipLinks? = nil,
+                        meta: PagingInformation? = nil)
+            {
+                self.data = data
+                self.links = links
+                self.meta = meta
+            }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                data = try container.decodeIfPresent([Data].self, forKey: "data")
+                links = try container.decodeIfPresent(RelationshipLinks.self, forKey: "links")
+                meta = try container.decodeIfPresent(PagingInformation.self, forKey: "meta")
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: AnyCodingKey.self)
+                try container.encode(data, forKey: "data")
+                try container.encodeIfPresent(links, forKey: "links")
+                try container.encodeIfPresent(meta, forKey: "meta")
+            }
+
+            public struct Data: Codable, Sendable, Identifiable {
+                public let id: String
+                public var type: String { "androidToIosAppMappingDetails" }
+
+                public init(id: String) {
+                    self.id = id
+                }
+
+                public init(from decoder: Decoder) throws {
+                    let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                    id = try container.decode(String.self, forKey: "id")
+                    if try container.decode(String.self, forKey: "type") != type {
+                        throw DecodingError.dataCorruptedError(forKey: "type", in: container, debugDescription: "Not matching \(type)")
+                    }
+                }
+
+                public func encode(to encoder: Encoder) throws {
+                    var container = encoder.container(keyedBy: AnyCodingKey.self)
+                    try container.encode(id, forKey: "id")
+                    try container.encode(type, forKey: "type")
+                }
             }
         }
 
@@ -813,6 +879,47 @@ public struct App: Codable, Sendable, Identifiable {
             public func encode(to encoder: Encoder) throws {
                 var container = encoder.container(keyedBy: AnyCodingKey.self)
                 try container.encodeIfPresent(links, forKey: "links")
+            }
+        }
+
+        public struct AppStoreIcon: Codable, Sendable {
+            @NullCodable public var data: Data?
+
+            public init(data: Data? = nil) {
+                self.data = data
+            }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                data = try container.decodeIfPresent(Data.self, forKey: "data")
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: AnyCodingKey.self)
+                try container.encode(data, forKey: "data")
+            }
+
+            public struct Data: Codable, Sendable, Identifiable {
+                public let id: String
+                public var type: String { "buildIcons" }
+
+                public init(id: String) {
+                    self.id = id
+                }
+
+                public init(from decoder: Decoder) throws {
+                    let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                    id = try container.decode(String.self, forKey: "id")
+                    if try container.decode(String.self, forKey: "type") != type {
+                        throw DecodingError.dataCorruptedError(forKey: "type", in: container, debugDescription: "Not matching \(type)")
+                    }
+                }
+
+                public func encode(to encoder: Encoder) throws {
+                    var container = encoder.container(keyedBy: AnyCodingKey.self)
+                    try container.encode(id, forKey: "id")
+                    try container.encode(type, forKey: "type")
+                }
             }
         }
 

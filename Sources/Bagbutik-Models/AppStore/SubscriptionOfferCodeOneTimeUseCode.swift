@@ -42,16 +42,19 @@ public struct SubscriptionOfferCodeOneTimeUseCode: Codable, Sendable, Identifiab
     public struct Attributes: Codable, Sendable {
         public var active: Bool?
         public var createdDate: Date?
+        public var environment: OfferCodeEnvironment?
         public var expirationDate: String?
         public var numberOfCodes: Int?
 
         public init(active: Bool? = nil,
                     createdDate: Date? = nil,
+                    environment: OfferCodeEnvironment? = nil,
                     expirationDate: String? = nil,
                     numberOfCodes: Int? = nil)
         {
             self.active = active
             self.createdDate = createdDate
+            self.environment = environment
             self.expirationDate = expirationDate
             self.numberOfCodes = numberOfCodes
         }
@@ -60,6 +63,7 @@ public struct SubscriptionOfferCodeOneTimeUseCode: Codable, Sendable, Identifiab
             let container = try decoder.container(keyedBy: AnyCodingKey.self)
             active = try container.decodeIfPresent(Bool.self, forKey: "active")
             createdDate = try container.decodeIfPresent(Date.self, forKey: "createdDate")
+            environment = try container.decodeIfPresent(OfferCodeEnvironment.self, forKey: "environment")
             expirationDate = try container.decodeIfPresent(String.self, forKey: "expirationDate")
             numberOfCodes = try container.decodeIfPresent(Int.self, forKey: "numberOfCodes")
         }
@@ -68,6 +72,7 @@ public struct SubscriptionOfferCodeOneTimeUseCode: Codable, Sendable, Identifiab
             var container = encoder.container(keyedBy: AnyCodingKey.self)
             try container.encodeIfPresent(active, forKey: "active")
             try container.encodeIfPresent(createdDate, forKey: "createdDate")
+            try container.encodeIfPresent(environment, forKey: "environment")
             try container.encodeIfPresent(expirationDate, forKey: "expirationDate")
             try container.encodeIfPresent(numberOfCodes, forKey: "numberOfCodes")
         }

@@ -65,6 +65,7 @@ public enum ListCustomCodesForSubscriptionOfferCodeV1 {
 
         public enum SubscriptionOfferCodes: String, Sendable, ParameterValue, Codable, CaseIterable {
             case active
+            case autoRenewEnabled
             case customCodes
             case customerEligibilities
             case duration
@@ -74,6 +75,8 @@ public enum ListCustomCodesForSubscriptionOfferCodeV1 {
             case offerMode
             case oneTimeUseCodes
             case prices
+            case productionCodeCount
+            case sandboxCodeCount
             case subscription
             case totalNumberOfCodes
 

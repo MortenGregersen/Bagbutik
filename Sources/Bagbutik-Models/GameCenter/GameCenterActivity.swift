@@ -122,43 +122,105 @@ public struct GameCenterActivity: Codable, Sendable, Identifiable {
 
     public struct Relationships: Codable, Sendable {
         public var achievements: Achievements?
+        public var achievementsV2: AchievementsV2?
         public var gameCenterDetail: GameCenterDetail?
         public var gameCenterGroup: GameCenterGroup?
         public var leaderboards: Leaderboards?
+        public var leaderboardsV2: LeaderboardsV2?
         public var versions: Versions?
 
         public init(achievements: Achievements? = nil,
+                    achievementsV2: AchievementsV2? = nil,
                     gameCenterDetail: GameCenterDetail? = nil,
                     gameCenterGroup: GameCenterGroup? = nil,
                     leaderboards: Leaderboards? = nil,
+                    leaderboardsV2: LeaderboardsV2? = nil,
                     versions: Versions? = nil)
         {
             self.achievements = achievements
+            self.achievementsV2 = achievementsV2
             self.gameCenterDetail = gameCenterDetail
             self.gameCenterGroup = gameCenterGroup
             self.leaderboards = leaderboards
+            self.leaderboardsV2 = leaderboardsV2
             self.versions = versions
         }
 
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: AnyCodingKey.self)
             achievements = try container.decodeIfPresent(Achievements.self, forKey: "achievements")
+            achievementsV2 = try container.decodeIfPresent(AchievementsV2.self, forKey: "achievementsV2")
             gameCenterDetail = try container.decodeIfPresent(GameCenterDetail.self, forKey: "gameCenterDetail")
             gameCenterGroup = try container.decodeIfPresent(GameCenterGroup.self, forKey: "gameCenterGroup")
             leaderboards = try container.decodeIfPresent(Leaderboards.self, forKey: "leaderboards")
+            leaderboardsV2 = try container.decodeIfPresent(LeaderboardsV2.self, forKey: "leaderboardsV2")
             versions = try container.decodeIfPresent(Versions.self, forKey: "versions")
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: AnyCodingKey.self)
             try container.encodeIfPresent(achievements, forKey: "achievements")
+            try container.encodeIfPresent(achievementsV2, forKey: "achievementsV2")
             try container.encodeIfPresent(gameCenterDetail, forKey: "gameCenterDetail")
             try container.encodeIfPresent(gameCenterGroup, forKey: "gameCenterGroup")
             try container.encodeIfPresent(leaderboards, forKey: "leaderboards")
+            try container.encodeIfPresent(leaderboardsV2, forKey: "leaderboardsV2")
             try container.encodeIfPresent(versions, forKey: "versions")
         }
 
         public struct Achievements: Codable, Sendable {
+            @NullCodable public var data: [Data]?
+            public var links: RelationshipLinks?
+            public var meta: PagingInformation?
+
+            public init(data: [Data]? = nil,
+                        links: RelationshipLinks? = nil,
+                        meta: PagingInformation? = nil)
+            {
+                self.data = data
+                self.links = links
+                self.meta = meta
+            }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                data = try container.decodeIfPresent([Data].self, forKey: "data")
+                links = try container.decodeIfPresent(RelationshipLinks.self, forKey: "links")
+                meta = try container.decodeIfPresent(PagingInformation.self, forKey: "meta")
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: AnyCodingKey.self)
+                try container.encode(data, forKey: "data")
+                try container.encodeIfPresent(links, forKey: "links")
+                try container.encodeIfPresent(meta, forKey: "meta")
+            }
+
+            public struct Data: Codable, Sendable, Identifiable {
+                public let id: String
+                public var type: String { "gameCenterAchievements" }
+
+                public init(id: String) {
+                    self.id = id
+                }
+
+                public init(from decoder: Decoder) throws {
+                    let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                    id = try container.decode(String.self, forKey: "id")
+                    if try container.decode(String.self, forKey: "type") != type {
+                        throw DecodingError.dataCorruptedError(forKey: "type", in: container, debugDescription: "Not matching \(type)")
+                    }
+                }
+
+                public func encode(to encoder: Encoder) throws {
+                    var container = encoder.container(keyedBy: AnyCodingKey.self)
+                    try container.encode(id, forKey: "id")
+                    try container.encode(type, forKey: "type")
+                }
+            }
+        }
+
+        public struct AchievementsV2: Codable, Sendable {
             @NullCodable public var data: [Data]?
             public var links: RelationshipLinks?
             public var meta: PagingInformation?
@@ -293,6 +355,58 @@ public struct GameCenterActivity: Codable, Sendable, Identifiable {
         }
 
         public struct Leaderboards: Codable, Sendable {
+            @NullCodable public var data: [Data]?
+            public var links: RelationshipLinks?
+            public var meta: PagingInformation?
+
+            public init(data: [Data]? = nil,
+                        links: RelationshipLinks? = nil,
+                        meta: PagingInformation? = nil)
+            {
+                self.data = data
+                self.links = links
+                self.meta = meta
+            }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                data = try container.decodeIfPresent([Data].self, forKey: "data")
+                links = try container.decodeIfPresent(RelationshipLinks.self, forKey: "links")
+                meta = try container.decodeIfPresent(PagingInformation.self, forKey: "meta")
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: AnyCodingKey.self)
+                try container.encode(data, forKey: "data")
+                try container.encodeIfPresent(links, forKey: "links")
+                try container.encodeIfPresent(meta, forKey: "meta")
+            }
+
+            public struct Data: Codable, Sendable, Identifiable {
+                public let id: String
+                public var type: String { "gameCenterLeaderboards" }
+
+                public init(id: String) {
+                    self.id = id
+                }
+
+                public init(from decoder: Decoder) throws {
+                    let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                    id = try container.decode(String.self, forKey: "id")
+                    if try container.decode(String.self, forKey: "type") != type {
+                        throw DecodingError.dataCorruptedError(forKey: "type", in: container, debugDescription: "Not matching \(type)")
+                    }
+                }
+
+                public func encode(to encoder: Encoder) throws {
+                    var container = encoder.container(keyedBy: AnyCodingKey.self)
+                    try container.encode(id, forKey: "id")
+                    try container.encode(type, forKey: "type")
+                }
+            }
+        }
+
+        public struct LeaderboardsV2: Codable, Sendable {
             @NullCodable public var data: [Data]?
             public var links: RelationshipLinks?
             public var meta: PagingInformation?

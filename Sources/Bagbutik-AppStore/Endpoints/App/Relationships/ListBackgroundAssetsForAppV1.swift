@@ -49,6 +49,7 @@ public enum ListBackgroundAssetsForAppV1 {
             case accessibilityUrl
             case alternativeDistributionKey
             case analyticsReportRequests
+            case androidToIosAppMappingDetails
             case appAvailabilityV2
             case appClips
             case appCustomProductPages
@@ -57,6 +58,7 @@ public enum ListBackgroundAssetsForAppV1 {
             case appInfos
             case appPricePoints
             case appPriceSchedule
+            case appStoreIcon
             case appStoreVersionExperimentsV2
             case appStoreVersions
             case appTags
@@ -126,6 +128,7 @@ public enum ListBackgroundAssetsForAppV1 {
             case manifestFile
             case platforms
             case state
+            case stateDetails
             case version
 
             public init(from decoder: Decoder) throws {
@@ -147,6 +150,7 @@ public enum ListBackgroundAssetsForAppV1 {
         public enum BackgroundAssets: String, Sendable, ParameterValue, Codable, CaseIterable {
             case app
             case appStoreVersion
+            case archived
             case assetPackIdentifier
             case createdDate
             case externalBetaVersion
@@ -174,6 +178,8 @@ public enum ListBackgroundAssetsForAppV1 {
      Attributes, relationships, and IDs by which to filter.
      */
     public enum Filter: FilterParameter {
+        /// Filter by attribute 'archived'
+        case archived([String])
         /// Filter by attribute 'assetPackIdentifier'
         case assetPackIdentifier([String])
     }

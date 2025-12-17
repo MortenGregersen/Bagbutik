@@ -140,6 +140,7 @@ public enum ListVersionsForGameCenterChallengeV1 {
             case gameCenterDetail
             case gameCenterGroup
             case leaderboard
+            case leaderboardV2
             case referenceName
             case repeatable
             case vendorIdentifier

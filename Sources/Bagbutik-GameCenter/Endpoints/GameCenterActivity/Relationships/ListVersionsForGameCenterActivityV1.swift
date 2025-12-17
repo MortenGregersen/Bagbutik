@@ -47,10 +47,12 @@ public enum ListVersionsForGameCenterActivityV1 {
 
         public enum GameCenterActivities: String, Sendable, ParameterValue, Codable, CaseIterable {
             case achievements
+            case achievementsV2
             case archived
             case gameCenterDetail
             case gameCenterGroup
             case leaderboards
+            case leaderboardsV2
             case maximumPlayersCount
             case minimumPlayersCount
             case playStyle

@@ -57,6 +57,7 @@ public enum PackageName: CaseIterable, Codable, Equatable {
         if resource.hasPrefix("accessibilityDeclaration")
             || resource.hasPrefix("actor")
             || resource.lowercased().contains("agerating")
+            || resource.hasPrefix("androidToIosAppMapping")
             || resource.hasPrefix("asset")
             || resource.hasPrefix("backgroundAsset")
             || (resource.hasPrefix("build")

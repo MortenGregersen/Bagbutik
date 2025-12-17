@@ -41,54 +41,69 @@ public struct SubscriptionOfferCode: Codable, Sendable, Identifiable {
 
     public struct Attributes: Codable, Sendable {
         public var active: Bool?
+        public var autoRenewEnabled: Bool?
         public var customerEligibilities: [SubscriptionCustomerEligibility]?
         public var duration: SubscriptionOfferDuration?
         public var name: String?
         public var numberOfPeriods: Int?
         public var offerEligibility: SubscriptionOfferEligibility?
         public var offerMode: SubscriptionOfferMode?
+        public var productionCodeCount: Int?
+        public var sandboxCodeCount: Int?
         public var totalNumberOfCodes: Int?
 
         public init(active: Bool? = nil,
+                    autoRenewEnabled: Bool? = nil,
                     customerEligibilities: [SubscriptionCustomerEligibility]? = nil,
                     duration: SubscriptionOfferDuration? = nil,
                     name: String? = nil,
                     numberOfPeriods: Int? = nil,
                     offerEligibility: SubscriptionOfferEligibility? = nil,
                     offerMode: SubscriptionOfferMode? = nil,
+                    productionCodeCount: Int? = nil,
+                    sandboxCodeCount: Int? = nil,
                     totalNumberOfCodes: Int? = nil)
         {
             self.active = active
+            self.autoRenewEnabled = autoRenewEnabled
             self.customerEligibilities = customerEligibilities
             self.duration = duration
             self.name = name
             self.numberOfPeriods = numberOfPeriods
             self.offerEligibility = offerEligibility
             self.offerMode = offerMode
+            self.productionCodeCount = productionCodeCount
+            self.sandboxCodeCount = sandboxCodeCount
             self.totalNumberOfCodes = totalNumberOfCodes
         }
 
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: AnyCodingKey.self)
             active = try container.decodeIfPresent(Bool.self, forKey: "active")
+            autoRenewEnabled = try container.decodeIfPresent(Bool.self, forKey: "autoRenewEnabled")
             customerEligibilities = try container.decodeIfPresent([SubscriptionCustomerEligibility].self, forKey: "customerEligibilities")
             duration = try container.decodeIfPresent(SubscriptionOfferDuration.self, forKey: "duration")
             name = try container.decodeIfPresent(String.self, forKey: "name")
             numberOfPeriods = try container.decodeIfPresent(Int.self, forKey: "numberOfPeriods")
             offerEligibility = try container.decodeIfPresent(SubscriptionOfferEligibility.self, forKey: "offerEligibility")
             offerMode = try container.decodeIfPresent(SubscriptionOfferMode.self, forKey: "offerMode")
+            productionCodeCount = try container.decodeIfPresent(Int.self, forKey: "productionCodeCount")
+            sandboxCodeCount = try container.decodeIfPresent(Int.self, forKey: "sandboxCodeCount")
             totalNumberOfCodes = try container.decodeIfPresent(Int.self, forKey: "totalNumberOfCodes")
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: AnyCodingKey.self)
             try container.encodeIfPresent(active, forKey: "active")
+            try container.encodeIfPresent(autoRenewEnabled, forKey: "autoRenewEnabled")
             try container.encodeIfPresent(customerEligibilities, forKey: "customerEligibilities")
             try container.encodeIfPresent(duration, forKey: "duration")
             try container.encodeIfPresent(name, forKey: "name")
             try container.encodeIfPresent(numberOfPeriods, forKey: "numberOfPeriods")
             try container.encodeIfPresent(offerEligibility, forKey: "offerEligibility")
             try container.encodeIfPresent(offerMode, forKey: "offerMode")
+            try container.encodeIfPresent(productionCodeCount, forKey: "productionCodeCount")
+            try container.encodeIfPresent(sandboxCodeCount, forKey: "sandboxCodeCount")
             try container.encodeIfPresent(totalNumberOfCodes, forKey: "totalNumberOfCodes")
         }
     }

@@ -45,6 +45,7 @@ public enum GetBackgroundAssetVersionV1 {
             case manifestFile
             case platforms
             case state
+            case stateDetails
             case version
 
             public init(from decoder: Decoder) throws {

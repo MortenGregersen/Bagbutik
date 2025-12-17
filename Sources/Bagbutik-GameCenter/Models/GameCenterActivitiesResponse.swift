@@ -56,6 +56,18 @@ public struct GameCenterActivitiesResponse: Codable, Sendable, PagedResponse {
         return achievements
     }
 
+    public func getAchievementsV2(for gameCenterActivity: GameCenterActivity) -> [GameCenterAchievement] {
+        guard let achievementsV2Ids = gameCenterActivity.relationships?.achievementsV2?.data?.map(\.id),
+              let achievementsV2 = included?.compactMap({ relationship -> GameCenterAchievement? in
+                  guard case let .gameCenterAchievement(achievementsV2) = relationship else { return nil }
+                  return achievementsV2Ids.contains(achievementsV2.id) ? achievementsV2 : nil
+              })
+        else {
+            return []
+        }
+        return achievementsV2
+    }
+
     public func getGameCenterDetail(for gameCenterActivity: GameCenterActivity) -> GameCenterDetail? {
         included?.compactMap { relationship -> GameCenterDetail? in
             guard case let .gameCenterDetail(gameCenterDetail) = relationship else { return nil }
@@ -80,6 +92,18 @@ public struct GameCenterActivitiesResponse: Codable, Sendable, PagedResponse {
             return []
         }
         return leaderboards
+    }
+
+    public func getLeaderboardsV2(for gameCenterActivity: GameCenterActivity) -> [GameCenterLeaderboard] {
+        guard let leaderboardsV2Ids = gameCenterActivity.relationships?.leaderboardsV2?.data?.map(\.id),
+              let leaderboardsV2 = included?.compactMap({ relationship -> GameCenterLeaderboard? in
+                  guard case let .gameCenterLeaderboard(leaderboardsV2) = relationship else { return nil }
+                  return leaderboardsV2Ids.contains(leaderboardsV2.id) ? leaderboardsV2 : nil
+              })
+        else {
+            return []
+        }
+        return leaderboardsV2
     }
 
     public func getVersions(for gameCenterActivity: GameCenterActivity) -> [GameCenterActivityVersion] {

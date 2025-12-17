@@ -64,7 +64,8 @@ public struct AppInfo: Codable, Sendable, Identifiable {
         public var brazilAgeRatingV2: BrazilAgeRatingV2? = nil
         @available(*, deprecated, message: "Apple has marked this property deprecated and it will be removed sometime in the future.")
         public var franceAgeRating: FranceAgeRating? = nil
-        public var kidsAgeBand: KidsAgeBand?
+        @available(*, deprecated, message: "Apple has marked this property deprecated and it will be removed sometime in the future.")
+        public var kidsAgeBand: KidsAgeBand? = nil
         @available(*, deprecated, message: "Apple has marked this property deprecated and it will be removed sometime in the future.")
         public var koreaAgeRating: KoreaAgeRating? = nil
         public var state: State?
@@ -91,10 +92,7 @@ public struct AppInfo: Codable, Sendable, Identifiable {
             self.state = state
         }
 
-        public init(kidsAgeBand: KidsAgeBand? = nil,
-                    state: State? = nil)
-        {
-            self.kidsAgeBand = kidsAgeBand
+        public init(state: State? = nil) {
             self.state = state
         }
 

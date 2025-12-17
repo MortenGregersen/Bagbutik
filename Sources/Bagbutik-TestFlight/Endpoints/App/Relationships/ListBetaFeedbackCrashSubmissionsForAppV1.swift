@@ -89,6 +89,7 @@ public enum ListBetaFeedbackCrashSubmissionsForAppV1 {
         }
 
         public enum BetaTesters: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case appDevices
             case apps
             case betaGroups
             case builds

@@ -72,12 +72,52 @@ public struct ReviewSubmissionItemResponse: Codable, Sendable {
         }.first { $0.id == data.relationships?.backgroundAssetVersion?.data?.id }
     }
 
+    public func getGameCenterAchievementVersion() -> GameCenterAchievementVersionV2? {
+        included?.compactMap { relationship -> GameCenterAchievementVersionV2? in
+            guard case let .gameCenterAchievementVersionV2(gameCenterAchievementVersion) = relationship else { return nil }
+            return gameCenterAchievementVersion
+        }.first { $0.id == data.relationships?.gameCenterAchievementVersion?.data?.id }
+    }
+
+    public func getGameCenterActivityVersion() -> GameCenterActivityVersion? {
+        included?.compactMap { relationship -> GameCenterActivityVersion? in
+            guard case let .gameCenterActivityVersion(gameCenterActivityVersion) = relationship else { return nil }
+            return gameCenterActivityVersion
+        }.first { $0.id == data.relationships?.gameCenterActivityVersion?.data?.id }
+    }
+
+    public func getGameCenterChallengeVersion() -> GameCenterChallengeVersion? {
+        included?.compactMap { relationship -> GameCenterChallengeVersion? in
+            guard case let .gameCenterChallengeVersion(gameCenterChallengeVersion) = relationship else { return nil }
+            return gameCenterChallengeVersion
+        }.first { $0.id == data.relationships?.gameCenterChallengeVersion?.data?.id }
+    }
+
+    public func getGameCenterLeaderboardSetVersion() -> GameCenterLeaderboardSetVersionV2? {
+        included?.compactMap { relationship -> GameCenterLeaderboardSetVersionV2? in
+            guard case let .gameCenterLeaderboardSetVersionV2(gameCenterLeaderboardSetVersion) = relationship else { return nil }
+            return gameCenterLeaderboardSetVersion
+        }.first { $0.id == data.relationships?.gameCenterLeaderboardSetVersion?.data?.id }
+    }
+
+    public func getGameCenterLeaderboardVersion() -> GameCenterLeaderboardVersionV2? {
+        included?.compactMap { relationship -> GameCenterLeaderboardVersionV2? in
+            guard case let .gameCenterLeaderboardVersionV2(gameCenterLeaderboardVersion) = relationship else { return nil }
+            return gameCenterLeaderboardVersion
+        }.first { $0.id == data.relationships?.gameCenterLeaderboardVersion?.data?.id }
+    }
+
     public enum Included: Codable, Sendable {
         case appCustomProductPageVersion(AppCustomProductPageVersion)
         case appEvent(AppEvent)
         case appStoreVersion(AppStoreVersion)
         case appStoreVersionExperiment(AppStoreVersionExperiment)
         case backgroundAssetVersion(BackgroundAssetVersion)
+        case gameCenterAchievementVersionV2(GameCenterAchievementVersionV2)
+        case gameCenterActivityVersion(GameCenterActivityVersion)
+        case gameCenterChallengeVersion(GameCenterChallengeVersion)
+        case gameCenterLeaderboardSetVersionV2(GameCenterLeaderboardSetVersionV2)
+        case gameCenterLeaderboardVersionV2(GameCenterLeaderboardVersionV2)
 
         public init(from decoder: Decoder) throws {
             if let appCustomProductPageVersion = try? AppCustomProductPageVersion(from: decoder) {
@@ -90,6 +130,16 @@ public struct ReviewSubmissionItemResponse: Codable, Sendable {
                 self = .appStoreVersionExperiment(appStoreVersionExperiment)
             } else if let backgroundAssetVersion = try? BackgroundAssetVersion(from: decoder) {
                 self = .backgroundAssetVersion(backgroundAssetVersion)
+            } else if let gameCenterAchievementVersionV2 = try? GameCenterAchievementVersionV2(from: decoder) {
+                self = .gameCenterAchievementVersionV2(gameCenterAchievementVersionV2)
+            } else if let gameCenterActivityVersion = try? GameCenterActivityVersion(from: decoder) {
+                self = .gameCenterActivityVersion(gameCenterActivityVersion)
+            } else if let gameCenterChallengeVersion = try? GameCenterChallengeVersion(from: decoder) {
+                self = .gameCenterChallengeVersion(gameCenterChallengeVersion)
+            } else if let gameCenterLeaderboardSetVersionV2 = try? GameCenterLeaderboardSetVersionV2(from: decoder) {
+                self = .gameCenterLeaderboardSetVersionV2(gameCenterLeaderboardSetVersionV2)
+            } else if let gameCenterLeaderboardVersionV2 = try? GameCenterLeaderboardVersionV2(from: decoder) {
+                self = .gameCenterLeaderboardVersionV2(gameCenterLeaderboardVersionV2)
             } else {
                 throw DecodingError.typeMismatch(
                     Included.self,
@@ -110,6 +160,16 @@ public struct ReviewSubmissionItemResponse: Codable, Sendable {
             case let .appStoreVersionExperiment(value):
                 try value.encode(to: encoder)
             case let .backgroundAssetVersion(value):
+                try value.encode(to: encoder)
+            case let .gameCenterAchievementVersionV2(value):
+                try value.encode(to: encoder)
+            case let .gameCenterActivityVersion(value):
+                try value.encode(to: encoder)
+            case let .gameCenterChallengeVersion(value):
+                try value.encode(to: encoder)
+            case let .gameCenterLeaderboardSetVersionV2(value):
+                try value.encode(to: encoder)
+            case let .gameCenterLeaderboardVersionV2(value):
                 try value.encode(to: encoder)
             }
         }

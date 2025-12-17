@@ -154,12 +154,6 @@ On 12/1/23 some errors (with status code 409) has been observed, with no `detail
 In Apple's OpenAPI spec and documentation the `associatedErrors` is not mentioned in `meta` property (last checked 12/1/23).
 But it is observed when creating a `ReviewSubmissionItem` with an `AppStoreVersion` fails.
 
-#### **FB16699896**: App Store Connect API is missing "XKS" (Kosovo) for the TerritoryCode enum
-
-* Submitted: March 3rd, 2025.
-
-In the OpenAPI spec (and documentation) for the App Store Connect API the “TerritoryCode” schema is said to not include "XKS” (Kosovo). This is not right as the “Territories” endpoint returns a “XKS” `TerritoryCode`. Nominations as well can have "XKS" as a `supportedTerritory`.
-
 #### **FB16908301**: App Store Connect API Spec is missing list of possible "PurchaseRequirement" on AppEvent
 
 * Submitted: March 17th, 2025.
@@ -207,3 +201,7 @@ In the OpenAPI spec (and documentation) for the App Store Connect API the `purch
 * **FB17932433**: The "totalNumberOfCodes" property of "SubscriptionOfferCode.Attributes" is missing
   * Submitted: June 11th 2025.
   * Resolved: October 9th 2025 (Spec version 4.1).
+  
+* **FB16699896**: App Store Connect API is missing "XKS" (Kosovo) for the TerritoryCode enum
+  * Submitted: March 3rd, 2025.
+  * Reoslved: December 16th, 2025 (Spec version 4.2).

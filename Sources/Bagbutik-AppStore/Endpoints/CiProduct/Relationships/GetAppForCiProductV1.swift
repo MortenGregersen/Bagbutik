@@ -34,6 +34,8 @@ public enum GetAppForCiProductV1 {
      Fields to return for included related types.
      */
     public enum Field: FieldParameter {
+        /// The fields to include for returned resources of type androidToIosAppMappingDetails
+        case androidToIosAppMappingDetails([AndroidToIosAppMappingDetails])
         /// The fields to include for returned resources of type appClips
         case appClips([AppClips])
         /// The fields to include for returned resources of type appCustomProductPages
@@ -58,6 +60,8 @@ public enum GetAppForCiProductV1 {
         case betaGroups([BetaGroups])
         /// The fields to include for returned resources of type betaLicenseAgreements
         case betaLicenseAgreements([BetaLicenseAgreements])
+        /// The fields to include for returned resources of type buildIcons
+        case buildIcons([BuildIcons])
         /// The fields to include for returned resources of type builds
         case builds([Builds])
         /// The fields to include for returned resources of type ciProducts
@@ -80,6 +84,26 @@ public enum GetAppForCiProductV1 {
         case subscriptionGracePeriods([SubscriptionGracePeriods])
         /// The fields to include for returned resources of type subscriptionGroups
         case subscriptionGroups([SubscriptionGroups])
+
+        public enum AndroidToIosAppMappingDetails: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case appSigningKeyPublicCertificateSha256Fingerprints
+            case packageName
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = AndroidToIosAppMappingDetails(rawValue: string) {
+                    self = value
+                } else if let value = AndroidToIosAppMappingDetails(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid AndroidToIosAppMappingDetails value: \(string)"
+                    )
+                }
+            }
+        }
 
         public enum AppClips: String, Sendable, ParameterValue, Codable, CaseIterable {
             case app
@@ -304,6 +328,7 @@ public enum GetAppForCiProductV1 {
             case accessibilityUrl
             case alternativeDistributionKey
             case analyticsReportRequests
+            case androidToIosAppMappingDetails
             case appAvailabilityV2
             case appClips
             case appCustomProductPages
@@ -312,6 +337,7 @@ public enum GetAppForCiProductV1 {
             case appInfos
             case appPricePoints
             case appPriceSchedule
+            case appStoreIcon
             case appStoreVersionExperimentsV2
             case appStoreVersions
             case appTags
@@ -477,6 +503,28 @@ public enum GetAppForCiProductV1 {
             }
         }
 
+        public enum BuildIcons: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case iconAsset
+            case iconType
+            case masked
+            case name
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = BuildIcons(rawValue: string) {
+                    self = value
+                } else if let value = BuildIcons(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid BuildIcons value: \(string)"
+                    )
+                }
+            }
+        }
+
         public enum Builds: String, Sendable, ParameterValue, Codable, CaseIterable {
             case app
             case appEncryptionDeclaration
@@ -578,14 +626,19 @@ public enum GetAppForCiProductV1 {
             case challengeReleases
             case challengesMinimumPlatformVersions
             case defaultGroupLeaderboard
+            case defaultGroupLeaderboardV2
             case defaultLeaderboard
+            case defaultLeaderboardV2
             case gameCenterAchievements
+            case gameCenterAchievementsV2
             case gameCenterActivities
             case gameCenterAppVersions
             case gameCenterChallenges
             case gameCenterGroup
             case gameCenterLeaderboardSets
+            case gameCenterLeaderboardSetsV2
             case gameCenterLeaderboards
+            case gameCenterLeaderboardsV2
             case leaderboardReleases
             case leaderboardSetReleases
 
@@ -640,6 +693,7 @@ public enum GetAppForCiProductV1 {
             case inAppPurchaseLocalizations
             case inAppPurchaseType
             case name
+            case offerCodes
             case pricePoints
             case productId
             case promotedPurchase
@@ -782,11 +836,13 @@ public enum GetAppForCiProductV1 {
      Relationship data to include in the response.
      */
     public enum Include: String, IncludeParameter, CaseIterable {
+        case androidToIosAppMappingDetails
         case appClips
         case appCustomProductPages
         case appEncryptionDeclarations
         case appEvents
         case appInfos
+        case appStoreIcon
         case appStoreVersionExperimentsV2
         case appStoreVersions
         case betaAppLocalizations
@@ -811,6 +867,8 @@ public enum GetAppForCiProductV1 {
      Number of included related resources to return.
      */
     public enum Limit: LimitParameter {
+        /// Maximum number of related androidToIosAppMappingDetails returned (when they are included) - maximum 50
+        case androidToIosAppMappingDetails(Int)
         /// Maximum number of related appClips returned (when they are included) - maximum 50
         case appClips(Int)
         /// Maximum number of related appCustomProductPages returned (when they are included) - maximum 50
