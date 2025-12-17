@@ -150,7 +150,8 @@ public struct Spec: Decodable {
                     name: name,
                     type: .enum(type: valueType, values: values),
                     required: required,
-                    documentation: documentation)
+                    documentation: documentation
+                )
                 getPath.operations[operationIndex] = operation
                 paths[path] = getPath
             }
@@ -198,6 +199,7 @@ public struct Spec: Decodable {
         // In Apple's OpenAPI spec the `detail` property on `ErrorResponse.Errors` is marked as `required`.
         // On 12/1/23 some errors (with status code 409) has been observed, with no `detail`.
         errorSchema.requiredProperties.removeAll(where: { $0 == "detail" })
+        patchedSchemas.append(.object(errorSchema))
 
         // FB12292035: Add `associatedErrors` to the `meta` property on ErrorResponse.Errors
         // In Apple's OpenAPI spec and documentation the `meta` property does not include the `associatedErrors` (last checked 26/1/24).
@@ -210,9 +212,9 @@ public struct Spec: Decodable {
                 properties: [
                     "associatedErrors": .init(type: .dictionary(.arrayOfSchemaRef("Errors"))),
                     "additionalProperties": metaProperty
-                ])))
+                ]
+            )))
         }
-
         errorResponseSchema.additionalProtocols.insert("Error")
         errorResponseSchema.properties["errors"]?.type = .arrayOfSubSchema(errorSchema)
         components.schemas["ErrorResponse"] = .object(errorResponseSchema)
@@ -222,70 +224,37 @@ public struct Spec: Decodable {
         // Apple's OpenAPI spec has no information about how to clear a value in an update request.
         // To tell Apple to clear a value, it has to be `null`, but properties with `null` values normally get omitted.
         // If the `developerAgeRatingInfoUrl` is set to empty string it complains about the format.
-        if case .object(var ageRatingDeclarationUpdateRequestSchema) = components.schemas["AgeRatingDeclarationUpdateRequest"],
-           var ageRatingDeclarationUpdateRequestDataSchema: ObjectSchema = ageRatingDeclarationUpdateRequestSchema.subSchemas.compactMap({ (subSchema: SubSchema) -> ObjectSchema? in
-               guard case .objectSchema(let subSchema) = subSchema, subSchema.name == "Data" else { return nil }
-               return subSchema
-           }).first,
-           var ageRatingDeclarationUpdateRequestDataAttributesSchema: ObjectSchema = ageRatingDeclarationUpdateRequestDataSchema.subSchemas.compactMap({ (subSchema: SubSchema) -> ObjectSchema? in
-               guard case .objectSchema(let subSchema) = subSchema, subSchema.name == "Attributes" else { return nil }
-               return subSchema
-           }).first,
-           let kidsAgeBandProperty = ageRatingDeclarationUpdateRequestDataAttributesSchema.properties["kidsAgeBand"],
-           let developerAgeRatingInfoUrlProperty = ageRatingDeclarationUpdateRequestDataAttributesSchema.properties["developerAgeRatingInfoUrl"] {
-            ageRatingDeclarationUpdateRequestDataAttributesSchema.properties["kidsAgeBand"] = .init(type: kidsAgeBandProperty.type, deprecated: kidsAgeBandProperty.deprecated, clearable: true)
-            ageRatingDeclarationUpdateRequestDataAttributesSchema.properties["developerAgeRatingInfoUrl"] = .init(type: developerAgeRatingInfoUrlProperty.type, deprecated: developerAgeRatingInfoUrlProperty.deprecated, clearable: true)
-            ageRatingDeclarationUpdateRequestDataSchema.properties["attributes"]?.type = .schema(ageRatingDeclarationUpdateRequestDataAttributesSchema)
-            ageRatingDeclarationUpdateRequestSchema.properties["data"]?.type = .schema(ageRatingDeclarationUpdateRequestDataSchema)
-            components.schemas["AgeRatingDeclarationUpdateRequest"] = .object(ageRatingDeclarationUpdateRequestSchema)
+        if case .object(var ageRatingDeclarationUpdateRequestSchema) = components.schemas["AgeRatingDeclarationUpdateRequest"] {
+            if var ageRatingDeclarationUpdateRequestDataSchema: ObjectSchema = ageRatingDeclarationUpdateRequestSchema.subSchemas.compactMap({ (subSchema: SubSchema) -> ObjectSchema? in
+                guard case .objectSchema(let subSchema) = subSchema, subSchema.name == "Data" else { return nil }
+                return subSchema
+            }).first,
+                var ageRatingDeclarationUpdateRequestDataAttributesSchema: ObjectSchema = ageRatingDeclarationUpdateRequestDataSchema.subSchemas.compactMap({ (subSchema: SubSchema) -> ObjectSchema? in
+                    guard case .objectSchema(let subSchema) = subSchema, subSchema.name == "Attributes" else { return nil }
+                    return subSchema
+                }).first,
+                let kidsAgeBandProperty = ageRatingDeclarationUpdateRequestDataAttributesSchema.properties["kidsAgeBand"],
+                let developerAgeRatingInfoUrlProperty = ageRatingDeclarationUpdateRequestDataAttributesSchema.properties["developerAgeRatingInfoUrl"] {
+                ageRatingDeclarationUpdateRequestDataAttributesSchema.properties["kidsAgeBand"] = .init(type: kidsAgeBandProperty.type, deprecated: kidsAgeBandProperty.deprecated, clearable: true)
+                ageRatingDeclarationUpdateRequestDataAttributesSchema.properties["developerAgeRatingInfoUrl"] = .init(type: developerAgeRatingInfoUrlProperty.type, deprecated: developerAgeRatingInfoUrlProperty.deprecated, clearable: true)
+                ageRatingDeclarationUpdateRequestDataSchema.properties["attributes"]?.type = .schema(ageRatingDeclarationUpdateRequestDataAttributesSchema)
+                ageRatingDeclarationUpdateRequestSchema.properties["data"]?.type = .schema(ageRatingDeclarationUpdateRequestDataSchema)
+                components.schemas["AgeRatingDeclarationUpdateRequest"] = .object(ageRatingDeclarationUpdateRequestSchema)
+            }
             patchedSchemas.append(.object(ageRatingDeclarationUpdateRequestSchema))
         }
 
-        // FB16699896: Adds XKS (Kosovo) to the list of `TerritoryCode`s.
-        // Apple's OpenAPI spec doesn't include the country code for Kosovo in the list of codes.
-        if case .enum(var territoryCode) = components.schemas["TerritoryCode"] {
-            territoryCode.cases.append(.init(id: "xks", value: "XKS"))
-            components.schemas["TerritoryCode"] = .enum(territoryCode)
-            patchedSchemas.append(.enum(territoryCode))
-        }
-        let pathsMissingKosovoTerritoryCode = [
-            "/v1/appStoreVersions/{id}/customerReviews",
-            "/v1/apps/{id}/customerReviews"
-        ]
-        for path in pathsMissingKosovoTerritoryCode {
-            if var getCustomerReviews = paths[path],
-               let operationIndex = getCustomerReviews.operations.firstIndex(where: { $0.method == .get }),
-               let parameterIndex = getCustomerReviews.operations[operationIndex].parameters?.firstIndex(where: {
-                   if case .filter(let name, _, _, _) = $0 {
-                       name == "territory"
-                   } else {
-                       false
-                   }
-               }),
-               case .filter(let name, let type, let required, let documentation) = getCustomerReviews.operations[operationIndex].parameters?[parameterIndex],
-               case .enum(let valueType, var values) = type {
-                var operation = getCustomerReviews.operations[operationIndex]
-                values.append("XKS")
-                operation.parameters?[parameterIndex] = .filter(
-                    name: name,
-                    type: .enum(type: valueType, values: values),
-                    required: required,
-                    documentation: documentation)
-                getCustomerReviews.operations[operationIndex] = operation
-                paths[path] = getCustomerReviews
-            }
-        }
-
         // FB16908301: Adds list of `PurchaseRequirement` to `AppEvent`.
-        if case .object(var appEventSchema) = components.schemas["AppEvent"],
-           case .schema(var appEventAttributesSchema) = appEventSchema.properties["attributes"]?.type,
-           var purchaseRequirementProperty = appEventAttributesSchema.properties["purchaseRequirement"],
-           case .simple = purchaseRequirementProperty.type {
-            let purchaseRequirementEnum = EnumSchema(name: "PurchaseRequirement", type: "String", caseValues: ["NO_COST_ASSOCIATED", "IN_APP_PURCHASE"])
-            purchaseRequirementProperty.type = .enumSchema(purchaseRequirementEnum)
-            appEventAttributesSchema.properties["purchaseRequirement"] = purchaseRequirementProperty
-            appEventSchema.properties["attributes"]?.type = .schema(appEventAttributesSchema)
-            components.schemas["AppEvent"] = .object(appEventSchema)
+        if case .object(var appEventSchema) = components.schemas["AppEvent"] {
+            if case.schema(var appEventAttributesSchema) = appEventSchema.properties["attributes"]?.type,
+                var purchaseRequirementProperty = appEventAttributesSchema.properties["purchaseRequirement"],
+                case .simple = purchaseRequirementProperty.type {
+                let purchaseRequirementEnum = EnumSchema(name: "PurchaseRequirement", type: "String", caseValues: ["NO_COST_ASSOCIATED", "IN_APP_PURCHASE"])
+                purchaseRequirementProperty.type = .enumSchema(purchaseRequirementEnum)
+                appEventAttributesSchema.properties["purchaseRequirement"] = purchaseRequirementProperty
+                appEventSchema.properties["attributes"]?.type = .schema(appEventAttributesSchema)
+                components.schemas["AppEvent"] = .object(appEventSchema)
+            }
             patchedSchemas.append(.object(appEventSchema))
         }
 

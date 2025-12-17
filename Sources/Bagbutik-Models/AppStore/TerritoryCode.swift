@@ -231,7 +231,6 @@ public enum TerritoryCode: String, Sendable, ParameterValue, Codable, CaseIterab
     case wlf = "WLF"
     case wsm = "WSM"
     case xks = "XKS"
-    case xks = "XKS"
     case yem = "YEM"
     case zaf = "ZAF"
     case zmb = "ZMB"
