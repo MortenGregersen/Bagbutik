@@ -12,7 +12,7 @@ jobs:
       contents: write
     env:
       DEVELOPER_DIR: /Applications/Xcode_26.1.app/Contents/Developer
-    steps:
+    steps: 
       - name: Checkout code
         uses: actions/checkout@v4
         with:
@@ -21,11 +21,6 @@ jobs:
         run: |
           chmod +x ./build_xcframework.sh
           ./build_xcframework.sh
-      - name: Upload XCFramework
-        uses: actions/upload-artifact@v4
-        with:
-          name: Bagbutik.xcframework
-          path: output/Bagbutik.xcframework.zip
       - name: Compute SwiftPM checksum
         id: checksum
         run: |
@@ -38,9 +33,10 @@ jobs:
           SWIFT_VERSION=$(swift --version | sed -n 's/.*Swift version \([0-9.]*\).*/\1/p')
           echo "xcode=$XCODE_VERSION" >> $GITHUB_OUTPUT
           echo "swift=$SWIFT_VERSION" >> $GITHUB_OUTPUT
-      - name: Update GitHub Release with checksum
+      - name: Upload XCFramework and update Release
         uses: softprops/action-gh-release@v2
         with:
+          files: output/Bagbutik.xcframework.zip
           append_body: true
           body: |
             ### XCFramework
