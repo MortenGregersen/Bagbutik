@@ -132,9 +132,9 @@ create_xcframework() {
       configuration_folder="$CONFIGURATION-$p"
     fi
     args+=(-framework "$BUILD_DIR/Build/Products/$configuration_folder/PackageFrameworks/$scheme.framework")
-    #if [ "$DEBUG_SYMBOLS" = "true" ]; then
-    #  args+=(-debug-symbols "$BUILD_DIR/Build/Products/$configuration_folder/$scheme.framework.dSYM")
-    #fi
+    if [ "$DEBUG_SYMBOLS" = "true" ]; then
+      args+=(-debug-symbols "$BUILD_DIR/Build/Products/$configuration_folder/$scheme.framework.dSYM")
+    fi
   done
 
   xcodebuild -create-xcframework "${args[@]}" -output "$DIST_DIR/$scheme.xcframework" || exit 21
