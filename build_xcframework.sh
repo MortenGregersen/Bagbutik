@@ -141,11 +141,11 @@ create_xcframework() {
 }
 
 reset_package_type() {
-  sed -i '' -E 's/^([[:space:]]*)type:[[:space:]]*\.dynamic,/\1\/\/ type: .dynamic,/' Package.swift || exit
+  sed -i '' -E 's/^([[:space:]]*)type:[[:space:]]*\.dynamic,/\1\/\/ type: .dynamic,/' Package.swift || exit 31
 }
 
 set_package_type_as_dynamic() {
-  sed -i '' -E 's/^([[:space:]]*)\/\/[[:space:]]*type:[[:space:]]*\.dynamic,/\1type: .dynamic,/' Package.swift || exit
+  sed -i '' -E 's/^([[:space:]]*)\/\/[[:space:]]*type:[[:space:]]*\.dynamic,/\1type: .dynamic,/' Package.swift || exit 32
 }
 
 gem install xcpretty
