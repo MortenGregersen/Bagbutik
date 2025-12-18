@@ -12,7 +12,7 @@ jobs:
       contents: write
     env:
       DEVELOPER_DIR: /Applications/Xcode_26.1.app/Contents/Developer
-    steps: 
+    steps:
       - name: Checkout code
         uses: actions/checkout@v4
         with:
@@ -24,8 +24,25 @@ jobs:
       - name: Compute SwiftPM checksum
         id: checksum
         run: |
-          CHECKSUM=$(swift package compute-checksum output/Bagbutik.xcframework.zip)
-          echo "checksum=$CHECKSUM" >> $GITHUB_OUTPUT
+          declare -A CHECKSUMS
+          LIBS=(
+            Bagbutik-Core
+            Bagbutik-Models
+            Bagbutik-AppStore
+            Bagbutik-GameCenter
+            Bagbutik-Marketplaces
+            Bagbutik-Provisioning
+            Bagbutik-Reporting
+            Bagbutik-TestFlight
+            Bagbutik-Users
+            Bagbutik-Webhooks
+            Bagbutik-XcodeCloud
+          )
+          for lib in "${LIBS[@]}"; do
+            ZIP="output/${lib}.xcframework.zip"
+            CHECKSUM=$(swift package compute-checksum "$ZIP")
+            echo "${lib}=${CHECKSUM}" >> $GITHUB_OUTPUT
+          done
       - name: Capture Xcode & Swift versions
         id: toolchain
         run: |
@@ -36,18 +53,99 @@ jobs:
       - name: Upload XCFramework and update Release
         uses: softprops/action-gh-release@v2
         with:
-          files: output/Bagbutik.xcframework.zip
+          files: |
+            output/Bagbutik-Core.xcframework.zip
+            output/Bagbutik-Models.xcframework.zip
+            output/Bagbutik-AppStore.xcframework.zip
+            output/Bagbutik-GameCenter.xcframework.zip
+            output/Bagbutik-Marketplaces.xcframework.zip
+            output/Bagbutik-Provisioning.xcframework.zip
+            output/Bagbutik-Reporting.xcframework.zip
+            output/Bagbutik-TestFlight.xcframework.zip
+            output/Bagbutik-Users.xcframework.zip
+            output/Bagbutik-Webhooks.xcframework.zip
+            output/Bagbutik-XcodeCloud.xcframework.zip
           append_body: true
           body: |
             ### XCFramework
 
             - Built with: Xcode ${{ steps.toolchain.outputs.xcode }} (Swift ${{ steps.toolchain.outputs.swift }})
-            - SwiftPM checksum: `${{ steps.checksum.outputs.checksum }}`
 
             ```swift
+            // Core
             .binaryTarget(
-                name: "Bagbutik",
-                url: "https://github.com/MortenGregersen/Bagbutik/releases/download/${{ github.event.release.tag_name }}/Bagbutik.xcframework.zip",
-                checksum: "${{ steps.checksum.outputs.checksum }}"
+                name: "Bagbutik-Core",
+                url: "https://github.com/MortenGregersen/Bagbutik/releases/download/${{ github.event.release.tag_name }}/Bagbutik-Core.xcframework.zip",
+                checksum: "${{ steps.checksum.outputs.Bagbutik-Core }}"
+            ),
+
+            // Models
+            .binaryTarget(
+                name: "Bagbutik-Models",
+                url: "https://github.com/MortenGregersen/Bagbutik/releases/download/${{ github.event.release.tag_name }}/Bagbutik-Models.xcframework.zip",
+                checksum: "${{ steps.checksum.outputs.Bagbutik-Models }}"
+            ),
+
+            // App Store
+            .binaryTarget(
+                name: "Bagbutik-AppStore",
+                url: "https://github.com/MortenGregersen/Bagbutik/releases/download/${{ github.event.release.tag_name }}/Bagbutik-AppStore.xcframework.zip",
+                checksum: "${{ steps.checksum.outputs.Bagbutik-AppStore }}"
+            ),
+
+            // Game Center
+            .binaryTarget(
+                name: "Bagbutik-GameCenter",
+                url: "https://github.com/MortenGregersen/Bagbutik/releases/download/${{ github.event.release.tag_name }}/Bagbutik-GameCenter.xcframework.zip",
+                checksum: "${{ steps.checksum.outputs.Bagbutik-GameCenter }}"
+            ),
+
+            // Marketplaces
+            .binaryTarget(
+                name: "Bagbutik-Marketplaces",
+                url: "https://github.com/MortenGregersen/Bagbutik/releases/download/${{ github.event.release.tag_name }}/Bagbutik-Marketplaces.xcframework.zip",
+                checksum: "${{ steps.checksum.outputs.Bagbutik-Marketplaces }}"
+            ),
+
+            // Provisioning
+            .binaryTarget(
+                name: "Bagbutik-Provisioning",
+                url: "https://github.com/MortenGregersen/Bagbutik/releases/download/${{ github.event.release.tag_name }}/Bagbutik-Provisioning.xcframework.zip",
+                checksum: "${{ steps.checksum.outputs.Bagbutik-Provisioning }}"
+            ),
+
+            // Reporting
+            .binaryTarget(
+                name: "Bagbutik-Reporting",
+                url: "https://github.com/MortenGregersen/Bagbutik/releases/download/${{ github.event.release.tag_name }}/Bagbutik-Reporting.xcframework.zip",
+                checksum: "${{ steps.checksum.outputs.Bagbutik-Reporting }}"
+            ),
+
+            // TestFlight
+            .binaryTarget(
+                name: "Bagbutik-TestFlight",
+                url: "https://github.com/MortenGregersen/Bagbutik/releases/download/${{ github.event.release.tag_name }}/Bagbutik-TestFlight.xcframework.zip",
+                checksum: "${{ steps.checksum.outputs.Bagbutik-TestFlight }}"
+            ),
+
+            // Users
+            .binaryTarget(
+                name: "Bagbutik-Users",
+                url: "https://github.com/MortenGregersen/Bagbutik/releases/download/${{ github.event.release.tag_name }}/Bagbutik-Users.xcframework.zip",
+                checksum: "${{ steps.checksum.outputs.Bagbutik-Users }}"
+            ),
+
+            // Webhooks
+            .binaryTarget(
+                name: "Bagbutik-Webhooks",
+                url: "https://github.com/MortenGregersen/Bagbutik/releases/download/${{ github.event.release.tag_name }}/Bagbutik-Webhooks.xcframework.zip",
+                checksum: "${{ steps.checksum.outputs.Bagbutik-Webhooks }}"
+            ),
+
+            // Xcode Cloud
+            .binaryTarget(
+                name: "Bagbutik-XcodeCloud",
+                url: "https://github.com/MortenGregersen/Bagbutik/releases/download/${{ github.event.release.tag_name }}/Bagbutik-XcodeCloud.xcframework.zip",
+                checksum: "${{ steps.checksum.outputs.Bagbutik-XcodeCloud }}"
             )
             ```
