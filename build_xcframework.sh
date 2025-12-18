@@ -79,35 +79,19 @@ build_framework() {
   product_path="$BUILD_DIR/Build/Products/$CONFIGURATION-$sdk"
   framework_path="$product_path/PackageFrameworks/$scheme.framework"
 
-  # Copy Headers
-  swift_header=$(find "$BUILD_DIR/Build/Intermediates.noindex" \
-    -path "*$scheme.build*" \
-    -name "$scheme-Swift.h" \
-    -print -quit)
-  if [ -z "$swift_header" ]; then
-    echo "Error: Swift header not found for $scheme ($sdk)"
-    exit 13
-  fi
-  cp -pv "$swift_header" "$headers_path/" || exit 13
-
-  # Copy other headers from Sources/
-  while IFS= read -r h; do
-    cp -pv "$h" "$headers_path" || exit 14
-  done < <(find "$PACKAGE/$scheme" -name "*.h")
-
   # Copy Modules
   modules_path="$framework_path/Modules"
   mkdir -p "$modules_path"
   cp -pv \
     "$BUILD_DIR/Build/Intermediates.noindex/$PACKAGE.build/$CONFIGURATION-$sdk/$scheme.build/$scheme.modulemap" \
-    "$modules_path" || exit 15
+    "$modules_path" || exit 13
   mkdir -p "$modules_path/$scheme.swiftmodule"
-  cp -pv "$product_path/$scheme.swiftmodule"/*.* "$modules_path/$scheme.swiftmodule/" || exit 16
+  cp -pv "$product_path/$scheme.swiftmodule"/*.* "$modules_path/$scheme.swiftmodule/" || exit 14
 
   # Copy Bundle
   bundle_dir="$product_path/${PACKAGE}_$scheme.bundle"
   if [ -d "$bundle_dir" ]; then
-    cp -prv "$bundle_dir"/* "$framework_path/" || exit 17
+    cp -prv "$bundle_dir"/* "$framework_path/" || exit 15
   fi
 }
 
