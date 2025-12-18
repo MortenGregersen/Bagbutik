@@ -14,7 +14,7 @@ let package = Package(
         .library(
             // Includes all targets. Each target still needs to be imported in code.
             name: "Bagbutik",
-            type: .dynamic,
+            // type: .dynamic, // Uncommented automatically when building XCFramework
             targets: [
                 "Bagbutik-Core",
                 "Bagbutik-Models",

@@ -1,113 +1,156 @@
 #!/bin/bash
 
-set -e
+set -euo pipefail
 
-PLATFORMS=(
-  "iOS:generic/platform=iOS"
-  "iOS Simulator:generic/platform=iOS Simulator"
-  "macOS:generic/platform=macOS"
-  "tvOS:generic/platform=tvOS"
-  "tvOS Simulator:generic/platform=tvOS Simulator"
-  "watchOS:generic/platform=watchOS"
-  "watchOS Simulator:generic/platform=watchOS Simulator"
-  "visionOS:generic/platform=visionOS"
-  "visionOS Simulator:generic/platform=visionOS Simulator"
+# Inspired by https://waynestalk.com/en/build-swift-package-as-xcframework-en/
+
+IOS_DEVICE_SDK="iphoneos"
+IOS_SIMULATOR_SDK="iphonesimulator"
+MACOS_SDK="macosx"
+TVOS_DEVICE_SDK="appletvos"
+TVOS_SIMULATOR_SDK="appletvsimulator"
+WATCHOS_DEVICE_SDK="watchos"
+WATCHOS_SIMULATOR_SDK="watchsimulator"
+VISIONOS_DEVICE_SDK="xros"
+VISIONOS_SIMULATOR_SDK="xrsimulator"
+
+SDKS=(
+    $IOS_DEVICE_SDK
+    $IOS_SIMULATOR_SDK
+    $MACOS_SDK
+    $TVOS_DEVICE_SDK
+    $TVOS_SIMULATOR_SDK
+    $WATCHOS_DEVICE_SDK
+    $WATCHOS_SIMULATOR_SDK
+    $VISIONOS_DEVICE_SDK
+    $VISIONOS_SIMULATOR_SDK
 )
 
-# Detect which SDKs are actually installed
-AVAILABLE_SDKS=$(xcodebuild -showsdks)
-FILTERED_PLATFORMS=()
-for platform_info in "${PLATFORMS[@]}"; do
-  IFS=: read -r platform_name destination <<< "$platform_info"
-  sdk=""
-  case "$platform_name" in
-    "iOS") sdk="iphoneos" ;;
-    "iOS Simulator") sdk="iphonesimulator" ;;
-    "macOS") sdk="macosx" ;;
-    "tvOS") sdk="appletvos" ;;
-    "tvOS Simulator") sdk="appletvsimulator" ;;
-    "watchOS") sdk="watchos" ;;
-    "watchOS Simulator") sdk="watchsimulator" ;;
-    "visionOS") sdk="xros" ;;
-    "visionOS Simulator") sdk="xrsimulator" ;;
-  esac
-  if [[ -n "$sdk" && "$AVAILABLE_SDKS" == *"$sdk"* ]]; then
-    FILTERED_PLATFORMS+=("$platform_info")
+PACKAGE="Bagbutik"
+CONFIGURATION="Release"
+DEBUG_SYMBOLS="true"
+
+BUILD_DIR="$(pwd)/build"
+DIST_DIR="$(pwd)/dist"
+
+build_framework() {
+  scheme=$1
+  sdk=$2
+  if [ "$2" = "$IOS_DEVICE_SDK" ]; then
+    dest="generic/platform=iOS"
+  elif [ "$2" = "$IOS_SIMULATOR_SDK" ]; then
+    dest="generic/platform=iOS Simulator"
+  elif [ "$2" = "$MACOS_SDK" ]; then
+  dest="generic/platform=macOS"
+  elif [ "$2" = "$TVOS_DEVICE_SDK" ]; then
+  dest="generic/platform=tvOS"
+  elif [ "$2" = "$TVOS_SIMULATOR_SDK" ]; then
+  dest="generic/platform=tvOS Simulator"
+  elif [ "$2" = "$WATCHOS_DEVICE_SDK" ]; then
+  dest="generic/platform=watchOS"
+  elif [ "$2" = "$WATCHOS_SIMULATOR_SDK" ]; then
+  dest="generic/platform=watchOS Simulator"
+  elif [ "$2" = "$VISIONOS_DEVICE_SDK" ]; then
+  dest="generic/platform=visionOS"
+  elif [ "$2" = "$VISIONOS_SIMULATOR_SDK" ]; then
+  dest="generic/platform=visionOS Simulator"
   else
-    echo "Skipping $platform_name (SDK $sdk not available)"
-  fi
-done
-
-if [ ${#FILTERED_PLATFORMS[@]} -eq 0 ]; then
-  echo "Error: No available SDKs found for any platform"
-  exit 1
-fi
-
-# Output and temporary dirs
-mkdir -p output
-TEMP_DIR="build/temp"
-rm -rf "$TEMP_DIR"
-mkdir -p "$TEMP_DIR"
-
-PRODUCT="Bagbutik"
-
-for platform_info in "${FILTERED_PLATFORMS[@]}"; do
-  IFS=: read -r platform_name destination <<< "$platform_info"
-  NORM_PLATFORM_NAME="${platform_name// /_}"
-
-  xcodebuild archive \
-    -scheme "$PRODUCT" \
-    -destination "$destination" \
-    -archivePath "./build/$NORM_PLATFORM_NAME/${PRODUCT}.xcarchive" \
-    -parallelizeTargets \
-    SKIP_INSTALL=NO \
-    BUILD_LIBRARY_FOR_DISTRIBUTION=YES
-
-  # SwiftPM archives static libs into Products/usr/local/lib
-  ORIG_FW="./build/$NORM_PLATFORM_NAME/${PRODUCT}.xcarchive/Products/usr/local/lib/${PRODUCT}.framework"
-  DEST_FW="./build/temp/$NORM_PLATFORM_NAME/${PRODUCT}.framework"
-
-  mkdir -p "$(dirname "$DEST_FW")"
-  cp -R "$ORIG_FW" "$DEST_FW"
-
-  # Rename the binary inside if it matches the original product name
-  if [ -f "$DEST_FW/$PRODUCT" ]; then
-    mv "$DEST_FW/$PRODUCT" "$DEST_FW/$PRODUCT"
+    echo "Unknown SDK $2"
+    exit 11
   fi
 
-  # Report architectures
-  ARCH_FRAMEWORK_PATH="$DEST_FW/$PRODUCT"
-  if [ -f "$ARCH_FRAMEWORK_PATH" ]; then
-    lipo -info "$ARCH_FRAMEWORK_PATH" || true
-  else
-    echo "⚠️ Warning: Could not locate built binary at $ARCH_FRAMEWORK_PATH"
-  fi
-
+  echo "Build framework"
+  echo "Scheme: $scheme"
+  echo "Configuration: $CONFIGURATION"
+  echo "SDK: $sdk"
+  echo "Destination: $dest"
   echo
+
+  (xcodebuild \
+    -scheme "$scheme" \
+    -configuration "$CONFIGURATION" \
+    -destination "$dest" \
+    -sdk "$sdk" \
+    -derivedDataPath "$BUILD_DIR" \
+    SKIP_INSTALL=NO \
+    BUILD_LIBRARY_FOR_DISTRIBUTION=YES \
+    OTHER_SWIFT_FLAGS="-no-verify-emitted-module-interface") || exit 12
+
+  product_path="$BUILD_DIR/Build/Products/$CONFIGURATION-$sdk"
+  framework_path="$product_path/PackageFrameworks/$scheme.framework"
+
+  # Copy Headers
+  swift_header=$(find "$BUILD_DIR/Build/Intermediates.noindex" \
+    -path "*$scheme.build*" \
+    -name "$scheme-Swift.h" \
+    -print -quit)
+  if [ -z "$swift_header" ]; then
+    echo "Error: Swift header not found for $scheme ($sdk)"
+    exit 13
+  fi
+  cp -pv "$swift_header" "$headers_path/" || exit 13
+
+  # Copy other headers from Sources/
+  while IFS= read -r h; do
+    cp -pv "$h" "$headers_path" || exit 14
+  done < <(find "$PACKAGE/$scheme" -name "*.h")
+
+  # Copy Modules
+  modules_path="$framework_path/Modules"
+  mkdir -p "$modules_path"
+  cp -pv \
+    "$BUILD_DIR/Build/Intermediates.noindex/$PACKAGE.build/$CONFIGURATION-$sdk/$scheme.build/$scheme.modulemap" \
+    "$modules_path" || exit 15
+  mkdir -p "$modules_path/$scheme.swiftmodule"
+  cp -pv "$product_path/$scheme.swiftmodule"/*.* "$modules_path/$scheme.swiftmodule/" || exit 16
+
+  # Copy Bundle
+  bundle_dir="$product_path/${PACKAGE}_$scheme.bundle"
+  if [ -d "$bundle_dir" ]; then
+    cp -prv "$bundle_dir"/* "$framework_path/" || exit 17
+  fi
+}
+
+create_xcframework() {
+  scheme=$1
+
+  echo "Create $scheme.xcframework"
+
+  args=()
+  shift 1
+  for p in "$@"; do
+    args+=(-framework "$BUILD_DIR/Build/Products/$CONFIGURATION-$p/PackageFrameworks/$scheme.framework")
+    if [ "$DEBUG_SYMBOLS" = "true" ]; then
+      args+=(-debug-symbols "$BUILD_DIR/Build/Products/$CONFIGURATION-$p/$scheme.framework.dSYM")
+    fi
+  done
+
+  xcodebuild -create-xcframework "${args[@]}" -output "$DIST_DIR/$scheme.xcframework" || exit 21
+}
+
+reset_package_type() {
+  sed -i '' -E 's/^([[:space:]]*)type:[[:space:]]*\.dynamic,/\1\/\/ type: .dynamic,/' Package.swift || exit
+}
+
+set_package_type_as_dynamic() {
+  sed -i '' -E 's/^([[:space:]]*)\/\/[[:space:]]*type:[[:space:]]*\.dynamic,/\1type: .dynamic,/' Package.swift || exit
+}
+
+echo "**********************************"
+echo "******* Build XCFrameworks *******"
+echo "**********************************"
+echo
+
+rm -rf "$BUILD_DIR"
+rm -rf "$DIST_DIR"
+
+reset_package_type
+
+set_package_type_as_dynamic
+
+for sdk in "${SDKS[@]}"; do
+  build_framework "Bagbutik" "$sdk"
 done
+create_xcframework "Bagbutik" "${FILTERED_SDKS[@]}"
 
-XCFRAMEWORK_ARGS=()
-
-# Collect renamed frameworks from temp directory
-while IFS= read -r framework; do
-  XCFRAMEWORK_ARGS+=(-framework "$framework")
-done < <(find build/temp -path "*/${PRODUCT}.framework" 2>/dev/null)
-
-if [ ${#XCFRAMEWORK_ARGS[@]} -gt 0 ]; then
-  xcodebuild -create-xcframework \
-    "${XCFRAMEWORK_ARGS[@]}" \
-    -output "output/Bagbutik.xcframework"
-else
-  echo "❌ Error: No frameworks found — build likely failed"
-  exit 1
-fi
-
-# Clean up temp
-rm -rf "$TEMP_DIR"
-
-cd output
-zip -r Bagbutik.xcframework.zip Bagbutik.xcframework
-cd ..
-
-echo "✔ Created XCFramework:"
-ls -lh output/Bagbutik.xcframework/
+reset_package_type
