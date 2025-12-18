@@ -59,7 +59,7 @@ build_framework() {
     exit 11
   fi
 
-  echo "Build framework"
+  echo "*** Build framework *** "
   echo "Scheme: $scheme"
   echo "Configuration: $CONFIGURATION"
   echo "SDK: $sdk"
@@ -136,9 +136,7 @@ set_package_type_as_dynamic() {
   sed -i '' -E 's/^([[:space:]]*)\/\/[[:space:]]*type:[[:space:]]*\.dynamic,/\1type: .dynamic,/' Package.swift || exit
 }
 
-echo "**********************************"
-echo "******* Build XCFrameworks *******"
-echo "**********************************"
+echo "****** Build XCFrameworks ******"
 echo
 
 rm -rf "$BUILD_DIR"
