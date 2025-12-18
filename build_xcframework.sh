@@ -55,19 +55,19 @@ build_framework() {
   elif [ "$2" = "$IOS_SIMULATOR_SDK" ]; then
     dest="generic/platform=iOS Simulator"
   elif [ "$2" = "$MACOS_SDK" ]; then
-  dest="generic/platform=macOS"
+    dest="generic/platform=macOS"
   elif [ "$2" = "$TVOS_DEVICE_SDK" ]; then
-  dest="generic/platform=tvOS"
+    dest="generic/platform=tvOS"
   elif [ "$2" = "$TVOS_SIMULATOR_SDK" ]; then
-  dest="generic/platform=tvOS Simulator"
+    dest="generic/platform=tvOS Simulator"
   elif [ "$2" = "$WATCHOS_DEVICE_SDK" ]; then
-  dest="generic/platform=watchOS"
+    dest="generic/platform=watchOS"
   elif [ "$2" = "$WATCHOS_SIMULATOR_SDK" ]; then
-  dest="generic/platform=watchOS Simulator"
+    dest="generic/platform=watchOS Simulator"
   elif [ "$2" = "$VISIONOS_DEVICE_SDK" ]; then
-  dest="generic/platform=visionOS"
+    dest="generic/platform=visionOS"
   elif [ "$2" = "$VISIONOS_SIMULATOR_SDK" ]; then
-  dest="generic/platform=visionOS Simulator"
+    dest="generic/platform=visionOS Simulator"
   else
     echo "Unknown SDK $2"
     exit 11
