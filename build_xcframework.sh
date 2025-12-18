@@ -32,12 +32,12 @@ SDKS=(
   $IOS_DEVICE_SDK
   $IOS_SIMULATOR_SDK
   $MACOS_SDK
-  #$TVOS_DEVICE_SDK
-  #$TVOS_SIMULATOR_SDK
-  #$WATCHOS_DEVICE_SDK
-  #$WATCHOS_SIMULATOR_SDK
-  #$VISIONOS_DEVICE_SDK
-  #$VISIONOS_SIMULATOR_SDK
+  $TVOS_DEVICE_SDK
+  $TVOS_SIMULATOR_SDK
+  $WATCHOS_DEVICE_SDK
+  $WATCHOS_SIMULATOR_SDK
+  $VISIONOS_DEVICE_SDK
+  $VISIONOS_SIMULATOR_SDK
 )
 
 PACKAGE="Bagbutik"
@@ -73,7 +73,7 @@ build_framework() {
     exit 11
   fi
 
-  echo "*** Build framework *** "
+  echo "*** Build framework ***"
   echo "Scheme: $scheme"
   echo "Configuration: $CONFIGURATION"
   echo "SDK: $sdk"
@@ -88,7 +88,7 @@ build_framework() {
     -derivedDataPath "$BUILD_DIR" \
     SKIP_INSTALL=NO \
     BUILD_LIBRARY_FOR_DISTRIBUTION=YES \
-    OTHER_SWIFT_FLAGS="-no-verify-emitted-module-interface") || exit 12
+    OTHER_SWIFT_FLAGS="-no-verify-emitted-module-interface" | xcpretty) || exit 12
 
   if [ "$sdk" = "$MACOS_SDK" ]; then
     configuration_folder=$CONFIGURATION
@@ -118,15 +118,18 @@ build_framework() {
 create_xcframework() {
   scheme=$1
 
-  echo "Create $scheme.xcframework"
+  echo "*** Create $scheme.xcframework ***"
+  echo "Scheme: $scheme"
+  echo "SDKs: $@"
+  echo
 
   args=()
   shift 1
   for p in "$@"; do
-    if [ "$sdk" = "$MACOS_SDK" ]; then
+    if [ "$p" = "$MACOS_SDK" ]; then
       configuration_folder=$CONFIGURATION
     else
-      configuration_folder="$CONFIGURATION-$sdk"
+      configuration_folder="$CONFIGURATION-$p"
     fi
     args+=(-framework "$BUILD_DIR/Build/Products/$configuration_folder/PackageFrameworks/$scheme.framework")
     #if [ "$DEBUG_SYMBOLS" = "true" ]; then
@@ -145,6 +148,8 @@ set_package_type_as_dynamic() {
   sed -i '' -E 's/^([[:space:]]*)\/\/[[:space:]]*type:[[:space:]]*\.dynamic,/\1type: .dynamic,/' Package.swift || exit
 }
 
+gem install xcpretty
+
 echo "****** Build XCFrameworks ******"
 echo
 
@@ -158,8 +163,10 @@ set_package_type_as_dynamic
 for library in "${LIBRARIES[@]}"; do
   for sdk in "${SDKS[@]}"; do
     build_framework "$library" "$sdk"
+    echo
   done
   create_xcframework "$library" "${SDKS[@]}"
+  echo
 done
 
 reset_package_type
