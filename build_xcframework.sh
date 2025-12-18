@@ -150,6 +150,7 @@ set_package_type_as_dynamic() {
 
 gem install xcpretty
 
+echo
 echo "****** Build XCFrameworks ******"
 echo
 
@@ -166,6 +167,9 @@ for library in "${LIBRARIES[@]}"; do
     echo
   done
   create_xcframework "$library" "${SDKS[@]}"
+  pushd output
+  zip -r $library.xcframework.zip $library.xcframework
+  popd
   echo
 done
 
