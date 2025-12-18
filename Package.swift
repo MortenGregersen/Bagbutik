@@ -14,7 +14,6 @@ let package = Package(
         .library(
             // Includes all targets. Each target still needs to be imported in code.
             name: "Bagbutik",
-            // type: .dynamic, // Uncommented automatically when building XCFramework
             targets: [
                 "Bagbutik-Core",
                 "Bagbutik-Models",
@@ -27,45 +26,69 @@ let package = Package(
                 "Bagbutik-Users",
                 "Bagbutik-Webhooks",
                 "Bagbutik-XcodeCloud",
-            ]),
+            ]
+        ),
         .library(
             // Has the core features like the service, JWT and general models.
             name: "Bagbutik-Core",
-            targets: ["Bagbutik-Core"]),
+            // type: .dynamic, // Uncommented automatically when building XCFrameworks
+            targets: ["Bagbutik-Core"]
+        ),
         .library(
             // All models used by the endpoints.
             name: "Bagbutik-Models",
-            targets: ["Bagbutik-Models"]),
+            // type: .dynamic, // Uncommented automatically when building XCFrameworks
+            targets: ["Bagbutik-Models"]
+        ),
         .library(
             name: "Bagbutik-AppStore",
-            targets: ["Bagbutik-AppStore"]),
+            // type: .dynamic, // Uncommented automatically when building XCFrameworks
+            targets: ["Bagbutik-AppStore"]
+        ),
         .library(
             name: "Bagbutik-GameCenter",
-            targets: ["Bagbutik-GameCenter"]),
+            // type: .dynamic, // Uncommented automatically when building XCFrameworks
+            targets: ["Bagbutik-GameCenter"]
+        ),
         .library(
             name: "Bagbutik-Marketplaces",
-            targets: ["Bagbutik-Marketplaces"]),
+            // type: .dynamic, // Uncommented automatically when building XCFrameworks
+            targets: ["Bagbutik-Marketplaces"]
+        ),
         .library(
             name: "Bagbutik-Provisioning",
-            targets: ["Bagbutik-Provisioning"]),
+            // type: .dynamic, // Uncommented automatically when building XCFrameworks
+            targets: ["Bagbutik-Provisioning"]
+        ),
         .library(
             name: "Bagbutik-Reporting",
-            targets: ["Bagbutik-Reporting"]),
+            // type: .dynamic, // Uncommented automatically when building XCFrameworks
+            targets: ["Bagbutik-Reporting"]
+        ),
         .library(
             name: "Bagbutik-TestFlight",
-            targets: ["Bagbutik-TestFlight"]),
+            // type: .dynamic, // Uncommented automatically when building XCFrameworks
+            targets: ["Bagbutik-TestFlight"]
+        ),
         .library(
             name: "Bagbutik-Users",
-            targets: ["Bagbutik-Users"]),
+            // type: .dynamic, // Uncommented automatically when building XCFrameworks
+            targets: ["Bagbutik-Users"]
+        ),
         .library(
             name: "Bagbutik-Webhooks",
-            targets: ["Bagbutik-Webhooks"]),
+            // type: .dynamic, // Uncommented automatically when building XCFrameworks
+            targets: ["Bagbutik-Webhooks"]
+        ),
         .library(
             name: "Bagbutik-XcodeCloud",
-            targets: ["Bagbutik-XcodeCloud"]),
+            // type: .dynamic, // Uncommented automatically when building XCFrameworks
+            targets: ["Bagbutik-XcodeCloud"]
+        ),
         .executable(
             name: "bagbutik-cli",
-            targets: ["BagbutikCLI"])
+            targets: ["BagbutikCLI"]
+        )
     ],
     dependencies: [
         .package(url: "https://github.com/apple/swift-argument-parser", from: "1.5.1"),
@@ -94,7 +117,8 @@ let package = Package(
                 "BagbutikDocsCollector",
                 .target(name: "BagbutikPolyfill", condition: .when(platforms: [.linux, .android])),
                 .product(name: "ArgumentParser", package: "swift-argument-parser")
-            ]),
+            ]
+        ),
         // Internal targets
         .target(
             name: "BagbutikGenerator",
@@ -102,7 +126,8 @@ let package = Package(
                 "BagbutikDocsCollector",
                 "BagbutikSpecDecoder",
                 "BagbutikStringExtensions"
-            ]),
+            ]
+        ),
         .target(name: "BagbutikDocsCollector", dependencies: [
             "BagbutikSpecDecoder",
             .target(name: "BagbutikPolyfill", condition: .when(platforms: [.linux, .android]))
@@ -119,11 +144,14 @@ let package = Package(
                 "Bagbutik-AppStore",
                 .product(name: "Crypto", package: "swift-crypto", condition: .when(platforms: [.linux, .android]))
             ],
-            resources: [.copy("test-private-key.p8")]),
+            resources: [.copy("test-private-key.p8")]
+        ),
         .testTarget(name: "Bagbutik-ModelsTests", dependencies: ["Bagbutik-Models"]),
         .testTarget(name: "BagbutikGeneratorTests", dependencies: ["BagbutikGenerator"]),
         .testTarget(name: "BagbutikDocsCollectorTests", dependencies: ["BagbutikDocsCollector"]),
         .testTarget(name: "BagbutikSpecDecoderTests", dependencies: ["BagbutikSpecDecoder"]),
         .testTarget(name: "BagbutikStringExtensionsTests", dependencies: ["BagbutikStringExtensions"]),
     ],
-    swiftLanguageVersions: [.v5, .version("6")])
+    swiftLanguageVersions: [.v5, .version("6")]
+)
+

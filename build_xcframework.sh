@@ -14,16 +14,30 @@ WATCHOS_SIMULATOR_SDK="watchsimulator"
 VISIONOS_DEVICE_SDK="xros"
 VISIONOS_SIMULATOR_SDK="xrsimulator"
 
+LIBRARIES=(
+  "Bagbutik-Core"
+  "Bagbutik-Models"
+  "Bagbutik-AppStore"
+  "Bagbutik-GameCenter"
+  "Bagbutik-Marketplaces"
+  "Bagbutik-Provisioning"
+  "Bagbutik-Reporting"
+  "Bagbutik-TestFlight"
+  "Bagbutik-Users"
+  "Bagbutik-Webhooks"
+  "Bagbutik-XcodeCloud"
+)
+
 SDKS=(
-    $IOS_DEVICE_SDK
-    $IOS_SIMULATOR_SDK
-    $MACOS_SDK
-    $TVOS_DEVICE_SDK
-    $TVOS_SIMULATOR_SDK
-    $WATCHOS_DEVICE_SDK
-    $WATCHOS_SIMULATOR_SDK
-    $VISIONOS_DEVICE_SDK
-    $VISIONOS_SIMULATOR_SDK
+  $IOS_DEVICE_SDK
+  $IOS_SIMULATOR_SDK
+  $MACOS_SDK
+  #$TVOS_DEVICE_SDK
+  #$TVOS_SIMULATOR_SDK
+  #$WATCHOS_DEVICE_SDK
+  #$WATCHOS_SIMULATOR_SDK
+  #$VISIONOS_DEVICE_SDK
+  #$VISIONOS_SIMULATOR_SDK
 )
 
 PACKAGE="Bagbutik"
@@ -31,7 +45,7 @@ CONFIGURATION="Release"
 DEBUG_SYMBOLS="true"
 
 BUILD_DIR="$(pwd)/build"
-DIST_DIR="$(pwd)/dist"
+DIST_DIR="$(pwd)/output"
 
 build_framework() {
   scheme=$1
@@ -76,17 +90,23 @@ build_framework() {
     BUILD_LIBRARY_FOR_DISTRIBUTION=YES \
     OTHER_SWIFT_FLAGS="-no-verify-emitted-module-interface") || exit 12
 
-  product_path="$BUILD_DIR/Build/Products/$CONFIGURATION-$sdk"
+  if [ "$sdk" = "$MACOS_SDK" ]; then
+    configuration_folder=$CONFIGURATION
+  else
+    configuration_folder="$CONFIGURATION-$sdk"
+  fi
+  product_path="$BUILD_DIR/Build/Products/$configuration_folder"
   framework_path="$product_path/PackageFrameworks/$scheme.framework"
 
   # Copy Modules
   modules_path="$framework_path/Modules"
   mkdir -p "$modules_path"
   cp -pv \
-    "$BUILD_DIR/Build/Intermediates.noindex/$PACKAGE.build/$CONFIGURATION-$sdk/$scheme.build/$scheme.modulemap" \
+    "$BUILD_DIR/Build/Intermediates.noindex/$PACKAGE.build/$configuration_folder/$scheme.build/$scheme.modulemap" \
     "$modules_path" || exit 13
-  mkdir -p "$modules_path/$scheme.swiftmodule"
-  cp -pv "$product_path/$scheme.swiftmodule"/*.* "$modules_path/$scheme.swiftmodule/" || exit 14
+  underscored_scheme="${scheme//-/_}"
+  mkdir -p "$modules_path/$underscored_scheme.swiftmodule"
+  cp -pv "$product_path/$underscored_scheme.swiftmodule"/*.* "$modules_path/$underscored_scheme.swiftmodule/" || exit 14
 
   # Copy Bundle
   bundle_dir="$product_path/${PACKAGE}_$scheme.bundle"
@@ -103,10 +123,15 @@ create_xcframework() {
   args=()
   shift 1
   for p in "$@"; do
-    args+=(-framework "$BUILD_DIR/Build/Products/$CONFIGURATION-$p/PackageFrameworks/$scheme.framework")
-    if [ "$DEBUG_SYMBOLS" = "true" ]; then
-      args+=(-debug-symbols "$BUILD_DIR/Build/Products/$CONFIGURATION-$p/$scheme.framework.dSYM")
+    if [ "$sdk" = "$MACOS_SDK" ]; then
+      configuration_folder=$CONFIGURATION
+    else
+      configuration_folder="$CONFIGURATION-$sdk"
     fi
+    args+=(-framework "$BUILD_DIR/Build/Products/$configuration_folder/PackageFrameworks/$scheme.framework")
+    #if [ "$DEBUG_SYMBOLS" = "true" ]; then
+    #  args+=(-debug-symbols "$BUILD_DIR/Build/Products/$configuration_folder/$scheme.framework.dSYM")
+    #fi
   done
 
   xcodebuild -create-xcframework "${args[@]}" -output "$DIST_DIR/$scheme.xcframework" || exit 21
@@ -130,9 +155,11 @@ reset_package_type
 
 set_package_type_as_dynamic
 
-for sdk in "${SDKS[@]}"; do
-  build_framework "Bagbutik" "$sdk"
+for library in "${LIBRARIES[@]}"; do
+  for sdk in "${SDKS[@]}"; do
+    build_framework "$library" "$sdk"
+  done
+  create_xcframework "$library" "${SDKS[@]}"
 done
-create_xcframework "Bagbutik" "${FILTERED_SDKS[@]}"
 
 reset_package_type
