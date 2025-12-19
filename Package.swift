@@ -31,58 +31,47 @@ let package = Package(
         .library(
             // Has the core features like the service, JWT and general models.
             name: "Bagbutik-Core",
-            // type: .dynamic, // Uncommented automatically when building XCFrameworks
             targets: ["Bagbutik-Core"]
         ),
         .library(
             // All models used by the endpoints.
             name: "Bagbutik-Models",
-            // type: .dynamic, // Uncommented automatically when building XCFrameworks
             targets: ["Bagbutik-Models"]
         ),
         .library(
             name: "Bagbutik-AppStore",
-            // type: .dynamic, // Uncommented automatically when building XCFrameworks
             targets: ["Bagbutik-AppStore"]
         ),
         .library(
             name: "Bagbutik-GameCenter",
-            // type: .dynamic, // Uncommented automatically when building XCFrameworks
             targets: ["Bagbutik-GameCenter"]
         ),
         .library(
             name: "Bagbutik-Marketplaces",
-            // type: .dynamic, // Uncommented automatically when building XCFrameworks
             targets: ["Bagbutik-Marketplaces"]
         ),
         .library(
             name: "Bagbutik-Provisioning",
-            // type: .dynamic, // Uncommented automatically when building XCFrameworks
             targets: ["Bagbutik-Provisioning"]
         ),
         .library(
             name: "Bagbutik-Reporting",
-            // type: .dynamic, // Uncommented automatically when building XCFrameworks
             targets: ["Bagbutik-Reporting"]
         ),
         .library(
             name: "Bagbutik-TestFlight",
-            // type: .dynamic, // Uncommented automatically when building XCFrameworks
             targets: ["Bagbutik-TestFlight"]
         ),
         .library(
             name: "Bagbutik-Users",
-            // type: .dynamic, // Uncommented automatically when building XCFrameworks
             targets: ["Bagbutik-Users"]
         ),
         .library(
             name: "Bagbutik-Webhooks",
-            // type: .dynamic, // Uncommented automatically when building XCFrameworks
             targets: ["Bagbutik-Webhooks"]
         ),
         .library(
             name: "Bagbutik-XcodeCloud",
-            // type: .dynamic, // Uncommented automatically when building XCFrameworks
             targets: ["Bagbutik-XcodeCloud"]
         ),
         .executable(
