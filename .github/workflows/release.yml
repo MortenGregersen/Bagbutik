@@ -19,12 +19,10 @@ jobs:
           ref: ${{ github.event.release.tag_name }}
       - name: Build XCFramework
         run: |
-          chmod +x ./build_xcframework.sh
-          ./build_xcframework.sh
+          ./build-xcframework.sh
       - name: Compute SwiftPM checksum
         id: checksum
         run: |
-          declare -A CHECKSUMS
           LIBS=(
             Bagbutik-Core
             Bagbutik-Models
