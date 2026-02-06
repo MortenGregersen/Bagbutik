@@ -118,7 +118,7 @@ public struct JWT: Sendable {
     
     private struct Payload: Encodable, Sendable {
         let type: KeyType
-        let iat = Int(Date.now.timeIntervalSince1970)
+        private(set) var iat: Int
         private(set) var exp: Int
         let aud = "appstoreconnect-v1"
         
@@ -137,6 +137,7 @@ public struct JWT: Sendable {
                 type = .individual
             }
             self.dateFactory = dateFactory
+            iat = 0
             exp = 0
             renewExp()
         }
@@ -159,7 +160,9 @@ public struct JWT: Sendable {
         }
         
         mutating func renewExp() {
-            exp = Int(dateFactory.createDate(fromTimeIntervalSinceNow: 20 * 60).timeIntervalSince1970)
+            let issuedAtDate = dateFactory.createDate(fromTimeIntervalSinceNow: 0)
+            iat = Int(issuedAtDate.timeIntervalSince1970)
+            exp = Int(issuedAtDate.addingTimeInterval(20 * 60).timeIntervalSince1970)
         }
     }
 }

@@ -51,7 +51,7 @@ public actor DocsLoader {
               var schemaDocumentationById else {
             throw DocsLoaderError.documentationNotLoaded
         }
-        if let identifier = identifierBySchemaName["BundleIdPlatform"],
+        if let identifier = identifierBySchemaName["BundleIdPlatform"]?.lowercased(),
            case .enum(var bundleIdPlatformDocumentation) = schemaDocumentationById[identifier] {
             if bundleIdPlatformDocumentation.cases["SERVICES"] == nil || bundleIdPlatformDocumentation.cases["SERVICES"] == "" {
                 bundleIdPlatformDocumentation.cases["SERVICES"] = "A string that represents a service."
@@ -61,7 +61,7 @@ public actor DocsLoader {
             }
             schemaDocumentationById[identifier] = .enum(bundleIdPlatformDocumentation)
         }
-        if let identifier = identifierBySchemaName["Platform"],
+        if let identifier = identifierBySchemaName["Platform"]?.lowercased(),
            case .enum(var platformDocumentation) = schemaDocumentationById[identifier] {
             if platformDocumentation.cases["VISION_OS"] == nil || platformDocumentation.cases["VISION_OS"] == "" {
                 platformDocumentation.cases["VISION_OS"] = "A string that represents visionOS."
