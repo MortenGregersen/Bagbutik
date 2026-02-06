@@ -26,7 +26,7 @@ import FoundationNetworking
     func testRequest_PlainResponse() async throws {
         let request: Request<AppResponse, ErrorResponse> = .getAppV1(id: "app-id")
         let expectedResponse = AppResponse(data: .init(id: "app-id", links: .init(self: "")), links: .init(self: ""))
-        try setUpService(responsesByUrl: [request.asUrlRequest().url!: (data: jsonEncoder.encode(expectedResponse), type: .http(statusCode: 200))])
+        try setUpService(responsesByUrl: [try request.asUrlRequest().url!: (data: jsonEncoder.encode(expectedResponse), type: .http(statusCode: 200))])
         let response = try await service.request(request)
         XCTAssertEqual(response, expectedResponse)
     }
@@ -34,14 +34,14 @@ import FoundationNetworking
     func testRequest_GzipResponse() async throws {
         let request: Request<GzipResponse, ErrorResponse> = .getAwesomeReports()
         let data = GunzipTests.gzipData
-        try setUpService(responsesByUrl: [request.asUrlRequest().url!: (data: data, type: .http(statusCode: 200))])
+        try setUpService(responsesByUrl: [try request.asUrlRequest().url!: (data: data, type: .http(statusCode: 200))])
         let response = try await service.request(request)
         XCTAssertEqual(response.data, data)
     }
 
     func testRequest_EmptyResponse() async throws {
         let request: Request<EmptyResponse, ErrorResponse> = .deleteAppEventV1(id: "some-id")
-        try setUpService(responsesByUrl: [request.asUrlRequest().url!: (data: Data(), type: .http(statusCode: 200))])
+        try setUpService(responsesByUrl: [try request.asUrlRequest().url!: (data: Data(), type: .http(statusCode: 200))])
         let response = try await service.request(request)
         XCTAssertEqual(response, EmptyResponse())
     }
@@ -59,7 +59,7 @@ import FoundationNetworking
         ]
         for response in responses {
             let request: Request<AppsResponse, ErrorResponse> = .listAppsV1()
-            try setUpService(responsesByUrl: [request.asUrlRequest().url!: (data: data, type: .http(statusCode: response.statusCode))])
+            try setUpService(responsesByUrl: [try request.asUrlRequest().url!: (data: data, type: .http(statusCode: response.statusCode))])
             await XCTAssertAsyncThrowsError(try await service.request(request)) { error in
                 XCTAssertEqual(error as! ServiceError, response.error)
             }
@@ -69,7 +69,7 @@ import FoundationNetworking
     func testRequest_UnknownResponseType() async throws {
         let request: Request<AppsResponse, ErrorResponse> = .listAppsV1()
         let data = Data("Test".utf8)
-        try setUpService(responsesByUrl: [request.asUrlRequest().url!: (data: data, type: .url)])
+        try setUpService(responsesByUrl: [try request.asUrlRequest().url!: (data: data, type: .url)])
         await XCTAssertAsyncThrowsError(try await service.request(.listAppsV1())) { error in
             XCTAssertEqual(error as! ServiceError, .unknown(data: data))
         }
@@ -83,7 +83,7 @@ import FoundationNetworking
             .init(data: [.init(id: "app3", links: .init(self: ""))], links: .init(next: nil, self: "")),
         ]
         try setUpService(responsesByUrl: [
-            request.asUrlRequest().url!: (data: jsonEncoder.encode(responses[0]), type: .http(statusCode: 200)),
+            try request.asUrlRequest().url!: (data: jsonEncoder.encode(responses[0]), type: .http(statusCode: 200)),
             URL(string: responses[0].links.next!)!: (data: jsonEncoder.encode(responses[1]), type: .http(statusCode: 200)),
             URL(string: responses[1].links.next!)!: (data: jsonEncoder.encode(responses[2]), type: .http(statusCode: 200))
         ])
@@ -101,7 +101,7 @@ import FoundationNetworking
         }
         """
         let request: Request<CrazyDatesResponse, ErrorResponse> = .getCrazyDates()
-        try setUpService(responsesByUrl: [request.asUrlRequest().url!: (data: Data(jsonString.utf8), type: .http(statusCode: 200))])
+        try setUpService(responsesByUrl: [try request.asUrlRequest().url!: (data: Data(jsonString.utf8), type: .http(statusCode: 200))])
         let response = try await service.request(request)
         XCTAssertEqual(response.date, date)
     }
@@ -117,7 +117,7 @@ import FoundationNetworking
         }
         """
         let request: Request<CrazyDatesResponse, ErrorResponse> = .getCrazyDates()
-        try setUpService(responsesByUrl: [request.asUrlRequest().url!: (data: Data(jsonString.utf8), type: .http(statusCode: 200))])
+        try setUpService(responsesByUrl: [try request.asUrlRequest().url!: (data: Data(jsonString.utf8), type: .http(statusCode: 200))])
         let response = try await service.request(request)
         XCTAssertEqual(response.date, date)
     }
@@ -129,7 +129,7 @@ import FoundationNetworking
         }
         """
         let request: Request<CrazyDatesResponse, ErrorResponse> = .getCrazyDates()
-        try setUpService(responsesByUrl: [request.asUrlRequest().url!: (data: Data(jsonString.utf8), type: .http(statusCode: 200))])
+        try setUpService(responsesByUrl: [try request.asUrlRequest().url!: (data: Data(jsonString.utf8), type: .http(statusCode: 200))])
         await XCTAssertAsyncThrowsError(try await service.request(request)) { error in
             XCTAssertEqual(error as! ServiceError, .wrongDateFormat(dateString: "invalid-date"))
         }
@@ -139,7 +139,7 @@ import FoundationNetworking
     func testJWTRenewal() async throws {
         let request: Request<AppResponse, ErrorResponse> = .getAppV1(id: "app-id")
         let expectedResponse = AppResponse(data: .init(id: "app-id", links: .init(self: "")), links: .init(self: ""))
-        try setUpService(expiredJWT: true, responsesByUrl: [request.asUrlRequest().url!: (data: jsonEncoder.encode(expectedResponse), type: .http(statusCode: 200))])
+        try setUpService(expiredJWT: true, responsesByUrl: [try request.asUrlRequest().url!: (data: jsonEncoder.encode(expectedResponse), type: .http(statusCode: 200))])
         let isExpiredBefore = await service.jwt.isExpired
         XCTAssertTrue(isExpiredBefore)
         jwt.dateFactory = .init()

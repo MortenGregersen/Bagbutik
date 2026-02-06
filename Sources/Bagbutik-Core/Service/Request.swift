@@ -33,7 +33,7 @@ public struct Request<ResponseType, ErrorResponseType>: Sendable {
         self.requestBody = requestBody
     }
 
-    internal func asUrlRequest() -> URLRequest {
+    internal func asUrlRequest() throws -> URLRequest {
         var urlComponents = URLComponents()
         urlComponents.path = path
         if let parameters = parameters {
@@ -61,7 +61,7 @@ public struct Request<ResponseType, ErrorResponseType>: Sendable {
         var urlRequest = URLRequest(url: url)
         urlRequest.httpMethod = method.rawValue
         if let requestBody = requestBody {
-            urlRequest.httpBody = requestBody.jsonData
+            urlRequest.httpBody = try requestBody.jsonData()
             urlRequest.addValue("application/json", forHTTPHeaderField: "Content-Type")
         }
         return urlRequest

@@ -5,14 +5,14 @@ final class RequestTests: XCTestCase {
     let path = "some/path"
     let method = HTTPMethod.get
 
-    func testAsUrlRequest_Plain() {
+    func testAsUrlRequest_Plain() throws {
         let request = Request<Void, Void>(path: path, method: method)
-        let urlRequest = request.asUrlRequest()
+        let urlRequest = try request.asUrlRequest()
         XCTAssertEqual(urlRequest.url!.path, "/\(path)")
         XCTAssertEqual(urlRequest.httpMethod, HTTPMethod.get.rawValue)
     }
 
-    func testAsUrlRequest_Parameters() {
+    func testAsUrlRequest_Parameters() throws {
         let request = Request<Void, Void>(
             path: path,
             method: method,
@@ -23,7 +23,7 @@ final class RequestTests: XCTestCase {
                 includes: [Include.other],
                 sorts: [Sort.someAscending, Sort.otherDescending],
                 limits: [Limit.limit(1), Limit.someLimit(2), Limit.otherLimit(3)]))
-        let urlRequest = request.asUrlRequest()
+        let urlRequest = try request.asUrlRequest()
         let urlComponents = URLComponents(url: urlRequest.url!, resolvingAgainstBaseURL: false)
         let queryItems = urlComponents!.queryItems!
         XCTAssertEqual(queryItems.count, 9)
@@ -38,28 +38,43 @@ final class RequestTests: XCTestCase {
         XCTAssertTrue(queryItems.contains(where: { $0.name == "limit[otherLimit]" && $0.value == "3" }))
     }
 
-    func testAsUrlRequest_Limit() {
+    func testAsUrlRequest_Limit() throws {
         let request = Request<Void, Void>(path: path, method: method, parameters: .init(limit: 42))
-        let urlRequest = request.asUrlRequest()
+        let urlRequest = try request.asUrlRequest()
         let urlComponents = URLComponents(url: urlRequest.url!, resolvingAgainstBaseURL: false)
         let queryItems = urlComponents!.queryItems!
         XCTAssertEqual(queryItems.count, 1)
         XCTAssertTrue(queryItems.contains(where: { $0.name == "limit" && $0.value == "42" }))
     }
 
-    func testAsUrlRequest_Body() {
+    func testAsUrlRequest_Body() throws {
         let requestBody = Body(anything: "something")
         let request = Request<Void, Void>(path: path, method: method, requestBody: requestBody)
-        let urlRequest = request.asUrlRequest()
-        XCTAssertEqual(urlRequest.httpBody, requestBody.jsonData)
+        let urlRequest = try request.asUrlRequest()
+        XCTAssertEqual(urlRequest.httpBody, try requestBody.jsonData())
         XCTAssertTrue(urlRequest.allHTTPHeaderFields?.contains(where: { (key: String, value: String) in
             key == "Content-Type" && value == "application/json"
         }) ?? false)
+    }
+
+    func testAsUrlRequest_BodyEncodingFailure() {
+        let request = Request<Void, Void>(path: path, method: method, requestBody: InvalidBody(anything: .nan))
+
+        XCTAssertThrowsError(try request.asUrlRequest()) { error in
+            guard case .invalidValue = error as? EncodingError else {
+                XCTFail("Expected an EncodingError.invalidValue but got \(error)")
+                return
+            }
+        }
     }
 }
 
 private struct Body: RequestBody {
     let anything: String
+}
+
+private struct InvalidBody: RequestBody {
+    let anything: Double
 }
 
 private enum Field: FieldParameter {

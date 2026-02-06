@@ -71,13 +71,13 @@ public actor BagbutikService {
      */
     public func request<T>(_ request: Request<T, ErrorResponse>) async throws -> T
         where T: Decodable & Sendable {
-        let urlRequest = request.asUrlRequest()
+        let urlRequest = try request.asUrlRequest()
         return try await fetch(urlRequest)
     }
 
     @discardableResult
     public func request(_ request: Request<EmptyResponse, ErrorResponse>) async throws -> EmptyResponse {
-        let urlRequest = request.asUrlRequest()
+        let urlRequest = try request.asUrlRequest()
         return try await fetch(urlRequest)
     }
 
