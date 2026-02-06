@@ -3,7 +3,7 @@ import Foundation
 /// A protocol used for structs to be sent with `Request`s.
 public protocol RequestBody: Encodable, Sendable {
     /// A JSON representation of the struct.
-    @available(*, deprecated, message: "Use getJsonData() instead, which properly throws encoding errors rather than crashing")
+    @available(*, deprecated, message: "Use getJsonData() instead. This property uses force-try and will crash if encoding fails (e.g., with NaN or infinity values)")
     var jsonData: Data { get }
     
     /// A JSON representation of the struct.
@@ -12,7 +12,7 @@ public protocol RequestBody: Encodable, Sendable {
 }
 
 public extension RequestBody {
-    @available(*, deprecated, message: "Use getJsonData() instead, which properly throws encoding errors rather than crashing")
+    @available(*, deprecated, message: "Use getJsonData() instead. This property uses force-try and will crash if encoding fails (e.g., with NaN or infinity values)")
     var jsonData: Data {
         let encoder = JSONEncoder()
         encoder.dateEncodingStrategy = .iso8601
