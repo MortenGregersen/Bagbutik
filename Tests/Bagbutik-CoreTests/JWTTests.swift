@@ -32,8 +32,42 @@ final class JWTTests: XCTestCase {
         XCTAssertFalse(jwt.isExpired)
     }
 
+    func testRenew_UpdatesIssuedAtAndExpiration() throws {
+        let initialDate = Date(timeIntervalSince1970: 1_700_000_000)
+        var jwt = try JWT(keyId: Self.keyId, issuerId: Self.issuerId, privateKey: Self.privateKey, dateFactory: .init(now: initialDate))
+        let initialClaims = try Self.decodePayloadClaims(from: jwt.encodedSignature)
+        XCTAssertEqual(initialClaims.iat, Int(initialDate.timeIntervalSince1970))
+        XCTAssertEqual(initialClaims.exp, Int(initialDate.addingTimeInterval(20 * 60).timeIntervalSince1970))
+
+        let renewalDate = Date(timeIntervalSince1970: 1_700_001_000)
+        jwt.dateFactory = .init(now: renewalDate)
+        try jwt.renewEncodedSignature()
+        let renewedClaims = try Self.decodePayloadClaims(from: jwt.encodedSignature)
+        XCTAssertEqual(renewedClaims.iat, Int(renewalDate.timeIntervalSince1970))
+        XCTAssertEqual(renewedClaims.exp, Int(renewalDate.addingTimeInterval(20 * 60).timeIntervalSince1970))
+    }
+
     func testInitWithPrivateKeyPath() {
         let privateKeyPath = Bundle.module.path(forResource: "test-private-key", ofType: "p8")!
         XCTAssertNoThrow(try JWT(keyId: Self.keyId, issuerId: Self.issuerId, privateKeyPath: privateKeyPath))
+    }
+
+    private static func decodePayloadClaims(from encodedSignature: String) throws -> PayloadClaims {
+        let segments = encodedSignature.split(separator: ".", omittingEmptySubsequences: false)
+        guard segments.count == 3 else { throw NSError(domain: "JWTTests", code: 1) }
+
+        let payloadSegment = String(segments[1])
+        let base64 = payloadSegment
+            .replacingOccurrences(of: "-", with: "+")
+            .replacingOccurrences(of: "_", with: "/")
+            .padding(toLength: ((payloadSegment.count + 3) / 4) * 4, withPad: "=", startingAt: 0)
+        guard let payloadData = Data(base64Encoded: base64) else { throw NSError(domain: "JWTTests", code: 2) }
+
+        return try JSONDecoder().decode(PayloadClaims.self, from: payloadData)
+    }
+
+    private struct PayloadClaims: Decodable {
+        let iat: Int
+        let exp: Int
     }
 }
