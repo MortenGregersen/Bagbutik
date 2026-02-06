@@ -136,6 +136,7 @@ let package = Package(
             resources: [.copy("test-private-key.p8")]
         ),
         .testTarget(name: "Bagbutik-ModelsTests", dependencies: ["Bagbutik-Models"]),
+        .testTarget(name: "BagbutikCLITests", dependencies: ["BagbutikCLI"]),
         .testTarget(name: "BagbutikGeneratorTests", dependencies: ["BagbutikGenerator"]),
         .testTarget(name: "BagbutikDocsCollectorTests", dependencies: ["BagbutikDocsCollector"]),
         .testTarget(name: "BagbutikSpecDecoderTests", dependencies: ["BagbutikSpecDecoder"]),
@@ -143,4 +144,3 @@ let package = Package(
     ],
     swiftLanguageVersions: [.v5, .version("6")]
 )
-
