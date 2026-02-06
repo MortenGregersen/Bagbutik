@@ -2,7 +2,7 @@ import Foundation
 
 /// A protocol used for structs to be sent with `Request`s.
 ///
-/// - Important: **Breaking Change in Version X.X**: The `jsonData` property has been replaced with a throwing `jsonData()` method.
+/// - Important: **Breaking Change**: The `jsonData` property has been replaced with a throwing `jsonData()` method.
 ///   If you were accessing `body.jsonData` directly, you must now call `try body.jsonData()` instead.
 ///   This change allows proper error handling for encoding failures instead of crashing with force-try.
 public protocol RequestBody: Encodable, Sendable {
