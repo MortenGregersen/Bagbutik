@@ -33,7 +33,9 @@ extension Process {
             if let output, !output.isEmpty {
                 throw ProcessError(description: output)
             }
-            throw ProcessError(description: "The unzip command failed with exit code \(result.terminationStatus).")
+            throw ProcessError(
+                description: "The unzip command failed (termination reason: \(result.terminationReason), status: \(result.terminationStatus))."
+            )
         }
     }
 
