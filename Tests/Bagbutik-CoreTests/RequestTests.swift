@@ -51,7 +51,7 @@ final class RequestTests: XCTestCase {
         let requestBody = Body(anything: "something")
         let request = Request<Void, Void>(path: path, method: method, requestBody: requestBody)
         let urlRequest = try request.asUrlRequest()
-        XCTAssertEqual(urlRequest.httpBody, try requestBody.jsonData())
+        XCTAssertEqual(urlRequest.httpBody, try requestBody.getJsonData())
         XCTAssertTrue(urlRequest.allHTTPHeaderFields?.contains(where: { (key: String, value: String) in
             key == "Content-Type" && value == "application/json"
         }) ?? false)

@@ -61,7 +61,7 @@ public struct Request<ResponseType, ErrorResponseType>: Sendable {
         var urlRequest = URLRequest(url: url)
         urlRequest.httpMethod = method.rawValue
         if let requestBody = requestBody {
-            urlRequest.httpBody = try requestBody.jsonData()
+            urlRequest.httpBody = try requestBody.getJsonData()
             urlRequest.addValue("application/json", forHTTPHeaderField: "Content-Type")
         }
         return urlRequest
