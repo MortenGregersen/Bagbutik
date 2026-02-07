@@ -105,6 +105,42 @@ class DocsLoaderTests: XCTestCase {
         }
     }
 
+    func testApplyManualDocumentation_WithMixedCaseIdentifiers() async throws {
+        // Given
+        let bundleIdPlatformIdentifier = "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/BundleIdPlatform"
+        let platformIdentifier = "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/Platform"
+        let docsLoader = DocsLoader(identifierBySchemaName: [
+            "BundleIdPlatform": bundleIdPlatformIdentifier,
+            "Platform": platformIdentifier
+        ], schemaDocumentationById: [
+            bundleIdPlatformIdentifier: .enum(.init(id: bundleIdPlatformIdentifier, hierarchy: .init(paths: []), title: "BundleIdPlatform", cases: [
+                "IOS": "A string that represents iOS.",
+                "MACOS": "A string that represents macOS."
+            ])),
+            platformIdentifier: .enum(.init(id: platformIdentifier, hierarchy: .init(paths: []), title: "Platform", cases: [
+                "IOS": "A string that represents iOS.",
+                "MAC_OS": "A string that represents macOS."
+            ]))
+        ])
+
+        // When
+        try await docsLoader.applyManualDocumentation()
+
+        // Then
+        if case .enum(let bundleIdPlatformDocumentation) = await docsLoader.schemaDocumentationById?[bundleIdPlatformIdentifier.lowercased()] {
+            XCTAssertEqual(bundleIdPlatformDocumentation.cases["SERVICES"], "A string that represents a service.")
+            XCTAssertEqual(bundleIdPlatformDocumentation.cases["UNIVERSAL"], "A string that represents iOS and macOS.")
+        } else {
+            XCTFail("BundleIdPlatform documentation missing")
+        }
+
+        if case .enum(let platformDocumentation) = await docsLoader.schemaDocumentationById?[platformIdentifier.lowercased()] {
+            XCTAssertEqual(platformDocumentation.cases["VISION_OS"], "A string that represents visionOS.")
+        } else {
+            XCTFail("Platform documentation missing")
+        }
+    }
+
     func testResolvePackageName() throws {
         // Given
         let documentation = Documentation.object(.init(

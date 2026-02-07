@@ -56,8 +56,8 @@ public class FeedbackChecker {
         - documentationDirURL: The file URL for the directory containing the fetched documentation
      */
     public func checkFeedback(specFileURL: URL, documentationDirURL: URL) async throws {
-        guard specFileURL.isFileURL else { throw GeneratorError.notFileUrl(.specFileURL) }
-        guard documentationDirURL.isFileURL else { throw GeneratorError.notFileUrl(.documentationDirUrl) }
+        guard specFileURL.isFileURL else { throw FeedbackCheckerError.notFileUrl(.specFileURL) }
+        guard documentationDirURL.isFileURL else { throw FeedbackCheckerError.notFileUrl(.documentationDirUrl) }
         print("🔍 Loading spec \(specFileURL.path)...")
         let originalSpec = try loadOriginalSpec(specFileURL)
         let patchedSpec = try loadPatchedSpec(specFileURL)

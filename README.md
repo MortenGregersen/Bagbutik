@@ -118,7 +118,7 @@ Right now there are 9 libraries with endpoints:
 
 * `Bagbutik-AppStore`: Manage all [aspects of your app, App Clips, in-app purchases, and customer reviews in the App Store](https://developer.apple.com/documentation/appstoreconnectapi/app_store).
 * `Bagbutik-GameCenter`: Manage [Game Center data and configurations for your apps](https://developer.apple.com/documentation/appstoreconnectapi/game_center).
-* `Bagbutik-Marketplaces`: Manage [keys, packages, and search for the marketplace distribution of your app](https://developer.apple.com/documentation/appstoreconnectapi/game_center).
+* `Bagbutik-Marketplaces`: Manage [keys, packages, and search for the marketplace distribution of your app](https://developer.apple.com/documentation/appstoreconnectapi/alternative_distribution).
 * `Bagbutik-Provisioning`: Manage the [bundle IDs](https://developer.apple.com/documentation/appstoreconnectapi/bundle_ids), [certificates](https://developer.apple.com/documentation/appstoreconnectapi/certificates), [devices](https://developer.apple.com/documentation/appstoreconnectapi/devices) and [provisioning profiles](https://developer.apple.com/documentation/appstoreconnectapi/profiles) for your app.
 * `Bagbutik-Reporting`: Download your [sales and financial reports](https://developer.apple.com/documentation/appstoreconnectapi/sales_and_finance_reports) and [get power and performance metrics, logs, and signatures](https://developer.apple.com/documentation/appstoreconnectapi/power_and_performance_metrics_and_logs). 
 * `Bagbutik-TestFlight`: Manage your [beta testing program, including beta testers and groups, apps, App Clips, and builds](https://developer.apple.com/documentation/appstoreconnectapi/prerelease_versions_and_beta_testers).
@@ -204,4 +204,4 @@ In the OpenAPI spec (and documentation) for the App Store Connect API the `purch
   
 * **FB16699896**: App Store Connect API is missing "XKS" (Kosovo) for the TerritoryCode enum
   * Submitted: March 3rd, 2025.
-  * Reoslved: December 16th, 2025 (Spec version 4.2).
+  * Resolved: December 16th, 2025 (Spec version 4.2).
