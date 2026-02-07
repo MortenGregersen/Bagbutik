@@ -14,9 +14,7 @@ public protocol RequestBody: Encodable, Sendable {
 public extension RequestBody {
     @available(*, deprecated, message: "Use getJsonData() instead. This property uses force-try and will crash if encoding fails (e.g., with NaN or infinity values)")
     var jsonData: Data {
-        let encoder = JSONEncoder()
-        encoder.dateEncodingStrategy = .iso8601
-        return try! encoder.encode(self)
+        try! getJsonData()
     }
     
     /// A JSON representation of the struct.
