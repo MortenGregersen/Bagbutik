@@ -4,8 +4,7 @@ set -euo pipefail
 
 : "${RELEASE_TAG:?RELEASE_TAG must be set}"
 
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-source "$SCRIPT_DIR/libraries.sh"
+LIBRARY="Bagbutik"
 
 OUTPUT_PATH="${1:-output/checksums.json}"
 RELEASE_BODY_PATH="${2:-output/release-body.md}"
@@ -28,11 +27,8 @@ GENERATED_AT="$(date -u +"%Y-%m-%dT%H:%M:%SZ")"
 mkdir -p "$(dirname "$OUTPUT_PATH")"
 mkdir -p "$(dirname "$RELEASE_BODY_PATH")"
 
-CHECKSUMS=()
-for lib in "${LIBRARIES[@]}"; do
-  zip_path="output/${lib}.xcframework.zip"
-  CHECKSUMS+=("$(swift package compute-checksum "$zip_path")")
-done
+ZIP_PATH="output/${LIBRARY}.xcframework.zip"
+CHECKSUM="$(swift package compute-checksum "$ZIP_PATH")"
 
 {
   printf '{\n'
@@ -41,20 +37,8 @@ done
   printf '  "xcodeVersion": "%s",\n' "$(json_escape "$XCODE_VERSION")"
   printf '  "swiftVersion": "%s",\n' "$(json_escape "$SWIFT_VERSION")"
   printf '  "checksums": {\n'
-
-  first=1
-  for i in "${!LIBRARIES[@]}"; do
-    lib="${LIBRARIES[$i]}"
-    checksum="${CHECKSUMS[$i]}"
-    if [ $first -eq 0 ]; then
-      printf ',\n'
-    fi
-
-    printf '    "%s": "%s"' "$(json_escape "$lib")" "$(json_escape "$checksum")"
-    first=0
-  done
-
-  printf '\n  }\n'
+  printf '    "%s": "%s"\n' "$(json_escape "$LIBRARY")" "$(json_escape "$CHECKSUM")"
+  printf '  }\n'
   printf '}\n'
 } > "$OUTPUT_PATH"
 
@@ -62,15 +46,11 @@ done
   printf '### XCFramework\n\n'
   printf -- '- Built with: %s (%s)\n\n' "$XCODE_VERSION" "$SWIFT_VERSION"
   printf '```swift\n'
-  for i in "${!LIBRARIES[@]}"; do
-    lib="${LIBRARIES[$i]}"
-    checksum="${CHECKSUMS[$i]}"
-    printf '.binaryTarget(\n'
-    printf '    name: "%s",\n' "$lib"
-    printf '    url: "https://github.com/%s/releases/download/%s/%s.xcframework.zip",\n' "$REPOSITORY" "$RELEASE_TAG" "$lib"
-    printf '    checksum: "%s"\n' "$checksum"
-    printf '),\n\n'
-  done
+  printf '.binaryTarget(\n'
+  printf '    name: "%s",\n' "$LIBRARY"
+  printf '    url: "https://github.com/%s/releases/download/%s/%s.xcframework.zip",\n' "$REPOSITORY" "$RELEASE_TAG" "$LIBRARY"
+  printf '    checksum: "%s"\n' "$CHECKSUM"
+  printf '),\n\n'
   printf '```\n'
 } > "$RELEASE_BODY_PATH"
 

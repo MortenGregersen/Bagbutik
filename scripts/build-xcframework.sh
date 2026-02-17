@@ -14,8 +14,7 @@ WATCHOS_SIMULATOR_SDK="watchsimulator"
 VISIONOS_DEVICE_SDK="xros"
 VISIONOS_SIMULATOR_SDK="xrsimulator"
 
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-source "$SCRIPT_DIR/libraries.sh"
+LIBRARY="Bagbutik"
 
 SDKS=(
   "$IOS_DEVICE_SDK"
@@ -44,8 +43,7 @@ restore_package_manifest() {
   fi
 }
 
-set_modular_products_dynamic() {
-  local libs_file
+set_library_products_dynamic() {
   local temp_manifest
   local awk_status
 
@@ -57,19 +55,9 @@ set_modular_products_dynamic() {
   PACKAGE_MANIFEST_BACKUP="$(mktemp "${TMPDIR:-/tmp}/Package.swift.backup.XXXXXX")"
   cp "$PACKAGE_MANIFEST" "$PACKAGE_MANIFEST_BACKUP"
 
-  libs_file="$(mktemp "${TMPDIR:-/tmp}/bagbutik-libraries.XXXXXX")"
-  printf '%s\n' "${LIBRARIES[@]}" > "$libs_file"
   temp_manifest="$(mktemp "${TMPDIR:-/tmp}/Package.swift.modified.XXXXXX")"
 
-  awk -v libs_file="$libs_file" '
-BEGIN {
-  while ((getline line < libs_file) > 0) {
-    if (line != "") {
-      libraries[line] = 1
-    }
-  }
-  close(libs_file)
-}
+  awk -v target_library="$LIBRARY" '
 {
   line = $0
 
@@ -90,7 +78,7 @@ BEGIN {
     name = line
     sub(/^[^"]*"/, "", name)
     sub(/".*$/, "", name)
-    if (name in libraries) {
+    if (name == target_library) {
       matched_library = 1
       match(line, /[^[:space:]]/)
       if (RSTART > 1) {
@@ -127,8 +115,6 @@ BEGIN {
 ' "$PACKAGE_MANIFEST" > "$temp_manifest"
   awk_status=$?
 
-  rm -f "$libs_file"
-
   if [ "$awk_status" -ne 0 ]; then
     rm -f "$temp_manifest"
     echo "Failed to prepare Package.swift for dynamic framework build."
@@ -163,7 +149,7 @@ platform_for_sdk() {
 
 get_available_platforms() {
   local destination_output
-  destination_output="$(xcodebuild -scheme "${LIBRARIES[0]}" -showdestinations 2>/dev/null || true)"
+  destination_output="$(xcodebuild -scheme "$LIBRARY" -showdestinations 2>/dev/null || true)"
   echo "$destination_output" \
     | awk '/Ineligible destinations/{exit} {print}' \
     | sed -n 's/.*platform:\([^,}]*\).*/\1/p' \
@@ -304,7 +290,7 @@ create_xcframework() {
 }
 
 echo
-echo "****** Build Modular XCFrameworks ******"
+echo "****** Build Monolithic XCFramework ******"
 echo
 
 trap restore_package_manifest EXIT
@@ -314,19 +300,17 @@ rm -rf "$DIST_DIR"
 mkdir -p "$DIST_DIR"
 
 require_all_sdks
-set_modular_products_dynamic
+set_library_products_dynamic
 
-for library in "${LIBRARIES[@]}"; do
-  for sdk in "${SDKS[@]}"; do
-    build_framework "$library" "$sdk"
-    echo
-  done
-
-  create_xcframework "$library" "${SDKS[@]}"
-  pushd "$DIST_DIR"
-  zip -r "$library.xcframework.zip" "$library.xcframework"
-  popd
+for sdk in "${SDKS[@]}"; do
+  build_framework "$LIBRARY" "$sdk"
   echo
 done
 
-echo "Finished building modular XCFramework archives in $DIST_DIR"
+create_xcframework "$LIBRARY" "${SDKS[@]}"
+
+pushd "$DIST_DIR"
+zip -r "$LIBRARY.xcframework.zip" "$LIBRARY.xcframework"
+popd
+
+echo "Finished building monolithic XCFramework archive in $DIST_DIR"
