@@ -279,14 +279,14 @@ build_framework() {
 
 create_xcframework() {
   scheme=$1
+  shift 1
 
   echo "*** Create $scheme.xcframework ***"
   echo "Scheme: $scheme"
-  echo "SDKs: $@"
+  echo "SDKs: $*"
   echo
 
   args=()
-  shift 1
   for p in "$@"; do
     if [ "$p" = "$MACOS_SDK" ]; then
       configuration_folder=$CONFIGURATION
