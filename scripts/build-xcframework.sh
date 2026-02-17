@@ -32,9 +32,111 @@ SDKS=(
 PACKAGE="Bagbutik"
 CONFIGURATION="Release"
 DEBUG_SYMBOLS="true"
+PACKAGE_MANIFEST="$(pwd)/Package.swift"
+PACKAGE_MANIFEST_BACKUP=""
 
 BUILD_DIR="$(pwd)/build"
 DIST_DIR="$(pwd)/output"
+
+restore_package_manifest() {
+  if [ -n "${PACKAGE_MANIFEST_BACKUP:-}" ] && [ -f "$PACKAGE_MANIFEST_BACKUP" ]; then
+    mv "$PACKAGE_MANIFEST_BACKUP" "$PACKAGE_MANIFEST"
+  fi
+}
+
+set_modular_products_dynamic() {
+  local libs_file
+  local temp_manifest
+  local awk_status
+
+  if [ ! -f "$PACKAGE_MANIFEST" ]; then
+    echo "Unable to find $PACKAGE_MANIFEST"
+    exit 18
+  fi
+
+  PACKAGE_MANIFEST_BACKUP="$(mktemp "${TMPDIR:-/tmp}/Package.swift.backup.XXXXXX")"
+  cp "$PACKAGE_MANIFEST" "$PACKAGE_MANIFEST_BACKUP"
+
+  libs_file="$(mktemp "${TMPDIR:-/tmp}/bagbutik-libraries.XXXXXX")"
+  printf '%s\n' "${LIBRARIES[@]}" > "$libs_file"
+  temp_manifest="$(mktemp "${TMPDIR:-/tmp}/Package.swift.modified.XXXXXX")"
+
+  awk -v libs_file="$libs_file" '
+BEGIN {
+  while ((getline line < libs_file) > 0) {
+    if (line != "") {
+      libraries[line] = 1
+    }
+  }
+  close(libs_file)
+}
+{
+  line = $0
+
+  if (line ~ /^[[:space:]]*products:[[:space:]]*\[/) {
+    in_products = 1
+  } else if (in_products && line ~ /^[[:space:]]*dependencies:[[:space:]]*\[/) {
+    in_products = 0
+  }
+
+  if (in_products && line ~ /^[[:space:]]*\.library\(/) {
+    in_library = 1
+    matched_library = 0
+    has_dynamic_type = 0
+    dynamic_indent = ""
+  }
+
+  if (in_library && line ~ /^[[:space:]]*name:[[:space:]]*"/) {
+    name = line
+    sub(/^[^"]*"/, "", name)
+    sub(/".*$/, "", name)
+    if (name in libraries) {
+      matched_library = 1
+      match(line, /[^[:space:]]/)
+      if (RSTART > 1) {
+        dynamic_indent = substr(line, 1, RSTART - 1)
+      } else {
+        dynamic_indent = "            "
+      }
+    }
+  }
+
+  if (in_library && matched_library && line ~ /^[[:space:]]*type:[[:space:]]*/) {
+    if (line ~ /^[[:space:]]*type:[[:space:]]*\.dynamic,/) {
+      has_dynamic_type = 1
+      print line
+    } else {
+      print dynamic_indent "type: .dynamic,"
+      has_dynamic_type = 1
+    }
+    next
+  }
+
+  if (in_library && matched_library && !has_dynamic_type &&
+      (line ~ /^[[:space:]]*targets:[[:space:]]*\[/ || line ~ /^[[:space:]]*\),?[[:space:]]*$/)) {
+    print dynamic_indent "type: .dynamic,"
+    has_dynamic_type = 1
+  }
+
+  print line
+
+  if (in_library && line ~ /^[[:space:]]*\),?[[:space:]]*$/) {
+    in_library = 0
+  }
+}
+' "$PACKAGE_MANIFEST" > "$temp_manifest"
+  awk_status=$?
+
+  rm -f "$libs_file"
+
+  if [ "$awk_status" -ne 0 ]; then
+    rm -f "$temp_manifest"
+    echo "Failed to prepare Package.swift for dynamic framework build."
+    exit 19
+  fi
+
+  mv "$temp_manifest" "$PACKAGE_MANIFEST"
+}
 
 sdk_is_available() {
   sdk=$1
@@ -205,11 +307,14 @@ echo
 echo "****** Build Modular XCFrameworks ******"
 echo
 
+trap restore_package_manifest EXIT
+
 rm -rf "$BUILD_DIR"
 rm -rf "$DIST_DIR"
 mkdir -p "$DIST_DIR"
 
 require_all_sdks
+set_modular_products_dynamic
 
 for library in "${LIBRARIES[@]}"; do
   for sdk in "${SDKS[@]}"; do
