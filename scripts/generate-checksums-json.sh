@@ -28,10 +28,10 @@ GENERATED_AT="$(date -u +"%Y-%m-%dT%H:%M:%SZ")"
 mkdir -p "$(dirname "$OUTPUT_PATH")"
 mkdir -p "$(dirname "$RELEASE_BODY_PATH")"
 
-declare -A CHECKSUMS
+CHECKSUMS=()
 for lib in "${LIBRARIES[@]}"; do
   zip_path="output/${lib}.xcframework.zip"
-  CHECKSUMS["$lib"]="$(swift package compute-checksum "$zip_path")"
+  CHECKSUMS+=("$(swift package compute-checksum "$zip_path")")
 done
 
 {
@@ -43,12 +43,14 @@ done
   printf '  "checksums": {\n'
 
   first=1
-  for lib in "${LIBRARIES[@]}"; do
+  for i in "${!LIBRARIES[@]}"; do
+    lib="${LIBRARIES[$i]}"
+    checksum="${CHECKSUMS[$i]}"
     if [ $first -eq 0 ]; then
       printf ',\n'
     fi
 
-    printf '    "%s": "%s"' "$(json_escape "$lib")" "$(json_escape "${CHECKSUMS[$lib]}")"
+    printf '    "%s": "%s"' "$(json_escape "$lib")" "$(json_escape "$checksum")"
     first=0
   done
 
@@ -60,11 +62,13 @@ done
   printf '### XCFramework\n\n'
   printf -- '- Built with: %s (%s)\n\n' "$XCODE_VERSION" "$SWIFT_VERSION"
   printf '```swift\n'
-  for lib in "${LIBRARIES[@]}"; do
+  for i in "${!LIBRARIES[@]}"; do
+    lib="${LIBRARIES[$i]}"
+    checksum="${CHECKSUMS[$i]}"
     printf '.binaryTarget(\n'
     printf '    name: "%s",\n' "$lib"
     printf '    url: "https://github.com/%s/releases/download/%s/%s.xcframework.zip",\n' "$REPOSITORY" "$RELEASE_TAG" "$lib"
-    printf '    checksum: "%s"\n' "${CHECKSUMS[$lib]}"
+    printf '    checksum: "%s"\n' "$checksum"
     printf '),\n\n'
   done
   printf '```\n'
