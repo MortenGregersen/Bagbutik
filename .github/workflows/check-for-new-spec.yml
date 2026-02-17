@@ -12,6 +12,6 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: Check for new spec
-      run: ./check-spec-version.sh
+      run: ./scripts/check-spec-version.sh
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
