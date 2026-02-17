@@ -12,7 +12,7 @@ on:
 
 jobs:
   build-xcframeworks:
-    name: Build and Attach XCFramework Assets
+    name: Build and Attach XCFramework Asset
     runs-on: macos-latest
     permissions:
       contents: write
@@ -29,7 +29,7 @@ jobs:
           xcodebuild -version
           swift --version
 
-      - name: Build XCFrameworks
+      - name: Build XCFramework
         run: |
           ./scripts/build-xcframework.sh
 
@@ -44,15 +44,5 @@ jobs:
           append_body: true
           body_path: output/release-body.md
           files: |
-            output/Bagbutik-Core.xcframework.zip
-            output/Bagbutik-Models.xcframework.zip
-            output/Bagbutik-AppStore.xcframework.zip
-            output/Bagbutik-GameCenter.xcframework.zip
-            output/Bagbutik-Marketplaces.xcframework.zip
-            output/Bagbutik-Provisioning.xcframework.zip
-            output/Bagbutik-Reporting.xcframework.zip
-            output/Bagbutik-TestFlight.xcframework.zip
-            output/Bagbutik-Users.xcframework.zip
-            output/Bagbutik-Webhooks.xcframework.zip
-            output/Bagbutik-XcodeCloud.xcframework.zip
+            output/Bagbutik.xcframework.zip
             output/checksums.json
