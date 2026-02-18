@@ -100,6 +100,14 @@ targets: [
 import Bagbutik_TestFlight
 ```
 
+### Using the release XCFramework
+
+When consuming the GitHub release binary (`Bagbutik.xcframework.zip`) as a SwiftPM binary target, use a single target named `Bagbutik` and import:
+
+```swift
+import Bagbutik
+```
+
 ### `Bagbutik-Core`
 
 The core library is `Bagbutik-Core` which contains the `BagbutikService`, the `JWT`, protocols and the general generated types like `ErrorResponse` and `PagingInformation`.
