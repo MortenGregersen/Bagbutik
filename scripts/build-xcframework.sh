@@ -28,7 +28,6 @@ SDKS=(
   "$VISIONOS_SIMULATOR_SDK"
 )
 
-PACKAGE="Bagbutik"
 CONFIGURATION="Release"
 DEBUG_SYMBOLS="true"
 PACKAGE_MANIFEST="$(pwd)/Package.swift"
@@ -129,54 +128,12 @@ sdk_is_available() {
   xcrun --sdk "$sdk" --show-sdk-path >/dev/null 2>&1
 }
 
-platform_for_sdk() {
-  case "$1" in
-    "$IOS_DEVICE_SDK") echo "iOS" ;;
-    "$IOS_SIMULATOR_SDK") echo "iOS Simulator" ;;
-    "$MACOS_SDK") echo "macOS" ;;
-    "$TVOS_DEVICE_SDK") echo "tvOS" ;;
-    "$TVOS_SIMULATOR_SDK") echo "tvOS Simulator" ;;
-    "$WATCHOS_DEVICE_SDK") echo "watchOS" ;;
-    "$WATCHOS_SIMULATOR_SDK") echo "watchOS Simulator" ;;
-    "$VISIONOS_DEVICE_SDK") echo "visionOS" ;;
-    "$VISIONOS_SIMULATOR_SDK") echo "visionOS Simulator" ;;
-    *)
-      echo "Unknown SDK $1"
-      exit 17
-      ;;
-  esac
-}
-
-get_available_platforms() {
-  local destination_output
-  destination_output="$(xcodebuild -scheme "$LIBRARY" -showdestinations 2>/dev/null || true)"
-  echo "$destination_output" \
-    | awk '/Ineligible destinations/{exit} {print}' \
-    | sed -n 's/.*platform:\([^,}]*\).*/\1/p' \
-    | sort -u
-}
-
-platform_is_available() {
-  local platform=$1
-  printf '%s\n' "${AVAILABLE_PLATFORMS[@]}" | grep -Fxq "$platform"
-}
-
 require_all_sdks() {
   missing_sdks=()
-  AVAILABLE_PLATFORMS=()
-  while IFS= read -r platform; do
-    [ -n "$platform" ] && AVAILABLE_PLATFORMS+=("$platform")
-  done < <(get_available_platforms)
 
   for sdk in "${SDKS[@]}"; do
     if ! sdk_is_available "$sdk"; then
       missing_sdks+=("$sdk (SDK not installed)")
-      continue
-    fi
-
-    required_platform="$(platform_for_sdk "$sdk")"
-    if ! platform_is_available "$required_platform"; then
-      missing_sdks+=("$sdk ($required_platform destination unavailable)")
     fi
   done
 
@@ -243,23 +200,11 @@ build_framework() {
   else
     configuration_folder="$CONFIGURATION-$sdk"
   fi
-  product_path="$BUILD_DIR/Build/Products/$configuration_folder"
-  framework_path="$product_path/PackageFrameworks/$scheme.framework"
+  framework_path="$BUILD_DIR/Build/Products/$configuration_folder/PackageFrameworks/$scheme.framework"
 
-  # Copy Modules
-  modules_path="$framework_path/Modules"
-  mkdir -p "$modules_path"
-  cp -pv \
-    "$BUILD_DIR/Build/Intermediates.noindex/$PACKAGE.build/$configuration_folder/$scheme.build/$scheme.modulemap" \
-    "$modules_path" || exit 13
-  underscored_scheme="${scheme//-/_}"
-  mkdir -p "$modules_path/$underscored_scheme.swiftmodule"
-  cp -pv "$product_path/$underscored_scheme.swiftmodule"/*.* "$modules_path/$underscored_scheme.swiftmodule/" || exit 14
-
-  # Copy Bundle
-  bundle_dir="$product_path/${PACKAGE}_$scheme.bundle"
-  if [ -d "$bundle_dir" ]; then
-    cp -prv "$bundle_dir"/* "$framework_path/" || exit 15
+  if [ ! -d "$framework_path" ]; then
+    echo "Missing framework output at $framework_path"
+    exit 13
   fi
 }
 
