@@ -2,8 +2,6 @@
 
 set -euo pipefail
 
-# Inspired by https://waynestalk.com/en/build-swift-package-as-xcframework-en/
-
 IOS_DEVICE_SDK="iphoneos"
 IOS_SIMULATOR_SDK="iphonesimulator"
 MACOS_SDK="macosx"
@@ -28,103 +26,39 @@ SDKS=(
   "$VISIONOS_SIMULATOR_SDK"
 )
 
+if [ -n "${BAGBUTIK_SDKS:-}" ]; then
+  IFS=',' read -r -a SDKS <<< "$BAGBUTIK_SDKS"
+fi
 CONFIGURATION="Release"
-DEBUG_SYMBOLS="true"
-PACKAGE_MANIFEST="$(pwd)/Package.swift"
-PACKAGE_MANIFEST_BACKUP=""
 
-BUILD_DIR="$(pwd)/build"
-DIST_DIR="$(pwd)/output"
+ROOT_DIR="$(pwd)"
+BUILD_DIR="$ROOT_DIR/build"
+DIST_DIR="$ROOT_DIR/output"
+MONOLITHIC_PACKAGE_DIR="$BUILD_DIR/MonolithicPackage"
 
-restore_package_manifest() {
-  if [ -n "${PACKAGE_MANIFEST_BACKUP:-}" ] && [ -f "$PACKAGE_MANIFEST_BACKUP" ]; then
-    mv "$PACKAGE_MANIFEST_BACKUP" "$PACKAGE_MANIFEST"
-  fi
-}
+discover_libraries() {
+  LIBRARIES=()
+  while IFS= read -r library; do
+    LIBRARIES+=("$library")
+  done < <(
+    find "$ROOT_DIR/Sources" -mindepth 1 -maxdepth 1 -type d -name 'Bagbutik-*' -print \
+      | sed 's#.*/##' \
+      | sort
+  )
 
-set_library_products_dynamic() {
-  local temp_manifest
-  local awk_status
-
-  if [ ! -f "$PACKAGE_MANIFEST" ]; then
-    echo "Unable to find $PACKAGE_MANIFEST"
-    exit 18
-  fi
-
-  PACKAGE_MANIFEST_BACKUP="$(mktemp "${TMPDIR:-/tmp}/Package.swift.backup.XXXXXX")"
-  cp "$PACKAGE_MANIFEST" "$PACKAGE_MANIFEST_BACKUP"
-
-  temp_manifest="$(mktemp "${TMPDIR:-/tmp}/Package.swift.modified.XXXXXX")"
-
-  awk -v target_library="$LIBRARY" '
-{
-  line = $0
-
-  if (line ~ /^[[:space:]]*products:[[:space:]]*\[/) {
-    in_products = 1
-  } else if (in_products && line ~ /^[[:space:]]*dependencies:[[:space:]]*\[/) {
-    in_products = 0
-  }
-
-  if (in_products && line ~ /^[[:space:]]*\.library\(/) {
-    in_library = 1
-    matched_library = 0
-    has_dynamic_type = 0
-    dynamic_indent = ""
-  }
-
-  if (in_library && line ~ /^[[:space:]]*name:[[:space:]]*"/) {
-    name = line
-    sub(/^[^"]*"/, "", name)
-    sub(/".*$/, "", name)
-    if (name == target_library) {
-      matched_library = 1
-      match(line, /[^[:space:]]/)
-      if (RSTART > 1) {
-        dynamic_indent = substr(line, 1, RSTART - 1)
-      } else {
-        dynamic_indent = "            "
-      }
-    }
-  }
-
-  if (in_library && matched_library && line ~ /^[[:space:]]*type:[[:space:]]*/) {
-    if (line ~ /^[[:space:]]*type:[[:space:]]*\.dynamic,/) {
-      has_dynamic_type = 1
-      print line
-    } else {
-      print dynamic_indent "type: .dynamic,"
-      has_dynamic_type = 1
-    }
-    next
-  }
-
-  if (in_library && matched_library && !has_dynamic_type &&
-      (line ~ /^[[:space:]]*targets:[[:space:]]*\[/ || line ~ /^[[:space:]]*\),?[[:space:]]*$/)) {
-    print dynamic_indent "type: .dynamic,"
-    has_dynamic_type = 1
-  }
-
-  print line
-
-  if (in_library && line ~ /^[[:space:]]*\),?[[:space:]]*$/) {
-    in_library = 0
-  }
-}
-' "$PACKAGE_MANIFEST" > "$temp_manifest"
-  awk_status=$?
-
-  if [ "$awk_status" -ne 0 ]; then
-    rm -f "$temp_manifest"
-    echo "Failed to prepare Package.swift for dynamic framework build."
-    exit 19
+  if [ ${#LIBRARIES[@]} -eq 0 ]; then
+    echo "No source libraries found in $ROOT_DIR/Sources matching Bagbutik-*"
+    exit 17
   fi
 
-  mv "$temp_manifest" "$PACKAGE_MANIFEST"
+  echo "Discovered libraries:"
+  for library in "${LIBRARIES[@]}"; do
+    echo "- $library"
+  done
 }
 
 sdk_is_available() {
-  sdk=$1
+  local sdk=$1
   xcrun --sdk "$sdk" --show-sdk-path >/dev/null 2>&1
 }
 
@@ -144,37 +78,83 @@ require_all_sdks() {
   fi
 }
 
-run_xcodebuild() {
-  if command -v xcpretty >/dev/null 2>&1; then
-    xcodebuild "$@" | xcpretty
-  else
-    xcodebuild "$@"
-  fi
+prepare_monolithic_package() {
+  echo "*** Prepare release package ***"
+
+  rm -rf "$MONOLITHIC_PACKAGE_DIR"
+  mkdir -p "$MONOLITHIC_PACKAGE_DIR/Sources/$LIBRARY"
+
+  cat > "$MONOLITHIC_PACKAGE_DIR/Package.swift" <<PACKAGE_EOF
+// swift-tools-version:5.10
+
+import PackageDescription
+
+let package = Package(
+    name: "$LIBRARY",
+    platforms: [
+        .macOS(.v12),
+        .iOS(.v15),
+        .tvOS(.v15),
+        .watchOS(.v8)
+    ],
+    products: [
+        .library(
+            name: "$LIBRARY",
+            type: .dynamic,
+            targets: ["$LIBRARY"]
+        )
+    ],
+    targets: [
+        .target(name: "$LIBRARY")
+    ],
+    swiftLanguageVersions: [.v5, .version("6")]
+)
+PACKAGE_EOF
+
+  for library in "${LIBRARIES[@]}"; do
+    source_path="$ROOT_DIR/Sources/$library"
+    if [ ! -d "$source_path" ]; then
+      echo "Missing source directory: $source_path"
+      exit 18
+    fi
+
+    target_path="$MONOLITHIC_PACKAGE_DIR/Sources/$LIBRARY/$library"
+    mkdir -p "$target_path"
+    cp -R "$source_path"/. "$target_path"
+  done
+
+  # In the monolithic release target all Bagbutik types live in the same module,
+  # so inter-module imports must be removed.
+  while IFS= read -r -d '' file; do
+    perl -0pi -e 's/^import Bagbutik_[A-Za-z0-9_]+\n//mg' "$file"
+  done < <(find "$MONOLITHIC_PACKAGE_DIR/Sources/$LIBRARY" -name '*.swift' -type f -print0)
 }
 
 build_framework() {
-  scheme=$1
-  sdk=$2
-  if [ "$2" = "$IOS_DEVICE_SDK" ]; then
+  local scheme=$1
+  local sdk=$2
+  local dest=""
+
+  if [ "$sdk" = "$IOS_DEVICE_SDK" ]; then
     dest="generic/platform=iOS"
-  elif [ "$2" = "$IOS_SIMULATOR_SDK" ]; then
+  elif [ "$sdk" = "$IOS_SIMULATOR_SDK" ]; then
     dest="generic/platform=iOS Simulator"
-  elif [ "$2" = "$MACOS_SDK" ]; then
+  elif [ "$sdk" = "$MACOS_SDK" ]; then
     dest="generic/platform=macOS"
-  elif [ "$2" = "$TVOS_DEVICE_SDK" ]; then
+  elif [ "$sdk" = "$TVOS_DEVICE_SDK" ]; then
     dest="generic/platform=tvOS"
-  elif [ "$2" = "$TVOS_SIMULATOR_SDK" ]; then
+  elif [ "$sdk" = "$TVOS_SIMULATOR_SDK" ]; then
     dest="generic/platform=tvOS Simulator"
-  elif [ "$2" = "$WATCHOS_DEVICE_SDK" ]; then
+  elif [ "$sdk" = "$WATCHOS_DEVICE_SDK" ]; then
     dest="generic/platform=watchOS"
-  elif [ "$2" = "$WATCHOS_SIMULATOR_SDK" ]; then
+  elif [ "$sdk" = "$WATCHOS_SIMULATOR_SDK" ]; then
     dest="generic/platform=watchOS Simulator"
-  elif [ "$2" = "$VISIONOS_DEVICE_SDK" ]; then
+  elif [ "$sdk" = "$VISIONOS_DEVICE_SDK" ]; then
     dest="generic/platform=visionOS"
-  elif [ "$2" = "$VISIONOS_SIMULATOR_SDK" ]; then
+  elif [ "$sdk" = "$VISIONOS_SIMULATOR_SDK" ]; then
     dest="generic/platform=visionOS Simulator"
   else
-    echo "Unknown SDK $2"
+    echo "Unknown SDK $sdk"
     exit 11
   fi
 
@@ -185,31 +165,64 @@ build_framework() {
   echo "Destination: $dest"
   echo
 
-  (run_xcodebuild \
-    -scheme "$scheme" \
-    -configuration "$CONFIGURATION" \
-    -destination "$dest" \
-    -sdk "$sdk" \
-    -derivedDataPath "$BUILD_DIR" \
-    SKIP_INSTALL=NO \
-    BUILD_LIBRARY_FOR_DISTRIBUTION=YES \
-    OTHER_SWIFT_FLAGS="-no-verify-emitted-module-interface") || exit 12
+  (
+    cd "$MONOLITHIC_PACKAGE_DIR"
+    xcodebuild \
+      -scheme "$scheme" \
+      -configuration "$CONFIGURATION" \
+      -destination "$dest" \
+      -sdk "$sdk" \
+      -derivedDataPath "$BUILD_DIR" \
+      SKIP_INSTALL=NO \
+      BUILD_LIBRARY_FOR_DISTRIBUTION=YES \
+      OTHER_SWIFT_FLAGS="-no-verify-emitted-module-interface"
+  ) || exit 12
 
+  local configuration_folder=""
   if [ "$sdk" = "$MACOS_SDK" ]; then
     configuration_folder=$CONFIGURATION
   else
     configuration_folder="$CONFIGURATION-$sdk"
   fi
-  framework_path="$BUILD_DIR/Build/Products/$configuration_folder/PackageFrameworks/$scheme.framework"
+
+  local product_path="$BUILD_DIR/Build/Products/$configuration_folder"
+  local framework_path="$product_path/PackageFrameworks/$scheme.framework"
+  local modules_path="$framework_path/Modules"
 
   if [ ! -d "$framework_path" ]; then
     echo "Missing framework output at $framework_path"
     exit 13
   fi
+
+  mkdir -p "$modules_path"
+
+  local modulemap_source="$BUILD_DIR/Build/Intermediates.noindex/$scheme.build/$configuration_folder/$scheme.build/$scheme.modulemap"
+  if [ ! -f "$modulemap_source" ]; then
+    echo "Missing module map output at $modulemap_source"
+    exit 14
+  fi
+  cp -pv "$modulemap_source" "$modules_path" || exit 15
+
+  local header_source=""
+  header_source="$(find "$BUILD_DIR/Build/Intermediates.noindex/$scheme.build/$configuration_folder/$scheme.build/Objects-normal" -name "$scheme-Swift.h" -type f | head -n 1)"
+  if [ -z "$header_source" ]; then
+    echo "Missing generated Swift header for module $scheme"
+    exit 16
+  fi
+  cp -pv "$header_source" "$modules_path" || exit 17
+
+  local swiftmodule_source="$product_path/$scheme.swiftmodule"
+  if [ ! -d "$swiftmodule_source" ]; then
+    echo "Missing swiftmodule output at $swiftmodule_source"
+    exit 18
+  fi
+
+  mkdir -p "$modules_path/$scheme.swiftmodule"
+  cp -pv "$swiftmodule_source"/*.* "$modules_path/$scheme.swiftmodule/" || exit 19
 }
 
 create_xcframework() {
-  scheme=$1
+  local scheme=$1
   shift 1
 
   echo "*** Create $scheme.xcframework ***"
@@ -218,15 +231,18 @@ create_xcframework() {
   echo
 
   args=()
-  for p in "$@"; do
-    if [ "$p" = "$MACOS_SDK" ]; then
+  for sdk in "$@"; do
+    local configuration_folder=""
+    if [ "$sdk" = "$MACOS_SDK" ]; then
       configuration_folder=$CONFIGURATION
     else
-      configuration_folder="$CONFIGURATION-$p"
+      configuration_folder="$CONFIGURATION-$sdk"
     fi
+
     args+=(-framework "$BUILD_DIR/Build/Products/$configuration_folder/PackageFrameworks/$scheme.framework")
-    symbol_path="$BUILD_DIR/Build/Products/$configuration_folder/$scheme.framework.dSYM"
-    if [ "$DEBUG_SYMBOLS" = "true" ] && [ -d "$symbol_path" ]; then
+
+    local symbol_path="$BUILD_DIR/Build/Products/$configuration_folder/$scheme.framework.dSYM"
+    if [ -d "$symbol_path" ]; then
       args+=(-debug-symbols "$symbol_path")
     fi
   done
@@ -235,17 +251,16 @@ create_xcframework() {
 }
 
 echo
-echo "****** Build Monolithic XCFramework ******"
+echo "****** Build XCFramework ******"
 echo
-
-trap restore_package_manifest EXIT
 
 rm -rf "$BUILD_DIR"
 rm -rf "$DIST_DIR"
 mkdir -p "$DIST_DIR"
 
 require_all_sdks
-set_library_products_dynamic
+discover_libraries
+prepare_monolithic_package
 
 for sdk in "${SDKS[@]}"; do
   build_framework "$LIBRARY" "$sdk"
@@ -254,8 +269,12 @@ done
 
 create_xcframework "$LIBRARY" "${SDKS[@]}"
 
-pushd "$DIST_DIR"
-zip -r "$LIBRARY.xcframework.zip" "$LIBRARY.xcframework"
-popd
+pushd "$DIST_DIR" >/dev/null
+if [ "${BAGBUTIK_SKIP_ZIP:-false}" = "true" ]; then
+  echo "Skipping zip step because BAGBUTIK_SKIP_ZIP=true"
+else
+  zip -r "$LIBRARY.xcframework.zip" "$LIBRARY.xcframework"
+fi
+popd >/dev/null
 
-echo "Finished building monolithic XCFramework archive in $DIST_DIR"
+echo "Finished building XCFramework archive in $DIST_DIR"

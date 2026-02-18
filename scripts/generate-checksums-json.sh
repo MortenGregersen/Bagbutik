@@ -45,6 +45,7 @@ CHECKSUM="$(swift package compute-checksum "$ZIP_PATH")"
 {
   printf '### XCFramework\n\n'
   printf -- '- Built with: %s (%s)\n\n' "$XCODE_VERSION" "$SWIFT_VERSION"
+  printf -- '- Binary import style: `import Bagbutik`\n\n'
   printf '```swift\n'
   printf '.binaryTarget(\n'
   printf '    name: "%s",\n' "$LIBRARY"
