@@ -134,6 +134,11 @@ build_framework() {
   local scheme=$1
   local sdk=$2
   local dest=""
+  local -a build_settings=(
+    "SKIP_INSTALL=NO"
+    "BUILD_LIBRARY_FOR_DISTRIBUTION=YES"
+    "OTHER_SWIFT_FLAGS=-no-verify-emitted-module-interface"
+  )
 
   if [ "$sdk" = "$IOS_DEVICE_SDK" ]; then
     dest="generic/platform=iOS"
@@ -147,6 +152,7 @@ build_framework() {
     dest="generic/platform=tvOS Simulator"
   elif [ "$sdk" = "$WATCHOS_DEVICE_SDK" ]; then
     dest="generic/platform=watchOS"
+    build_settings+=("EXCLUDED_ARCHS=armv7k")
   elif [ "$sdk" = "$WATCHOS_SIMULATOR_SDK" ]; then
     dest="generic/platform=watchOS Simulator"
   elif [ "$sdk" = "$VISIONOS_DEVICE_SDK" ]; then
@@ -163,6 +169,9 @@ build_framework() {
   echo "Configuration: $CONFIGURATION"
   echo "SDK: $sdk"
   echo "Destination: $dest"
+  if [ "$sdk" = "$WATCHOS_DEVICE_SDK" ]; then
+    echo "Excluded architectures: armv7k"
+  fi
   echo
 
   (
@@ -173,9 +182,7 @@ build_framework() {
       -destination "$dest" \
       -sdk "$sdk" \
       -derivedDataPath "$BUILD_DIR" \
-      SKIP_INSTALL=NO \
-      BUILD_LIBRARY_FOR_DISTRIBUTION=YES \
-      OTHER_SWIFT_FLAGS="-no-verify-emitted-module-interface"
+      "${build_settings[@]}"
   ) || exit 12
 
   local configuration_folder=""
