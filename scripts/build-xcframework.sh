@@ -30,6 +30,30 @@ if [ -n "${BAGBUTIK_SDKS:-}" ]; then
   IFS=',' read -r -a SDKS <<< "$BAGBUTIK_SDKS"
 fi
 CONFIGURATION="Release"
+BUILD_LIBRARY_FOR_DISTRIBUTION="${BAGBUTIK_BUILD_LIBRARY_FOR_DISTRIBUTION:-YES}"
+CODESIGN_IDENTITY="${BAGBUTIK_CODESIGN_IDENTITY:--}"
+
+if [ "$BUILD_LIBRARY_FOR_DISTRIBUTION" != "YES" ] && [ "$BUILD_LIBRARY_FOR_DISTRIBUTION" != "NO" ]; then
+  echo "Invalid BAGBUTIK_BUILD_LIBRARY_FOR_DISTRIBUTION value: $BUILD_LIBRARY_FOR_DISTRIBUTION"
+  echo "Expected YES or NO."
+  exit 10
+fi
+
+should_codesign() {
+  [ "$CODESIGN_IDENTITY" != "none" ]
+}
+
+codesign_framework() {
+  local framework_path=$1
+
+  if ! should_codesign; then
+    return
+  fi
+
+  echo "Codesigning framework: $framework_path"
+  codesign --force --sign "$CODESIGN_IDENTITY" --timestamp=none "$framework_path" || exit 22
+  codesign --verify --strict "$framework_path" || exit 23
+}
 
 ROOT_DIR="$(pwd)"
 BUILD_DIR="$ROOT_DIR/build"
@@ -136,7 +160,7 @@ build_framework() {
   local dest=""
   local -a build_settings=(
     "SKIP_INSTALL=NO"
-    "BUILD_LIBRARY_FOR_DISTRIBUTION=YES"
+    "BUILD_LIBRARY_FOR_DISTRIBUTION=$BUILD_LIBRARY_FOR_DISTRIBUTION"
     "OTHER_SWIFT_FLAGS=-no-verify-emitted-module-interface"
   )
 
@@ -226,6 +250,8 @@ build_framework() {
 
   mkdir -p "$modules_path/$scheme.swiftmodule"
   cp -pv "$swiftmodule_source"/*.* "$modules_path/$scheme.swiftmodule/" || exit 19
+
+  codesign_framework "$framework_path"
 }
 
 create_xcframework() {
@@ -260,6 +286,8 @@ create_xcframework() {
 echo
 echo "****** Build XCFramework ******"
 echo
+echo "BUILD_LIBRARY_FOR_DISTRIBUTION: $BUILD_LIBRARY_FOR_DISTRIBUTION"
+echo
 
 rm -rf "$BUILD_DIR"
 rm -rf "$DIST_DIR"
@@ -275,6 +303,12 @@ for sdk in "${SDKS[@]}"; do
 done
 
 create_xcframework "$LIBRARY" "${SDKS[@]}"
+
+if should_codesign; then
+  while IFS= read -r -d '' framework_path; do
+    codesign_framework "$framework_path"
+  done < <(find "$DIST_DIR/$LIBRARY.xcframework" -type d -name '*.framework' -print0)
+fi
 
 pushd "$DIST_DIR" >/dev/null
 if [ "${BAGBUTIK_SKIP_ZIP:-false}" = "true" ]; then

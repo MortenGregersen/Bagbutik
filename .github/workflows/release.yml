@@ -31,7 +31,15 @@ jobs:
 
       - name: Build XCFramework
         run: |
+          BAGBUTIK_CODESIGN_IDENTITY="-" \
           ./scripts/build-xcframework.sh
+
+      - name: Verify framework signatures
+        run: |
+          find output/Bagbutik.xcframework -type d -name '*.framework' -print0 | while IFS= read -r -d '' framework; do
+            echo "Verifying $framework"
+            codesign --verify --strict "$framework"
+          done
 
       - name: Compute checksums and write metadata
         run: |

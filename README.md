@@ -108,6 +108,27 @@ When consuming the GitHub release binary (`Bagbutik.xcframework.zip`) as a Swift
 import Bagbutik
 ```
 
+The release XCFramework is built with library evolution enabled (`BUILD_LIBRARY_FOR_DISTRIBUTION=YES`).
+Because of this, `public enum` values are treated as non-frozen in consuming apps, so exhaustive switches may require:
+
+```swift
+@unknown default:
+```
+
+If you build a local XCFramework for app-internal use and want the same enum-switch behavior as source-based SPM consumption, run the script with:
+
+```bash
+BAGBUTIK_BUILD_LIBRARY_FOR_DISTRIBUTION=NO ./scripts/build-xcframework.sh
+```
+
+Keep in mind this local binary is then tied more closely to your compiler/toolchain.
+
+By default, the script ad-hoc signs framework slices (`BAGBUTIK_CODESIGN_IDENTITY=-`) so embedded macOS app signing can validate nested frameworks. If needed, override with a specific identity, or disable signing with:
+
+```bash
+BAGBUTIK_CODESIGN_IDENTITY=none ./scripts/build-xcframework.sh
+```
+
 ### `Bagbutik-Core`
 
 The core library is `Bagbutik-Core` which contains the `BagbutikService`, the `JWT`, protocols and the general generated types like `ErrorResponse` and `PagingInformation`.
