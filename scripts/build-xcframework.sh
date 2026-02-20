@@ -31,6 +31,14 @@ if [ -n "${BAGBUTIK_SDKS:-}" ]; then
 fi
 CONFIGURATION="Release"
 
+codesign_framework() {
+  local framework_path=$1
+
+  echo "Codesigning framework: $framework_path"
+  codesign --force --sign "-" --timestamp=none "$framework_path" || exit 22
+  codesign --verify --strict "$framework_path" || exit 23
+}
+
 ROOT_DIR="$(pwd)"
 BUILD_DIR="$ROOT_DIR/build"
 DIST_DIR="$ROOT_DIR/output"
@@ -226,6 +234,8 @@ build_framework() {
 
   mkdir -p "$modules_path/$scheme.swiftmodule"
   cp -pv "$swiftmodule_source"/*.* "$modules_path/$scheme.swiftmodule/" || exit 19
+
+  codesign_framework "$framework_path"
 }
 
 create_xcframework() {
@@ -275,6 +285,10 @@ for sdk in "${SDKS[@]}"; do
 done
 
 create_xcframework "$LIBRARY" "${SDKS[@]}"
+
+while IFS= read -r -d '' framework_path; do
+  codesign_framework "$framework_path"
+done < <(find "$DIST_DIR/$LIBRARY.xcframework" -type d -name '*.framework' -print0)
 
 pushd "$DIST_DIR" >/dev/null
 if [ "${BAGBUTIK_SKIP_ZIP:-false}" = "true" ]; then
