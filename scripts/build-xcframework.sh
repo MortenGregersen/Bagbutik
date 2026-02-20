@@ -209,6 +209,14 @@ build_framework() {
     exit 13
   fi
 
+  if [ -d "$framework_path/Versions/Current" ]; then
+    # Versioned frameworks (macOS) store module metadata under Versions/Current.
+    modules_path="$framework_path/Versions/Current/Modules"
+    if [ ! -e "$framework_path/Modules" ] && [ ! -L "$framework_path/Modules" ]; then
+      ln -s "Versions/Current/Modules" "$framework_path/Modules"
+    fi
+  fi
+
   mkdir -p "$modules_path"
 
   local modulemap_source="$BUILD_DIR/Build/Intermediates.noindex/$scheme.build/$configuration_folder/$scheme.build/$scheme.modulemap"
