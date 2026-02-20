@@ -110,15 +110,6 @@ import Bagbutik
 
 See the [releases page](https://github.com/MortenGregersen/Bagbutik/releases) for the latest guidance on including the XCFramework in your project.
 
-The release XCFramework is built with library evolution enabled (`BUILD_LIBRARY_FOR_DISTRIBUTION=YES`).
-Because of this, `public enum` values are treated as non-frozen in consuming apps, so exhaustive switches may require:
-
-```swift
-@unknown default:
-```
-
-The release script always uses `BUILD_LIBRARY_FOR_DISTRIBUTION=YES` and ad-hoc signs framework slices so embedded macOS app signing can validate nested frameworks.
-
 ### `Bagbutik-Core`
 
 The core library is `Bagbutik-Core` which contains the `BagbutikService`, the `JWT`, protocols and the general generated types like `ErrorResponse` and `PagingInformation`.
