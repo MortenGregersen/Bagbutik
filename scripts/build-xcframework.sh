@@ -30,13 +30,12 @@ if [ -n "${BAGBUTIK_SDKS:-}" ]; then
   IFS=',' read -r -a SDKS <<< "$BAGBUTIK_SDKS"
 fi
 CONFIGURATION="Release"
-CODESIGN_IDENTITY="-"
 
 codesign_framework() {
   local framework_path=$1
 
   echo "Codesigning framework: $framework_path"
-  codesign --force --sign "$CODESIGN_IDENTITY" --timestamp=none "$framework_path" || exit 22
+  codesign --force --sign "-" --timestamp=none "$framework_path" || exit 22
   codesign --verify --strict "$framework_path" || exit 23
 }
 
