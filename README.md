@@ -108,6 +108,8 @@ When consuming the GitHub release binary (`Bagbutik.xcframework.zip`) as a Swift
 import Bagbutik
 ```
 
+See the [releases page](https://github.com/MortenGregersen/Bagbutik/releases) for the latest guidance on including the XCFramework in your project.
+
 The release XCFramework is built with library evolution enabled (`BUILD_LIBRARY_FOR_DISTRIBUTION=YES`).
 Because of this, `public enum` values are treated as non-frozen in consuming apps, so exhaustive switches may require:
 
