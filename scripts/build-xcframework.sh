@@ -30,7 +30,6 @@ if [ -n "${BAGBUTIK_SDKS:-}" ]; then
   IFS=',' read -r -a SDKS <<< "$BAGBUTIK_SDKS"
 fi
 CONFIGURATION="Release"
-BUILD_LIBRARY_FOR_DISTRIBUTION="YES"
 CODESIGN_IDENTITY="-"
 
 codesign_framework() {
@@ -146,7 +145,7 @@ build_framework() {
   local dest=""
   local -a build_settings=(
     "SKIP_INSTALL=NO"
-    "BUILD_LIBRARY_FOR_DISTRIBUTION=$BUILD_LIBRARY_FOR_DISTRIBUTION"
+    "BUILD_LIBRARY_FOR_DISTRIBUTION=YES"
     "OTHER_SWIFT_FLAGS=-no-verify-emitted-module-interface"
   )
 
@@ -271,8 +270,6 @@ create_xcframework() {
 
 echo
 echo "****** Build XCFramework ******"
-echo
-echo "BUILD_LIBRARY_FOR_DISTRIBUTION: $BUILD_LIBRARY_FOR_DISTRIBUTION"
 echo
 
 rm -rf "$BUILD_DIR"
