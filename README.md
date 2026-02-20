@@ -108,8 +108,6 @@ When consuming the GitHub release binary (`Bagbutik.xcframework.zip`) as a Swift
 import Bagbutik
 ```
 
-See the [releases page](https://github.com/MortenGregersen/Bagbutik/releases) for the latest guidance on including the XCFramework in your project.
-
 ### `Bagbutik-Core`
 
 The core library is `Bagbutik-Core` which contains the `BagbutikService`, the `JWT`, protocols and the general generated types like `ErrorResponse` and `PagingInformation`.
