@@ -115,19 +115,7 @@ Because of this, `public enum` values are treated as non-frozen in consuming app
 @unknown default:
 ```
 
-If you build a local XCFramework for app-internal use and want the same enum-switch behavior as source-based SPM consumption, run the script with:
-
-```bash
-BAGBUTIK_BUILD_LIBRARY_FOR_DISTRIBUTION=NO ./scripts/build-xcframework.sh
-```
-
-Keep in mind this local binary is then tied more closely to your compiler/toolchain.
-
-By default, the script ad-hoc signs framework slices (`BAGBUTIK_CODESIGN_IDENTITY=-`) so embedded macOS app signing can validate nested frameworks. If needed, override with a specific identity, or disable signing with:
-
-```bash
-BAGBUTIK_CODESIGN_IDENTITY=none ./scripts/build-xcframework.sh
-```
+The release script always uses `BUILD_LIBRARY_FOR_DISTRIBUTION=YES` and ad-hoc signs framework slices so embedded macOS app signing can validate nested frameworks.
 
 ### `Bagbutik-Core`
 

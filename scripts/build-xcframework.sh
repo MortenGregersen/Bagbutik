@@ -30,25 +30,11 @@ if [ -n "${BAGBUTIK_SDKS:-}" ]; then
   IFS=',' read -r -a SDKS <<< "$BAGBUTIK_SDKS"
 fi
 CONFIGURATION="Release"
-BUILD_LIBRARY_FOR_DISTRIBUTION="${BAGBUTIK_BUILD_LIBRARY_FOR_DISTRIBUTION:-YES}"
-CODESIGN_IDENTITY="${BAGBUTIK_CODESIGN_IDENTITY:--}"
-
-if [ "$BUILD_LIBRARY_FOR_DISTRIBUTION" != "YES" ] && [ "$BUILD_LIBRARY_FOR_DISTRIBUTION" != "NO" ]; then
-  echo "Invalid BAGBUTIK_BUILD_LIBRARY_FOR_DISTRIBUTION value: $BUILD_LIBRARY_FOR_DISTRIBUTION"
-  echo "Expected YES or NO."
-  exit 10
-fi
-
-should_codesign() {
-  [ "$CODESIGN_IDENTITY" != "none" ]
-}
+BUILD_LIBRARY_FOR_DISTRIBUTION="YES"
+CODESIGN_IDENTITY="-"
 
 codesign_framework() {
   local framework_path=$1
-
-  if ! should_codesign; then
-    return
-  fi
 
   echo "Codesigning framework: $framework_path"
   codesign --force --sign "$CODESIGN_IDENTITY" --timestamp=none "$framework_path" || exit 22
@@ -304,11 +290,9 @@ done
 
 create_xcframework "$LIBRARY" "${SDKS[@]}"
 
-if should_codesign; then
-  while IFS= read -r -d '' framework_path; do
-    codesign_framework "$framework_path"
-  done < <(find "$DIST_DIR/$LIBRARY.xcframework" -type d -name '*.framework' -print0)
-fi
+while IFS= read -r -d '' framework_path; do
+  codesign_framework "$framework_path"
+done < <(find "$DIST_DIR/$LIBRARY.xcframework" -type d -name '*.framework' -print0)
 
 pushd "$DIST_DIR" >/dev/null
 if [ "${BAGBUTIK_SKIP_ZIP:-false}" = "true" ]; then

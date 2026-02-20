@@ -31,7 +31,6 @@ jobs:
 
       - name: Build XCFramework
         run: |
-          BAGBUTIK_CODESIGN_IDENTITY="-" \
           ./scripts/build-xcframework.sh
 
       - name: Verify framework signatures
