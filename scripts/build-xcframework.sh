@@ -302,7 +302,7 @@ pushd "$DIST_DIR" >/dev/null
 if [ "${BAGBUTIK_SKIP_ZIP:-false}" = "true" ]; then
   echo "Skipping zip step because BAGBUTIK_SKIP_ZIP=true"
 else
-  zip -r "$LIBRARY.xcframework.zip" "$LIBRARY.xcframework"
+  zip -yr "$LIBRARY.xcframework.zip" "$LIBRARY.xcframework"
 fi
 popd >/dev/null
 
