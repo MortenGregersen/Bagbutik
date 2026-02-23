@@ -40,9 +40,9 @@ jobs:
             codesign --verify --strict "$framework"
           done
 
-      - name: Compute checksums and write metadata
+      - name: Compute checksum and write release body
         run: |
-          ./scripts/generate-checksums-json.sh output/checksums.json output/release-body.md
+          ./scripts/generate-release-body.sh output/release-body.md
 
       - name: Upload release assets
         uses: softprops/action-gh-release@v2
@@ -52,4 +52,3 @@ jobs:
           body_path: output/release-body.md
           files: |
             output/Bagbutik.xcframework.zip
-            output/checksums.json
