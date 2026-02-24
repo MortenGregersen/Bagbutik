@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>JWT Structure Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+    <script src="../js/lunr.min.js" defer></script>
+    <script src="../js/typeahead.jquery.js" defer></script>
+    <script src="../js/jazzy.search.js" defer></script>
+  </head>
+  <body>
+    <a name="//apple_ref/swift/Struct/JWT" class="dashAnchor"></a>
+    <a title="JWT Structure Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="../index.html">Bagbutik</a> (97% documented)</p>
+        <p class="header-right"><a href="https://github.com/MortenGregersen/Bagbutik"><img src="../img/gh.png" alt="GitHub"/>View on GitHub</a></p>
+        <div class="header-right">
+          <form role="search" action="../search.json">
+            <input type="text" placeholder="Search documentation" data-typeahead>
+          </form>
+        </div>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="../index.html">Bagbutik_Core</a>
+        <img id="carat" src="../img/carat.png" alt=""/>
+        <a href="../Service.html">Service</a>
+        <img id="carat" src="../img/carat.png" alt=""/>
+        JWT Structure Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="../Service.html">Service</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Actors/BagbutikService.html">BagbutikService</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/JWT.html">JWT</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Service.html#/s:13Bagbutik_Core9FetchDataa">FetchData</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/ServiceError.html">ServiceError</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Requests.html">Requests</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Structs/Request.html">Request</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/HTTPMethod.html">HTTPMethod</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/RequestBody.html">RequestBody</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Parameters.html">Parameters</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/EndpointParameter.html">EndpointParameter</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/AssociatedValueParameter.html">AssociatedValueParameter</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/ParameterValue.html">ParameterValue</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Requests.html#/s:13Bagbutik_Core14FieldParameterP">FieldParameter</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Requests.html#/s:13Bagbutik_Core15FilterParameterP">FilterParameter</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Requests.html#/s:13Bagbutik_Core16IncludeParameterP">IncludeParameter</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/ExistParameter.html">ExistParameter</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/SortParameter.html">SortParameter</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/LimitParameter.html">LimitParameter</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Responses.html">Responses</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Structs/EmptyResponse.html">EmptyResponse</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/PagedResponse.html">PagedResponse</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/BinaryResponse.html">BinaryResponse</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/PlainTextResponse.html">PlainTextResponse</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Property%20Wrappers.html">Property Wrappers</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Structs/NullCodable.html">NullCodable</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Other%20Enums.html">Other Enumerations</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Enums/Clearable.html">Clearable</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Other%20Structs.html">Other Structures</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Structs/AnyCodingKey.html">AnyCodingKey</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>JWT</h1>
+              <div class="declaration">
+                <div class="language">
+                  
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">JWT</span> <span class="p">:</span> <span class="kt">Sendable</span></code></pre>
+
+                </div>
+              </div>
+            <p>A JSON Web Token (JWT) to be used to authorize API requests.</p>
+
+<p>The JWT is valid for 20 minutes, but will be renewed automatically when performing requests with <code><a href="../Actors/BagbutikService.html">BagbutikService</a></code>.</p>
+
+<p>Full documentation for how JWT is used with the API:
+<a href="https://developer.apple.com/documentation/appstoreconnectapi/generating_tokens_for_api_requests">https://developer.apple.com/documentation/appstoreconnectapi/generating_tokens_for_api_requests</a></p>
+
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:13Bagbutik_Core3JWTV9isExpiredSbvp"></a>
+                    <a name="//apple_ref/swift/Property/isExpired" class="dashAnchor"></a>
+                    <a class="token" href="#/s:13Bagbutik_Core3JWTV9isExpiredSbvp">isExpired</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>A value telling if the JWT has expired.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">isExpired</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:13Bagbutik_Core3JWTV16encodedSignatureSSvp"></a>
+                    <a name="//apple_ref/swift/Property/encodedSignature" class="dashAnchor"></a>
+                    <a class="token" href="#/s:13Bagbutik_Core3JWTV16encodedSignatureSSvp">encodedSignature</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The signature to use in the authorization header when performing requests.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">private(set)</span> <span class="k">var</span> <span class="nv">encodedSignature</span><span class="p">:</span> <span class="kt">String</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:13Bagbutik_Core3JWTV5keyId06issuerE010privateKeyACSS_S2StKcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(keyId:issuerId:privateKey:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:13Bagbutik_Core3JWTV5keyId06issuerE010privateKeyACSS_S2StKcfc">init(keyId:<wbr>issuerId:<wbr>privateKey:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Create a JWT for a Team key.</p>
+
+<p>Full documentation for how to get the required keys.
+<a href="https://developer.apple.com/documentation/appstoreconnectapi/creating_api_keys_for_app_store_connect_api">https://developer.apple.com/documentation/appstoreconnectapi/creating_api_keys_for_app_store_connect_api</a></p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">keyId</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">issuerId</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">privateKey</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="k">throws</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>keyId</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Your private key ID from App Store Connect; for example 2X9R4HXF34.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>issuerId</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Your issuer ID from the API Keys page in App Store Connect; for example, 57246542-96fe-1a63-e053-0824d011072a.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>privateKey</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The contents of your private key from App Store Connect. Starting with <code>-----BEGIN PRIVATE KEY-----</code>.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:13Bagbutik_Core3JWTV5keyId06issuerE014privateKeyPathACSS_S2StKcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(keyId:issuerId:privateKeyPath:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:13Bagbutik_Core3JWTV5keyId06issuerE014privateKeyPathACSS_S2StKcfc">init(keyId:<wbr>issuerId:<wbr>privateKeyPath:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Create a JWT for a Team key.</p>
+
+<p>Full documentation for how to get the required keys.
+<a href="https://developer.apple.com/documentation/appstoreconnectapi/creating_api_keys_for_app_store_connect_api">https://developer.apple.com/documentation/appstoreconnectapi/creating_api_keys_for_app_store_connect_api</a></p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">keyId</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">issuerId</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">privateKeyPath</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="k">throws</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>keyId</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Your private key ID from App Store Connect; for example 2X9R4HXF34.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>issuerId</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Your issuer ID from the API Keys page in App Store Connect; for example, 57246542-96fe-1a63-e053-0824d011072a.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>privateKeyPath</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The file path to your private key from App Store Connect.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:13Bagbutik_Core3JWTV5keyId10privateKeyACSS_SStKcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(keyId:privateKey:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:13Bagbutik_Core3JWTV5keyId10privateKeyACSS_SStKcfc">init(keyId:<wbr>privateKey:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Create a JWT for an Individual key.</p>
+
+<p>Full documentation for how to get the required keys.
+<a href="https://developer.apple.com/documentation/appstoreconnectapi/creating_api_keys_for_app_store_connect_api">https://developer.apple.com/documentation/appstoreconnectapi/creating_api_keys_for_app_store_connect_api</a></p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">keyId</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">privateKey</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="k">throws</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>keyId</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Your private key ID from App Store Connect; for example 2X9R4HXF34.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>privateKey</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The contents of your private key from App Store Connect. Starting with <code>-----BEGIN PRIVATE KEY-----</code>.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:13Bagbutik_Core3JWTV5keyId14privateKeyPathACSS_SStKcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(keyId:privateKeyPath:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:13Bagbutik_Core3JWTV5keyId14privateKeyPathACSS_SStKcfc">init(keyId:<wbr>privateKeyPath:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Create a JWT for an Individual key.</p>
+
+<p>Full documentation for how to get the required keys.
+<a href="https://developer.apple.com/documentation/appstoreconnectapi/creating_api_keys_for_app_store_connect_api">https://developer.apple.com/documentation/appstoreconnectapi/creating_api_keys_for_app_store_connect_api</a></p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">keyId</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">privateKeyPath</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="k">throws</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>keyId</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Your private key ID from App Store Connect; for example 2X9R4HXF34.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>privateKeyPath</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The file path to your private key from App Store Connect.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>© 2022 under <a class="link" href="https://github.com/MortenGregersen/Bagbutik/blob/main/LICENSE" target="_blank" rel="external noopener">open source license</a>.</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external noopener">jazzy ♪♫ v0.15.3</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external noopener">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</html>
