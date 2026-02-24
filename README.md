@@ -60,69 +60,51 @@ print(response)
 
 ## How to get Bagbutik into a project
 
-Bagbutik supports [Swift Package Manager](https://www.swift.org/package-manager) and the internal libraries used to generate the code is also managed by it.
+Bagbutik is primarily distributed as a **source-based Swift package** using
+[Swift Package Manager](https://www.swift.org/package-manager).
 
-The library of generated code actually consists of multiple libraries, to let the consumer only depend on the endpoints needed.
-So to get Bagbutik, you need to decide which functionality you need.
+For advanced use cases, a prebuilt **XCFramework** is also provided.
+Using the XCFramework is **optional** and does not replace the source-based package.
 
-In your `Package.swift` add Bagbutik as a dependency:
+### Using Bagbutik as a source package
+
+The library of generated code consists of multiple libraries, allowing consumers
+to depend only on the API areas they need.
+
+Add Bagbutik as a dependency in your `Package.swift`:
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/MortenGregersen/Bagbutik", from: "18.0.0"),
+    .package(url: "https://github.com/MortenGregersen/Bagbutik", from: "19.0.0"),
+]
 ```
 
-Then in `targets` add the libraries needed by your target:
+Then add the required products to your target:
 
 ```swift
-targets: [
-    .target(
-        name: "Awesome",
-        dependencies: [
-            .product(name: "Bagbutik-AppStore", package: "Bagbutik"),
-            .product(name: "Bagbutik-TestFlight", package: "Bagbutik"),
+.target(
+    name: "Awesome",
+    dependencies: [
+        .product(name: "Bagbutik-AppStore", package: "Bagbutik"),
+        .product(name: "Bagbutik-TestFlight", package: "Bagbutik"),
+    ]
+)
 ```
 
-If all libraries are needed, the umbrella library `Bagbutik` can be used:
+If you need access to all APIs, you can depend on the umbrella library:
 
 ```swift
-targets: [
-    .target(
-        name: "Awesome",
-        dependencies: [
-            .product(name: "Bagbutik", package: "Bagbutik"),
+.target(
+    name: "Awesome",
+    dependencies: [
+        .product(name: "Bagbutik", package: "Bagbutik"),
+    ]
+)
 ```
 
-> Remember to replace the hyphen with an underscore when importing the libraries.
->
-> When importing `Bagbutik-TestFlight` write: 
-```swift
-import Bagbutik_TestFlight
-```
+#### Available modules
 
-### Using the release XCFramework
-
-When consuming the GitHub release binary (`Bagbutik.xcframework.zip`) as a SwiftPM binary target, use a single target named `Bagbutik` and import:
-
-```swift
-import Bagbutik
-```
-
-### `Bagbutik-Core`
-
-The core library is `Bagbutik-Core` which contains the `BagbutikService`, the `JWT`, protocols and the general generated types like `ErrorResponse` and `PagingInformation`.
-
-All other libraries depend on `Bagbutik-Core`. This is the only library which is documented on [Bagbutik.dev](https://bagbutik.dev), as the other libraries only contain types which are already [documented by Apple](https://developer.apple.com/documentation/appstoreconnectapi).
-
-### `Bagbutik-Models`
-
-Because the models from the API are used from many different endpoints, they are all located in `Bagbutik-Models`. All libraries with endpoints depend on `Bagbutik-Models`.
-
-### `Bagbutik-<API-Area>`
-
-The endpoints of all the areas of the App Store Connect API are located in different libraries with a describing name.
-
-Right now there are 9 libraries with endpoints:
+Each module corresponds to a specific area of the App Store Connect API:
 
 * `Bagbutik-AppStore`: Manage all [aspects of your app, App Clips, in-app purchases, and customer reviews in the App Store](https://developer.apple.com/documentation/appstoreconnectapi/app_store).
 * `Bagbutik-GameCenter`: Manage [Game Center data and configurations for your apps](https://developer.apple.com/documentation/appstoreconnectapi/game_center).
@@ -133,6 +115,88 @@ Right now there are 9 libraries with endpoints:
 * `Bagbutik-Users`: Manage [users](https://developer.apple.com/documentation/appstoreconnectapi/users) and [email invitations to join](https://developer.apple.com/documentation/appstoreconnectapi/user_invitations) your App Store Connect team.
 * `Bagbutik-Webhooks`: Manage [notifications](https://developer.apple.com/documentation/appstoreconnectapi/webhook-notifications) from App Store about your apps and their statuses.
 * `Bagbutik-XcodeCloud`: Automate [reading Xcode Cloud data, managing workflows, and starting builds](https://developer.apple.com/documentation/appstoreconnectapi/xcode_cloud_workflows_and_builds).
+
+Remember to replace hyphens with underscores when importing modules.
+For example, when importing `Bagbutik-TestFlight`:
+
+`import Bagbutik_TestFlight`
+
+### Using the XCFramework
+
+Bagbutik releases also include a prebuilt **XCFramework** for cases where you prefer a binary dependency, such as:
+
+- Faster CI builds
+- Tooling or plugin projects
+- Avoiding recompilation of all Bagbutik modules
+
+The XCFramework contains the umbrella Bagbutik module.
+
+#### Option 1: Use the XCFramework via URL and checksum (recommended)
+
+Add a binary target in your `Package.swift`:
+
+```swift
+.binaryTarget(
+    name: "Bagbutik",
+    url: "https://github.com/MortenGregersen/Bagbutik/releases/download/<VERSION>/Bagbutik.xcframework.zip",
+    checksum: "<CHECKSUM>"
+)
+```
+
+The exact checksum for each version is listed in the corresponding GitHub Release.
+
+Then add Bagbutik as a dependency:
+
+```swift
+.target(
+    name: "Awesome",
+    dependencies: [
+        "Bagbutik"
+    ]
+)
+```
+
+Import Bagbutik in your source files:
+
+`import Bagbutik`
+
+#### Option 2: Use a downloaded XCFramework (local path)
+
+Alternatively, you can download `Bagbutik.xcframework.zip` from the GitHub Release,
+unzip it, and commit `Bagbutik.xcframework` into your repository
+(for example in a Vendor/ directory).
+
+Declare a local binary target:
+
+```swift
+.binaryTarget(
+    name: "Bagbutik",
+    path: "Vendor/Bagbutik.xcframework"
+)
+```
+
+Add Bagbutik as a dependency:
+
+```swift
+.target(
+    name: "Awesome",
+    dependencies: [
+        "Bagbutik"
+    ]
+)
+```
+
+Import Bagbutik in your source files:
+
+`import Bagbutik`
+
+#### Swift and Xcode compatibility
+
+The XCFramework is built with a specific **Xcode / Swift version**, which is documented in the corresponding GitHub Release.
+
+Binary Swift frameworks are only guaranteed to be compatible with the **same or newer
+Swift compiler versions**. If you need maximum compatibility or want to use a different
+Swift version, prefer using Bagbutik as a source package.
 
 ## Manual patches applied to OpenAPI Spec
 
