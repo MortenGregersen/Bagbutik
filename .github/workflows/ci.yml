@@ -28,9 +28,10 @@ jobs:
         token: ${{ secrets.CODECOV_TOKEN }}
     - name: Upload test results to Codecov
       if: ${{ !cancelled() }}
-      uses: codecov/test-results-action@v1
+      uses: codecov/codecov-action@v5
       with:
         token: ${{ secrets.CODECOV_TOKEN }}
+        report_type: test_results
   build-linux:
     name: Build and Test (Linux) - Swift ${{ matrix.swift }}
     runs-on: ubuntu-latest
