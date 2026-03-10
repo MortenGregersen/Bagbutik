@@ -240,7 +240,7 @@ final class GeneratorTests: XCTestCase {
         }
     }
     
-    func testNoDocumentationForSchema() async throws {
+    func testInferPackageNameForSchemaWithoutDocumentation() async throws {
         // Given
         let fileManager = MockFileManager()
         let docsLoader = DocsLoader(loadFile: { _ in "{}".data(using: .utf8)! })
@@ -258,10 +258,10 @@ final class GeneratorTests: XCTestCase {
             )
         }, fileManager: fileManager, docsLoader: docsLoader, print: printer.print)
         // When
-        await XCTAssertAsyncThrowsError(try await generator.generateAll(specFileURL: validSpecFileURL, outputDirURL: validOutputDirURL, documentationDirURL: validDocumentationDirURL)) {
-            // Then
-            XCTAssertEqual($0 as? GeneratorError, .noDocumentationForSchema("UsersResponse"))
-        }
+        try await generator.generateAll(specFileURL: validSpecFileURL, outputDirURL: validOutputDirURL, documentationDirURL: validDocumentationDirURL)
+        // Then
+        XCTAssertEqual(fileManager.filesCreated.map(\.name), ["UsersResponse.swift"])
+        XCTAssertEqual(fileManager.directoriesCreated.filter { $0.hasSuffix("/Bagbutik-Users/Models") }.count, 1)
     }
     
     private class MockFileManager: TestableFileManager {

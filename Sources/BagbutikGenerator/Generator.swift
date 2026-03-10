@@ -104,11 +104,15 @@ public class Generator {
                     for operation in path.operations {
                         let name = operation.getVersionedName(path: path)
                         let fileName = "\(name).swift"
-                        guard let documentation = try await docsLoader.resolveDocumentationForOperation(withId: operation.id) else {
+                        let packageName: PackageName
+                        if let documentation = try await docsLoader.resolveDocumentationForOperation(withId: operation.id) {
+                            packageName = try DocsLoader.resolvePackageName(for: Documentation.operation(documentation))
+                        } else if let inferredPackageName = DocsLoader.resolvePackageName(from: operation.id) {
+                            packageName = inferredPackageName
+                        } else {
                             throw GeneratorError.noDocumentationForOperation(operation.id)
                         }
                         let renderedOperation = try await operationRenderer.render(operation: operation, in: path) + "\n"
-                        let packageName = try DocsLoader.resolvePackageName(for: Documentation.operation(documentation))
                         let packageDirURL = outputDirURL.appendingPathComponent(packageName.name).appendingPathComponent("Endpoints")
                         let operationDirURL = Self.getOperationsDirURL(for: path, in: packageDirURL)
                         renderResults.append(.init(dirURL: operationDirURL, name: name, fileName: fileName, contents: renderedOperation))
@@ -132,10 +136,14 @@ public class Generator {
             let schemas = spec.components.schemas
             for schema in schemas.values {
                 taskGroup.addTask { [docsLoader, schemas] in
-                    guard let documentation = try await docsLoader.resolveDocumentationForSchema(named: schema.name) else {
+                    let packageName: PackageName
+                    if let documentation = try await docsLoader.resolveDocumentationForSchema(named: schema.name) {
+                        packageName = try DocsLoader.resolvePackageName(for: documentation)
+                    } else if let inferredPackageName = DocsLoader.resolvePackageName(from: schema.name) {
+                        packageName = inferredPackageName
+                    } else {
                         throw GeneratorError.noDocumentationForSchema(schema.name)
                     }
-                    let packageName = try DocsLoader.resolvePackageName(for: documentation)
                     let model = try await Generator.generateModel(for: schema, packageName: packageName, otherSchemas: schemas, docsLoader: docsLoader)
                     let fileName = model.name + ".swift"
 

@@ -76,6 +76,10 @@ public actor DocsLoader {
         return packageName
     }
 
+    public static func resolvePackageName(from identifier: String) -> PackageName? {
+        PackageName.resolvePackageName(from: identifier)
+    }
+
     public func resolveDocumentationForSchema(named schemaName: String) throws -> Documentation? {
         guard let identifierBySchemaName,
               let schemaDocumentationById else {
