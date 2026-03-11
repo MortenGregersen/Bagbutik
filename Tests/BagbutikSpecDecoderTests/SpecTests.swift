@@ -680,6 +680,16 @@ final class SpecTests: XCTestCase {
             XCTFail(); return
         }
         XCTAssertEqual(errorSchemaRef, "Errors")
+        XCTAssertTrue(spec.patchedSchemasWithLocation.contains {
+            $0.location == .nestedProperty(rootSchemaName: "ErrorResponse", propertyPath: ["errors"])
+        })
+        guard let resolvedErrorsSchema = spec.resolveSchema(
+            at: .nestedProperty(rootSchemaName: "ErrorResponse", propertyPath: ["errors"])
+        ),
+            case .object(let resolvedErrorsObjectSchema) = resolvedErrorsSchema else {
+            XCTFail(); return
+        }
+        XCTAssertEqual(resolvedErrorsObjectSchema.name, "Errors")
 
         guard case .object(let ageRatingDeclarationUpdateRequestSchema) = spec.components.schemas["AgeRatingDeclarationUpdateRequest"],
               let ageRatingDeclarationUpdateRequestDataSchema: ObjectSchema = ageRatingDeclarationUpdateRequestSchema.subSchemas.compactMap({ (subSchema: SubSchema) -> ObjectSchema? in

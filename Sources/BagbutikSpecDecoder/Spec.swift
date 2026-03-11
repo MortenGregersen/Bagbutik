@@ -7,8 +7,45 @@ public struct Spec: Decodable {
     public var paths: [String: Path]
     /// The components contained in the spec
     public var components: Components
+    private var patchedSchemaEntries = [PatchedSchema]()
     /// The schemas patched manually
-    public private(set) var patchedSchemas = [Schema]()
+    public var patchedSchemas: [Schema] { patchedSchemaEntries.map(\.schema) }
+    /// The schemas patched manually, with location information in the spec
+    public var patchedSchemasWithLocation: [PatchedSchema] { patchedSchemaEntries }
+
+    public struct PatchedSchema: Equatable, Sendable {
+        public let schema: Schema
+        public let location: Location
+
+        public init(schema: Schema, location: Location) {
+            self.schema = schema
+            self.location = location
+        }
+
+        public var displayName: String {
+            switch location {
+            case .topLevel(let schemaName):
+                return schemaName
+            case .nestedProperty(let rootSchemaName, let propertyPath):
+                guard !propertyPath.isEmpty else { return rootSchemaName }
+                return "\(rootSchemaName).\(propertyPath.joined(separator: "."))"
+            }
+        }
+    }
+
+    public enum Location: Equatable, Sendable {
+        case topLevel(schemaName: String)
+        case nestedProperty(rootSchemaName: String, propertyPath: [String])
+
+        public var rootSchemaName: String {
+            switch self {
+            case .topLevel(let schemaName):
+                return schemaName
+            case .nestedProperty(let rootSchemaName, _):
+                return rootSchemaName
+            }
+        }
+    }
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
@@ -119,6 +156,8 @@ public struct Spec: Decodable {
      Eg. ErrorResponse has an OneOf with references to ErrorSourcePointer and ErrorSourceParameter, but these schemas have a different title, and have another name when generated.
      */
     public mutating func applyManualPatches() throws {
+        patchedSchemaEntries.removeAll()
+
         // Remove all paths with no operations
         paths = paths.filter { !$0.value.operations.isEmpty }
 
@@ -129,7 +168,7 @@ public struct Spec: Decodable {
                 bundleIdPlatformSchema.cases.append(EnumCase(id: "services", value: "SERVICES", documentation: "A string that represents a service."))
             }
             components.schemas["BundleIdPlatform"] = .enum(bundleIdPlatformSchema)
-            patchedSchemas.append(.enum(bundleIdPlatformSchema))
+            addPatchedSchema(.enum(bundleIdPlatformSchema), location: .topLevel(schemaName: "BundleIdPlatform"))
         }
         let pathsMissingServicesPlatformParameter = ["/v1/bundleIds", "/v1/devices"]
         for path in pathsMissingServicesPlatformParameter {
@@ -199,7 +238,7 @@ public struct Spec: Decodable {
         // In Apple's OpenAPI spec the `detail` property on `ErrorResponse.Errors` is marked as `required`.
         // On 12/1/23 some errors (with status code 409) has been observed, with no `detail`.
         errorSchema.requiredProperties.removeAll(where: { $0 == "detail" })
-        patchedSchemas.append(.object(errorSchema))
+        addPatchedSchema(.object(errorSchema), location: .nestedProperty(rootSchemaName: "ErrorResponse", propertyPath: ["errors"]))
 
         // FB12292035: Add `associatedErrors` to the `meta` property on ErrorResponse.Errors
         // In Apple's OpenAPI spec and documentation the `meta` property does not include the `associatedErrors` (last checked 26/1/24).
@@ -218,7 +257,7 @@ public struct Spec: Decodable {
         errorResponseSchema.additionalProtocols.insert("Error")
         errorResponseSchema.properties["errors"]?.type = .arrayOfSubSchema(errorSchema)
         components.schemas["ErrorResponse"] = .object(errorResponseSchema)
-        patchedSchemas.append(.object(errorResponseSchema))
+        addPatchedSchema(.object(errorResponseSchema), location: .topLevel(schemaName: "ErrorResponse"))
 
         // Marks the `kidsAgeBand` and `developerAgeRatingInfoUrl` properties on `AgeRatingDeclarationUpdateRequest.Data.Attributes` as clearable.
         // Apple's OpenAPI spec has no information about how to clear a value in an update request.
@@ -241,7 +280,7 @@ public struct Spec: Decodable {
                 ageRatingDeclarationUpdateRequestSchema.properties["data"]?.type = .schema(ageRatingDeclarationUpdateRequestDataSchema)
                 components.schemas["AgeRatingDeclarationUpdateRequest"] = .object(ageRatingDeclarationUpdateRequestSchema)
             }
-            patchedSchemas.append(.object(ageRatingDeclarationUpdateRequestSchema))
+            addPatchedSchema(.object(ageRatingDeclarationUpdateRequestSchema), location: .topLevel(schemaName: "AgeRatingDeclarationUpdateRequest"))
         }
 
         // FB16908301: Adds list of `PurchaseRequirement` to `AppEvent`.
@@ -255,11 +294,44 @@ public struct Spec: Decodable {
                 appEventSchema.properties["attributes"]?.type = .schema(appEventAttributesSchema)
                 components.schemas["AppEvent"] = .object(appEventSchema)
             }
-            patchedSchemas.append(.object(appEventSchema))
+            addPatchedSchema(.object(appEventSchema), location: .topLevel(schemaName: "AppEvent"))
         }
 
         // Remove "StringToStringMap" - this is replaced with a [String: String] in the generated code
         components.schemas.removeValue(forKey: "StringToStringMap")
+    }
+
+    public func resolveSchema(at location: Location) -> Schema? {
+        switch location {
+        case .topLevel(let schemaName):
+            return components.schemas[schemaName]
+        case .nestedProperty(let rootSchemaName, let propertyPath):
+            guard var currentSchema = components.schemas[rootSchemaName] else { return nil }
+            for propertyName in propertyPath {
+                guard case .object(let objectSchema) = currentSchema,
+                      let property = objectSchema.properties[propertyName] else { return nil }
+                switch property.type {
+                case .schema(let objectSchema):
+                    currentSchema = .object(objectSchema)
+                case .arrayOfSubSchema(let objectSchema):
+                    currentSchema = .object(objectSchema)
+                case .enumSchema(let enumSchema):
+                    currentSchema = .enum(enumSchema)
+                case .arrayOfEnumSchema(let enumSchema):
+                    currentSchema = .enum(enumSchema)
+                case .schemaRef(let schemaName), .arrayOfSchemaRef(let schemaName):
+                    guard let resolvedSchema = components.schemas[schemaName] else { return nil }
+                    currentSchema = resolvedSchema
+                default:
+                    return nil
+                }
+            }
+            return currentSchema
+        }
+    }
+
+    private mutating func addPatchedSchema(_ schema: Schema, location: Location) {
+        patchedSchemaEntries.append(.init(schema: schema, location: location))
     }
 
     /// A wrapper for schemas to ease decoding

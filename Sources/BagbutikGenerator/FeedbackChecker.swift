@@ -68,18 +68,29 @@ public class FeedbackChecker {
 
         var schemasNeedingPatching = [String]()
         var schemasNotNeedingPatching = [String]()
-        for schema in patchedSpec.patchedSchemas {
-            guard let documentation = try await self.docsLoader.resolveDocumentationForSchema(named: schema.name) else {
-                throw FeedbackCheckerError.noDocumentationForSchema(schema.name)
+        for patchedSchema in patchedSpec.patchedSchemasWithLocation {
+            let schema = patchedSchema.schema
+            let packageName: PackageName
+            if let documentation = try await self.docsLoader.resolveDocumentationForSchema(named: schema.name) {
+                packageName = try DocsLoader.resolvePackageName(for: documentation)
+            } else if let rootDocumentation = try await self.docsLoader.resolveDocumentationForSchema(named: patchedSchema.location.rootSchemaName) {
+                packageName = try DocsLoader.resolvePackageName(for: rootDocumentation)
+            } else if let inferredPackageName = DocsLoader.resolvePackageName(from: schema.name) {
+                packageName = inferredPackageName
+            } else {
+                packageName = .core
+                print("⚠️ No documentation found for schema '\(patchedSchema.displayName)'. Falling back to package \(packageName.name).")
             }
-            let packageName = try DocsLoader.resolvePackageName(for: documentation)
-            let unpatchedSchema = originalSpec.components.schemas[schema.name]!
+            guard let unpatchedSchema = originalSpec.resolveSchema(at: patchedSchema.location) else {
+                print("⚠️ Could not locate unpatched schema '\(patchedSchema.displayName)' from path metadata. Skipping direct comparison.")
+                continue
+            }
             let unpatchedModel = try await Generator.generateModel(for: unpatchedSchema, packageName: packageName, otherSchemas: originalSpec.components.schemas, docsLoader: self.docsLoader)
             let patchedModel = try await Generator.generateModel(for: schema, packageName: packageName, otherSchemas: patchedSpec.components.schemas, docsLoader: self.docsLoader)
             if unpatchedModel == patchedModel {
-                schemasNotNeedingPatching.append(schema.name)
+                schemasNotNeedingPatching.append(patchedSchema.displayName)
             } else {
-                schemasNeedingPatching.append(schema.name)
+                schemasNeedingPatching.append(patchedSchema.displayName)
             }
         }
 
