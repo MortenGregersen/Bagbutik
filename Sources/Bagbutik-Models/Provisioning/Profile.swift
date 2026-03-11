@@ -3,7 +3,7 @@ import Foundation
 
 /**
  # Profile
- The data structure that represents a Profiles  resource.
+ The data structure that represents a Profiles resource.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/profile>

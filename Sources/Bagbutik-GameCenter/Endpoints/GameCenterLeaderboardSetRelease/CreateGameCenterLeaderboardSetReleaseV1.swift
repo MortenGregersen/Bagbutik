@@ -12,6 +12,7 @@ public extension Request {
      - Parameter requestBody: GameCenterLeaderboardSetRelease representation
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
+    @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
     static func createGameCenterLeaderboardSetReleaseV1(requestBody: GameCenterLeaderboardSetReleaseCreateRequest) -> Request<GameCenterLeaderboardSetReleaseResponse, ErrorResponse> {
         .init(
             path: "/v1/gameCenterLeaderboardSetReleases",

@@ -66,6 +66,7 @@ public struct BuildBundle: Codable, Sendable, Identifiable {
         public var includesSymbols: Bool?
         public var isIosBuildMacAppStoreCompatible: Bool?
         public var locales: [String]?
+        public var minimumOsVersion: String?
         public var platformBuild: String?
         public var requiredCapabilities: [String]?
         public var sdkBuild: String?
@@ -86,6 +87,7 @@ public struct BuildBundle: Codable, Sendable, Identifiable {
                     includesSymbols: Bool? = nil,
                     isIosBuildMacAppStoreCompatible: Bool? = nil,
                     locales: [String]? = nil,
+                    minimumOsVersion: String? = nil,
                     platformBuild: String? = nil,
                     requiredCapabilities: [String]? = nil,
                     sdkBuild: String? = nil,
@@ -106,6 +108,7 @@ public struct BuildBundle: Codable, Sendable, Identifiable {
             self.includesSymbols = includesSymbols
             self.isIosBuildMacAppStoreCompatible = isIosBuildMacAppStoreCompatible
             self.locales = locales
+            self.minimumOsVersion = minimumOsVersion
             self.platformBuild = platformBuild
             self.requiredCapabilities = requiredCapabilities
             self.sdkBuild = sdkBuild
@@ -129,6 +132,7 @@ public struct BuildBundle: Codable, Sendable, Identifiable {
             includesSymbols = try container.decodeIfPresent(Bool.self, forKey: "includesSymbols")
             isIosBuildMacAppStoreCompatible = try container.decodeIfPresent(Bool.self, forKey: "isIosBuildMacAppStoreCompatible")
             locales = try container.decodeIfPresent([String].self, forKey: "locales")
+            minimumOsVersion = try container.decodeIfPresent(String.self, forKey: "minimumOsVersion")
             platformBuild = try container.decodeIfPresent(String.self, forKey: "platformBuild")
             requiredCapabilities = try container.decodeIfPresent([String].self, forKey: "requiredCapabilities")
             sdkBuild = try container.decodeIfPresent(String.self, forKey: "sdkBuild")
@@ -152,6 +156,7 @@ public struct BuildBundle: Codable, Sendable, Identifiable {
             try container.encodeIfPresent(includesSymbols, forKey: "includesSymbols")
             try container.encodeIfPresent(isIosBuildMacAppStoreCompatible, forKey: "isIosBuildMacAppStoreCompatible")
             try container.encodeIfPresent(locales, forKey: "locales")
+            try container.encodeIfPresent(minimumOsVersion, forKey: "minimumOsVersion")
             try container.encodeIfPresent(platformBuild, forKey: "platformBuild")
             try container.encodeIfPresent(requiredCapabilities, forKey: "requiredCapabilities")
             try container.encodeIfPresent(sdkBuild, forKey: "sdkBuild")

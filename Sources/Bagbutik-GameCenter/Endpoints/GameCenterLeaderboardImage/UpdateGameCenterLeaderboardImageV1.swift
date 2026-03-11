@@ -13,6 +13,7 @@ public extension Request {
      - Parameter requestBody: GameCenterLeaderboardImage representation
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
+    @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
     static func updateGameCenterLeaderboardImageV1(id: String,
                                                    requestBody: GameCenterLeaderboardImageUpdateRequest) -> Request<GameCenterLeaderboardImageResponse, ErrorResponse> {
         .init(

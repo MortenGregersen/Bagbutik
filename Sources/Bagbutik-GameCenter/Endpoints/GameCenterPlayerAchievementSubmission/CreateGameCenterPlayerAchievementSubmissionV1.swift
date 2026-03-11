@@ -3,8 +3,10 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # POST /v1/gameCenterPlayerAchievementSubmissions
+     # Add a player's score
      Add a new entry for a player’s score for a Game Center achievement.
+
+     Use the `preReleased` attribute to indicate whether the requested change applies to the game’s release version or its prerelease version. Set `preReleased` to `true` to indicate that the change applies to the game’s prerelease version.
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/post-v1-gameCenterPlayerAchievementSubmissions>

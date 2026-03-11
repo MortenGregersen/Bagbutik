@@ -52,6 +52,7 @@ public struct GameCenterLeaderboardEntrySubmissionCreateRequest: Codable, Sendab
             public let bundleId: String
             public var challengeIds: [String]?
             public var context: String?
+            public var preReleased: Bool?
             public let scopedPlayerId: String
             public let score: String
             public var submittedDate: Date?
@@ -60,6 +61,7 @@ public struct GameCenterLeaderboardEntrySubmissionCreateRequest: Codable, Sendab
             public init(bundleId: String,
                         challengeIds: [String]? = nil,
                         context: String? = nil,
+                        preReleased: Bool? = nil,
                         scopedPlayerId: String,
                         score: String,
                         submittedDate: Date? = nil,
@@ -68,6 +70,7 @@ public struct GameCenterLeaderboardEntrySubmissionCreateRequest: Codable, Sendab
                 self.bundleId = bundleId
                 self.challengeIds = challengeIds
                 self.context = context
+                self.preReleased = preReleased
                 self.scopedPlayerId = scopedPlayerId
                 self.score = score
                 self.submittedDate = submittedDate
@@ -79,6 +82,7 @@ public struct GameCenterLeaderboardEntrySubmissionCreateRequest: Codable, Sendab
                 bundleId = try container.decode(String.self, forKey: "bundleId")
                 challengeIds = try container.decodeIfPresent([String].self, forKey: "challengeIds")
                 context = try container.decodeIfPresent(String.self, forKey: "context")
+                preReleased = try container.decodeIfPresent(Bool.self, forKey: "preReleased")
                 scopedPlayerId = try container.decode(String.self, forKey: "scopedPlayerId")
                 score = try container.decode(String.self, forKey: "score")
                 submittedDate = try container.decodeIfPresent(Date.self, forKey: "submittedDate")
@@ -90,6 +94,7 @@ public struct GameCenterLeaderboardEntrySubmissionCreateRequest: Codable, Sendab
                 try container.encode(bundleId, forKey: "bundleId")
                 try container.encodeIfPresent(challengeIds, forKey: "challengeIds")
                 try container.encodeIfPresent(context, forKey: "context")
+                try container.encodeIfPresent(preReleased, forKey: "preReleased")
                 try container.encode(scopedPlayerId, forKey: "scopedPlayerId")
                 try container.encode(score, forKey: "score")
                 try container.encodeIfPresent(submittedDate, forKey: "submittedDate")

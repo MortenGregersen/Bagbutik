@@ -50,14 +50,17 @@ public struct BackgroundAsset: Codable, Sendable, Identifiable {
         public var archived: Bool?
         public var assetPackIdentifier: String?
         public var createdDate: Date?
+        public var usedBytes: Int?
 
         public init(archived: Bool? = nil,
                     assetPackIdentifier: String? = nil,
-                    createdDate: Date? = nil)
+                    createdDate: Date? = nil,
+                    usedBytes: Int? = nil)
         {
             self.archived = archived
             self.assetPackIdentifier = assetPackIdentifier
             self.createdDate = createdDate
+            self.usedBytes = usedBytes
         }
 
         public init(from decoder: Decoder) throws {
@@ -65,6 +68,7 @@ public struct BackgroundAsset: Codable, Sendable, Identifiable {
             archived = try container.decodeIfPresent(Bool.self, forKey: "archived")
             assetPackIdentifier = try container.decodeIfPresent(String.self, forKey: "assetPackIdentifier")
             createdDate = try container.decodeIfPresent(Date.self, forKey: "createdDate")
+            usedBytes = try container.decodeIfPresent(Int.self, forKey: "usedBytes")
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -72,6 +76,7 @@ public struct BackgroundAsset: Codable, Sendable, Identifiable {
             try container.encodeIfPresent(archived, forKey: "archived")
             try container.encodeIfPresent(assetPackIdentifier, forKey: "assetPackIdentifier")
             try container.encodeIfPresent(createdDate, forKey: "createdDate")
+            try container.encodeIfPresent(usedBytes, forKey: "usedBytes")
         }
     }
 

@@ -11,6 +11,7 @@ public extension Request {
 
      - Parameter fields: Fields to return for included related types
      - Parameter filters: Attributes, relationships, and IDs by which to filter
+     - Parameter exists: Attributes, relationships, and IDs to check for existence
      - Parameter includes: Relationship data to include in the response
      - Parameter sorts: Attributes by which to sort
      - Parameter limits: Number of resources to return
@@ -18,6 +19,7 @@ public extension Request {
      */
     static func listNominationsV1(fields: [ListNominationsV1.Field]? = nil,
                                   filters: [ListNominationsV1.Filter]? = nil,
+                                  exists: [ListNominationsV1.Exist]? = nil,
                                   includes: [ListNominationsV1.Include]? = nil,
                                   sorts: [ListNominationsV1.Sort]? = nil,
                                   limits: [ListNominationsV1.Limit]? = nil) -> Request<NominationsResponse, ErrorResponse> {
@@ -27,6 +29,7 @@ public extension Request {
             parameters: .init(
                 fields: fields,
                 filters: filters,
+                exists: exists,
                 includes: includes,
                 sorts: sorts,
                 limits: limits))
@@ -88,12 +91,22 @@ public enum ListNominationsV1 {
      Required: `state`
      */
     public enum Filter: FilterParameter {
+        /// Filter by attribute 'hasInAppEvents'
+        case hasInAppEvents([String])
         /// Filter by id(s) of related 'relatedApps'
         case relatedApps([String])
         /// Filter by attribute 'state'
         case state([Nomination.Attributes.State])
         /// Filter by attribute 'type'
         case type([Nomination.Attributes.Type])
+    }
+
+    /**
+     Attributes, relationships, and IDs to check for existence.
+     */
+    public enum Exist: ExistParameter {
+        /// Filter by existence or non-existence of related 'inAppEvents'
+        case inAppEvents(Bool)
     }
 
     /**

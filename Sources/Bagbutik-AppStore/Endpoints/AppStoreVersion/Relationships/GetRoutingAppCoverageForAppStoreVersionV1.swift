@@ -37,7 +37,6 @@ public enum GetRoutingAppCoverageForAppStoreVersionV1 {
         case routingAppCoverages([RoutingAppCoverages])
 
         public enum AppStoreVersions: String, Sendable, ParameterValue, Codable, CaseIterable {
-            case ageRatingDeclaration
             case alternativeDistributionPackage
             case app
             case appClipDefaultExperience

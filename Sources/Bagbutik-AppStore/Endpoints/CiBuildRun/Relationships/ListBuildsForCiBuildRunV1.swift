@@ -106,7 +106,6 @@ public enum ListBuildsForCiBuildRunV1 {
         }
 
         public enum AppStoreVersions: String, Sendable, ParameterValue, Codable, CaseIterable {
-            case ageRatingDeclaration
             case alternativeDistributionPackage
             case app
             case appClipDefaultExperience
@@ -366,6 +365,7 @@ public enum ListBuildsForCiBuildRunV1 {
             case includesSymbols
             case isIosBuildMacAppStoreCompatible
             case locales
+            case minimumOsVersion
             case platformBuild
             case requiredCapabilities
             case sdkBuild

@@ -40,7 +40,6 @@ public enum GetGameCenterAppVersionV1 {
         case gameCenterAppVersions([GameCenterAppVersions])
 
         public enum AppStoreVersions: String, Sendable, ParameterValue, Codable, CaseIterable {
-            case ageRatingDeclaration
             case alternativeDistributionPackage
             case app
             case appClipDefaultExperience

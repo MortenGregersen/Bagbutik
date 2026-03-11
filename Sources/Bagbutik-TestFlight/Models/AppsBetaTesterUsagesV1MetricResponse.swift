@@ -43,10 +43,10 @@ public struct AppsBetaTesterUsagesV1MetricResponse: Codable, Sendable, PagedResp
     }
 
     public struct Data: Codable, Sendable {
-        public var dataPoints: DataPoints?
+        public var dataPoints: [DataPoints]?
         public var dimensions: Dimensions?
 
-        public init(dataPoints: DataPoints? = nil,
+        public init(dataPoints: [DataPoints]? = nil,
                     dimensions: Dimensions? = nil)
         {
             self.dataPoints = dataPoints
@@ -55,7 +55,7 @@ public struct AppsBetaTesterUsagesV1MetricResponse: Codable, Sendable, PagedResp
 
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: AnyCodingKey.self)
-            dataPoints = try container.decodeIfPresent(DataPoints.self, forKey: "dataPoints")
+            dataPoints = try container.decodeIfPresent([DataPoints].self, forKey: "dataPoints")
             dimensions = try container.decodeIfPresent(Dimensions.self, forKey: "dimensions")
         }
 

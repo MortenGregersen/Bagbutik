@@ -37,8 +37,6 @@ public enum ListAppStoreVersionsForAppV1 {
      Fields to return for included related types.
      */
     public enum Field: FieldParameter {
-        /// The fields to include for returned resources of type ageRatingDeclarations
-        case ageRatingDeclarations([AgeRatingDeclarations])
         /// The fields to include for returned resources of type alternativeDistributionPackages
         case alternativeDistributionPackages([AlternativeDistributionPackages])
         /// The fields to include for returned resources of type appClipDefaultExperiences
@@ -63,51 +61,6 @@ public enum ListAppStoreVersionsForAppV1 {
         case gameCenterAppVersions([GameCenterAppVersions])
         /// The fields to include for returned resources of type routingAppCoverages
         case routingAppCoverages([RoutingAppCoverages])
-
-        public enum AgeRatingDeclarations: String, Sendable, ParameterValue, Codable, CaseIterable {
-            case advertising
-            case ageAssurance
-            case ageRatingOverride
-            case ageRatingOverrideV2
-            case alcoholTobaccoOrDrugUseOrReferences
-            case contests
-            case developerAgeRatingInfoUrl
-            case gambling
-            case gamblingSimulated
-            case gunsOrOtherWeapons
-            case healthOrWellnessTopics
-            case horrorOrFearThemes
-            case kidsAgeBand
-            case koreaAgeRatingOverride
-            case lootBox
-            case matureOrSuggestiveThemes
-            case medicalOrTreatmentInformation
-            case messagingAndChat
-            case parentalControls
-            case profanityOrCrudeHumor
-            case sexualContentGraphicAndNudity
-            case sexualContentOrNudity
-            case unrestrictedWebAccess
-            case userGeneratedContent
-            case violenceCartoonOrFantasy
-            case violenceRealistic
-            case violenceRealisticProlongedGraphicOrSadistic
-
-            public init(from decoder: Decoder) throws {
-                let container = try decoder.singleValueContainer()
-                let string = try container.decode(String.self)
-                if let value = AgeRatingDeclarations(rawValue: string) {
-                    self = value
-                } else if let value = AgeRatingDeclarations(rawValue: string.uppercased()) {
-                    self = value
-                } else {
-                    throw DecodingError.dataCorruptedError(
-                        in: container,
-                        debugDescription: "Invalid AgeRatingDeclarations value: \(string)"
-                    )
-                }
-            }
-        }
 
         public enum AlternativeDistributionPackages: String, Sendable, ParameterValue, Codable, CaseIterable {
             case sourceFileChecksum
@@ -281,7 +234,6 @@ public enum ListAppStoreVersionsForAppV1 {
         }
 
         public enum AppStoreVersions: String, Sendable, ParameterValue, Codable, CaseIterable {
-            case ageRatingDeclaration
             case alternativeDistributionPackage
             case app
             case appClipDefaultExperience
@@ -506,7 +458,6 @@ public enum ListAppStoreVersionsForAppV1 {
      Relationship data to include in the response.
      */
     public enum Include: String, IncludeParameter, CaseIterable {
-        case ageRatingDeclaration
         case alternativeDistributionPackage
         case app
         case appClipDefaultExperience

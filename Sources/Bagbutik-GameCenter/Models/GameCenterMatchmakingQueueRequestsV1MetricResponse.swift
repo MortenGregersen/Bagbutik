@@ -38,11 +38,11 @@ public struct GameCenterMatchmakingQueueRequestsV1MetricResponse: Codable, Senda
     }
 
     public struct Data: Codable, Sendable {
-        public var dataPoints: DataPoints?
+        public var dataPoints: [DataPoints]?
         public var dimensions: Dimensions?
         public var granularity: Granularity?
 
-        public init(dataPoints: DataPoints? = nil,
+        public init(dataPoints: [DataPoints]? = nil,
                     dimensions: Dimensions? = nil,
                     granularity: Granularity? = nil)
         {
@@ -53,7 +53,7 @@ public struct GameCenterMatchmakingQueueRequestsV1MetricResponse: Codable, Senda
 
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: AnyCodingKey.self)
-            dataPoints = try container.decodeIfPresent(DataPoints.self, forKey: "dataPoints")
+            dataPoints = try container.decodeIfPresent([DataPoints].self, forKey: "dataPoints")
             dimensions = try container.decodeIfPresent(Dimensions.self, forKey: "dimensions")
             granularity = try container.decodeIfPresent(Granularity.self, forKey: "granularity")
         }

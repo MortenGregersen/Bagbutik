@@ -77,28 +77,39 @@ public struct GameCenterDetail: Codable, Sendable, Identifiable {
     }
 
     public struct Relationships: Codable, Sendable {
-        public var achievementReleases: AchievementReleases?
-        public var activityReleases: ActivityReleases?
+        @available(*, deprecated, message: "Apple has marked this property deprecated and it will be removed sometime in the future.")
+        public var achievementReleases: AchievementReleases? = nil
+        @available(*, deprecated, message: "Apple has marked this property deprecated and it will be removed sometime in the future.")
+        public var activityReleases: ActivityReleases? = nil
         public var app: App?
-        public var challengeReleases: ChallengeReleases?
+        @available(*, deprecated, message: "Apple has marked this property deprecated and it will be removed sometime in the future.")
+        public var challengeReleases: ChallengeReleases? = nil
         public var challengesMinimumPlatformVersions: ChallengesMinimumPlatformVersions?
-        public var defaultGroupLeaderboard: DefaultGroupLeaderboard?
+        @available(*, deprecated, message: "Apple has marked this property deprecated and it will be removed sometime in the future.")
+        public var defaultGroupLeaderboard: DefaultGroupLeaderboard? = nil
         public var defaultGroupLeaderboardV2: DefaultGroupLeaderboardV2?
-        public var defaultLeaderboard: DefaultLeaderboard?
+        @available(*, deprecated, message: "Apple has marked this property deprecated and it will be removed sometime in the future.")
+        public var defaultLeaderboard: DefaultLeaderboard? = nil
         public var defaultLeaderboardV2: DefaultLeaderboardV2?
-        public var gameCenterAchievements: GameCenterAchievements?
+        @available(*, deprecated, message: "Apple has marked this property deprecated and it will be removed sometime in the future.")
+        public var gameCenterAchievements: GameCenterAchievements? = nil
         public var gameCenterAchievementsV2: GameCenterAchievementsV2?
         public var gameCenterActivities: GameCenterActivities?
         public var gameCenterAppVersions: GameCenterAppVersions?
         public var gameCenterChallenges: GameCenterChallenges?
         public var gameCenterGroup: GameCenterGroup?
-        public var gameCenterLeaderboardSets: GameCenterLeaderboardSets?
+        @available(*, deprecated, message: "Apple has marked this property deprecated and it will be removed sometime in the future.")
+        public var gameCenterLeaderboardSets: GameCenterLeaderboardSets? = nil
         public var gameCenterLeaderboardSetsV2: GameCenterLeaderboardSetsV2?
-        public var gameCenterLeaderboards: GameCenterLeaderboards?
+        @available(*, deprecated, message: "Apple has marked this property deprecated and it will be removed sometime in the future.")
+        public var gameCenterLeaderboards: GameCenterLeaderboards? = nil
         public var gameCenterLeaderboardsV2: GameCenterLeaderboardsV2?
-        public var leaderboardReleases: LeaderboardReleases?
-        public var leaderboardSetReleases: LeaderboardSetReleases?
+        @available(*, deprecated, message: "Apple has marked this property deprecated and it will be removed sometime in the future.")
+        public var leaderboardReleases: LeaderboardReleases? = nil
+        @available(*, deprecated, message: "Apple has marked this property deprecated and it will be removed sometime in the future.")
+        public var leaderboardSetReleases: LeaderboardSetReleases? = nil
 
+        @available(*, deprecated, message: "This uses a property Apple has marked as deprecated.")
         public init(achievementReleases: AchievementReleases? = nil,
                     activityReleases: ActivityReleases? = nil,
                     app: App? = nil,
@@ -142,6 +153,31 @@ public struct GameCenterDetail: Codable, Sendable, Identifiable {
             self.gameCenterLeaderboardsV2 = gameCenterLeaderboardsV2
             self.leaderboardReleases = leaderboardReleases
             self.leaderboardSetReleases = leaderboardSetReleases
+        }
+
+        public init(app: App? = nil,
+                    challengesMinimumPlatformVersions: ChallengesMinimumPlatformVersions? = nil,
+                    defaultGroupLeaderboardV2: DefaultGroupLeaderboardV2? = nil,
+                    defaultLeaderboardV2: DefaultLeaderboardV2? = nil,
+                    gameCenterAchievementsV2: GameCenterAchievementsV2? = nil,
+                    gameCenterActivities: GameCenterActivities? = nil,
+                    gameCenterAppVersions: GameCenterAppVersions? = nil,
+                    gameCenterChallenges: GameCenterChallenges? = nil,
+                    gameCenterGroup: GameCenterGroup? = nil,
+                    gameCenterLeaderboardSetsV2: GameCenterLeaderboardSetsV2? = nil,
+                    gameCenterLeaderboardsV2: GameCenterLeaderboardsV2? = nil)
+        {
+            self.app = app
+            self.challengesMinimumPlatformVersions = challengesMinimumPlatformVersions
+            self.defaultGroupLeaderboardV2 = defaultGroupLeaderboardV2
+            self.defaultLeaderboardV2 = defaultLeaderboardV2
+            self.gameCenterAchievementsV2 = gameCenterAchievementsV2
+            self.gameCenterActivities = gameCenterActivities
+            self.gameCenterAppVersions = gameCenterAppVersions
+            self.gameCenterChallenges = gameCenterChallenges
+            self.gameCenterGroup = gameCenterGroup
+            self.gameCenterLeaderboardSetsV2 = gameCenterLeaderboardSetsV2
+            self.gameCenterLeaderboardsV2 = gameCenterLeaderboardsV2
         }
 
         public init(from decoder: Decoder) throws {

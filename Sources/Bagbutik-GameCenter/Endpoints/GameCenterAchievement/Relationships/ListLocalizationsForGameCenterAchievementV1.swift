@@ -15,6 +15,7 @@ public extension Request {
      - Parameter limit: Maximum resources per page - maximum 200
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
+    @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
     static func listLocalizationsForGameCenterAchievementV1(id: String,
                                                             fields: [ListLocalizationsForGameCenterAchievementV1.Field]? = nil,
                                                             includes: [ListLocalizationsForGameCenterAchievementV1.Include]? = nil,
