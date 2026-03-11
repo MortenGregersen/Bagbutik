@@ -52,6 +52,7 @@ public struct GameCenterPlayerAchievementSubmissionCreateRequest: Codable, Senda
             public let bundleId: String
             public var challengeIds: [String]?
             public let percentageAchieved: Int
+            public var preReleased: Bool?
             public let scopedPlayerId: String
             public var submittedDate: Date?
             public let vendorIdentifier: String
@@ -59,6 +60,7 @@ public struct GameCenterPlayerAchievementSubmissionCreateRequest: Codable, Senda
             public init(bundleId: String,
                         challengeIds: [String]? = nil,
                         percentageAchieved: Int,
+                        preReleased: Bool? = nil,
                         scopedPlayerId: String,
                         submittedDate: Date? = nil,
                         vendorIdentifier: String)
@@ -66,6 +68,7 @@ public struct GameCenterPlayerAchievementSubmissionCreateRequest: Codable, Senda
                 self.bundleId = bundleId
                 self.challengeIds = challengeIds
                 self.percentageAchieved = percentageAchieved
+                self.preReleased = preReleased
                 self.scopedPlayerId = scopedPlayerId
                 self.submittedDate = submittedDate
                 self.vendorIdentifier = vendorIdentifier
@@ -76,6 +79,7 @@ public struct GameCenterPlayerAchievementSubmissionCreateRequest: Codable, Senda
                 bundleId = try container.decode(String.self, forKey: "bundleId")
                 challengeIds = try container.decodeIfPresent([String].self, forKey: "challengeIds")
                 percentageAchieved = try container.decode(Int.self, forKey: "percentageAchieved")
+                preReleased = try container.decodeIfPresent(Bool.self, forKey: "preReleased")
                 scopedPlayerId = try container.decode(String.self, forKey: "scopedPlayerId")
                 submittedDate = try container.decodeIfPresent(Date.self, forKey: "submittedDate")
                 vendorIdentifier = try container.decode(String.self, forKey: "vendorIdentifier")
@@ -86,6 +90,7 @@ public struct GameCenterPlayerAchievementSubmissionCreateRequest: Codable, Senda
                 try container.encode(bundleId, forKey: "bundleId")
                 try container.encodeIfPresent(challengeIds, forKey: "challengeIds")
                 try container.encode(percentageAchieved, forKey: "percentageAchieved")
+                try container.encodeIfPresent(preReleased, forKey: "preReleased")
                 try container.encode(scopedPlayerId, forKey: "scopedPlayerId")
                 try container.encodeIfPresent(submittedDate, forKey: "submittedDate")
                 try container.encode(vendorIdentifier, forKey: "vendorIdentifier")

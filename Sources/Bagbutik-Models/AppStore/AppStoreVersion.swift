@@ -181,8 +181,6 @@ public struct AppStoreVersion: Codable, Sendable, Identifiable {
     }
 
     public struct Relationships: Codable, Sendable {
-        @available(*, deprecated, message: "Apple has marked this property deprecated and it will be removed sometime in the future.")
-        public var ageRatingDeclaration: AgeRatingDeclaration? = nil
         public var alternativeDistributionPackage: AlternativeDistributionPackage?
         public var app: App?
         public var appClipDefaultExperience: AppClipDefaultExperience?
@@ -196,38 +194,6 @@ public struct AppStoreVersion: Codable, Sendable, Identifiable {
         public var customerReviews: CustomerReviews?
         public var gameCenterAppVersion: GameCenterAppVersion?
         public var routingAppCoverage: RoutingAppCoverage?
-
-        @available(*, deprecated, message: "This uses a property Apple has marked as deprecated.")
-        public init(ageRatingDeclaration: AgeRatingDeclaration? = nil,
-                    alternativeDistributionPackage: AlternativeDistributionPackage? = nil,
-                    app: App? = nil,
-                    appClipDefaultExperience: AppClipDefaultExperience? = nil,
-                    appStoreReviewDetail: AppStoreReviewDetail? = nil,
-                    appStoreVersionExperiments: AppStoreVersionExperiments? = nil,
-                    appStoreVersionExperimentsV2: AppStoreVersionExperimentsV2? = nil,
-                    appStoreVersionLocalizations: AppStoreVersionLocalizations? = nil,
-                    appStoreVersionPhasedRelease: AppStoreVersionPhasedRelease? = nil,
-                    appStoreVersionSubmission: AppStoreVersionSubmission? = nil,
-                    build: Build? = nil,
-                    customerReviews: CustomerReviews? = nil,
-                    gameCenterAppVersion: GameCenterAppVersion? = nil,
-                    routingAppCoverage: RoutingAppCoverage? = nil)
-        {
-            self.ageRatingDeclaration = ageRatingDeclaration
-            self.alternativeDistributionPackage = alternativeDistributionPackage
-            self.app = app
-            self.appClipDefaultExperience = appClipDefaultExperience
-            self.appStoreReviewDetail = appStoreReviewDetail
-            self.appStoreVersionExperiments = appStoreVersionExperiments
-            self.appStoreVersionExperimentsV2 = appStoreVersionExperimentsV2
-            self.appStoreVersionLocalizations = appStoreVersionLocalizations
-            self.appStoreVersionPhasedRelease = appStoreVersionPhasedRelease
-            self.appStoreVersionSubmission = appStoreVersionSubmission
-            self.build = build
-            self.customerReviews = customerReviews
-            self.gameCenterAppVersion = gameCenterAppVersion
-            self.routingAppCoverage = routingAppCoverage
-        }
 
         public init(alternativeDistributionPackage: AlternativeDistributionPackage? = nil,
                     app: App? = nil,
@@ -260,7 +226,6 @@ public struct AppStoreVersion: Codable, Sendable, Identifiable {
 
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: AnyCodingKey.self)
-            ageRatingDeclaration = try container.decodeIfPresent(AgeRatingDeclaration.self, forKey: "ageRatingDeclaration")
             alternativeDistributionPackage = try container.decodeIfPresent(AlternativeDistributionPackage.self, forKey: "alternativeDistributionPackage")
             app = try container.decodeIfPresent(App.self, forKey: "app")
             appClipDefaultExperience = try container.decodeIfPresent(AppClipDefaultExperience.self, forKey: "appClipDefaultExperience")
@@ -278,7 +243,6 @@ public struct AppStoreVersion: Codable, Sendable, Identifiable {
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: AnyCodingKey.self)
-            try container.encodeIfPresent(ageRatingDeclaration, forKey: "ageRatingDeclaration")
             try container.encodeIfPresent(alternativeDistributionPackage, forKey: "alternativeDistributionPackage")
             try container.encodeIfPresent(app, forKey: "app")
             try container.encodeIfPresent(appClipDefaultExperience, forKey: "appClipDefaultExperience")
@@ -292,53 +256,6 @@ public struct AppStoreVersion: Codable, Sendable, Identifiable {
             try container.encodeIfPresent(customerReviews, forKey: "customerReviews")
             try container.encodeIfPresent(gameCenterAppVersion, forKey: "gameCenterAppVersion")
             try container.encodeIfPresent(routingAppCoverage, forKey: "routingAppCoverage")
-        }
-
-        public struct AgeRatingDeclaration: Codable, Sendable {
-            @NullCodable public var data: Data?
-            public var links: RelationshipLinks?
-
-            public init(data: Data? = nil,
-                        links: RelationshipLinks? = nil)
-            {
-                self.data = data
-                self.links = links
-            }
-
-            public init(from decoder: Decoder) throws {
-                let container = try decoder.container(keyedBy: AnyCodingKey.self)
-                data = try container.decodeIfPresent(Data.self, forKey: "data")
-                links = try container.decodeIfPresent(RelationshipLinks.self, forKey: "links")
-            }
-
-            public func encode(to encoder: Encoder) throws {
-                var container = encoder.container(keyedBy: AnyCodingKey.self)
-                try container.encode(data, forKey: "data")
-                try container.encodeIfPresent(links, forKey: "links")
-            }
-
-            public struct Data: Codable, Sendable, Identifiable {
-                public let id: String
-                public var type: String { "ageRatingDeclarations" }
-
-                public init(id: String) {
-                    self.id = id
-                }
-
-                public init(from decoder: Decoder) throws {
-                    let container = try decoder.container(keyedBy: AnyCodingKey.self)
-                    id = try container.decode(String.self, forKey: "id")
-                    if try container.decode(String.self, forKey: "type") != type {
-                        throw DecodingError.dataCorruptedError(forKey: "type", in: container, debugDescription: "Not matching \(type)")
-                    }
-                }
-
-                public func encode(to encoder: Encoder) throws {
-                    var container = encoder.container(keyedBy: AnyCodingKey.self)
-                    try container.encode(id, forKey: "id")
-                    try container.encode(type, forKey: "type")
-                }
-            }
         }
 
         public struct AlternativeDistributionPackage: Codable, Sendable {

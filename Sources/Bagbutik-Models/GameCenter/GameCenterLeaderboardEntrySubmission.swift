@@ -45,6 +45,7 @@ public struct GameCenterLeaderboardEntrySubmission: Codable, Sendable, Identifia
         public var bundleId: String?
         public var challengeIds: [String]?
         public var context: String?
+        public var preReleased: Bool?
         public var scopedPlayerId: String?
         public var score: String?
         public var submittedDate: Date?
@@ -53,6 +54,7 @@ public struct GameCenterLeaderboardEntrySubmission: Codable, Sendable, Identifia
         public init(bundleId: String? = nil,
                     challengeIds: [String]? = nil,
                     context: String? = nil,
+                    preReleased: Bool? = nil,
                     scopedPlayerId: String? = nil,
                     score: String? = nil,
                     submittedDate: Date? = nil,
@@ -61,6 +63,7 @@ public struct GameCenterLeaderboardEntrySubmission: Codable, Sendable, Identifia
             self.bundleId = bundleId
             self.challengeIds = challengeIds
             self.context = context
+            self.preReleased = preReleased
             self.scopedPlayerId = scopedPlayerId
             self.score = score
             self.submittedDate = submittedDate
@@ -72,6 +75,7 @@ public struct GameCenterLeaderboardEntrySubmission: Codable, Sendable, Identifia
             bundleId = try container.decodeIfPresent(String.self, forKey: "bundleId")
             challengeIds = try container.decodeIfPresent([String].self, forKey: "challengeIds")
             context = try container.decodeIfPresent(String.self, forKey: "context")
+            preReleased = try container.decodeIfPresent(Bool.self, forKey: "preReleased")
             scopedPlayerId = try container.decodeIfPresent(String.self, forKey: "scopedPlayerId")
             score = try container.decodeIfPresent(String.self, forKey: "score")
             submittedDate = try container.decodeIfPresent(Date.self, forKey: "submittedDate")
@@ -83,6 +87,7 @@ public struct GameCenterLeaderboardEntrySubmission: Codable, Sendable, Identifia
             try container.encodeIfPresent(bundleId, forKey: "bundleId")
             try container.encodeIfPresent(challengeIds, forKey: "challengeIds")
             try container.encodeIfPresent(context, forKey: "context")
+            try container.encodeIfPresent(preReleased, forKey: "preReleased")
             try container.encodeIfPresent(scopedPlayerId, forKey: "scopedPlayerId")
             try container.encodeIfPresent(score, forKey: "score")
             try container.encodeIfPresent(submittedDate, forKey: "submittedDate")

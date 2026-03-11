@@ -11,6 +11,7 @@ public extension Request {
      - Parameter id: The id of the requested resource
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
+    @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
     static func getGameCenterLeaderboardImageIdsForGameCenterLeaderboardLocalizationV1(id: String) -> Request<GameCenterLeaderboardLocalizationGameCenterLeaderboardImageLinkageResponse, ErrorResponse> {
         .init(
             path: "/v1/gameCenterLeaderboardLocalizations/\(id)/relationships/gameCenterLeaderboardImage",

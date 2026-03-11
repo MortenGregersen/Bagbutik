@@ -15,6 +15,7 @@ public extension Request {
      - Parameter limits: Number of resources to return
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
+    @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
     static func getGameCenterLeaderboardSetV1(id: String,
                                               fields: [GetGameCenterLeaderboardSetV1.Field]? = nil,
                                               includes: [GetGameCenterLeaderboardSetV1.Include]? = nil,
@@ -35,12 +36,15 @@ public enum GetGameCenterLeaderboardSetV1 {
      */
     public enum Field: FieldParameter {
         /// The fields to include for returned resources of type gameCenterLeaderboardSetLocalizations
+        @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
         case gameCenterLeaderboardSetLocalizations([GameCenterLeaderboardSetLocalizations])
         /// The fields to include for returned resources of type gameCenterLeaderboardSetReleases
+        @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
         case gameCenterLeaderboardSetReleases([GameCenterLeaderboardSetReleases])
         /// The fields to include for returned resources of type gameCenterLeaderboardSets
         case gameCenterLeaderboardSets([GameCenterLeaderboardSets])
         /// The fields to include for returned resources of type gameCenterLeaderboards
+        @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
         case gameCenterLeaderboards([GameCenterLeaderboards])
 
         public enum GameCenterLeaderboardSetLocalizations: String, Sendable, ParameterValue, Codable, CaseIterable {

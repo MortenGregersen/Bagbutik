@@ -177,6 +177,7 @@ public enum ListVersionsForBackgroundAssetV1 {
             case createdDate
             case externalBetaVersion
             case internalBetaVersion
+            case usedBytes
             case versions
 
             public init(from decoder: Decoder) throws {
@@ -206,6 +207,8 @@ public enum ListVersionsForBackgroundAssetV1 {
         case externalBetaRelease_state([BackgroundAssetVersionExternalBetaReleaseState])
         /// Filter by attribute 'internalBetaRelease.state'
         case internalBetaRelease_state([InternalBetaReleaseState])
+        /// Filter by attribute 'platforms'
+        case platforms([Platform])
         /// Filter by attribute 'state'
         case state([BackgroundAssetVersionState])
         /// Filter by attribute 'version'

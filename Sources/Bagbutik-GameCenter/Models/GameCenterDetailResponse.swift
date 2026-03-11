@@ -37,47 +37,11 @@ public struct GameCenterDetailResponse: Codable, Sendable {
         try container.encode(links, forKey: "links")
     }
 
-    public func getAchievementReleases() -> [GameCenterAchievementRelease] {
-        guard let achievementReleaseIds = data.relationships?.achievementReleases?.data?.map(\.id),
-              let achievementReleases = included?.compactMap({ relationship -> GameCenterAchievementRelease? in
-                  guard case let .gameCenterAchievementRelease(achievementRelease) = relationship else { return nil }
-                  return achievementReleaseIds.contains(achievementRelease.id) ? achievementRelease : nil
-              })
-        else {
-            return []
-        }
-        return achievementReleases
-    }
-
-    public func getActivityReleases() -> [GameCenterActivityVersionRelease] {
-        guard let activityReleaseIds = data.relationships?.activityReleases?.data?.map(\.id),
-              let activityReleases = included?.compactMap({ relationship -> GameCenterActivityVersionRelease? in
-                  guard case let .gameCenterActivityVersionRelease(activityRelease) = relationship else { return nil }
-                  return activityReleaseIds.contains(activityRelease.id) ? activityRelease : nil
-              })
-        else {
-            return []
-        }
-        return activityReleases
-    }
-
     public func getApp() -> App? {
         included?.compactMap { relationship -> App? in
             guard case let .app(app) = relationship else { return nil }
             return app
         }.first { $0.id == data.relationships?.app?.data?.id }
-    }
-
-    public func getChallengeReleases() -> [GameCenterChallengeVersionRelease] {
-        guard let challengeReleaseIds = data.relationships?.challengeReleases?.data?.map(\.id),
-              let challengeReleases = included?.compactMap({ relationship -> GameCenterChallengeVersionRelease? in
-                  guard case let .gameCenterChallengeVersionRelease(challengeRelease) = relationship else { return nil }
-                  return challengeReleaseIds.contains(challengeRelease.id) ? challengeRelease : nil
-              })
-        else {
-            return []
-        }
-        return challengeReleases
     }
 
     public func getChallengesMinimumPlatformVersions() -> [AppStoreVersion] {
@@ -92,13 +56,6 @@ public struct GameCenterDetailResponse: Codable, Sendable {
         return challengesMinimumPlatformVersions
     }
 
-    public func getDefaultGroupLeaderboard() -> GameCenterLeaderboard? {
-        included?.compactMap { relationship -> GameCenterLeaderboard? in
-            guard case let .gameCenterLeaderboard(defaultGroupLeaderboard) = relationship else { return nil }
-            return defaultGroupLeaderboard
-        }.first { $0.id == data.relationships?.defaultGroupLeaderboard?.data?.id }
-    }
-
     public func getDefaultGroupLeaderboardV2() -> GameCenterLeaderboard? {
         included?.compactMap { relationship -> GameCenterLeaderboard? in
             guard case let .gameCenterLeaderboard(defaultGroupLeaderboardV2) = relationship else { return nil }
@@ -106,30 +63,11 @@ public struct GameCenterDetailResponse: Codable, Sendable {
         }.first { $0.id == data.relationships?.defaultGroupLeaderboardV2?.data?.id }
     }
 
-    public func getDefaultLeaderboard() -> GameCenterLeaderboard? {
-        included?.compactMap { relationship -> GameCenterLeaderboard? in
-            guard case let .gameCenterLeaderboard(defaultLeaderboard) = relationship else { return nil }
-            return defaultLeaderboard
-        }.first { $0.id == data.relationships?.defaultLeaderboard?.data?.id }
-    }
-
     public func getDefaultLeaderboardV2() -> GameCenterLeaderboard? {
         included?.compactMap { relationship -> GameCenterLeaderboard? in
             guard case let .gameCenterLeaderboard(defaultLeaderboardV2) = relationship else { return nil }
             return defaultLeaderboardV2
         }.first { $0.id == data.relationships?.defaultLeaderboardV2?.data?.id }
-    }
-
-    public func getGameCenterAchievements() -> [GameCenterAchievement] {
-        guard let gameCenterAchievementIds = data.relationships?.gameCenterAchievements?.data?.map(\.id),
-              let gameCenterAchievements = included?.compactMap({ relationship -> GameCenterAchievement? in
-                  guard case let .gameCenterAchievement(gameCenterAchievement) = relationship else { return nil }
-                  return gameCenterAchievementIds.contains(gameCenterAchievement.id) ? gameCenterAchievement : nil
-              })
-        else {
-            return []
-        }
-        return gameCenterAchievements
     }
 
     public func getGameCenterAchievementsV2() -> [GameCenterAchievement] {
@@ -187,18 +125,6 @@ public struct GameCenterDetailResponse: Codable, Sendable {
         }.first { $0.id == data.relationships?.gameCenterGroup?.data?.id }
     }
 
-    public func getGameCenterLeaderboardSets() -> [GameCenterLeaderboardSet] {
-        guard let gameCenterLeaderboardSetIds = data.relationships?.gameCenterLeaderboardSets?.data?.map(\.id),
-              let gameCenterLeaderboardSets = included?.compactMap({ relationship -> GameCenterLeaderboardSet? in
-                  guard case let .gameCenterLeaderboardSet(gameCenterLeaderboardSet) = relationship else { return nil }
-                  return gameCenterLeaderboardSetIds.contains(gameCenterLeaderboardSet.id) ? gameCenterLeaderboardSet : nil
-              })
-        else {
-            return []
-        }
-        return gameCenterLeaderboardSets
-    }
-
     public func getGameCenterLeaderboardSetsV2() -> [GameCenterLeaderboardSet] {
         guard let gameCenterLeaderboardSetsV2Ids = data.relationships?.gameCenterLeaderboardSetsV2?.data?.map(\.id),
               let gameCenterLeaderboardSetsV2 = included?.compactMap({ relationship -> GameCenterLeaderboardSet? in
@@ -211,18 +137,6 @@ public struct GameCenterDetailResponse: Codable, Sendable {
         return gameCenterLeaderboardSetsV2
     }
 
-    public func getGameCenterLeaderboards() -> [GameCenterLeaderboard] {
-        guard let gameCenterLeaderboardIds = data.relationships?.gameCenterLeaderboards?.data?.map(\.id),
-              let gameCenterLeaderboards = included?.compactMap({ relationship -> GameCenterLeaderboard? in
-                  guard case let .gameCenterLeaderboard(gameCenterLeaderboard) = relationship else { return nil }
-                  return gameCenterLeaderboardIds.contains(gameCenterLeaderboard.id) ? gameCenterLeaderboard : nil
-              })
-        else {
-            return []
-        }
-        return gameCenterLeaderboards
-    }
-
     public func getGameCenterLeaderboardsV2() -> [GameCenterLeaderboard] {
         guard let gameCenterLeaderboardsV2Ids = data.relationships?.gameCenterLeaderboardsV2?.data?.map(\.id),
               let gameCenterLeaderboardsV2 = included?.compactMap({ relationship -> GameCenterLeaderboard? in
@@ -233,30 +147,6 @@ public struct GameCenterDetailResponse: Codable, Sendable {
             return []
         }
         return gameCenterLeaderboardsV2
-    }
-
-    public func getLeaderboardReleases() -> [GameCenterLeaderboardRelease] {
-        guard let leaderboardReleaseIds = data.relationships?.leaderboardReleases?.data?.map(\.id),
-              let leaderboardReleases = included?.compactMap({ relationship -> GameCenterLeaderboardRelease? in
-                  guard case let .gameCenterLeaderboardRelease(leaderboardRelease) = relationship else { return nil }
-                  return leaderboardReleaseIds.contains(leaderboardRelease.id) ? leaderboardRelease : nil
-              })
-        else {
-            return []
-        }
-        return leaderboardReleases
-    }
-
-    public func getLeaderboardSetReleases() -> [GameCenterLeaderboardSetRelease] {
-        guard let leaderboardSetReleaseIds = data.relationships?.leaderboardSetReleases?.data?.map(\.id),
-              let leaderboardSetReleases = included?.compactMap({ relationship -> GameCenterLeaderboardSetRelease? in
-                  guard case let .gameCenterLeaderboardSetRelease(leaderboardSetRelease) = relationship else { return nil }
-                  return leaderboardSetReleaseIds.contains(leaderboardSetRelease.id) ? leaderboardSetRelease : nil
-              })
-        else {
-            return []
-        }
-        return leaderboardSetReleases
     }
 
     public enum Included: Codable, Sendable {

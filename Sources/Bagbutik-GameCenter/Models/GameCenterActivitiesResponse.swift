@@ -44,18 +44,6 @@ public struct GameCenterActivitiesResponse: Codable, Sendable, PagedResponse {
         try container.encodeIfPresent(meta, forKey: "meta")
     }
 
-    public func getAchievements(for gameCenterActivity: GameCenterActivity) -> [GameCenterAchievement] {
-        guard let achievementIds = gameCenterActivity.relationships?.achievements?.data?.map(\.id),
-              let achievements = included?.compactMap({ relationship -> GameCenterAchievement? in
-                  guard case let .gameCenterAchievement(achievement) = relationship else { return nil }
-                  return achievementIds.contains(achievement.id) ? achievement : nil
-              })
-        else {
-            return []
-        }
-        return achievements
-    }
-
     public func getAchievementsV2(for gameCenterActivity: GameCenterActivity) -> [GameCenterAchievement] {
         guard let achievementsV2Ids = gameCenterActivity.relationships?.achievementsV2?.data?.map(\.id),
               let achievementsV2 = included?.compactMap({ relationship -> GameCenterAchievement? in
@@ -80,18 +68,6 @@ public struct GameCenterActivitiesResponse: Codable, Sendable, PagedResponse {
             guard case let .gameCenterGroup(gameCenterGroup) = relationship else { return nil }
             return gameCenterGroup
         }.first { $0.id == gameCenterActivity.relationships?.gameCenterGroup?.data?.id }
-    }
-
-    public func getLeaderboards(for gameCenterActivity: GameCenterActivity) -> [GameCenterLeaderboard] {
-        guard let leaderboardIds = gameCenterActivity.relationships?.leaderboards?.data?.map(\.id),
-              let leaderboards = included?.compactMap({ relationship -> GameCenterLeaderboard? in
-                  guard case let .gameCenterLeaderboard(leaderboard) = relationship else { return nil }
-                  return leaderboardIds.contains(leaderboard.id) ? leaderboard : nil
-              })
-        else {
-            return []
-        }
-        return leaderboards
     }
 
     public func getLeaderboardsV2(for gameCenterActivity: GameCenterActivity) -> [GameCenterLeaderboard] {

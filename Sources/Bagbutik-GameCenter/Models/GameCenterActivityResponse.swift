@@ -37,18 +37,6 @@ public struct GameCenterActivityResponse: Codable, Sendable {
         try container.encode(links, forKey: "links")
     }
 
-    public func getAchievements() -> [GameCenterAchievement] {
-        guard let achievementIds = data.relationships?.achievements?.data?.map(\.id),
-              let achievements = included?.compactMap({ relationship -> GameCenterAchievement? in
-                  guard case let .gameCenterAchievement(achievement) = relationship else { return nil }
-                  return achievementIds.contains(achievement.id) ? achievement : nil
-              })
-        else {
-            return []
-        }
-        return achievements
-    }
-
     public func getAchievementsV2() -> [GameCenterAchievement] {
         guard let achievementsV2Ids = data.relationships?.achievementsV2?.data?.map(\.id),
               let achievementsV2 = included?.compactMap({ relationship -> GameCenterAchievement? in
@@ -73,18 +61,6 @@ public struct GameCenterActivityResponse: Codable, Sendable {
             guard case let .gameCenterGroup(gameCenterGroup) = relationship else { return nil }
             return gameCenterGroup
         }.first { $0.id == data.relationships?.gameCenterGroup?.data?.id }
-    }
-
-    public func getLeaderboards() -> [GameCenterLeaderboard] {
-        guard let leaderboardIds = data.relationships?.leaderboards?.data?.map(\.id),
-              let leaderboards = included?.compactMap({ relationship -> GameCenterLeaderboard? in
-                  guard case let .gameCenterLeaderboard(leaderboard) = relationship else { return nil }
-                  return leaderboardIds.contains(leaderboard.id) ? leaderboard : nil
-              })
-        else {
-            return []
-        }
-        return leaderboards
     }
 
     public func getLeaderboardsV2() -> [GameCenterLeaderboard] {

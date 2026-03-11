@@ -107,10 +107,12 @@ public struct GameCenterChallenge: Codable, Sendable, Identifiable {
     public struct Relationships: Codable, Sendable {
         public var gameCenterDetail: GameCenterDetail?
         public var gameCenterGroup: GameCenterGroup?
-        public var leaderboard: Leaderboard?
+        @available(*, deprecated, message: "Apple has marked this property deprecated and it will be removed sometime in the future.")
+        public var leaderboard: Leaderboard? = nil
         public var leaderboardV2: LeaderboardV2?
         public var versions: Versions?
 
+        @available(*, deprecated, message: "This uses a property Apple has marked as deprecated.")
         public init(gameCenterDetail: GameCenterDetail? = nil,
                     gameCenterGroup: GameCenterGroup? = nil,
                     leaderboard: Leaderboard? = nil,
@@ -120,6 +122,17 @@ public struct GameCenterChallenge: Codable, Sendable, Identifiable {
             self.gameCenterDetail = gameCenterDetail
             self.gameCenterGroup = gameCenterGroup
             self.leaderboard = leaderboard
+            self.leaderboardV2 = leaderboardV2
+            self.versions = versions
+        }
+
+        public init(gameCenterDetail: GameCenterDetail? = nil,
+                    gameCenterGroup: GameCenterGroup? = nil,
+                    leaderboardV2: LeaderboardV2? = nil,
+                    versions: Versions? = nil)
+        {
+            self.gameCenterDetail = gameCenterDetail
+            self.gameCenterGroup = gameCenterGroup
             self.leaderboardV2 = leaderboardV2
             self.versions = versions
         }

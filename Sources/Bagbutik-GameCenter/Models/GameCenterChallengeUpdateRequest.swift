@@ -89,13 +89,19 @@ public struct GameCenterChallengeUpdateRequest: Codable, Sendable, RequestBody {
         }
 
         public struct Relationships: Codable, Sendable {
-            public var leaderboard: Leaderboard?
+            @available(*, deprecated, message: "Apple has marked this property deprecated and it will be removed sometime in the future.")
+            public var leaderboard: Leaderboard? = nil
             public var leaderboardV2: LeaderboardV2?
 
+            @available(*, deprecated, message: "This uses a property Apple has marked as deprecated.")
             public init(leaderboard: Leaderboard? = nil,
                         leaderboardV2: LeaderboardV2? = nil)
             {
                 self.leaderboard = leaderboard
+                self.leaderboardV2 = leaderboardV2
+            }
+
+            public init(leaderboardV2: LeaderboardV2? = nil) {
                 self.leaderboardV2 = leaderboardV2
             }
 

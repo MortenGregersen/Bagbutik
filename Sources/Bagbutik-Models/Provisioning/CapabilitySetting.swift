@@ -3,7 +3,7 @@ import Foundation
 
 /**
  # CapabilitySetting
- An object that  represents a capability setting for an app.
+ An object that represents a capability setting for an app.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/capabilitysetting>

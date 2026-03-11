@@ -3,8 +3,10 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # POST /v1/gameCenterLeaderboardEntrySubmissions
+     # Add a score to a leaderbaord
      Add a new score for a player to a leaderboard.
+
+     Use the `preReleased` attribute to indicate whether the requested change applies to the game’s release version or its prerelease version. Set `preReleased` to `true` to indicate that the change applies to the game’s prerelease version.
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/post-v1-gameCenterLeaderboardEntrySubmissions>

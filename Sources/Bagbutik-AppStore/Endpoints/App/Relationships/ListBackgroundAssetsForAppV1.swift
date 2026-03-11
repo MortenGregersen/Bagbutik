@@ -13,6 +13,7 @@ public extension Request {
      - Parameter fields: Fields to return for included related types
      - Parameter filters: Attributes, relationships, and IDs by which to filter
      - Parameter includes: Relationship data to include in the response
+     - Parameter sorts: Attributes by which to sort
      - Parameter limit: Maximum resources per page - maximum 200
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
@@ -20,6 +21,7 @@ public extension Request {
                                              fields: [ListBackgroundAssetsForAppV1.Field]? = nil,
                                              filters: [ListBackgroundAssetsForAppV1.Filter]? = nil,
                                              includes: [ListBackgroundAssetsForAppV1.Include]? = nil,
+                                             sorts: [ListBackgroundAssetsForAppV1.Sort]? = nil,
                                              limit: Int? = nil) -> Request<BackgroundAssetsResponse, ErrorResponse> {
         .init(
             path: "/v1/apps/\(id)/backgroundAssets",
@@ -28,6 +30,7 @@ public extension Request {
                 fields: fields,
                 filters: filters,
                 includes: includes,
+                sorts: sorts,
                 limit: limit))
     }
 }
@@ -155,6 +158,7 @@ public enum ListBackgroundAssetsForAppV1 {
             case createdDate
             case externalBetaVersion
             case internalBetaVersion
+            case usedBytes
             case versions
 
             public init(from decoder: Decoder) throws {
@@ -182,6 +186,8 @@ public enum ListBackgroundAssetsForAppV1 {
         case archived([String])
         /// Filter by attribute 'assetPackIdentifier'
         case assetPackIdentifier([String])
+        /// Filter by attribute 'versions.platforms'
+        case versions_platforms([Platform])
     }
 
     /**
@@ -192,5 +198,15 @@ public enum ListBackgroundAssetsForAppV1 {
         case appStoreVersion
         case externalBetaVersion
         case internalBetaVersion
+    }
+
+    /**
+     Attributes by which to sort.
+     */
+    public enum Sort: String, SortParameter, CaseIterable {
+        case assetPackIdentifierAscending = "assetPackIdentifier"
+        case assetPackIdentifierDescending = "-assetPackIdentifier"
+        case createdDateAscending = "createdDate"
+        case createdDateDescending = "-createdDate"
     }
 }

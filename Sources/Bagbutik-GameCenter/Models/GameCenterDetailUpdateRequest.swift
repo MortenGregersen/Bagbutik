@@ -82,12 +82,15 @@ public struct GameCenterDetailUpdateRequest: Codable, Sendable, RequestBody {
         }
 
         public struct Relationships: Codable, Sendable {
-            public var defaultGroupLeaderboard: DefaultGroupLeaderboard?
+            @available(*, deprecated, message: "Apple has marked this property deprecated and it will be removed sometime in the future.")
+            public var defaultGroupLeaderboard: DefaultGroupLeaderboard? = nil
             public var defaultGroupLeaderboardV2: DefaultGroupLeaderboardV2?
-            public var defaultLeaderboard: DefaultLeaderboard?
+            @available(*, deprecated, message: "Apple has marked this property deprecated and it will be removed sometime in the future.")
+            public var defaultLeaderboard: DefaultLeaderboard? = nil
             public var defaultLeaderboardV2: DefaultLeaderboardV2?
             public var gameCenterGroup: GameCenterGroup?
 
+            @available(*, deprecated, message: "This uses a property Apple has marked as deprecated.")
             public init(defaultGroupLeaderboard: DefaultGroupLeaderboard? = nil,
                         defaultGroupLeaderboardV2: DefaultGroupLeaderboardV2? = nil,
                         defaultLeaderboard: DefaultLeaderboard? = nil,
@@ -97,6 +100,15 @@ public struct GameCenterDetailUpdateRequest: Codable, Sendable, RequestBody {
                 self.defaultGroupLeaderboard = defaultGroupLeaderboard
                 self.defaultGroupLeaderboardV2 = defaultGroupLeaderboardV2
                 self.defaultLeaderboard = defaultLeaderboard
+                self.defaultLeaderboardV2 = defaultLeaderboardV2
+                self.gameCenterGroup = gameCenterGroup
+            }
+
+            public init(defaultGroupLeaderboardV2: DefaultGroupLeaderboardV2? = nil,
+                        defaultLeaderboardV2: DefaultLeaderboardV2? = nil,
+                        gameCenterGroup: GameCenterGroup? = nil)
+            {
+                self.defaultGroupLeaderboardV2 = defaultGroupLeaderboardV2
                 self.defaultLeaderboardV2 = defaultLeaderboardV2
                 self.gameCenterGroup = gameCenterGroup
             }
