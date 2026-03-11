@@ -14,6 +14,7 @@ public extension Request {
      - Parameter includes: Relationship data to include in the response
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
+    @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
     static func getGameCenterAchievementLocalizationV1(id: String,
                                                        fields: [GetGameCenterAchievementLocalizationV1.Field]? = nil,
                                                        includes: [GetGameCenterAchievementLocalizationV1.Include]? = nil) -> Request<GameCenterAchievementLocalizationResponse, ErrorResponse> {
@@ -32,10 +33,12 @@ public enum GetGameCenterAchievementLocalizationV1 {
      */
     public enum Field: FieldParameter {
         /// The fields to include for returned resources of type gameCenterAchievementImages
+        @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
         case gameCenterAchievementImages([GameCenterAchievementImages])
         /// The fields to include for returned resources of type gameCenterAchievementLocalizations
         case gameCenterAchievementLocalizations([GameCenterAchievementLocalizations])
         /// The fields to include for returned resources of type gameCenterAchievements
+        @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
         case gameCenterAchievements([GameCenterAchievements])
 
         public enum GameCenterAchievementImages: String, Sendable, ParameterValue, Codable, CaseIterable {

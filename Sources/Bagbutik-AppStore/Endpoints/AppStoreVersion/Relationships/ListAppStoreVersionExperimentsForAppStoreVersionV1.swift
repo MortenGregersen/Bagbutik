@@ -97,7 +97,6 @@ public enum ListAppStoreVersionExperimentsForAppStoreVersionV1 {
         }
 
         public enum AppStoreVersions: String, Sendable, ParameterValue, Codable, CaseIterable {
-            case ageRatingDeclaration
             case alternativeDistributionPackage
             case app
             case appClipDefaultExperience

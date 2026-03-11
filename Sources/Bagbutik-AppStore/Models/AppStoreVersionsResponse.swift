@@ -144,7 +144,6 @@ public struct AppStoreVersionsResponse: Codable, Sendable, PagedResponse {
     }
 
     public enum Included: Codable, Sendable {
-        case ageRatingDeclaration(AgeRatingDeclaration)
         case alternativeDistributionPackage(AlternativeDistributionPackage)
         case app(App)
         case appClipDefaultExperience(AppClipDefaultExperience)
@@ -158,9 +157,7 @@ public struct AppStoreVersionsResponse: Codable, Sendable, PagedResponse {
         case routingAppCoverage(RoutingAppCoverage)
 
         public init(from decoder: Decoder) throws {
-            if let ageRatingDeclaration = try? AgeRatingDeclaration(from: decoder) {
-                self = .ageRatingDeclaration(ageRatingDeclaration)
-            } else if let alternativeDistributionPackage = try? AlternativeDistributionPackage(from: decoder) {
+            if let alternativeDistributionPackage = try? AlternativeDistributionPackage(from: decoder) {
                 self = .alternativeDistributionPackage(alternativeDistributionPackage)
             } else if let app = try? App(from: decoder) {
                 self = .app(app)
@@ -193,8 +190,6 @@ public struct AppStoreVersionsResponse: Codable, Sendable, PagedResponse {
 
         public func encode(to encoder: Encoder) throws {
             switch self {
-            case let .ageRatingDeclaration(value):
-                try value.encode(to: encoder)
             case let .alternativeDistributionPackage(value):
                 try value.encode(to: encoder)
             case let .app(value):

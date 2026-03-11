@@ -37,18 +37,6 @@ public struct GameCenterGroupResponse: Codable, Sendable {
         try container.encode(links, forKey: "links")
     }
 
-    public func getGameCenterAchievements() -> [GameCenterAchievement] {
-        guard let gameCenterAchievementIds = data.relationships?.gameCenterAchievements?.data?.map(\.id),
-              let gameCenterAchievements = included?.compactMap({ relationship -> GameCenterAchievement? in
-                  guard case let .gameCenterAchievement(gameCenterAchievement) = relationship else { return nil }
-                  return gameCenterAchievementIds.contains(gameCenterAchievement.id) ? gameCenterAchievement : nil
-              })
-        else {
-            return []
-        }
-        return gameCenterAchievements
-    }
-
     public func getGameCenterAchievementsV2() -> [GameCenterAchievement] {
         guard let gameCenterAchievementsV2Ids = data.relationships?.gameCenterAchievementsV2?.data?.map(\.id),
               let gameCenterAchievementsV2 = included?.compactMap({ relationship -> GameCenterAchievement? in
@@ -97,18 +85,6 @@ public struct GameCenterGroupResponse: Codable, Sendable {
         return gameCenterDetails
     }
 
-    public func getGameCenterLeaderboardSets() -> [GameCenterLeaderboardSet] {
-        guard let gameCenterLeaderboardSetIds = data.relationships?.gameCenterLeaderboardSets?.data?.map(\.id),
-              let gameCenterLeaderboardSets = included?.compactMap({ relationship -> GameCenterLeaderboardSet? in
-                  guard case let .gameCenterLeaderboardSet(gameCenterLeaderboardSet) = relationship else { return nil }
-                  return gameCenterLeaderboardSetIds.contains(gameCenterLeaderboardSet.id) ? gameCenterLeaderboardSet : nil
-              })
-        else {
-            return []
-        }
-        return gameCenterLeaderboardSets
-    }
-
     public func getGameCenterLeaderboardSetsV2() -> [GameCenterLeaderboardSet] {
         guard let gameCenterLeaderboardSetsV2Ids = data.relationships?.gameCenterLeaderboardSetsV2?.data?.map(\.id),
               let gameCenterLeaderboardSetsV2 = included?.compactMap({ relationship -> GameCenterLeaderboardSet? in
@@ -119,18 +95,6 @@ public struct GameCenterGroupResponse: Codable, Sendable {
             return []
         }
         return gameCenterLeaderboardSetsV2
-    }
-
-    public func getGameCenterLeaderboards() -> [GameCenterLeaderboard] {
-        guard let gameCenterLeaderboardIds = data.relationships?.gameCenterLeaderboards?.data?.map(\.id),
-              let gameCenterLeaderboards = included?.compactMap({ relationship -> GameCenterLeaderboard? in
-                  guard case let .gameCenterLeaderboard(gameCenterLeaderboard) = relationship else { return nil }
-                  return gameCenterLeaderboardIds.contains(gameCenterLeaderboard.id) ? gameCenterLeaderboard : nil
-              })
-        else {
-            return []
-        }
-        return gameCenterLeaderboards
     }
 
     public func getGameCenterLeaderboardsV2() -> [GameCenterLeaderboard] {

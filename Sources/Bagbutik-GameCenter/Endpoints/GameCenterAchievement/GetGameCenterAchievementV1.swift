@@ -15,6 +15,7 @@ public extension Request {
      - Parameter limits: Number of resources to return
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
+    @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
     static func getGameCenterAchievementV1(id: String,
                                            fields: [GetGameCenterAchievementV1.Field]? = nil,
                                            includes: [GetGameCenterAchievementV1.Include]? = nil,
@@ -35,8 +36,10 @@ public enum GetGameCenterAchievementV1 {
      */
     public enum Field: FieldParameter {
         /// The fields to include for returned resources of type gameCenterAchievementLocalizations
+        @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
         case gameCenterAchievementLocalizations([GameCenterAchievementLocalizations])
         /// The fields to include for returned resources of type gameCenterAchievementReleases
+        @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
         case gameCenterAchievementReleases([GameCenterAchievementReleases])
         /// The fields to include for returned resources of type gameCenterAchievements
         case gameCenterAchievements([GameCenterAchievements])

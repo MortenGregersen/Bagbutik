@@ -38,6 +38,7 @@ public struct GameCenterPlayerAchievementSubmission: Codable, Sendable, Identifi
         public var bundleId: String?
         public var challengeIds: [String]?
         public var percentageAchieved: Int?
+        public var preReleased: Bool?
         public var scopedPlayerId: String?
         public var submittedDate: Date?
         public var vendorIdentifier: String?
@@ -45,6 +46,7 @@ public struct GameCenterPlayerAchievementSubmission: Codable, Sendable, Identifi
         public init(bundleId: String? = nil,
                     challengeIds: [String]? = nil,
                     percentageAchieved: Int? = nil,
+                    preReleased: Bool? = nil,
                     scopedPlayerId: String? = nil,
                     submittedDate: Date? = nil,
                     vendorIdentifier: String? = nil)
@@ -52,6 +54,7 @@ public struct GameCenterPlayerAchievementSubmission: Codable, Sendable, Identifi
             self.bundleId = bundleId
             self.challengeIds = challengeIds
             self.percentageAchieved = percentageAchieved
+            self.preReleased = preReleased
             self.scopedPlayerId = scopedPlayerId
             self.submittedDate = submittedDate
             self.vendorIdentifier = vendorIdentifier
@@ -62,6 +65,7 @@ public struct GameCenterPlayerAchievementSubmission: Codable, Sendable, Identifi
             bundleId = try container.decodeIfPresent(String.self, forKey: "bundleId")
             challengeIds = try container.decodeIfPresent([String].self, forKey: "challengeIds")
             percentageAchieved = try container.decodeIfPresent(Int.self, forKey: "percentageAchieved")
+            preReleased = try container.decodeIfPresent(Bool.self, forKey: "preReleased")
             scopedPlayerId = try container.decodeIfPresent(String.self, forKey: "scopedPlayerId")
             submittedDate = try container.decodeIfPresent(Date.self, forKey: "submittedDate")
             vendorIdentifier = try container.decodeIfPresent(String.self, forKey: "vendorIdentifier")
@@ -72,6 +76,7 @@ public struct GameCenterPlayerAchievementSubmission: Codable, Sendable, Identifi
             try container.encodeIfPresent(bundleId, forKey: "bundleId")
             try container.encodeIfPresent(challengeIds, forKey: "challengeIds")
             try container.encodeIfPresent(percentageAchieved, forKey: "percentageAchieved")
+            try container.encodeIfPresent(preReleased, forKey: "preReleased")
             try container.encodeIfPresent(scopedPlayerId, forKey: "scopedPlayerId")
             try container.encodeIfPresent(submittedDate, forKey: "submittedDate")
             try container.encodeIfPresent(vendorIdentifier, forKey: "vendorIdentifier")

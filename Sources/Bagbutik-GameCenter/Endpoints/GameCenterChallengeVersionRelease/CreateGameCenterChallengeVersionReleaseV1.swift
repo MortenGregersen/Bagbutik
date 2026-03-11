@@ -12,6 +12,7 @@ public extension Request {
      - Parameter requestBody: GameCenterChallengeVersionRelease representation
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
+    @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
     static func createGameCenterChallengeVersionReleaseV1(requestBody: GameCenterChallengeVersionReleaseCreateRequest) -> Request<GameCenterChallengeVersionReleaseResponse, ErrorResponse> {
         .init(
             path: "/v1/gameCenterChallengeVersionReleases",

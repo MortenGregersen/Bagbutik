@@ -11,19 +11,25 @@ import Foundation
  */
 public struct GameCenterActivityCreateRequest: Codable, Sendable, RequestBody {
     public let data: Data
+    public var included: [GameCenterActivityVersionInlineCreate]?
 
-    public init(data: Data) {
+    public init(data: Data,
+                included: [GameCenterActivityVersionInlineCreate]? = nil)
+    {
         self.data = data
+        self.included = included
     }
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: AnyCodingKey.self)
         data = try container.decode(Data.self, forKey: "data")
+        included = try container.decodeIfPresent([GameCenterActivityVersionInlineCreate].self, forKey: "included")
     }
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: AnyCodingKey.self)
         try container.encode(data, forKey: "data")
+        try container.encodeIfPresent(included, forKey: "included")
     }
 
     public struct Data: Codable, Sendable {
@@ -106,24 +112,29 @@ public struct GameCenterActivityCreateRequest: Codable, Sendable, RequestBody {
         public struct Relationships: Codable, Sendable {
             public var gameCenterDetail: GameCenterDetail?
             public var gameCenterGroup: GameCenterGroup?
+            public var versions: Versions?
 
             public init(gameCenterDetail: GameCenterDetail? = nil,
-                        gameCenterGroup: GameCenterGroup? = nil)
+                        gameCenterGroup: GameCenterGroup? = nil,
+                        versions: Versions? = nil)
             {
                 self.gameCenterDetail = gameCenterDetail
                 self.gameCenterGroup = gameCenterGroup
+                self.versions = versions
             }
 
             public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: AnyCodingKey.self)
                 gameCenterDetail = try container.decodeIfPresent(GameCenterDetail.self, forKey: "gameCenterDetail")
                 gameCenterGroup = try container.decodeIfPresent(GameCenterGroup.self, forKey: "gameCenterGroup")
+                versions = try container.decodeIfPresent(Versions.self, forKey: "versions")
             }
 
             public func encode(to encoder: Encoder) throws {
                 var container = encoder.container(keyedBy: AnyCodingKey.self)
                 try container.encodeIfPresent(gameCenterDetail, forKey: "gameCenterDetail")
                 try container.encodeIfPresent(gameCenterGroup, forKey: "gameCenterGroup")
+                try container.encodeIfPresent(versions, forKey: "versions")
             }
 
             public struct GameCenterDetail: Codable, Sendable {
@@ -187,6 +198,47 @@ public struct GameCenterActivityCreateRequest: Codable, Sendable, RequestBody {
                 public struct Data: Codable, Sendable, Identifiable {
                     public let id: String
                     public var type: String { "gameCenterGroups" }
+
+                    public init(id: String) {
+                        self.id = id
+                    }
+
+                    public init(from decoder: Decoder) throws {
+                        let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                        id = try container.decode(String.self, forKey: "id")
+                        if try container.decode(String.self, forKey: "type") != type {
+                            throw DecodingError.dataCorruptedError(forKey: "type", in: container, debugDescription: "Not matching \(type)")
+                        }
+                    }
+
+                    public func encode(to encoder: Encoder) throws {
+                        var container = encoder.container(keyedBy: AnyCodingKey.self)
+                        try container.encode(id, forKey: "id")
+                        try container.encode(type, forKey: "type")
+                    }
+                }
+            }
+
+            public struct Versions: Codable, Sendable {
+                @NullCodable public var data: [Data]?
+
+                public init(data: [Data]? = nil) {
+                    self.data = data
+                }
+
+                public init(from decoder: Decoder) throws {
+                    let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                    data = try container.decodeIfPresent([Data].self, forKey: "data")
+                }
+
+                public func encode(to encoder: Encoder) throws {
+                    var container = encoder.container(keyedBy: AnyCodingKey.self)
+                    try container.encode(data, forKey: "data")
+                }
+
+                public struct Data: Codable, Sendable, Identifiable {
+                    public let id: String
+                    public var type: String { "gameCenterActivityVersions" }
 
                     public init(id: String) {
                         self.id = id

@@ -58,13 +58,6 @@ public struct GameCenterChallengesResponse: Codable, Sendable, PagedResponse {
         }.first { $0.id == gameCenterChallenge.relationships?.gameCenterGroup?.data?.id }
     }
 
-    public func getLeaderboard(for gameCenterChallenge: GameCenterChallenge) -> GameCenterLeaderboard? {
-        included?.compactMap { relationship -> GameCenterLeaderboard? in
-            guard case let .gameCenterLeaderboard(leaderboard) = relationship else { return nil }
-            return leaderboard
-        }.first { $0.id == gameCenterChallenge.relationships?.leaderboard?.data?.id }
-    }
-
     public func getLeaderboardV2(for gameCenterChallenge: GameCenterChallenge) -> GameCenterLeaderboard? {
         included?.compactMap { relationship -> GameCenterLeaderboard? in
             guard case let .gameCenterLeaderboard(leaderboardV2) = relationship else { return nil }

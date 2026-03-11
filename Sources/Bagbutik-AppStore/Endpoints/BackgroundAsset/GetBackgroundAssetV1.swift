@@ -42,6 +42,7 @@ public enum GetBackgroundAssetV1 {
             case createdDate
             case externalBetaVersion
             case internalBetaVersion
+            case usedBytes
             case versions
 
             public init(from decoder: Decoder) throws {

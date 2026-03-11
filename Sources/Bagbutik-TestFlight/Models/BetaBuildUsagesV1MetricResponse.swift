@@ -38,15 +38,15 @@ public struct BetaBuildUsagesV1MetricResponse: Codable, Sendable, PagedResponse 
     }
 
     public struct Data: Codable, Sendable {
-        public var dataPoints: DataPoints?
+        public var dataPoints: [DataPoints]?
 
-        public init(dataPoints: DataPoints? = nil) {
+        public init(dataPoints: [DataPoints]? = nil) {
             self.dataPoints = dataPoints
         }
 
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: AnyCodingKey.self)
-            dataPoints = try container.decodeIfPresent(DataPoints.self, forKey: "dataPoints")
+            dataPoints = try container.decodeIfPresent([DataPoints].self, forKey: "dataPoints")
         }
 
         public func encode(to encoder: Encoder) throws {

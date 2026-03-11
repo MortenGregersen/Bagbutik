@@ -35,16 +35,19 @@ public enum GetGameCenterDetailV1 {
      */
     public enum Field: FieldParameter {
         /// The fields to include for returned resources of type gameCenterAchievementReleases
+        @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
         case gameCenterAchievementReleases([GameCenterAchievementReleases])
         /// The fields to include for returned resources of type gameCenterAchievements
         case gameCenterAchievements([GameCenterAchievements])
         /// The fields to include for returned resources of type gameCenterActivities
         case gameCenterActivities([GameCenterActivities])
         /// The fields to include for returned resources of type gameCenterActivityVersionReleases
+        @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
         case gameCenterActivityVersionReleases([GameCenterActivityVersionReleases])
         /// The fields to include for returned resources of type gameCenterAppVersions
         case gameCenterAppVersions([GameCenterAppVersions])
         /// The fields to include for returned resources of type gameCenterChallengeVersionReleases
+        @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
         case gameCenterChallengeVersionReleases([GameCenterChallengeVersionReleases])
         /// The fields to include for returned resources of type gameCenterChallenges
         case gameCenterChallenges([GameCenterChallenges])
@@ -53,8 +56,10 @@ public enum GetGameCenterDetailV1 {
         /// The fields to include for returned resources of type gameCenterGroups
         case gameCenterGroups([GameCenterGroups])
         /// The fields to include for returned resources of type gameCenterLeaderboardReleases
+        @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
         case gameCenterLeaderboardReleases([GameCenterLeaderboardReleases])
         /// The fields to include for returned resources of type gameCenterLeaderboardSetReleases
+        @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
         case gameCenterLeaderboardSetReleases([GameCenterLeaderboardSetReleases])
         /// The fields to include for returned resources of type gameCenterLeaderboardSets
         case gameCenterLeaderboardSets([GameCenterLeaderboardSets])

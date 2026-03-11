@@ -38,8 +38,10 @@ public enum ListGameCenterLeaderboardSetMemberLocalizationsV1 {
         /// The fields to include for returned resources of type gameCenterLeaderboardSetMemberLocalizations
         case gameCenterLeaderboardSetMemberLocalizations([GameCenterLeaderboardSetMemberLocalizations])
         /// The fields to include for returned resources of type gameCenterLeaderboardSets
+        @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
         case gameCenterLeaderboardSets([GameCenterLeaderboardSets])
         /// The fields to include for returned resources of type gameCenterLeaderboards
+        @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
         case gameCenterLeaderboards([GameCenterLeaderboards])
 
         public enum GameCenterLeaderboardSetMemberLocalizations: String, Sendable, ParameterValue, Codable, CaseIterable {

@@ -66,7 +66,6 @@ public enum GetGameCenterDetailForAppV1 {
         case gameCenterLeaderboards([GameCenterLeaderboards])
 
         public enum AppStoreVersions: String, Sendable, ParameterValue, Codable, CaseIterable {
-            case ageRatingDeclaration
             case alternativeDistributionPackage
             case app
             case appClipDefaultExperience

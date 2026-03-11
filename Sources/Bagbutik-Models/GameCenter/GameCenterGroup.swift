@@ -65,16 +65,20 @@ public struct GameCenterGroup: Codable, Sendable, Identifiable {
     }
 
     public struct Relationships: Codable, Sendable {
-        public var gameCenterAchievements: GameCenterAchievements?
+        @available(*, deprecated, message: "Apple has marked this property deprecated and it will be removed sometime in the future.")
+        public var gameCenterAchievements: GameCenterAchievements? = nil
         public var gameCenterAchievementsV2: GameCenterAchievementsV2?
         public var gameCenterActivities: GameCenterActivities?
         public var gameCenterChallenges: GameCenterChallenges?
         public var gameCenterDetails: GameCenterDetails?
-        public var gameCenterLeaderboardSets: GameCenterLeaderboardSets?
+        @available(*, deprecated, message: "Apple has marked this property deprecated and it will be removed sometime in the future.")
+        public var gameCenterLeaderboardSets: GameCenterLeaderboardSets? = nil
         public var gameCenterLeaderboardSetsV2: GameCenterLeaderboardSetsV2?
-        public var gameCenterLeaderboards: GameCenterLeaderboards?
+        @available(*, deprecated, message: "Apple has marked this property deprecated and it will be removed sometime in the future.")
+        public var gameCenterLeaderboards: GameCenterLeaderboards? = nil
         public var gameCenterLeaderboardsV2: GameCenterLeaderboardsV2?
 
+        @available(*, deprecated, message: "This uses a property Apple has marked as deprecated.")
         public init(gameCenterAchievements: GameCenterAchievements? = nil,
                     gameCenterAchievementsV2: GameCenterAchievementsV2? = nil,
                     gameCenterActivities: GameCenterActivities? = nil,
@@ -93,6 +97,21 @@ public struct GameCenterGroup: Codable, Sendable, Identifiable {
             self.gameCenterLeaderboardSets = gameCenterLeaderboardSets
             self.gameCenterLeaderboardSetsV2 = gameCenterLeaderboardSetsV2
             self.gameCenterLeaderboards = gameCenterLeaderboards
+            self.gameCenterLeaderboardsV2 = gameCenterLeaderboardsV2
+        }
+
+        public init(gameCenterAchievementsV2: GameCenterAchievementsV2? = nil,
+                    gameCenterActivities: GameCenterActivities? = nil,
+                    gameCenterChallenges: GameCenterChallenges? = nil,
+                    gameCenterDetails: GameCenterDetails? = nil,
+                    gameCenterLeaderboardSetsV2: GameCenterLeaderboardSetsV2? = nil,
+                    gameCenterLeaderboardsV2: GameCenterLeaderboardsV2? = nil)
+        {
+            self.gameCenterAchievementsV2 = gameCenterAchievementsV2
+            self.gameCenterActivities = gameCenterActivities
+            self.gameCenterChallenges = gameCenterChallenges
+            self.gameCenterDetails = gameCenterDetails
+            self.gameCenterLeaderboardSetsV2 = gameCenterLeaderboardSetsV2
             self.gameCenterLeaderboardsV2 = gameCenterLeaderboardsV2
         }
 

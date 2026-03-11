@@ -121,14 +121,17 @@ public struct GameCenterActivity: Codable, Sendable, Identifiable {
     }
 
     public struct Relationships: Codable, Sendable {
-        public var achievements: Achievements?
+        @available(*, deprecated, message: "Apple has marked this property deprecated and it will be removed sometime in the future.")
+        public var achievements: Achievements? = nil
         public var achievementsV2: AchievementsV2?
         public var gameCenterDetail: GameCenterDetail?
         public var gameCenterGroup: GameCenterGroup?
-        public var leaderboards: Leaderboards?
+        @available(*, deprecated, message: "Apple has marked this property deprecated and it will be removed sometime in the future.")
+        public var leaderboards: Leaderboards? = nil
         public var leaderboardsV2: LeaderboardsV2?
         public var versions: Versions?
 
+        @available(*, deprecated, message: "This uses a property Apple has marked as deprecated.")
         public init(achievements: Achievements? = nil,
                     achievementsV2: AchievementsV2? = nil,
                     gameCenterDetail: GameCenterDetail? = nil,
@@ -142,6 +145,19 @@ public struct GameCenterActivity: Codable, Sendable, Identifiable {
             self.gameCenterDetail = gameCenterDetail
             self.gameCenterGroup = gameCenterGroup
             self.leaderboards = leaderboards
+            self.leaderboardsV2 = leaderboardsV2
+            self.versions = versions
+        }
+
+        public init(achievementsV2: AchievementsV2? = nil,
+                    gameCenterDetail: GameCenterDetail? = nil,
+                    gameCenterGroup: GameCenterGroup? = nil,
+                    leaderboardsV2: LeaderboardsV2? = nil,
+                    versions: Versions? = nil)
+        {
+            self.achievementsV2 = achievementsV2
+            self.gameCenterDetail = gameCenterDetail
+            self.gameCenterGroup = gameCenterGroup
             self.leaderboardsV2 = leaderboardsV2
             self.versions = versions
         }
