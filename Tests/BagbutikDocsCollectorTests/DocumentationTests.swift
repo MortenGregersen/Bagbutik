@@ -42,4 +42,26 @@ class DocumentationTests: XCTestCase {
         XCTAssertEqual(Documentation.object(objectDocumentation).subDocumentationIds, objectDocumentation.subDocumentationIds)
         XCTAssertEqual(Documentation.operation(operationDocumentation).subDocumentationIds, [])
     }
+
+    func testDecodeStrongInlineContent() throws {
+        let data = """
+        {
+            "type": "strong",
+            "inlineContent": [
+                {
+                    "type": "text",
+                    "text": "Important"
+                }
+            ]
+        }
+        """.data(using: .utf8)!
+
+        let inlineContent = try JSONDecoder().decode(Documentation.Content.InlineContent.self, from: data)
+
+        guard case .text(let text) = inlineContent else {
+            return XCTFail("Expected text")
+        }
+
+        XCTAssertEqual(text, "**Important**")
+    }
 }
