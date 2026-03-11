@@ -14,6 +14,8 @@ public enum DocsFetcherError: Error {
     case noDocumentationUrl(String)
     /// The documentation file could not be created
     case couldNotCreateFile
+    /// Decoding failed for one or more documentation files
+    case documentationDecodingFailures([DocumentationDecodingFailure])
 
     /// The type of the file URL
     public enum FileURLType: Sendable {
@@ -25,6 +27,18 @@ public enum DocsFetcherError: Error {
 }
 
 extension DocsFetcherError: Equatable {}
+
+public struct DocumentationDecodingFailure: Error, Equatable, Sendable {
+    public let context: String
+    public let url: URL
+    public let message: String
+
+    public init(context: String, url: URL, message: String) {
+        self.context = context
+        self.url = url
+        self.message = message
+    }
+}
 
 /**
  An alias for a function loading a spec from a file URL
@@ -87,6 +101,7 @@ public class DocsFetcher {
         guard specFileURL.isFileURL else { throw DocsFetcherError.notFileUrl(.specFileURL) }
         print("🔍 Loading spec \(specFileURL.path)...")
         let spec = try loadSpec(specFileURL)
+        var documentationDecodingFailures = [DocumentationDecodingFailure]()
 
         var operationDocumentationById = [String: Documentation]()
         let operationIdsAndDocUrls: [(operationId: String, docUrl: URL)] = spec.paths.values
@@ -101,28 +116,47 @@ public class DocsFetcher {
                 print("Would fetch documentation for operation '\(operationId)' (\(docUrl))")
             } else {
                 print("Fetching documentation for operation '\(operationId)' (\(docUrl))")
-                let documentation = try await fetchDocumentation(for: docUrl)
-                operationDocumentationById[operationId] = documentation
+                do {
+                    let documentation = try await fetchDocumentation(for: docUrl)
+                    operationDocumentationById[operationId] = documentation
+                } catch {
+                    documentationDecodingFailures.append(.init(context: "operation '\(operationId)'", url: docUrl, message: String(describing: error)))
+                }
             }
         }
 
         var identifierBySchemaName = [String: String]()
         var schemaDocumentationById = [String: Documentation]()
         for schema in spec.components.schemas.sorted(by: { $0.key < $1.key }).map(\.value) {
-            let documentation = try await fetchDocumentation(for: schema)
-            identifierBySchemaName[schema.name] = documentation.id
-            schemaDocumentationById[documentation.id] = documentation
+            let jsonUrl = try createJsonDocumentationUrl(for: schema)
+            print("Fetching documentation for schema '\(schema.name)' (\(jsonUrl))")
+            do {
+                let documentation = try await fetchDocumentation(for: jsonUrl)
+                identifierBySchemaName[schema.name] = documentation.id
+                schemaDocumentationById[documentation.id] = documentation
 
-            let documentationIdNotFetched: (String) -> Bool = { documentationId in
-                !schemaDocumentationById.keys.contains(where: { $0 == documentationId })
+                let documentationIdNotFetched: (String) -> Bool = { documentationId in
+                    !schemaDocumentationById.keys.contains(where: { $0 == documentationId })
+                }
+                let documentationIdsToFetch = documentation.subDocumentationIds.filter(documentationIdNotFetched)
+                await fetchDocumentation(
+                    for: documentationIdsToFetch,
+                    documentationIdNotFetched: documentationIdNotFetched,
+                    didFetchDocumentation: { subDocumentation in
+                        schemaDocumentationById[subDocumentation.id] = subDocumentation
+                    },
+                    documentationDecodingFailures: &documentationDecodingFailures)
+            } catch {
+                documentationDecodingFailures.append(.init(context: "schema '\(schema.name)'", url: jsonUrl, message: String(describing: error)))
             }
-            let documentationIdsToFetch = documentation.subDocumentationIds.filter(documentationIdNotFetched)
-            try await fetchDocumentation(
-                for: documentationIdsToFetch,
-                documentationIdNotFetched: documentationIdNotFetched,
-                didFetchDocumentation: { subDocumentation in
-                    schemaDocumentationById[subDocumentation.id] = subDocumentation
-                })
+        }
+        if !documentationDecodingFailures.isEmpty {
+            print("Found \(documentationDecodingFailures.count) documentation decoding errors:")
+            for decodingFailure in documentationDecodingFailures {
+                print(" - \(decodingFailure.context): \(decodingFailure.url)")
+                print("   \(decodingFailure.message)")
+            }
+            throw DocsFetcherError.documentationDecodingFailures(documentationDecodingFailures)
         }
         try fileManager.createDirectory(at: outputDirURL, withIntermediateDirectories: true, attributes: nil)
         let operationDocumentationFileUrl = outputDirURL.appendingPathComponent(DocsFilename.operationDocumentation.filename)
@@ -141,27 +175,24 @@ public class DocsFetcher {
         }
     }
 
-    private func fetchDocumentation(for schema: Schema) async throws -> Documentation {
-        guard let urlString = schema.url else {
-            throw DocsFetcherError.noDocumentationUrl(schema.name)
-        }
-        let jsonUrl = createJsonDocumentationUrl(fromUrl: urlString)
-        print("Fetching documentation for schema '\(schema.name)' (\(jsonUrl))")
-        return try await fetchDocumentation(for: jsonUrl)
-    }
-
     private func fetchDocumentation(for documentationIds: [String],
                                     documentationIdNotFetched: (String) -> Bool,
-                                    didFetchDocumentation: (Documentation) -> Void) async throws {
+                                    didFetchDocumentation: (Documentation) -> Void,
+                                    documentationDecodingFailures: inout [DocumentationDecodingFailure]) async {
         for documentationId in documentationIds {
             let jsonUrl = createJsonDocumentationUrl(fromDocId: documentationId)
             print("Fetching documentation for sub schema (\(jsonUrl))")
-            let documentation = try await fetchDocumentation(for: jsonUrl)
-            didFetchDocumentation(documentation)
-            try await fetchDocumentation(
-                for: documentation.subDocumentationIds.filter { $0 != documentationId }.filter(documentationIdNotFetched),
-                documentationIdNotFetched: documentationIdNotFetched,
-                didFetchDocumentation: didFetchDocumentation)
+            do {
+                let documentation = try await fetchDocumentation(for: jsonUrl)
+                didFetchDocumentation(documentation)
+                await fetchDocumentation(
+                    for: documentation.subDocumentationIds.filter { $0 != documentationId }.filter(documentationIdNotFetched),
+                    documentationIdNotFetched: documentationIdNotFetched,
+                    didFetchDocumentation: didFetchDocumentation,
+                    documentationDecodingFailures: &documentationDecodingFailures)
+            } catch {
+                documentationDecodingFailures.append(.init(context: "sub schema '\(documentationId)'", url: jsonUrl, message: String(describing: error)))
+            }
         }
     }
 
@@ -190,6 +221,13 @@ public class DocsFetcher {
                 of: "/documentation/",
                 with: "/tutorials/data/documentation/")
             .appending(".json"))!
+    }
+
+    private func createJsonDocumentationUrl(for schema: Schema) throws -> URL {
+        guard let urlString = schema.url else {
+            throw DocsFetcherError.noDocumentationUrl(schema.name)
+        }
+        return createJsonDocumentationUrl(fromUrl: urlString)
     }
 
     private func createJsonDocumentationUrl(fromDocId id: String) -> URL {

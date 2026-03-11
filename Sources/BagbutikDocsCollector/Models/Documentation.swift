@@ -528,6 +528,8 @@ public enum Documentation: Codable, Equatable, Sendable {
                     self = .text(text)
                 } else if type == "emphasis", case .text(let subContent) = try container.decode([InlineContent].self, forKey: .inlineContent).first {
                     self = .text("*\(subContent)*")
+                } else if type == "strong", case .text(let subContent) = try container.decode([InlineContent].self, forKey: .inlineContent).first {
+                    self = .text("**\(subContent)**")
                 } else if type == "codeVoice", let code = try container.decodeIfPresent(String.self, forKey: .code) {
                     self = .text("`\(code)`")
                 } else if type == "reference", let identifier = try container.decodeIfPresent(String.self, forKey: .identifier) {
