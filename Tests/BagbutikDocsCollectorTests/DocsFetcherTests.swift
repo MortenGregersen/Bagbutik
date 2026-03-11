@@ -236,6 +236,47 @@ final class DocsFetcherTests: XCTestCase {
             XCTAssertEqual($0 as? DocsFetcherError, DocsFetcherError.noDocumentationUrl("Platform"))
         }
     }
+
+    func testFetchAllDocsCollectsDecodingErrorsAndFailsAtTheEnd() async throws {
+        // Given
+        let spec = try Spec(paths: [
+            "/v1/users": Path(path: "/v1/users", info: .init(mainType: "Users", version: "V1", isRelationship: false), operations: [
+                .init(id: "users_getCollection",
+                      name: "listUsers",
+                      method: .get,
+                      successResponseType: "UsersResponse",
+                      errorResponseType: "ErrorResponse"),
+            ]),
+        ],
+        components: .init(schemas: [
+            "UsersResponse": .object(.init(name: "UsersResponse", url: "https://developer.apple.com/documentation/AppStoreConnectAPI/usersresponse", properties: ["users": .init(type: .arrayOfSchemaRef("User"))])),
+        ]))
+        let fileManager = MockFileManager()
+        let urlSession = MockURLSession()
+        let docsFetcher = DocsFetcher(loadSpec: { _ in spec }, fetchData: urlSession.data(from:delegate:), fileManager: fileManager)
+        let operationDocumentationUrl = URL(string: "https://developer.apple.com/tutorials/data/documentation/AppStoreConnectAPI/get-v1-users.json")!
+        let schemaDocumentationUrl = URL(string: "https://developer.apple.com/tutorials/data/documentation/AppStoreConnectAPI/usersresponse.json")!
+        urlSession.dataByUrl[operationDocumentationUrl] = #"{"invalid": true}"#.data(using: .utf8)!
+        urlSession.dataByUrl[schemaDocumentationUrl] = #"{"invalid": true}"#.data(using: .utf8)!
+
+        // When
+        await XCTAssertAsyncThrowsError(try await docsFetcher.fetchAllDocs(specFileURL: validSpecFileURL, outputDirURL: validOutputDirURL, dryRun: false)) {
+            // Then
+            guard case .documentationDecodingFailures(let failures) = $0 as? DocsFetcherError else {
+                return XCTFail("Expected documentationDecodingFailures")
+            }
+            XCTAssertEqual(failures.count, 2)
+            XCTAssertEqual(failures.map(\.context), [
+                "operation 'users_getCollection'",
+                "schema 'UsersResponse'",
+            ])
+            XCTAssertEqual(failures.map(\.url), [
+                operationDocumentationUrl,
+                schemaDocumentationUrl,
+            ])
+            XCTAssertTrue(fileManager.filesCreated.isEmpty)
+        }
+    }
     
     class MockURLSession {
         var dataByUrl: [URL: Data] = [:]
