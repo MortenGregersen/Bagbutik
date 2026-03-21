@@ -1,7 +1,7 @@
 import BagbutikSpecDecoder
 import Foundation
 
-/// Errors that can occur when loading docs
+/// Errors that can occur while reading normalized documentation from disk.
 public enum DocsLoaderError: Error, Equatable {
     /// The documentation hasn't been loaded yet
     case documentationNotLoaded
@@ -9,12 +9,14 @@ public enum DocsLoaderError: Error, Equatable {
     case wrongTypeOfDocumentation
 }
 
+/// Loads normalized documentation files and resolves them for schemas and operations.
 public actor DocsLoader {
     private let loadFile: @MainActor (URL) throws -> Data
     var operationDocumentationById: [String: OperationDocumentation]?
     var identifierBySchemaName: [String: String]?
     var schemaDocumentationById: [String: Documentation]?
 
+    /// Creates a loader that reads documentation files from disk.
     public init() {
         self.init(operationDocumentationById: nil) // A parameter is needed for it to call the internal initializer
     }
@@ -30,6 +32,11 @@ public actor DocsLoader {
         }
     }
 
+    /**
+     Loads the normalized documentation files stored in a documentation directory.
+
+     - Parameter documentationDirURL: The directory containing the three JSON files written by ``DocsFetcher``.
+     */
     public func loadDocs(documentationDirURL: URL) async throws {
         let operationDocumentationByIdData = try await loadFile(documentationDirURL.appendingPathComponent(DocsFilename.operationDocumentation.filename))
         let identifierBySchemaNameData = try await loadFile(documentationDirURL.appendingPathComponent(DocsFilename.schemaMapping.filename))
@@ -46,6 +53,12 @@ public actor DocsLoader {
         })
     }
 
+    /**
+     Applies manual documentation patches for gaps in Apple's published docs.
+
+     These patches mirror the manual schema patches in ``Spec`` so generated code still gets
+     useful symbol documentation when Apple's source data is incomplete.
+     */
     public func applyManualDocumentation() throws {
         guard let identifierBySchemaName,
               var schemaDocumentationById else {
@@ -71,15 +84,18 @@ public actor DocsLoader {
         self.schemaDocumentationById = schemaDocumentationById
     }
 
+    /// Resolves the Bagbutik product module that a documentation entry belongs to.
     public static func resolvePackageName(for documentation: Documentation) throws -> PackageName {
         let packageName = PackageName.resolvePackageName(from: documentation.id) ?? .core
         return packageName
     }
 
+    /// Resolves the Bagbutik product module from a documentation identifier.
     public static func resolvePackageName(from identifier: String) -> PackageName? {
         PackageName.resolvePackageName(from: identifier)
     }
 
+    /// Resolves documentation by schema name from the loaded schema mapping.
     public func resolveDocumentationForSchema(named schemaName: String) throws -> Documentation? {
         guard let identifierBySchemaName,
               let schemaDocumentationById else {
@@ -92,6 +108,7 @@ public actor DocsLoader {
         return documentation
     }
 
+    /// Resolves schema documentation from the original Apple documentation URL.
     public func resolveDocumentationForSchema(withDocsUrl docsUrl: String) throws -> Documentation? {
         guard let schemaDocumentationById else { throw DocsLoaderError.documentationNotLoaded }
         let identifier = createDocumentationId(fromUrl: docsUrl)
@@ -99,12 +116,14 @@ public actor DocsLoader {
         return documentation
     }
 
+    /// Resolves schema documentation from a normalized documentation identifier.
     public func resolveDocumentationForSchema(withId identifier: String) throws -> Documentation? {
         guard let schemaDocumentationById else { throw DocsLoaderError.documentationNotLoaded }
         guard let documentation = schemaDocumentationById[identifier] else { return nil }
         return documentation
     }
 
+    /// Resolves operation documentation using the generated operation identifier.
     public func resolveDocumentationForOperation(withId operationId: String) throws -> OperationDocumentation? {
         guard let operationDocumentationById else { throw DocsLoaderError.documentationNotLoaded }
         guard let documentation = operationDocumentationById[operationId] else { return nil }

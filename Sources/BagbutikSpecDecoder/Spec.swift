@@ -1,7 +1,7 @@
 import BagbutikStringExtensions
 import Foundation
 
-/// A representation of the spec file
+/// The decoded App Store Connect OpenAPI specification used by the generator pipeline.
 public struct Spec: Decodable {
     /// The paths contained in the spec
     public var paths: [String: Path]
@@ -59,9 +59,10 @@ public struct Spec: Decodable {
     }
 
     /**
-     Flatten the schemas used in schemas for create request and update request and in filter parameters when they are identical to the schemas used in main type.
+     Reuses equivalent schemas instead of keeping duplicated nested definitions.
 
-     Eg. ProfileCreateRequest.Attributes.ProfileType is equal to Profile.Attributes.ProfileType, the first one should be removed and the latter one should be used.
+     This reduces churn in generated code and makes related request and response types refer to
+     the same enum definitions where Apple's spec describes the same concept more than once.
      */
     public mutating func flattenIdenticalSchemas() {
         for (pathKey, path) in paths {
@@ -151,9 +152,10 @@ public struct Spec: Decodable {
     }
 
     /**
-     Applies manual patches for types not adhering to the general conventions of the spec.
+     Applies Bagbutik's manual corrections for known issues in Apple's published spec.
 
-     Eg. ErrorResponse has an OneOf with references to ErrorSourcePointer and ErrorSourceParameter, but these schemas have a different title, and have another name when generated.
+     These patches cover mismatches that would otherwise produce incorrect generated models or
+     leave important runtime values undocumented.
      */
     public mutating func applyManualPatches() throws {
         patchedSchemaEntries.removeAll()

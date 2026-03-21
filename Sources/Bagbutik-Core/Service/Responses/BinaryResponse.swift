@@ -1,12 +1,12 @@
 import Foundation
 
-/// A response with binary data.
+/// A response type that is initialized directly from binary data instead of JSON.
 public protocol BinaryResponse: Decodable {
-    /// The gzipped data.
+    /// The binary payload returned by the endpoint.
     var data: Data { get }
 
     /**
-     Create a new instance with the data.
+     Creates a response from the raw payload returned by the server.
 
      - Parameters:
         - data: The data for the response.

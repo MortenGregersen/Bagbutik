@@ -6,7 +6,7 @@ import BagbutikPolyfill
 import FoundationNetworking
 #endif
 
-/// Errors that can occur when fetching docs
+/// Errors that can occur while downloading and storing Apple documentation JSON.
 public enum DocsFetcherError: Error {
     /// The URL is not a file URL
     case notFileUrl(FileURLType)
@@ -28,6 +28,7 @@ public enum DocsFetcherError: Error {
 
 extension DocsFetcherError: Equatable {}
 
+/// Describes one documentation payload that could not be decoded.
 public struct DocumentationDecodingFailure: Error, Equatable, Sendable {
     public let context: String
     public let url: URL
@@ -41,25 +42,28 @@ public struct DocumentationDecodingFailure: Error, Equatable, Sendable {
 }
 
 /**
- An alias for a function loading a spec from a file URL
+ The closure used to load and decode an OpenAPI spec from disk.
 
- - Parameter fileUrl: The file URL to load the spec from
- - Returns: A decoded Spec
+ This indirection keeps ``DocsFetcher`` easy to test.
+
+ - Parameter fileUrl: The file URL of the OpenAPI spec.
+ - Returns: A decoded ``Spec`` value.
  */
 typealias LoadSpec = (_ fileUrl: URL) throws -> Spec
 
 /**
- Function used to fetch data for requests.
+ The async download closure used by ``DocsFetcher``.
 
- Only used to inject into a ``DocsFetcher``.
+ Provide a custom implementation in tests to avoid hitting Apple's documentation endpoints.
 
  - Parameters:
-    - request: The URLRequest for which to load data.
-    - delegate: Task-specific delegate.
- - Returns: Data and response.
+    - url: The documentation URL to download.
+    - delegate: An optional task specific delegate.
+ - Returns: The raw response body and URL response.
  */
 public typealias FetchData = (_ url: URL, _ delegate: URLSessionTaskDelegate?) async throws -> (Data, URLResponse)
 
+/// Filenames used for the normalized documentation cache stored in `Documentation/`.
 public enum DocsFilename: String {
     case schemaMapping = "SchemaIndex.json"
     case schemaDocumentation = "SchemaDocumentation.json"
@@ -68,13 +72,14 @@ public enum DocsFilename: String {
     public var filename: String { rawValue }
 }
 
+/// Downloads Apple's documentation JSON and stores it in Bagbutik's normalized local format.
 public class DocsFetcher {
     private let loadSpec: LoadSpec
     private let fetchData: FetchData
     private let fileManager: TestableFileManager
     private let print: (String) -> Void
 
-    /// Initialize a new docs fetcher
+    /// Creates a fetcher configured with the default spec loader and `URLSession` transport.
     public convenience init() {
         let loadSpec: LoadSpec = { fileUrl in
             let specData = try Data(contentsOf: fileUrl)
@@ -97,6 +102,17 @@ public class DocsFetcher {
         self.print = print
     }
 
+    /**
+     Fetches documentation for every schema and operation referenced by the supplied spec.
+
+     The fetched data is normalized into the JSON files consumed later by ``DocsLoader`` and
+     the code generator.
+
+     - Parameters:
+        - specFileURL: The local OpenAPI spec to inspect for schema and operation identifiers.
+        - outputDirURL: The directory where the normalized documentation files should be written.
+        - dryRun: When `true`, log the work that would be performed without making network requests.
+     */
     public func fetchAllDocs(specFileURL: URL, outputDirURL: URL, dryRun: Bool) async throws {
         guard specFileURL.isFileURL else { throw DocsFetcherError.notFileUrl(.specFileURL) }
         print("🔍 Loading spec \(specFileURL.path)...")

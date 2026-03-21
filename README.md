@@ -58,6 +58,19 @@ let response = try await service.request(
 print(response)
 ```
 
+## Project structure
+
+The repository is split into a small manually maintained core and a large generated API surface.
+
+* `Bagbutik-Core` contains the request service, JWT support, shared response protocols, and the common models used across all API areas.
+* `Bagbutik-Models` contains generated shared models that are referenced by more than one API area.
+* `Bagbutik-AppStore`, `Bagbutik-TestFlight`, `Bagbutik-Reporting`, and the other product modules contain generated endpoint builders grouped by App Store Connect domain.
+* `BagbutikSpecDecoder` decodes Apple's OpenAPI document into an intermediate Swift representation.
+* `BagbutikDocsCollector` downloads and normalizes Apple documentation so generated code gets useful Xcode documentation comments.
+* `BagbutikGenerator` combines the decoded spec and collected docs to render the Swift source in `Sources/`.
+
+This split matters when navigating the codebase. If you want to understand runtime behavior, start in `Bagbutik-Core`. If you want to understand how generated endpoints and models are produced, start with `BagbutikSpecDecoder`, `BagbutikDocsCollector`, and `BagbutikGenerator`.
+
 ## How to get Bagbutik into a project
 
 Bagbutik is primarily distributed as a **source-based Swift package** using
@@ -120,6 +133,17 @@ Remember to replace hyphens with underscores when importing modules.
 For example, when importing `Bagbutik-TestFlight`:
 
 `import Bagbutik_TestFlight`
+
+### Endpoint pattern
+
+Generated endpoints follow the same pattern throughout the package:
+
+1. Import `Bagbutik_Core` and the product module for the API area you need.
+2. Build a `Request` by calling a generated static helper such as `.listBundleIdsV1(...)`.
+3. Send the request through `BagbutikService`.
+4. If the response type supports pagination, use `requestNextPage(for:)` or `requestAllPages(_:)`.
+
+This keeps each endpoint builder lightweight while centralizing authentication, decoding, and error handling in `BagbutikService`.
 
 ### Using the XCFramework
 
@@ -197,6 +221,17 @@ The XCFramework is built with a specific **Xcode / Swift version**, which is doc
 Binary Swift frameworks are only guaranteed to be compatible with the **same or newer
 Swift compiler versions**. If you need maximum compatibility or want to use a different
 Swift version, prefer using Bagbutik as a source package.
+
+## Maintaining generated code
+
+Most files under `Sources/Bagbutik-*` are generated from Apple's OpenAPI document. The generation pipeline is:
+
+1. Load and patch the OpenAPI spec.
+2. Fetch Apple documentation as JSON.
+3. Normalize the documentation into local lookup files in `Documentation/`.
+4. Render endpoints and models into the package sources.
+
+The manually maintained comments and types in `Bagbutik-Core`, `BagbutikSpecDecoder`, `BagbutikDocsCollector`, and `BagbutikGenerator` are the best places to look when you need to change generation behavior or understand why a generated file looks the way it does.
 
 ## Manual patches applied to OpenAPI Spec
 
