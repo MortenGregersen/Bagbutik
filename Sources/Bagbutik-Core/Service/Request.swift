@@ -6,7 +6,7 @@ import FoundationNetworking
 
 private let baseUrl = URL(string: "https://api.appstoreconnect.apple.com")!
 
-/// A description of a request. This will internally be mapped to a real URL request.
+/// A lightweight description of an App Store Connect request before it is turned into a `URLRequest`.
 public struct Request<ResponseType, ErrorResponseType>: Sendable {
     /// The path of the endpoint.
     public let path: String
@@ -18,13 +18,13 @@ public struct Request<ResponseType, ErrorResponseType>: Sendable {
     public let requestBody: RequestBody?
 
     /**
-     Create a new description of a request.
+     Creates a request description for a generated endpoint helper.
 
      - Parameters:
-        - path: The path of the endpoint.
-        - method: The HTTP method to use for the request.
-        - parameters: The parameters to add to the query.
-        - requestBody: The request body to send with the request.
+        - path: The relative App Store Connect API path, such as `/v1/apps`.
+        - method: The HTTP method used by the endpoint.
+        - parameters: Optional query parameters encoded with Bagbutik's parameter helpers.
+        - requestBody: An optional request body that will be JSON encoded when executed.
       */
     public init(path: String, method: HTTPMethod, parameters: Parameters? = nil, requestBody: RequestBody? = nil) {
         self.path = path
@@ -53,6 +53,7 @@ public struct Request<ResponseType, ErrorResponseType>: Sendable {
                 parametersDict[key] = "\($0.value)"
             }
             if let limit = parameters.limit { parametersDict["limit"] = "\(limit)" }
+            parameters.customs?.forEach { parametersDict[$0.key] = $0.value }
             urlComponents.queryItems = parametersDict.map {
                 URLQueryItem(name: $0.key, value: $0.value)
             }

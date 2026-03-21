@@ -1,4 +1,4 @@
-/// A response which contains pages of data.
+/// A response that exposes pagination links and a page of resource data.
 public protocol PagedResponse {
     /// The type of the paged data.
     associatedtype Data

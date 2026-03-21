@@ -47,6 +47,19 @@ final class RequestTests: XCTestCase {
         XCTAssertTrue(queryItems.contains(where: { $0.name == "limit" && $0.value == "42" }))
     }
 
+    func testAsUrlRequest_CustomParameters() throws {
+        let request = Request<Void, Void>(
+            path: path,
+            method: method,
+            parameters: .init(customs: ["groupBy": "platform", "granularity": "daily"]))
+        let urlRequest = try request.asUrlRequest()
+        let urlComponents = URLComponents(url: urlRequest.url!, resolvingAgainstBaseURL: false)
+        let queryItems = urlComponents!.queryItems!
+        XCTAssertEqual(queryItems.count, 2)
+        XCTAssertTrue(queryItems.contains(where: { $0.name == "groupBy" && $0.value == "platform" }))
+        XCTAssertTrue(queryItems.contains(where: { $0.name == "granularity" && $0.value == "daily" }))
+    }
+
     func testAsUrlRequest_Body() throws {
         let requestBody = Body(anything: "something")
         let request = Request<Void, Void>(path: path, method: method, requestBody: requestBody)

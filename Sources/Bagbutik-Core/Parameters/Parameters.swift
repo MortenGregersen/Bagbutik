@@ -1,6 +1,6 @@
 import Foundation
 
-/// The parameters for a `Request`.
+/// Groups the supported query parameters for a generated ``Request``.
 public struct Parameters: Sendable {
     /// Fields to return for included related types.
     public let fields: [FieldParameter]?
@@ -16,11 +16,11 @@ public struct Parameters: Sendable {
     public let limits: [LimitParameter]?
     /// Number of resources to return
     public let limit: Int?
-    /// Custom parameters for an operation
+    /// Custom query items used by endpoints whose parameter names are not covered by the standard helpers.
     public let customs: [String: String]?
 
     /**
-     Create a new `Parameters` with the specified parameters.
+     Creates a parameter container for a generated endpoint helper.
 
      - Parameters:
         - fields: Fields to return for included related types.
@@ -30,7 +30,7 @@ public struct Parameters: Sendable {
         - sorts: Attributes by which to sort
         - limits: Number of resources to return
         - limit: Number of resources to return
-        - customs: Custom parameters for an operation
+        - customs: Custom query items to append directly to the request URL.
      */
     public init(fields: [FieldParameter]? = nil,
                 filters: [FilterParameter]? = nil,

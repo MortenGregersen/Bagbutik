@@ -11,34 +11,35 @@ import FoundationNetworking
 #endif
 
 /**
- Function used to fetch data for requests.
+ The async transport closure used by ``BagbutikService``.
 
- Only used to inject into a ``BagbutikService``.
+ Provide a custom implementation when you want to stub network traffic in tests, route
+ requests through a custom `URLSession`, or attach your own delegate handling.
 
  - Parameters:
-    - request: The URLRequest for which to load data.
-    - delegate: Task-specific delegate.
- - Returns: Data and response.
+    - request: The request to execute.
+    - delegate: An optional task specific delegate.
+ - Returns: The raw response body and URL response returned by the transport.
  */
 public typealias FetchData = @Sendable (_ request: URLRequest, _ delegate: URLSessionTaskDelegate?) async throws -> (Data, URLResponse)
 
 /**
- Service for performing requests. A valid JWT is required to perform requests.
+ Service responsible for sending generated App Store Connect requests.
 
- It is possible to just perform a single request, or to perform requests until all items has been fetched, if the response type supports paging.
-
- If the JWT has expired, it will be renewed before the request is performed.
+ A service instance owns the current JWT and automatically refreshes its signature before a
+ request is sent if the token has expired. It also centralizes response decoding, HTTP error
+ mapping, and pagination helpers for responses conforming to ``PagedResponse``.
  */
 public actor BagbutikService {
     var jwt: JWT
     private let fetchData: FetchData
 
     /**
-     Initialize a new service for performing requests.
+     Creates a service that can execute generated ``Request`` values.
 
      - Parameters:
-        - jwt: The JWT to use as authorization for the requests.
-        - fetchData: The function to fetch the data for the requests. Defaults to using `URLSession.shared`.
+        - jwt: The token used to authorize outgoing requests.
+        - fetchData: The transport closure used to execute requests. The default uses `URLSession.shared`.
      */
     public init(jwt: JWT, fetchData: @escaping FetchData = URLSession.shared.data(for:delegate:)) {
         self.jwt = jwt
@@ -63,11 +64,10 @@ public actor BagbutikService {
     }()
 
     /**
-     Perform a single request.
+     Executes a single request and decodes the response body into the request's response type.
 
-     - Parameters:
-        - request: A `Request` with the desired `Parameters`.
-     - Returns: The response of the request, decoded to the `ResponseType`.
+     - Parameter request: The generated request to execute.
+     - Returns: The decoded response value.
      */
     public func request<T>(_ request: Request<T, ErrorResponse>) async throws -> T
         where T: Decodable & Sendable {
@@ -75,6 +75,7 @@ public actor BagbutikService {
         return try await fetch(urlRequest)
     }
 
+    /// Executes a request that is expected to succeed without returning a response body.
     @discardableResult
     public func request(_ request: Request<EmptyResponse, ErrorResponse>) async throws -> EmptyResponse {
         let urlRequest = try request.asUrlRequest()
@@ -82,13 +83,13 @@ public actor BagbutikService {
     }
 
     /**
-     Perform all requests required to get all items.
+     Executes the initial paged request and follows `next` links until every page has been fetched.
 
-     The items for all responses will be in a single array.
+     The returned `responses` array preserves page order. The returned `data` array is the
+     concatenation of every page's `data` collection in that same order.
 
-     - Parameters:
-        - request: A `Request` with the desired `Parameters`.
-     - Returns: The responses of the requests, decoded to the `ResponseType` and an array with all the items.
+     - Parameter request: The first paged request to execute.
+     - Returns: All decoded page responses and a flattened array of every resource item.
      */
     public func requestAllPages<T>(_ request: Request<T, ErrorResponse>) async throws -> (responses: [T], data: [T.Data])
         where T: Decodable & PagedResponse & Sendable, T.Data: Sendable {
@@ -97,11 +98,10 @@ public actor BagbutikService {
     }
 
     /**
-     Perform a single request to get the items for the next page.
+     Fetches the next page for a paged response.
 
-     - Parameters:
-        - response: The response for the previous page.
-     - Returns: The response for the next page, decoded to the `ResponseType`.
+     - Parameter response: A previously decoded paged response.
+     - Returns: The next decoded page, or `nil` when no `next` link is available.
      */
     public func requestNextPage<T>(for response: T) async throws -> T?
         where T: Decodable & PagedResponse & Sendable {
@@ -111,13 +111,13 @@ public actor BagbutikService {
     }
 
     /**
-     Perform all requests required to get all items for the rest of the pages.
+     Continues fetching pages starting from an already decoded first page.
 
-     The items for all responses will be in a single array.
+     This is useful when you need to inspect the first page before deciding whether to load the
+     rest of the result set.
 
-     - Parameters:
-        - response: The response for the previous page.
-     - Returns: The responses for the rest of the pages, decoded to the `ResponseType` and an array with all the items.
+     - Parameter response: The first page that has already been fetched.
+     - Returns: All page responses including `response`, plus a flattened array of every item.
      */
     public func requestAllPages<T>(for response: T) async throws -> (responses: [T], data: [T.Data])
         where T: Decodable & PagedResponse & Sendable, T.Data: Sendable {

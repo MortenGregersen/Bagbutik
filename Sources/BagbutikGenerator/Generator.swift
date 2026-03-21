@@ -2,7 +2,7 @@ import BagbutikDocsCollector
 import BagbutikSpecDecoder
 import Foundation
 
-/// Errors that can occur when generating
+/// Errors that can occur while rendering Swift sources from the spec and collected docs.
 public enum GeneratorError: Error, Equatable {
     /// The URL is not a file URL
     case notFileUrl(FileURLType)
@@ -25,21 +25,23 @@ public enum GeneratorError: Error, Equatable {
 }
 
 /**
- An alias for a function loading a spec from a file URL
+ The closure used to load and decode the OpenAPI spec from disk.
 
- - Parameter fileUrl: The file URL to load the spec from
- - Returns: A decoded Spec
+ Keeping this injectable makes the generator straightforward to unit test.
+
+ - Parameter fileUrl: The file URL of the OpenAPI spec.
+ - Returns: A decoded ``Spec`` value.
  */
 typealias LoadSpec = (_ fileUrl: URL) throws -> Spec
 
-/// A generator which loads a spec and generates endpoints and models from the spec
+/// Generates endpoint and model source files from the decoded spec and normalized documentation.
 public class Generator {
     private let loadSpec: LoadSpec
     private let fileManager: TestableFileManager
     private let docsLoader: DocsLoader
     private let print: @MainActor (String) -> Void
 
-    /// Initialize a new generator
+    /// Creates a generator configured with the default spec loader, docs loader, and file manager.
     public convenience init() {
         let loadSpec: LoadSpec = { fileUrl in
             let specData = try Data(contentsOf: fileUrl)
@@ -59,12 +61,15 @@ public class Generator {
     }
 
     /**
-     Load a spec file and generate endpoints and models from the spec
+     Loads a spec and renders all endpoint and model files into the output directory.
+
+     The generator expects documentation JSON produced by ``DocsFetcher`` and loaded through
+     ``DocsLoader`` so generated symbols can include Apple's documentation in Xcode.
 
      - Parameters:
-        - specFileURL: The file URL to load the spec from
-        - outputDirURL: The file URL for the directory where the generated code should be saved
-        - documentationDirURL: The file URL for the directory containing the fetched documentation
+        - specFileURL: The file URL of the OpenAPI spec.
+        - outputDirURL: The root directory where generated source files should be written.
+        - documentationDirURL: The directory containing the normalized documentation cache.
      */
     public func generateAll(specFileURL: URL, outputDirURL: URL, documentationDirURL: URL) async throws {
         guard specFileURL.isFileURL else { throw GeneratorError.notFileUrl(.specFileURL) }
@@ -201,6 +206,16 @@ public class Generator {
         return operationsDirURL.appendingPathComponent("Relationships")
     }
 
+    /**
+     Renders one schema into the generated Swift source for the appropriate package.
+
+     - Parameters:
+        - schema: The schema to render.
+        - packageName: The package that should contain the generated type.
+        - otherSchemas: The complete schema index, used to resolve references while rendering.
+        - docsLoader: The documentation loader used to resolve symbol comments.
+     - Returns: The rendered model name, its full file contents, and the original schema documentation URL.
+     */
     static func generateModel(for schema: Schema, packageName: PackageName, otherSchemas: [String: Schema], docsLoader: DocsLoader)
         async throws -> (name: String, contents: String, url: String?) {
         let renderedSchema: String = switch schema {

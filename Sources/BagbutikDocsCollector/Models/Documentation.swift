@@ -1,12 +1,14 @@
 import BagbutikSpecDecoder
 import Foundation
 
+/// A normalized documentation node decoded from Apple's documentation JSON.
 public enum Documentation: Codable, Equatable, Sendable {
     case `enum`(EnumDocumentation)
     case `typealias`(TypealiasDocumentation)
     case object(ObjectDocumentation)
     case operation(OperationDocumentation)
 
+    /// The original Apple documentation identifier for this node.
     public var id: String {
         switch self {
         case .enum(let documentation):
@@ -20,6 +22,7 @@ public enum Documentation: Codable, Equatable, Sendable {
         }
     }
 
+    /// The symbol hierarchy reported by Apple's documentation payload.
     public var hierarchy: Hierarchy {
         switch self {
         case .enum(let documentation):
@@ -325,6 +328,7 @@ public enum Documentation: Codable, Equatable, Sendable {
         }
     }
 
+    /// The symbol hierarchy paths reported by Apple for a documentation node.
     public struct Hierarchy: Codable, Equatable, Sendable {
         let paths: [[String]]
 

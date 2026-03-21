@@ -1,4 +1,4 @@
-/// Parameter for an endpoint
+/// A parameter type that can be converted into the query key expected by an endpoint.
 public protocol EndpointParameter: Sendable {
     /// The name of the case to use as value for the parameter.
     var caseName: String { get }
@@ -19,7 +19,7 @@ extension EndpointParameter {
 
 // MARK: - Parameter with associated (string) value
 
-/// Parameter with an associated (string) value.
+/// A parameter whose associated value becomes the query value.
 public protocol AssociatedValueParameter: EndpointParameter {
     /// The comma separated list values to use as value for the parameter.
     var value: String { get }
@@ -39,7 +39,7 @@ extension AssociatedValueParameter {
     }
 }
 
-/// The value of a parameter.
+/// A string backed value that can be encoded into a query parameter.
 public protocol ParameterValue {
     /// The raw value for the parameter value.
     var rawValue: String { get }
@@ -47,9 +47,9 @@ public protocol ParameterValue {
 
 // MARK: - Parameter types
 
-/// Parameter for selecting which fields to return for included related types.
+/// Parameter for selecting which fields to return for included related resources.
 public protocol FieldParameter: AssociatedValueParameter {}
-/// Parameter for by which attributes, relationships, and IDs to filter.
+/// Parameter describing which attributes, relationships, or IDs to filter by.
 public protocol FilterParameter: AssociatedValueParameter {}
 /// Parameter for which relationship data to include in the response.
 public protocol IncludeParameter: EndpointParameter {}
@@ -67,7 +67,7 @@ extension ExistParameter {
     }
 }
 
-/// Parameter for by which attributes to sort.
+/// Parameter describing how the response should be sorted.
 public protocol SortParameter: EndpointParameter {
     /// The value for the parameter.
     var value: String { get }
@@ -80,7 +80,7 @@ extension SortParameter {
     public var value: String { rawValue }
 }
 
-/// Parameter for number of resources to return.
+/// Parameter describing a limit value for the response.
 public protocol LimitParameter: EndpointParameter {
     /// The value for the parameter.
     var value: Int { get }
