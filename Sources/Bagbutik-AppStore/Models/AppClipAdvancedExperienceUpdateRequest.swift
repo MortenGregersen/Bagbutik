@@ -69,17 +69,17 @@ public struct AppClipAdvancedExperienceUpdateRequest: Codable, Sendable, Request
 
         public struct Attributes: Codable, Sendable {
             public var action: AppClipAction?
-            public var businessCategory: AppClipAdvancedExperience.Attributes.BusinessCategory?
+            public var businessCategory: Clearable<AppClipAdvancedExperience.Attributes.BusinessCategory>?
             public var defaultLanguage: AppClipAdvancedExperienceLanguage?
             public var isPoweredBy: Bool?
-            public var place: Place?
+            public var place: Clearable<Place>?
             public var removed: Bool?
 
             public init(action: AppClipAction? = nil,
-                        businessCategory: AppClipAdvancedExperience.Attributes.BusinessCategory? = nil,
+                        businessCategory: Clearable<AppClipAdvancedExperience.Attributes.BusinessCategory>? = nil,
                         defaultLanguage: AppClipAdvancedExperienceLanguage? = nil,
                         isPoweredBy: Bool? = nil,
-                        place: Place? = nil,
+                        place: Clearable<Place>? = nil,
                         removed: Bool? = nil)
             {
                 self.action = action
@@ -93,10 +93,10 @@ public struct AppClipAdvancedExperienceUpdateRequest: Codable, Sendable, Request
             public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: AnyCodingKey.self)
                 action = try container.decodeIfPresent(AppClipAction.self, forKey: "action")
-                businessCategory = try container.decodeIfPresent(AppClipAdvancedExperience.Attributes.BusinessCategory.self, forKey: "businessCategory")
+                businessCategory = try container.decodeIfPresent(Clearable<AppClipAdvancedExperience.Attributes.BusinessCategory>.self, forKey: "businessCategory")
                 defaultLanguage = try container.decodeIfPresent(AppClipAdvancedExperienceLanguage.self, forKey: "defaultLanguage")
                 isPoweredBy = try container.decodeIfPresent(Bool.self, forKey: "isPoweredBy")
-                place = try container.decodeIfPresent(Place.self, forKey: "place")
+                place = try container.decodeIfPresent(Clearable<Place>.self, forKey: "place")
                 removed = try container.decodeIfPresent(Bool.self, forKey: "removed")
             }
 
