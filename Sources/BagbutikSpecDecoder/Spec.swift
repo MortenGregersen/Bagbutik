@@ -142,7 +142,11 @@ public struct Spec: Decodable {
                                   return mainAttributesPropertySchema.name == targetDataAttributesPropertySchema.name
                                       && mainAttributesPropertySchema.cases == targetDataAttributesPropertySchema.cases
                               }) else { continue }
-                        targetDataAttributesSchema.properties[targetDataAttributesPropertyName] = .init(type: .schemaRef("\(mainSchemaName).Attributes.\(targetDataAttributesPropertySchema.name)"), deprecated: targetDataAttributesProperty.deprecated)
+                        targetDataAttributesSchema.properties[targetDataAttributesPropertyName] = .init(
+                            type: .schemaRef("\(mainSchemaName).Attributes.\(targetDataAttributesPropertySchema.name)"),
+                            deprecated: targetDataAttributesProperty.deprecated,
+                            clearable: targetDataAttributesProperty.clearable
+                        )
                     }
                     targetDataSchema.properties["attributes"]?.type = .schema(targetDataAttributesSchema)
                     targetSchema.properties["data"] = .init(type: .schema(targetDataSchema), deprecated: targetDataProperty.deprecated)
@@ -221,45 +225,47 @@ public struct Spec: Decodable {
         }
 
         // Fix up the names of the sub schemas of ErrorResponse.Errors
-        guard case .object(var errorResponseSchema) = components.schemas["ErrorResponse"],
-              let errorsProperty = errorResponseSchema.properties["errors"],
-              case .arrayOfSubSchema(var errorSchema) = errorsProperty.type,
-              var sourceProperty = errorSchema.properties["source"],
-              case .oneOf(let sourcePropertyName, var sourceOneOfSchema) = sourceProperty.type,
-              let pointerIndex = sourceOneOfSchema.options.firstIndex(of: .schemaRef("ErrorSourcePointer")),
-              let parameterIndex = sourceOneOfSchema.options.firstIndex(of: .schemaRef("ErrorSourceParameter"))
-        else {
-            throw SpecError.unexpectedErrorResponseSource(components.schemas["ErrorResponse"])
-        }
-        sourceOneOfSchema.options[pointerIndex] = .schemaRef("JsonPointer")
-        sourceOneOfSchema.options[parameterIndex] = .schemaRef("Parameter")
-        sourceProperty.type = .oneOf(name: sourcePropertyName, schema: sourceOneOfSchema)
-        errorSchema.properties["source"] = sourceProperty
+        if components.schemas["ErrorResponse"] != nil {
+            guard case .object(var errorResponseSchema) = components.schemas["ErrorResponse"],
+                  let errorsProperty = errorResponseSchema.properties["errors"],
+                  case .arrayOfSubSchema(var errorSchema) = errorsProperty.type,
+                  var sourceProperty = errorSchema.properties["source"],
+                  case .oneOf(let sourcePropertyName, var sourceOneOfSchema) = sourceProperty.type,
+                  let pointerIndex = sourceOneOfSchema.options.firstIndex(of: .schemaRef("ErrorSourcePointer")),
+                  let parameterIndex = sourceOneOfSchema.options.firstIndex(of: .schemaRef("ErrorSourceParameter"))
+            else {
+                throw SpecError.unexpectedErrorResponseSource(components.schemas["ErrorResponse"])
+            }
+            sourceOneOfSchema.options[pointerIndex] = .schemaRef("JsonPointer")
+            sourceOneOfSchema.options[parameterIndex] = .schemaRef("Parameter")
+            sourceProperty.type = .oneOf(name: sourcePropertyName, schema: sourceOneOfSchema)
+            errorSchema.properties["source"] = sourceProperty
 
-        // FB12292035: Mark `detail` as optional on ErrorResponse.Errors
-        // In Apple's OpenAPI spec the `detail` property on `ErrorResponse.Errors` is marked as `required`.
-        // On 12/1/23 some errors (with status code 409) has been observed, with no `detail`.
-        errorSchema.requiredProperties.removeAll(where: { $0 == "detail" })
-        addPatchedSchema(.object(errorSchema), location: .nestedProperty(rootSchemaName: "ErrorResponse", propertyPath: ["errors"]))
+            // FB12292035: Mark `detail` as optional on ErrorResponse.Errors
+            // In Apple's OpenAPI spec the `detail` property on `ErrorResponse.Errors` is marked as `required`.
+            // On 12/1/23 some errors (with status code 409) has been observed, with no `detail`.
+            errorSchema.requiredProperties.removeAll(where: { $0 == "detail" })
+            addPatchedSchema(.object(errorSchema), location: .nestedProperty(rootSchemaName: "ErrorResponse", propertyPath: ["errors"]))
 
-        // FB12292035: Add `associatedErrors` to the `meta` property on ErrorResponse.Errors
-        // In Apple's OpenAPI spec and documentation the `meta` property does not include the `associatedErrors` (last checked 26/1/24).
-        // But it is observed when creating a ReviewSubmissionItem with an AppStoreVersion fails.
-        if let metaProperty = errorSchema.properties["meta"],
-           case .dictionary = metaProperty.type {
-            errorSchema.properties["meta"] = Property(type: .schema(.init(
-                name: "Meta",
-                url: "",
-                properties: [
-                    "associatedErrors": .init(type: .dictionary(.arrayOfSchemaRef("Errors"))),
-                    "additionalProperties": metaProperty
-                ]
-            )))
+            // FB12292035: Add `associatedErrors` to the `meta` property on ErrorResponse.Errors
+            // In Apple's OpenAPI spec and documentation the `meta` property does not include the `associatedErrors` (last checked 26/1/24).
+            // But it is observed when creating a ReviewSubmissionItem with an AppStoreVersion fails.
+            if let metaProperty = errorSchema.properties["meta"],
+               case .dictionary = metaProperty.type {
+                errorSchema.properties["meta"] = Property(type: .schema(.init(
+                    name: "Meta",
+                    url: "",
+                    properties: [
+                        "associatedErrors": .init(type: .dictionary(.arrayOfSchemaRef("Errors"))),
+                        "additionalProperties": metaProperty
+                    ]
+                )))
+            }
+            errorResponseSchema.additionalProtocols.insert("Error")
+            errorResponseSchema.properties["errors"]?.type = .arrayOfSubSchema(errorSchema)
+            components.schemas["ErrorResponse"] = .object(errorResponseSchema)
+            addPatchedSchema(.object(errorResponseSchema), location: .topLevel(schemaName: "ErrorResponse"))
         }
-        errorResponseSchema.additionalProtocols.insert("Error")
-        errorResponseSchema.properties["errors"]?.type = .arrayOfSubSchema(errorSchema)
-        components.schemas["ErrorResponse"] = .object(errorResponseSchema)
-        addPatchedSchema(.object(errorResponseSchema), location: .topLevel(schemaName: "ErrorResponse"))
 
         // Marks the `kidsAgeBand` and `developerAgeRatingInfoUrl` properties on `AgeRatingDeclarationUpdateRequest.Data.Attributes` as clearable.
         // Apple's OpenAPI spec has no information about how to clear a value in an update request.
@@ -283,6 +289,28 @@ public struct Spec: Decodable {
                 components.schemas["AgeRatingDeclarationUpdateRequest"] = .object(ageRatingDeclarationUpdateRequestSchema)
             }
             addPatchedSchema(.object(ageRatingDeclarationUpdateRequestSchema), location: .topLevel(schemaName: "AgeRatingDeclarationUpdateRequest"))
+        }
+
+        // Marks the `businessCategory` and `place` properties on `AppClipAdvancedExperienceUpdateRequest.Data.Attributes` as clearable.
+        // Apple's OpenAPI spec does not express that these can be removed with `null`, but the API expects that.
+        if case .object(var appClipAdvancedExperienceUpdateRequestSchema) = components.schemas["AppClipAdvancedExperienceUpdateRequest"] {
+            if var appClipAdvancedExperienceUpdateRequestDataSchema: ObjectSchema = appClipAdvancedExperienceUpdateRequestSchema.subSchemas.compactMap({ (subSchema: SubSchema) -> ObjectSchema? in
+                guard case .objectSchema(let subSchema) = subSchema, subSchema.name == "Data" else { return nil }
+                return subSchema
+            }).first,
+               var appClipAdvancedExperienceUpdateRequestDataAttributesSchema: ObjectSchema = appClipAdvancedExperienceUpdateRequestDataSchema.subSchemas.compactMap({ (subSchema: SubSchema) -> ObjectSchema? in
+                   guard case .objectSchema(let subSchema) = subSchema, subSchema.name == "Attributes" else { return nil }
+                   return subSchema
+               }).first,
+               let businessCategoryProperty = appClipAdvancedExperienceUpdateRequestDataAttributesSchema.properties["businessCategory"],
+               let placeProperty = appClipAdvancedExperienceUpdateRequestDataAttributesSchema.properties["place"] {
+                appClipAdvancedExperienceUpdateRequestDataAttributesSchema.properties["businessCategory"] = .init(type: businessCategoryProperty.type, deprecated: businessCategoryProperty.deprecated, clearable: true)
+                appClipAdvancedExperienceUpdateRequestDataAttributesSchema.properties["place"] = .init(type: placeProperty.type, deprecated: placeProperty.deprecated, clearable: true)
+                appClipAdvancedExperienceUpdateRequestDataSchema.properties["attributes"]?.type = .schema(appClipAdvancedExperienceUpdateRequestDataAttributesSchema)
+                appClipAdvancedExperienceUpdateRequestSchema.properties["data"]?.type = .schema(appClipAdvancedExperienceUpdateRequestDataSchema)
+                components.schemas["AppClipAdvancedExperienceUpdateRequest"] = .object(appClipAdvancedExperienceUpdateRequestSchema)
+            }
+            addPatchedSchema(.object(appClipAdvancedExperienceUpdateRequestSchema), location: .topLevel(schemaName: "AppClipAdvancedExperienceUpdateRequest"))
         }
 
         // FB16908301: Adds list of `PurchaseRequirement` to `AppEvent`.

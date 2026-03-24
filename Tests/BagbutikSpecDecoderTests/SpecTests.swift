@@ -260,6 +260,100 @@ final class SpecTests: XCTestCase {
         XCTAssertEqual(typeSchemaRef, "Profile.Attributes.ProfileType")
     }
 
+    func testFlattenIdenticalSchemas_PreservesClearableOnAppClipAdvancedExperienceUpdateRequestBusinessCategory() throws {
+        let specString = """
+        {
+            "paths": {},
+            "components": {
+                "schemas": {
+                    "AppClipAdvancedExperience": {
+                        "type": "object",
+                        "title": "AppClipAdvancedExperience",
+                        "properties": {
+                            "attributes": {
+                                "type": "object",
+                                "properties": {
+                                    "businessCategory": {
+                                        "type": "string",
+                                        "enum": [ "AUTOMOTIVE", "FINANCE" ]
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "AppClipAdvancedExperienceUpdateRequest": {
+                        "type": "object",
+                        "title": "AppClipAdvancedExperienceUpdateRequest",
+                        "properties": {
+                            "data": {
+                                "type": "object",
+                                "properties": {
+                                    "type": {
+                                        "type": "string",
+                                        "enum": [ "appClipAdvancedExperiences" ]
+                                    },
+                                    "id": {
+                                        "type": "string"
+                                    },
+                                    "attributes": {
+                                        "type": "object",
+                                        "properties": {
+                                            "businessCategory": {
+                                                "type": "string",
+                                                "enum": [ "AUTOMOTIVE", "FINANCE" ]
+                                            },
+                                            "place": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "names": {
+                                                        "type": "array",
+                                                        "items": {
+                                                            "type": "string"
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                },
+                                "required": [ "id", "type" ]
+                            }
+                        },
+                        "required": [ "data" ]
+                    }
+                }
+            }
+        }
+        """
+
+        let jsonDecoder = JSONDecoder()
+        var spec = try jsonDecoder.decode(Spec.self, from: specString.data(using: .utf8)!)
+
+        try spec.applyManualPatches()
+        spec.flattenIdenticalSchemas()
+
+        guard case .object(let appClipAdvancedExperienceUpdateRequestSchema) = spec.components.schemas["AppClipAdvancedExperienceUpdateRequest"],
+              let appClipAdvancedExperienceUpdateRequestDataSchema: ObjectSchema = appClipAdvancedExperienceUpdateRequestSchema.subSchemas.compactMap({ (subSchema: SubSchema) -> ObjectSchema? in
+                  guard case .objectSchema(let subSchema) = subSchema, subSchema.name == "Data" else { return nil }
+                  return subSchema
+              }).first,
+              let appClipAdvancedExperienceUpdateRequestDataAttributesSchema: ObjectSchema = appClipAdvancedExperienceUpdateRequestDataSchema.subSchemas.compactMap({ (subSchema: SubSchema) -> ObjectSchema? in
+                  guard case .objectSchema(let subSchema) = subSchema, subSchema.name == "Attributes" else { return nil }
+                  return subSchema
+              }).first,
+              let businessCategoryProperty = appClipAdvancedExperienceUpdateRequestDataAttributesSchema.properties["businessCategory"],
+              let placeProperty = appClipAdvancedExperienceUpdateRequestDataAttributesSchema.properties["place"] else {
+            XCTFail(); return
+        }
+
+        XCTAssertTrue(businessCategoryProperty.clearable)
+        XCTAssertTrue(placeProperty.clearable)
+        XCTAssertEqual(
+            businessCategoryProperty.type,
+            .schemaRef("AppClipAdvancedExperience.Attributes.BusinessCategory")
+        )
+    }
+
     func testApplyManualPatches() throws {
         let specString = """
         {
@@ -611,6 +705,46 @@ final class SpecTests: XCTestCase {
                         },
                         "required" : [ "data" ]
                     },
+                    "AppClipAdvancedExperienceUpdateRequest" : {
+                        "type" : "object",
+                        "title" : "AppClipAdvancedExperienceUpdateRequest",
+                        "properties" : {
+                            "data" : {
+                                "type" : "object",
+                                "properties" : {
+                                    "type" : {
+                                        "type" : "string",
+                                        "enum" : [ "appClipAdvancedExperiences" ]
+                                    },
+                                    "id" : {
+                                        "type" : "string"
+                                    },
+                                    "attributes" : {
+                                        "type" : "object",
+                                        "properties" : {
+                                            "businessCategory" : {
+                                                "type" : "string",
+                                                "enum" : [ "AUTOMOTIVE", "FINANCE" ]
+                                            },
+                                            "place" : {
+                                                "type" : "object",
+                                                "properties" : {
+                                                    "names" : {
+                                                        "type" : "array",
+                                                        "items" : {
+                                                            "type" : "string"
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                },
+                                "required" : [ "id", "type" ]
+                            }
+                        },
+                        "required" : [ "data" ]
+                    },
                     "AppEvent" : {
                         "type" : "object",
                         "title" : "AppEvent",
@@ -706,6 +840,22 @@ final class SpecTests: XCTestCase {
         }
         XCTAssertTrue(kidsAgeBandProperty.clearable)
         XCTAssertTrue(developerAgeRatingInfoUrlProperty.clearable)
+
+        guard case .object(let appClipAdvancedExperienceUpdateRequestSchema) = spec.components.schemas["AppClipAdvancedExperienceUpdateRequest"],
+              let appClipAdvancedExperienceUpdateRequestDataSchema: ObjectSchema = appClipAdvancedExperienceUpdateRequestSchema.subSchemas.compactMap({ (subSchema: SubSchema) -> ObjectSchema? in
+                  guard case .objectSchema(let subSchema) = subSchema, subSchema.name == "Data" else { return nil }
+                  return subSchema
+              }).first,
+              let appClipAdvancedExperienceUpdateRequestDataAttributesSchema: ObjectSchema = appClipAdvancedExperienceUpdateRequestDataSchema.subSchemas.compactMap({ (subSchema: SubSchema) -> ObjectSchema? in
+                  guard case .objectSchema(let subSchema) = subSchema, subSchema.name == "Attributes" else { return nil }
+                  return subSchema
+              }).first,
+              let businessCategoryProperty = appClipAdvancedExperienceUpdateRequestDataAttributesSchema.properties["businessCategory"],
+              let placeProperty = appClipAdvancedExperienceUpdateRequestDataAttributesSchema.properties["place"] else {
+            XCTFail(); return
+        }
+        XCTAssertTrue(businessCategoryProperty.clearable)
+        XCTAssertTrue(placeProperty.clearable)
 
         guard case .object(let appEventSchema) = spec.components.schemas["AppEvent"],
               case .schema(let appEventAttributesSchema) = appEventSchema.properties["attributes"]?.type,
