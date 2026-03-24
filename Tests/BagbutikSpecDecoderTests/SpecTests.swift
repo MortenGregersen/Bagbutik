@@ -722,6 +722,10 @@ final class SpecTests: XCTestCase {
                                     "attributes" : {
                                         "type" : "object",
                                         "properties" : {
+                                            "businessCategory" : {
+                                                "type" : "string",
+                                                "enum" : [ "AUTOMOTIVE", "FINANCE" ]
+                                            },
                                             "place" : {
                                                 "type" : "object",
                                                 "properties" : {
