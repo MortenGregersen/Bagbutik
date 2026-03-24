@@ -142,7 +142,11 @@ public struct Spec: Decodable {
                                   return mainAttributesPropertySchema.name == targetDataAttributesPropertySchema.name
                                       && mainAttributesPropertySchema.cases == targetDataAttributesPropertySchema.cases
                               }) else { continue }
-                        targetDataAttributesSchema.properties[targetDataAttributesPropertyName] = .init(type: .schemaRef("\(mainSchemaName).Attributes.\(targetDataAttributesPropertySchema.name)"), deprecated: targetDataAttributesProperty.deprecated)
+                        targetDataAttributesSchema.properties[targetDataAttributesPropertyName] = .init(
+                            type: .schemaRef("\(mainSchemaName).Attributes.\(targetDataAttributesPropertySchema.name)"),
+                            deprecated: targetDataAttributesProperty.deprecated,
+                            clearable: targetDataAttributesProperty.clearable
+                        )
                     }
                     targetDataSchema.properties["attributes"]?.type = .schema(targetDataAttributesSchema)
                     targetSchema.properties["data"] = .init(type: .schema(targetDataSchema), deprecated: targetDataProperty.deprecated)
@@ -283,6 +287,28 @@ public struct Spec: Decodable {
                 components.schemas["AgeRatingDeclarationUpdateRequest"] = .object(ageRatingDeclarationUpdateRequestSchema)
             }
             addPatchedSchema(.object(ageRatingDeclarationUpdateRequestSchema), location: .topLevel(schemaName: "AgeRatingDeclarationUpdateRequest"))
+        }
+
+        // Marks the `businessCategory` and `place` properties on `AppClipAdvancedExperienceUpdateRequest.Data.Attributes` as clearable.
+        // Apple's OpenAPI spec does not express that these can be removed with `null`, but the API expects that.
+        if case .object(var appClipAdvancedExperienceUpdateRequestSchema) = components.schemas["AppClipAdvancedExperienceUpdateRequest"] {
+            if var appClipAdvancedExperienceUpdateRequestDataSchema: ObjectSchema = appClipAdvancedExperienceUpdateRequestSchema.subSchemas.compactMap({ (subSchema: SubSchema) -> ObjectSchema? in
+                guard case .objectSchema(let subSchema) = subSchema, subSchema.name == "Data" else { return nil }
+                return subSchema
+            }).first,
+               var appClipAdvancedExperienceUpdateRequestDataAttributesSchema: ObjectSchema = appClipAdvancedExperienceUpdateRequestDataSchema.subSchemas.compactMap({ (subSchema: SubSchema) -> ObjectSchema? in
+                   guard case .objectSchema(let subSchema) = subSchema, subSchema.name == "Attributes" else { return nil }
+                   return subSchema
+               }).first,
+               let businessCategoryProperty = appClipAdvancedExperienceUpdateRequestDataAttributesSchema.properties["businessCategory"],
+               let placeProperty = appClipAdvancedExperienceUpdateRequestDataAttributesSchema.properties["place"] {
+                appClipAdvancedExperienceUpdateRequestDataAttributesSchema.properties["businessCategory"] = .init(type: businessCategoryProperty.type, deprecated: businessCategoryProperty.deprecated, clearable: true)
+                appClipAdvancedExperienceUpdateRequestDataAttributesSchema.properties["place"] = .init(type: placeProperty.type, deprecated: placeProperty.deprecated, clearable: true)
+                appClipAdvancedExperienceUpdateRequestDataSchema.properties["attributes"]?.type = .schema(appClipAdvancedExperienceUpdateRequestDataAttributesSchema)
+                appClipAdvancedExperienceUpdateRequestSchema.properties["data"]?.type = .schema(appClipAdvancedExperienceUpdateRequestDataSchema)
+                components.schemas["AppClipAdvancedExperienceUpdateRequest"] = .object(appClipAdvancedExperienceUpdateRequestSchema)
+            }
+            addPatchedSchema(.object(appClipAdvancedExperienceUpdateRequestSchema), location: .topLevel(schemaName: "AppClipAdvancedExperienceUpdateRequest"))
         }
 
         // FB16908301: Adds list of `PurchaseRequirement` to `AppEvent`.
