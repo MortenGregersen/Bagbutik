@@ -745,6 +745,19 @@ final class SpecTests: XCTestCase {
                         },
                         "required" : [ "data" ]
                     },
+                    "AppPriceV2InlineCreate" : {
+                        "type" : "object",
+                        "title" : "AppPriceV2InlineCreate",
+                        "properties" : {
+                            "id" : {
+                                "type" : "string"
+                            },
+                            "type" : {
+                                "type" : "string",
+                                "enum" : [ "appPrices" ]
+                            }
+                        }
+                    },
                     "AppEvent" : {
                         "type" : "object",
                         "title" : "AppEvent",
@@ -856,6 +869,24 @@ final class SpecTests: XCTestCase {
         }
         XCTAssertTrue(businessCategoryProperty.clearable)
         XCTAssertTrue(placeProperty.clearable)
+
+        guard case .object(let appPriceV2InlineCreateSchema) = spec.components.schemas["AppPriceV2InlineCreate"],
+              case .schema(let appPriceV2InlineCreateAttributesSchema) = appPriceV2InlineCreateSchema.properties["attributes"]?.type,
+              case .schema(let appPriceV2InlineCreateRelationshipsSchema) = appPriceV2InlineCreateSchema.properties["relationships"]?.type,
+              case .schema(let appPricePointSchema) = appPriceV2InlineCreateRelationshipsSchema.properties["appPricePoint"]?.type,
+              case .schema(let appPricePointDataSchema) = appPricePointSchema.properties["data"]?.type,
+              case .constant(let appPricePointType) = appPricePointDataSchema.properties["type"]?.type,
+              case .simple(let startDateType) = appPriceV2InlineCreateAttributesSchema.properties["startDate"]?.type,
+              case .simple(let endDateType) = appPriceV2InlineCreateAttributesSchema.properties["endDate"]?.type
+        else {
+            XCTFail(); return
+        }
+        XCTAssertEqual(startDateType, .string())
+        XCTAssertEqual(endDateType, .string())
+        XCTAssertEqual(appPricePointType, "appPricePoints")
+        XCTAssertEqual(appPriceV2InlineCreateRelationshipsSchema.requiredProperties, ["appPricePoint"])
+        XCTAssertEqual(appPricePointSchema.requiredProperties, ["data"])
+        XCTAssertEqual(appPricePointDataSchema.requiredProperties, ["type", "id"])
 
         guard case .object(let appEventSchema) = spec.components.schemas["AppEvent"],
               case .schema(let appEventAttributesSchema) = appEventSchema.properties["attributes"]?.type,

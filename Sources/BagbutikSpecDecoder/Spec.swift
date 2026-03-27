@@ -313,6 +313,53 @@ public struct Spec: Decodable {
             addPatchedSchema(.object(appClipAdvancedExperienceUpdateRequestSchema), location: .topLevel(schemaName: "AppClipAdvancedExperienceUpdateRequest"))
         }
 
+        // Adds missing attributes and relationships to AppPriceV2InlineCreate.
+        // Apple's OpenAPI spec currently only includes `id` and `type`, which omits the payload
+        // used when creating manual app prices.
+        if case .object(var appPriceV2InlineCreateSchema) = components.schemas["AppPriceV2InlineCreate"] {
+            if appPriceV2InlineCreateSchema.properties["attributes"] == nil {
+                let attributesSchema = ObjectSchema(
+                    name: "Attributes",
+                    url: "\(appPriceV2InlineCreateSchema.url)/attributes",
+                    properties: [
+                        "startDate": .init(type: .simple(.string())),
+                        "endDate": .init(type: .simple(.string()))
+                    ]
+                )
+                appPriceV2InlineCreateSchema.properties["attributes"] = .init(type: .schema(attributesSchema))
+            }
+            if appPriceV2InlineCreateSchema.properties["relationships"] == nil {
+                let appPricePointDataSchema = ObjectSchema(
+                    name: "Data",
+                    url: "\(appPriceV2InlineCreateSchema.url)/relationships/appPricePoint/data",
+                    properties: [
+                        "type": .init(type: .constant("appPricePoints")),
+                        "id": .init(type: .simple(.string()))
+                    ],
+                    requiredProperties: ["type", "id"]
+                )
+                let appPricePointSchema = ObjectSchema(
+                    name: "AppPricePoint",
+                    url: "\(appPriceV2InlineCreateSchema.url)/relationships/appPricePoint",
+                    properties: [
+                        "data": .init(type: .schema(appPricePointDataSchema))
+                    ],
+                    requiredProperties: ["data"]
+                )
+                let relationshipsSchema = ObjectSchema(
+                    name: "Relationships",
+                    url: "\(appPriceV2InlineCreateSchema.url)/relationships",
+                    properties: [
+                        "appPricePoint": .init(type: .schema(appPricePointSchema))
+                    ],
+                    requiredProperties: ["appPricePoint"]
+                )
+                appPriceV2InlineCreateSchema.properties["relationships"] = .init(type: .schema(relationshipsSchema))
+            }
+            components.schemas["AppPriceV2InlineCreate"] = .object(appPriceV2InlineCreateSchema)
+            addPatchedSchema(.object(appPriceV2InlineCreateSchema), location: .topLevel(schemaName: "AppPriceV2InlineCreate"))
+        }
+
         // FB16908301: Adds list of `PurchaseRequirement` to `AppEvent`.
         if case .object(var appEventSchema) = components.schemas["AppEvent"] {
             if case.schema(var appEventAttributesSchema) = appEventSchema.properties["attributes"]?.type,
