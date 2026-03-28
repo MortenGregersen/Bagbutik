@@ -22,13 +22,28 @@ jobs:
         swift --version
     - name: Build & Test
       run: swift test -v --enable-code-coverage --xunit-output .build/test-results.xml
-    - name: Resolve SwiftPM coverage report path
+    - name: Generate LCOV coverage report
       id: coverage
       run: |
-        # SwiftPM writes coverage JSON to a generated path. Resolve it and pass it to Codecov explicitly.
-        coverage_path="$(swift test --skip-build --show-codecov-path --enable-code-coverage | tail -n 1)"
-        test -f "$coverage_path"
-        echo "path=$coverage_path" >> "$GITHUB_OUTPUT"
+        # SwiftPM's exported JSON uploads, but Codecov marks it unusable.
+        # Convert the collected profdata to LCOV instead.
+        coverage_json_path="$(swift test --skip-build --show-codecov-path --enable-code-coverage | tail -n 1)"
+        codecov_dir="$(dirname "$coverage_json_path")"
+        build_dir="$(dirname "$codecov_dir")"
+        profdata_path="$codecov_dir/default.profdata"
+        test_binary_path="$build_dir/BagbutikPackageTests.xctest/Contents/MacOS/BagbutikPackageTests"
+        test -f "$profdata_path"
+        test -f "$test_binary_path"
+        xcrun llvm-cov export -format=lcov -instr-profile "$profdata_path" "$test_binary_path" > .build/codecov.lcov
+        test -s .build/codecov.lcov
+        echo "path=.build/codecov.lcov" >> "$GITHUB_OUTPUT"
+    - name: Resolve test results report path
+      id: test_results
+      run: |
+        test_results_path="$(find .build -type f -name 'test-results*.xml' | head -n 1)"
+        test -n "$test_results_path"
+        test -f "$test_results_path"
+        echo "path=$test_results_path" >> "$GITHUB_OUTPUT"
     - name: Upload coverage reports to Codecov
       uses: codecov/codecov-action@v5
       with:
@@ -39,7 +54,7 @@ jobs:
       uses: codecov/codecov-action@v5
       with:
         token: ${{ secrets.CODECOV_TOKEN }}
-        files: .build/test-results.xml
+        files: ${{ steps.test_results.outputs.path }}
         report_type: test_results
   build-linux:
     name: Build and Test (Linux) - Swift ${{ matrix.swift }}
