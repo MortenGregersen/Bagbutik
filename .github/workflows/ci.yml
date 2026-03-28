@@ -21,16 +21,25 @@ jobs:
         xcodebuild -version
         swift --version
     - name: Build & Test
-      run: swift test -v --enable-code-coverage
+      run: swift test -v --enable-code-coverage --xunit-output .build/test-results.xml
+    - name: Resolve SwiftPM coverage report path
+      id: coverage
+      run: |
+        # SwiftPM writes coverage JSON to a generated path. Resolve it and pass it to Codecov explicitly.
+        coverage_path="$(swift test --skip-build --show-codecov-path --enable-code-coverage | tail -n 1)"
+        test -f "$coverage_path"
+        echo "path=$coverage_path" >> "$GITHUB_OUTPUT"
     - name: Upload coverage reports to Codecov
       uses: codecov/codecov-action@v5
       with:
         token: ${{ secrets.CODECOV_TOKEN }}
+        files: ${{ steps.coverage.outputs.path }}
     - name: Upload test results to Codecov
       if: ${{ !cancelled() }}
       uses: codecov/codecov-action@v5
       with:
         token: ${{ secrets.CODECOV_TOKEN }}
+        files: .build/test-results.xml
         report_type: test_results
   build-linux:
     name: Build and Test (Linux) - Swift ${{ matrix.swift }}
