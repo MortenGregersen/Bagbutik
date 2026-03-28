@@ -263,6 +263,108 @@ final class GeneratorTests: XCTestCase {
         XCTAssertEqual(fileManager.filesCreated.map(\.name), ["UsersResponse.swift"])
         XCTAssertEqual(fileManager.directoriesCreated.filter { $0.hasSuffix("/Bagbutik-Users/Models") }.count, 1)
     }
+
+    func testInferPackageNameForOperationWithoutDocumentation() async throws {
+        let fileManager = MockFileManager()
+        let docsLoader = DocsLoader(loadFile: { _ in "{}".data(using: .utf8)! })
+        #if compiler(<6.0)
+        let printer = await Printer()
+        #else
+        let printer = Printer()
+        #endif
+        let generator = Generator(loadSpec: { _ in
+            try Spec(paths: [
+                "/v1/users": Path(path: "/v1/users", info: .init(mainType: "Users", version: "V1", isRelationship: false), operations: [
+                    .init(id: "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-users",
+                          name: "listUsers",
+                          method: .get,
+                          successResponseType: "UsersResponse",
+                          errorResponseType: "ErrorResponse"),
+                ]),
+            ], components: .init(schemas: [:]))
+        }, fileManager: fileManager, docsLoader: docsLoader, print: printer.print)
+
+        try await generator.generateAll(specFileURL: validSpecFileURL, outputDirURL: validOutputDirURL, documentationDirURL: validDocumentationDirURL)
+
+        XCTAssertEqual(fileManager.filesCreated.map(\.name), ["ListUsersV1.swift"])
+        XCTAssertEqual(fileManager.directoriesCreated.filter { $0.hasSuffix("/Bagbutik-Users/Endpoints/Users") }.count, 1)
+    }
+
+    func testInferPackageNameForNonRequestSchemaUsesGeneralModelsDirectory() async throws {
+        let fileManager = MockFileManager()
+        let docsLoader = DocsLoader(loadFile: { _ in "{}".data(using: .utf8)! })
+        #if compiler(<6.0)
+        let printer = await Printer()
+        #else
+        let printer = Printer()
+        #endif
+        let generator = Generator(loadSpec: { _ in
+            try Spec(
+                paths: [:],
+                components: .init(schemas: [
+                    "User": .object(.init(name: "User", url: "some://url"))
+                ])
+            )
+        }, fileManager: fileManager, docsLoader: docsLoader, print: printer.print)
+
+        try await generator.generateAll(specFileURL: validSpecFileURL, outputDirURL: validOutputDirURL, documentationDirURL: validDocumentationDirURL)
+
+        XCTAssertEqual(fileManager.filesCreated.map(\.name), ["User.swift"])
+        XCTAssertEqual(fileManager.directoriesCreated.filter { $0.hasSuffix("/Bagbutik-Models/Users") }.count, 1)
+    }
+
+    func testGenerateAllDoesNotRemoveMissingChildren() async throws {
+        final class MissingFileManager: MockFileManager {
+            override func fileExists(atPath path: String) -> Bool {
+                false
+            }
+        }
+
+        let fileManager = MissingFileManager()
+        #if compiler(<6.0)
+        let printer = await Printer()
+        #else
+        let printer = Printer()
+        #endif
+        let generator = Generator(loadSpec: { _ in try Spec(paths: [:], components: .init(schemas: [:])) }, fileManager: fileManager, docsLoader: docsLoader, print: printer.print)
+
+        try await generator.generateAll(specFileURL: validSpecFileURL, outputDirURL: validOutputDirURL, documentationDirURL: validDocumentationDirURL)
+
+        XCTAssertTrue(fileManager.itemsRemoved.isEmpty)
+    }
+
+    func testGenerateModelAddsImportsForRequestAndLinkageSchemas() async throws {
+        let docsLoader = DocsLoader(schemaDocumentationById: [:])
+        let requestSchema = Schema.object(.init(name: "UserUpdateRequest", url: "some://url"))
+        let linkageSchema = Schema.object(.init(name: "UserVisibleAppsLinkageResponse", url: "some://url"))
+
+        let requestModel = try await Generator.generateModel(for: requestSchema, packageName: .users, otherSchemas: [:], docsLoader: docsLoader)
+        let linkageModel = try await Generator.generateModel(for: linkageSchema, packageName: .core, otherSchemas: [:], docsLoader: docsLoader)
+
+        XCTAssertTrue(requestModel.contents.contains("import Bagbutik_Core"))
+        XCTAssertTrue(requestModel.contents.contains("import Bagbutik_Models"))
+        XCTAssertTrue(linkageModel.contents.contains("import Bagbutik_Core"))
+    }
+
+    func testConvenienceInitWithEmptySpecOnDisk() async throws {
+        let temporaryDirectoryURL = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString)
+        let specFileURL = temporaryDirectoryURL.appendingPathComponent("spec.json")
+        let outputDirURL = temporaryDirectoryURL.appendingPathComponent("Output")
+        let documentationDirURL = temporaryDirectoryURL.appendingPathComponent("Documentation")
+        try FileManager.default.createDirectory(at: documentationDirURL, withIntermediateDirectories: true)
+        defer {
+            try? FileManager.default.removeItem(at: temporaryDirectoryURL)
+        }
+
+        try #"{"paths":{},"components":{"schemas":{}}}"#.data(using: .utf8)!.write(to: specFileURL)
+        try "{}".data(using: .utf8)!.write(to: documentationDirURL.appendingPathComponent(DocsFilename.operationDocumentation.filename))
+        try "{}".data(using: .utf8)!.write(to: documentationDirURL.appendingPathComponent(DocsFilename.schemaMapping.filename))
+        try "{}".data(using: .utf8)!.write(to: documentationDirURL.appendingPathComponent(DocsFilename.schemaDocumentation.filename))
+
+        try await Generator().generateAll(specFileURL: specFileURL, outputDirURL: outputDirURL, documentationDirURL: documentationDirURL)
+
+        XCTAssertTrue(FileManager.default.fileExists(atPath: outputDirURL.appendingPathComponent("Bagbutik-Core").path))
+    }
     
     private class MockFileManager: TestableFileManager {
         var directoriesCreated = [String]()

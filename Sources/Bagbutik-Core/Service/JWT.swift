@@ -109,9 +109,15 @@ public struct JWT: Sendable {
     }
     
     private struct Header: Encodable {
-        let alg = "ES256"
+        let alg: String
         let kid: String
-        let typ = "JWT"
+        let typ: String
+
+        init(kid: String) {
+            self.alg = "ES256"
+            self.kid = kid
+            self.typ = "JWT"
+        }
     }
     
     private struct Payload: Encodable, Sendable {
