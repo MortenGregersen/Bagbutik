@@ -922,4 +922,46 @@ final class SpecTests: XCTestCase {
             XCTAssertEqual(error as! SpecError, .unexpectedErrorResponseSource(spec.components.schemas["ErrorResponse"]))
         }
     }
+
+    func testPatchedSchemaDisplayNameAndRootSchemaName() {
+        let topLevelLocation = Spec.Location.topLevel(schemaName: "User")
+        let nestedLocation = Spec.Location.nestedProperty(rootSchemaName: "ErrorResponse", propertyPath: ["errors", "meta"])
+        let patchedSchema = Spec.PatchedSchema(schema: .enum(.init(name: "Status", type: "String", caseValues: ["READY"])), location: nestedLocation)
+
+        XCTAssertEqual(topLevelLocation.rootSchemaName, "User")
+        XCTAssertEqual(nestedLocation.rootSchemaName, "ErrorResponse")
+        XCTAssertEqual(patchedSchema.displayName, "ErrorResponse.errors.meta")
+        XCTAssertEqual(Spec.PatchedSchema(schema: .enum(.init(name: "User", type: "String", caseValues: ["READY"])), location: topLevelLocation).displayName, "User")
+    }
+
+    func testResolveSchemaVariants() throws {
+        let itemSchema = ObjectSchema(name: "Item", url: "", properties: ["id": .init(type: .simple(.string()))])
+        let enumSchema = EnumSchema(name: "State", type: "String", caseValues: ["READY"])
+        let rootSchema = ObjectSchema(
+            name: "Root",
+            url: "",
+            properties: [
+                "nested": .init(type: .schema(.init(name: "Nested", url: "", properties: ["value": .init(type: .simple(.string()))]))),
+                "items": .init(type: .arrayOfSubSchema(itemSchema)),
+                "state": .init(type: .enumSchema(enumSchema)),
+                "states": .init(type: .arrayOfEnumSchema(enumSchema)),
+                "reference": .init(type: .schemaRef("Referenced")),
+                "references": .init(type: .arrayOfSchemaRef("Referenced"))
+            ]
+        )
+        let referencedSchema = ObjectSchema(name: "Referenced", url: "", properties: ["name": .init(type: .simple(.string()))])
+        let spec = try Spec(paths: [:], components: .init(schemas: [
+            "Root": .object(rootSchema),
+            "Referenced": .object(referencedSchema)
+        ]))
+
+        XCTAssertEqual(spec.resolveSchema(at: .topLevel(schemaName: "Root")), .object(rootSchema))
+        XCTAssertEqual(spec.resolveSchema(at: .nestedProperty(rootSchemaName: "Root", propertyPath: ["nested"])), .object(.init(name: "Nested", url: "", properties: ["value": .init(type: .simple(.string()))])))
+        XCTAssertEqual(spec.resolveSchema(at: .nestedProperty(rootSchemaName: "Root", propertyPath: ["items"])), .object(itemSchema))
+        XCTAssertEqual(spec.resolveSchema(at: .nestedProperty(rootSchemaName: "Root", propertyPath: ["state"])), .enum(enumSchema))
+        XCTAssertEqual(spec.resolveSchema(at: .nestedProperty(rootSchemaName: "Root", propertyPath: ["states"])), .enum(enumSchema))
+        XCTAssertEqual(spec.resolveSchema(at: .nestedProperty(rootSchemaName: "Root", propertyPath: ["reference"])), .object(referencedSchema))
+        XCTAssertEqual(spec.resolveSchema(at: .nestedProperty(rootSchemaName: "Root", propertyPath: ["references"])), .object(referencedSchema))
+        XCTAssertNil(spec.resolveSchema(at: .nestedProperty(rootSchemaName: "Root", propertyPath: ["missing"])))
+    }
 }

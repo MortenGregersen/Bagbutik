@@ -31,6 +31,12 @@ final class DocsFetcherTests: XCTestCase {
         "UsersResponse": .object(.init(name: "UsersResponse", url: "https://developer.apple.com/documentation/AppStoreConnectAPI/usersresponse", properties: ["users": .init(type: .arrayOfSchemaRef("User"))])),
         "Platform": .enum(.init(name: "Platform", type: "String", url: "https://developer.apple.com/documentation/AppStoreConnectAPI/platform", caseValues: ["MAC_OS", "IOS"]))
     ]))
+
+    func testDocsFilenameValues() {
+        XCTAssertEqual(DocsFilename.schemaMapping.filename, "SchemaIndex.json")
+        XCTAssertEqual(DocsFilename.schemaDocumentation.filename, "SchemaDocumentation.json")
+        XCTAssertEqual(DocsFilename.operationDocumentation.filename, "OperationDocumentation.json")
+    }
     
     func testFetchAllDocsSimple() async throws {
         // Given
@@ -276,6 +282,56 @@ final class DocsFetcherTests: XCTestCase {
             ])
             XCTAssertTrue(fileManager.filesCreated.isEmpty)
         }
+    }
+
+    func testFetchAllDocsDryRunSkipsOperationRequests() async throws {
+        let spec = try Spec(paths: [
+            "/v1/users": Path(path: "/v1/users", info: .init(mainType: "Users", version: "V1", isRelationship: false), operations: [
+                .init(id: "users_getCollection",
+                      name: "listUsers",
+                      method: .get,
+                      successResponseType: "UsersResponse",
+                      errorResponseType: "ErrorResponse"),
+            ]),
+        ], components: .init(schemas: [:]))
+        let fileManager = MockFileManager()
+        let printer = Printer()
+        let docsFetcher = DocsFetcher(
+            loadSpec: { _ in spec },
+            fetchData: { _, _ in
+                XCTFail("Dry run should not fetch documentation")
+                throw URLError(.badURL)
+            },
+            fileManager: fileManager,
+            print: printer.print
+        )
+
+        try await docsFetcher.fetchAllDocs(specFileURL: validSpecFileURL, outputDirURL: validOutputDirURL, dryRun: true)
+
+        XCTAssertTrue(printer.printedLogs.contains("Would fetch documentation for operation 'users_getCollection' (https://developer.apple.com/tutorials/data/documentation/AppStoreConnectAPI/get-v1-users.json)"))
+        XCTAssertEqual(fileManager.filesCreated.map(\.name).sorted(), [
+            DocsFilename.operationDocumentation.filename,
+            DocsFilename.schemaDocumentation.filename,
+            DocsFilename.schemaMapping.filename
+        ])
+    }
+
+    func testConvenienceInitWithEmptySpecOnDisk() async throws {
+        let temporaryDirectoryURL = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString)
+        let specFileURL = temporaryDirectoryURL.appendingPathComponent("spec.json")
+        let outputDirURL = temporaryDirectoryURL.appendingPathComponent("Documentation")
+        try FileManager.default.createDirectory(at: temporaryDirectoryURL, withIntermediateDirectories: true)
+        defer {
+            try? FileManager.default.removeItem(at: temporaryDirectoryURL)
+        }
+
+        try #"{"paths":{},"components":{"schemas":{}}}"#.data(using: .utf8)!.write(to: specFileURL)
+
+        try await DocsFetcher().fetchAllDocs(specFileURL: specFileURL, outputDirURL: outputDirURL, dryRun: false)
+
+        XCTAssertTrue(FileManager.default.fileExists(atPath: outputDirURL.appendingPathComponent(DocsFilename.operationDocumentation.filename).path))
+        XCTAssertTrue(FileManager.default.fileExists(atPath: outputDirURL.appendingPathComponent(DocsFilename.schemaDocumentation.filename).path))
+        XCTAssertTrue(FileManager.default.fileExists(atPath: outputDirURL.appendingPathComponent(DocsFilename.schemaMapping.filename).path))
     }
     
     class MockURLSession {
