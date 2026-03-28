@@ -64,4 +64,298 @@ class DocumentationTests: XCTestCase {
 
         XCTAssertEqual(text, "**Important**")
     }
+
+    func testDecodeEnumDocumentationFormatsReferences() throws {
+        let data = """
+        {
+            "identifier": {
+                "url": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/platform"
+            },
+            "hierarchy": {
+                "paths": [[]]
+            },
+            "metadata": {
+                "title": "Platform",
+                "symbolKind": "tdef"
+            },
+            "abstract": [
+                {
+                    "type": "text",
+                    "text": "An enum."
+                }
+            ],
+            "references": {
+                "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/related-article": {
+                    "title": "Related Article",
+                    "role": "article",
+                    "url": "/documentation/appstoreconnectapi/related-article"
+                },
+                "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/user": {
+                    "title": "User.profile",
+                    "role": "dictionarySymbol",
+                    "url": "/documentation/appstoreconnectapi/user"
+                }
+            },
+            "primaryContentSections": [
+                {
+                    "kind": "possibleValues",
+                    "values": [
+                        {
+                            "name": "IOS",
+                            "content": [
+                                {
+                                    "type": "paragraph",
+                                    "inlineContent": [
+                                        {
+                                            "type": "reference",
+                                            "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/user"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "name": "MAC_OS",
+                            "content": [
+                                {
+                                    "type": "paragraph",
+                                    "inlineContent": [
+                                        {
+                                            "type": "reference",
+                                            "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/related-article"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "kind": "content",
+                    "content": [
+                        {
+                            "type": "heading",
+                            "inlineContent": [
+                                {
+                                    "type": "text",
+                                    "text": "Ignored"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "paragraph",
+                            "inlineContent": [
+                                {
+                                    "type": "text",
+                                    "text": "Discussion"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+        """.data(using: .utf8)!
+
+        let documentation = try JSONDecoder().decode(Documentation.self, from: data)
+
+        guard case .enum(let enumDocumentation) = documentation else {
+            return XCTFail("Expected enum documentation")
+        }
+
+        XCTAssertEqual(enumDocumentation.abstract, "An enum.")
+        XCTAssertEqual(enumDocumentation.discussion, "Discussion")
+        XCTAssertEqual(enumDocumentation.cases["IOS"], "``User/profile``")
+        XCTAssertEqual(enumDocumentation.cases["MAC_OS"], "[Related Article](https://developer.apple.com/documentation/appstoreconnectapi/related-article)")
+    }
+
+    func testDecodeObjectDocumentationCollectsSubDocumentationIds() throws {
+        let data = """
+        {
+            "identifier": {
+                "url": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/user"
+            },
+            "hierarchy": {
+                "paths": [[]]
+            },
+            "metadata": {
+                "title": "User",
+                "symbolKind": "dictionary"
+            },
+            "primaryContentSections": [
+                {
+                    "kind": "properties",
+                    "items": [
+                        {
+                            "name": "name",
+                            "type": [
+                                {
+                                    "kind": "text",
+                                    "text": "String"
+                                }
+                            ],
+                            "required": true,
+                            "content": [
+                                {
+                                    "type": "paragraph",
+                                    "inlineContent": [
+                                        {
+                                            "type": "text",
+                                            "text": "The name."
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "name": "profile",
+                            "type": [
+                                {
+                                    "kind": "typeIdentifier",
+                                    "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/userprofile",
+                                    "text": "UserProfile"
+                                }
+                            ],
+                            "required": false,
+                            "content": [
+                                {
+                                    "type": "paragraph",
+                                    "inlineContent": [
+                                        {
+                                            "type": "text",
+                                            "text": "The profile."
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+        """.data(using: .utf8)!
+
+        let documentation = try JSONDecoder().decode(Documentation.self, from: data)
+
+        guard case .object(let objectDocumentation) = documentation else {
+            return XCTFail("Expected object documentation")
+        }
+
+        XCTAssertEqual(objectDocumentation.properties["name"], .init(required: true, description: "The name."))
+        XCTAssertEqual(objectDocumentation.properties["profile"], .init(required: false, description: "The profile."))
+        XCTAssertEqual(objectDocumentation.subDocumentationIds, ["doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/userprofile"])
+    }
+
+    func testDecodeOperationDocumentation() throws {
+        let data = """
+        {
+            "identifier": {
+                "url": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/get-v1-users"
+            },
+            "hierarchy": {
+                "paths": [[]]
+            },
+            "metadata": {
+                "title": "List Users",
+                "symbolKind": "operation"
+            },
+            "primaryContentSections": [
+                {
+                    "kind": "restParameters",
+                    "source": "path",
+                    "items": [
+                        {
+                            "name": "id",
+                            "content": [
+                                {
+                                    "type": "paragraph",
+                                    "inlineContent": [
+                                        {
+                                            "type": "text",
+                                            "text": "The id."
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "kind": "restParameters",
+                    "source": "query",
+                    "items": [
+                        {
+                            "name": "limit",
+                            "content": [
+                                {
+                                    "type": "paragraph",
+                                    "inlineContent": [
+                                        {
+                                            "type": "text",
+                                            "text": "The limit."
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "kind": "restBody",
+                    "content": [
+                        {
+                            "type": "paragraph",
+                            "inlineContent": [
+                                {
+                                    "type": "text",
+                                    "text": "The body."
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "kind": "restResponses",
+                    "items": [
+                        {
+                            "status": 200,
+                            "reason": "OK",
+                            "content": [
+                                {
+                                    "type": "paragraph",
+                                    "inlineContent": [
+                                        {
+                                            "type": "text",
+                                            "text": "Success."
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+        """.data(using: .utf8)!
+
+        let documentation = try JSONDecoder().decode(Documentation.self, from: data)
+
+        guard case .operation(let operationDocumentation) = documentation else {
+            return XCTFail("Expected operation documentation")
+        }
+
+        XCTAssertEqual(operationDocumentation.pathParameters["id"], "The id.")
+        XCTAssertEqual(operationDocumentation.queryParameters["limit"], "The limit.")
+        XCTAssertEqual(operationDocumentation.body, "The body.")
+        XCTAssertEqual(operationDocumentation.responses, [.init(status: 200, reason: "OK", description: "Success.")])
+    }
+
+    func testEncodeAndDecodeRoundTrip() throws {
+        let documentation = Documentation.operation(operationDocumentation)
+
+        let data = try JSONEncoder().encode(documentation)
+        let decodedDocumentation = try JSONDecoder().decode(Documentation.self, from: data)
+
+        XCTAssertEqual(decodedDocumentation, documentation)
+    }
 }
