@@ -329,6 +329,7 @@ final class ObjectSchemaTests: XCTestCase {
                         "type": "array",
                         "items": {
                             "type": "object",
+                            "title": "Items",
                             "properties": {
                                 "id": {
                                     "type": "string"

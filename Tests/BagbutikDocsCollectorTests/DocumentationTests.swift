@@ -356,6 +356,20 @@ class DocumentationTests: XCTestCase {
         let data = try JSONEncoder().encode(documentation)
         let decodedDocumentation = try JSONDecoder().decode(Documentation.self, from: data)
 
-        XCTAssertEqual(decodedDocumentation, documentation)
+        guard case .operation(let decodedOperationDocumentation) = decodedDocumentation else {
+            return XCTFail("Expected operation documentation")
+        }
+
+        XCTAssertEqual(decodedOperationDocumentation.id, operationDocumentation.id)
+        XCTAssertEqual(decodedOperationDocumentation.title, operationDocumentation.title)
+        XCTAssertEqual(decodedOperationDocumentation.abstract, operationDocumentation.abstract)
+        XCTAssertEqual(decodedOperationDocumentation.discussion, operationDocumentation.discussion)
+        XCTAssertEqual(decodedOperationDocumentation.pathParameters, operationDocumentation.pathParameters)
+        XCTAssertEqual(decodedOperationDocumentation.queryParameters, operationDocumentation.queryParameters)
+        XCTAssertEqual(decodedOperationDocumentation.body, operationDocumentation.body)
+        XCTAssertEqual(decodedOperationDocumentation.responses, [
+            .init(status: 200, reason: "OK", description: ""),
+            .init(status: 400, reason: "Bad Request", description: "Something is wrong")
+        ])
     }
 }

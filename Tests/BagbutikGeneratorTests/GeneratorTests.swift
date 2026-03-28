@@ -334,7 +334,7 @@ final class GeneratorTests: XCTestCase {
     }
 
     func testGenerateModelAddsImportsForRequestAndLinkageSchemas() async throws {
-        let docsLoader = DocsLoader()
+        let docsLoader = DocsLoader(schemaDocumentationById: [:])
         let requestSchema = Schema.object(.init(name: "UserUpdateRequest", url: "some://url"))
         let linkageSchema = Schema.object(.init(name: "UserVisibleAppsLinkageResponse", url: "some://url"))
 
