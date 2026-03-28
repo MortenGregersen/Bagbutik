@@ -254,6 +254,102 @@ final class ObjectSchemaTests: XCTestCase {
         }
     }
 
+    func testDecodingReviewSubmissionSubSchemaName() throws {
+        let json = #"""
+        {
+            "ReviewSubmission": {
+                "type": "object",
+                "properties": {
+                    "attributes": {
+                        "type": "object",
+                        "properties": {
+                            "notes": {
+                                "type": "object",
+                                "properties": {
+                                    "value": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        """#
+
+        let objectSchema = try decodeObjectSchema(from: json)
+        guard case .schema(let attributesSchema) = objectSchema.properties["attributes"]?.type,
+              case .schema(let notesSchema) = attributesSchema.properties["notes"]?.type else {
+            return XCTFail()
+        }
+
+        XCTAssertEqual(notesSchema.name, "Notes")
+    }
+
+    func testDecodingOneOfItemsUsesPropertiesName() throws {
+        let json = #"""
+        {
+            "Container": {
+                "type": "object",
+                "properties": {
+                    "items": {
+                        "oneOf": [
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "id": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                }
+            }
+        }
+        """#
+
+        let objectSchema = try decodeObjectSchema(from: json)
+        guard case .oneOf(_, let oneOfSchema) = objectSchema.properties["items"]?.type,
+              case .objectSchema(let nestedSchema) = oneOfSchema.options[0] else {
+            return XCTFail()
+        }
+
+        XCTAssertEqual(nestedSchema.name, "Properties")
+    }
+
+    func testDecodingDataItemsRenamesToItem() throws {
+        let json = #"""
+        {
+            "Container": {
+                "type": "object",
+                "properties": {
+                    "data": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "title": "Items",
+                            "properties": {
+                                "id": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        """#
+
+        let objectSchema = try decodeObjectSchema(from: json)
+        guard case .arrayOfSubSchema(let itemSchema) = objectSchema.properties["data"]?.type else {
+            return XCTFail()
+        }
+
+        XCTAssertEqual(itemSchema.name, "Item")
+    }
+
     private func decodeObjectSchema(from json: String) throws -> ObjectSchema {
         try jsonDecoder.decode([String: ObjectSchema].self, from: json.data(using: .utf8)!).values.first!
     }

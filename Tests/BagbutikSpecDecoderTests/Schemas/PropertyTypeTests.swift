@@ -304,4 +304,48 @@ final class PropertyTypeTests: XCTestCase {
         XCTAssertEqual(daysSchema.name, "Days")
         XCTAssertEqual(daysSchema.cases.count, 7)
     }
+
+    func testDecodingStringToStringMapReference() throws {
+        let json = #"""
+        {
+            "meta": {
+                "$ref": "#/components/schemas/StringToStringMap"
+            }
+        }
+        """#
+
+        let propertyTypes = try jsonDecoder.decode([String: PropertyType].self, from: json.data(using: .utf8)!)
+        XCTAssertEqual(propertyTypes["meta"]?.description, "[String: String]")
+    }
+
+    func testDecodingAdditionalPropertiesDefaultsToString() throws {
+        let json = #"""
+        {
+            "meta": {
+                "type": "object",
+                "additionalProperties": {}
+            }
+        }
+        """#
+
+        let propertyTypes = try jsonDecoder.decode([String: PropertyType].self, from: json.data(using: .utf8)!)
+        XCTAssertEqual(propertyTypes["meta"]?.description, "[String: String]")
+    }
+
+    func testDecodingUnknownPropertyTypeThrows() throws {
+        let json = #"""
+        {
+            "mystery": {
+                "unknown": true
+            }
+        }
+        """#
+
+        XCTAssertThrowsError(try jsonDecoder.decode([String: PropertyType].self, from: json.data(using: .utf8)!)) {
+            guard case let .dataCorrupted(context) = $0 as? DecodingError else {
+                return XCTFail()
+            }
+            XCTAssertEqual(context.debugDescription, "Property type not known")
+        }
+    }
 }

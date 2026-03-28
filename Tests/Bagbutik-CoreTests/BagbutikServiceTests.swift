@@ -31,6 +31,15 @@ import FoundationNetworking
         XCTAssertEqual(response, expectedResponse)
     }
 
+    func testInitWithDefaultFetchData() async throws {
+        let jwt = try JWT(keyId: JWTTests.keyId, issuerId: JWTTests.issuerId, privateKey: JWTTests.privateKey)
+        let service = BagbutikService(jwt: jwt)
+
+        let currentJWT = await service.jwt
+
+        XCTAssertEqual(currentJWT.encodedSignature, jwt.encodedSignature)
+    }
+
     func testRequest_GzipResponse() async throws {
         let request: Request<GzipResponse, ErrorResponse> = .getAwesomeReports()
         let data = GunzipTests.gzipData
@@ -89,6 +98,18 @@ import FoundationNetworking
         ])
         let response = try await service.requestAllPages(request)
         XCTAssertEqual(response.data, responses.map(\.data).flatMap { $0 })
+    }
+
+    func testRequestNextPageWithoutNextLinkReturnsNil() async throws {
+        try setUpService(responsesByUrl: [:])
+        let response = AppsResponse(
+            data: [.init(id: "app1", links: .init(self: ""))],
+            links: .init(next: nil, self: "")
+        )
+
+        let nextPage = try await service.requestNextPage(for: response)
+
+        XCTAssertNil(nextPage)
     }
 
     func testDateDecoding_ISO8601() async throws {

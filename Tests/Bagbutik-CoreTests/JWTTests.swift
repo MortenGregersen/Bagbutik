@@ -52,6 +52,11 @@ final class JWTTests: XCTestCase {
         XCTAssertNoThrow(try JWT(keyId: Self.keyId, issuerId: Self.issuerId, privateKeyPath: privateKeyPath))
     }
 
+    func testIndividualInitWithPrivateKeyPath() {
+        let privateKeyPath = Bundle.module.path(forResource: "test-private-key", ofType: "p8")!
+        XCTAssertNoThrow(try JWT(keyId: Self.keyId, privateKeyPath: privateKeyPath))
+    }
+
     private static func decodePayloadClaims(from encodedSignature: String) throws -> PayloadClaims {
         let segments = encodedSignature.split(separator: ".", omittingEmptySubsequences: false)
         guard segments.count == 3 else { throw NSError(domain: "JWTTests", code: 1) }

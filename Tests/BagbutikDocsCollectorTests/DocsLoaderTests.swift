@@ -165,6 +165,32 @@ class DocsLoaderTests: XCTestCase {
         XCTAssertEqual(packageName, .core)
     }
 
+    func testResolvePackageNameFromIdentifier() {
+        XCTAssertEqual(DocsLoader.resolvePackageName(from: "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/User"), .users)
+    }
+
+    func testConvenienceInitLoadsDocsFromDisk() async throws {
+        let temporaryDirectoryURL = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString)
+        try FileManager.default.createDirectory(at: temporaryDirectoryURL, withIntermediateDirectories: true)
+        defer {
+            try? FileManager.default.removeItem(at: temporaryDirectoryURL)
+        }
+
+        let jsonEncoder = JSONEncoder()
+        try jsonEncoder.encode([Self.operationDocumentation.id: Documentation.operation(Self.operationDocumentation)])
+            .write(to: temporaryDirectoryURL.appendingPathComponent(DocsFilename.operationDocumentation.filename))
+        try jsonEncoder.encode(["User": Self.schemaDocumentation.id])
+            .write(to: temporaryDirectoryURL.appendingPathComponent(DocsFilename.schemaMapping.filename))
+        try jsonEncoder.encode([Self.schemaDocumentation.id: Documentation.object(Self.schemaDocumentation)])
+            .write(to: temporaryDirectoryURL.appendingPathComponent(DocsFilename.schemaDocumentation.filename))
+
+        let docsLoader = DocsLoader()
+        try await docsLoader.loadDocs(documentationDirURL: temporaryDirectoryURL)
+
+        let documentation = try await docsLoader.resolveDocumentationForSchema(named: "User")
+        XCTAssertEqual(documentation, Documentation.object(Self.schemaDocumentation))
+    }
+
     func testResolveDocumentationForSchemaNamed() async throws {
         // Given
         let docsLoader = DocsLoader(loadFile: { try Self.loadFile($0) })

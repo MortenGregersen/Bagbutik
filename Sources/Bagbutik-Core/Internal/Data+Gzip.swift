@@ -5,8 +5,10 @@ import zlibLinux
 import zlib
 #endif
 
+internal typealias InflateInit = (UnsafeMutablePointer<z_stream>?, Int32, UnsafePointer<CChar>?, Int32) -> Int32
+
 internal extension Data {
-    func gunzippedData() throws -> Data {
+    func gunzippedData(inflateInit: InflateInit = inflateInit2_) throws -> Data {
         var stream = z_stream()
         try withUnsafeBytes { bytes in
             guard let pointer = bytes.bindMemory(to: Bytef.self).baseAddress else { throw GunzipError.decompressFailed }
@@ -14,7 +16,7 @@ internal extension Data {
         }
         stream.avail_in = uInt(count)
         stream.total_out = 0
-        guard inflateInit2_(&stream, MAX_WBITS + 16, ZLIB_VERSION, Int32(MemoryLayout<z_stream>.size)) == Z_OK else {
+        guard inflateInit(&stream, MAX_WBITS + 16, ZLIB_VERSION, Int32(MemoryLayout<z_stream>.size)) == Z_OK else {
             throw GunzipError.decompressFailed
         }
         
@@ -25,11 +27,10 @@ internal extension Data {
             decompressed.count += gzipBufferLength
             
             try decompressed.withUnsafeMutableBytes { (bytes: UnsafeMutableRawBufferPointer) in
-                guard let pointer = bytes.bindMemory(to: Bytef.self).baseAddress else {
-                    throw GunzipError.decompressFailed
-                }
-                let newPointer = UnsafeMutablePointer<Bytef>(mutating: pointer)
-                stream.next_out = newPointer.advanced(by: Int(stream.total_out))
+                stream.next_out = bytes
+                    .bindMemory(to: Bytef.self)
+                    .baseAddress?
+                    .advanced(by: Int(stream.total_out))
             }
             
             let status = inflate(&stream, Z_SYNC_FLUSH)
