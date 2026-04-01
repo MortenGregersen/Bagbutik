@@ -1,3 +1,4 @@
+/// A coding key that can be created from arbitrary string values.
 public struct AnyCodingKey: CodingKey {
     public let stringValue: String
     public let intValue: Int? = nil
@@ -11,6 +12,7 @@ public struct AnyCodingKey: CodingKey {
     }
 }
 
+/// Allows `AnyCodingKey` to be created from string literals in internal encoding helpers.
 extension AnyCodingKey: ExpressibleByStringLiteral {
     public init(stringLiteral value: StringLiteralType) {
         self.stringValue = value

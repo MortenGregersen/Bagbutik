@@ -35,6 +35,10 @@ custom_categories:
     - PagedResponse
     - BinaryResponse
     - PlainTextResponse
+  - name: Utilities
+    children:
+    - AnyCodingKey
+    - Clearable
   - name: Property Wrappers
     children:
     - NullCodable

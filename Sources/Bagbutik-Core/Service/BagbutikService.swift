@@ -75,7 +75,12 @@ public actor BagbutikService {
         return try await fetch(urlRequest)
     }
 
-    /// Executes a request that is expected to succeed without returning a response body.
+    /**
+     Executes a request that is expected to succeed without returning a response body.
+
+     - Parameter request: The generated request to execute.
+     - Returns: An ``EmptyResponse`` value when the request succeeds.
+     */
     @discardableResult
     public func request(_ request: Request<EmptyResponse, ErrorResponse>) async throws -> EmptyResponse {
         let urlRequest = try request.asUrlRequest()
