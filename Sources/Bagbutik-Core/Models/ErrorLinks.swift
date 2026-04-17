@@ -3,24 +3,29 @@ import Foundation
 public struct ErrorLinks: Codable, Sendable {
     public var about: String?
     public var associated: Associated?
+    public var see: String?
 
     public init(about: String? = nil,
-                associated: Associated? = nil)
+                associated: Associated? = nil,
+                see: String? = nil)
     {
         self.about = about
         self.associated = associated
+        self.see = see
     }
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: AnyCodingKey.self)
         about = try container.decodeIfPresent(String.self, forKey: "about")
         associated = try container.decodeIfPresent(Associated.self, forKey: "associated")
+        see = try container.decodeIfPresent(String.self, forKey: "see")
     }
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: AnyCodingKey.self)
         try container.encodeIfPresent(about, forKey: "about")
         try container.encodeIfPresent(associated, forKey: "associated")
+        try container.encodeIfPresent(see, forKey: "see")
     }
 
     public enum Associated: Codable, Sendable {

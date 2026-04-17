@@ -224,6 +224,16 @@ public struct Spec: Decodable {
             }
         }
 
+        // FB22529824: Add `see` to ErrorLinks
+        // Some App Store Connect errors include a `links.see` URL for resolving the issue,
+        // but Apple's OpenAPI spec currently omits that property from ErrorLinks.
+        if case .object(var errorLinksSchema) = components.schemas["ErrorLinks"],
+           errorLinksSchema.properties["see"] == nil {
+            errorLinksSchema.properties["see"] = .init(type: .simple(.string()))
+            components.schemas["ErrorLinks"] = .object(errorLinksSchema)
+            addPatchedSchema(.object(errorLinksSchema), location: .topLevel(schemaName: "ErrorLinks"))
+        }
+
         // Fix up the names of the sub schemas of ErrorResponse.Errors
         if components.schemas["ErrorResponse"] != nil {
             guard case .object(var errorResponseSchema) = components.schemas["ErrorResponse"],
