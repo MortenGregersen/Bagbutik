@@ -668,6 +668,19 @@ final class SpecTests: XCTestCase {
                             }
                         }
                     },
+                    "ErrorLinks" : {
+                        "type" : "object",
+                        "properties" : {
+                            "about" : {
+                                "type" : "string",
+                                "format" : "uri-reference"
+                            },
+                            "associated" : {
+                                "type" : "string",
+                                "format" : "uri-reference"
+                            }
+                        }
+                    },
                     "AgeRatingDeclarationUpdateRequest" : {
                         "type" : "object",
                         "title" : "AgeRatingDeclarationUpdateRequest",
@@ -829,6 +842,15 @@ final class SpecTests: XCTestCase {
         XCTAssertEqual(errorSchemaRef, "Errors")
         XCTAssertTrue(spec.patchedSchemasWithLocation.contains {
             $0.location == .nestedProperty(rootSchemaName: "ErrorResponse", propertyPath: ["errors"])
+        })
+        guard case .object(let errorLinksSchema) = spec.components.schemas["ErrorLinks"],
+              let seeProperty = errorLinksSchema.properties["see"],
+              case .simple(let seeType) = seeProperty.type else {
+            XCTFail(); return
+        }
+        XCTAssertEqual(seeType, .string())
+        XCTAssertTrue(spec.patchedSchemasWithLocation.contains {
+            $0.location == .topLevel(schemaName: "ErrorLinks")
         })
         guard let resolvedErrorsSchema = spec.resolveSchema(
             at: .nestedProperty(rootSchemaName: "ErrorResponse", propertyPath: ["errors"])

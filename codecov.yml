@@ -1,4 +1,5 @@
 ignore:
+  - "Tests"
   - "Sources/Bagbutik-Core/Models"
   - "Sources/Bagbutik-Core/AnyCodingKey.swift"
   - "Sources/Bagbutik-Models/AppStore"

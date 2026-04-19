@@ -261,6 +261,15 @@ On 12/1/23 some errors (with status code 409) has been observed, with no `detail
 In Apple's OpenAPI spec and documentation the `associatedErrors` is not mentioned in `meta` property (last checked 12/1/23).
 But it is observed when creating a `ReviewSubmissionItem` with an `AppStoreVersion` fails.
 
+#### **FB22529824**: App Store Connect API Spec is missing the "see" property on ErrorLinks
+
+* Submitted: April 17th, 2026.
+
+In the OpenAPI spec for the App Store Connect API, the `ErrorLinks` schema does not include a `see` property.
+
+However, the live API returns `errors[].links.see` on some `ErrorResponse.Errors` payloads.
+One observed case is a `403` error with code `FORBIDDEN.REQUIRED_AGREEMENTS_MISSING_OR_EXPIRED`, where `links.see` is set to `/business`.
+
 #### **FB16908301**: App Store Connect API Spec is missing list of possible "PurchaseRequirement" on AppEvent
 
 * Submitted: March 17th, 2025.
