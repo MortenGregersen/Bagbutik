@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # exit when any command fails
-set -e
+set -euo pipefail
 
 download_newest_spec_output=$(swift run bagbutik-cli download-newest-spec)
 echo "$download_newest_spec_output"
@@ -14,7 +14,7 @@ else
 fi
 
 current_version="$(cat spec-version)"
-downloaded_version="$(jq -r '.info.version' $spec_file_path)"
+downloaded_version="$(jq -r '.info.version' "$spec_file_path")"
 echo "Current version: $current_version"
 echo "Downloaded version: $downloaded_version"
 
@@ -33,12 +33,16 @@ else
     echo "No pull requests has been created for this version."
 fi
 
-docs_ouput=$(swift run bagbutik-cli download-newest-docs --spec-path $spec_file_path)
-warnings=$(grep -zo "⚠️.*" <<< "$docs_ouput" || echo "" >&2)
-swift run bagbutik-cli generate --spec-path $spec_file_path
+docs_output_file="$(mktemp)"
+trap 'rm -f "$docs_output_file"' EXIT
 
-rm $spec_file_path
-echo $downloaded_version > spec-version
+swift run bagbutik-cli download-newest-docs --spec-path "$spec_file_path" 2>&1 | tee "$docs_output_file"
+warnings="$(grep -a "⚠️" "$docs_output_file" || true)"
+
+swift run bagbutik-cli generate --spec-path "$spec_file_path"
+
+rm "$spec_file_path"
+echo "$downloaded_version" > spec-version
 
 git config --local user.email "ci@bagbutik.dev"
 git config --local user.name "Bagbutik CI"
