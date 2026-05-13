@@ -396,10 +396,11 @@ public enum Documentation: Codable, Equatable, Sendable {
                 self = .properties(properties)
             } else if kind == "content" {
                 let contents = try container
-                    .decode([Content].self, forKey: .content)
-                    .filter { $0.type != "heading" }
-                guard !contents.isEmpty else {
-                    throw DecodingError.dataCorruptedError(forKey: .kind, in: container, debugDescription: "Content section of kind '\(kind)' has no content")
+                    .decodeIfPresent([Content].self, forKey: .content)?
+                    .filter { $0.type != "heading" } ?? []
+                if contents.isEmpty {
+                    self = .unused
+                    return
                 }
                 self = .discussion(contents)
             } else if kind == "restParameters" {
