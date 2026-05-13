@@ -52,3 +52,5 @@ git commit -m "Update from new spec ($downloaded_version)"
 git push -u origin spec-$downloaded_version
 create_pr_output=$(gh pr create --fill --body "$warnings")
 echo "Pull request created: $create_pr_output"
+gh workflow run ci.yml --ref "spec-$downloaded_version"
+echo "CI workflow dispatch triggered for branch spec-$downloaded_version"
