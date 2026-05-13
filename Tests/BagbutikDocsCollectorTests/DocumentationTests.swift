@@ -169,6 +169,71 @@ class DocumentationTests: XCTestCase {
         XCTAssertEqual(enumDocumentation.cases["MAC_OS"], "[Related Article](https://developer.apple.com/documentation/appstoreconnectapi/related-article)")
     }
 
+    func testDecodeEnumDocumentationIgnoresEmptyContentSections() throws {
+        let data = """
+        {
+            "identifier": {
+                "url": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/subscriptionoffermode"
+            },
+            "hierarchy": {
+                "paths": [[]]
+            },
+            "metadata": {
+                "title": "SubscriptionOfferMode",
+                "symbolKind": "tdef"
+            },
+            "primaryContentSections": [
+                {
+                    "kind": "possibleValues",
+                    "values": [
+                        {
+                            "name": "PAY_AS_YOU_GO",
+                            "content": [
+                                {
+                                    "type": "paragraph",
+                                    "inlineContent": [
+                                        {
+                                            "type": "text",
+                                            "text": "Pay as you go."
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "kind": "content",
+                    "content": []
+                },
+                {
+                    "kind": "content",
+                    "content": [
+                        {
+                            "type": "heading",
+                            "inlineContent": [
+                                {
+                                    "type": "text",
+                                    "text": "Discussion"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+        """.data(using: .utf8)!
+
+        let documentation = try JSONDecoder().decode(Documentation.self, from: data)
+
+        guard case .enum(let enumDocumentation) = documentation else {
+            return XCTFail("Expected enum documentation")
+        }
+
+        XCTAssertNil(enumDocumentation.discussion)
+        XCTAssertEqual(enumDocumentation.cases["PAY_AS_YOU_GO"], "Pay as you go.")
+    }
+
     func testDecodeObjectDocumentationCollectsSubDocumentationIds() throws {
         let data = """
         {
