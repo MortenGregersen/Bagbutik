@@ -17,6 +17,7 @@ jobs:
     permissions:
       contents: write
     env:
+      DEVELOPER_DIR: /Applications/Xcode_26.4.app/Contents/Developer
       RELEASE_TAG: ${{ github.event_name == 'workflow_dispatch' && inputs.tag || github.event.release.tag_name }}
     steps:
       - name: Checkout code

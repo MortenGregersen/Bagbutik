@@ -14,6 +14,8 @@ jobs:
     runs-on: macos-latest
     permissions:
       contents: read
+    env:
+      DEVELOPER_DIR: /Applications/Xcode_26.4.app/Contents/Developer
     steps:
     - uses: actions/checkout@v4
     - name: Print Xcode & Swift Version
@@ -63,7 +65,7 @@ jobs:
       contents: read
     strategy:
       matrix:
-        swift: ["5.10", "6.0", "6.1", "6.2"]
+        swift: ["5.10", "6.0", "6.1", "6.2", "6.3"]
     steps:
     - uses: vapor/swiftly-action@v0.2
       with:
@@ -72,7 +74,7 @@ jobs:
     - name: Test
       run: swift test -v
   build-android:
-    name: Build and Test (Android) - Swift 6.1
+    name: Build and Test (Android) - Swift 6.3
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -90,4 +92,4 @@ jobs:
         swap-storage: true
     - uses: skiptools/swift-android-action@v2
       with:
-        swift-version: 6.1
+        swift-version: 6.3

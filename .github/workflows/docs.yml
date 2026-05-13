@@ -10,7 +10,7 @@ jobs:
     name: Build and Deploy
     runs-on: macos-latest
     env:
-      DEVELOPER_DIR: /Applications/Xcode_16.2.app/Contents/Developer
+      DEVELOPER_DIR: /Applications/Xcode_26.4.app/Contents/Developer
     steps:
     - uses: actions/checkout@v4
     - name: Generate Documentation for Pages
