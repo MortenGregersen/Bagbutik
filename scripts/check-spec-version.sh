@@ -59,14 +59,14 @@ echo "Pull request created: $create_pr_output"
 for attempt in $(seq 1 "$MAX_CI_DISPATCH_ATTEMPTS"); do
     if gh workflow run ci.yml --ref "spec-$downloaded_version"; then
         break
-    else
-        if [ "$attempt" -eq "$MAX_CI_DISPATCH_ATTEMPTS" ]; then
-            echo "Failed to dispatch CI workflow for branch spec-$downloaded_version"
-            exit "$EXIT_CODE_CI_DISPATCH_FAILED"
-        fi
+    fi
 
+    if [ "$attempt" -lt "$MAX_CI_DISPATCH_ATTEMPTS" ]; then
         echo "Attempt $attempt failed to dispatch CI workflow for branch spec-$downloaded_version. Retrying in $CI_DISPATCH_RETRY_DELAY_SECONDS seconds..."
         sleep "$CI_DISPATCH_RETRY_DELAY_SECONDS"
+    else
+        echo "Failed to dispatch CI workflow for branch spec-$downloaded_version"
+        exit "$EXIT_CODE_CI_DISPATCH_FAILED"
     fi
 done
 echo "CI workflow dispatch triggered for branch spec-$downloaded_version"
