@@ -52,5 +52,16 @@ git commit -m "Update from new spec ($downloaded_version)"
 git push -u origin spec-$downloaded_version
 create_pr_output=$(gh pr create --fill --body "$warnings")
 echo "Pull request created: $create_pr_output"
-gh workflow run ci.yml --ref "spec-$downloaded_version"
+for attempt in 1 2 3; do
+    if gh workflow run ci.yml --ref "spec-$downloaded_version"; then
+        break
+    fi
+
+    if [ "$attempt" -eq 3 ]; then
+        echo "Failed to dispatch CI workflow for branch spec-$downloaded_version"
+        exit 43
+    fi
+
+    sleep 5
+done
 echo "CI workflow dispatch triggered for branch spec-$downloaded_version"
