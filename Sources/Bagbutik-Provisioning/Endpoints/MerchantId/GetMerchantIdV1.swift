@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read details for a merchant ID
+     # Read Details for a Merchant ID
      Get information for a merchant ID.
 
      Full documentation:

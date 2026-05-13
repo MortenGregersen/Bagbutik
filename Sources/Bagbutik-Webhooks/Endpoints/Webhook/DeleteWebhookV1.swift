@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Delete a webhook
+     # Delete a Webhook
      Remove a specific webhook configuration.
 
      Full documentation:

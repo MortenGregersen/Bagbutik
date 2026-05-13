@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Modify the activity for a Game Center achievement
+     # Modify the Activity for a Game Center Achievement
      Update the activity relationship for a specific Game Center achievement.
 
      Full documentation:

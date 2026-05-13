@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Create a rule
+     # Create a Rule
      Add a matchmaking rule to a rule set.
 
      Full documentation:

@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # List nominations
+     # List Nominations
      Get all featuring nominations.
 
      Full documentation:
@@ -11,7 +11,6 @@ public extension Request {
 
      - Parameter fields: Fields to return for included related types
      - Parameter filters: Attributes, relationships, and IDs by which to filter
-     - Parameter exists: Attributes, relationships, and IDs to check for existence
      - Parameter includes: Relationship data to include in the response
      - Parameter sorts: Attributes by which to sort
      - Parameter limits: Number of resources to return
@@ -19,7 +18,6 @@ public extension Request {
      */
     static func listNominationsV1(fields: [ListNominationsV1.Field]? = nil,
                                   filters: [ListNominationsV1.Filter]? = nil,
-                                  exists: [ListNominationsV1.Exist]? = nil,
                                   includes: [ListNominationsV1.Include]? = nil,
                                   sorts: [ListNominationsV1.Sort]? = nil,
                                   limits: [ListNominationsV1.Limit]? = nil) -> Request<NominationsResponse, ErrorResponse> {
@@ -29,7 +27,6 @@ public extension Request {
             parameters: .init(
                 fields: fields,
                 filters: filters,
-                exists: exists,
                 includes: includes,
                 sorts: sorts,
                 limits: limits))
@@ -41,8 +38,141 @@ public enum ListNominationsV1 {
      Fields to return for included related types.
      */
     public enum Field: FieldParameter {
+        /// The fields to include for returned resources of type actors
+        case actors([Actors])
+        /// The fields to include for returned resources of type appEvents
+        case appEvents([AppEvents])
+        /// The fields to include for returned resources of type apps
+        case apps([Apps])
         /// The fields to include for returned resources of type nominations
         case nominations([Nominations])
+        /// The fields to include for returned resources of type territories
+        case territories([Territories])
+
+        public enum Actors: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case actorType
+            case apiKeyId
+            case userEmail
+            case userFirstName
+            case userLastName
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = Actors(rawValue: string) {
+                    self = value
+                } else if let value = Actors(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid Actors value: \(string)"
+                    )
+                }
+            }
+        }
+
+        public enum AppEvents: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case archivedTerritorySchedules
+            case badge
+            case deepLink
+            case eventState
+            case localizations
+            case primaryLocale
+            case priority
+            case purchaseRequirement
+            case purpose
+            case referenceName
+            case territorySchedules
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = AppEvents(rawValue: string) {
+                    self = value
+                } else if let value = AppEvents(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid AppEvents value: \(string)"
+                    )
+                }
+            }
+        }
+
+        public enum Apps: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case accessibilityDeclarations
+            case accessibilityUrl
+            case alternativeDistributionKey
+            case analyticsReportRequests
+            case androidToIosAppMappingDetails
+            case appAvailabilityV2
+            case appClips
+            case appCustomProductPages
+            case appEncryptionDeclarations
+            case appEvents
+            case appInfos
+            case appPricePoints
+            case appPriceSchedule
+            case appStoreIcon
+            case appStoreVersionExperimentsV2
+            case appStoreVersions
+            case appTags
+            case backgroundAssets
+            case betaAppLocalizations
+            case betaAppReviewDetail
+            case betaFeedbackCrashSubmissions
+            case betaFeedbackScreenshotSubmissions
+            case betaGroups
+            case betaLicenseAgreement
+            case betaTesters
+            case buildUploads
+            case builds
+            case bundleId
+            case ciProduct
+            case contentRightsDeclaration
+            case customerReviewSummarizations
+            case customerReviews
+            case endUserLicenseAgreement
+            case gameCenterDetail
+            case gameCenterEnabledVersions
+            case inAppPurchases
+            case inAppPurchasesV2
+            case isOrEverWasMadeForKids
+            case marketplaceSearchDetail
+            case name
+            case perfPowerMetrics
+            case preReleaseVersions
+            case primaryLocale
+            case promotedPurchases
+            case reviewSubmissions
+            case searchKeywords
+            case sku
+            case streamlinedPurchasingEnabled
+            case subscriptionGracePeriod
+            case subscriptionGroups
+            case subscriptionStatusUrl
+            case subscriptionStatusUrlForSandbox
+            case subscriptionStatusUrlVersion
+            case subscriptionStatusUrlVersionForSandbox
+            case webhooks
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = Apps(rawValue: string) {
+                    self = value
+                } else if let value = Apps(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid Apps value: \(string)"
+                    )
+                }
+            }
+        }
 
         public enum Nominations: String, Sendable, ParameterValue, Codable, CaseIterable {
             case createdByActor
@@ -83,6 +213,25 @@ public enum ListNominationsV1 {
                 }
             }
         }
+
+        public enum Territories: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case currency
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = Territories(rawValue: string) {
+                    self = value
+                } else if let value = Territories(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid Territories value: \(string)"
+                    )
+                }
+            }
+        }
     }
 
     /**
@@ -99,14 +248,6 @@ public enum ListNominationsV1 {
         case state([Nomination.Attributes.State])
         /// Filter by attribute 'type'
         case type([Nomination.Attributes.Type])
-    }
-
-    /**
-     Attributes, relationships, and IDs to check for existence.
-     */
-    public enum Exist: ExistParameter {
-        /// Filter by existence or non-existence of related 'inAppEvents'
-        case inAppEvents(Bool)
     }
 
     /**

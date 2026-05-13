@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read public link usage metrics for a beta group
+     # Read Public Link Usage Metrics for a Beta Group
      Get public link usage metrics for a specific beta group.
 
      Full documentation:

@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Edit the leaderboard sets associated with a group
+     # Edit the Leaderboard Sets Associated With a Group
      Modify the leaderboard sets in a specific group.
 
      Full documentation:

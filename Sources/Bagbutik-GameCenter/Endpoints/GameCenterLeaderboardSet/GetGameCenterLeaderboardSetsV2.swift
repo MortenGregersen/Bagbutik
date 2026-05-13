@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read Game Center leaderboard set information
+     # Read Game Center Leaderboard Set Information
      Get information about a specific Game Center leaderboard set.
 
      Full documentation:
@@ -34,12 +34,85 @@ public enum GetGameCenterLeaderboardSetsV2 {
      Fields to return for included related types.
      */
     public enum Field: FieldParameter {
+        /// The fields to include for returned resources of type gameCenterDetails
+        case gameCenterDetails([GameCenterDetails])
+        /// The fields to include for returned resources of type gameCenterGroups
+        case gameCenterGroups([GameCenterGroups])
         /// The fields to include for returned resources of type gameCenterLeaderboardSetVersions
         case gameCenterLeaderboardSetVersions([GameCenterLeaderboardSetVersions])
         /// The fields to include for returned resources of type gameCenterLeaderboardSets
         case gameCenterLeaderboardSets([GameCenterLeaderboardSets])
         /// The fields to include for returned resources of type gameCenterLeaderboards
         case gameCenterLeaderboards([GameCenterLeaderboards])
+
+        public enum GameCenterDetails: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case achievementReleases
+            case activityReleases
+            case app
+            case arcadeEnabled
+            case challengeEnabled
+            case challengeReleases
+            case challengesMinimumPlatformVersions
+            case defaultGroupLeaderboard
+            case defaultGroupLeaderboardV2
+            case defaultLeaderboard
+            case defaultLeaderboardV2
+            case gameCenterAchievements
+            case gameCenterAchievementsV2
+            case gameCenterActivities
+            case gameCenterAppVersions
+            case gameCenterChallenges
+            case gameCenterGroup
+            case gameCenterLeaderboardSets
+            case gameCenterLeaderboardSetsV2
+            case gameCenterLeaderboards
+            case gameCenterLeaderboardsV2
+            case leaderboardReleases
+            case leaderboardSetReleases
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = GameCenterDetails(rawValue: string) {
+                    self = value
+                } else if let value = GameCenterDetails(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid GameCenterDetails value: \(string)"
+                    )
+                }
+            }
+        }
+
+        public enum GameCenterGroups: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case gameCenterAchievements
+            case gameCenterAchievementsV2
+            case gameCenterActivities
+            case gameCenterChallenges
+            case gameCenterDetails
+            case gameCenterLeaderboardSets
+            case gameCenterLeaderboardSetsV2
+            case gameCenterLeaderboards
+            case gameCenterLeaderboardsV2
+            case referenceName
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = GameCenterGroups(rawValue: string) {
+                    self = value
+                } else if let value = GameCenterGroups(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid GameCenterGroups value: \(string)"
+                    )
+                }
+            }
+        }
 
         public enum GameCenterLeaderboardSetVersions: String, Sendable, ParameterValue, Codable, CaseIterable {
             case leaderboardSet

@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Add a search keyword to a custom product page localization
+     # Add a Search Keyword to a Custom Product Page Localization
      Assign one or more search keywords to a specific custom product page localization.
 
      Full documentation:

@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # List custom product pages localizations
+     # List Custom Product Pages Localizations
      List all localizations for an app custom product page.
 
      Full documentation:

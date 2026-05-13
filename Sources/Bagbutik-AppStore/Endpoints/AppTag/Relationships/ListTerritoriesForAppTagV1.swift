@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # List territories for an app tag
+     # List Territories for an App Tag
      List territory availability for a specific app tag.
 
      Full documentation:

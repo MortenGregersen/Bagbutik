@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read challenge localization information
+     # Read Challenge Localization Information
      Get information for a specific Game Center challenge localization.
 
      Full documentation:
@@ -35,6 +35,8 @@ public enum GetGameCenterChallengeLocalizationV1 {
         case gameCenterChallengeImages([GameCenterChallengeImages])
         /// The fields to include for returned resources of type gameCenterChallengeLocalizations
         case gameCenterChallengeLocalizations([GameCenterChallengeLocalizations])
+        /// The fields to include for returned resources of type gameCenterChallengeVersions
+        case gameCenterChallengeVersions([GameCenterChallengeVersions])
 
         public enum GameCenterChallengeImages: String, Sendable, ParameterValue, Codable, CaseIterable {
             case assetDeliveryState
@@ -77,6 +79,30 @@ public enum GetGameCenterChallengeLocalizationV1 {
                     throw DecodingError.dataCorruptedError(
                         in: container,
                         debugDescription: "Invalid GameCenterChallengeLocalizations value: \(string)"
+                    )
+                }
+            }
+        }
+
+        public enum GameCenterChallengeVersions: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case challenge
+            case defaultImage
+            case localizations
+            case releases
+            case state
+            case version
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = GameCenterChallengeVersions(rawValue: string) {
+                    self = value
+                } else if let value = GameCenterChallengeVersions(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid GameCenterChallengeVersions value: \(string)"
                     )
                 }
             }

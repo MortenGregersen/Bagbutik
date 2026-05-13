@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # List all beta feedback screenshot submission IDs for an app
+     # List All Beta Feedback Screenshot Submission IDs for an App
      Get a list of beta feedback screenshot submissions for a specific app.
 
      List All Introductory Offer Resource IDs for an Auto-Renewable Subscription,Get a list of resource IDs representing introductory offers for an auto-renewable subscription.

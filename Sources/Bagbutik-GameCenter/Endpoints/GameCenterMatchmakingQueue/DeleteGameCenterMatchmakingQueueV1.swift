@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Delete a queue
+     # Delete a Queue
      Delete a specific queue in a rule set.
 
      Full documentation:

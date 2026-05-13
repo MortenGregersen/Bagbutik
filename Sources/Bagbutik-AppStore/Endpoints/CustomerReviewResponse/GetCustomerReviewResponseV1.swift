@@ -33,6 +33,8 @@ public enum GetCustomerReviewResponseV1 {
     public enum Field: FieldParameter {
         /// The fields to include for returned resources of type customerReviewResponses
         case customerReviewResponses([CustomerReviewResponses])
+        /// The fields to include for returned resources of type customerReviews
+        case customerReviews([CustomerReviews])
 
         public enum CustomerReviewResponses: String, Sendable, ParameterValue, Codable, CaseIterable {
             case lastModifiedDate
@@ -51,6 +53,32 @@ public enum GetCustomerReviewResponseV1 {
                     throw DecodingError.dataCorruptedError(
                         in: container,
                         debugDescription: "Invalid CustomerReviewResponses value: \(string)"
+                    )
+                }
+            }
+        }
+
+        public enum CustomerReviews: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case body
+            case createdDate
+            case rating
+            case response
+            case reviewTerritory
+            case reviewerNickname
+            case territory
+            case title
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = CustomerReviews(rawValue: string) {
+                    self = value
+                } else if let value = CustomerReviews(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid CustomerReviews value: \(string)"
                     )
                 }
             }

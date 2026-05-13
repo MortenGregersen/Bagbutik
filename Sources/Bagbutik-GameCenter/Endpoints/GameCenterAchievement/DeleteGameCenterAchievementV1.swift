@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Delete an achievement
+     # Delete an Achievement
      Delete a specific achievement.
 
      Full documentation:

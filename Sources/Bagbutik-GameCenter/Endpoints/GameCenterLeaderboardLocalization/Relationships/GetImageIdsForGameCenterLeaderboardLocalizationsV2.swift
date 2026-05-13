@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Get all image IDs for a Game Center leaderboard localization
+     # Get All Image IDs for a Game Center Leaderboard Localization
      Get a list of image resource IDs for a specific Game Center leaderboard localization.
 
      Full documentation:

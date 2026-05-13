@@ -39,6 +39,8 @@ public enum ListCiProductsV1 {
     public enum Field: FieldParameter {
         /// The fields to include for returned resources of type apps
         case apps([Apps])
+        /// The fields to include for returned resources of type bundleIds
+        case bundleIds([BundleIds])
         /// The fields to include for returned resources of type ciProducts
         case ciProducts([CiProducts])
         /// The fields to include for returned resources of type scmRepositories
@@ -112,6 +114,31 @@ public enum ListCiProductsV1 {
                     throw DecodingError.dataCorruptedError(
                         in: container,
                         debugDescription: "Invalid Apps value: \(string)"
+                    )
+                }
+            }
+        }
+
+        public enum BundleIds: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case app
+            case bundleIdCapabilities
+            case identifier
+            case name
+            case platform
+            case profiles
+            case seedId
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = BundleIds(rawValue: string) {
+                    self = value
+                } else if let value = BundleIds(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid BundleIds value: \(string)"
                     )
                 }
             }

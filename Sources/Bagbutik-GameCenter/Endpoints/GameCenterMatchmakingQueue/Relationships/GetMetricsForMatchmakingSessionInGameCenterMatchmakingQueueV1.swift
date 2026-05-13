@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Get queue session information
+     # Get Queue Session Information
      Get session information on a queue.
 
      Full documentation:

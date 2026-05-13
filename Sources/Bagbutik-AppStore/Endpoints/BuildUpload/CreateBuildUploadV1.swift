@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Create a build upload
+     # Create a Build Upload
      Add a new build upload to an app.
 
      Full documentation:

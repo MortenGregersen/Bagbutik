@@ -67,6 +67,8 @@ public enum ListAppsV1 {
         case betaGroups([BetaGroups])
         /// The fields to include for returned resources of type betaLicenseAgreements
         case betaLicenseAgreements([BetaLicenseAgreements])
+        /// The fields to include for returned resources of type buildIcons
+        case buildIcons([BuildIcons])
         /// The fields to include for returned resources of type builds
         case builds([Builds])
         /// The fields to include for returned resources of type ciProducts
@@ -503,6 +505,28 @@ public enum ListAppsV1 {
                     throw DecodingError.dataCorruptedError(
                         in: container,
                         debugDescription: "Invalid BetaLicenseAgreements value: \(string)"
+                    )
+                }
+            }
+        }
+
+        public enum BuildIcons: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case iconAsset
+            case iconType
+            case masked
+            case name
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = BuildIcons(rawValue: string) {
+                    self = value
+                } else if let value = BuildIcons(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid BuildIcons value: \(string)"
                     )
                 }
             }

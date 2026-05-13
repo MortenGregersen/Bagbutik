@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read release information for an achievement
+     # Read Release Information for an Achievement
      Read the state of an achievement release and related information.
 
      Full documentation:

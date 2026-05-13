@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # List all values for an in-app purchase offer code one-time use code
+     # List All Values for an In-App Purchase Offer Code One-Time Use Code
      Get a list of values for a specific in-app purchase offer code one-time use code.
 
      Full documentation:

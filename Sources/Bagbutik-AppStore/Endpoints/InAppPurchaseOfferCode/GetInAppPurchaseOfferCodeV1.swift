@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read in-app purchase offer code information
+     # Read In-App Purchase Offer Code Information
      Get information about a specific in-app purchase offer code.
 
      Full documentation:

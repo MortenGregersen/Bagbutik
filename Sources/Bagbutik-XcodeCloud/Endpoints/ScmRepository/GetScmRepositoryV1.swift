@@ -33,8 +33,56 @@ public enum GetScmRepositoryV1 {
      Fields to return for included related types.
      */
     public enum Field: FieldParameter {
+        /// The fields to include for returned resources of type scmGitReferences
+        case scmGitReferences([ScmGitReferences])
+        /// The fields to include for returned resources of type scmProviders
+        case scmProviders([ScmProviders])
         /// The fields to include for returned resources of type scmRepositories
         case scmRepositories([ScmRepositories])
+
+        public enum ScmGitReferences: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case canonicalName
+            case isDeleted
+            case kind
+            case name
+            case repository
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = ScmGitReferences(rawValue: string) {
+                    self = value
+                } else if let value = ScmGitReferences(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid ScmGitReferences value: \(string)"
+                    )
+                }
+            }
+        }
+
+        public enum ScmProviders: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case repositories
+            case scmProviderType
+            case url
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = ScmProviders(rawValue: string) {
+                    self = value
+                } else if let value = ScmProviders(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid ScmProviders value: \(string)"
+                    )
+                }
+            }
+        }
 
         public enum ScmRepositories: String, Sendable, ParameterValue, Codable, CaseIterable {
             case defaultBranch

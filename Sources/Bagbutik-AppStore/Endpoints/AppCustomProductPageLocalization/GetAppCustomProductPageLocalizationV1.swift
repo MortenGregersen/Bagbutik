@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read custom product page localization information
+     # Read Custom Product Page Localization Information
      Get information about a specific app custom product page localization.
 
      Full documentation:
@@ -36,6 +36,8 @@ public enum GetAppCustomProductPageLocalizationV1 {
     public enum Field: FieldParameter {
         /// The fields to include for returned resources of type appCustomProductPageLocalizations
         case appCustomProductPageLocalizations([AppCustomProductPageLocalizations])
+        /// The fields to include for returned resources of type appCustomProductPageVersions
+        case appCustomProductPageVersions([AppCustomProductPageVersions])
         /// The fields to include for returned resources of type appPreviewSets
         case appPreviewSets([AppPreviewSets])
         /// The fields to include for returned resources of type appScreenshotSets
@@ -60,6 +62,29 @@ public enum GetAppCustomProductPageLocalizationV1 {
                     throw DecodingError.dataCorruptedError(
                         in: container,
                         debugDescription: "Invalid AppCustomProductPageLocalizations value: \(string)"
+                    )
+                }
+            }
+        }
+
+        public enum AppCustomProductPageVersions: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case appCustomProductPage
+            case appCustomProductPageLocalizations
+            case deepLink
+            case state
+            case version
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = AppCustomProductPageVersions(rawValue: string) {
+                    self = value
+                } else if let value = AppCustomProductPageVersions(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid AppCustomProductPageVersions value: \(string)"
                     )
                 }
             }

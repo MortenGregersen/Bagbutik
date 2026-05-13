@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Commit an image for a challenge
+     # Commit an Image for a Challenge
      Commit an uploaded image asset as a Game Center challenge image.
 
      Full documentation:

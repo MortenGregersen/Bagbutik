@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Modify a rule set
+     # Modify a Rule Set
      Update the attributes of a rule set.
 
      Full documentation:

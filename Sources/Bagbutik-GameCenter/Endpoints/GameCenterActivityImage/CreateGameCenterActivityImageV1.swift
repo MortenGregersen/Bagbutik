@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Create an activity image
+     # Create an Activity Image
      Reserve an image for a Game Center activity.
 
      Full documentation:

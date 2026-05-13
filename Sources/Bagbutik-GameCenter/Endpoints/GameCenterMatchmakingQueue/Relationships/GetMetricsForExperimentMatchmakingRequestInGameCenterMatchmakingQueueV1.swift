@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Get experimental match request time in queue
+     # Get Experimental Match Request Time in Queue
      Get the match requests that a specific queue processes using its experimental rule set.
 
      Full documentation:

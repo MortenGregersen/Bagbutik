@@ -6,7 +6,7 @@ import Foundation
  # AnalyticsReportsResponse
  A response that contains a list of analytics report resources.
 
- Use this object with [Read reports for a specific request](https://developer.apple.com/documentation/appstoreconnectapi/get-v1-analyticsreportrequests-_id_-reports).
+ Use this object with [Read Reports for a Specific Request](https://developer.apple.com/documentation/appstoreconnectapi/get-v1-analyticsreportrequests-_id_-reports).
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/analyticsreportsresponse>

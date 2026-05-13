@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # List teams in a rule set
+     # List Teams in a Rule Set
      Get information about the teams in a rule set.
 
      Full documentation:

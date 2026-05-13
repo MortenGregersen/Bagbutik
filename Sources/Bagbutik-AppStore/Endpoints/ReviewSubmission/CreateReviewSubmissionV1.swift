@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Create a review submission
+     # Create a Review Submission
      Create a review submission for a specific app.
 
      Full documentation:

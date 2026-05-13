@@ -44,12 +44,18 @@ public enum GetBuildV1 {
         case betaAppReviewSubmissions([BetaAppReviewSubmissions])
         /// The fields to include for returned resources of type betaBuildLocalizations
         case betaBuildLocalizations([BetaBuildLocalizations])
+        /// The fields to include for returned resources of type betaGroups
+        case betaGroups([BetaGroups])
         /// The fields to include for returned resources of type betaTesters
         case betaTesters([BetaTesters])
         /// The fields to include for returned resources of type buildBetaDetails
         case buildBetaDetails([BuildBetaDetails])
+        /// The fields to include for returned resources of type buildBundles
+        case buildBundles([BuildBundles])
         /// The fields to include for returned resources of type buildIcons
         case buildIcons([BuildIcons])
+        /// The fields to include for returned resources of type buildUploads
+        case buildUploads([BuildUploads])
         /// The fields to include for returned resources of type builds
         case builds([Builds])
         /// The fields to include for returned resources of type preReleaseVersions
@@ -247,6 +253,41 @@ public enum GetBuildV1 {
             }
         }
 
+        public enum BetaGroups: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case app
+            case betaRecruitmentCriteria
+            case betaRecruitmentCriterionCompatibleBuildCheck
+            case betaTesters
+            case builds
+            case createdDate
+            case feedbackEnabled
+            case hasAccessToAllBuilds
+            case iosBuildsAvailableForAppleSiliconMac
+            case iosBuildsAvailableForAppleVision
+            case isInternalGroup
+            case name
+            case publicLink
+            case publicLinkEnabled
+            case publicLinkId
+            case publicLinkLimit
+            case publicLinkLimitEnabled
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = BetaGroups(rawValue: string) {
+                    self = value
+                } else if let value = BetaGroups(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid BetaGroups value: \(string)"
+                    )
+                }
+            }
+        }
+
         public enum BetaTesters: String, Sendable, ParameterValue, Codable, CaseIterable {
             case appDevices
             case apps
@@ -296,6 +337,48 @@ public enum GetBuildV1 {
             }
         }
 
+        public enum BuildBundles: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case appClipDomainCacheStatus
+            case appClipDomainDebugStatus
+            case baDownloadAllowance
+            case baMaxInstallSize
+            case betaAppClipInvocations
+            case buildBundleFileSizes
+            case bundleId
+            case bundleType
+            case dSYMUrl
+            case deviceProtocols
+            case entitlements
+            case fileName
+            case hasOnDemandResources
+            case hasPrerenderedIcon
+            case hasSirikit
+            case includesSymbols
+            case isIosBuildMacAppStoreCompatible
+            case locales
+            case minimumOsVersion
+            case platformBuild
+            case requiredCapabilities
+            case sdkBuild
+            case supportedArchitectures
+            case usesLocationServices
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = BuildBundles(rawValue: string) {
+                    self = value
+                } else if let value = BuildBundles(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid BuildBundles value: \(string)"
+                    )
+                }
+            }
+        }
+
         public enum BuildIcons: String, Sendable, ParameterValue, Codable, CaseIterable {
             case iconAsset
             case iconType
@@ -313,6 +396,35 @@ public enum GetBuildV1 {
                     throw DecodingError.dataCorruptedError(
                         in: container,
                         debugDescription: "Invalid BuildIcons value: \(string)"
+                    )
+                }
+            }
+        }
+
+        public enum BuildUploads: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case assetDescriptionFile
+            case assetFile
+            case assetSpiFile
+            case build
+            case buildUploadFiles
+            case cfBundleShortVersionString
+            case cfBundleVersion
+            case createdDate
+            case platform
+            case state
+            case uploadedDate
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = BuildUploads(rawValue: string) {
+                    self = value
+                } else if let value = BuildUploads(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid BuildUploads value: \(string)"
                     )
                 }
             }

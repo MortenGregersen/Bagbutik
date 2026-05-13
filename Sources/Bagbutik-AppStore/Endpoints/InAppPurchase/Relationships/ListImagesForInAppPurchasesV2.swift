@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # List in-app purchase images
+     # List In-App Purchase Images
      List all images for a specific in-app purchase.
 
      Full documentation:

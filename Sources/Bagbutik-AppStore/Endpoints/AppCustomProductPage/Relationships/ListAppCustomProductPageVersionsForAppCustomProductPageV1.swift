@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # List custom product page versions
+     # List Custom Product Page Versions
      List the versions for a custom product page version.
 
      Full documentation:

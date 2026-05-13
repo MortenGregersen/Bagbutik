@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Delete a leaderboard set localization
+     # Delete a Leaderboard Set Localization
      Delete a localization that’s associated with a leaderboard set.
 
      Full documentation:

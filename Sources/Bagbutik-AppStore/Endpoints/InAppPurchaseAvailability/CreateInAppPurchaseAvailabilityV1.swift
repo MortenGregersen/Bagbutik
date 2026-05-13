@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Modify the territory availablity of an in-app purchase
+     # Modify the Territory Availablity of an In-App Purchase
      Update the territory availablity of a specific in-app purchase.
 
      Full documentation:

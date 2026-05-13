@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Delete a marketplace webhook configuration
+     # Delete a Marketplace Webhook Configuration
      Delete a specific marketplace notifcation endpoint URL.
 
      Full documentation:

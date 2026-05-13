@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read the segments for a report
+     # Read the Segments for a Report
      Get details for a specific analytics report segment.
 
      Full documentation:

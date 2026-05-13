@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read report requests
+     # Read Report Requests
      Read analytics report requests for a specific app.
 
      Full documentation:

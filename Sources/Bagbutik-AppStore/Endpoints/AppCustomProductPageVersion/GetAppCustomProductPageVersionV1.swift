@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read custom product page version information
+     # Read Custom Product Page Version Information
      Get information about a specific app custom product page version.
 
      Full documentation:
@@ -38,6 +38,8 @@ public enum GetAppCustomProductPageVersionV1 {
         case appCustomProductPageLocalizations([AppCustomProductPageLocalizations])
         /// The fields to include for returned resources of type appCustomProductPageVersions
         case appCustomProductPageVersions([AppCustomProductPageVersions])
+        /// The fields to include for returned resources of type appCustomProductPages
+        case appCustomProductPages([AppCustomProductPages])
 
         public enum AppCustomProductPageLocalizations: String, Sendable, ParameterValue, Codable, CaseIterable {
             case appCustomProductPageVersion
@@ -81,6 +83,29 @@ public enum GetAppCustomProductPageVersionV1 {
                     throw DecodingError.dataCorruptedError(
                         in: container,
                         debugDescription: "Invalid AppCustomProductPageVersions value: \(string)"
+                    )
+                }
+            }
+        }
+
+        public enum AppCustomProductPages: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case app
+            case appCustomProductPageVersions
+            case name
+            case url
+            case visible
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = AppCustomProductPages(rawValue: string) {
+                    self = value
+                } else if let value = AppCustomProductPages(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid AppCustomProductPages value: \(string)"
                     )
                 }
             }

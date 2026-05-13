@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Create a leaderboard release
+     # Create a Leaderboard Release
      Add a new leaderboard release.
 
      Full documentation:

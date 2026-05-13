@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # List releases for a leaderboard
+     # List Releases for a Leaderboard
      Read the state of releases for a leaderboard and related information.
 
      Full documentation:

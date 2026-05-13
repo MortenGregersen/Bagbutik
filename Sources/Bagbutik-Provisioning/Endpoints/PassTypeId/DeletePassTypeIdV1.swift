@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Delete a PassTypeId
+     # Delete a Passtypeid
      Delete a pass type ID that is used for app distribution.
 
      Full documentation:

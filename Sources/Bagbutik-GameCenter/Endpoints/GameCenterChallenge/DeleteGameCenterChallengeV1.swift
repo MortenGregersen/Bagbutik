@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Delete a challenge
+     # Delete a Challenge
      Remove a specific Game Center challenge.
 
      Full documentation:

@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Individually Unassign a Beta Tester from Builds
+     # Individually Unassign a Beta Tester From Builds
      Remove an individually assigned beta tester’s ability to test a build.
 
      Full documentation:

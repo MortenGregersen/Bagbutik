@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Create a rule set
+     # Create a Rule Set
      Create a rule set to contain matchmaking rules and teams.
 
      Full documentation:

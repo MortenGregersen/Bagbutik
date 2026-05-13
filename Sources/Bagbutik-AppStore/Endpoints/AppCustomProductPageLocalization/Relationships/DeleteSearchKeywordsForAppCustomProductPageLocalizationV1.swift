@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Remove a search keyword from a custom product page localization
+     # Remove a Search Keyword From a Custom Product Page Localization
      Unassign a search keyword from a specific custom product page localization.
 
      Full documentation:

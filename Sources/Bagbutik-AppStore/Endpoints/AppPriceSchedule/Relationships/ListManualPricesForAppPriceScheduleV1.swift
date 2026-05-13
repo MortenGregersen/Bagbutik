@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # List manually chosen prices for an app
+     # List Manually Chosen Prices for an App
      List the prices you chose for a specific app.
 
      Full documentation:

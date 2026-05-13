@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Create a Game Center leaderboard version
+     # Create a Game Center Leaderboard Version
      Create a Game Center leaderboard version.
 
      Full documentation:

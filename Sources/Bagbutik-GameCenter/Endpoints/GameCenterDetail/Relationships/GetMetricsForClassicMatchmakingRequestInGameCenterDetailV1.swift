@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Get classic match requests
+     # Get Classic Match Requests
      Get match requests that don’t use matchmaking rules.
 
      Full documentation:

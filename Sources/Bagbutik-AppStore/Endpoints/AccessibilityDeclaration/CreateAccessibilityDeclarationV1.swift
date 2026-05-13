@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Create an accessibility declaration
+     # Create an Accessibility Declaration
      Add an accessibility declaration for a specific app.
 
      Full documentation:

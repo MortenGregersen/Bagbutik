@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read group information for a leaderboard
+     # Read Group Information for a Leaderboard
      Read the group leadboard to which a leaderboard belongs.
 
      Full documentation:

@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Delete a team
+     # Delete a Team
      Delete a game-specific team in a rule set.
 
      Full documentation:

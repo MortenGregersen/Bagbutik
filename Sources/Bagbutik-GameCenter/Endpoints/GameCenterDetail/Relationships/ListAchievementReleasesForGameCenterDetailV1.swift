@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # List achievement releases 
+     # List Achievement Releases
      Read information about the achievement releases for specific Game Center detail.
 
      Full documentation:

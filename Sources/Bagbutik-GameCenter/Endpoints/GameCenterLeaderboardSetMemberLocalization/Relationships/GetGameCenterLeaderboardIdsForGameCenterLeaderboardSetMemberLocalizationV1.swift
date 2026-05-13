@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read tge leaderboard ID for a leaderboard set member localization
+     # Read Tge Leaderboard ID for a Leaderboard Set Member Localization
      Get the leaderboard ID for a specific leaderboard set member localization.
 
      Full documentation:

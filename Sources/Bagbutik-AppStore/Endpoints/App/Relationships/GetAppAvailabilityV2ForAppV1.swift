@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # List availability for an app
+     # List Availability for an App
      Get a list of availabilities for a specific app.
 
      Full documentation:

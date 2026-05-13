@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Get match request time in queue
+     # Get Match Request Time in Queue
      Get the match requests that a specific queue processes.
 
      Full documentation:

@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read information for an uploaded asset pack
+     # Read Information for an Uploaded Asset Pack
      Get details about an uploaded asset pack for Apple hosted background asset.
 
      Full documentation:

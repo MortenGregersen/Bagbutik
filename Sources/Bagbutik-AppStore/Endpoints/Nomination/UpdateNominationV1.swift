@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Modify a nomination
+     # Modify a Nomination
      Update a specific featuring nomination.
 
      Full documentation:

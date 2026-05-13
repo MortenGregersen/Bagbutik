@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Delete a Game Center leaderboard set image
+     # Delete a Game Center Leaderboard Set Image
      Delete a specific Game Center leaderboard set image.
 
      Full documentation:

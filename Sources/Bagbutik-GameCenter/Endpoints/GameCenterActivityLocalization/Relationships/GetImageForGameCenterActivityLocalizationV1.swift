@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read image information for an activity localization
+     # Read Image Information for an Activity Localization
      Get details about the image for a specific Game Center activity localization.
 
      Full documentation:

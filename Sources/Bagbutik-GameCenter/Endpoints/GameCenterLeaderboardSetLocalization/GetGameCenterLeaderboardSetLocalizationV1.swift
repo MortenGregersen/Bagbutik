@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read leaderboard set localization information
+     # Read Leaderboard Set Localization Information
      Get information about a leaderboard set localization.
 
      Full documentation:
@@ -37,6 +37,9 @@ public enum GetGameCenterLeaderboardSetLocalizationV1 {
         case gameCenterLeaderboardSetImages([GameCenterLeaderboardSetImages])
         /// The fields to include for returned resources of type gameCenterLeaderboardSetLocalizations
         case gameCenterLeaderboardSetLocalizations([GameCenterLeaderboardSetLocalizations])
+        /// The fields to include for returned resources of type gameCenterLeaderboardSets
+        @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
+        case gameCenterLeaderboardSets([GameCenterLeaderboardSets])
 
         public enum GameCenterLeaderboardSetImages: String, Sendable, ParameterValue, Codable, CaseIterable {
             case assetDeliveryState
@@ -79,6 +82,32 @@ public enum GetGameCenterLeaderboardSetLocalizationV1 {
                     throw DecodingError.dataCorruptedError(
                         in: container,
                         debugDescription: "Invalid GameCenterLeaderboardSetLocalizations value: \(string)"
+                    )
+                }
+            }
+        }
+
+        public enum GameCenterLeaderboardSets: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case gameCenterDetail
+            case gameCenterGroup
+            case gameCenterLeaderboards
+            case groupLeaderboardSet
+            case localizations
+            case referenceName
+            case releases
+            case vendorIdentifier
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = GameCenterLeaderboardSets(rawValue: string) {
+                    self = value
+                } else if let value = GameCenterLeaderboardSets(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid GameCenterLeaderboardSets value: \(string)"
                     )
                 }
             }

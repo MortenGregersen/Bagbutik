@@ -31,8 +31,33 @@ public enum GetAppScreenshotV1 {
      Fields to return for included related types.
      */
     public enum Field: FieldParameter {
+        /// The fields to include for returned resources of type appScreenshotSets
+        case appScreenshotSets([AppScreenshotSets])
         /// The fields to include for returned resources of type appScreenshots
         case appScreenshots([AppScreenshots])
+
+        public enum AppScreenshotSets: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case appCustomProductPageLocalization
+            case appScreenshots
+            case appStoreVersionExperimentTreatmentLocalization
+            case appStoreVersionLocalization
+            case screenshotDisplayType
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = AppScreenshotSets(rawValue: string) {
+                    self = value
+                } else if let value = AppScreenshotSets(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid AppScreenshotSets value: \(string)"
+                    )
+                }
+            }
+        }
 
         public enum AppScreenshots: String, Sendable, ParameterValue, Codable, CaseIterable {
             case appScreenshotSet

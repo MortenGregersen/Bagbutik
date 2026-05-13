@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Get rule-based match requests
+     # Get Rule-Based Match Requests
      Get match requests that use matchmaking rules.
 
      Full documentation:

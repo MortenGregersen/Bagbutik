@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Modify an achievement
+     # Modify an Achievement
      Modify properties for a specific achievement.
 
      Full documentation:

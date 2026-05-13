@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Delete an accessibility declaration
+     # Delete an Accessibility Declaration
      Delete a specific accessibility declaration.
 
      Full documentation:

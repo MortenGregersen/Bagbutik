@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Create asset pack version record
+     # Create Asset Pack Version Record
      Create an asset pack version record for your Apple-hosted background assets.
 
      Full documentation:

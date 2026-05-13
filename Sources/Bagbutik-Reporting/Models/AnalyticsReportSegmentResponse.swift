@@ -6,7 +6,7 @@ import Foundation
  # AnalyticsReportSegmentResponse
  A response that contains a single analytics report segment resource.
 
- Use this object with [Read the details for a report segment](https://developer.apple.com/documentation/appstoreconnectapi/get-v1-analyticsreportsegments-_id_).
+ Use this object with [Read the Details for a Report Segment](https://developer.apple.com/documentation/appstoreconnectapi/get-v1-analyticsreportsegments-_id_).
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/analyticsreportsegmentresponse>

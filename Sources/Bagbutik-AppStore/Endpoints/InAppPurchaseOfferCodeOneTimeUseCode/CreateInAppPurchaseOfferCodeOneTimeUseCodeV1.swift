@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Create an in-app purchase offer code one-time use code
+     # Create an In-App Purchase Offer Code One-Time Use Code
      Create a one-time use code for an in-app purchase offer code.
 
      Full documentation:

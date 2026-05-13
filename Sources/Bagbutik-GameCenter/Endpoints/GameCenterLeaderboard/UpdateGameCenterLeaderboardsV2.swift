@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Modify a Game Center leaderboard
+     # Modify a Game Center Leaderboard
      Update a specific Game Center leaderboard.
 
      Full documentation:

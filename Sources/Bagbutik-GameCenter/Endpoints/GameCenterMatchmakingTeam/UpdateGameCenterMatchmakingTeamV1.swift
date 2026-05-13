@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Modify a team
+     # Modify a Team
      Update a specific team in a rule set.
 
      Full documentation:

@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read recruitment criteria for a beta group
+     # Read Recruitment Criteria for a Beta Group
      Get the recruitment criteria information for a specific beta group.
 
      Full documentation:

@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read activity version information
+     # Read Activity Version Information
      Get information for a specific Game Center activity version.
 
      Full documentation:
@@ -34,12 +34,50 @@ public enum GetGameCenterActivityVersionV1 {
      Fields to return for included related types.
      */
     public enum Field: FieldParameter {
+        /// The fields to include for returned resources of type gameCenterActivities
+        case gameCenterActivities([GameCenterActivities])
         /// The fields to include for returned resources of type gameCenterActivityImages
         case gameCenterActivityImages([GameCenterActivityImages])
         /// The fields to include for returned resources of type gameCenterActivityLocalizations
         case gameCenterActivityLocalizations([GameCenterActivityLocalizations])
+        /// The fields to include for returned resources of type gameCenterActivityVersionReleases
+        @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
+        case gameCenterActivityVersionReleases([GameCenterActivityVersionReleases])
         /// The fields to include for returned resources of type gameCenterActivityVersions
         case gameCenterActivityVersions([GameCenterActivityVersions])
+
+        public enum GameCenterActivities: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case achievements
+            case achievementsV2
+            case archived
+            case gameCenterDetail
+            case gameCenterGroup
+            case leaderboards
+            case leaderboardsV2
+            case maximumPlayersCount
+            case minimumPlayersCount
+            case playStyle
+            case properties
+            case referenceName
+            case supportsPartyCode
+            case vendorIdentifier
+            case versions
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = GameCenterActivities(rawValue: string) {
+                    self = value
+                } else if let value = GameCenterActivities(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid GameCenterActivities value: \(string)"
+                    )
+                }
+            }
+        }
 
         public enum GameCenterActivityImages: String, Sendable, ParameterValue, Codable, CaseIterable {
             case assetDeliveryState
@@ -82,6 +120,25 @@ public enum GetGameCenterActivityVersionV1 {
                     throw DecodingError.dataCorruptedError(
                         in: container,
                         debugDescription: "Invalid GameCenterActivityLocalizations value: \(string)"
+                    )
+                }
+            }
+        }
+
+        public enum GameCenterActivityVersionReleases: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case version
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = GameCenterActivityVersionReleases(rawValue: string) {
+                    self = value
+                } else if let value = GameCenterActivityVersionReleases(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid GameCenterActivityVersionReleases value: \(string)"
                     )
                 }
             }

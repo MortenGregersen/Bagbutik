@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Get numeric rule results
+     # Get Numeric Rule Results
      Get the results of a specific matchmaking rule that returns numeric values.
 
      Full documentation:

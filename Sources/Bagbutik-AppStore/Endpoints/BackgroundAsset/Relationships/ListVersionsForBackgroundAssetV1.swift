@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read version details for a background asset
+     # Read Version Details for a Background Asset
      Get details about a specific background asset version.
 
      Full documentation:

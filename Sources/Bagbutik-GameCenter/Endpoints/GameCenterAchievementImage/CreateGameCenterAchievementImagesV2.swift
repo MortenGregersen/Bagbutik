@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Create a Game Center achievement image
+     # Create a Game Center Achievement Image
      Create a Game Center achievement image.
 
      Full documentation:

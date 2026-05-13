@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read the versions for an activity
+     # Read the Versions for an Activity
      Get a list of versions for a specific Game Center activity.
 
      Full documentation:

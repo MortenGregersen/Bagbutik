@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read Game Center leaderboard set localization information
+     # Read Game Center Leaderboard Set Localization Information
      Get information about a specific Game Center leaderboard set localization.
 
      Full documentation:
@@ -35,6 +35,8 @@ public enum GetGameCenterLeaderboardSetLocalizationsV2 {
         case gameCenterLeaderboardSetImages([GameCenterLeaderboardSetImages])
         /// The fields to include for returned resources of type gameCenterLeaderboardSetLocalizations
         case gameCenterLeaderboardSetLocalizations([GameCenterLeaderboardSetLocalizations])
+        /// The fields to include for returned resources of type gameCenterLeaderboardSetVersions
+        case gameCenterLeaderboardSetVersions([GameCenterLeaderboardSetVersions])
 
         public enum GameCenterLeaderboardSetImages: String, Sendable, ParameterValue, Codable, CaseIterable {
             case assetDeliveryState
@@ -77,6 +79,28 @@ public enum GetGameCenterLeaderboardSetLocalizationsV2 {
                     throw DecodingError.dataCorruptedError(
                         in: container,
                         debugDescription: "Invalid GameCenterLeaderboardSetLocalizations value: \(string)"
+                    )
+                }
+            }
+        }
+
+        public enum GameCenterLeaderboardSetVersions: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case leaderboardSet
+            case localizations
+            case state
+            case version
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = GameCenterLeaderboardSetVersions(rawValue: string) {
+                    self = value
+                } else if let value = GameCenterLeaderboardSetVersions(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid GameCenterLeaderboardSetVersions value: \(string)"
                     )
                 }
             }

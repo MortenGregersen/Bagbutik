@@ -6,7 +6,7 @@ import Foundation
  # AnalyticsReportRequestCreateRequest
  The request body you use to create an analytics report request.
 
- Use this object with [Request reports](https://developer.apple.com/documentation/appstoreconnectapi/post-v1-analyticsreportrequests).
+ Use this object with [Request Reports](https://developer.apple.com/documentation/appstoreconnectapi/post-v1-analyticsreportrequests).
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/analyticsreportrequestcreaterequest>

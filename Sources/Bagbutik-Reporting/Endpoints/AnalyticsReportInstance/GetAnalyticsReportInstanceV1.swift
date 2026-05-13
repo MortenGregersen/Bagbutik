@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read report instance information
+     # Read Report Instance Information
      Get details for a specific instance of an analytics report.
 
      Full documentation:

@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # List achievements
+     # List Achievements
      List the achievements for a Game Center detail.
 
      Full documentation:

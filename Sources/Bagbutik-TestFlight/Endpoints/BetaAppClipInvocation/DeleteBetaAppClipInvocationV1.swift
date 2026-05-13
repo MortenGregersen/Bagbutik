@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Delete an App Clip Invocation for Testers in TestFlight
+     # Delete an App Clip Invocation for Testers in Testflight
      Delete an App Clip invocation you make available to testers in TestFlight.
 
      Full documentation:

@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Create a featuring nomination
+     # Create a Featuring Nomination
      Tell Apple about your upcoming app or feature.
 
      Full documentation:

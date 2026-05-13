@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read the deliveries for a webhook
+     # Read the Deliveries for a Webhook
      Get a list of deliveries for a specific webhook configuration.
 
      Full documentation:

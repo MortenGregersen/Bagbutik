@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Delete a beta feedback crash submission
+     # Delete a Beta Feedback Crash Submission
      Delete a beta feedback crash submission from your app.
 
      Full documentation:

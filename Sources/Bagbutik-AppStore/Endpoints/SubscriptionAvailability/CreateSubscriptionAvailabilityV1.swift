@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Modify the territory availability of a subscription
+     # Modify the Territory Availability of a Subscription
      Update the territory availability of a specific subscription.
 
      Full documentation:

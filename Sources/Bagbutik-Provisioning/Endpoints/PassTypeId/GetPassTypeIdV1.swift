@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read PassTypeId Information
+     # Read Passtypeid Information
      Get information about a specific pass type ID.
 
      Full documentation:

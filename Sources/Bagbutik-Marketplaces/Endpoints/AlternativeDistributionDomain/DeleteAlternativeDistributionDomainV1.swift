@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Delete an alternative distribution domain
+     # Delete an Alternative Distribution Domain
      Delete the alternative distribution search domain for an app.
 
      Full documentation:

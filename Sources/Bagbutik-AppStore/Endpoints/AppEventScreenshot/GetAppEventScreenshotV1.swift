@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # List the images for an in-app event
+     # List the Images for an In-App Event
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-appEventScreenshots-_id_>
@@ -30,8 +30,35 @@ public enum GetAppEventScreenshotV1 {
      Fields to return for included related types.
      */
     public enum Field: FieldParameter {
+        /// The fields to include for returned resources of type appEventLocalizations
+        case appEventLocalizations([AppEventLocalizations])
         /// The fields to include for returned resources of type appEventScreenshots
         case appEventScreenshots([AppEventScreenshots])
+
+        public enum AppEventLocalizations: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case appEvent
+            case appEventScreenshots
+            case appEventVideoClips
+            case locale
+            case longDescription
+            case name
+            case shortDescription
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = AppEventLocalizations(rawValue: string) {
+                    self = value
+                } else if let value = AppEventLocalizations(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid AppEventLocalizations value: \(string)"
+                    )
+                }
+            }
+        }
 
         public enum AppEventScreenshots: String, Sendable, ParameterValue, Codable, CaseIterable {
             case appEventAssetType

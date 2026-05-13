@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Modify custom product page localization information
+     # Modify Custom Product Page Localization Information
      Update the promotional text for an app custom product page localization.
 
      Full documentation:

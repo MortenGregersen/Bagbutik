@@ -42,6 +42,9 @@ public enum ListAppEncryptionDeclarationsV1 {
         /// The fields to include for returned resources of type apps
         @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
         case apps([Apps])
+        /// The fields to include for returned resources of type builds
+        @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
+        case builds([Builds])
 
         public enum AppEncryptionDeclarationDocuments: String, Sendable, ParameterValue, Codable, CaseIterable {
             case assetDeliveryState
@@ -171,6 +174,50 @@ public enum ListAppEncryptionDeclarationsV1 {
                     throw DecodingError.dataCorruptedError(
                         in: container,
                         debugDescription: "Invalid Apps value: \(string)"
+                    )
+                }
+            }
+        }
+
+        public enum Builds: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case app
+            case appEncryptionDeclaration
+            case appStoreVersion
+            case betaAppReviewSubmission
+            case betaBuildLocalizations
+            case betaGroups
+            case buildAudienceType
+            case buildBetaDetail
+            case buildBundles
+            case buildUpload
+            case computedMinMacOsVersion
+            case computedMinVisionOsVersion
+            case diagnosticSignatures
+            case expirationDate
+            case expired
+            case iconAssetToken
+            case icons
+            case individualTesters
+            case lsMinimumSystemVersion
+            case minOsVersion
+            case perfPowerMetrics
+            case preReleaseVersion
+            case processingState
+            case uploadedDate
+            case usesNonExemptEncryption
+            case version
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = Builds(rawValue: string) {
+                    self = value
+                } else if let value = Builds(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid Builds value: \(string)"
                     )
                 }
             }

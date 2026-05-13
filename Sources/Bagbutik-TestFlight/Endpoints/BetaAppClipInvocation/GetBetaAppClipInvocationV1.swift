@@ -34,8 +34,30 @@ public enum GetBetaAppClipInvocationV1 {
      Fields to return for included related types.
      */
     public enum Field: FieldParameter {
+        /// The fields to include for returned resources of type betaAppClipInvocationLocalizations
+        case betaAppClipInvocationLocalizations([BetaAppClipInvocationLocalizations])
         /// The fields to include for returned resources of type betaAppClipInvocations
         case betaAppClipInvocations([BetaAppClipInvocations])
+
+        public enum BetaAppClipInvocationLocalizations: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case locale
+            case title
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = BetaAppClipInvocationLocalizations(rawValue: string) {
+                    self = value
+                } else if let value = BetaAppClipInvocationLocalizations(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid BetaAppClipInvocationLocalizations value: \(string)"
+                    )
+                }
+            }
+        }
 
         public enum BetaAppClipInvocations: String, Sendable, ParameterValue, Codable, CaseIterable {
             case betaAppClipInvocationLocalizations

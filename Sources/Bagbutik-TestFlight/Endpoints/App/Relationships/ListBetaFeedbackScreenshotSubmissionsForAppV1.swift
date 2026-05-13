@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # List all beta feedback screenshot submissions for an app
+     # List All Beta Feedback Screenshot Submissions for an App
      Get beta feedback screenshot submissions for a specific app.
 
      Full documentation:

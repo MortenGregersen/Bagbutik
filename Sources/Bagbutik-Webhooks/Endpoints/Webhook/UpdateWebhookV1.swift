@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Modify a webhook configuration
+     # Modify a Webhook Configuration
      Update details for a specific webhook.
 
      Full documentation:

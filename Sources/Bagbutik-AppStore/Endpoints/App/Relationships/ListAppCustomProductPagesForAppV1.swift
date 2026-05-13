@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # List all custom product pages for an app
+     # List All Custom Product Pages for an App
      Get a list of all custom product pages for a specific app.
 
      Full documentation:

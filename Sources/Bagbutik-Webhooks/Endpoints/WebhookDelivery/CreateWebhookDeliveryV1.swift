@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Redeliver a previous notification
+     # Redeliver a Previous Notification
      Resend a webhook notification from a specified template.
 
      Full documentation:

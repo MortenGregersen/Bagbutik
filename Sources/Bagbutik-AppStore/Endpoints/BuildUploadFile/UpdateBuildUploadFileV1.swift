@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Commit a build upload file
+     # Commit a Build Upload File
      Commit a build upload file to a specific build upload.
 
      Full documentation:

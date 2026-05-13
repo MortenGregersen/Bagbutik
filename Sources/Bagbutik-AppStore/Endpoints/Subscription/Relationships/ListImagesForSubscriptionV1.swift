@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # List subscription images
+     # List Subscription Images
      List all images for a specific subscription.
 
      Full documentation:

@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Add an alternative distribution key
+     # Add an Alternative Distribution Key
      Add an alternative distribution key for your alternative marketplace app or web distribution.
 
      You can use a single alternative distribution key for all alternative distribution apps on your account. You can optionally use an app specific alternative distribution key, by adding a relationship to a specific app in the JSON payload used with this endpoint.

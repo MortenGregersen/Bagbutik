@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # List item Ids
+     # List Item IDs
      Get the list of item IDs for a specific review submission.
 
      Full documentation:

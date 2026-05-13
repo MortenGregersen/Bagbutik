@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read Game Center leaderboard information
+     # Read Game Center Leaderboard Information
      Get information about a specific Game Center leaderboard.
 
      Full documentation:
@@ -34,10 +34,174 @@ public enum GetGameCenterLeaderboardsV2 {
      Fields to return for included related types.
      */
     public enum Field: FieldParameter {
+        /// The fields to include for returned resources of type gameCenterActivities
+        case gameCenterActivities([GameCenterActivities])
+        /// The fields to include for returned resources of type gameCenterChallenges
+        case gameCenterChallenges([GameCenterChallenges])
+        /// The fields to include for returned resources of type gameCenterDetails
+        case gameCenterDetails([GameCenterDetails])
+        /// The fields to include for returned resources of type gameCenterGroups
+        case gameCenterGroups([GameCenterGroups])
+        /// The fields to include for returned resources of type gameCenterLeaderboardSets
+        case gameCenterLeaderboardSets([GameCenterLeaderboardSets])
         /// The fields to include for returned resources of type gameCenterLeaderboardVersions
         case gameCenterLeaderboardVersions([GameCenterLeaderboardVersions])
         /// The fields to include for returned resources of type gameCenterLeaderboards
         case gameCenterLeaderboards([GameCenterLeaderboards])
+
+        public enum GameCenterActivities: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case achievements
+            case achievementsV2
+            case archived
+            case gameCenterDetail
+            case gameCenterGroup
+            case leaderboards
+            case leaderboardsV2
+            case maximumPlayersCount
+            case minimumPlayersCount
+            case playStyle
+            case properties
+            case referenceName
+            case supportsPartyCode
+            case vendorIdentifier
+            case versions
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = GameCenterActivities(rawValue: string) {
+                    self = value
+                } else if let value = GameCenterActivities(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid GameCenterActivities value: \(string)"
+                    )
+                }
+            }
+        }
+
+        public enum GameCenterChallenges: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case archived
+            case challengeType
+            case gameCenterDetail
+            case gameCenterGroup
+            case leaderboard
+            case leaderboardV2
+            case referenceName
+            case repeatable
+            case vendorIdentifier
+            case versions
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = GameCenterChallenges(rawValue: string) {
+                    self = value
+                } else if let value = GameCenterChallenges(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid GameCenterChallenges value: \(string)"
+                    )
+                }
+            }
+        }
+
+        public enum GameCenterDetails: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case achievementReleases
+            case activityReleases
+            case app
+            case arcadeEnabled
+            case challengeEnabled
+            case challengeReleases
+            case challengesMinimumPlatformVersions
+            case defaultGroupLeaderboard
+            case defaultGroupLeaderboardV2
+            case defaultLeaderboard
+            case defaultLeaderboardV2
+            case gameCenterAchievements
+            case gameCenterAchievementsV2
+            case gameCenterActivities
+            case gameCenterAppVersions
+            case gameCenterChallenges
+            case gameCenterGroup
+            case gameCenterLeaderboardSets
+            case gameCenterLeaderboardSetsV2
+            case gameCenterLeaderboards
+            case gameCenterLeaderboardsV2
+            case leaderboardReleases
+            case leaderboardSetReleases
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = GameCenterDetails(rawValue: string) {
+                    self = value
+                } else if let value = GameCenterDetails(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid GameCenterDetails value: \(string)"
+                    )
+                }
+            }
+        }
+
+        public enum GameCenterGroups: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case gameCenterAchievements
+            case gameCenterAchievementsV2
+            case gameCenterActivities
+            case gameCenterChallenges
+            case gameCenterDetails
+            case gameCenterLeaderboardSets
+            case gameCenterLeaderboardSetsV2
+            case gameCenterLeaderboards
+            case gameCenterLeaderboardsV2
+            case referenceName
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = GameCenterGroups(rawValue: string) {
+                    self = value
+                } else if let value = GameCenterGroups(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid GameCenterGroups value: \(string)"
+                    )
+                }
+            }
+        }
+
+        public enum GameCenterLeaderboardSets: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case gameCenterDetail
+            case gameCenterGroup
+            case gameCenterLeaderboards
+            case referenceName
+            case vendorIdentifier
+            case versions
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = GameCenterLeaderboardSets(rawValue: string) {
+                    self = value
+                } else if let value = GameCenterLeaderboardSets(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid GameCenterLeaderboardSets value: \(string)"
+                    )
+                }
+            }
+        }
 
         public enum GameCenterLeaderboardVersions: String, Sendable, ParameterValue, Codable, CaseIterable {
             case leaderboard

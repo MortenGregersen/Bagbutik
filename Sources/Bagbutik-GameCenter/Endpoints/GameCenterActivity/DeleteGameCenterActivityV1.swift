@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Delete an activity
+     # Delete an Activity
      Remove a specific Game Center activity.
 
      Full documentation:

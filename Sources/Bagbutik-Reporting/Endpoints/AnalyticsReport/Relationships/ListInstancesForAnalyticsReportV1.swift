@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read a list of instances of a report
+     # Read a List of Instances of a Report
      Read list of all the granularity options for a specific type of analytics report.
 
      Full documentation:

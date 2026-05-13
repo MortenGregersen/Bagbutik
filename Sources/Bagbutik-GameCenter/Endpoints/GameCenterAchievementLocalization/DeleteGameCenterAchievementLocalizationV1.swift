@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Delete an achievement localization
+     # Delete an Achievement Localization
      Delete localization metadata that’s associated with an achievement.
 
      Full documentation:

@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Modify an accessibility declaration
+     # Modify an Accessibility Declaration
      Update the attributes of a specific accessibility declaration.
 
      Full documentation:

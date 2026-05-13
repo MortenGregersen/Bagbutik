@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Add a challenge localization
+     # Add a Challenge Localization
      Add a localization for a specific Game Center challenge.
 
      Full documentation:

@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Modify an Android to iOS app mapping detail
+     # Modify an Android to iOS App Mapping Detail
      Update an Android to iOS app mapping detail.
 
      Full documentation:

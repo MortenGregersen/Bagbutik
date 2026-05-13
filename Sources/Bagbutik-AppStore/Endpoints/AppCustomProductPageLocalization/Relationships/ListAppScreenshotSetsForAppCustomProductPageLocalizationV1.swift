@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # List app screenshot sets for a custom product page localization
+     # List App Screenshot Sets for a Custom Product Page Localization
      List the app screenshot sets for a specific custom product page localization.
 
      Full documentation:

@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Modify a certificate
+     # Modify a Certificate
      Update the activation status for a specific certificate.
 
      Full documentation:

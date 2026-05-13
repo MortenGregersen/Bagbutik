@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read information for an alternative distribution package version
+     # Read Information for an Alternative Distribution Package Version
      Get detail information about a specific alternative distribution package version.
 
      Full documentation:
@@ -40,6 +40,8 @@ public enum GetAlternativeDistributionPackageVersionV1 {
         case alternativeDistributionPackageVariants([AlternativeDistributionPackageVariants])
         /// The fields to include for returned resources of type alternativeDistributionPackageVersions
         case alternativeDistributionPackageVersions([AlternativeDistributionPackageVersions])
+        /// The fields to include for returned resources of type alternativeDistributionPackages
+        case alternativeDistributionPackages([AlternativeDistributionPackages])
 
         public enum AlternativeDistributionPackageDeltas: String, Sendable, ParameterValue, Codable, CaseIterable {
             case alternativeDistributionKeyBlob
@@ -106,6 +108,26 @@ public enum GetAlternativeDistributionPackageVersionV1 {
                     throw DecodingError.dataCorruptedError(
                         in: container,
                         debugDescription: "Invalid AlternativeDistributionPackageVersions value: \(string)"
+                    )
+                }
+            }
+        }
+
+        public enum AlternativeDistributionPackages: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case sourceFileChecksum
+            case versions
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = AlternativeDistributionPackages(rawValue: string) {
+                    self = value
+                } else if let value = AlternativeDistributionPackages(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid AlternativeDistributionPackages value: \(string)"
                     )
                 }
             }

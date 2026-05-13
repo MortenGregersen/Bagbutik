@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Create a custom product page version
+     # Create a Custom Product Page Version
      Add a version for your app custom product page.
 
      Full documentation:

@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # List alternative distribution domains
+     # List Alternative Distribution Domains
      List all the alternative distribution domains for your account.
 
      Full documentation:

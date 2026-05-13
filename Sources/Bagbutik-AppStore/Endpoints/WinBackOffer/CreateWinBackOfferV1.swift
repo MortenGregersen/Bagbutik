@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Create a win-back offer
+     # Create a Win-Back Offer
      Create a win-back offer for a specific subscription.
 
      Full documentation:

@@ -14,10 +14,10 @@ public struct GameCenterMatchmakingTestPlayerPropertyInlineCreate: Codable, Send
     /// The type of the resource object.
     public var type: String { "gameCenterMatchmakingTestPlayerProperties" }
     /// The attributes of the resource object.
-    public let attributes: Attributes
+    public var attributes: Attributes?
 
     public init(id: String? = nil,
-                attributes: Attributes)
+                attributes: Attributes? = nil)
     {
         self.id = id
         self.attributes = attributes
@@ -26,7 +26,7 @@ public struct GameCenterMatchmakingTestPlayerPropertyInlineCreate: Codable, Send
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: AnyCodingKey.self)
         id = try container.decodeIfPresent(String.self, forKey: "id")
-        attributes = try container.decode(Attributes.self, forKey: "attributes")
+        attributes = try container.decodeIfPresent(Attributes.self, forKey: "attributes")
         if try container.decode(String.self, forKey: "type") != type {
             throw DecodingError.dataCorruptedError(forKey: "type", in: container, debugDescription: "Not matching \(type)")
         }
@@ -36,14 +36,14 @@ public struct GameCenterMatchmakingTestPlayerPropertyInlineCreate: Codable, Send
         var container = encoder.container(keyedBy: AnyCodingKey.self)
         try container.encodeIfPresent(id, forKey: "id")
         try container.encode(type, forKey: "type")
-        try container.encode(attributes, forKey: "attributes")
+        try container.encodeIfPresent(attributes, forKey: "attributes")
     }
 
     public struct Attributes: Codable, Sendable {
-        public let playerId: String
+        public var playerId: String?
         public var properties: [Property]?
 
-        public init(playerId: String,
+        public init(playerId: String? = nil,
                     properties: [Property]? = nil)
         {
             self.playerId = playerId
@@ -52,13 +52,13 @@ public struct GameCenterMatchmakingTestPlayerPropertyInlineCreate: Codable, Send
 
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: AnyCodingKey.self)
-            playerId = try container.decode(String.self, forKey: "playerId")
+            playerId = try container.decodeIfPresent(String.self, forKey: "playerId")
             properties = try container.decodeIfPresent([Property].self, forKey: "properties")
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: AnyCodingKey.self)
-            try container.encode(playerId, forKey: "playerId")
+            try container.encodeIfPresent(playerId, forKey: "playerId")
             try container.encodeIfPresent(properties, forKey: "properties")
         }
     }

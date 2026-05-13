@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read price schedule information for an app
+     # Read Price Schedule Information for an App
      Read price schedule details for a specific app.
 
      Full documentation:

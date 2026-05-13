@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Get matchmaking rule errors
+     # Get Matchmaking Rule Errors
      Get errors that occur for a specific matchmaking rule.
 
      Full documentation:

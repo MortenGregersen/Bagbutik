@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read the challenges for a Game Center detail
+     # Read the Challenges for a Game Center Detail
      Get challenge information for a specific Game Center detail.
 
      Full documentation:

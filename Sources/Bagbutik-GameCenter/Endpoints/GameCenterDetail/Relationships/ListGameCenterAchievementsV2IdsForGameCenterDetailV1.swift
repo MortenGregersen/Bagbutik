@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Get all achievement IDs for a Game Center detail
+     # Get All Achievement IDs for a Game Center Detail
      Get a list of achievement resource IDs for a specific Game Center detail.
 
      Full documentation:

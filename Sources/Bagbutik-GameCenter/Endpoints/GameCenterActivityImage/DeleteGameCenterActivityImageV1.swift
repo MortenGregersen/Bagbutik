@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Delete an activity image
+     # Delete an Activity Image
      Remove a specific image from a Game Center activity.
 
      Full documentation:

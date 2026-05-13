@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Delete the relationship between a leaderboard and a leaderboard set
+     # Delete the Relationship Between a Leaderboard and a Leaderboard Set
      Remove a leaderboard from a leaderboard set.
 
      Full documentation:

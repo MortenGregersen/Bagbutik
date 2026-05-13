@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # List the items in a review submission
+     # List the Items in a Review Submission
      List all the items in a specific review submission.
 
      Full documentation:

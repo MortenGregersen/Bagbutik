@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Enable Game Center for an app
+     # Enable Game Center for an App
      Create a Game Center detail for an app.
 
      Full documentation:

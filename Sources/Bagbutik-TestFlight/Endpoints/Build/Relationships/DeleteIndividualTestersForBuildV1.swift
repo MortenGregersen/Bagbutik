@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Remove Individual Testers from a Build
+     # Remove Individual Testers From a Build
      Remove access to test a specific build from one or more individually assigned testers.
 
      Full documentation:

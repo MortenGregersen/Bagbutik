@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # List the territory availability of a subscription
+     # List the Territory Availability of a Subscription
      List the territory availability and currency of a specific subscription.
 
      Full documentation:

@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Modify an activity localization
+     # Modify an Activity Localization
      Update localization information for a specific Game Center activity.
 
      Full documentation:

@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Delete a win-back offer
+     # Delete a Win-Back Offer
      Remove a win-back offer for a specific subscription.
 
      Full documentation:

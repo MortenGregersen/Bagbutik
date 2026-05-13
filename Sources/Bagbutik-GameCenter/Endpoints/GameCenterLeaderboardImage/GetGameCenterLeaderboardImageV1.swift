@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read leaderboard image information
+     # Read Leaderboard Image Information
      Get information about a leaderboard image and its upload and processing status.
 
      Full documentation:
@@ -34,6 +34,9 @@ public enum GetGameCenterLeaderboardImageV1 {
     public enum Field: FieldParameter {
         /// The fields to include for returned resources of type gameCenterLeaderboardImages
         case gameCenterLeaderboardImages([GameCenterLeaderboardImages])
+        /// The fields to include for returned resources of type gameCenterLeaderboardLocalizations
+        @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
+        case gameCenterLeaderboardLocalizations([GameCenterLeaderboardLocalizations])
 
         public enum GameCenterLeaderboardImages: String, Sendable, ParameterValue, Codable, CaseIterable {
             case assetDeliveryState
@@ -54,6 +57,32 @@ public enum GetGameCenterLeaderboardImageV1 {
                     throw DecodingError.dataCorruptedError(
                         in: container,
                         debugDescription: "Invalid GameCenterLeaderboardImages value: \(string)"
+                    )
+                }
+            }
+        }
+
+        public enum GameCenterLeaderboardLocalizations: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case description
+            case formatterOverride
+            case formatterSuffix
+            case formatterSuffixSingular
+            case gameCenterLeaderboard
+            case gameCenterLeaderboardImage
+            case locale
+            case name
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = GameCenterLeaderboardLocalizations(rawValue: string) {
+                    self = value
+                } else if let value = GameCenterLeaderboardLocalizations(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid GameCenterLeaderboardLocalizations value: \(string)"
                     )
                 }
             }

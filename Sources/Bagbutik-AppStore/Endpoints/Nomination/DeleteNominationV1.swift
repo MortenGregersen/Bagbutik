@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Delete a featuring nomination
+     # Delete a Featuring Nomination
      Remove a specific featuring nomination.
 
      Full documentation:

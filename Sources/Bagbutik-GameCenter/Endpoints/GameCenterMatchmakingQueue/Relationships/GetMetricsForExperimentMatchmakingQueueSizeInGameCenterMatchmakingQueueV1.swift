@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Get experimental queue size
+     # Get Experimental Queue Size
      Get the number of match requests that the queue processes using its experimental rule set.
 
      Full documentation:

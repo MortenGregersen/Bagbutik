@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # List certificates for a merchant ID
+     # List Certificates for a Merchant ID
      Get a list of all certificates for a specific merchant ID.
 
      Full documentation:

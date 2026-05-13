@@ -31,8 +31,33 @@ public enum GetAppPreviewV1 {
      Fields to return for included related types.
      */
     public enum Field: FieldParameter {
+        /// The fields to include for returned resources of type appPreviewSets
+        case appPreviewSets([AppPreviewSets])
         /// The fields to include for returned resources of type appPreviews
         case appPreviews([AppPreviews])
+
+        public enum AppPreviewSets: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case appCustomProductPageLocalization
+            case appPreviews
+            case appStoreVersionExperimentTreatmentLocalization
+            case appStoreVersionLocalization
+            case previewType
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = AppPreviewSets(rawValue: string) {
+                    self = value
+                } else if let value = AppPreviewSets(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid AppPreviewSets value: \(string)"
+                    )
+                }
+            }
+        }
 
         public enum AppPreviews: String, Sendable, ParameterValue, Codable, CaseIterable {
             case appPreviewSet

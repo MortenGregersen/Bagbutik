@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Delete a beta feedback screenshot submission
+     # Delete a Beta Feedback Screenshot Submission
      Delete a beta feedback screenshot submission from your app.
 
      Full documentation:

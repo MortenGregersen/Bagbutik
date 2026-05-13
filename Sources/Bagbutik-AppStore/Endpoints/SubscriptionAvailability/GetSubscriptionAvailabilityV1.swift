@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read the availability of a subscription
+     # Read the Availability of a Subscription
      Get information about the territory availability for a subscription.
 
      Full documentation:

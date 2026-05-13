@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read the selected base territory for an in-app purchase price schedule
+     # Read the Selected Base Territory for an In-App Purchase Price Schedule
      Get information about the selected base territory for an in-app purchase price schedule.
 
      Full documentation:

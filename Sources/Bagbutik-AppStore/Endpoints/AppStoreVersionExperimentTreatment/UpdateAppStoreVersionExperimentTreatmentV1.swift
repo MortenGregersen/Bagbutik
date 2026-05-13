@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Modify an App Store version experiement treatment
+     # Modify an App Store Version Experiement Treatment
      Update the name and app icon name for a specific App Store version experiment.
 
      Full documentation:

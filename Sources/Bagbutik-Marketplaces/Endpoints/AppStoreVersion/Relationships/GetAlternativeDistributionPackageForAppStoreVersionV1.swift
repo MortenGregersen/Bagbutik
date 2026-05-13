@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read an App Store version’s alternative distribution package
+     # Read an App Store Version’s Alternative Distribution Package
      Read the alternative distribution package for a specific App Store version.
 
      Full documentation:

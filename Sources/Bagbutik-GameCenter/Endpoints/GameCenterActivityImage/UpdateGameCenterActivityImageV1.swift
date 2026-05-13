@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Commit an image for an activity
+     # Commit an Image for an Activity
      Commit an uploaded image asset as a Game Center activity image.
 
      Full documentation:

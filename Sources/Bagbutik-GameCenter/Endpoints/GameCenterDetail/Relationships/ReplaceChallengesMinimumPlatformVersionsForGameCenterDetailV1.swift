@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Modify the challenges minimum platform version for a Game Center detail
+     # Modify the Challenges Minimum Platform Version for a Game Center Detail
      Update the relationship between a challenges minimum platform version and a specific Game Center detail.
 
      Full documentation:

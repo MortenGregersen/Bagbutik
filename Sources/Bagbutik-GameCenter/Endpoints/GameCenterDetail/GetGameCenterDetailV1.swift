@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read Game Center details
+     # Read Game Center Details
      Read a specific Game Center detail and related information.
 
      Full documentation:
@@ -34,6 +34,10 @@ public enum GetGameCenterDetailV1 {
      Fields to return for included related types.
      */
     public enum Field: FieldParameter {
+        /// The fields to include for returned resources of type appStoreVersions
+        case appStoreVersions([AppStoreVersions])
+        /// The fields to include for returned resources of type apps
+        case apps([Apps])
         /// The fields to include for returned resources of type gameCenterAchievementReleases
         @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
         case gameCenterAchievementReleases([GameCenterAchievementReleases])
@@ -65,6 +69,121 @@ public enum GetGameCenterDetailV1 {
         case gameCenterLeaderboardSets([GameCenterLeaderboardSets])
         /// The fields to include for returned resources of type gameCenterLeaderboards
         case gameCenterLeaderboards([GameCenterLeaderboards])
+
+        public enum AppStoreVersions: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case alternativeDistributionPackage
+            case app
+            case appClipDefaultExperience
+            case appStoreReviewDetail
+            case appStoreState
+            case appStoreVersionExperiments
+            case appStoreVersionExperimentsV2
+            case appStoreVersionLocalizations
+            case appStoreVersionPhasedRelease
+            case appStoreVersionSubmission
+            case appVersionState
+            case build
+            case copyright
+            case createdDate
+            case customerReviews
+            case downloadable
+            case earliestReleaseDate
+            case gameCenterAppVersion
+            case platform
+            case releaseType
+            case reviewType
+            case routingAppCoverage
+            case usesIdfa
+            case versionString
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = AppStoreVersions(rawValue: string) {
+                    self = value
+                } else if let value = AppStoreVersions(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid AppStoreVersions value: \(string)"
+                    )
+                }
+            }
+        }
+
+        public enum Apps: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case accessibilityDeclarations
+            case accessibilityUrl
+            case alternativeDistributionKey
+            case analyticsReportRequests
+            case androidToIosAppMappingDetails
+            case appAvailabilityV2
+            case appClips
+            case appCustomProductPages
+            case appEncryptionDeclarations
+            case appEvents
+            case appInfos
+            case appPricePoints
+            case appPriceSchedule
+            case appStoreIcon
+            case appStoreVersionExperimentsV2
+            case appStoreVersions
+            case appTags
+            case backgroundAssets
+            case betaAppLocalizations
+            case betaAppReviewDetail
+            case betaFeedbackCrashSubmissions
+            case betaFeedbackScreenshotSubmissions
+            case betaGroups
+            case betaLicenseAgreement
+            case betaTesters
+            case buildUploads
+            case builds
+            case bundleId
+            case ciProduct
+            case contentRightsDeclaration
+            case customerReviewSummarizations
+            case customerReviews
+            case endUserLicenseAgreement
+            case gameCenterDetail
+            case gameCenterEnabledVersions
+            case inAppPurchases
+            case inAppPurchasesV2
+            case isOrEverWasMadeForKids
+            case marketplaceSearchDetail
+            case name
+            case perfPowerMetrics
+            case preReleaseVersions
+            case primaryLocale
+            case promotedPurchases
+            case reviewSubmissions
+            case searchKeywords
+            case sku
+            case streamlinedPurchasingEnabled
+            case subscriptionGracePeriod
+            case subscriptionGroups
+            case subscriptionStatusUrl
+            case subscriptionStatusUrlForSandbox
+            case subscriptionStatusUrlVersion
+            case subscriptionStatusUrlVersionForSandbox
+            case webhooks
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = Apps(rawValue: string) {
+                    self = value
+                } else if let value = Apps(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid Apps value: \(string)"
+                    )
+                }
+            }
+        }
 
         public enum GameCenterAchievementReleases: String, Sendable, ParameterValue, Codable, CaseIterable {
             case gameCenterAchievement

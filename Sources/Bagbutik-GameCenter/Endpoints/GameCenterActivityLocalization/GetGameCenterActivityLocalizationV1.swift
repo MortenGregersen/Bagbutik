@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read activity localization information
+     # Read Activity Localization Information
      Get information for a specific Game Center activity localization.
 
      Full documentation:
@@ -35,6 +35,8 @@ public enum GetGameCenterActivityLocalizationV1 {
         case gameCenterActivityImages([GameCenterActivityImages])
         /// The fields to include for returned resources of type gameCenterActivityLocalizations
         case gameCenterActivityLocalizations([GameCenterActivityLocalizations])
+        /// The fields to include for returned resources of type gameCenterActivityVersions
+        case gameCenterActivityVersions([GameCenterActivityVersions])
 
         public enum GameCenterActivityImages: String, Sendable, ParameterValue, Codable, CaseIterable {
             case assetDeliveryState
@@ -77,6 +79,31 @@ public enum GetGameCenterActivityLocalizationV1 {
                     throw DecodingError.dataCorruptedError(
                         in: container,
                         debugDescription: "Invalid GameCenterActivityLocalizations value: \(string)"
+                    )
+                }
+            }
+        }
+
+        public enum GameCenterActivityVersions: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case activity
+            case defaultImage
+            case fallbackUrl
+            case localizations
+            case releases
+            case state
+            case version
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = GameCenterActivityVersions(rawValue: string) {
+                    self = value
+                } else if let value = GameCenterActivityVersions(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid GameCenterActivityVersions value: \(string)"
                     )
                 }
             }

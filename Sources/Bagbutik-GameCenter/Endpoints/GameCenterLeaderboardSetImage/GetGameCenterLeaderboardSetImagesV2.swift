@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read Game Center leaderboard set image information
+     # Read Game Center Leaderboard Set Image Information
      Get information about a specific Game Center leaderboard set image.
 
      Full documentation:
@@ -33,6 +33,8 @@ public enum GetGameCenterLeaderboardSetImagesV2 {
     public enum Field: FieldParameter {
         /// The fields to include for returned resources of type gameCenterLeaderboardSetImages
         case gameCenterLeaderboardSetImages([GameCenterLeaderboardSetImages])
+        /// The fields to include for returned resources of type gameCenterLeaderboardSetLocalizations
+        case gameCenterLeaderboardSetLocalizations([GameCenterLeaderboardSetLocalizations])
 
         public enum GameCenterLeaderboardSetImages: String, Sendable, ParameterValue, Codable, CaseIterable {
             case assetDeliveryState
@@ -53,6 +55,28 @@ public enum GetGameCenterLeaderboardSetImagesV2 {
                     throw DecodingError.dataCorruptedError(
                         in: container,
                         debugDescription: "Invalid GameCenterLeaderboardSetImages value: \(string)"
+                    )
+                }
+            }
+        }
+
+        public enum GameCenterLeaderboardSetLocalizations: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case image
+            case locale
+            case name
+            case version
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = GameCenterLeaderboardSetLocalizations(rawValue: string) {
+                    self = value
+                } else if let value = GameCenterLeaderboardSetLocalizations(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid GameCenterLeaderboardSetLocalizations value: \(string)"
                     )
                 }
             }

@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read default image information for an activity version
+     # Read Default Image Information for an Activity Version
      Get details about the default image for a specific Game Center activity version.
 
      Full documentation:

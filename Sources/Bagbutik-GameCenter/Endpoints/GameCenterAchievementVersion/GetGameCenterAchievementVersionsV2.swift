@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read Game Center achievement version information
+     # Read Game Center Achievement Version Information
      Get information about a specific Game Center achievement version.
 
      Full documentation:
@@ -38,6 +38,8 @@ public enum GetGameCenterAchievementVersionsV2 {
         case gameCenterAchievementLocalizations([GameCenterAchievementLocalizations])
         /// The fields to include for returned resources of type gameCenterAchievementVersions
         case gameCenterAchievementVersions([GameCenterAchievementVersions])
+        /// The fields to include for returned resources of type gameCenterAchievements
+        case gameCenterAchievements([GameCenterAchievements])
 
         public enum GameCenterAchievementLocalizations: String, Sendable, ParameterValue, Codable, CaseIterable {
             case afterEarnedDescription
@@ -80,6 +82,35 @@ public enum GetGameCenterAchievementVersionsV2 {
                     throw DecodingError.dataCorruptedError(
                         in: container,
                         debugDescription: "Invalid GameCenterAchievementVersions value: \(string)"
+                    )
+                }
+            }
+        }
+
+        public enum GameCenterAchievements: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case activity
+            case activityProperties
+            case archived
+            case gameCenterDetail
+            case gameCenterGroup
+            case points
+            case referenceName
+            case repeatable
+            case showBeforeEarned
+            case vendorIdentifier
+            case versions
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = GameCenterAchievements(rawValue: string) {
+                    self = value
+                } else if let value = GameCenterAchievements(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid GameCenterAchievements value: \(string)"
                     )
                 }
             }

@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Delete an subscription image
+     # Delete an Subscription Image
      Delete the image asset that appears on the App Store listing that represents an subscription.
 
      Full documentation:

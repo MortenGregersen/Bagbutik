@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read alternative distribution domain information
+     # Read Alternative Distribution Domain Information
      Read information for a specific alternative distribution domain.
 
      Full documentation:

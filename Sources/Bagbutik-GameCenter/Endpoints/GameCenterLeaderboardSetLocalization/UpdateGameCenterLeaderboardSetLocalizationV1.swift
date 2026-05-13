@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Modify a leaderboard set localization
+     # Modify a Leaderboard Set Localization
      Edit a leaderboard set localization.
 
      Full documentation:

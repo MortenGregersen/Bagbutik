@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Add an alternative distribution domain
+     # Add an Alternative Distribution Domain
      Add an alternative distribution domain to your account.
 
      Full documentation:

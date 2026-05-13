@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read beta feedback crash submission information
+     # Read Beta Feedback Crash Submission Information
      Get information for a specific beta feedback crash submission.
 
      Full documentation:
@@ -33,6 +33,10 @@ public enum GetBetaFeedbackCrashSubmissionV1 {
     public enum Field: FieldParameter {
         /// The fields to include for returned resources of type betaFeedbackCrashSubmissions
         case betaFeedbackCrashSubmissions([BetaFeedbackCrashSubmissions])
+        /// The fields to include for returned resources of type betaTesters
+        case betaTesters([BetaTesters])
+        /// The fields to include for returned resources of type builds
+        case builds([Builds])
 
         public enum BetaFeedbackCrashSubmissions: String, Sendable, ParameterValue, Codable, CaseIterable {
             case appPlatform
@@ -70,6 +74,77 @@ public enum GetBetaFeedbackCrashSubmissionV1 {
                     throw DecodingError.dataCorruptedError(
                         in: container,
                         debugDescription: "Invalid BetaFeedbackCrashSubmissions value: \(string)"
+                    )
+                }
+            }
+        }
+
+        public enum BetaTesters: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case appDevices
+            case apps
+            case betaGroups
+            case builds
+            case email
+            case firstName
+            case inviteType
+            case lastName
+            case state
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = BetaTesters(rawValue: string) {
+                    self = value
+                } else if let value = BetaTesters(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid BetaTesters value: \(string)"
+                    )
+                }
+            }
+        }
+
+        public enum Builds: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case app
+            case appEncryptionDeclaration
+            case appStoreVersion
+            case betaAppReviewSubmission
+            case betaBuildLocalizations
+            case betaGroups
+            case buildAudienceType
+            case buildBetaDetail
+            case buildBundles
+            case buildUpload
+            case computedMinMacOsVersion
+            case computedMinVisionOsVersion
+            case diagnosticSignatures
+            case expirationDate
+            case expired
+            case iconAssetToken
+            case icons
+            case individualTesters
+            case lsMinimumSystemVersion
+            case minOsVersion
+            case perfPowerMetrics
+            case preReleaseVersion
+            case processingState
+            case uploadedDate
+            case usesNonExemptEncryption
+            case version
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = Builds(rawValue: string) {
+                    self = value
+                } else if let value = Builds(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid Builds value: \(string)"
                     )
                 }
             }

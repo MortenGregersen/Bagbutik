@@ -34,10 +34,40 @@ public enum GetAppScreenshotSetV1 {
      Fields to return for included related types.
      */
     public enum Field: FieldParameter {
+        /// The fields to include for returned resources of type appCustomProductPageLocalizations
+        case appCustomProductPageLocalizations([AppCustomProductPageLocalizations])
         /// The fields to include for returned resources of type appScreenshotSets
         case appScreenshotSets([AppScreenshotSets])
         /// The fields to include for returned resources of type appScreenshots
         case appScreenshots([AppScreenshots])
+        /// The fields to include for returned resources of type appStoreVersionExperimentTreatmentLocalizations
+        case appStoreVersionExperimentTreatmentLocalizations([AppStoreVersionExperimentTreatmentLocalizations])
+        /// The fields to include for returned resources of type appStoreVersionLocalizations
+        case appStoreVersionLocalizations([AppStoreVersionLocalizations])
+
+        public enum AppCustomProductPageLocalizations: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case appCustomProductPageVersion
+            case appPreviewSets
+            case appScreenshotSets
+            case locale
+            case promotionalText
+            case searchKeywords
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = AppCustomProductPageLocalizations(rawValue: string) {
+                    self = value
+                } else if let value = AppCustomProductPageLocalizations(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid AppCustomProductPageLocalizations value: \(string)"
+                    )
+                }
+            }
+        }
 
         public enum AppScreenshotSets: String, Sendable, ParameterValue, Codable, CaseIterable {
             case appCustomProductPageLocalization
@@ -84,6 +114,57 @@ public enum GetAppScreenshotSetV1 {
                     throw DecodingError.dataCorruptedError(
                         in: container,
                         debugDescription: "Invalid AppScreenshots value: \(string)"
+                    )
+                }
+            }
+        }
+
+        public enum AppStoreVersionExperimentTreatmentLocalizations: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case appPreviewSets
+            case appScreenshotSets
+            case appStoreVersionExperimentTreatment
+            case locale
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = AppStoreVersionExperimentTreatmentLocalizations(rawValue: string) {
+                    self = value
+                } else if let value = AppStoreVersionExperimentTreatmentLocalizations(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid AppStoreVersionExperimentTreatmentLocalizations value: \(string)"
+                    )
+                }
+            }
+        }
+
+        public enum AppStoreVersionLocalizations: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case appPreviewSets
+            case appScreenshotSets
+            case appStoreVersion
+            case description
+            case keywords
+            case locale
+            case marketingUrl
+            case promotionalText
+            case searchKeywords
+            case supportUrl
+            case whatsNew
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = AppStoreVersionLocalizations(rawValue: string) {
+                    self = value
+                } else if let value = AppStoreVersionLocalizations(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid AppStoreVersionLocalizations value: \(string)"
                     )
                 }
             }

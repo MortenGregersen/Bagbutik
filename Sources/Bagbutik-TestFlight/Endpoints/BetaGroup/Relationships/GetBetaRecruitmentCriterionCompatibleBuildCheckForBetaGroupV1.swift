@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read build compatibilty for a beta group
+     # Read Build Compatibilty for a Beta Group
      Get the build compatibilty information for a specific beta group.
 
      Full documentation:

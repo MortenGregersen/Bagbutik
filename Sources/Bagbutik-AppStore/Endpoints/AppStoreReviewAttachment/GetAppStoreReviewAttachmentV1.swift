@@ -33,6 +33,8 @@ public enum GetAppStoreReviewAttachmentV1 {
     public enum Field: FieldParameter {
         /// The fields to include for returned resources of type appStoreReviewAttachments
         case appStoreReviewAttachments([AppStoreReviewAttachments])
+        /// The fields to include for returned resources of type appStoreReviewDetails
+        case appStoreReviewDetails([AppStoreReviewDetails])
 
         public enum AppStoreReviewAttachments: String, Sendable, ParameterValue, Codable, CaseIterable {
             case appStoreReviewDetail
@@ -53,6 +55,34 @@ public enum GetAppStoreReviewAttachmentV1 {
                     throw DecodingError.dataCorruptedError(
                         in: container,
                         debugDescription: "Invalid AppStoreReviewAttachments value: \(string)"
+                    )
+                }
+            }
+        }
+
+        public enum AppStoreReviewDetails: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case appStoreReviewAttachments
+            case appStoreVersion
+            case contactEmail
+            case contactFirstName
+            case contactLastName
+            case contactPhone
+            case demoAccountName
+            case demoAccountPassword
+            case demoAccountRequired
+            case notes
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = AppStoreReviewDetails(rawValue: string) {
+                    self = value
+                } else if let value = AppStoreReviewDetails(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid AppStoreReviewDetails value: \(string)"
                     )
                 }
             }

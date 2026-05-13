@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Create an image for a subscription
+     # Create an Image for a Subscription
      Reserve an image asset to appear in the App Store, representing a subscription.
 
      Full documentation:

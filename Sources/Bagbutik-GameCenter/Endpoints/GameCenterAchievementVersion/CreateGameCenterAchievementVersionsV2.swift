@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Create a Game Center achievement version
+     # Create a Game Center Achievement Version
      Create a Game Center achievement version.
 
      Full documentation:

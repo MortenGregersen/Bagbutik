@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Get all custom product page resource IDs for an app
+     # Get All Custom Product Page Resource IDs for an App
      Get a list of custom product page resource IDs associated with an app.
 
      Full documentation:

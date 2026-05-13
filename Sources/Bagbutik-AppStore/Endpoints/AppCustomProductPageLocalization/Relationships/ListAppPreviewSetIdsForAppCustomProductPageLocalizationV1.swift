@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # List app preview set Ids for a custom product page localization
+     # List App Preview Set IDs for a Custom Product Page Localization
      List the app preview set IDs for a specific custom product page localization.
 
      Full documentation:

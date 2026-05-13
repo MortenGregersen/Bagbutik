@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Create a leaderboard
+     # Create a Leaderboard
      Add a new leaderboard to your app.
 
      Full documentation:

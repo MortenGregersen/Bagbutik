@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Create a PassTypeId
+     # Create a Passtypeid
      Create a new identifier for use with a pass type ID certificate using a certificate signing request.
 
      Full documentation:

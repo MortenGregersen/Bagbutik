@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Add a scheduled price change to an in-app purchase
+     # Add a Scheduled Price Change to an In-App Purchase
      Create a scheduled price change for an in-app purchase.
 
      Full documentation:

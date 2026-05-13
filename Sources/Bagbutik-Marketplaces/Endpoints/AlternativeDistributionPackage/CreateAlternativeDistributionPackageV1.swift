@@ -3,8 +3,8 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Create an alternative distribution package
-     Create an alternative distribution package for an app store version.
+     # Create an Alternative Distribution Package
+     Create an alternative distribution package for an App Store version.
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/post-v1-alternativeDistributionPackages>

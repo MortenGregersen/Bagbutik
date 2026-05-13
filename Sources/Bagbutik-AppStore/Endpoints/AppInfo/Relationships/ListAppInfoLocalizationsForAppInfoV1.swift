@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # List All App Info Localizations for an App Info
+     # List All Localizations for an App Info
      Get a list of localized, app-level information for an app.
 
      Full documentation:
