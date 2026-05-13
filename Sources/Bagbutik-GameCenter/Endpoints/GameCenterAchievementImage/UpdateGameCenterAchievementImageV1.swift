@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Modify an achievement image
+     # Modify an Achievement Image
      Commit an achievement image after uploading it.
 
      Full documentation:

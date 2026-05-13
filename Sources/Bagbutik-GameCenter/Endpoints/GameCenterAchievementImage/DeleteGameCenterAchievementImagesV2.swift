@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Delete a Game Center achievement image
+     # Delete a Game Center Achievement Image
      Delete a specific Game Center achievement image.
 
      Full documentation:

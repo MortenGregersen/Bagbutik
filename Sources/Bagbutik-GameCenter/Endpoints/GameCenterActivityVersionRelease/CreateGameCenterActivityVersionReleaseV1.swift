@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Add an activity version release
+     # Add an Activity Version Release
      Add a version release for a specific Game Center activity.
 
      Full documentation:

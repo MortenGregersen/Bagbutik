@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Delete a leaderboard set release
+     # Delete a Leaderboard Set Release
      Delete a new leaderboard set release.
 
      Full documentation:

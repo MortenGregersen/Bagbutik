@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read background asset upload file information for a background asset version
+     # Read Background Asset Upload File Information for a Background Asset Version
      Get details about a background asset upload file for a specific background asset version.
 
      Full documentation:

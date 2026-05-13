@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Commit an uploaded asset pack to a background asset version
+     # Commit an Uploaded Asset Pack to a Background Asset Version
      Associate an uploaded asset pack with a background asset version to finish the upload process.
 
      Full documentation:

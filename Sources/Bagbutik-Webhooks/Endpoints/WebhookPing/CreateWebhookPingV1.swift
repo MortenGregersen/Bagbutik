@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Test your webhook
+     # Test Your Webhook
      Send an event to your server to verify your server-side webhook configuration.
 
      Full documentation:

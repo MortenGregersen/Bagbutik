@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Edit a leaderboard set
+     # Edit a Leaderboard Set
      Modify the metadata for a leaderboard set.
 
      Full documentation:

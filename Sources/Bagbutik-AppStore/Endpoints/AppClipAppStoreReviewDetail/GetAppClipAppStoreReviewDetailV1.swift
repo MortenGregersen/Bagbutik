@@ -33,6 +33,8 @@ public enum GetAppClipAppStoreReviewDetailV1 {
     public enum Field: FieldParameter {
         /// The fields to include for returned resources of type appClipAppStoreReviewDetails
         case appClipAppStoreReviewDetails([AppClipAppStoreReviewDetails])
+        /// The fields to include for returned resources of type appClipDefaultExperiences
+        case appClipDefaultExperiences([AppClipDefaultExperiences])
 
         public enum AppClipAppStoreReviewDetails: String, Sendable, ParameterValue, Codable, CaseIterable {
             case appClipDefaultExperience
@@ -49,6 +51,29 @@ public enum GetAppClipAppStoreReviewDetailV1 {
                     throw DecodingError.dataCorruptedError(
                         in: container,
                         debugDescription: "Invalid AppClipAppStoreReviewDetails value: \(string)"
+                    )
+                }
+            }
+        }
+
+        public enum AppClipDefaultExperiences: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case action
+            case appClip
+            case appClipAppStoreReviewDetail
+            case appClipDefaultExperienceLocalizations
+            case releaseWithAppStoreVersion
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = AppClipDefaultExperiences(rawValue: string) {
+                    self = value
+                } else if let value = AppClipDefaultExperiences(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid AppClipDefaultExperiences value: \(string)"
                     )
                 }
             }

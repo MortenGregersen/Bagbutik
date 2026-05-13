@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read the details for a report segment
+     # Read the Details for a Report Segment
      Get details and download information for a specific analytics report segment.
 
      To learn more about interpreting the data using the glossary of report fields and definitions, see [Analytics Reports](https://developer.apple.com/documentation/analytics-reports).

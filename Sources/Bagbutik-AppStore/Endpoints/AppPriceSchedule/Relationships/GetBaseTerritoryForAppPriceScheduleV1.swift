@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read the base territory for an app's price schedule
+     # Read the Base Territory for an App's Price Schedule
      Read the base territory and currency for a specific app.
 
      Full documentation:

@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read win-back offer information
+     # Read Win-Back Offer Information
      Read details about a specific win-back offer.
 
      Full documentation:

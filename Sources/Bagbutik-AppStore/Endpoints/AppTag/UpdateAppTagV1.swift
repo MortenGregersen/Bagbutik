@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Modify app tags
+     # Modify App Tags
      Opt out of app tags for a specific app.
 
      Full documentation:

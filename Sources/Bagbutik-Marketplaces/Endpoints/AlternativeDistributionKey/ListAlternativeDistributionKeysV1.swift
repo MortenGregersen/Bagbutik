@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # List alternative distribution keys
+     # List Alternative Distribution Keys
      List the alternative distribution key for your account.
 
      Full documentation:

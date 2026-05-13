@@ -6,7 +6,7 @@ public extension Request {
      # Modify an Age Rating Declaration
      Provide age-related information so the App Store can determine the age rating for your app.
 
-     Every app store version has an age rating declaration. Use this endpoint to edit the declaration and provide app-characteristic information so App Store Connect can determine the appropriate age rating for the app.
+     Every App Store version has an age rating declaration. Use this endpoint to edit the declaration and provide app-characteristic information so App Store Connect can determine the appropriate age rating for the app.
      Use this endpoint to indicate whether an app is Made for Kids.
      When calling this endpoint, only include the attributes that you’re modifying.
      The attributes for age-rating declarations, `INFREQUENT_OR_MILD` and `FREQUENT_OR_INTENSE` are deprecated. Instead, use `INFREQUENT` or `FREQUENT`.

@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read challenge version information
+     # Read Challenge Version Information
      Get information for a specific Game Center challenge localization.
 
      Full documentation:
@@ -38,8 +38,13 @@ public enum GetGameCenterChallengeVersionV1 {
         case gameCenterChallengeImages([GameCenterChallengeImages])
         /// The fields to include for returned resources of type gameCenterChallengeLocalizations
         case gameCenterChallengeLocalizations([GameCenterChallengeLocalizations])
+        /// The fields to include for returned resources of type gameCenterChallengeVersionReleases
+        @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
+        case gameCenterChallengeVersionReleases([GameCenterChallengeVersionReleases])
         /// The fields to include for returned resources of type gameCenterChallengeVersions
         case gameCenterChallengeVersions([GameCenterChallengeVersions])
+        /// The fields to include for returned resources of type gameCenterChallenges
+        case gameCenterChallenges([GameCenterChallenges])
 
         public enum GameCenterChallengeImages: String, Sendable, ParameterValue, Codable, CaseIterable {
             case assetDeliveryState
@@ -87,6 +92,25 @@ public enum GetGameCenterChallengeVersionV1 {
             }
         }
 
+        public enum GameCenterChallengeVersionReleases: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case version
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = GameCenterChallengeVersionReleases(rawValue: string) {
+                    self = value
+                } else if let value = GameCenterChallengeVersionReleases(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid GameCenterChallengeVersionReleases value: \(string)"
+                    )
+                }
+            }
+        }
+
         public enum GameCenterChallengeVersions: String, Sendable, ParameterValue, Codable, CaseIterable {
             case challenge
             case defaultImage
@@ -106,6 +130,34 @@ public enum GetGameCenterChallengeVersionV1 {
                     throw DecodingError.dataCorruptedError(
                         in: container,
                         debugDescription: "Invalid GameCenterChallengeVersions value: \(string)"
+                    )
+                }
+            }
+        }
+
+        public enum GameCenterChallenges: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case archived
+            case challengeType
+            case gameCenterDetail
+            case gameCenterGroup
+            case leaderboard
+            case leaderboardV2
+            case referenceName
+            case repeatable
+            case vendorIdentifier
+            case versions
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = GameCenterChallenges(rawValue: string) {
+                    self = value
+                } else if let value = GameCenterChallenges(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid GameCenterChallenges value: \(string)"
                     )
                 }
             }

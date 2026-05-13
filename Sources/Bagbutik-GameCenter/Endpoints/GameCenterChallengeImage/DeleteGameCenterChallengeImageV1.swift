@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Delete a challenge image
+     # Delete a Challenge Image
      Remove a specific image from a Game Center challenge.
 
      Full documentation:

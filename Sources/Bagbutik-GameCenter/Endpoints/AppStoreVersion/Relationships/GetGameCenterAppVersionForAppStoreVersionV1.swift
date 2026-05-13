@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read Game Center app version information of an App Store version
+     # Read Game Center App Version Information of an App Store Version
      Get the status of Game Center enablement for an App Store version.
 
      Full documentation:

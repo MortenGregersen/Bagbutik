@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Modify a marketplace webhook configuration
+     # Modify a Marketplace Webhook Configuration
      Update the endpoint URL and secret for alternative distribution package notifications.
 
      Full documentation:

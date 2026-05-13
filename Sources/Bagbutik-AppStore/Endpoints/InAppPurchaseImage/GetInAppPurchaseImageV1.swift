@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read in-app purchase image information
+     # Read In-App Purchase Image Information
      Read details about a specific in-app purchase image.
 
      Full documentation:
@@ -33,6 +33,8 @@ public enum GetInAppPurchaseImageV1 {
     public enum Field: FieldParameter {
         /// The fields to include for returned resources of type inAppPurchaseImages
         case inAppPurchaseImages([InAppPurchaseImages])
+        /// The fields to include for returned resources of type inAppPurchases
+        case inAppPurchases([InAppPurchases])
 
         public enum InAppPurchaseImages: String, Sendable, ParameterValue, Codable, CaseIterable {
             case assetToken
@@ -55,6 +57,40 @@ public enum GetInAppPurchaseImageV1 {
                     throw DecodingError.dataCorruptedError(
                         in: container,
                         debugDescription: "Invalid InAppPurchaseImages value: \(string)"
+                    )
+                }
+            }
+        }
+
+        public enum InAppPurchases: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case appStoreReviewScreenshot
+            case content
+            case contentHosting
+            case familySharable
+            case iapPriceSchedule
+            case images
+            case inAppPurchaseAvailability
+            case inAppPurchaseLocalizations
+            case inAppPurchaseType
+            case name
+            case offerCodes
+            case pricePoints
+            case productId
+            case promotedPurchase
+            case reviewNote
+            case state
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = InAppPurchases(rawValue: string) {
+                    self = value
+                } else if let value = InAppPurchases(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid InAppPurchases value: \(string)"
                     )
                 }
             }

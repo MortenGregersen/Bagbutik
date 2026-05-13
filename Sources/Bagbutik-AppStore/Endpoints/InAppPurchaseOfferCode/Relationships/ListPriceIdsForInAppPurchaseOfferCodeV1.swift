@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Get all price IDs for an in-app purchase offer code
+     # Get All Price IDs for an In-App Purchase Offer Code
      Get a list of price resource IDs for a specific in-app purchase offer code.
 
      Full documentation:

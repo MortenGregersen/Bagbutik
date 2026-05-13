@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read marketplace webhook information
+     # Read Marketplace Webhook Information
      Get the endpoint URL for alternative distribution package notifications.
 
      Full documentation:

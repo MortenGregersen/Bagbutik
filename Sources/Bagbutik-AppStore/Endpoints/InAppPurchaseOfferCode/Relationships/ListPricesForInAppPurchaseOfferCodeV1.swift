@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # List all prices for an in-app purchase offer code
+     # List All Prices for an In-App Purchase Offer Code
      Get a list of prices for a specific in-app purchase offer code.
 
      Full documentation:

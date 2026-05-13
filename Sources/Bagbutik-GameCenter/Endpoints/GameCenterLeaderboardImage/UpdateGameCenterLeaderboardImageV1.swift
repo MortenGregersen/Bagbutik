@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Modify a leaderboard image
+     # Modify a Leaderboard Image
      Commit a leaderboard image after uploading it.
 
      Full documentation:

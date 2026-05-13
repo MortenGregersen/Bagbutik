@@ -9,7 +9,7 @@ import Foundation
  <https://developer.apple.com/documentation/appstoreconnectapi/merchantid>
  */
 public struct MerchantId: Codable, Sendable, Identifiable {
-    /// An opaque resource ID that uniquely identifies the resource. Obtain the merchant ID resource ID from the [List merchant IDs](https://developer.apple.com/documentation/appstoreconnectapi/get-v1-merchantids) response.
+    /// An opaque resource ID that uniquely identifies the resource. Obtain the merchant ID resource ID from the [List Merchant IDs](https://developer.apple.com/documentation/appstoreconnectapi/get-v1-merchantids) response.
     public let id: String
     /// Navigational links that include the self-link.
     public var links: ResourceLinks?

@@ -89,6 +89,7 @@ public struct TerritoryAvailability: Codable, Sendable, Identifiable {
             case availableForPreorder = "AVAILABLE_FOR_PREORDER"
             case availableForPreorderOnDate = "AVAILABLE_FOR_PREORDER_ON_DATE"
             case availableForSaleUnreleasedApp = "AVAILABLE_FOR_SALE_UNRELEASED_APP"
+            case brazilGamblingNotVerified = "BRAZIL_GAMBLING_NOT_VERIFIED"
             case brazilRequiredTaxId = "BRAZIL_REQUIRED_TAX_ID"
             case cannotSell = "CANNOT_SELL"
             case cannotSellAdultOnly = "CANNOT_SELL_ADULT_ONLY"

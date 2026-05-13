@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Create a queue
+     # Create a Queue
      Create a queue and add it to a rule set.
 
      Full documentation:

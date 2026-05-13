@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Modify a group
+     # Modify a Group
      Edit the reference name for a group.
 
      Full documentation:

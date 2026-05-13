@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read App Store experiment information v1
+     # Read App Store Experiment Information V1
      Get information for a specific App Store version experiment.
 
      Full documentation:
@@ -39,6 +39,8 @@ public enum GetAppStoreVersionExperimentV1 {
         case appStoreVersionExperimentTreatments([AppStoreVersionExperimentTreatments])
         /// The fields to include for returned resources of type appStoreVersionExperiments
         case appStoreVersionExperiments([AppStoreVersionExperiments])
+        /// The fields to include for returned resources of type appStoreVersions
+        case appStoreVersions([AppStoreVersions])
 
         public enum AppStoreVersionExperimentTreatments: String, Sendable, ParameterValue, Codable, CaseIterable {
             case appIcon
@@ -86,6 +88,48 @@ public enum GetAppStoreVersionExperimentV1 {
                     throw DecodingError.dataCorruptedError(
                         in: container,
                         debugDescription: "Invalid AppStoreVersionExperiments value: \(string)"
+                    )
+                }
+            }
+        }
+
+        public enum AppStoreVersions: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case alternativeDistributionPackage
+            case app
+            case appClipDefaultExperience
+            case appStoreReviewDetail
+            case appStoreState
+            case appStoreVersionExperiments
+            case appStoreVersionExperimentsV2
+            case appStoreVersionLocalizations
+            case appStoreVersionPhasedRelease
+            case appStoreVersionSubmission
+            case appVersionState
+            case build
+            case copyright
+            case createdDate
+            case customerReviews
+            case downloadable
+            case earliestReleaseDate
+            case gameCenterAppVersion
+            case platform
+            case releaseType
+            case reviewType
+            case routingAppCoverage
+            case usesIdfa
+            case versionString
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = AppStoreVersions(rawValue: string) {
+                    self = value
+                } else if let value = AppStoreVersions(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid AppStoreVersions value: \(string)"
                     )
                 }
             }

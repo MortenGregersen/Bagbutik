@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # List the territory availablity of an in-app purchase
+     # List the Territory Availablity of an In-App Purchase
      List all the territories where an in-app purchase is available.
 
      Full documentation:

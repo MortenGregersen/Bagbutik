@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # List all build uploads for an app
+     # List All Build Uploads for an App
      Get a list of all build uploads for a specific app.
 
      Full documentation:

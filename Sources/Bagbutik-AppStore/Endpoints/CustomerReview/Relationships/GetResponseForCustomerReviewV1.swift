@@ -63,6 +63,7 @@ public enum GetResponseForCustomerReviewV1 {
             case createdDate
             case rating
             case response
+            case reviewTerritory
             case reviewerNickname
             case territory
             case title

@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Modify a marketplace search detail URL
+     # Modify a Marketplace Search Detail Url
      Update the search detail URL for the alternative marketplace.
 
      Full documentation:

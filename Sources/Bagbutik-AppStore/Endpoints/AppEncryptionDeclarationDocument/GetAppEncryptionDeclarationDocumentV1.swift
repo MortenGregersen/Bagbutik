@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read a specific App Encryption Declaration Document
+     # Read a Specific App Encryption Declaration Document
      Get detailed information about a specified App Encryption Declaration document.
 
      Full documentation:

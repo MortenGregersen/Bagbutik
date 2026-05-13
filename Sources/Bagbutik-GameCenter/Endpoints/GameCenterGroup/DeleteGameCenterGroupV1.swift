@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Delete a group
+     # Delete a Group
      Remove a group.
 
      Full documentation:

@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Create an activity
+     # Create an Activity
      Create an activity for your Game Center detail or Game Center group.
 
      Full documentation:

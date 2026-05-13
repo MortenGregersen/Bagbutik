@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Modify a queue
+     # Modify a Queue
      Update the properties of a specific queue.
 
      Full documentation:

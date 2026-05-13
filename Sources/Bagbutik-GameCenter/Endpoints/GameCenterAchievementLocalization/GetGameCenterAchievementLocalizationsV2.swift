@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read Game Center achievement localization information
+     # Read Game Center Achievement Localization Information
      Get information about a specific Game Center achievement localization.
 
      Full documentation:
@@ -35,6 +35,8 @@ public enum GetGameCenterAchievementLocalizationsV2 {
         case gameCenterAchievementImages([GameCenterAchievementImages])
         /// The fields to include for returned resources of type gameCenterAchievementLocalizations
         case gameCenterAchievementLocalizations([GameCenterAchievementLocalizations])
+        /// The fields to include for returned resources of type gameCenterAchievementVersions
+        case gameCenterAchievementVersions([GameCenterAchievementVersions])
 
         public enum GameCenterAchievementImages: String, Sendable, ParameterValue, Codable, CaseIterable {
             case assetDeliveryState
@@ -79,6 +81,28 @@ public enum GetGameCenterAchievementLocalizationsV2 {
                     throw DecodingError.dataCorruptedError(
                         in: container,
                         debugDescription: "Invalid GameCenterAchievementLocalizations value: \(string)"
+                    )
+                }
+            }
+        }
+
+        public enum GameCenterAchievementVersions: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case achievement
+            case localizations
+            case state
+            case version
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = GameCenterAchievementVersions(rawValue: string) {
+                    self = value
+                } else if let value = GameCenterAchievementVersions(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid GameCenterAchievementVersions value: \(string)"
                     )
                 }
             }

@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # List win-back offers
+     # List Win-Back Offers
      List all win-back offers for a specific subscription.
 
      Full documentation:

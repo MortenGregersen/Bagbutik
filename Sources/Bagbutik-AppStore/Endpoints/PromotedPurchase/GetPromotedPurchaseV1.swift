@@ -31,8 +31,46 @@ public enum GetPromotedPurchaseV1 {
      Fields to return for included related types.
      */
     public enum Field: FieldParameter {
+        /// The fields to include for returned resources of type inAppPurchases
+        case inAppPurchases([InAppPurchases])
         /// The fields to include for returned resources of type promotedPurchases
         case promotedPurchases([PromotedPurchases])
+        /// The fields to include for returned resources of type subscriptions
+        case subscriptions([Subscriptions])
+
+        public enum InAppPurchases: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case appStoreReviewScreenshot
+            case content
+            case contentHosting
+            case familySharable
+            case iapPriceSchedule
+            case images
+            case inAppPurchaseAvailability
+            case inAppPurchaseLocalizations
+            case inAppPurchaseType
+            case name
+            case offerCodes
+            case pricePoints
+            case productId
+            case promotedPurchase
+            case reviewNote
+            case state
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = InAppPurchases(rawValue: string) {
+                    self = value
+                } else if let value = InAppPurchases(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid InAppPurchases value: \(string)"
+                    )
+                }
+            }
+        }
 
         public enum PromotedPurchases: String, Sendable, ParameterValue, Codable, CaseIterable {
             case enabled
@@ -52,6 +90,43 @@ public enum GetPromotedPurchaseV1 {
                     throw DecodingError.dataCorruptedError(
                         in: container,
                         debugDescription: "Invalid PromotedPurchases value: \(string)"
+                    )
+                }
+            }
+        }
+
+        public enum Subscriptions: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case appStoreReviewScreenshot
+            case familySharable
+            case group
+            case groupLevel
+            case images
+            case introductoryOffers
+            case name
+            case offerCodes
+            case pricePoints
+            case prices
+            case productId
+            case promotedPurchase
+            case promotionalOffers
+            case reviewNote
+            case state
+            case subscriptionAvailability
+            case subscriptionLocalizations
+            case subscriptionPeriod
+            case winBackOffers
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = Subscriptions(rawValue: string) {
+                    self = value
+                } else if let value = Subscriptions(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid Subscriptions value: \(string)"
                     )
                 }
             }

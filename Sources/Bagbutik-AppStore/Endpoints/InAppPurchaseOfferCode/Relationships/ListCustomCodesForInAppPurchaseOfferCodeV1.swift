@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # List all custom codes for an in-app purchase offer code
+     # List All Custom Codes for an In-App Purchase Offer Code
      Get a list of custom codes for a specific in-app purchase offer code.
 
      Full documentation:

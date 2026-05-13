@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read the image for a specific achievement localization
+     # Read the Image for a Specific Achievement Localization
      Read the achievement image associated with specific localized information.
 
      Full documentation:

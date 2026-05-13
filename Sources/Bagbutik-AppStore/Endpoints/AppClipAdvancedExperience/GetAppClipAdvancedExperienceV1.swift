@@ -34,8 +34,59 @@ public enum GetAppClipAdvancedExperienceV1 {
      Fields to return for included related types.
      */
     public enum Field: FieldParameter {
+        /// The fields to include for returned resources of type appClipAdvancedExperienceImages
+        case appClipAdvancedExperienceImages([AppClipAdvancedExperienceImages])
+        /// The fields to include for returned resources of type appClipAdvancedExperienceLocalizations
+        case appClipAdvancedExperienceLocalizations([AppClipAdvancedExperienceLocalizations])
         /// The fields to include for returned resources of type appClipAdvancedExperiences
         case appClipAdvancedExperiences([AppClipAdvancedExperiences])
+        /// The fields to include for returned resources of type appClips
+        case appClips([AppClips])
+
+        public enum AppClipAdvancedExperienceImages: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case assetDeliveryState
+            case fileName
+            case fileSize
+            case imageAsset
+            case sourceFileChecksum
+            case uploadOperations
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = AppClipAdvancedExperienceImages(rawValue: string) {
+                    self = value
+                } else if let value = AppClipAdvancedExperienceImages(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid AppClipAdvancedExperienceImages value: \(string)"
+                    )
+                }
+            }
+        }
+
+        public enum AppClipAdvancedExperienceLocalizations: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case language
+            case subtitle
+            case title
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = AppClipAdvancedExperienceLocalizations(rawValue: string) {
+                    self = value
+                } else if let value = AppClipAdvancedExperienceLocalizations(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid AppClipAdvancedExperienceLocalizations value: \(string)"
+                    )
+                }
+            }
+        }
 
         public enum AppClipAdvancedExperiences: String, Sendable, ParameterValue, Codable, CaseIterable {
             case action
@@ -62,6 +113,28 @@ public enum GetAppClipAdvancedExperienceV1 {
                     throw DecodingError.dataCorruptedError(
                         in: container,
                         debugDescription: "Invalid AppClipAdvancedExperiences value: \(string)"
+                    )
+                }
+            }
+        }
+
+        public enum AppClips: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case app
+            case appClipAdvancedExperiences
+            case appClipDefaultExperiences
+            case bundleId
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = AppClips(rawValue: string) {
+                    self = value
+                } else if let value = AppClips(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid AppClips value: \(string)"
                     )
                 }
             }

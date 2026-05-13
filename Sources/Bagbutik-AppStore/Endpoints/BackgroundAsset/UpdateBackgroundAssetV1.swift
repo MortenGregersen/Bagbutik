@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Modify a background asset
+     # Modify a Background Asset
      Update a specific background asset.
 
      Full documentation:

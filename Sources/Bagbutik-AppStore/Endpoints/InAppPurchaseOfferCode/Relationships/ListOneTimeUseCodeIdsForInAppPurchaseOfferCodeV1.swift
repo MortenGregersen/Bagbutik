@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Get all one-time use code IDs for an in-app purchase offer code
+     # Get All One-Time Use Code IDs for an In-App Purchase Offer Code
      Get a list of one-time use code resource IDs for a specific in-app purchase offer code.
 
      Full documentation:

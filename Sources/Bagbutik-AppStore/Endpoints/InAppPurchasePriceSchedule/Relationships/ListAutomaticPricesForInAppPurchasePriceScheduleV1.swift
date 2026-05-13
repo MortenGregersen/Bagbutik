@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # List automatically generated prices for an in-app purchase price
+     # List Automatically Generated Prices for an In-App Purchase Price
      Get information about a price or prices automatically set based on a base territory for an in-app purchase price schedule.
 
      Full documentation:

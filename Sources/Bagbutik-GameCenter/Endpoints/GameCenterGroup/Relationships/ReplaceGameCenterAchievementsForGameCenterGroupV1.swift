@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Edit the achievements associated with a group
+     # Edit the Achievements Associated With a Group
      Modify the achievements in a specific group.
 
      Full documentation:

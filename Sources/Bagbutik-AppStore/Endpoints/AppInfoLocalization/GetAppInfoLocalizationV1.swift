@@ -33,6 +33,8 @@ public enum GetAppInfoLocalizationV1 {
     public enum Field: FieldParameter {
         /// The fields to include for returned resources of type appInfoLocalizations
         case appInfoLocalizations([AppInfoLocalizations])
+        /// The fields to include for returned resources of type appInfos
+        case appInfos([AppInfos])
 
         public enum AppInfoLocalizations: String, Sendable, ParameterValue, Codable, CaseIterable {
             case appInfo
@@ -54,6 +56,43 @@ public enum GetAppInfoLocalizationV1 {
                     throw DecodingError.dataCorruptedError(
                         in: container,
                         debugDescription: "Invalid AppInfoLocalizations value: \(string)"
+                    )
+                }
+            }
+        }
+
+        public enum AppInfos: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case ageRatingDeclaration
+            case app
+            case appInfoLocalizations
+            case appStoreAgeRating
+            case appStoreState
+            case australiaAgeRating
+            case brazilAgeRating
+            case brazilAgeRatingV2
+            case franceAgeRating
+            case kidsAgeBand
+            case koreaAgeRating
+            case primaryCategory
+            case primarySubcategoryOne
+            case primarySubcategoryTwo
+            case secondaryCategory
+            case secondarySubcategoryOne
+            case secondarySubcategoryTwo
+            case state
+            case territoryAgeRatings
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = AppInfos(rawValue: string) {
+                    self = value
+                } else if let value = AppInfos(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid AppInfos value: \(string)"
                     )
                 }
             }

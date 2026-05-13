@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read rule set information
+     # Read Rule Set Information
      Get information about a specific rule set and its related objects.
 
      Full documentation:

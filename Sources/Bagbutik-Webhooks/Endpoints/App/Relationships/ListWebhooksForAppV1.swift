@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read webhook information for an app
+     # Read Webhook Information for an App
      Read webhook configuration details for a specific app.
 
      Full documentation:

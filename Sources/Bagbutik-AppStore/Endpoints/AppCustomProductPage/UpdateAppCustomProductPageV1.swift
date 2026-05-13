@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Modify an app custom product page
+     # Modify an App Custom Product Page
      Update the name and visibility status of an app custom product page.
 
      Full documentation:

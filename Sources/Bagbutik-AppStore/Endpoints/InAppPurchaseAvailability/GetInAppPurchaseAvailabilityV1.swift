@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read information about the Availablity of an In-App Purchase
+     # Read Information About the Availablity of an In-App Purchase
      Get information about the territory availablity for an in-app purchase.
 
      Full documentation:

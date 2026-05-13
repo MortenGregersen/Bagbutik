@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # List app tags Ids
+     # List App Tags IDs
      List all app tag IDs for a specific app.
 
      Full documentation:

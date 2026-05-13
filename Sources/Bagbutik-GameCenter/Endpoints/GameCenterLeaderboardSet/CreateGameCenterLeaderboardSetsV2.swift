@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Create a Game Center leaderboard set
+     # Create a Game Center Leaderboard Set
      Create a Game Center leaderboard set.
 
      Create a leaderboard set with a relationship to one of the following:

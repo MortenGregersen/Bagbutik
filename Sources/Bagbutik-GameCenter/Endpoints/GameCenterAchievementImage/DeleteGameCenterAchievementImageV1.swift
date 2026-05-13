@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Delete an achievement image
+     # Delete an Achievement Image
      Delete an image that’s associated with an achievement.
 
      Full documentation:

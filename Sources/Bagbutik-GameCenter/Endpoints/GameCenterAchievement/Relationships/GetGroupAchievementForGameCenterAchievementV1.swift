@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # List associated group achievement information for an achievement
+     # List Associated Group Achievement Information for an Achievement
      Read information about the group for specific achievement.
 
      Full documentation:

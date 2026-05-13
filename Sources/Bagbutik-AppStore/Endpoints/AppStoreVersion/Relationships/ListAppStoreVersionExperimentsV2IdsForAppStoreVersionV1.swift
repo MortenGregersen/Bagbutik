@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # List all experiment IDs for an App Store version
+     # List All Experiment IDs for an App Store Version
      Get a list of all experiments IDs for an App Store version across all platforms.
 
      Full documentation:

@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Modify a Game Center leaderboard set image
+     # Modify a Game Center Leaderboard Set Image
      Update a specific Game Center leaderboard set image.
 
      Full documentation:

@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Modify a challenge localization
+     # Modify a Challenge Localization
      Update localization information for a specific Game Center challenge.
 
      Full documentation:

@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Test a rule set
+     # Test a Rule Set
      Apply the given rule set to the given sample match requests.
 
      Full documentation:

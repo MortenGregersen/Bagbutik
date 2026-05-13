@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Create an achievement image
+     # Create an Achievement Image
      Add a new achievement image.
 
      Full documentation:

@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Delete an Android to iOS mapping detail
+     # Delete an Android to iOS Mapping Detail
      Remove a specific Android to iOS mapping detail.
 
      Full documentation:

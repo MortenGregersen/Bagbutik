@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Delete an activity version release
+     # Delete an Activity Version Release
      Remove a specific version release from a Game Center activity.
 
      Full documentation:

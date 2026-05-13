@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # List variants information
+     # List Variants Information
      List variants for specific alternative distribution package version.
 
      Full documentation:

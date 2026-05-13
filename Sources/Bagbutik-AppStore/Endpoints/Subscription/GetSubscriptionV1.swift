@@ -40,6 +40,8 @@ public enum GetSubscriptionV1 {
         case subscriptionAppStoreReviewScreenshots([SubscriptionAppStoreReviewScreenshots])
         /// The fields to include for returned resources of type subscriptionAvailabilities
         case subscriptionAvailabilities([SubscriptionAvailabilities])
+        /// The fields to include for returned resources of type subscriptionGroups
+        case subscriptionGroups([SubscriptionGroups])
         /// The fields to include for returned resources of type subscriptionImages
         case subscriptionImages([SubscriptionImages])
         /// The fields to include for returned resources of type subscriptionIntroductoryOffers
@@ -122,6 +124,27 @@ public enum GetSubscriptionV1 {
                     throw DecodingError.dataCorruptedError(
                         in: container,
                         debugDescription: "Invalid SubscriptionAvailabilities value: \(string)"
+                    )
+                }
+            }
+        }
+
+        public enum SubscriptionGroups: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case referenceName
+            case subscriptionGroupLocalizations
+            case subscriptions
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = SubscriptionGroups(rawValue: string) {
+                    self = value
+                } else if let value = SubscriptionGroups(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid SubscriptionGroups value: \(string)"
                     )
                 }
             }

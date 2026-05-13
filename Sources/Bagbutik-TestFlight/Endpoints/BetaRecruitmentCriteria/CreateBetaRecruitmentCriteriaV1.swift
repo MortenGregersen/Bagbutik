@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Create recruitment criteria
+     # Create Recruitment Criteria
      Create new criteria for recruiting testers for your TestFlight build.
 
      Full documentation:

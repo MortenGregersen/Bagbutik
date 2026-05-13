@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # List leaderboard information for a leaderboard set
+     # List Leaderboard Information for a Leaderboard Set
      Read the leadboards that belong to a learderboard set.
 
      Full documentation:

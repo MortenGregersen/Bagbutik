@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Create an Android to iOS app mapping detail
+     # Create an Android to iOS App Mapping Detail
      Create a detail that maps an Android app to an iOS app.
 
      Full documentation:

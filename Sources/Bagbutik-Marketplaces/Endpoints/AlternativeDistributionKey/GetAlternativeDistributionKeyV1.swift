@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read alternative distribution key information
+     # Read Alternative Distribution Key Information
      Read the public key information for a specific alternative distribution key.
 
      Full documentation:

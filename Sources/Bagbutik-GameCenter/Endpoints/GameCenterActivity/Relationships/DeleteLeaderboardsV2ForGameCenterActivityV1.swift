@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Remove a leaderboard
+     # Remove a Leaderboard
      Remove a leaderboard from a Game Center activity.
 
      Full documentation:

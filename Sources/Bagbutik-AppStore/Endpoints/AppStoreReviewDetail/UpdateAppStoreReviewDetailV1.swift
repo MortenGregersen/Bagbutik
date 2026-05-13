@@ -4,7 +4,7 @@ import Bagbutik_Models
 public extension Request {
     /**
      # Modify an App Store Review Detail
-     Update the app store review details, including the contact information, demo account, and notes.
+     Update the App Store review details, including the contact information, demo account, and notes.
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/patch-v1-appStoreReviewDetails-_id_>

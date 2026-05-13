@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Delete a challenge version release
+     # Delete a Challenge Version Release
      Remove a specific version release from a Game Center challenge version.
 
      Full documentation:

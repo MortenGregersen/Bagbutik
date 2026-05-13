@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read the versions for a challenge
+     # Read the Versions for a Challenge
      Get a list of versions for a specific Game Center challenge.
 
      Full documentation:

@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # List all localizations for an achievement
+     # List All Localizations for an Achievement
      Read information about the release for specific achievement.
 
      Full documentation:

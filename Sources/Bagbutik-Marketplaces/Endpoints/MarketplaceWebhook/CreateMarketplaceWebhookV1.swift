@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Add a marketplace webhook configuration
+     # Add a Marketplace Webhook Configuration
      Add a new endpoint URL and secret for alternative distribution package notifications.
 
      Each developer account has a single marketplace webhooks `endpointUrl`, so if you operate mutliple marketplaces all notifications come to a single endpoint. The notification payload contains the `marketplaceAppId.`

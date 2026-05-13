@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Get all version IDs for a Game Center achievement
+     # Get All Version IDs for a Game Center Achievement
      Get a list of version resource IDs for a specific Game Center achievement.
 
      Full documentation:

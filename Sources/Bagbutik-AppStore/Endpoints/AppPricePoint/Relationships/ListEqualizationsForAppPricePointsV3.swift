@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # List app price point equalizations
+     # List App Price Point Equalizations
      List all equivalent app prices points to a base price point.
 
      Full documentation:

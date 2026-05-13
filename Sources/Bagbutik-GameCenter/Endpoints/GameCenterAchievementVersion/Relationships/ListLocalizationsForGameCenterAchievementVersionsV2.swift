@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # List all localizations for a Game Center achievement version
+     # List All Localizations for a Game Center Achievement Version
      Get a list of localizations for a specific Game Center achievement version.
 
      Full documentation:

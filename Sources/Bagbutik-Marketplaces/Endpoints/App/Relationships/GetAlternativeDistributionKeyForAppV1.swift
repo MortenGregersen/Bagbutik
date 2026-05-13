@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read an app’s alternative distribution key
+     # Read an App’s Alternative Distribution Key
      Get the alternative distribution keys for a specific app.
 
      Full documentation:

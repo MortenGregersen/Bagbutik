@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Modify the Billing Grace Period Opt-in Status and Duration
+     # Modify the Billing Grace Period Opt-In Status and Duration
      Change the Boolean value representing the billing grace period opt-in status.
 
      Full documentation:

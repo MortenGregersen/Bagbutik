@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read customer review summarizations
+     # Read Customer Review Summarizations
      Get the customer review summarization for a specific app.
 
      Full documentation:

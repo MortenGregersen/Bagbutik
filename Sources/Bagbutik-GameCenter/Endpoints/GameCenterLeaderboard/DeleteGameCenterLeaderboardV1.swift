@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Delete a leaderboard
+     # Delete a Leaderboard
      Delete a leaderboard from your app.
 
      Full documentation:

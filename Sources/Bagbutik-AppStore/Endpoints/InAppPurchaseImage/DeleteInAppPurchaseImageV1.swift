@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Delete an in-app purchase image
+     # Delete an In-App Purchase Image
      Delete the image asset that appears on the App Store listing that represents an in-app purchase.
 
      Full documentation:

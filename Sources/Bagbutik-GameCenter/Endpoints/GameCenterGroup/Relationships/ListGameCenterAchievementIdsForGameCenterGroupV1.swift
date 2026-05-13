@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read the achievements in a group
+     # Read the Achievements in a Group
      List all the achievements associated with a specific group.
 
      Full documentation:

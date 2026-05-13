@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Create an App Clip Invocation for Testers in TestFlight
+     # Create an App Clip Invocation for Testers in Testflight
      Configure a new App Clip experience that testers launch using the TestFlight app.
 
      Full documentation:

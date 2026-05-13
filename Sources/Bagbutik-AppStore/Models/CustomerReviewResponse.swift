@@ -13,12 +13,12 @@ public struct CustomerReviewResponse: Codable, Sendable {
     /// The data structure that represents a `CustomerReviews` resource.
     public let data: CustomerReview
     /// The requested relationship data.
-    public var included: [CustomerReviewResponseV1]?
+    public var included: [Included]?
     /// Navigational links that include the self-link.
     public let links: DocumentLinks
 
     public init(data: CustomerReview,
-                included: [CustomerReviewResponseV1]? = nil,
+                included: [Included]? = nil,
                 links: DocumentLinks)
     {
         self.data = data
@@ -29,7 +29,7 @@ public struct CustomerReviewResponse: Codable, Sendable {
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: AnyCodingKey.self)
         data = try container.decode(CustomerReview.self, forKey: "data")
-        included = try container.decodeIfPresent([CustomerReviewResponseV1].self, forKey: "included")
+        included = try container.decodeIfPresent([Included].self, forKey: "included")
         links = try container.decode(DocumentLinks.self, forKey: "links")
     }
 
@@ -38,5 +38,47 @@ public struct CustomerReviewResponse: Codable, Sendable {
         try container.encode(data, forKey: "data")
         try container.encodeIfPresent(included, forKey: "included")
         try container.encode(links, forKey: "links")
+    }
+
+    public func getResponse() -> CustomerReviewResponseV1? {
+        included?.compactMap { relationship -> CustomerReviewResponseV1? in
+            guard case let .customerReviewResponseV1(response) = relationship else { return nil }
+            return response
+        }.first { $0.id == data.relationships?.response?.data?.id }
+    }
+
+    public func getReviewTerritory() -> Territory? {
+        included?.compactMap { relationship -> Territory? in
+            guard case let .territory(reviewTerritory) = relationship else { return nil }
+            return reviewTerritory
+        }.first { $0.id == data.relationships?.reviewTerritory?.data?.id }
+    }
+
+    public enum Included: Codable, Sendable {
+        case customerReviewResponseV1(CustomerReviewResponseV1)
+        case territory(Territory)
+
+        public init(from decoder: Decoder) throws {
+            if let customerReviewResponseV1 = try? CustomerReviewResponseV1(from: decoder) {
+                self = .customerReviewResponseV1(customerReviewResponseV1)
+            } else if let territory = try? Territory(from: decoder) {
+                self = .territory(territory)
+            } else {
+                throw DecodingError.typeMismatch(
+                    Included.self,
+                    DecodingError.Context(
+                        codingPath: decoder.codingPath,
+                        debugDescription: "Unknown Included"))
+            }
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            switch self {
+            case let .customerReviewResponseV1(value):
+                try value.encode(to: encoder)
+            case let .territory(value):
+                try value.encode(to: encoder)
+            }
+        }
     }
 }

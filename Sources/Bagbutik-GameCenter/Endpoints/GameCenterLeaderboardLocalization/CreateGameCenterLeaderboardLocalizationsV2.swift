@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Create a Game Center leaderboard localization
+     # Create a Game Center Leaderboard Localization
      Create a Game Center leaderboard localization.
 
      Full documentation:

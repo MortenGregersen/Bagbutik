@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Create a Game Center achievement localization
+     # Create a Game Center Achievement Localization
      Create a Game Center achievement localization.
 
      Full documentation:

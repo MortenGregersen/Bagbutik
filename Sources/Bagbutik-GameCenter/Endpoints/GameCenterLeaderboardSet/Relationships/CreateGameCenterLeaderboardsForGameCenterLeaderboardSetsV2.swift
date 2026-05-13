@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Add a leaderboard to a Game Center leaderboard set
+     # Add a Leaderboard to a Game Center Leaderboard Set
      Add a leaderboard to a Game Center leaderboard set.
 
      Full documentation:

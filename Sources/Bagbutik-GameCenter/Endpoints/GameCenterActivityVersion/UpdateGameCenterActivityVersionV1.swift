@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Modify an activity version
+     # Modify an Activity Version
      Update a specific activity version.
 
      Full documentation:

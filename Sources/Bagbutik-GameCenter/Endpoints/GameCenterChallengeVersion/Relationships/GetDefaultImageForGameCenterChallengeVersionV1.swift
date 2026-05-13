@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read default image information for a challenge version
+     # Read Default Image Information for a Challenge Version
      Get details about the default image for a specific Game Center challenge version.
 
      Full documentation:

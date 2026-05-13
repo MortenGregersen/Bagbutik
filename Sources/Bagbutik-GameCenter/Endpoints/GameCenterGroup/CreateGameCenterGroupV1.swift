@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Create a group
+     # Create a Group
      Add a new group.
 
      Full documentation:

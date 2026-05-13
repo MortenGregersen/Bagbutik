@@ -35,6 +35,8 @@ public enum GetScmPullRequestV1 {
     public enum Field: FieldParameter {
         /// The fields to include for returned resources of type scmPullRequests
         case scmPullRequests([ScmPullRequests])
+        /// The fields to include for returned resources of type scmRepositories
+        case scmRepositories([ScmRepositories])
 
         public enum ScmPullRequests: String, Sendable, ParameterValue, Codable, CaseIterable {
             case destinationBranchName
@@ -61,6 +63,33 @@ public enum GetScmPullRequestV1 {
                     throw DecodingError.dataCorruptedError(
                         in: container,
                         debugDescription: "Invalid ScmPullRequests value: \(string)"
+                    )
+                }
+            }
+        }
+
+        public enum ScmRepositories: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case defaultBranch
+            case gitReferences
+            case httpCloneUrl
+            case lastAccessedDate
+            case ownerName
+            case pullRequests
+            case repositoryName
+            case scmProvider
+            case sshCloneUrl
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = ScmRepositories(rawValue: string) {
+                    self = value
+                } else if let value = ScmRepositories(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid ScmRepositories value: \(string)"
                     )
                 }
             }

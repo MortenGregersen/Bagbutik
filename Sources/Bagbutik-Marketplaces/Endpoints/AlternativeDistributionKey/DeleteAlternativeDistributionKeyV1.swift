@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Remove an alternative distribution key
+     # Remove an Alternative Distribution Key
      Remove an alternative distribution key from your account.
 
      Full documentation:

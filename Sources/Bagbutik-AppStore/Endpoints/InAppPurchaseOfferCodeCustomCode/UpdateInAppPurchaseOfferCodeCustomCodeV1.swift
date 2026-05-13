@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Modify an in-app purchase offer code custom code
+     # Modify an In-App Purchase Offer Code Custom Code
      Update a specific in-app purchase offer code custom code.
 
      Full documentation:

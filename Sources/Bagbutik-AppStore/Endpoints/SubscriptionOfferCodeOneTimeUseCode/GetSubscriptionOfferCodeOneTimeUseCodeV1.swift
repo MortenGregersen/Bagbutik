@@ -33,6 +33,8 @@ public enum GetSubscriptionOfferCodeOneTimeUseCodeV1 {
     public enum Field: FieldParameter {
         /// The fields to include for returned resources of type subscriptionOfferCodeOneTimeUseCodes
         case subscriptionOfferCodeOneTimeUseCodes([SubscriptionOfferCodeOneTimeUseCodes])
+        /// The fields to include for returned resources of type subscriptionOfferCodes
+        case subscriptionOfferCodes([SubscriptionOfferCodes])
 
         public enum SubscriptionOfferCodeOneTimeUseCodes: String, Sendable, ParameterValue, Codable, CaseIterable {
             case active
@@ -54,6 +56,39 @@ public enum GetSubscriptionOfferCodeOneTimeUseCodeV1 {
                     throw DecodingError.dataCorruptedError(
                         in: container,
                         debugDescription: "Invalid SubscriptionOfferCodeOneTimeUseCodes value: \(string)"
+                    )
+                }
+            }
+        }
+
+        public enum SubscriptionOfferCodes: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case active
+            case autoRenewEnabled
+            case customCodes
+            case customerEligibilities
+            case duration
+            case name
+            case numberOfPeriods
+            case offerEligibility
+            case offerMode
+            case oneTimeUseCodes
+            case prices
+            case productionCodeCount
+            case sandboxCodeCount
+            case subscription
+            case totalNumberOfCodes
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = SubscriptionOfferCodes(rawValue: string) {
+                    self = value
+                } else if let value = SubscriptionOfferCodes(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid SubscriptionOfferCodes value: \(string)"
                     )
                 }
             }

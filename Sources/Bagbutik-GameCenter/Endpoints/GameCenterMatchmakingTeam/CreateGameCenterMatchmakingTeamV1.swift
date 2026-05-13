@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Create a team
+     # Create a Team
      Add a game-specific team to a rule set.
 
      Full documentation:

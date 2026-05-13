@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read the marketplace search detail URL
+     # Read the Marketplace Search Detail Url
      Get search detail URL for the alternative marketplace.
 
      Full documentation:

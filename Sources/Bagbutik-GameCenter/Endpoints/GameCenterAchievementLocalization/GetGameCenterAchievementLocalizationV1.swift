@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read achievement localization information
+     # Read Achievement Localization Information
      Read localized information for a specific locale for a specific achievement.
 
      Full documentation:

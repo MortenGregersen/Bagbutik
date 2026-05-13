@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Create a leaderboard set image
+     # Create a Leaderboard Set Image
      Add a new leaderboard set image.
 
      Full documentation:

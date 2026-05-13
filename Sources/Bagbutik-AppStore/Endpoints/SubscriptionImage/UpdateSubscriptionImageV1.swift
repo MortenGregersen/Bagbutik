@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read subscription image information
+     # Read Subscription Image Information
      Read details about a specific subscription image.
 
      Full documentation:

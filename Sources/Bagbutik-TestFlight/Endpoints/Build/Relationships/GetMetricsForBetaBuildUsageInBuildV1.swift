@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read usage metrics for a beta build
+     # Read Usage Metrics for a Beta Build
      Get usage metrics for a specific build.
 
      Full documentation:

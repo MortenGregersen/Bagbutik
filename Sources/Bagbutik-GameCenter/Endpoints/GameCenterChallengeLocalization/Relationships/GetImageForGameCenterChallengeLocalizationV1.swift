@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read image information for a challenge localization
+     # Read Image Information for a Challenge Localization
      Get details about the image for a specific Game Center challenge localization.
 
      Full documentation:

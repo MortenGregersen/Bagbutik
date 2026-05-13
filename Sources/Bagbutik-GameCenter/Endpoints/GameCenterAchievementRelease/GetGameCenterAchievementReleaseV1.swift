@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read Game Center achievement release information
+     # Read Game Center Achievement Release Information
      Read the state of a specific achievement release.
 
      Full documentation:
@@ -34,6 +34,11 @@ public enum GetGameCenterAchievementReleaseV1 {
     public enum Field: FieldParameter {
         /// The fields to include for returned resources of type gameCenterAchievementReleases
         case gameCenterAchievementReleases([GameCenterAchievementReleases])
+        /// The fields to include for returned resources of type gameCenterAchievements
+        @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
+        case gameCenterAchievements([GameCenterAchievements])
+        /// The fields to include for returned resources of type gameCenterDetails
+        case gameCenterDetails([GameCenterDetails])
 
         public enum GameCenterAchievementReleases: String, Sendable, ParameterValue, Codable, CaseIterable {
             case gameCenterAchievement
@@ -51,6 +56,78 @@ public enum GetGameCenterAchievementReleaseV1 {
                     throw DecodingError.dataCorruptedError(
                         in: container,
                         debugDescription: "Invalid GameCenterAchievementReleases value: \(string)"
+                    )
+                }
+            }
+        }
+
+        public enum GameCenterAchievements: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case activity
+            case activityProperties
+            case archived
+            case gameCenterDetail
+            case gameCenterGroup
+            case groupAchievement
+            case localizations
+            case points
+            case referenceName
+            case releases
+            case repeatable
+            case showBeforeEarned
+            case vendorIdentifier
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = GameCenterAchievements(rawValue: string) {
+                    self = value
+                } else if let value = GameCenterAchievements(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid GameCenterAchievements value: \(string)"
+                    )
+                }
+            }
+        }
+
+        public enum GameCenterDetails: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case achievementReleases
+            case activityReleases
+            case app
+            case arcadeEnabled
+            case challengeEnabled
+            case challengeReleases
+            case challengesMinimumPlatformVersions
+            case defaultGroupLeaderboard
+            case defaultGroupLeaderboardV2
+            case defaultLeaderboard
+            case defaultLeaderboardV2
+            case gameCenterAchievements
+            case gameCenterAchievementsV2
+            case gameCenterActivities
+            case gameCenterAppVersions
+            case gameCenterChallenges
+            case gameCenterGroup
+            case gameCenterLeaderboardSets
+            case gameCenterLeaderboardSetsV2
+            case gameCenterLeaderboards
+            case gameCenterLeaderboardsV2
+            case leaderboardReleases
+            case leaderboardSetReleases
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = GameCenterDetails(rawValue: string) {
+                    self = value
+                } else if let value = GameCenterDetails(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid GameCenterDetails value: \(string)"
                     )
                 }
             }

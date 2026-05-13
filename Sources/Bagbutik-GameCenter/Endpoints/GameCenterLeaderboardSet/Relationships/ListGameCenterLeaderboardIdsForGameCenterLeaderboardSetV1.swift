@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read the leaderboards in a leaderboard set
+     # Read the Leaderboards in a Leaderboard Set
      List all leaderboards in a leaderboard set.
 
      Full documentation:

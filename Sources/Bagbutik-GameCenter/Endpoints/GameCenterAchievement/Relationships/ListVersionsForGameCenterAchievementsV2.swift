@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # List all versions for a Game Center achievement
+     # List All Versions for a Game Center Achievement
      Get a list of versions for a specific Game Center achievement.
 
      Full documentation:

@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read information for alternative distribution package deltas
+     # Read Information for Alternative Distribution Package Deltas
      Get detail information about specific alternative distribution package deltas.
 
      Full documentation:

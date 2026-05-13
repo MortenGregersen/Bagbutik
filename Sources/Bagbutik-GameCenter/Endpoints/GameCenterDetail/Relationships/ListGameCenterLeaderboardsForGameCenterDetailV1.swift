@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read leaderboard information
+     # Read Leaderboard Information
      Get all leaderboards and related information for a Game Center detail.
 
      Full documentation:

@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Delete a report request
+     # Delete a Report Request
      Remove a specific analytics report request.
 
      Full documentation:

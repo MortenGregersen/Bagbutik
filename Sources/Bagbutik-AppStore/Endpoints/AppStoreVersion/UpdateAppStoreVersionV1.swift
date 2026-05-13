@@ -4,7 +4,7 @@ import Bagbutik_Models
 public extension Request {
     /**
      # Modify an App Store Version
-     Update the app store version for a specific app.
+     Update the App Store version for a specific app.
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/patch-v1-appStoreVersions-_id_>

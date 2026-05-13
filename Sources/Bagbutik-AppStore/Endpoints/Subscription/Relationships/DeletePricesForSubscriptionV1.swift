@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Delete Prices from a Subscription
+     # Delete Prices From a Subscription
      Delete a scheduled subscription price change for an auto-renewable subscription.
 
      Full documentation:

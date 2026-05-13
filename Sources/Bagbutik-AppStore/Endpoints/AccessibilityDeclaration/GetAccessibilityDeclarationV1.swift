@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read accessibility declaration information
+     # Read Accessibility Declaration Information
      Get information about a specific accessibility declaration.
 
      Full documentation:

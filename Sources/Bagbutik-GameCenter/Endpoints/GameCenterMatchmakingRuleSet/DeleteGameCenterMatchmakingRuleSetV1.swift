@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Delete a rule set
+     # Delete a Rule Set
      Delete a rule set along with its matchmaking rules and teams.
 
      Full documentation:

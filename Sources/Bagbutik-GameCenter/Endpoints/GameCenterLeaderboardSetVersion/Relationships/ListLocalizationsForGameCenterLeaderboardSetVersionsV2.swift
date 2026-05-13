@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # List all localizations for a Game Center leaderboard set version
+     # List All Localizations for a Game Center Leaderboard Set Version
      Get a list of localizations for a specific Game Center leaderboard set version.
 
      Full documentation:

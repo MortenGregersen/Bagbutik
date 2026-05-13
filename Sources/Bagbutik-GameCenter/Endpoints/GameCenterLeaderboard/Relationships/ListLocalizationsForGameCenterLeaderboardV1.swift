@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # List all localizations for a leaderboard
+     # List All Localizations for a Leaderboard
      Get a list of localized metadata for a leaderboard.
 
      Full documentation:

@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Delete a marketplace search detail URL
+     # Delete a Marketplace Search Detail Url
      Delete search detail URL for the alternative marketplace.
 
      Full documentation:

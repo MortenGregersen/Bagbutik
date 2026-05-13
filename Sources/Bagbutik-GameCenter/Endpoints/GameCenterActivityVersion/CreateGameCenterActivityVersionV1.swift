@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Create an activity version
+     # Create an Activity Version
      Add an activity to a Game Center detail, group, or leaderboard.
 
      Full documentation:

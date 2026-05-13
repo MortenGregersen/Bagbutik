@@ -66,32 +66,32 @@ public struct AppPriceV2InlineCreate: Codable, Sendable, Identifiable {
     }
 
     public struct Relationships: Codable, Sendable {
-        public let appPricePoint: AppPricePoint
+        public var appPricePoint: AppPricePoint?
 
-        public init(appPricePoint: AppPricePoint) {
+        public init(appPricePoint: AppPricePoint? = nil) {
             self.appPricePoint = appPricePoint
         }
 
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: AnyCodingKey.self)
-            appPricePoint = try container.decode(AppPricePoint.self, forKey: "appPricePoint")
+            appPricePoint = try container.decodeIfPresent(AppPricePoint.self, forKey: "appPricePoint")
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: AnyCodingKey.self)
-            try container.encode(appPricePoint, forKey: "appPricePoint")
+            try container.encodeIfPresent(appPricePoint, forKey: "appPricePoint")
         }
 
         public struct AppPricePoint: Codable, Sendable {
-            public let data: Data
+            @NullCodable public var data: Data?
 
-            public init(data: Data) {
+            public init(data: Data? = nil) {
                 self.data = data
             }
 
             public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: AnyCodingKey.self)
-                data = try container.decode(Data.self, forKey: "data")
+                data = try container.decodeIfPresent(Data.self, forKey: "data")
             }
 
             public func encode(to encoder: Encoder) throws {

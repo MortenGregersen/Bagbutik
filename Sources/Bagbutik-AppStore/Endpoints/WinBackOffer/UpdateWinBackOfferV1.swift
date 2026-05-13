@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Modify a win-back offer
+     # Modify a Win-Back Offer
      Edit details for a specific win-back offer.
 
      Full documentation:

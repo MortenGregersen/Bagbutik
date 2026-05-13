@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read Game Center leaderboard version information
+     # Read Game Center Leaderboard Version Information
      Get information about a specific Game Center leaderboard version.
 
      Full documentation:
@@ -38,6 +38,8 @@ public enum GetGameCenterLeaderboardVersionsV2 {
         case gameCenterLeaderboardLocalizations([GameCenterLeaderboardLocalizations])
         /// The fields to include for returned resources of type gameCenterLeaderboardVersions
         case gameCenterLeaderboardVersions([GameCenterLeaderboardVersions])
+        /// The fields to include for returned resources of type gameCenterLeaderboards
+        case gameCenterLeaderboards([GameCenterLeaderboards])
 
         public enum GameCenterLeaderboardLocalizations: String, Sendable, ParameterValue, Codable, CaseIterable {
             case description
@@ -82,6 +84,43 @@ public enum GetGameCenterLeaderboardVersionsV2 {
                     throw DecodingError.dataCorruptedError(
                         in: container,
                         debugDescription: "Invalid GameCenterLeaderboardVersions value: \(string)"
+                    )
+                }
+            }
+        }
+
+        public enum GameCenterLeaderboards: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case activity
+            case activityProperties
+            case archived
+            case challenge
+            case defaultFormatter
+            case gameCenterDetail
+            case gameCenterGroup
+            case gameCenterLeaderboardSets
+            case recurrenceDuration
+            case recurrenceRule
+            case recurrenceStartDate
+            case referenceName
+            case scoreRangeEnd
+            case scoreRangeStart
+            case scoreSortType
+            case submissionType
+            case vendorIdentifier
+            case versions
+            case visibility
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = GameCenterLeaderboards(rawValue: string) {
+                    self = value
+                } else if let value = GameCenterLeaderboards(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid GameCenterLeaderboards value: \(string)"
                     )
                 }
             }

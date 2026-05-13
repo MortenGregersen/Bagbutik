@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # List all accessibility declarations for an app
+     # List All Accessibility Declarations for an App
      Get a list of the accessibility declarations for a specific app.
 
      Full documentation:

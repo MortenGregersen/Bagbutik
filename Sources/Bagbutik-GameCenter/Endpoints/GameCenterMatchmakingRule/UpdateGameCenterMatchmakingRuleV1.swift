@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Modify a rule
+     # Modify a Rule
      Update a specific matchmaking rule in a rule set.
 
      Full documentation:

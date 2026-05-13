@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # List automatically generated prices for an app
+     # List Automatically Generated Prices for an App
      List the automatically calculated prices for an app generated from a base territory.
 
      Full documentation:

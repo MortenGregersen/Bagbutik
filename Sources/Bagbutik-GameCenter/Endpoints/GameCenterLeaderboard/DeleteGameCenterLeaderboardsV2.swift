@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Delete a Game Center leaderboard
+     # Delete a Game Center Leaderboard
      Delete a specific Game Center leaderboard.
 
      Full documentation:

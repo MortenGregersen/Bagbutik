@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Modify a challenge
+     # Modify a Challenge
      Update details for a specific Game Center challenge.
 
      Full documentation:

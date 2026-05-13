@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Create an in-app purchase offer code
+     # Create an In-App Purchase Offer Code
      Create an offer code for an in-app purchase.
 
      Full documentation:

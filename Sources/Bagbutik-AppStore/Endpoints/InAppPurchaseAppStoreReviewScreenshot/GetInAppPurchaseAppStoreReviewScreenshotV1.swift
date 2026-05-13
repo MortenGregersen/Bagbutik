@@ -33,6 +33,8 @@ public enum GetInAppPurchaseAppStoreReviewScreenshotV1 {
     public enum Field: FieldParameter {
         /// The fields to include for returned resources of type inAppPurchaseAppStoreReviewScreenshots
         case inAppPurchaseAppStoreReviewScreenshots([InAppPurchaseAppStoreReviewScreenshots])
+        /// The fields to include for returned resources of type inAppPurchases
+        case inAppPurchases([InAppPurchases])
 
         public enum InAppPurchaseAppStoreReviewScreenshots: String, Sendable, ParameterValue, Codable, CaseIterable {
             case assetDeliveryState
@@ -56,6 +58,40 @@ public enum GetInAppPurchaseAppStoreReviewScreenshotV1 {
                     throw DecodingError.dataCorruptedError(
                         in: container,
                         debugDescription: "Invalid InAppPurchaseAppStoreReviewScreenshots value: \(string)"
+                    )
+                }
+            }
+        }
+
+        public enum InAppPurchases: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case appStoreReviewScreenshot
+            case content
+            case contentHosting
+            case familySharable
+            case iapPriceSchedule
+            case images
+            case inAppPurchaseAvailability
+            case inAppPurchaseLocalizations
+            case inAppPurchaseType
+            case name
+            case offerCodes
+            case pricePoints
+            case productId
+            case promotedPurchase
+            case reviewNote
+            case state
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = InAppPurchases(rawValue: string) {
+                    self = value
+                } else if let value = InAppPurchases(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid InAppPurchases value: \(string)"
                     )
                 }
             }

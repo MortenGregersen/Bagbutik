@@ -40,6 +40,8 @@ public enum GetAppStoreVersionLocalizationV1 {
         case appScreenshotSets([AppScreenshotSets])
         /// The fields to include for returned resources of type appStoreVersionLocalizations
         case appStoreVersionLocalizations([AppStoreVersionLocalizations])
+        /// The fields to include for returned resources of type appStoreVersions
+        case appStoreVersions([AppStoreVersions])
 
         public enum AppPreviewSets: String, Sendable, ParameterValue, Codable, CaseIterable {
             case appCustomProductPageLocalization
@@ -111,6 +113,48 @@ public enum GetAppStoreVersionLocalizationV1 {
                     throw DecodingError.dataCorruptedError(
                         in: container,
                         debugDescription: "Invalid AppStoreVersionLocalizations value: \(string)"
+                    )
+                }
+            }
+        }
+
+        public enum AppStoreVersions: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case alternativeDistributionPackage
+            case app
+            case appClipDefaultExperience
+            case appStoreReviewDetail
+            case appStoreState
+            case appStoreVersionExperiments
+            case appStoreVersionExperimentsV2
+            case appStoreVersionLocalizations
+            case appStoreVersionPhasedRelease
+            case appStoreVersionSubmission
+            case appVersionState
+            case build
+            case copyright
+            case createdDate
+            case customerReviews
+            case downloadable
+            case earliestReleaseDate
+            case gameCenterAppVersion
+            case platform
+            case releaseType
+            case reviewType
+            case routingAppCoverage
+            case usesIdfa
+            case versionString
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = AppStoreVersions(rawValue: string) {
+                    self = value
+                } else if let value = AppStoreVersions(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid AppStoreVersions value: \(string)"
                     )
                 }
             }

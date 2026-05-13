@@ -40,6 +40,14 @@ public enum GetCiBuildRunV1 {
         case builds([Builds])
         /// The fields to include for returned resources of type ciBuildRuns
         case ciBuildRuns([CiBuildRuns])
+        /// The fields to include for returned resources of type ciProducts
+        case ciProducts([CiProducts])
+        /// The fields to include for returned resources of type ciWorkflows
+        case ciWorkflows([CiWorkflows])
+        /// The fields to include for returned resources of type scmGitReferences
+        case scmGitReferences([ScmGitReferences])
+        /// The fields to include for returned resources of type scmPullRequests
+        case scmPullRequests([ScmPullRequests])
 
         public enum Builds: String, Sendable, ParameterValue, Codable, CaseIterable {
             case app
@@ -117,6 +125,124 @@ public enum GetCiBuildRunV1 {
                     throw DecodingError.dataCorruptedError(
                         in: container,
                         debugDescription: "Invalid CiBuildRuns value: \(string)"
+                    )
+                }
+            }
+        }
+
+        public enum CiProducts: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case additionalRepositories
+            case app
+            case buildRuns
+            case bundleId
+            case createdDate
+            case name
+            case primaryRepositories
+            case productType
+            case workflows
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = CiProducts(rawValue: string) {
+                    self = value
+                } else if let value = CiProducts(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid CiProducts value: \(string)"
+                    )
+                }
+            }
+        }
+
+        public enum CiWorkflows: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case actions
+            case branchStartCondition
+            case buildRuns
+            case clean
+            case containerFilePath
+            case description
+            case isEnabled
+            case isLockedForEditing
+            case lastModifiedDate
+            case macOsVersion
+            case manualBranchStartCondition
+            case manualPullRequestStartCondition
+            case manualTagStartCondition
+            case name
+            case product
+            case pullRequestStartCondition
+            case repository
+            case scheduledStartCondition
+            case tagStartCondition
+            case xcodeVersion
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = CiWorkflows(rawValue: string) {
+                    self = value
+                } else if let value = CiWorkflows(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid CiWorkflows value: \(string)"
+                    )
+                }
+            }
+        }
+
+        public enum ScmGitReferences: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case canonicalName
+            case isDeleted
+            case kind
+            case name
+            case repository
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = ScmGitReferences(rawValue: string) {
+                    self = value
+                } else if let value = ScmGitReferences(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid ScmGitReferences value: \(string)"
+                    )
+                }
+            }
+        }
+
+        public enum ScmPullRequests: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case destinationBranchName
+            case destinationRepositoryName
+            case destinationRepositoryOwner
+            case isClosed
+            case isCrossRepository
+            case number
+            case repository
+            case sourceBranchName
+            case sourceRepositoryName
+            case sourceRepositoryOwner
+            case title
+            case webUrl
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = ScmPullRequests(rawValue: string) {
+                    self = value
+                } else if let value = ScmPullRequests(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid ScmPullRequests value: \(string)"
                     )
                 }
             }

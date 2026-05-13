@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Create a challenge
+     # Create a Challenge
      Add a challenge to a Game Center detail or group by referencing an existing leaderboard.
 
      Full documentation:

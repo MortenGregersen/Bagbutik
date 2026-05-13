@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Modify an activity
+     # Modify an Activity
      Update details for a specific Game Center activity.
 
      Full documentation:

@@ -33,6 +33,8 @@ public enum GetSubscriptionPricePointV1 {
     public enum Field: FieldParameter {
         /// The fields to include for returned resources of type subscriptionPricePoints
         case subscriptionPricePoints([SubscriptionPricePoints])
+        /// The fields to include for returned resources of type territories
+        case territories([Territories])
 
         public enum SubscriptionPricePoints: String, Sendable, ParameterValue, Codable, CaseIterable {
             case customerPrice
@@ -52,6 +54,25 @@ public enum GetSubscriptionPricePointV1 {
                     throw DecodingError.dataCorruptedError(
                         in: container,
                         debugDescription: "Invalid SubscriptionPricePoints value: \(string)"
+                    )
+                }
+            }
+        }
+
+        public enum Territories: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case currency
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = Territories(rawValue: string) {
+                    self = value
+                } else if let value = Territories(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid Territories value: \(string)"
                     )
                 }
             }

@@ -47,6 +47,8 @@ public enum ListCustomerReviewsForAppStoreVersionV1 {
         case customerReviewResponses([CustomerReviewResponses])
         /// The fields to include for returned resources of type customerReviews
         case customerReviews([CustomerReviews])
+        /// The fields to include for returned resources of type territories
+        case territories([Territories])
 
         public enum CustomerReviewResponses: String, Sendable, ParameterValue, Codable, CaseIterable {
             case lastModifiedDate
@@ -75,6 +77,7 @@ public enum ListCustomerReviewsForAppStoreVersionV1 {
             case createdDate
             case rating
             case response
+            case reviewTerritory
             case reviewerNickname
             case territory
             case title
@@ -94,6 +97,25 @@ public enum ListCustomerReviewsForAppStoreVersionV1 {
                 }
             }
         }
+
+        public enum Territories: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case currency
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = Territories(rawValue: string) {
+                    self = value
+                } else if let value = Territories(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid Territories value: \(string)"
+                    )
+                }
+            }
+        }
     }
 
     /**
@@ -102,6 +124,8 @@ public enum ListCustomerReviewsForAppStoreVersionV1 {
     public enum Filter: FilterParameter {
         /// Filter by attribute 'rating'
         case rating([String])
+        /// Filter by id(s) of related 'reviewTerritory'
+        case reviewTerritory([String])
         /// Filter by attribute 'territory'
         case territory([TerritoryCode])
     }
@@ -119,6 +143,7 @@ public enum ListCustomerReviewsForAppStoreVersionV1 {
      */
     public enum Include: String, IncludeParameter, CaseIterable {
         case response
+        case reviewTerritory
     }
 
     /**

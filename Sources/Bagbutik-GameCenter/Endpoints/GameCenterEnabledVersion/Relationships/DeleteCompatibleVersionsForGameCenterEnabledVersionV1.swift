@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Remove Compatible Versions from a Game Center Enabled Version
+     # Remove Compatible Versions From a Game Center Enabled Version
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/delete-v1-gameCenterEnabledVersions-_id_-relationships-compatibleVersions>

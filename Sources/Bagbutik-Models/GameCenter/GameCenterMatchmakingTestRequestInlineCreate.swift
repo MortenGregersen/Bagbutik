@@ -14,12 +14,12 @@ public struct GameCenterMatchmakingTestRequestInlineCreate: Codable, Sendable, I
     /// The type of resource object.
     public var type: String { "gameCenterMatchmakingTestRequests" }
     /// The object attributes.
-    public let attributes: Attributes
+    public var attributes: Attributes?
     /// The object relationships.
     public var relationships: Relationships?
 
     public init(id: String? = nil,
-                attributes: Attributes,
+                attributes: Attributes? = nil,
                 relationships: Relationships? = nil)
     {
         self.id = id
@@ -30,7 +30,7 @@ public struct GameCenterMatchmakingTestRequestInlineCreate: Codable, Sendable, I
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: AnyCodingKey.self)
         id = try container.decodeIfPresent(String.self, forKey: "id")
-        attributes = try container.decode(Attributes.self, forKey: "attributes")
+        attributes = try container.decodeIfPresent(Attributes.self, forKey: "attributes")
         relationships = try container.decodeIfPresent(Relationships.self, forKey: "relationships")
         if try container.decode(String.self, forKey: "type") != type {
             throw DecodingError.dataCorruptedError(forKey: "type", in: container, debugDescription: "Not matching \(type)")
@@ -41,32 +41,32 @@ public struct GameCenterMatchmakingTestRequestInlineCreate: Codable, Sendable, I
         var container = encoder.container(keyedBy: AnyCodingKey.self)
         try container.encodeIfPresent(id, forKey: "id")
         try container.encode(type, forKey: "type")
-        try container.encode(attributes, forKey: "attributes")
+        try container.encodeIfPresent(attributes, forKey: "attributes")
         try container.encodeIfPresent(relationships, forKey: "relationships")
     }
 
     public struct Attributes: Codable, Sendable {
-        public let appVersion: String
-        public let bundleId: String
+        public var appVersion: String?
+        public var bundleId: String?
         public var locale: Locale?
         public var location: Location?
         public var maxPlayers: Int?
         public var minPlayers: Int?
-        public let platform: Platform
+        public var platform: Platform?
         public var playerCount: Int?
-        public let requestName: String
-        public let secondsInQueue: Int
+        public var requestName: String?
+        public var secondsInQueue: Int?
 
-        public init(appVersion: String,
-                    bundleId: String,
+        public init(appVersion: String? = nil,
+                    bundleId: String? = nil,
                     locale: Locale? = nil,
                     location: Location? = nil,
                     maxPlayers: Int? = nil,
                     minPlayers: Int? = nil,
-                    platform: Platform,
+                    platform: Platform? = nil,
                     playerCount: Int? = nil,
-                    requestName: String,
-                    secondsInQueue: Int)
+                    requestName: String? = nil,
+                    secondsInQueue: Int? = nil)
         {
             self.appVersion = appVersion
             self.bundleId = bundleId
@@ -82,30 +82,30 @@ public struct GameCenterMatchmakingTestRequestInlineCreate: Codable, Sendable, I
 
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: AnyCodingKey.self)
-            appVersion = try container.decode(String.self, forKey: "appVersion")
-            bundleId = try container.decode(String.self, forKey: "bundleId")
+            appVersion = try container.decodeIfPresent(String.self, forKey: "appVersion")
+            bundleId = try container.decodeIfPresent(String.self, forKey: "bundleId")
             locale = try container.decodeIfPresent(Locale.self, forKey: "locale")
             location = try container.decodeIfPresent(Location.self, forKey: "location")
             maxPlayers = try container.decodeIfPresent(Int.self, forKey: "maxPlayers")
             minPlayers = try container.decodeIfPresent(Int.self, forKey: "minPlayers")
-            platform = try container.decode(Platform.self, forKey: "platform")
+            platform = try container.decodeIfPresent(Platform.self, forKey: "platform")
             playerCount = try container.decodeIfPresent(Int.self, forKey: "playerCount")
-            requestName = try container.decode(String.self, forKey: "requestName")
-            secondsInQueue = try container.decode(Int.self, forKey: "secondsInQueue")
+            requestName = try container.decodeIfPresent(String.self, forKey: "requestName")
+            secondsInQueue = try container.decodeIfPresent(Int.self, forKey: "secondsInQueue")
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: AnyCodingKey.self)
-            try container.encode(appVersion, forKey: "appVersion")
-            try container.encode(bundleId, forKey: "bundleId")
+            try container.encodeIfPresent(appVersion, forKey: "appVersion")
+            try container.encodeIfPresent(bundleId, forKey: "bundleId")
             try container.encodeIfPresent(locale, forKey: "locale")
             try container.encodeIfPresent(location, forKey: "location")
             try container.encodeIfPresent(maxPlayers, forKey: "maxPlayers")
             try container.encodeIfPresent(minPlayers, forKey: "minPlayers")
-            try container.encode(platform, forKey: "platform")
+            try container.encodeIfPresent(platform, forKey: "platform")
             try container.encodeIfPresent(playerCount, forKey: "playerCount")
-            try container.encode(requestName, forKey: "requestName")
-            try container.encode(secondsInQueue, forKey: "secondsInQueue")
+            try container.encodeIfPresent(requestName, forKey: "requestName")
+            try container.encodeIfPresent(secondsInQueue, forKey: "secondsInQueue")
         }
 
         public enum Locale: String, Sendable, Codable, CaseIterable {

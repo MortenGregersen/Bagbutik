@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Delete a leaderboard set image
+     # Delete a Leaderboard Set Image
      Delete an image that’s associated with a leaderboard set.
 
      Full documentation:

@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Get queue size
+     # Get Queue Size
      Get the time that match requests are in a specific queue.
 
      Full documentation:

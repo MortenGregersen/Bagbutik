@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Delete an activity localization
+     # Delete an Activity Localization
      Remove a specific localization from a Game Center activity.
 
      Full documentation:

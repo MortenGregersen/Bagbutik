@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Delete a Game Center leaderboard set localization
+     # Delete a Game Center Leaderboard Set Localization
      Delete a specific Game Center leaderboard set localization.
 
      Full documentation:

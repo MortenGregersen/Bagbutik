@@ -39,6 +39,8 @@ public enum GetAppStoreVersionExperimentTreatmentLocalizationV1 {
         case appScreenshotSets([AppScreenshotSets])
         /// The fields to include for returned resources of type appStoreVersionExperimentTreatmentLocalizations
         case appStoreVersionExperimentTreatmentLocalizations([AppStoreVersionExperimentTreatmentLocalizations])
+        /// The fields to include for returned resources of type appStoreVersionExperimentTreatments
+        case appStoreVersionExperimentTreatments([AppStoreVersionExperimentTreatments])
 
         public enum AppPreviewSets: String, Sendable, ParameterValue, Codable, CaseIterable {
             case appCustomProductPageLocalization
@@ -103,6 +105,31 @@ public enum GetAppStoreVersionExperimentTreatmentLocalizationV1 {
                     throw DecodingError.dataCorruptedError(
                         in: container,
                         debugDescription: "Invalid AppStoreVersionExperimentTreatmentLocalizations value: \(string)"
+                    )
+                }
+            }
+        }
+
+        public enum AppStoreVersionExperimentTreatments: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case appIcon
+            case appIconName
+            case appStoreVersionExperiment
+            case appStoreVersionExperimentTreatmentLocalizations
+            case appStoreVersionExperimentV2
+            case name
+            case promotedDate
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = AppStoreVersionExperimentTreatments(rawValue: string) {
+                    self = value
+                } else if let value = AppStoreVersionExperimentTreatments(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid AppStoreVersionExperimentTreatments value: \(string)"
                     )
                 }
             }

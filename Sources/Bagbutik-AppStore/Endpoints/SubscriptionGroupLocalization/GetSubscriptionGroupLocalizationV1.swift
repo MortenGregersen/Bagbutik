@@ -33,6 +33,8 @@ public enum GetSubscriptionGroupLocalizationV1 {
     public enum Field: FieldParameter {
         /// The fields to include for returned resources of type subscriptionGroupLocalizations
         case subscriptionGroupLocalizations([SubscriptionGroupLocalizations])
+        /// The fields to include for returned resources of type subscriptionGroups
+        case subscriptionGroups([SubscriptionGroups])
 
         public enum SubscriptionGroupLocalizations: String, Sendable, ParameterValue, Codable, CaseIterable {
             case customAppName
@@ -52,6 +54,27 @@ public enum GetSubscriptionGroupLocalizationV1 {
                     throw DecodingError.dataCorruptedError(
                         in: container,
                         debugDescription: "Invalid SubscriptionGroupLocalizations value: \(string)"
+                    )
+                }
+            }
+        }
+
+        public enum SubscriptionGroups: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case referenceName
+            case subscriptionGroupLocalizations
+            case subscriptions
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = SubscriptionGroups(rawValue: string) {
+                    self = value
+                } else if let value = SubscriptionGroups(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid SubscriptionGroups value: \(string)"
                     )
                 }
             }

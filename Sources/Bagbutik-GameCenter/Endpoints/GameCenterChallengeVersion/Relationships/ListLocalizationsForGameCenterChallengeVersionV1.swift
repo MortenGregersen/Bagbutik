@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # List all localizations for a challenge version
+     # List All Localizations for a Challenge Version
      Get details about the default localization for a specific Game Center challenge version.
 
      Full documentation:

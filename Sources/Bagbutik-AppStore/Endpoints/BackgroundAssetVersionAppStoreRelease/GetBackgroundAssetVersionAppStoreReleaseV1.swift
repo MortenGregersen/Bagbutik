@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read background asset version App Store releases information.
+     # Read Background Asset Version App Store Releases Information.
      Get the state of a background asset version App Store release.
 
      Full documentation:
@@ -33,6 +33,8 @@ public enum GetBackgroundAssetVersionAppStoreReleaseV1 {
     public enum Field: FieldParameter {
         /// The fields to include for returned resources of type backgroundAssetVersionAppStoreReleases
         case backgroundAssetVersionAppStoreReleases([BackgroundAssetVersionAppStoreReleases])
+        /// The fields to include for returned resources of type backgroundAssetVersions
+        case backgroundAssetVersions([BackgroundAssetVersions])
 
         public enum BackgroundAssetVersionAppStoreReleases: String, Sendable, ParameterValue, Codable, CaseIterable {
             case backgroundAssetVersion
@@ -49,6 +51,36 @@ public enum GetBackgroundAssetVersionAppStoreReleaseV1 {
                     throw DecodingError.dataCorruptedError(
                         in: container,
                         debugDescription: "Invalid BackgroundAssetVersionAppStoreReleases value: \(string)"
+                    )
+                }
+            }
+        }
+
+        public enum BackgroundAssetVersions: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case appStoreRelease
+            case assetFile
+            case backgroundAsset
+            case backgroundAssetUploadFiles
+            case createdDate
+            case externalBetaRelease
+            case internalBetaRelease
+            case manifestFile
+            case platforms
+            case state
+            case stateDetails
+            case version
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = BackgroundAssetVersions(rawValue: string) {
+                    self = value
+                } else if let value = BackgroundAssetVersions(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid BackgroundAssetVersions value: \(string)"
                     )
                 }
             }

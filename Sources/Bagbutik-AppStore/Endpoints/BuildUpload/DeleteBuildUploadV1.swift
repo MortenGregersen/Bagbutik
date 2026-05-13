@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Remove a build upload
+     # Remove a Build Upload
      Remove a specific build upload for an app.
 
      Full documentation:

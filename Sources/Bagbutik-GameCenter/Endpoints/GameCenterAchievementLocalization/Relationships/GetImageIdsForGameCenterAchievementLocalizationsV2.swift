@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Get all image IDs for a Game Center achievement localization
+     # Get All Image IDs for a Game Center Achievement Localization
      Get a list of image resource IDs for a specific Game Center achievement localization.
 
      Full documentation:

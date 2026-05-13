@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # List Available macOS Versions for an Xcode Version
+     # List Available Macos Versions for an Xcode Version
      List all macOS versions available in Xcode Cloud that support a specific Xcode version.
 
      The example request below lists macOS versions available for a specific Xcode version. Use the information provided in the response to update workflows, build dashboards, and more.

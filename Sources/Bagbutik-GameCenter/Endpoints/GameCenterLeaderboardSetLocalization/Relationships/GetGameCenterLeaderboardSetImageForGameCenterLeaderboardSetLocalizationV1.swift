@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read the image associated with a leaderboard set localization
+     # Read the Image Associated With a Leaderboard Set Localization
      Get information about a leaderboard set image associated with a leaderboard set localization.
 
      Full documentation:

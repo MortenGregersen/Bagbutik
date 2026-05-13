@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # List queues in a rule set
+     # List Queues in a Rule Set
      Get information about queues that belong to a rule set.
 
      Full documentation:

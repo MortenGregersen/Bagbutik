@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read the id of the document for an app encryption declaration
+     # Read the ID of the Document for an App Encryption Declaration
      Get the document id associated with a specific app encryption declaration.
 
      Full documentation:

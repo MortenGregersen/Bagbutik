@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Create a reservation for a build upload file
+     # Create a Reservation for a Build Upload File
      Reserve a build upload file for a specific build upload.
 
      Full documentation:

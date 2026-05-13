@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read Game Center leaderboard localization information
+     # Read Game Center Leaderboard Localization Information
      Get information about a specific Game Center leaderboard localization.
 
      Full documentation:
@@ -35,6 +35,8 @@ public enum GetGameCenterLeaderboardLocalizationsV2 {
         case gameCenterLeaderboardImages([GameCenterLeaderboardImages])
         /// The fields to include for returned resources of type gameCenterLeaderboardLocalizations
         case gameCenterLeaderboardLocalizations([GameCenterLeaderboardLocalizations])
+        /// The fields to include for returned resources of type gameCenterLeaderboardVersions
+        case gameCenterLeaderboardVersions([GameCenterLeaderboardVersions])
 
         public enum GameCenterLeaderboardImages: String, Sendable, ParameterValue, Codable, CaseIterable {
             case assetDeliveryState
@@ -81,6 +83,28 @@ public enum GetGameCenterLeaderboardLocalizationsV2 {
                     throw DecodingError.dataCorruptedError(
                         in: container,
                         debugDescription: "Invalid GameCenterLeaderboardLocalizations value: \(string)"
+                    )
+                }
+            }
+        }
+
+        public enum GameCenterLeaderboardVersions: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case leaderboard
+            case localizations
+            case state
+            case version
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = GameCenterLeaderboardVersions(rawValue: string) {
+                    self = value
+                } else if let value = GameCenterLeaderboardVersions(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid GameCenterLeaderboardVersions value: \(string)"
                     )
                 }
             }

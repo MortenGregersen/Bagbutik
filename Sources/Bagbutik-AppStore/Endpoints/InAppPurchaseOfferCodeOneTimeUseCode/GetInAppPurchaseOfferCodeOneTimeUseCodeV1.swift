@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read in-app purchase offer code one-time use code information
+     # Read In-App Purchase Offer Code One-Time Use Code Information
      Get information about a specific in-app purchase offer code one-time use code.
 
      Full documentation:
@@ -31,8 +31,33 @@ public enum GetInAppPurchaseOfferCodeOneTimeUseCodeV1 {
      Fields to return for included related types.
      */
     public enum Field: FieldParameter {
+        /// The fields to include for returned resources of type actors
+        case actors([Actors])
         /// The fields to include for returned resources of type inAppPurchaseOfferCodeOneTimeUseCodes
         case inAppPurchaseOfferCodeOneTimeUseCodes([InAppPurchaseOfferCodeOneTimeUseCodes])
+
+        public enum Actors: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case actorType
+            case apiKeyId
+            case userEmail
+            case userFirstName
+            case userLastName
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = Actors(rawValue: string) {
+                    self = value
+                } else if let value = Actors(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid Actors value: \(string)"
+                    )
+                }
+            }
+        }
 
         public enum InAppPurchaseOfferCodeOneTimeUseCodes: String, Sendable, ParameterValue, Codable, CaseIterable {
             case active

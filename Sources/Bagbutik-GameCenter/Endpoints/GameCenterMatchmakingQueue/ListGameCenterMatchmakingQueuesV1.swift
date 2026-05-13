@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # List all queues
+     # List All Queues
      Get information about all queues.
 
      Full documentation:
@@ -34,6 +34,8 @@ public enum ListGameCenterMatchmakingQueuesV1 {
     public enum Field: FieldParameter {
         /// The fields to include for returned resources of type gameCenterMatchmakingQueues
         case gameCenterMatchmakingQueues([GameCenterMatchmakingQueues])
+        /// The fields to include for returned resources of type gameCenterMatchmakingRuleSets
+        case gameCenterMatchmakingRuleSets([GameCenterMatchmakingRuleSets])
 
         public enum GameCenterMatchmakingQueues: String, Sendable, ParameterValue, Codable, CaseIterable {
             case classicMatchmakingBundleIds
@@ -52,6 +54,31 @@ public enum ListGameCenterMatchmakingQueuesV1 {
                     throw DecodingError.dataCorruptedError(
                         in: container,
                         debugDescription: "Invalid GameCenterMatchmakingQueues value: \(string)"
+                    )
+                }
+            }
+        }
+
+        public enum GameCenterMatchmakingRuleSets: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case matchmakingQueues
+            case maxPlayers
+            case minPlayers
+            case referenceName
+            case ruleLanguageVersion
+            case rules
+            case teams
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = GameCenterMatchmakingRuleSets(rawValue: string) {
+                    self = value
+                } else if let value = GameCenterMatchmakingRuleSets(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid GameCenterMatchmakingRuleSets value: \(string)"
                     )
                 }
             }

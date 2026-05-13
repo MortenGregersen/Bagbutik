@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Get all leaderboard IDs for a Game Center leaderboard set
+     # Get All Leaderboard IDs for a Game Center Leaderboard Set
      Get a list of leaderboard resource IDs for a specific Game Center leaderboard set.
 
      Full documentation:

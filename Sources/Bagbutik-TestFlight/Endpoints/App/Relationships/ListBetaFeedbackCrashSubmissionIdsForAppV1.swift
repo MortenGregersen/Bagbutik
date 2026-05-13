@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # List all beta feedback crash submission IDs for an app
+     # List All Beta Feedback Crash Submission IDs for an App
      Get a list of beta feedback crash submissions for a specific app.
 
      Full documentation:

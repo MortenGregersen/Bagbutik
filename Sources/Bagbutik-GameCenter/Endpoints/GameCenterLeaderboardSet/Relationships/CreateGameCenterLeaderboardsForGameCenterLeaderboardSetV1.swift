@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Create a relationship between a leaderboard and a leaderboard set
+     # Create a Relationship Between a Leaderboard and a Leaderboard Set
      Add a leaderboard to a leaderboard set.
 
      Full documentation:

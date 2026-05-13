@@ -39,6 +39,8 @@ public enum GetAppEventLocalizationV1 {
         case appEventScreenshots([AppEventScreenshots])
         /// The fields to include for returned resources of type appEventVideoClips
         case appEventVideoClips([AppEventVideoClips])
+        /// The fields to include for returned resources of type appEvents
+        case appEvents([AppEvents])
 
         public enum AppEventLocalizations: String, Sendable, ParameterValue, Codable, CaseIterable {
             case appEvent
@@ -115,6 +117,35 @@ public enum GetAppEventLocalizationV1 {
                     throw DecodingError.dataCorruptedError(
                         in: container,
                         debugDescription: "Invalid AppEventVideoClips value: \(string)"
+                    )
+                }
+            }
+        }
+
+        public enum AppEvents: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case archivedTerritorySchedules
+            case badge
+            case deepLink
+            case eventState
+            case localizations
+            case primaryLocale
+            case priority
+            case purchaseRequirement
+            case purpose
+            case referenceName
+            case territorySchedules
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = AppEvents(rawValue: string) {
+                    self = value
+                } else if let value = AppEvents(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid AppEvents value: \(string)"
                     )
                 }
             }

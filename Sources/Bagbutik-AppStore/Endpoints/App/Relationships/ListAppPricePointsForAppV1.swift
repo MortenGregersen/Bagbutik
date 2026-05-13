@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # List all price points for an app
+     # List All Price Points for an App
      Get all the available price points for a specific app.
 
      Full documentation:

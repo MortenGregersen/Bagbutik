@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Create a challenge image
+     # Create a Challenge Image
      Reserve an image for a Game Center challenge.
 
      Full documentation:

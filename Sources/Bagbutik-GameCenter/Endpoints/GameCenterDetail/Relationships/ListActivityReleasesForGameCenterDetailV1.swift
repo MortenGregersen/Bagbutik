@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Get activity releases for a Game Center detail
+     # Get Activity Releases for a Game Center Detail
      List all activity release information for a specific Game Center detail.
 
      Full documentation:

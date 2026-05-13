@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Modify the leaderboards for a Game Center detail
+     # Modify the Leaderboards for a Game Center Detail
      Update the leaderboards relationship for a specific Game Center detail.
 
      Full documentation:

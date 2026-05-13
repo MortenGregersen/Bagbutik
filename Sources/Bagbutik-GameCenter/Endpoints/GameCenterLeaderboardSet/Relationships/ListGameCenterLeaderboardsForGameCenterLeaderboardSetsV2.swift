@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # List all leaderboards for a Game Center leaderboard set
+     # List All Leaderboards for a Game Center Leaderboard Set
      Get a list of leaderboards for a specific Game Center leaderboard set.
 
      Full documentation:

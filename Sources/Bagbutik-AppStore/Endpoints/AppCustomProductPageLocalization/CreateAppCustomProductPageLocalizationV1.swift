@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Create a custom product page localization
+     # Create a Custom Product Page Localization
      Add a localization for your app custom product page.
 
      Full documentation:

@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read the crash log for a beta feedback crash submission
+     # Read the Crash Log for a Beta Feedback Crash Submission
      Get crash log information for a specific beta feedback crash submission.
 
      Full documentation:

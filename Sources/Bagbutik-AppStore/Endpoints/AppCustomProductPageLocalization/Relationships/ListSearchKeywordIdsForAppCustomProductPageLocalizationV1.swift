@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # List all search keywords for a customer product page localization
+     # List All Search Keywords for a Customer Product Page Localization
      Get a list of search keyword IDs for a customer product page localization.
 
      Full documentation:

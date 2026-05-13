@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read beta tester metrics for an app
+     # Read Beta Tester Metrics for an App
      Get usage metrics for beta testers of a specific app.
 
      Full documentation:

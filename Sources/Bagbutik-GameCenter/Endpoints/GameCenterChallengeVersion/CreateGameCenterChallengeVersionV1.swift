@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Create a challenge version
+     # Create a Challenge Version
      Add a version for a specific Game Center challenge.
 
      Full documentation:

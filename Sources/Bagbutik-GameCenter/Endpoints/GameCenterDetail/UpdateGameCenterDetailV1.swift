@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Modify a Game Center detail for an app
+     # Modify a Game Center Detail for an App
      Edit challenge state, default leaderboards, and groups.
 
      Full documentation:

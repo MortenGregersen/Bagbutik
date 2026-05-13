@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Delete a challenge localization
+     # Delete a Challenge Localization
      Remove a specific localization from a Game Center challenge.
 
      Full documentation:

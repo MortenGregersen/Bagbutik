@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Remove an achievement from an activity
+     # Remove an Achievement From an Activity
      Remove the relationship between an achievement and a Game Center activity.
 
      Full documentation:

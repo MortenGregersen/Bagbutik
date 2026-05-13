@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # List territory age ratings for an app info
+     # List Territory Age Ratings for an App Info
      List all territory age ratings for a specific app info.
 
      Full documentation:

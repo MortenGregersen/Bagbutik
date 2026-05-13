@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read group information for a specific group
+     # Read Group Information for a Specific Group
      Read information for a specific group.
 
      Full documentation:

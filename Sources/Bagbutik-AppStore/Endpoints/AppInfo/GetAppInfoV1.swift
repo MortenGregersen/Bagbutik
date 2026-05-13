@@ -6,7 +6,7 @@ public extension Request {
      # Read App Info Information
      Read App Store information including your App Store state, age ratings, Brazil age rating, and kids’ age band.
 
-     For request and response examples for reading an age rating declaration, see [Read age rating declaration](https://developer.apple.com/documentation/appstoreconnectapi/get-v1-appinfos-_id_-ageratingdeclaration).
+     For request and response examples for reading an age rating declaration, see [Read Age Rating Declaration](https://developer.apple.com/documentation/appstoreconnectapi/get-v1-appinfos-_id_-ageratingdeclaration).
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-appInfos-_id_>
@@ -44,6 +44,8 @@ public enum GetAppInfoV1 {
         case appInfoLocalizations([AppInfoLocalizations])
         /// The fields to include for returned resources of type appInfos
         case appInfos([AppInfos])
+        /// The fields to include for returned resources of type apps
+        case apps([Apps])
 
         public enum AgeRatingDeclarations: String, Sendable, ParameterValue, Codable, CaseIterable {
             case advertising
@@ -168,6 +170,79 @@ public enum GetAppInfoV1 {
                     throw DecodingError.dataCorruptedError(
                         in: container,
                         debugDescription: "Invalid AppInfos value: \(string)"
+                    )
+                }
+            }
+        }
+
+        public enum Apps: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case accessibilityDeclarations
+            case accessibilityUrl
+            case alternativeDistributionKey
+            case analyticsReportRequests
+            case androidToIosAppMappingDetails
+            case appAvailabilityV2
+            case appClips
+            case appCustomProductPages
+            case appEncryptionDeclarations
+            case appEvents
+            case appInfos
+            case appPricePoints
+            case appPriceSchedule
+            case appStoreIcon
+            case appStoreVersionExperimentsV2
+            case appStoreVersions
+            case appTags
+            case backgroundAssets
+            case betaAppLocalizations
+            case betaAppReviewDetail
+            case betaFeedbackCrashSubmissions
+            case betaFeedbackScreenshotSubmissions
+            case betaGroups
+            case betaLicenseAgreement
+            case betaTesters
+            case buildUploads
+            case builds
+            case bundleId
+            case ciProduct
+            case contentRightsDeclaration
+            case customerReviewSummarizations
+            case customerReviews
+            case endUserLicenseAgreement
+            case gameCenterDetail
+            case gameCenterEnabledVersions
+            case inAppPurchases
+            case inAppPurchasesV2
+            case isOrEverWasMadeForKids
+            case marketplaceSearchDetail
+            case name
+            case perfPowerMetrics
+            case preReleaseVersions
+            case primaryLocale
+            case promotedPurchases
+            case reviewSubmissions
+            case searchKeywords
+            case sku
+            case streamlinedPurchasingEnabled
+            case subscriptionGracePeriod
+            case subscriptionGroups
+            case subscriptionStatusUrl
+            case subscriptionStatusUrlForSandbox
+            case subscriptionStatusUrlVersion
+            case subscriptionStatusUrlVersionForSandbox
+            case webhooks
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = Apps(rawValue: string) {
+                    self = value
+                } else if let value = Apps(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid Apps value: \(string)"
                     )
                 }
             }

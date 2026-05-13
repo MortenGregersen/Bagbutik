@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Edit the leaderboard associated with a group
+     # Edit the Leaderboard Associated With a Group
      Modify the Game Center leaderboards in a specific group.
 
      Full documentation:

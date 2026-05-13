@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Get all localization IDs for a Game Center achievement version
+     # Get All Localization IDs for a Game Center Achievement Version
      Get a list of localization resource IDs for a specific Game Center achievement version.
 
      Full documentation:

@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # List leaderboard sets in a group leaderboard set
+     # List Leaderboard Sets in a Group Leaderboard Set
      List information about leaderboards and leaderboard sets in a group leaderboard set.
 
      Full documentation:

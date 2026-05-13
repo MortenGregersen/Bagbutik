@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # List the IDs of Android to iOS app mapping details for an app
+     # List the IDs of Android to iOS App Mapping Details for an App
      Get the IDs of Android to iOS app mapping details for a specific app.
 
      Full documentation:
