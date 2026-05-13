@@ -2,6 +2,10 @@
 
 # exit when any command fails
 set -euo pipefail
+MAX_CI_DISPATCH_ATTEMPTS=3
+CI_DISPATCH_RETRY_DELAY_SECONDS=5
+EXIT_CODE_NO_SPEC_FILE_PATH_FOUND=42
+EXIT_CODE_CI_DISPATCH_FAILED=43
 
 download_newest_spec_output=$(swift run bagbutik-cli download-newest-spec)
 echo "$download_newest_spec_output"
@@ -10,7 +14,7 @@ if [[ $download_newest_spec_output =~ Spec\ file\ downloaded\ to\ (.+) ]]; then
     spec_file_path=${BASH_REMATCH[1]}
 else
     echo "No path to a spec file found in output from Bagbutik CLI"
-    exit 42
+    exit "$EXIT_CODE_NO_SPEC_FILE_PATH_FOUND"
 fi
 
 current_version="$(cat spec-version)"
@@ -52,3 +56,17 @@ git commit -m "Update from new spec ($downloaded_version)"
 git push -u origin spec-$downloaded_version
 create_pr_output=$(gh pr create --fill --body "$warnings")
 echo "Pull request created: $create_pr_output"
+for attempt in $(seq 1 "$MAX_CI_DISPATCH_ATTEMPTS"); do
+    if gh workflow run ci.yml --ref "spec-$downloaded_version"; then
+        break
+    fi
+
+    if [ "$attempt" -lt "$MAX_CI_DISPATCH_ATTEMPTS" ]; then
+        echo "Attempt $attempt failed to dispatch CI workflow for branch spec-$downloaded_version. Retrying in $CI_DISPATCH_RETRY_DELAY_SECONDS seconds..."
+        sleep "$CI_DISPATCH_RETRY_DELAY_SECONDS"
+    else
+        echo "Failed to dispatch CI workflow for branch spec-$downloaded_version"
+        exit "$EXIT_CODE_CI_DISPATCH_FAILED"
+    fi
+done
+echo "CI workflow dispatch triggered for branch spec-$downloaded_version"
