@@ -87,20 +87,22 @@ public struct SubscriptionOfferCodesResponse: Codable, Sendable, PagedResponse {
         case subscriptionOfferCodePrice(SubscriptionOfferCodePrice)
 
         public init(from decoder: Decoder) throws {
-            if let subscription = try? Subscription(from: decoder) {
-                self = .subscription(subscription)
-            } else if let subscriptionOfferCodeCustomCode = try? SubscriptionOfferCodeCustomCode(from: decoder) {
-                self = .subscriptionOfferCodeCustomCode(subscriptionOfferCodeCustomCode)
-            } else if let subscriptionOfferCodeOneTimeUseCode = try? SubscriptionOfferCodeOneTimeUseCode(from: decoder) {
-                self = .subscriptionOfferCodeOneTimeUseCode(subscriptionOfferCodeOneTimeUseCode)
-            } else if let subscriptionOfferCodePrice = try? SubscriptionOfferCodePrice(from: decoder) {
-                self = .subscriptionOfferCodePrice(subscriptionOfferCodePrice)
-            } else {
-                throw DecodingError.typeMismatch(
-                    Included.self,
-                    DecodingError.Context(
-                        codingPath: decoder.codingPath,
-                        debugDescription: "Unknown Included"))
+            let container = try decoder.container(keyedBy: AnyCodingKey.self)
+            let discriminatorValue = try container.decode(String.self, forKey: "type")
+            switch discriminatorValue {
+            case "subscriptions":
+                self = .subscription(try Subscription(from: decoder))
+            case "subscriptionOfferCodeCustomCodes":
+                self = .subscriptionOfferCodeCustomCode(try SubscriptionOfferCodeCustomCode(from: decoder))
+            case "subscriptionOfferCodeOneTimeUseCodes":
+                self = .subscriptionOfferCodeOneTimeUseCode(try SubscriptionOfferCodeOneTimeUseCode(from: decoder))
+            case "subscriptionOfferCodePrices":
+                self = .subscriptionOfferCodePrice(try SubscriptionOfferCodePrice(from: decoder))
+            default:
+                throw DecodingError.dataCorruptedError(
+                    forKey: "type",
+                    in: container,
+                    debugDescription: "Unknown Included type '\(discriminatorValue)'")
             }
         }
 

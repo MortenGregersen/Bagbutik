@@ -86,18 +86,20 @@ public struct AlternativeDistributionPackageVersionsResponse: Codable, Sendable,
         case alternativeDistributionPackageVariant(AlternativeDistributionPackageVariant)
 
         public init(from decoder: Decoder) throws {
-            if let alternativeDistributionPackage = try? AlternativeDistributionPackage(from: decoder) {
-                self = .alternativeDistributionPackage(alternativeDistributionPackage)
-            } else if let alternativeDistributionPackageDelta = try? AlternativeDistributionPackageDelta(from: decoder) {
-                self = .alternativeDistributionPackageDelta(alternativeDistributionPackageDelta)
-            } else if let alternativeDistributionPackageVariant = try? AlternativeDistributionPackageVariant(from: decoder) {
-                self = .alternativeDistributionPackageVariant(alternativeDistributionPackageVariant)
-            } else {
-                throw DecodingError.typeMismatch(
-                    Included.self,
-                    DecodingError.Context(
-                        codingPath: decoder.codingPath,
-                        debugDescription: "Unknown Included"))
+            let container = try decoder.container(keyedBy: AnyCodingKey.self)
+            let discriminatorValue = try container.decode(String.self, forKey: "type")
+            switch discriminatorValue {
+            case "alternativeDistributionPackages":
+                self = .alternativeDistributionPackage(try AlternativeDistributionPackage(from: decoder))
+            case "alternativeDistributionPackageDeltas":
+                self = .alternativeDistributionPackageDelta(try AlternativeDistributionPackageDelta(from: decoder))
+            case "alternativeDistributionPackageVariants":
+                self = .alternativeDistributionPackageVariant(try AlternativeDistributionPackageVariant(from: decoder))
+            default:
+                throw DecodingError.dataCorruptedError(
+                    forKey: "type",
+                    in: container,
+                    debugDescription: "Unknown Included type '\(discriminatorValue)'")
             }
         }
 

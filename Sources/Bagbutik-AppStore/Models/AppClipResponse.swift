@@ -64,16 +64,18 @@ public struct AppClipResponse: Codable, Sendable {
         case appClipDefaultExperience(AppClipDefaultExperience)
 
         public init(from decoder: Decoder) throws {
-            if let app = try? App(from: decoder) {
-                self = .app(app)
-            } else if let appClipDefaultExperience = try? AppClipDefaultExperience(from: decoder) {
-                self = .appClipDefaultExperience(appClipDefaultExperience)
-            } else {
-                throw DecodingError.typeMismatch(
-                    Included.self,
-                    DecodingError.Context(
-                        codingPath: decoder.codingPath,
-                        debugDescription: "Unknown Included"))
+            let container = try decoder.container(keyedBy: AnyCodingKey.self)
+            let discriminatorValue = try container.decode(String.self, forKey: "type")
+            switch discriminatorValue {
+            case "apps":
+                self = .app(try App(from: decoder))
+            case "appClipDefaultExperiences":
+                self = .appClipDefaultExperience(try AppClipDefaultExperience(from: decoder))
+            default:
+                throw DecodingError.dataCorruptedError(
+                    forKey: "type",
+                    in: container,
+                    debugDescription: "Unknown Included type '\(discriminatorValue)'")
             }
         }
 

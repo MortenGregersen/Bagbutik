@@ -61,16 +61,18 @@ public struct AppCustomProductPageVersionResponse: Codable, Sendable {
         case appCustomProductPageLocalization(AppCustomProductPageLocalization)
 
         public init(from decoder: Decoder) throws {
-            if let appCustomProductPage = try? AppCustomProductPage(from: decoder) {
-                self = .appCustomProductPage(appCustomProductPage)
-            } else if let appCustomProductPageLocalization = try? AppCustomProductPageLocalization(from: decoder) {
-                self = .appCustomProductPageLocalization(appCustomProductPageLocalization)
-            } else {
-                throw DecodingError.typeMismatch(
-                    Included.self,
-                    DecodingError.Context(
-                        codingPath: decoder.codingPath,
-                        debugDescription: "Unknown Included"))
+            let container = try decoder.container(keyedBy: AnyCodingKey.self)
+            let discriminatorValue = try container.decode(String.self, forKey: "type")
+            switch discriminatorValue {
+            case "appCustomProductPages":
+                self = .appCustomProductPage(try AppCustomProductPage(from: decoder))
+            case "appCustomProductPageLocalizations":
+                self = .appCustomProductPageLocalization(try AppCustomProductPageLocalization(from: decoder))
+            default:
+                throw DecodingError.dataCorruptedError(
+                    forKey: "type",
+                    in: container,
+                    debugDescription: "Unknown Included type '\(discriminatorValue)'")
             }
         }
 

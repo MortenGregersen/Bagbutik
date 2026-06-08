@@ -199,6 +199,45 @@ final class PropertyTypeTests: XCTestCase {
         XCTAssertEqual(propertyType.description, "[ArrayOfOneOfSchemas]")
         XCTAssertEqual(name, "ArrayOfOneOfSchemas")
     }
+
+    func testDecodingArrayOfOneOfWithDiscriminator() throws {
+        // Given
+        let json = #"""
+        {
+            "included" : {
+                "type" : "array",
+                "items" : {
+                    "oneOf" : [ {
+                        "$ref" : "#/components/schemas/App"
+                    }, {
+                        "$ref" : "#/components/schemas/Build"
+                    } ],
+                    "discriminator" : {
+                        "propertyName" : "type",
+                        "mapping" : {
+                            "apps" : "#/components/schemas/App",
+                            "builds" : "#/components/schemas/Build"
+                        }
+                    }
+                }
+            }
+        }
+        """#
+        // When
+        let propertyTypes = try jsonDecoder.decode([String: PropertyType].self, from: json.data(using: .utf8)!)
+        // Then
+        guard let propertyType = propertyTypes.values.first, case let .arrayOfOneOf(name, schema) = propertyType else {
+            return XCTFail("Wrong property type")
+        }
+        XCTAssertEqual(name, "Included")
+        XCTAssertEqual(schema.options, [.schemaRef("App"), .schemaRef("Build")])
+        XCTAssertEqual(schema.discriminator, Discriminator(
+            propertyName: "type",
+            mapping: [
+                "apps": "#/components/schemas/App",
+                "builds": "#/components/schemas/Build"
+            ]))
+    }
     
     func testDecodingDictionaryOfDictionaries() throws {
         // Given

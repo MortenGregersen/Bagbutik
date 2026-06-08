@@ -327,60 +327,62 @@ public struct AppsResponse: Codable, Sendable, PagedResponse {
         case subscriptionGroup(SubscriptionGroup)
 
         public init(from decoder: Decoder) throws {
-            if let androidToIosAppMappingDetail = try? AndroidToIosAppMappingDetail(from: decoder) {
-                self = .androidToIosAppMappingDetail(androidToIosAppMappingDetail)
-            } else if let appClip = try? AppClip(from: decoder) {
-                self = .appClip(appClip)
-            } else if let appCustomProductPage = try? AppCustomProductPage(from: decoder) {
-                self = .appCustomProductPage(appCustomProductPage)
-            } else if let appEncryptionDeclaration = try? AppEncryptionDeclaration(from: decoder) {
-                self = .appEncryptionDeclaration(appEncryptionDeclaration)
-            } else if let appEvent = try? AppEvent(from: decoder) {
-                self = .appEvent(appEvent)
-            } else if let appInfo = try? AppInfo(from: decoder) {
-                self = .appInfo(appInfo)
-            } else if let appStoreVersion = try? AppStoreVersion(from: decoder) {
-                self = .appStoreVersion(appStoreVersion)
-            } else if let appStoreVersionExperimentV2 = try? AppStoreVersionExperimentV2(from: decoder) {
-                self = .appStoreVersionExperimentV2(appStoreVersionExperimentV2)
-            } else if let betaAppLocalization = try? BetaAppLocalization(from: decoder) {
-                self = .betaAppLocalization(betaAppLocalization)
-            } else if let betaAppReviewDetail = try? BetaAppReviewDetail(from: decoder) {
-                self = .betaAppReviewDetail(betaAppReviewDetail)
-            } else if let betaGroup = try? BetaGroup(from: decoder) {
-                self = .betaGroup(betaGroup)
-            } else if let betaLicenseAgreement = try? BetaLicenseAgreement(from: decoder) {
-                self = .betaLicenseAgreement(betaLicenseAgreement)
-            } else if let build = try? Build(from: decoder) {
-                self = .build(build)
-            } else if let buildIcon = try? BuildIcon(from: decoder) {
-                self = .buildIcon(buildIcon)
-            } else if let ciProduct = try? CiProduct(from: decoder) {
-                self = .ciProduct(ciProduct)
-            } else if let endUserLicenseAgreement = try? EndUserLicenseAgreement(from: decoder) {
-                self = .endUserLicenseAgreement(endUserLicenseAgreement)
-            } else if let gameCenterDetail = try? GameCenterDetail(from: decoder) {
-                self = .gameCenterDetail(gameCenterDetail)
-            } else if let gameCenterEnabledVersion = try? GameCenterEnabledVersion(from: decoder) {
-                self = .gameCenterEnabledVersion(gameCenterEnabledVersion)
-            } else if let inAppPurchase = try? InAppPurchase(from: decoder) {
-                self = .inAppPurchase(inAppPurchase)
-            } else if let prereleaseVersion = try? PrereleaseVersion(from: decoder) {
-                self = .prereleaseVersion(prereleaseVersion)
-            } else if let promotedPurchase = try? PromotedPurchase(from: decoder) {
-                self = .promotedPurchase(promotedPurchase)
-            } else if let reviewSubmission = try? ReviewSubmission(from: decoder) {
-                self = .reviewSubmission(reviewSubmission)
-            } else if let subscriptionGracePeriod = try? SubscriptionGracePeriod(from: decoder) {
-                self = .subscriptionGracePeriod(subscriptionGracePeriod)
-            } else if let subscriptionGroup = try? SubscriptionGroup(from: decoder) {
-                self = .subscriptionGroup(subscriptionGroup)
-            } else {
-                throw DecodingError.typeMismatch(
-                    Included.self,
-                    DecodingError.Context(
-                        codingPath: decoder.codingPath,
-                        debugDescription: "Unknown Included"))
+            let container = try decoder.container(keyedBy: AnyCodingKey.self)
+            let discriminatorValue = try container.decode(String.self, forKey: "type")
+            switch discriminatorValue {
+            case "androidToIosAppMappingDetails":
+                self = .androidToIosAppMappingDetail(try AndroidToIosAppMappingDetail(from: decoder))
+            case "appClips":
+                self = .appClip(try AppClip(from: decoder))
+            case "appCustomProductPages":
+                self = .appCustomProductPage(try AppCustomProductPage(from: decoder))
+            case "appEncryptionDeclarations":
+                self = .appEncryptionDeclaration(try AppEncryptionDeclaration(from: decoder))
+            case "appEvents":
+                self = .appEvent(try AppEvent(from: decoder))
+            case "appInfos":
+                self = .appInfo(try AppInfo(from: decoder))
+            case "appStoreVersions":
+                self = .appStoreVersion(try AppStoreVersion(from: decoder))
+            case "appStoreVersionExperiments":
+                self = .appStoreVersionExperimentV2(try AppStoreVersionExperimentV2(from: decoder))
+            case "betaAppLocalizations":
+                self = .betaAppLocalization(try BetaAppLocalization(from: decoder))
+            case "betaAppReviewDetails":
+                self = .betaAppReviewDetail(try BetaAppReviewDetail(from: decoder))
+            case "betaGroups":
+                self = .betaGroup(try BetaGroup(from: decoder))
+            case "betaLicenseAgreements":
+                self = .betaLicenseAgreement(try BetaLicenseAgreement(from: decoder))
+            case "builds":
+                self = .build(try Build(from: decoder))
+            case "buildIcons":
+                self = .buildIcon(try BuildIcon(from: decoder))
+            case "ciProducts":
+                self = .ciProduct(try CiProduct(from: decoder))
+            case "endUserLicenseAgreements":
+                self = .endUserLicenseAgreement(try EndUserLicenseAgreement(from: decoder))
+            case "gameCenterDetails":
+                self = .gameCenterDetail(try GameCenterDetail(from: decoder))
+            case "gameCenterEnabledVersions":
+                self = .gameCenterEnabledVersion(try GameCenterEnabledVersion(from: decoder))
+            case "inAppPurchases":
+                self = .inAppPurchase(try InAppPurchase(from: decoder))
+            case "preReleaseVersions":
+                self = .prereleaseVersion(try PrereleaseVersion(from: decoder))
+            case "promotedPurchases":
+                self = .promotedPurchase(try PromotedPurchase(from: decoder))
+            case "reviewSubmissions":
+                self = .reviewSubmission(try ReviewSubmission(from: decoder))
+            case "subscriptionGracePeriods":
+                self = .subscriptionGracePeriod(try SubscriptionGracePeriod(from: decoder))
+            case "subscriptionGroups":
+                self = .subscriptionGroup(try SubscriptionGroup(from: decoder))
+            default:
+                throw DecodingError.dataCorruptedError(
+                    forKey: "type",
+                    in: container,
+                    debugDescription: "Unknown Included type '\(discriminatorValue)'")
             }
         }
 

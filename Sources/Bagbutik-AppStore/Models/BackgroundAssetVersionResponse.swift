@@ -87,22 +87,24 @@ public struct BackgroundAssetVersionResponse: Codable, Sendable {
         case backgroundAssetVersionInternalBetaRelease(BackgroundAssetVersionInternalBetaRelease)
 
         public init(from decoder: Decoder) throws {
-            if let backgroundAsset = try? BackgroundAsset(from: decoder) {
-                self = .backgroundAsset(backgroundAsset)
-            } else if let backgroundAssetUploadFile = try? BackgroundAssetUploadFile(from: decoder) {
-                self = .backgroundAssetUploadFile(backgroundAssetUploadFile)
-            } else if let backgroundAssetVersionAppStoreRelease = try? BackgroundAssetVersionAppStoreRelease(from: decoder) {
-                self = .backgroundAssetVersionAppStoreRelease(backgroundAssetVersionAppStoreRelease)
-            } else if let backgroundAssetVersionExternalBetaRelease = try? BackgroundAssetVersionExternalBetaRelease(from: decoder) {
-                self = .backgroundAssetVersionExternalBetaRelease(backgroundAssetVersionExternalBetaRelease)
-            } else if let backgroundAssetVersionInternalBetaRelease = try? BackgroundAssetVersionInternalBetaRelease(from: decoder) {
-                self = .backgroundAssetVersionInternalBetaRelease(backgroundAssetVersionInternalBetaRelease)
-            } else {
-                throw DecodingError.typeMismatch(
-                    Included.self,
-                    DecodingError.Context(
-                        codingPath: decoder.codingPath,
-                        debugDescription: "Unknown Included"))
+            let container = try decoder.container(keyedBy: AnyCodingKey.self)
+            let discriminatorValue = try container.decode(String.self, forKey: "type")
+            switch discriminatorValue {
+            case "backgroundAssets":
+                self = .backgroundAsset(try BackgroundAsset(from: decoder))
+            case "backgroundAssetUploadFiles":
+                self = .backgroundAssetUploadFile(try BackgroundAssetUploadFile(from: decoder))
+            case "backgroundAssetVersionAppStoreReleases":
+                self = .backgroundAssetVersionAppStoreRelease(try BackgroundAssetVersionAppStoreRelease(from: decoder))
+            case "backgroundAssetVersionExternalBetaReleases":
+                self = .backgroundAssetVersionExternalBetaRelease(try BackgroundAssetVersionExternalBetaRelease(from: decoder))
+            case "backgroundAssetVersionInternalBetaReleases":
+                self = .backgroundAssetVersionInternalBetaRelease(try BackgroundAssetVersionInternalBetaRelease(from: decoder))
+            default:
+                throw DecodingError.dataCorruptedError(
+                    forKey: "type",
+                    in: container,
+                    debugDescription: "Unknown Included type '\(discriminatorValue)'")
             }
         }
 

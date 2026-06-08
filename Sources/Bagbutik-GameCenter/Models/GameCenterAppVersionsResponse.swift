@@ -68,16 +68,18 @@ public struct GameCenterAppVersionsResponse: Codable, Sendable, PagedResponse {
         case gameCenterAppVersion(GameCenterAppVersion)
 
         public init(from decoder: Decoder) throws {
-            if let appStoreVersion = try? AppStoreVersion(from: decoder) {
-                self = .appStoreVersion(appStoreVersion)
-            } else if let gameCenterAppVersion = try? GameCenterAppVersion(from: decoder) {
-                self = .gameCenterAppVersion(gameCenterAppVersion)
-            } else {
-                throw DecodingError.typeMismatch(
-                    Included.self,
-                    DecodingError.Context(
-                        codingPath: decoder.codingPath,
-                        debugDescription: "Unknown Included"))
+            let container = try decoder.container(keyedBy: AnyCodingKey.self)
+            let discriminatorValue = try container.decode(String.self, forKey: "type")
+            switch discriminatorValue {
+            case "appStoreVersions":
+                self = .appStoreVersion(try AppStoreVersion(from: decoder))
+            case "gameCenterAppVersions":
+                self = .gameCenterAppVersion(try GameCenterAppVersion(from: decoder))
+            default:
+                throw DecodingError.dataCorruptedError(
+                    forKey: "type",
+                    in: container,
+                    debugDescription: "Unknown Included type '\(discriminatorValue)'")
             }
         }
 

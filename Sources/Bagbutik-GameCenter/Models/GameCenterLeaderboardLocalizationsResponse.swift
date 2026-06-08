@@ -63,16 +63,18 @@ public struct GameCenterLeaderboardLocalizationsResponse: Codable, Sendable, Pag
         case gameCenterLeaderboardImage(GameCenterLeaderboardImage)
 
         public init(from decoder: Decoder) throws {
-            if let gameCenterLeaderboard = try? GameCenterLeaderboard(from: decoder) {
-                self = .gameCenterLeaderboard(gameCenterLeaderboard)
-            } else if let gameCenterLeaderboardImage = try? GameCenterLeaderboardImage(from: decoder) {
-                self = .gameCenterLeaderboardImage(gameCenterLeaderboardImage)
-            } else {
-                throw DecodingError.typeMismatch(
-                    Included.self,
-                    DecodingError.Context(
-                        codingPath: decoder.codingPath,
-                        debugDescription: "Unknown Included"))
+            let container = try decoder.container(keyedBy: AnyCodingKey.self)
+            let discriminatorValue = try container.decode(String.self, forKey: "type")
+            switch discriminatorValue {
+            case "gameCenterLeaderboards":
+                self = .gameCenterLeaderboard(try GameCenterLeaderboard(from: decoder))
+            case "gameCenterLeaderboardImages":
+                self = .gameCenterLeaderboardImage(try GameCenterLeaderboardImage(from: decoder))
+            default:
+                throw DecodingError.dataCorruptedError(
+                    forKey: "type",
+                    in: container,
+                    debugDescription: "Unknown Included type '\(discriminatorValue)'")
             }
         }
 

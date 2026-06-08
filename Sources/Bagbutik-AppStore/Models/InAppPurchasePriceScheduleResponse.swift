@@ -66,16 +66,18 @@ public struct InAppPurchasePriceScheduleResponse: Codable, Sendable {
         case territory(Territory)
 
         public init(from decoder: Decoder) throws {
-            if let inAppPurchasePrice = try? InAppPurchasePrice(from: decoder) {
-                self = .inAppPurchasePrice(inAppPurchasePrice)
-            } else if let territory = try? Territory(from: decoder) {
-                self = .territory(territory)
-            } else {
-                throw DecodingError.typeMismatch(
-                    Included.self,
-                    DecodingError.Context(
-                        codingPath: decoder.codingPath,
-                        debugDescription: "Unknown Included"))
+            let container = try decoder.container(keyedBy: AnyCodingKey.self)
+            let discriminatorValue = try container.decode(String.self, forKey: "type")
+            switch discriminatorValue {
+            case "inAppPurchasePrices":
+                self = .inAppPurchasePrice(try InAppPurchasePrice(from: decoder))
+            case "territories":
+                self = .territory(try Territory(from: decoder))
+            default:
+                throw DecodingError.dataCorruptedError(
+                    forKey: "type",
+                    in: container,
+                    debugDescription: "Unknown Included type '\(discriminatorValue)'")
             }
         }
 

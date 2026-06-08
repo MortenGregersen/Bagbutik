@@ -108,20 +108,22 @@ public struct NominationsResponse: Codable, Sendable, PagedResponse {
         case territory(Territory)
 
         public init(from decoder: Decoder) throws {
-            if let actor = try? Actor(from: decoder) {
-                self = .actor(actor)
-            } else if let app = try? App(from: decoder) {
-                self = .app(app)
-            } else if let appEvent = try? AppEvent(from: decoder) {
-                self = .appEvent(appEvent)
-            } else if let territory = try? Territory(from: decoder) {
-                self = .territory(territory)
-            } else {
-                throw DecodingError.typeMismatch(
-                    Included.self,
-                    DecodingError.Context(
-                        codingPath: decoder.codingPath,
-                        debugDescription: "Unknown Included"))
+            let container = try decoder.container(keyedBy: AnyCodingKey.self)
+            let discriminatorValue = try container.decode(String.self, forKey: "type")
+            switch discriminatorValue {
+            case "actors":
+                self = .actor(try Actor(from: decoder))
+            case "apps":
+                self = .app(try App(from: decoder))
+            case "appEvents":
+                self = .appEvent(try AppEvent(from: decoder))
+            case "territories":
+                self = .territory(try Territory(from: decoder))
+            default:
+                throw DecodingError.dataCorruptedError(
+                    forKey: "type",
+                    in: container,
+                    debugDescription: "Unknown Included type '\(discriminatorValue)'")
             }
         }
 

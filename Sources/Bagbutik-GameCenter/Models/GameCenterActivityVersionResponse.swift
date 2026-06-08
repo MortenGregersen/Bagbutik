@@ -82,20 +82,22 @@ public struct GameCenterActivityVersionResponse: Codable, Sendable {
         case gameCenterActivityVersionRelease(GameCenterActivityVersionRelease)
 
         public init(from decoder: Decoder) throws {
-            if let gameCenterActivity = try? GameCenterActivity(from: decoder) {
-                self = .gameCenterActivity(gameCenterActivity)
-            } else if let gameCenterActivityImage = try? GameCenterActivityImage(from: decoder) {
-                self = .gameCenterActivityImage(gameCenterActivityImage)
-            } else if let gameCenterActivityLocalization = try? GameCenterActivityLocalization(from: decoder) {
-                self = .gameCenterActivityLocalization(gameCenterActivityLocalization)
-            } else if let gameCenterActivityVersionRelease = try? GameCenterActivityVersionRelease(from: decoder) {
-                self = .gameCenterActivityVersionRelease(gameCenterActivityVersionRelease)
-            } else {
-                throw DecodingError.typeMismatch(
-                    Included.self,
-                    DecodingError.Context(
-                        codingPath: decoder.codingPath,
-                        debugDescription: "Unknown Included"))
+            let container = try decoder.container(keyedBy: AnyCodingKey.self)
+            let discriminatorValue = try container.decode(String.self, forKey: "type")
+            switch discriminatorValue {
+            case "gameCenterActivities":
+                self = .gameCenterActivity(try GameCenterActivity(from: decoder))
+            case "gameCenterActivityImages":
+                self = .gameCenterActivityImage(try GameCenterActivityImage(from: decoder))
+            case "gameCenterActivityLocalizations":
+                self = .gameCenterActivityLocalization(try GameCenterActivityLocalization(from: decoder))
+            case "gameCenterActivityVersionReleases":
+                self = .gameCenterActivityVersionRelease(try GameCenterActivityVersionRelease(from: decoder))
+            default:
+                throw DecodingError.dataCorruptedError(
+                    forKey: "type",
+                    in: container,
+                    debugDescription: "Unknown Included type '\(discriminatorValue)'")
             }
         }
 

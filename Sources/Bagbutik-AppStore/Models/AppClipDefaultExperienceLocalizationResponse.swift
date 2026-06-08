@@ -59,16 +59,18 @@ public struct AppClipDefaultExperienceLocalizationResponse: Codable, Sendable {
         case appClipHeaderImage(AppClipHeaderImage)
 
         public init(from decoder: Decoder) throws {
-            if let appClipDefaultExperience = try? AppClipDefaultExperience(from: decoder) {
-                self = .appClipDefaultExperience(appClipDefaultExperience)
-            } else if let appClipHeaderImage = try? AppClipHeaderImage(from: decoder) {
-                self = .appClipHeaderImage(appClipHeaderImage)
-            } else {
-                throw DecodingError.typeMismatch(
-                    Included.self,
-                    DecodingError.Context(
-                        codingPath: decoder.codingPath,
-                        debugDescription: "Unknown Included"))
+            let container = try decoder.container(keyedBy: AnyCodingKey.self)
+            let discriminatorValue = try container.decode(String.self, forKey: "type")
+            switch discriminatorValue {
+            case "appClipDefaultExperiences":
+                self = .appClipDefaultExperience(try AppClipDefaultExperience(from: decoder))
+            case "appClipHeaderImages":
+                self = .appClipHeaderImage(try AppClipHeaderImage(from: decoder))
+            default:
+                throw DecodingError.dataCorruptedError(
+                    forKey: "type",
+                    in: container,
+                    debugDescription: "Unknown Included type '\(discriminatorValue)'")
             }
         }
 

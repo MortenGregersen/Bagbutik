@@ -81,18 +81,20 @@ public struct GameCenterMatchmakingRuleSetResponse: Codable, Sendable {
         case gameCenterMatchmakingTeam(GameCenterMatchmakingTeam)
 
         public init(from decoder: Decoder) throws {
-            if let gameCenterMatchmakingQueue = try? GameCenterMatchmakingQueue(from: decoder) {
-                self = .gameCenterMatchmakingQueue(gameCenterMatchmakingQueue)
-            } else if let gameCenterMatchmakingRule = try? GameCenterMatchmakingRule(from: decoder) {
-                self = .gameCenterMatchmakingRule(gameCenterMatchmakingRule)
-            } else if let gameCenterMatchmakingTeam = try? GameCenterMatchmakingTeam(from: decoder) {
-                self = .gameCenterMatchmakingTeam(gameCenterMatchmakingTeam)
-            } else {
-                throw DecodingError.typeMismatch(
-                    Included.self,
-                    DecodingError.Context(
-                        codingPath: decoder.codingPath,
-                        debugDescription: "Unknown Included"))
+            let container = try decoder.container(keyedBy: AnyCodingKey.self)
+            let discriminatorValue = try container.decode(String.self, forKey: "type")
+            switch discriminatorValue {
+            case "gameCenterMatchmakingQueues":
+                self = .gameCenterMatchmakingQueue(try GameCenterMatchmakingQueue(from: decoder))
+            case "gameCenterMatchmakingRules":
+                self = .gameCenterMatchmakingRule(try GameCenterMatchmakingRule(from: decoder))
+            case "gameCenterMatchmakingTeams":
+                self = .gameCenterMatchmakingTeam(try GameCenterMatchmakingTeam(from: decoder))
+            default:
+                throw DecodingError.dataCorruptedError(
+                    forKey: "type",
+                    in: container,
+                    debugDescription: "Unknown Included type '\(discriminatorValue)'")
             }
         }
 

@@ -76,18 +76,20 @@ public struct ProfileResponse: Codable, Sendable {
         case device(Device)
 
         public init(from decoder: Decoder) throws {
-            if let bundleId = try? BundleId(from: decoder) {
-                self = .bundleId(bundleId)
-            } else if let certificate = try? Certificate(from: decoder) {
-                self = .certificate(certificate)
-            } else if let device = try? Device(from: decoder) {
-                self = .device(device)
-            } else {
-                throw DecodingError.typeMismatch(
-                    Included.self,
-                    DecodingError.Context(
-                        codingPath: decoder.codingPath,
-                        debugDescription: "Unknown Included"))
+            let container = try decoder.container(keyedBy: AnyCodingKey.self)
+            let discriminatorValue = try container.decode(String.self, forKey: "type")
+            switch discriminatorValue {
+            case "bundleIds":
+                self = .bundleId(try BundleId(from: decoder))
+            case "certificates":
+                self = .certificate(try Certificate(from: decoder))
+            case "devices":
+                self = .device(try Device(from: decoder))
+            default:
+                throw DecodingError.dataCorruptedError(
+                    forKey: "type",
+                    in: container,
+                    debugDescription: "Unknown Included type '\(discriminatorValue)'")
             }
         }
 

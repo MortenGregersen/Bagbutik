@@ -56,16 +56,18 @@ public struct AppPricesV2Response: Codable, Sendable, PagedResponse {
         case territory(Territory)
 
         public init(from decoder: Decoder) throws {
-            if let appPricePointV3 = try? AppPricePointV3(from: decoder) {
-                self = .appPricePointV3(appPricePointV3)
-            } else if let territory = try? Territory(from: decoder) {
-                self = .territory(territory)
-            } else {
-                throw DecodingError.typeMismatch(
-                    Included.self,
-                    DecodingError.Context(
-                        codingPath: decoder.codingPath,
-                        debugDescription: "Unknown Included"))
+            let container = try decoder.container(keyedBy: AnyCodingKey.self)
+            let discriminatorValue = try container.decode(String.self, forKey: "type")
+            switch discriminatorValue {
+            case "appPricePoints":
+                self = .appPricePointV3(try AppPricePointV3(from: decoder))
+            case "territories":
+                self = .territory(try Territory(from: decoder))
+            default:
+                throw DecodingError.dataCorruptedError(
+                    forKey: "type",
+                    in: container,
+                    debugDescription: "Unknown Included type '\(discriminatorValue)'")
             }
         }
 
