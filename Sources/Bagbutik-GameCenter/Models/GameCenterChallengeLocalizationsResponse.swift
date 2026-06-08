@@ -63,16 +63,18 @@ public struct GameCenterChallengeLocalizationsResponse: Codable, Sendable, Paged
         case gameCenterChallengeVersion(GameCenterChallengeVersion)
 
         public init(from decoder: Decoder) throws {
-            if let gameCenterChallengeImage = try? GameCenterChallengeImage(from: decoder) {
-                self = .gameCenterChallengeImage(gameCenterChallengeImage)
-            } else if let gameCenterChallengeVersion = try? GameCenterChallengeVersion(from: decoder) {
-                self = .gameCenterChallengeVersion(gameCenterChallengeVersion)
-            } else {
-                throw DecodingError.typeMismatch(
-                    Included.self,
-                    DecodingError.Context(
-                        codingPath: decoder.codingPath,
-                        debugDescription: "Unknown Included"))
+            let container = try decoder.container(keyedBy: AnyCodingKey.self)
+            let discriminatorValue = try container.decode(String.self, forKey: "type")
+            switch discriminatorValue {
+            case "gameCenterChallengeImages":
+                self = .gameCenterChallengeImage(try GameCenterChallengeImage(from: decoder))
+            case "gameCenterChallengeVersions":
+                self = .gameCenterChallengeVersion(try GameCenterChallengeVersion(from: decoder))
+            default:
+                throw DecodingError.dataCorruptedError(
+                    forKey: "type",
+                    in: container,
+                    debugDescription: "Unknown Included type '\(discriminatorValue)'")
             }
         }
 

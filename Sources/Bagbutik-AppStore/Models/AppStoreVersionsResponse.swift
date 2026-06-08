@@ -157,34 +157,36 @@ public struct AppStoreVersionsResponse: Codable, Sendable, PagedResponse {
         case routingAppCoverage(RoutingAppCoverage)
 
         public init(from decoder: Decoder) throws {
-            if let alternativeDistributionPackage = try? AlternativeDistributionPackage(from: decoder) {
-                self = .alternativeDistributionPackage(alternativeDistributionPackage)
-            } else if let app = try? App(from: decoder) {
-                self = .app(app)
-            } else if let appClipDefaultExperience = try? AppClipDefaultExperience(from: decoder) {
-                self = .appClipDefaultExperience(appClipDefaultExperience)
-            } else if let appStoreReviewDetail = try? AppStoreReviewDetail(from: decoder) {
-                self = .appStoreReviewDetail(appStoreReviewDetail)
-            } else if let appStoreVersionExperiment = try? AppStoreVersionExperiment(from: decoder) {
-                self = .appStoreVersionExperiment(appStoreVersionExperiment)
-            } else if let appStoreVersionLocalization = try? AppStoreVersionLocalization(from: decoder) {
-                self = .appStoreVersionLocalization(appStoreVersionLocalization)
-            } else if let appStoreVersionPhasedRelease = try? AppStoreVersionPhasedRelease(from: decoder) {
-                self = .appStoreVersionPhasedRelease(appStoreVersionPhasedRelease)
-            } else if let appStoreVersionSubmission = try? AppStoreVersionSubmission(from: decoder) {
-                self = .appStoreVersionSubmission(appStoreVersionSubmission)
-            } else if let build = try? Build(from: decoder) {
-                self = .build(build)
-            } else if let gameCenterAppVersion = try? GameCenterAppVersion(from: decoder) {
-                self = .gameCenterAppVersion(gameCenterAppVersion)
-            } else if let routingAppCoverage = try? RoutingAppCoverage(from: decoder) {
-                self = .routingAppCoverage(routingAppCoverage)
-            } else {
-                throw DecodingError.typeMismatch(
-                    Included.self,
-                    DecodingError.Context(
-                        codingPath: decoder.codingPath,
-                        debugDescription: "Unknown Included"))
+            let container = try decoder.container(keyedBy: AnyCodingKey.self)
+            let discriminatorValue = try container.decode(String.self, forKey: "type")
+            switch discriminatorValue {
+            case "alternativeDistributionPackages":
+                self = .alternativeDistributionPackage(try AlternativeDistributionPackage(from: decoder))
+            case "apps":
+                self = .app(try App(from: decoder))
+            case "appClipDefaultExperiences":
+                self = .appClipDefaultExperience(try AppClipDefaultExperience(from: decoder))
+            case "appStoreReviewDetails":
+                self = .appStoreReviewDetail(try AppStoreReviewDetail(from: decoder))
+            case "appStoreVersionExperiments":
+                self = .appStoreVersionExperiment(try AppStoreVersionExperiment(from: decoder))
+            case "appStoreVersionLocalizations":
+                self = .appStoreVersionLocalization(try AppStoreVersionLocalization(from: decoder))
+            case "appStoreVersionPhasedReleases":
+                self = .appStoreVersionPhasedRelease(try AppStoreVersionPhasedRelease(from: decoder))
+            case "appStoreVersionSubmissions":
+                self = .appStoreVersionSubmission(try AppStoreVersionSubmission(from: decoder))
+            case "builds":
+                self = .build(try Build(from: decoder))
+            case "gameCenterAppVersions":
+                self = .gameCenterAppVersion(try GameCenterAppVersion(from: decoder))
+            case "routingAppCoverages":
+                self = .routingAppCoverage(try RoutingAppCoverage(from: decoder))
+            default:
+                throw DecodingError.dataCorruptedError(
+                    forKey: "type",
+                    in: container,
+                    debugDescription: "Unknown Included type '\(discriminatorValue)'")
             }
         }
 

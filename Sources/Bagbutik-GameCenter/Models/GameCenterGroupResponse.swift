@@ -118,24 +118,26 @@ public struct GameCenterGroupResponse: Codable, Sendable {
         case gameCenterLeaderboardSet(GameCenterLeaderboardSet)
 
         public init(from decoder: Decoder) throws {
-            if let gameCenterAchievement = try? GameCenterAchievement(from: decoder) {
-                self = .gameCenterAchievement(gameCenterAchievement)
-            } else if let gameCenterActivity = try? GameCenterActivity(from: decoder) {
-                self = .gameCenterActivity(gameCenterActivity)
-            } else if let gameCenterChallenge = try? GameCenterChallenge(from: decoder) {
-                self = .gameCenterChallenge(gameCenterChallenge)
-            } else if let gameCenterDetail = try? GameCenterDetail(from: decoder) {
-                self = .gameCenterDetail(gameCenterDetail)
-            } else if let gameCenterLeaderboard = try? GameCenterLeaderboard(from: decoder) {
-                self = .gameCenterLeaderboard(gameCenterLeaderboard)
-            } else if let gameCenterLeaderboardSet = try? GameCenterLeaderboardSet(from: decoder) {
-                self = .gameCenterLeaderboardSet(gameCenterLeaderboardSet)
-            } else {
-                throw DecodingError.typeMismatch(
-                    Included.self,
-                    DecodingError.Context(
-                        codingPath: decoder.codingPath,
-                        debugDescription: "Unknown Included"))
+            let container = try decoder.container(keyedBy: AnyCodingKey.self)
+            let discriminatorValue = try container.decode(String.self, forKey: "type")
+            switch discriminatorValue {
+            case "gameCenterAchievements":
+                self = .gameCenterAchievement(try GameCenterAchievement(from: decoder))
+            case "gameCenterActivities":
+                self = .gameCenterActivity(try GameCenterActivity(from: decoder))
+            case "gameCenterChallenges":
+                self = .gameCenterChallenge(try GameCenterChallenge(from: decoder))
+            case "gameCenterDetails":
+                self = .gameCenterDetail(try GameCenterDetail(from: decoder))
+            case "gameCenterLeaderboards":
+                self = .gameCenterLeaderboard(try GameCenterLeaderboard(from: decoder))
+            case "gameCenterLeaderboardSets":
+                self = .gameCenterLeaderboardSet(try GameCenterLeaderboardSet(from: decoder))
+            default:
+                throw DecodingError.dataCorruptedError(
+                    forKey: "type",
+                    in: container,
+                    debugDescription: "Unknown Included type '\(discriminatorValue)'")
             }
         }
 

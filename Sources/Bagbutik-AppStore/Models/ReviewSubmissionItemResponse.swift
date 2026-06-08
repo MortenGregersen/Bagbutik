@@ -120,32 +120,34 @@ public struct ReviewSubmissionItemResponse: Codable, Sendable {
         case gameCenterLeaderboardVersionV2(GameCenterLeaderboardVersionV2)
 
         public init(from decoder: Decoder) throws {
-            if let appCustomProductPageVersion = try? AppCustomProductPageVersion(from: decoder) {
-                self = .appCustomProductPageVersion(appCustomProductPageVersion)
-            } else if let appEvent = try? AppEvent(from: decoder) {
-                self = .appEvent(appEvent)
-            } else if let appStoreVersion = try? AppStoreVersion(from: decoder) {
-                self = .appStoreVersion(appStoreVersion)
-            } else if let appStoreVersionExperiment = try? AppStoreVersionExperiment(from: decoder) {
-                self = .appStoreVersionExperiment(appStoreVersionExperiment)
-            } else if let backgroundAssetVersion = try? BackgroundAssetVersion(from: decoder) {
-                self = .backgroundAssetVersion(backgroundAssetVersion)
-            } else if let gameCenterAchievementVersionV2 = try? GameCenterAchievementVersionV2(from: decoder) {
-                self = .gameCenterAchievementVersionV2(gameCenterAchievementVersionV2)
-            } else if let gameCenterActivityVersion = try? GameCenterActivityVersion(from: decoder) {
-                self = .gameCenterActivityVersion(gameCenterActivityVersion)
-            } else if let gameCenterChallengeVersion = try? GameCenterChallengeVersion(from: decoder) {
-                self = .gameCenterChallengeVersion(gameCenterChallengeVersion)
-            } else if let gameCenterLeaderboardSetVersionV2 = try? GameCenterLeaderboardSetVersionV2(from: decoder) {
-                self = .gameCenterLeaderboardSetVersionV2(gameCenterLeaderboardSetVersionV2)
-            } else if let gameCenterLeaderboardVersionV2 = try? GameCenterLeaderboardVersionV2(from: decoder) {
-                self = .gameCenterLeaderboardVersionV2(gameCenterLeaderboardVersionV2)
-            } else {
-                throw DecodingError.typeMismatch(
-                    Included.self,
-                    DecodingError.Context(
-                        codingPath: decoder.codingPath,
-                        debugDescription: "Unknown Included"))
+            let container = try decoder.container(keyedBy: AnyCodingKey.self)
+            let discriminatorValue = try container.decode(String.self, forKey: "type")
+            switch discriminatorValue {
+            case "appCustomProductPageVersions":
+                self = .appCustomProductPageVersion(try AppCustomProductPageVersion(from: decoder))
+            case "appEvents":
+                self = .appEvent(try AppEvent(from: decoder))
+            case "appStoreVersions":
+                self = .appStoreVersion(try AppStoreVersion(from: decoder))
+            case "appStoreVersionExperiments":
+                self = .appStoreVersionExperiment(try AppStoreVersionExperiment(from: decoder))
+            case "backgroundAssetVersions":
+                self = .backgroundAssetVersion(try BackgroundAssetVersion(from: decoder))
+            case "gameCenterAchievementVersions":
+                self = .gameCenterAchievementVersionV2(try GameCenterAchievementVersionV2(from: decoder))
+            case "gameCenterActivityVersions":
+                self = .gameCenterActivityVersion(try GameCenterActivityVersion(from: decoder))
+            case "gameCenterChallengeVersions":
+                self = .gameCenterChallengeVersion(try GameCenterChallengeVersion(from: decoder))
+            case "gameCenterLeaderboardSetVersions":
+                self = .gameCenterLeaderboardSetVersionV2(try GameCenterLeaderboardSetVersionV2(from: decoder))
+            case "gameCenterLeaderboardVersions":
+                self = .gameCenterLeaderboardVersionV2(try GameCenterLeaderboardVersionV2(from: decoder))
+            default:
+                throw DecodingError.dataCorruptedError(
+                    forKey: "type",
+                    in: container,
+                    debugDescription: "Unknown Included type '\(discriminatorValue)'")
             }
         }
 

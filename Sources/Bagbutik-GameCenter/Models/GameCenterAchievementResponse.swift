@@ -91,24 +91,26 @@ public struct GameCenterAchievementResponse: Codable, Sendable {
         case gameCenterGroup(GameCenterGroup)
 
         public init(from decoder: Decoder) throws {
-            if let gameCenterAchievement = try? GameCenterAchievement(from: decoder) {
-                self = .gameCenterAchievement(gameCenterAchievement)
-            } else if let gameCenterAchievementLocalization = try? GameCenterAchievementLocalization(from: decoder) {
-                self = .gameCenterAchievementLocalization(gameCenterAchievementLocalization)
-            } else if let gameCenterAchievementRelease = try? GameCenterAchievementRelease(from: decoder) {
-                self = .gameCenterAchievementRelease(gameCenterAchievementRelease)
-            } else if let gameCenterActivity = try? GameCenterActivity(from: decoder) {
-                self = .gameCenterActivity(gameCenterActivity)
-            } else if let gameCenterDetail = try? GameCenterDetail(from: decoder) {
-                self = .gameCenterDetail(gameCenterDetail)
-            } else if let gameCenterGroup = try? GameCenterGroup(from: decoder) {
-                self = .gameCenterGroup(gameCenterGroup)
-            } else {
-                throw DecodingError.typeMismatch(
-                    Included.self,
-                    DecodingError.Context(
-                        codingPath: decoder.codingPath,
-                        debugDescription: "Unknown Included"))
+            let container = try decoder.container(keyedBy: AnyCodingKey.self)
+            let discriminatorValue = try container.decode(String.self, forKey: "type")
+            switch discriminatorValue {
+            case "gameCenterAchievements":
+                self = .gameCenterAchievement(try GameCenterAchievement(from: decoder))
+            case "gameCenterAchievementLocalizations":
+                self = .gameCenterAchievementLocalization(try GameCenterAchievementLocalization(from: decoder))
+            case "gameCenterAchievementReleases":
+                self = .gameCenterAchievementRelease(try GameCenterAchievementRelease(from: decoder))
+            case "gameCenterActivities":
+                self = .gameCenterActivity(try GameCenterActivity(from: decoder))
+            case "gameCenterDetails":
+                self = .gameCenterDetail(try GameCenterDetail(from: decoder))
+            case "gameCenterGroups":
+                self = .gameCenterGroup(try GameCenterGroup(from: decoder))
+            default:
+                throw DecodingError.dataCorruptedError(
+                    forKey: "type",
+                    in: container,
+                    debugDescription: "Unknown Included type '\(discriminatorValue)'")
             }
         }
 

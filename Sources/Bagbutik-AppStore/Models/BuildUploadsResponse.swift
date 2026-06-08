@@ -77,16 +77,18 @@ public struct BuildUploadsResponse: Codable, Sendable, PagedResponse {
         case buildUploadFile(BuildUploadFile)
 
         public init(from decoder: Decoder) throws {
-            if let build = try? Build(from: decoder) {
-                self = .build(build)
-            } else if let buildUploadFile = try? BuildUploadFile(from: decoder) {
-                self = .buildUploadFile(buildUploadFile)
-            } else {
-                throw DecodingError.typeMismatch(
-                    Included.self,
-                    DecodingError.Context(
-                        codingPath: decoder.codingPath,
-                        debugDescription: "Unknown Included"))
+            let container = try decoder.container(keyedBy: AnyCodingKey.self)
+            let discriminatorValue = try container.decode(String.self, forKey: "type")
+            switch discriminatorValue {
+            case "builds":
+                self = .build(try Build(from: decoder))
+            case "buildUploadFiles":
+                self = .buildUploadFile(try BuildUploadFile(from: decoder))
+            default:
+                throw DecodingError.dataCorruptedError(
+                    forKey: "type",
+                    in: container,
+                    debugDescription: "Unknown Included type '\(discriminatorValue)'")
             }
         }
 

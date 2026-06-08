@@ -103,22 +103,24 @@ public struct CiBuildRunsResponse: Codable, Sendable, PagedResponse {
         case scmPullRequest(ScmPullRequest)
 
         public init(from decoder: Decoder) throws {
-            if let build = try? Build(from: decoder) {
-                self = .build(build)
-            } else if let ciProduct = try? CiProduct(from: decoder) {
-                self = .ciProduct(ciProduct)
-            } else if let ciWorkflow = try? CiWorkflow(from: decoder) {
-                self = .ciWorkflow(ciWorkflow)
-            } else if let scmGitReference = try? ScmGitReference(from: decoder) {
-                self = .scmGitReference(scmGitReference)
-            } else if let scmPullRequest = try? ScmPullRequest(from: decoder) {
-                self = .scmPullRequest(scmPullRequest)
-            } else {
-                throw DecodingError.typeMismatch(
-                    Included.self,
-                    DecodingError.Context(
-                        codingPath: decoder.codingPath,
-                        debugDescription: "Unknown Included"))
+            let container = try decoder.container(keyedBy: AnyCodingKey.self)
+            let discriminatorValue = try container.decode(String.self, forKey: "type")
+            switch discriminatorValue {
+            case "builds":
+                self = .build(try Build(from: decoder))
+            case "ciProducts":
+                self = .ciProduct(try CiProduct(from: decoder))
+            case "ciWorkflows":
+                self = .ciWorkflow(try CiWorkflow(from: decoder))
+            case "scmGitReferences":
+                self = .scmGitReference(try ScmGitReference(from: decoder))
+            case "scmPullRequests":
+                self = .scmPullRequest(try ScmPullRequest(from: decoder))
+            default:
+                throw DecodingError.dataCorruptedError(
+                    forKey: "type",
+                    in: container,
+                    debugDescription: "Unknown Included type '\(discriminatorValue)'")
             }
         }
 

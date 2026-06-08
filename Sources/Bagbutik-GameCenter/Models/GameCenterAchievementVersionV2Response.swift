@@ -61,16 +61,18 @@ public struct GameCenterAchievementVersionV2Response: Codable, Sendable {
         case gameCenterAchievementV2(GameCenterAchievementV2)
 
         public init(from decoder: Decoder) throws {
-            if let gameCenterAchievementLocalizationV2 = try? GameCenterAchievementLocalizationV2(from: decoder) {
-                self = .gameCenterAchievementLocalizationV2(gameCenterAchievementLocalizationV2)
-            } else if let gameCenterAchievementV2 = try? GameCenterAchievementV2(from: decoder) {
-                self = .gameCenterAchievementV2(gameCenterAchievementV2)
-            } else {
-                throw DecodingError.typeMismatch(
-                    Included.self,
-                    DecodingError.Context(
-                        codingPath: decoder.codingPath,
-                        debugDescription: "Unknown Included"))
+            let container = try decoder.container(keyedBy: AnyCodingKey.self)
+            let discriminatorValue = try container.decode(String.self, forKey: "type")
+            switch discriminatorValue {
+            case "gameCenterAchievementLocalizations":
+                self = .gameCenterAchievementLocalizationV2(try GameCenterAchievementLocalizationV2(from: decoder))
+            case "gameCenterAchievements":
+                self = .gameCenterAchievementV2(try GameCenterAchievementV2(from: decoder))
+            default:
+                throw DecodingError.dataCorruptedError(
+                    forKey: "type",
+                    in: container,
+                    debugDescription: "Unknown Included type '\(discriminatorValue)'")
             }
         }
 

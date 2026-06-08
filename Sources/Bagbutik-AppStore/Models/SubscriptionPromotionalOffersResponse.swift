@@ -61,16 +61,18 @@ public struct SubscriptionPromotionalOffersResponse: Codable, Sendable, PagedRes
         case subscriptionPromotionalOfferPrice(SubscriptionPromotionalOfferPrice)
 
         public init(from decoder: Decoder) throws {
-            if let subscription = try? Subscription(from: decoder) {
-                self = .subscription(subscription)
-            } else if let subscriptionPromotionalOfferPrice = try? SubscriptionPromotionalOfferPrice(from: decoder) {
-                self = .subscriptionPromotionalOfferPrice(subscriptionPromotionalOfferPrice)
-            } else {
-                throw DecodingError.typeMismatch(
-                    Included.self,
-                    DecodingError.Context(
-                        codingPath: decoder.codingPath,
-                        debugDescription: "Unknown Included"))
+            let container = try decoder.container(keyedBy: AnyCodingKey.self)
+            let discriminatorValue = try container.decode(String.self, forKey: "type")
+            switch discriminatorValue {
+            case "subscriptions":
+                self = .subscription(try Subscription(from: decoder))
+            case "subscriptionPromotionalOfferPrices":
+                self = .subscriptionPromotionalOfferPrice(try SubscriptionPromotionalOfferPrice(from: decoder))
+            default:
+                throw DecodingError.dataCorruptedError(
+                    forKey: "type",
+                    in: container,
+                    debugDescription: "Unknown Included type '\(discriminatorValue)'")
             }
         }
 

@@ -163,34 +163,36 @@ public struct SubscriptionsResponse: Codable, Sendable, PagedResponse {
         case winBackOffer(WinBackOffer)
 
         public init(from decoder: Decoder) throws {
-            if let promotedPurchase = try? PromotedPurchase(from: decoder) {
-                self = .promotedPurchase(promotedPurchase)
-            } else if let subscriptionAppStoreReviewScreenshot = try? SubscriptionAppStoreReviewScreenshot(from: decoder) {
-                self = .subscriptionAppStoreReviewScreenshot(subscriptionAppStoreReviewScreenshot)
-            } else if let subscriptionAvailability = try? SubscriptionAvailability(from: decoder) {
-                self = .subscriptionAvailability(subscriptionAvailability)
-            } else if let subscriptionGroup = try? SubscriptionGroup(from: decoder) {
-                self = .subscriptionGroup(subscriptionGroup)
-            } else if let subscriptionImage = try? SubscriptionImage(from: decoder) {
-                self = .subscriptionImage(subscriptionImage)
-            } else if let subscriptionIntroductoryOffer = try? SubscriptionIntroductoryOffer(from: decoder) {
-                self = .subscriptionIntroductoryOffer(subscriptionIntroductoryOffer)
-            } else if let subscriptionLocalization = try? SubscriptionLocalization(from: decoder) {
-                self = .subscriptionLocalization(subscriptionLocalization)
-            } else if let subscriptionOfferCode = try? SubscriptionOfferCode(from: decoder) {
-                self = .subscriptionOfferCode(subscriptionOfferCode)
-            } else if let subscriptionPrice = try? SubscriptionPrice(from: decoder) {
-                self = .subscriptionPrice(subscriptionPrice)
-            } else if let subscriptionPromotionalOffer = try? SubscriptionPromotionalOffer(from: decoder) {
-                self = .subscriptionPromotionalOffer(subscriptionPromotionalOffer)
-            } else if let winBackOffer = try? WinBackOffer(from: decoder) {
-                self = .winBackOffer(winBackOffer)
-            } else {
-                throw DecodingError.typeMismatch(
-                    Included.self,
-                    DecodingError.Context(
-                        codingPath: decoder.codingPath,
-                        debugDescription: "Unknown Included"))
+            let container = try decoder.container(keyedBy: AnyCodingKey.self)
+            let discriminatorValue = try container.decode(String.self, forKey: "type")
+            switch discriminatorValue {
+            case "promotedPurchases":
+                self = .promotedPurchase(try PromotedPurchase(from: decoder))
+            case "subscriptionAppStoreReviewScreenshots":
+                self = .subscriptionAppStoreReviewScreenshot(try SubscriptionAppStoreReviewScreenshot(from: decoder))
+            case "subscriptionAvailabilities":
+                self = .subscriptionAvailability(try SubscriptionAvailability(from: decoder))
+            case "subscriptionGroups":
+                self = .subscriptionGroup(try SubscriptionGroup(from: decoder))
+            case "subscriptionImages":
+                self = .subscriptionImage(try SubscriptionImage(from: decoder))
+            case "subscriptionIntroductoryOffers":
+                self = .subscriptionIntroductoryOffer(try SubscriptionIntroductoryOffer(from: decoder))
+            case "subscriptionLocalizations":
+                self = .subscriptionLocalization(try SubscriptionLocalization(from: decoder))
+            case "subscriptionOfferCodes":
+                self = .subscriptionOfferCode(try SubscriptionOfferCode(from: decoder))
+            case "subscriptionPrices":
+                self = .subscriptionPrice(try SubscriptionPrice(from: decoder))
+            case "subscriptionPromotionalOffers":
+                self = .subscriptionPromotionalOffer(try SubscriptionPromotionalOffer(from: decoder))
+            case "winBackOffers":
+                self = .winBackOffer(try WinBackOffer(from: decoder))
+            default:
+                throw DecodingError.dataCorruptedError(
+                    forKey: "type",
+                    in: container,
+                    debugDescription: "Unknown Included type '\(discriminatorValue)'")
             }
         }
 

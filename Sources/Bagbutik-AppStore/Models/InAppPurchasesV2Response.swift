@@ -132,30 +132,32 @@ public struct InAppPurchasesV2Response: Codable, Sendable, PagedResponse {
         case promotedPurchase(PromotedPurchase)
 
         public init(from decoder: Decoder) throws {
-            if let inAppPurchaseAppStoreReviewScreenshot = try? InAppPurchaseAppStoreReviewScreenshot(from: decoder) {
-                self = .inAppPurchaseAppStoreReviewScreenshot(inAppPurchaseAppStoreReviewScreenshot)
-            } else if let inAppPurchaseAvailability = try? InAppPurchaseAvailability(from: decoder) {
-                self = .inAppPurchaseAvailability(inAppPurchaseAvailability)
-            } else if let inAppPurchaseContent = try? InAppPurchaseContent(from: decoder) {
-                self = .inAppPurchaseContent(inAppPurchaseContent)
-            } else if let inAppPurchaseImage = try? InAppPurchaseImage(from: decoder) {
-                self = .inAppPurchaseImage(inAppPurchaseImage)
-            } else if let inAppPurchaseLocalization = try? InAppPurchaseLocalization(from: decoder) {
-                self = .inAppPurchaseLocalization(inAppPurchaseLocalization)
-            } else if let inAppPurchaseOfferCode = try? InAppPurchaseOfferCode(from: decoder) {
-                self = .inAppPurchaseOfferCode(inAppPurchaseOfferCode)
-            } else if let inAppPurchasePricePoint = try? InAppPurchasePricePoint(from: decoder) {
-                self = .inAppPurchasePricePoint(inAppPurchasePricePoint)
-            } else if let inAppPurchasePriceSchedule = try? InAppPurchasePriceSchedule(from: decoder) {
-                self = .inAppPurchasePriceSchedule(inAppPurchasePriceSchedule)
-            } else if let promotedPurchase = try? PromotedPurchase(from: decoder) {
-                self = .promotedPurchase(promotedPurchase)
-            } else {
-                throw DecodingError.typeMismatch(
-                    Included.self,
-                    DecodingError.Context(
-                        codingPath: decoder.codingPath,
-                        debugDescription: "Unknown Included"))
+            let container = try decoder.container(keyedBy: AnyCodingKey.self)
+            let discriminatorValue = try container.decode(String.self, forKey: "type")
+            switch discriminatorValue {
+            case "inAppPurchaseAppStoreReviewScreenshots":
+                self = .inAppPurchaseAppStoreReviewScreenshot(try InAppPurchaseAppStoreReviewScreenshot(from: decoder))
+            case "inAppPurchaseAvailabilities":
+                self = .inAppPurchaseAvailability(try InAppPurchaseAvailability(from: decoder))
+            case "inAppPurchaseContents":
+                self = .inAppPurchaseContent(try InAppPurchaseContent(from: decoder))
+            case "inAppPurchaseImages":
+                self = .inAppPurchaseImage(try InAppPurchaseImage(from: decoder))
+            case "inAppPurchaseLocalizations":
+                self = .inAppPurchaseLocalization(try InAppPurchaseLocalization(from: decoder))
+            case "inAppPurchaseOfferCodes":
+                self = .inAppPurchaseOfferCode(try InAppPurchaseOfferCode(from: decoder))
+            case "inAppPurchasePricePoints":
+                self = .inAppPurchasePricePoint(try InAppPurchasePricePoint(from: decoder))
+            case "inAppPurchasePriceSchedules":
+                self = .inAppPurchasePriceSchedule(try InAppPurchasePriceSchedule(from: decoder))
+            case "promotedPurchases":
+                self = .promotedPurchase(try PromotedPurchase(from: decoder))
+            default:
+                throw DecodingError.dataCorruptedError(
+                    forKey: "type",
+                    in: container,
+                    debugDescription: "Unknown Included type '\(discriminatorValue)'")
             }
         }
 

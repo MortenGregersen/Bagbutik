@@ -68,16 +68,18 @@ public struct GameCenterLeaderboardVersionsV2Response: Codable, Sendable, PagedR
         case gameCenterLeaderboardV2(GameCenterLeaderboardV2)
 
         public init(from decoder: Decoder) throws {
-            if let gameCenterLeaderboardLocalizationV2 = try? GameCenterLeaderboardLocalizationV2(from: decoder) {
-                self = .gameCenterLeaderboardLocalizationV2(gameCenterLeaderboardLocalizationV2)
-            } else if let gameCenterLeaderboardV2 = try? GameCenterLeaderboardV2(from: decoder) {
-                self = .gameCenterLeaderboardV2(gameCenterLeaderboardV2)
-            } else {
-                throw DecodingError.typeMismatch(
-                    Included.self,
-                    DecodingError.Context(
-                        codingPath: decoder.codingPath,
-                        debugDescription: "Unknown Included"))
+            let container = try decoder.container(keyedBy: AnyCodingKey.self)
+            let discriminatorValue = try container.decode(String.self, forKey: "type")
+            switch discriminatorValue {
+            case "gameCenterLeaderboardLocalizations":
+                self = .gameCenterLeaderboardLocalizationV2(try GameCenterLeaderboardLocalizationV2(from: decoder))
+            case "gameCenterLeaderboards":
+                self = .gameCenterLeaderboardV2(try GameCenterLeaderboardV2(from: decoder))
+            default:
+                throw DecodingError.dataCorruptedError(
+                    forKey: "type",
+                    in: container,
+                    debugDescription: "Unknown Included type '\(discriminatorValue)'")
             }
         }
 

@@ -81,18 +81,20 @@ public struct AppStoreVersionExperimentTreatmentLocalizationsResponse: Codable, 
         case appStoreVersionExperimentTreatment(AppStoreVersionExperimentTreatment)
 
         public init(from decoder: Decoder) throws {
-            if let appPreviewSet = try? AppPreviewSet(from: decoder) {
-                self = .appPreviewSet(appPreviewSet)
-            } else if let appScreenshotSet = try? AppScreenshotSet(from: decoder) {
-                self = .appScreenshotSet(appScreenshotSet)
-            } else if let appStoreVersionExperimentTreatment = try? AppStoreVersionExperimentTreatment(from: decoder) {
-                self = .appStoreVersionExperimentTreatment(appStoreVersionExperimentTreatment)
-            } else {
-                throw DecodingError.typeMismatch(
-                    Included.self,
-                    DecodingError.Context(
-                        codingPath: decoder.codingPath,
-                        debugDescription: "Unknown Included"))
+            let container = try decoder.container(keyedBy: AnyCodingKey.self)
+            let discriminatorValue = try container.decode(String.self, forKey: "type")
+            switch discriminatorValue {
+            case "appPreviewSets":
+                self = .appPreviewSet(try AppPreviewSet(from: decoder))
+            case "appScreenshotSets":
+                self = .appScreenshotSet(try AppScreenshotSet(from: decoder))
+            case "appStoreVersionExperimentTreatments":
+                self = .appStoreVersionExperimentTreatment(try AppStoreVersionExperimentTreatment(from: decoder))
+            default:
+                throw DecodingError.dataCorruptedError(
+                    forKey: "type",
+                    in: container,
+                    debugDescription: "Unknown Included type '\(discriminatorValue)'")
             }
         }
 

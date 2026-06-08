@@ -122,20 +122,22 @@ public struct AppInfosResponse: Codable, Sendable, PagedResponse {
         case appInfoLocalization(AppInfoLocalization)
 
         public init(from decoder: Decoder) throws {
-            if let ageRatingDeclaration = try? AgeRatingDeclaration(from: decoder) {
-                self = .ageRatingDeclaration(ageRatingDeclaration)
-            } else if let app = try? App(from: decoder) {
-                self = .app(app)
-            } else if let appCategory = try? AppCategory(from: decoder) {
-                self = .appCategory(appCategory)
-            } else if let appInfoLocalization = try? AppInfoLocalization(from: decoder) {
-                self = .appInfoLocalization(appInfoLocalization)
-            } else {
-                throw DecodingError.typeMismatch(
-                    Included.self,
-                    DecodingError.Context(
-                        codingPath: decoder.codingPath,
-                        debugDescription: "Unknown Included"))
+            let container = try decoder.container(keyedBy: AnyCodingKey.self)
+            let discriminatorValue = try container.decode(String.self, forKey: "type")
+            switch discriminatorValue {
+            case "ageRatingDeclarations":
+                self = .ageRatingDeclaration(try AgeRatingDeclaration(from: decoder))
+            case "apps":
+                self = .app(try App(from: decoder))
+            case "appCategories":
+                self = .appCategory(try AppCategory(from: decoder))
+            case "appInfoLocalizations":
+                self = .appInfoLocalization(try AppInfoLocalization(from: decoder))
+            default:
+                throw DecodingError.dataCorruptedError(
+                    forKey: "type",
+                    in: container,
+                    debugDescription: "Unknown Included type '\(discriminatorValue)'")
             }
         }
 

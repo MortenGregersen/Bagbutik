@@ -77,16 +77,18 @@ public struct BackgroundAssetsResponse: Codable, Sendable, PagedResponse {
         case backgroundAssetVersion(BackgroundAssetVersion)
 
         public init(from decoder: Decoder) throws {
-            if let app = try? App(from: decoder) {
-                self = .app(app)
-            } else if let backgroundAssetVersion = try? BackgroundAssetVersion(from: decoder) {
-                self = .backgroundAssetVersion(backgroundAssetVersion)
-            } else {
-                throw DecodingError.typeMismatch(
-                    Included.self,
-                    DecodingError.Context(
-                        codingPath: decoder.codingPath,
-                        debugDescription: "Unknown Included"))
+            let container = try decoder.container(keyedBy: AnyCodingKey.self)
+            let discriminatorValue = try container.decode(String.self, forKey: "type")
+            switch discriminatorValue {
+            case "apps":
+                self = .app(try App(from: decoder))
+            case "backgroundAssetVersions":
+                self = .backgroundAssetVersion(try BackgroundAssetVersion(from: decoder))
+            default:
+                throw DecodingError.dataCorruptedError(
+                    forKey: "type",
+                    in: container,
+                    debugDescription: "Unknown Included type '\(discriminatorValue)'")
             }
         }
 

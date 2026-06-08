@@ -56,16 +56,18 @@ public struct PromotedPurchasesResponse: Codable, Sendable, PagedResponse {
         case subscription(Subscription)
 
         public init(from decoder: Decoder) throws {
-            if let inAppPurchaseV2 = try? InAppPurchaseV2(from: decoder) {
-                self = .inAppPurchaseV2(inAppPurchaseV2)
-            } else if let subscription = try? Subscription(from: decoder) {
-                self = .subscription(subscription)
-            } else {
-                throw DecodingError.typeMismatch(
-                    Included.self,
-                    DecodingError.Context(
-                        codingPath: decoder.codingPath,
-                        debugDescription: "Unknown Included"))
+            let container = try decoder.container(keyedBy: AnyCodingKey.self)
+            let discriminatorValue = try container.decode(String.self, forKey: "type")
+            switch discriminatorValue {
+            case "inAppPurchases":
+                self = .inAppPurchaseV2(try InAppPurchaseV2(from: decoder))
+            case "subscriptions":
+                self = .subscription(try Subscription(from: decoder))
+            default:
+                throw DecodingError.dataCorruptedError(
+                    forKey: "type",
+                    in: container,
+                    debugDescription: "Unknown Included type '\(discriminatorValue)'")
             }
         }
 

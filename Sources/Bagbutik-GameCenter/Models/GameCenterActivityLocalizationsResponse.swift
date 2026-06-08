@@ -63,16 +63,18 @@ public struct GameCenterActivityLocalizationsResponse: Codable, Sendable, PagedR
         case gameCenterActivityVersion(GameCenterActivityVersion)
 
         public init(from decoder: Decoder) throws {
-            if let gameCenterActivityImage = try? GameCenterActivityImage(from: decoder) {
-                self = .gameCenterActivityImage(gameCenterActivityImage)
-            } else if let gameCenterActivityVersion = try? GameCenterActivityVersion(from: decoder) {
-                self = .gameCenterActivityVersion(gameCenterActivityVersion)
-            } else {
-                throw DecodingError.typeMismatch(
-                    Included.self,
-                    DecodingError.Context(
-                        codingPath: decoder.codingPath,
-                        debugDescription: "Unknown Included"))
+            let container = try decoder.container(keyedBy: AnyCodingKey.self)
+            let discriminatorValue = try container.decode(String.self, forKey: "type")
+            switch discriminatorValue {
+            case "gameCenterActivityImages":
+                self = .gameCenterActivityImage(try GameCenterActivityImage(from: decoder))
+            case "gameCenterActivityVersions":
+                self = .gameCenterActivityVersion(try GameCenterActivityVersion(from: decoder))
+            default:
+                throw DecodingError.dataCorruptedError(
+                    forKey: "type",
+                    in: container,
+                    debugDescription: "Unknown Included type '\(discriminatorValue)'")
             }
         }
 

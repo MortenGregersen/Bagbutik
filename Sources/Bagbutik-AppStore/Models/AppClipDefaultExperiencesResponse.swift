@@ -88,20 +88,22 @@ public struct AppClipDefaultExperiencesResponse: Codable, Sendable, PagedRespons
         case appStoreVersion(AppStoreVersion)
 
         public init(from decoder: Decoder) throws {
-            if let appClip = try? AppClip(from: decoder) {
-                self = .appClip(appClip)
-            } else if let appClipAppStoreReviewDetail = try? AppClipAppStoreReviewDetail(from: decoder) {
-                self = .appClipAppStoreReviewDetail(appClipAppStoreReviewDetail)
-            } else if let appClipDefaultExperienceLocalization = try? AppClipDefaultExperienceLocalization(from: decoder) {
-                self = .appClipDefaultExperienceLocalization(appClipDefaultExperienceLocalization)
-            } else if let appStoreVersion = try? AppStoreVersion(from: decoder) {
-                self = .appStoreVersion(appStoreVersion)
-            } else {
-                throw DecodingError.typeMismatch(
-                    Included.self,
-                    DecodingError.Context(
-                        codingPath: decoder.codingPath,
-                        debugDescription: "Unknown Included"))
+            let container = try decoder.container(keyedBy: AnyCodingKey.self)
+            let discriminatorValue = try container.decode(String.self, forKey: "type")
+            switch discriminatorValue {
+            case "appClips":
+                self = .appClip(try AppClip(from: decoder))
+            case "appClipAppStoreReviewDetails":
+                self = .appClipAppStoreReviewDetail(try AppClipAppStoreReviewDetail(from: decoder))
+            case "appClipDefaultExperienceLocalizations":
+                self = .appClipDefaultExperienceLocalization(try AppClipDefaultExperienceLocalization(from: decoder))
+            case "appStoreVersions":
+                self = .appStoreVersion(try AppStoreVersion(from: decoder))
+            default:
+                throw DecodingError.dataCorruptedError(
+                    forKey: "type",
+                    in: container,
+                    debugDescription: "Unknown Included type '\(discriminatorValue)'")
             }
         }
 
