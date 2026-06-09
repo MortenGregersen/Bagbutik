@@ -243,7 +243,7 @@ final class GeneratorTests: XCTestCase {
     func testInferPackageNameForSchemaWithoutDocumentation() async throws {
         // Given
         let fileManager = MockFileManager()
-        let docsLoader = DocsLoader(loadFile: { _ in "{}".data(using: .utf8)! })
+        let docsLoader = self.docsLoader
         #if compiler(<6.0)
         let printer = await Printer()
         #else
