@@ -224,6 +224,51 @@ class DocumentationTests: XCTestCase {
         )
     }
 
+    func testDecodeDocumentationFormatsCodeVoiceInAbstract() throws {
+        let data = """
+        {
+            "identifier": {
+                "url": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/SampleObject"
+            },
+            "hierarchy": {
+                "paths": [[]]
+            },
+            "metadata": {
+                "title": "SampleObject",
+                "symbolKind": "dictionary"
+            },
+            "abstract": [
+                {
+                    "type": "text",
+                    "text": "Use "
+                },
+                {
+                    "type": "codeVoice",
+                    "code": "sampleCode"
+                },
+                {
+                    "type": "text",
+                    "text": " for this object."
+                }
+            ],
+            "primaryContentSections": [
+                {
+                    "kind": "properties",
+                    "items": []
+                }
+            ]
+        }
+        """.data(using: .utf8)!
+
+        let documentation = try JSONDecoder().decode(Documentation.self, from: data)
+
+        guard case .object(let objectDocumentation) = documentation else {
+            return XCTFail("Expected object documentation")
+        }
+
+        XCTAssertEqual(objectDocumentation.abstract, "Use sampleCode for this object.")
+    }
+
     func testDecodeEnumDocumentationIgnoresEmptyContentSections() throws {
         let data = """
         {

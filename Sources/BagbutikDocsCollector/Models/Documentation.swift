@@ -111,7 +111,7 @@ public enum Documentation: Codable, Equatable, Sendable {
                 return "[\(reference.title)](\(reference.url))"
             }
         }
-        let abstract = try container.decodeIfPresent([Abstract].self, forKey: .abstract)?.reduce(into: "") { partialResult, abstract in
+        let abstract = try container.decodeIfPresent([DecodedAbstract].self, forKey: .abstract)?.reduce(into: "") { partialResult, abstract in
             switch abstract {
             case .text(let text):
                 partialResult.append(text)
@@ -232,7 +232,7 @@ public enum Documentation: Codable, Equatable, Sendable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(Identifier(url: id), forKey: .identifier)
         if let abstract {
-            try container.encode([Abstract(text: abstract)], forKey: .abstract)
+            try container.encode([EncodedAbstract(text: abstract)], forKey: .abstract)
         }
         try container.encode(hierarchy, forKey: .hierarchy)
         var contentSections = [ContentSection]()
@@ -296,14 +296,10 @@ public enum Documentation: Codable, Equatable, Sendable {
         let symbolKind: String
     }
 
-    private enum Abstract: Codable {
+    private enum DecodedAbstract: Decodable {
         case text(String)
         case code(String)
         case reference(String)
-        
-        init(text: String) {
-            self = .text(text)
-        }
 
         init(from decoder: any Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
@@ -319,25 +315,25 @@ public enum Documentation: Codable, Equatable, Sendable {
             }
         }
 
-        func encode(to encoder: any Encoder) throws {
-            var container = encoder.container(keyedBy: CodingKeys.self)
-            switch self {
-            case .text(let text):
-                try container.encode("text", forKey: .type)
-                try container.encode(text, forKey: .text)
-            case .code(let code):
-                try container.encode("codeVoice", forKey: .type)
-                try container.encode(code, forKey: .code)
-            case .reference(let identifier):
-                try container.encode("reference", forKey: .type)
-                try container.encode(identifier, forKey: .identifier)
-            }
-        }
-
         enum CodingKeys: CodingKey {
             case text
             case code
             case identifier
+            case type
+        }
+    }
+
+    private struct EncodedAbstract: Encodable {
+        let text: String
+
+        func encode(to encoder: any Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encode("text", forKey: .type)
+            try container.encode(text, forKey: .text)
+        }
+
+        enum CodingKeys: CodingKey {
+            case text
             case type
         }
     }
