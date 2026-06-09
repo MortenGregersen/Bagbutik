@@ -169,6 +169,61 @@ class DocumentationTests: XCTestCase {
         XCTAssertEqual(enumDocumentation.cases["MAC_OS"], "[Related Article](https://developer.apple.com/documentation/appstoreconnectapi/related-article)")
     }
 
+    func testDecodeDocumentationFormatsReferencesInAbstract() throws {
+        let data = """
+        {
+            "identifier": {
+                "url": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GameCenterEnabledVersion"
+            },
+            "hierarchy": {
+                "paths": [[]]
+            },
+            "metadata": {
+                "title": "GameCenterEnabledVersion",
+                "symbolKind": "dictionary"
+            },
+            "abstract": [
+                {
+                    "type": "text",
+                    "text": "An app version with Game Center enabled. Deprecated in API version 3.0; use "
+                },
+                {
+                    "type": "reference",
+                    "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GameCenterAppVersion"
+                },
+                {
+                    "type": "text",
+                    "text": " instead."
+                }
+            ],
+            "references": {
+                "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GameCenterAppVersion": {
+                    "title": "GameCenterAppVersion",
+                    "role": "symbol",
+                    "url": "/documentation/appstoreconnectapi/gamecenterappversion"
+                }
+            },
+            "primaryContentSections": [
+                {
+                    "kind": "properties",
+                    "items": []
+                }
+            ]
+        }
+        """.data(using: .utf8)!
+
+        let documentation = try JSONDecoder().decode(Documentation.self, from: data)
+
+        guard case .object(let objectDocumentation) = documentation else {
+            return XCTFail("Expected object documentation")
+        }
+
+        XCTAssertEqual(
+            objectDocumentation.abstract,
+            "An app version with Game Center enabled. Deprecated in API version 3.0; use [GameCenterAppVersion](https://developer.apple.com/documentation/appstoreconnectapi/gamecenterappversion) instead."
+        )
+    }
+
     func testDecodeEnumDocumentationIgnoresEmptyContentSections() throws {
         let data = """
         {
