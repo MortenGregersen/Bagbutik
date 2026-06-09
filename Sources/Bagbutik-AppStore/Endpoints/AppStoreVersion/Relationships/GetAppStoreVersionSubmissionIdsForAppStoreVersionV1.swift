@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # GET /v1/appStoreVersions/{id}/relationships/appStoreVersionSubmission
+     # Get the App Store version submission ID for an App Store version
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-appStoreVersions-_id_-relationships-appStoreVersionSubmission>

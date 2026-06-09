@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Create an Introductory Offer
+     # Create an introductory offer
      Create an introductory offer for an auto-renewable subscription.
 
      Full documentation:

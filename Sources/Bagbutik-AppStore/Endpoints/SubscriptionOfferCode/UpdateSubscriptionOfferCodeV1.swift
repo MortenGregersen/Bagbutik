@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Deactivate a Subscription Offer With Offer Codes
+     # Deactivate a subscription offer with offer codes
      Deactivate a subscription offer that has offer codes for an auto-renewable subscription.
 
      Full documentation:

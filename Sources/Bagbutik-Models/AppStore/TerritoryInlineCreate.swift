@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # TerritoryInlineCreate
+ An inline object for specifying a territory reference within a parent create or update request.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/territoryinlinecreate>
+ */
 public struct TerritoryInlineCreate: Codable, Sendable, Identifiable {
     public var id: String?
     public var type: String { "territories" }

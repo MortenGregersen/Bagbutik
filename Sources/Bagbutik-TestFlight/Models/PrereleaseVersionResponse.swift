@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # PrereleaseVersionResponse
- A response that contains a single Prerelease Versions resource.
+ The response body for endpoints that read a single prerelease version of an app.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/prereleaseversionresponse>

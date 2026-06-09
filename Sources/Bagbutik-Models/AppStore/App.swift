@@ -3,7 +3,7 @@ import Foundation
 
 /**
  # App
- The data structure that represents an Apps resource.
+ An app registered in App Store Connect, representing all versions, metadata, and configuration for your iOS, macOS, tvOS, or watchOS application.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/app>

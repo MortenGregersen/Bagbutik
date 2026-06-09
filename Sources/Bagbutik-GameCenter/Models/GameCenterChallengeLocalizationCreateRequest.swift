@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # GameCenterChallengeLocalizationCreateRequest
- The request body you use to create a challenge resource.
+ The request body for creating a localization for a Game Center challenge.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterchallengelocalizationcreaterequest>

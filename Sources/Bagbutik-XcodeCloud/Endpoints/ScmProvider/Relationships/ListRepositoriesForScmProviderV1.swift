@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # List All Repositories for a Source Code Management Provider
+     # List all repositories for a source code management provider
      List all Git repositories for a specific source code management provider you connected to Xcode Cloud.
 
      Full documentation:

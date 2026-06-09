@@ -3,7 +3,7 @@ import Foundation
 
 /**
  # AccessibilityDeclaration
- The data structure that represents an accessibility declarations resource.
+ An app’s self-reported accessibility features and conformance information submitted for App Store review.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/accessibilitydeclaration>

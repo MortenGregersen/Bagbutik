@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # List All Certificates in a Profile
+     # List all certificates in a profile
      Get a list of all certificates and their data for a specific provisioning profile.
 
      Full documentation:

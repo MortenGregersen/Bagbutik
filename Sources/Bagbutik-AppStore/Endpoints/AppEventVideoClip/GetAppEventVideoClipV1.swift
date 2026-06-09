@@ -3,7 +3,8 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # GET /v1/appEventVideoClips/{id}
+     # Read app event video clip information
+     Get information about a specific video clip for an in-app event.
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-appEventVideoClips-_id_>
@@ -13,6 +14,7 @@ public extension Request {
      - Parameter includes: Relationship data to include in the response
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
+    @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
     static func getAppEventVideoClipV1(id: String,
                                        fields: [GetAppEventVideoClipV1.Field]? = nil,
                                        includes: [GetAppEventVideoClipV1.Include]? = nil) -> Request<AppEventVideoClipResponse, ErrorResponse> {

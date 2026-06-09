@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # InAppPurchaseSubmission
+ A submission of an in-app purchase to App Store review, triggering the review process for that item.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/inapppurchasesubmission>
+ */
 public struct InAppPurchaseSubmission: Codable, Sendable, Identifiable {
     public let id: String
     public var links: ResourceLinks?

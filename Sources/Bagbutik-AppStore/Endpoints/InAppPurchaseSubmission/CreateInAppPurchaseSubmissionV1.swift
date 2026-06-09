@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Create a Review Submission for an In-App Purchase
+     # Create a review submission for an in-app purchase
      Create an in-app purchase submission for review.
 
      Full documentation:

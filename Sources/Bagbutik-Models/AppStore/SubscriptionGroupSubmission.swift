@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # SubscriptionGroupSubmission
+ A submission of a subscription group to App Store review, required before offering subscriptions to customers.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/subscriptiongroupsubmission>
+ */
 public struct SubscriptionGroupSubmission: Codable, Sendable, Identifiable {
     public let id: String
     public var links: ResourceLinks?

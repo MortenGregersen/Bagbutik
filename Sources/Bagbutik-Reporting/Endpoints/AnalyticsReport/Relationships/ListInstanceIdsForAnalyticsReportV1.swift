@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read a List of a Report Instant IDs
+     # Read a list of a report instance ids
      Read list of all the instance IDs for a specific type of analytics report.
 
      Full documentation:

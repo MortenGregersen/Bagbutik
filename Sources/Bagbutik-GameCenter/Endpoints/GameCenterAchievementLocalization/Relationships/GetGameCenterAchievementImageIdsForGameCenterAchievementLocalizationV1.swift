@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # GET /v1/gameCenterAchievementLocalizations/{id}/relationships/gameCenterAchievementImage
+     # Get the achievement image ID for a Game Center achievement localization
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-gameCenterAchievementLocalizations-_id_-relationships-gameCenterAchievementImage>

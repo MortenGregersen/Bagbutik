@@ -2,6 +2,13 @@ import Bagbutik_Core
 import Bagbutik_Models
 import Foundation
 
+/**
+ # AppEventLocalizationUpdateRequest
+ The request body you use to update an app event localization update request.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appeventlocalizationupdaterequest>
+ */
 public struct AppEventLocalizationUpdateRequest: Codable, Sendable, RequestBody {
     public let data: Data
 

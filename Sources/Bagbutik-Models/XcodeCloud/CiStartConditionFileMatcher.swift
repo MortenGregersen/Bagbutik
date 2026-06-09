@@ -3,7 +3,7 @@ import Foundation
 
 /**
  # CiStartConditionFileMatcher
- The data structure that represents a Start Condition File Matchers resource.
+ A path pattern filter applied to an Xcode Cloud workflow start condition, restricting triggers to changes in specific files or directories.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/cistartconditionfilematcher>

@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # List All Builds for a Beta Group
+     # List all builds for a beta group
      Get a list of builds associated with a specific beta group.
 
      Full documentation:

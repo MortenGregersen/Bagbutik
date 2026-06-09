@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read Promotional Offer Information
+     # Read promotional offer information
      Get details about a specific promotional offer for an auto-renewable subscription.
 
      Full documentation:
@@ -69,6 +69,7 @@ public enum GetSubscriptionPromotionalOfferV1 {
             case offerMode
             case prices
             case subscription
+            case targetSubscriptionPlanType
 
             public init(from decoder: Decoder) throws {
                 let container = try decoder.singleValueContainer()
@@ -95,6 +96,7 @@ public enum GetSubscriptionPromotionalOfferV1 {
             case introductoryOffers
             case name
             case offerCodes
+            case planAvailabilities
             case pricePoints
             case prices
             case productId

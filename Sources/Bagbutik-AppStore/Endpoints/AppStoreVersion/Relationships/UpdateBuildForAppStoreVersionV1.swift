@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Modify the Build for an App Store Version
+     # Modify the build for an app store version
      Change the build that is attached to a specific App Store version.
 
      Use this endpoint to associate a build with a version. The build you specify represents the build that’s installed when a customer purchases the app on the App Store.

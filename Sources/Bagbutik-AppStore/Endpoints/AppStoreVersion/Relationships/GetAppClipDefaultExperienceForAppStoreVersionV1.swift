@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Get the Default App Clip Experience for an App Store Version
+     # Get the default app clip experience for an app store version
      Get the default App Clip experience for an App Store version of your app.
 
      Full documentation:

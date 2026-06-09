@@ -2,6 +2,13 @@ import Bagbutik_Core
 import Bagbutik_Models
 import Foundation
 
+/**
+ # ActorResponse
+ A response containing a single audit log actor who performed a tracked action in App Store Connect.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/actorresponse>
+ */
 public struct ActorResponse: Codable, Sendable {
     public let data: Actor
     public let links: DocumentLinks

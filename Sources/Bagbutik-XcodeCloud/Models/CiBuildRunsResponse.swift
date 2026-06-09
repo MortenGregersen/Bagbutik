@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # CiBuildRunsResponse
- A response that contains a list of Build Runs resources.
+ The response body for endpoints that list build runs for an Xcode Cloud workflow.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/cibuildrunsresponse>

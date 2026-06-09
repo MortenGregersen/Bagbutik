@@ -3,7 +3,8 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # GET /v1/appStoreVersionLocalizations/{id}/searchKeywords
+     # List all search keywords for an app store version localization
+     Get search keywords for a specific App Store version localization.
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-appStoreVersionLocalizations-_id_-searchKeywords>

@@ -3,7 +3,7 @@ import Foundation
 
 /**
  # GameCenterMatchmakingTeamAssignment
- The data structure that represents the assignment of a player to a team.
+ The assignment of a player to a specific team during a Game Center matchmaking session.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingteamassignment>

@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # AppEventVideoClip
+ A video clip used to promote an app event on the App Store product page.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appeventvideoclip>
+ */
 public struct AppEventVideoClip: Codable, Sendable, Identifiable {
     public let id: String
     public var links: ResourceLinks?

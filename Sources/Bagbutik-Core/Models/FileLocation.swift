@@ -2,7 +2,7 @@ import Foundation
 
 /**
  # FileLocation
- The data structure that represents a File Locations resource.
+ A source code location reference indicating the file path, line number, and column of an issue in an Xcode Cloud build.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/filelocation>

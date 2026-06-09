@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # BuildResponse
- A response that contains a single Builds resource.
+ The response body for endpoints that read or modify a single build.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/buildresponse>

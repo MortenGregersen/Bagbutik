@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # GET /v1/appEvents/{id}/relationships/localizations
+     # List localization IDs for an app event
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-appEvents-_id_-relationships-localizations>

@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # AlternativeDistributionPackageVersionsResponse
- A response that contains a list of alternative distribution package version resources.
+ The response body for endpoints that list versions of an alternative distribution package.
 
  This object is the response that contains a list of alternative distribution package versions. For more information, see [Read Version Information for an Alternative Distribution Package](https://developer.apple.com/documentation/appstoreconnectapi/get-v1-alternativedistributionpackages-_id_-versions). The schema of the response body is below.
  ```

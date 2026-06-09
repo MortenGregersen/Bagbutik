@@ -3,7 +3,8 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # POST /v1/appEvents
+     # Create an in-app event
+     Create a new in-app event for your app.
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/post-v1-appEvents>

@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # List All Review Attachments for an App Store Review Detail
+     # List all review attachments for an app store review detail
      List all the App Store review attachments you include with a version when you submit it for App Review.
 
      Full documentation:

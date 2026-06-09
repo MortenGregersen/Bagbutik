@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # GameCenterActivityLocalizationResponse
- A response that contains a single activity localization resource.
+ A response containing a single localization for a Game Center activity.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecenteractivitylocalizationresponse>

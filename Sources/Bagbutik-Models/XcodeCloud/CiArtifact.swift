@@ -3,7 +3,7 @@ import Foundation
 
 /**
  # CiArtifact
- The data structure that represents the output of an Xcode Cloud build action resource.
+ A file output produced by an Xcode Cloud build action, such as an app archive, test result bundle, or build log.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/ciartifact>

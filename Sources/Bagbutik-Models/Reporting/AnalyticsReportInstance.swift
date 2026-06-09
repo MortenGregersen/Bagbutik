@@ -3,7 +3,7 @@ import Foundation
 
 /**
  # AnalyticsReportInstance
- The data structure that represents an analytics report instance.
+ A time-bounded instance of an analytics report, representing data for a specific reporting period.
 
  To learn more about the response that includes this analytics report instance object, see [AnalyticsReportInstanceResponse](https://developer.apple.com/documentation/appstoreconnectapi/analyticsreportinstanceresponse).
 

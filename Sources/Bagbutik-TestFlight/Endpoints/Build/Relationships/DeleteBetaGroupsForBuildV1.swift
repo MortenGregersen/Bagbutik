@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Remove Access for Beta Groups to a Build
+     # Remove access for beta groups to a build
      Remove access to a specific build for all beta testers in one or more beta groups.
 
      Full documentation:

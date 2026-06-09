@@ -2,6 +2,13 @@ import Bagbutik_Core
 import Bagbutik_Models
 import Foundation
 
+/**
+ # SubscriptionOfferCodeOneTimeUseCodeResponse
+ A response containing a single Apple-generated one-time-use promotional code.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/subscriptionoffercodeonetimeusecoderesponse>
+ */
 public struct SubscriptionOfferCodeOneTimeUseCodeResponse: Codable, Sendable {
     public let data: SubscriptionOfferCodeOneTimeUseCode
     public var included: [SubscriptionOfferCode]?

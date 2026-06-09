@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # BetaAppReviewSubmissionResponse
- A response that contains a single Beta App Review Submissions resource.
+ The response body for endpoints that submit a build for beta app review.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/betaappreviewsubmissionresponse>

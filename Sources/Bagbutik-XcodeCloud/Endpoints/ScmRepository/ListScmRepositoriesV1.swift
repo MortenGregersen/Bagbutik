@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # List All Git Repositories
+     # List all git repositories
      List all Git repositories Xcode Cloud can access.
 
      Full documentation:

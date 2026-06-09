@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # BuildUploadFileCreateRequest
- The request body you use to create a build upload resource.
+ The request body for creating a file upload record within a build upload operation.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/builduploadfilecreaterequest>

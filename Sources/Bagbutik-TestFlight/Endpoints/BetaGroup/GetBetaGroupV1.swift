@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read Beta Group Information
+     # Read beta group information
      Get a specific beta group.
 
      Full documentation:

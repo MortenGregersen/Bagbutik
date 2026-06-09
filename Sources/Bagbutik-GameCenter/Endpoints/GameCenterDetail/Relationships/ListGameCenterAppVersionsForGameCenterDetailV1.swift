@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read App Versions for a Game Center Detail
+     # Read app versions for a game center detail
      Get a list of app versions for a Game Center detail.
 
      Full documentation:

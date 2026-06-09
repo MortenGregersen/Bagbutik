@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Get the Background Asset Upload Files Resource ID for a Background Asset Version
+     # Get the background asset upload files resource id for a background asset version
      Get the ID for an uploaded asset pack Apple hosted background asset version
 
      Full documentation:

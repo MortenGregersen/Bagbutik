@@ -147,6 +147,7 @@ public enum ListVersionsForBackgroundAssetV1 {
             case createdDate
             case externalBetaRelease
             case internalBetaRelease
+            case locale
             case manifestFile
             case platforms
             case state
@@ -207,6 +208,8 @@ public enum ListVersionsForBackgroundAssetV1 {
         case externalBetaRelease_state([BackgroundAssetVersionExternalBetaReleaseState])
         /// Filter by attribute 'internalBetaRelease.state'
         case internalBetaRelease_state([InternalBetaReleaseState])
+        /// Filter by attribute 'locale'
+        case locale([String])
         /// Filter by attribute 'platforms'
         case platforms([Platform])
         /// Filter by attribute 'state'

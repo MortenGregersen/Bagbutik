@@ -2,6 +2,13 @@ import Bagbutik_Core
 import Bagbutik_Models
 import Foundation
 
+/**
+ # AppEventLocalizationsResponse
+ The response body for endpoints that list localized entries for an in-app event.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appeventlocalizationsresponse>
+ */
 public struct AppEventLocalizationsResponse: Codable, Sendable, PagedResponse {
     public typealias Data = AppEventLocalization
 
@@ -42,30 +49,6 @@ public struct AppEventLocalizationsResponse: Codable, Sendable, PagedResponse {
             guard case let .appEvent(appEvent) = relationship else { return nil }
             return appEvent
         }.first { $0.id == appEventLocalization.relationships?.appEvent?.data?.id }
-    }
-
-    public func getAppEventScreenshots(for appEventLocalization: AppEventLocalization) -> [AppEventScreenshot] {
-        guard let appEventScreenshotIds = appEventLocalization.relationships?.appEventScreenshots?.data?.map(\.id),
-              let appEventScreenshots = included?.compactMap({ relationship -> AppEventScreenshot? in
-                  guard case let .appEventScreenshot(appEventScreenshot) = relationship else { return nil }
-                  return appEventScreenshotIds.contains(appEventScreenshot.id) ? appEventScreenshot : nil
-              })
-        else {
-            return []
-        }
-        return appEventScreenshots
-    }
-
-    public func getAppEventVideoClips(for appEventLocalization: AppEventLocalization) -> [AppEventVideoClip] {
-        guard let appEventVideoClipIds = appEventLocalization.relationships?.appEventVideoClips?.data?.map(\.id),
-              let appEventVideoClips = included?.compactMap({ relationship -> AppEventVideoClip? in
-                  guard case let .appEventVideoClip(appEventVideoClip) = relationship else { return nil }
-                  return appEventVideoClipIds.contains(appEventVideoClip.id) ? appEventVideoClip : nil
-              })
-        else {
-            return []
-        }
-        return appEventVideoClips
     }
 
     public enum Included: Codable, Sendable {

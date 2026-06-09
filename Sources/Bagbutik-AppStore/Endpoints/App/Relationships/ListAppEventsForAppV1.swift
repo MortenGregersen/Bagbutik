@@ -3,7 +3,8 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # GET /v1/apps/{id}/appEvents
+     # List all in-app events for an app
+     Get a list of in-app events for a specific app.
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-apps-_id_-appEvents>

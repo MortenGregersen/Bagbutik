@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # List All One-Time Use Offer Codes for an Auto-Renewable Subscription
+     # List all one-time use offer codes for an auto-renewable subscription
      Get details about a one-time use code for a specific subscription offer for an auto-renewable subscription.
 
      Full documentation:
@@ -79,6 +79,7 @@ public enum ListOneTimeUseCodesForSubscriptionOfferCodeV1 {
             case productionCodeCount
             case sandboxCodeCount
             case subscription
+            case targetSubscriptionPlanType
             case totalNumberOfCodes
 
             public init(from decoder: Decoder) throws {

@@ -2,6 +2,13 @@ import Bagbutik_Core
 import Bagbutik_Models
 import Foundation
 
+/**
+ # InAppPurchaseV2UpdateRequest
+ The request body you use to update an in-app purchase v2update request.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/inapppurchasev2updaterequest>
+ */
 public struct InAppPurchaseV2UpdateRequest: Codable, Sendable, RequestBody {
     public let data: Data
 

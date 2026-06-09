@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # AppInfoLocalizationsResponse
- A response that contains a list of AppInfoLocalizations resources.
+ The response body for endpoints that list localized app info entries for an app.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appinfolocalizationsresponse>

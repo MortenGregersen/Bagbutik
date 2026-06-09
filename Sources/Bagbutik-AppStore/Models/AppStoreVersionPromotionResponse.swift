@@ -2,6 +2,13 @@ import Bagbutik_Core
 import Bagbutik_Models
 import Foundation
 
+/**
+ # AppStoreVersionPromotionResponse
+ A response containing a single App Store version promotion configuration.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionpromotionresponse>
+ */
 public struct AppStoreVersionPromotionResponse: Codable, Sendable {
     public let data: AppStoreVersionPromotion
     public let links: DocumentLinks

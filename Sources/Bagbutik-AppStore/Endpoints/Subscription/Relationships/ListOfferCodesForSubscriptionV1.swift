@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # List All Offer Codes for a Subscription
+     # List all offer codes for a subscription
      Get a list of subscription offer codes for a specific auto-renewable subscription.
 
      Full documentation:
@@ -132,6 +132,7 @@ public enum ListOfferCodesForSubscriptionV1 {
             case productionCodeCount
             case sandboxCodeCount
             case subscription
+            case targetSubscriptionPlanType
             case totalNumberOfCodes
 
             public init(from decoder: Decoder) throws {
@@ -159,6 +160,7 @@ public enum ListOfferCodesForSubscriptionV1 {
             case introductoryOffers
             case name
             case offerCodes
+            case planAvailabilities
             case pricePoints
             case prices
             case productId

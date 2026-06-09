@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Modify the Image for an Advanced App Clip Experience
+     # Modify the image for an advanced app clip experience
      Update image information or commit the image asset of an advanced App Clip experience.
 
      Full documentation:

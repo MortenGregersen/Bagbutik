@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read the App ID of a Build
+     # Read the app id of a build
      Get the app ID for a specific build.
 
      Full documentation:

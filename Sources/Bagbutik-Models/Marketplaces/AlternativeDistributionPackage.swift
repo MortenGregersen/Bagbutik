@@ -3,7 +3,7 @@ import Foundation
 
 /**
  # AlternativeDistributionPackage
- The data structure that represents an alternative distribution package resource.
+ The distributable package for an app on an alternative marketplace or web distribution, containing versioned variants and delta updates.
 
  To learn more about the response that includes this alternative distribution package object, see [AlternativeDistributionPackageResponse](https://developer.apple.com/documentation/appstoreconnectapi/alternativedistributionpackageresponse).
 

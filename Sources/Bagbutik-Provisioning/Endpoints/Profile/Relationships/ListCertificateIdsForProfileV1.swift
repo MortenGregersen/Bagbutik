@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # GET /v1/profiles/{id}/relationships/certificates
+     # List certificate IDs for a profile
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-profiles-_id_-relationships-certificates>

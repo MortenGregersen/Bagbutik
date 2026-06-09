@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # InAppPurchaseImageUpdateRequest
- The data structure that represents a in-app purchase image resource.
+ The request body for updating the upload state or file content of an in-app purchase image.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/inapppurchaseimageupdaterequest>

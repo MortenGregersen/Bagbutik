@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # ScmGitReferenceResponse
- A response that contains a single Git References resource.
+ The response body for endpoints that read a single SCM Git reference in Xcode Cloud.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/scmgitreferenceresponse>

@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # AppEventLocalization
+ The localized name, short description, and long description for an App Store app event in a specific language.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appeventlocalization>
+ */
 public struct AppEventLocalization: Codable, Sendable, Identifiable {
     public let id: String
     public var links: ResourceLinks?
@@ -75,9 +82,12 @@ public struct AppEventLocalization: Codable, Sendable, Identifiable {
 
     public struct Relationships: Codable, Sendable {
         public var appEvent: AppEvent?
-        public var appEventScreenshots: AppEventScreenshots?
-        public var appEventVideoClips: AppEventVideoClips?
+        @available(*, deprecated, message: "Apple has marked this property deprecated and it will be removed sometime in the future.")
+        public var appEventScreenshots: AppEventScreenshots? = nil
+        @available(*, deprecated, message: "Apple has marked this property deprecated and it will be removed sometime in the future.")
+        public var appEventVideoClips: AppEventVideoClips? = nil
 
+        @available(*, deprecated, message: "This uses a property Apple has marked as deprecated.")
         public init(appEvent: AppEvent? = nil,
                     appEventScreenshots: AppEventScreenshots? = nil,
                     appEventVideoClips: AppEventVideoClips? = nil)
@@ -85,6 +95,10 @@ public struct AppEventLocalization: Codable, Sendable, Identifiable {
             self.appEvent = appEvent
             self.appEventScreenshots = appEventScreenshots
             self.appEventVideoClips = appEventVideoClips
+        }
+
+        public init(appEvent: AppEvent? = nil) {
+            self.appEvent = appEvent
         }
 
         public init(from decoder: Decoder) throws {

@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # POST /v1/gameCenterAppVersions
+     # Create an app version
      Add a new Game Center app version.
 
      Full documentation:

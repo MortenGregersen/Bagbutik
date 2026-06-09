@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # GET /v1/gameCenterActivityVersions/{id}/relationships/localizations
+     # List localization IDs for a Game Center activity version
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-gameCenterActivityVersions-_id_-relationships-localizations>

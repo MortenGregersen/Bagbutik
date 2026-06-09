@@ -3,7 +3,7 @@ import Foundation
 
 /**
  # AppCustomProductPageLocalizationSearchKeywordsLinkagesResponse
- A response that contains a list of IDs of related resources.
+ A response containing the resource identifiers of search keywords associated with a custom product page localization.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appcustomproductpagelocalizationsearchkeywordslinkagesresponse>

@@ -3,7 +3,7 @@ import Foundation
 
 /**
  # BuildBetaDetail
- The data structure that represents a Build Beta Details resource.
+ The TestFlight distribution settings for a build, including whether it is available for external testing.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/buildbetadetail>

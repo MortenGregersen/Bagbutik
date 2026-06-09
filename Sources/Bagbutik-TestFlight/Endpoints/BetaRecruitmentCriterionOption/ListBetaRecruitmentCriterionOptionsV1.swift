@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read Recruitment Criteria Options
+     # Read recruitment criteria options
      Get a list of the possible beta recruitment criteria options.
 
      Full documentation:

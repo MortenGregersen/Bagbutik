@@ -2,6 +2,13 @@ import Bagbutik_Core
 import Bagbutik_Models
 import Foundation
 
+/**
+ # AppPricesV2Response
+ A response containing a list of territory-specific app prices.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/apppricesv2response>
+ */
 public struct AppPricesV2Response: Codable, Sendable, PagedResponse {
     public typealias Data = AppPriceV2
 

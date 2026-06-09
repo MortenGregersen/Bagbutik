@@ -3,7 +3,7 @@ import Foundation
 
 /**
  # AppCustomProductPageLocalizationInlineCreate
- The data structure that represents an app custom product page localization inline creates resource.
+ An inline object for specifying a language-specific localization when creating a custom product page version.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appcustomproductpagelocalizationinlinecreate>

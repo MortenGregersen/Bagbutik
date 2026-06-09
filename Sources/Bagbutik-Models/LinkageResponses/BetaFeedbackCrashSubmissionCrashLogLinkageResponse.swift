@@ -3,7 +3,7 @@ import Foundation
 
 /**
  # BetaFeedbackCrashSubmissionCrashLogLinkageResponse
- A response that contains a single beta feedback crash submission crash log linkage response resource.
+ A response containing the resource identifier of the crash log linked to a crash feedback submission.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/betafeedbackcrashsubmissioncrashloglinkageresponse>

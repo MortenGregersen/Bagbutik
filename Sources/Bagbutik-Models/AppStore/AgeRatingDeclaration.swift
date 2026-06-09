@@ -3,7 +3,7 @@ import Foundation
 
 /**
  # AgeRatingDeclaration
- The data structure that represents an Age Rating Declarations resource.
+ A set of content descriptors for your app that App Store Connect uses to assign an age rating.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/ageratingdeclaration>

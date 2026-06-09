@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Delete an App Info Localization
+     # Delete an app info localization
      Delete an app information localization that is associated with an app.
 
      Full documentation:

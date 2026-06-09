@@ -3,7 +3,7 @@ import Foundation
 
 /**
  # GameCenterMatchmakingRule
- The data structure that represents a matchmaking rule.
+ A JavaScript expression evaluated during Game Center matchmaking to determine player compatibility.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingrule>

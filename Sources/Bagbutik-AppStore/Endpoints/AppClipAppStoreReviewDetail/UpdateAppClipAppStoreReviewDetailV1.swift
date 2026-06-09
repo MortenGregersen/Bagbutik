@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Modify App Store Review Details for an App Clip
+     # Modify app store review details for an app clip
      Update App Clip metadata you provide to App Store Review.
 
      Full documentation:

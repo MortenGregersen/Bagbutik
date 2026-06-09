@@ -3,7 +3,7 @@ import Foundation
 
 /**
  # AlternativeDistributionPackageDelta
- The data structure that represents an alternative distribution package delta resource.
+ An incremental update package for an alternative distribution app, containing only the changes between two versions to reduce download size.
 
  For more information about the responses that include alternative distribution package delta objects, see [AlternativeDistributionPackageDeltaResponse](https://developer.apple.com/documentation/appstoreconnectapi/alternativedistributionpackagedeltaresponse) or [AlternativeDistributionPackageDeltasResponse](https://developer.apple.com/documentation/appstoreconnectapi/alternativedistributionpackagedeltasresponse).
 

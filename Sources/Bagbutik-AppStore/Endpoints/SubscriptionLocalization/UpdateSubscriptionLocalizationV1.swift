@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Modify a Subscription Localization
+     # Modify a subscription localization
      Update a specific localized subscription display name and description for an auto-renewable subscription.
 
      Full documentation:

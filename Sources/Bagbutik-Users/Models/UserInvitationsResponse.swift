@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # UserInvitationsResponse
- A response that contains a list of User Invitations resources.
+ The response body for endpoints that list pending App Store Connect team invitations.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/userinvitationsresponse>

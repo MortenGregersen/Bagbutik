@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read the Secondary Category Information of an App Info
+     # Read the secondary category information of an app info
      Get an app’s secondary App Store category.
 
      Full documentation:

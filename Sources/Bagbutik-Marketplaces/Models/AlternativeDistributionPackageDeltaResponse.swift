@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # AlternativeDistributionPackageDeltaResponse
- A response that contains a single alternative distribution package delta resource.
+ A response containing a single delta update for an alternative distribution package.
 
  This object is the response that contains a single alternative distribution package delta. For more information about alternative distribution package deltas see [Read Information for Alternative Distribution Package Deltas](https://developer.apple.com/documentation/appstoreconnectapi/get-v1-alternativedistributionpackagedeltas-_id_). The schema of the response body is below.
  ```

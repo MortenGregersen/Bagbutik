@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # DELETE /v1/gameCenterAppVersions/{id}/relationships/compatibilityVersions
+     # Remove compatible app version relationships
      Remove a compatible version relationship from an app version.
 
      Full documentation:

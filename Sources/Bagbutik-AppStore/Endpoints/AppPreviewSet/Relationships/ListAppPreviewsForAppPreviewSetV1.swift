@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # List All App Previews for an App Preview Set
+     # List all app previews for an app preview set
      List all ordered app previews in a preview set.
 
      Full documentation:
@@ -15,6 +15,7 @@ public extension Request {
      - Parameter limit: Maximum resources per page - maximum 200
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
+    @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
     static func listAppPreviewsForAppPreviewSetV1(id: String,
                                                   fields: [ListAppPreviewsForAppPreviewSetV1.Field]? = nil,
                                                   includes: [ListAppPreviewsForAppPreviewSetV1.Include]? = nil,

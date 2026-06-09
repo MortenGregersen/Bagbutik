@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # BetaFeedbackScreenshotSubmissionResponse
- A response that contains a single BetaFeedbackScreenshotSubmission resource.
+ A response containing a single screenshot and feedback note submitted by a TestFlight beta tester.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/betafeedbackscreenshotsubmissionresponse>

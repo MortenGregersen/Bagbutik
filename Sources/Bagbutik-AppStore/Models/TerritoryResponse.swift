@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # TerritoryResponse
- A response that contains a single Territories resource.
+ The response body for endpoints that read a single App Store territory.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/territoryresponse>

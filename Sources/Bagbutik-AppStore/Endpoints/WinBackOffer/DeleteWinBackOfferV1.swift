@@ -4,6 +4,8 @@ import Bagbutik_Models
 public extension Request {
     /**
      # Delete a Win-Back Offer
+     The data structure that represents a delete-v1-win back offers-{id} resource.
+
      Remove a win-back offer for a specific subscription.
 
      Full documentation:

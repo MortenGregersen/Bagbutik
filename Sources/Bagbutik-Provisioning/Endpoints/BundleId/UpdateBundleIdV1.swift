@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Modify a Bundle ID
+     # Modify a bundle id
      Update a specific bundle ID’s name.
 
      Full documentation:

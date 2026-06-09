@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Delete an App Preview
+     # Delete an app preview
      Delete an app preview within a preview set.
 
      Full documentation:
@@ -12,6 +12,7 @@ public extension Request {
      - Parameter id: The id of the requested resource
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
+    @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
     static func deleteAppPreviewV1(id: String) -> Request<EmptyResponse, ErrorResponse> {
         .init(
             path: "/v1/appPreviews/\(id)",

@@ -3,7 +3,8 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # GET /v2/appAvailabilities/{id}/relationships/territoryAvailabilities
+     # List territory availability IDs for an app availability
+     Get a list of territory availability IDs for a specific app availability.
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/get-v2-appAvailabilities-_id_-relationships-territoryAvailabilities>

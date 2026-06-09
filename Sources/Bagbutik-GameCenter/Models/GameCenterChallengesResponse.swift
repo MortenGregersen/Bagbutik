@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # GameCenterChallengesResponse
- A response that contains a list of Game Center challenge resources.
+ A response containing a list of Game Center challenges configured for an app.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterchallengesresponse>

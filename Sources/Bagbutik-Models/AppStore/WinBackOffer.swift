@@ -3,7 +3,7 @@ import Foundation
 
 /**
  # WinBackOffer
- The data structure that represents a win-back offer resource.
+ A promotional offer targeting lapsed subscribers, providing a discount or free trial to encourage them to resubscribe.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/winbackoffer>
@@ -64,6 +64,7 @@ public struct WinBackOffer: Codable, Sendable, Identifiable {
         public var promotionIntent: PromotionIntent?
         public var referenceName: String?
         public var startDate: String?
+        public var targetSubscriptionPlanType: SubscriptionPlanType?
 
         public init(customerEligibilityPaidSubscriptionDurationInMonths: Int? = nil,
                     customerEligibilityTimeSinceLastSubscribedInMonths: IntegerRange? = nil,
@@ -76,7 +77,8 @@ public struct WinBackOffer: Codable, Sendable, Identifiable {
                     priority: Priority? = nil,
                     promotionIntent: PromotionIntent? = nil,
                     referenceName: String? = nil,
-                    startDate: String? = nil)
+                    startDate: String? = nil,
+                    targetSubscriptionPlanType: SubscriptionPlanType? = nil)
         {
             self.customerEligibilityPaidSubscriptionDurationInMonths = customerEligibilityPaidSubscriptionDurationInMonths
             self.customerEligibilityTimeSinceLastSubscribedInMonths = customerEligibilityTimeSinceLastSubscribedInMonths
@@ -90,6 +92,7 @@ public struct WinBackOffer: Codable, Sendable, Identifiable {
             self.promotionIntent = promotionIntent
             self.referenceName = referenceName
             self.startDate = startDate
+            self.targetSubscriptionPlanType = targetSubscriptionPlanType
         }
 
         public init(from decoder: Decoder) throws {
@@ -106,6 +109,7 @@ public struct WinBackOffer: Codable, Sendable, Identifiable {
             promotionIntent = try container.decodeIfPresent(PromotionIntent.self, forKey: "promotionIntent")
             referenceName = try container.decodeIfPresent(String.self, forKey: "referenceName")
             startDate = try container.decodeIfPresent(String.self, forKey: "startDate")
+            targetSubscriptionPlanType = try container.decodeIfPresent(SubscriptionPlanType.self, forKey: "targetSubscriptionPlanType")
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -122,6 +126,7 @@ public struct WinBackOffer: Codable, Sendable, Identifiable {
             try container.encodeIfPresent(promotionIntent, forKey: "promotionIntent")
             try container.encodeIfPresent(referenceName, forKey: "referenceName")
             try container.encodeIfPresent(startDate, forKey: "startDate")
+            try container.encodeIfPresent(targetSubscriptionPlanType, forKey: "targetSubscriptionPlanType")
         }
 
         public enum Priority: String, Sendable, Codable, CaseIterable {

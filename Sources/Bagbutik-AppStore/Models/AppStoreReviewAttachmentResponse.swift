@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # AppStoreReviewAttachmentResponse
- A response that contains a single App Store Review Attachments resource.
+ The response body for endpoints that create, read, or modify a file attached to an App Store review submission.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appstorereviewattachmentresponse>

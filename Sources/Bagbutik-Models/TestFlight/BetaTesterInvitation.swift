@@ -3,7 +3,7 @@ import Foundation
 
 /**
  # BetaTesterInvitation
- The data structure that represents a Beta Tester Invitations resource.
+ A pending email invitation sent to recruit someone as a TestFlight beta tester for an app.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/betatesterinvitation>

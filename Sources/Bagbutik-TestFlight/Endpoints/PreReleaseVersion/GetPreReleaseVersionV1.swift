@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read Prerelease Version Information
+     # Read prerelease version information
      Get information about a specific prerelease version.
 
      Full documentation:

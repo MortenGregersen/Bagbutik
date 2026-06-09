@@ -2,6 +2,13 @@ import Bagbutik_Core
 import Bagbutik_Models
 import Foundation
 
+/**
+ # AppEventUpdateRequest
+ The request body you use to update an app event update request.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appeventupdaterequest>
+ */
 public struct AppEventUpdateRequest: Codable, Sendable, RequestBody {
     public let data: Data
 

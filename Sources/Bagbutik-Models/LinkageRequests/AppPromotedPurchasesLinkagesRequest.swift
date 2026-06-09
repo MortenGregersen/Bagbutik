@@ -3,7 +3,7 @@ import Foundation
 
 /**
  # AppPromotedPurchasesLinkagesRequest
- The data structure that represents an app promoted purchases linkages request resource.
+ The request body for updating the ordered list of in-app purchases and subscriptions promoted on an app’s product page.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/apppromotedpurchaseslinkagesrequest>

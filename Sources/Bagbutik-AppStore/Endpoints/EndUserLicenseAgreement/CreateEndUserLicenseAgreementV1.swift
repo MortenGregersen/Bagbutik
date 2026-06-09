@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Create an End User License Agreement
+     # Create an end user license agreement
      Add a custom end user license agreement (EULA) to an app and configure the territories to which it applies.
 
      Use this endpoint to associate a custom license agreement with an app in the specified App Store territories. Any other territories will use the standard Apple-provided license agreement.

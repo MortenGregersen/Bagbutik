@@ -2,6 +2,13 @@ import Bagbutik_Core
 import Bagbutik_Models
 import Foundation
 
+/**
+ # InAppPurchaseLocalizationUpdateRequest
+ The request body you use to update an in-app purchase localization update request.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/inapppurchaselocalizationupdaterequest>
+ */
 public struct InAppPurchaseLocalizationUpdateRequest: Codable, Sendable, RequestBody {
     public let data: Data
 

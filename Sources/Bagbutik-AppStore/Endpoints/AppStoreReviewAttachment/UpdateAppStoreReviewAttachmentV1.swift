@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Commit an App Store Review Attachment
+     # Commit an app store review attachment
      Commit an app screenshot after uploading it to the App Store.
 
      Full documentation:

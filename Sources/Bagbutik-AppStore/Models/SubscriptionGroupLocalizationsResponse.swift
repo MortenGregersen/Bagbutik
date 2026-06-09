@@ -2,6 +2,13 @@ import Bagbutik_Core
 import Bagbutik_Models
 import Foundation
 
+/**
+ # SubscriptionGroupLocalizationsResponse
+ The response body for endpoints that list localizations for a subscription group.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/subscriptiongrouplocalizationsresponse>
+ */
 public struct SubscriptionGroupLocalizationsResponse: Codable, Sendable, PagedResponse {
     public typealias Data = SubscriptionGroupLocalization
 

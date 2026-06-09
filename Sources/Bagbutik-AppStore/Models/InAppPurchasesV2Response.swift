@@ -2,6 +2,13 @@ import Bagbutik_Core
 import Bagbutik_Models
 import Foundation
 
+/**
+ # InAppPurchasesV2Response
+ A response containing a list of in-app purchases configured via the v2 API.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/inapppurchasesv2response>
+ */
 public struct InAppPurchasesV2Response: Codable, Sendable, PagedResponse {
     public typealias Data = InAppPurchaseV2
 

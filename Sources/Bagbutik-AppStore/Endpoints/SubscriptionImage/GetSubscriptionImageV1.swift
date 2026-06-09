@@ -71,6 +71,7 @@ public enum GetSubscriptionImageV1 {
             case introductoryOffers
             case name
             case offerCodes
+            case planAvailabilities
             case pricePoints
             case prices
             case productId

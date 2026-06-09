@@ -3,7 +3,7 @@ import Foundation
 
 /**
  # BetaAppReviewDetail
- The data structure that represents a Beta App Review Details resource.
+ Contact information and demo credentials provided to App Store reviewers for beta app review.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/betaappreviewdetail>

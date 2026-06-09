@@ -2,7 +2,7 @@ import Foundation
 
 /**
  # Checksums
- The data structure that represents a checksums resource.
+ A collection of integrity checksums for a background asset upload file, used to verify successful delivery.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/checksums>

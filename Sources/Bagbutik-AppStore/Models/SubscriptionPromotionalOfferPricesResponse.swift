@@ -2,6 +2,13 @@ import Bagbutik_Core
 import Bagbutik_Models
 import Foundation
 
+/**
+ # SubscriptionPromotionalOfferPricesResponse
+ A response containing a list of territory-specific prices for a subscription promotional offer.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/subscriptionpromotionalofferpricesresponse>
+ */
 public struct SubscriptionPromotionalOfferPricesResponse: Codable, Sendable, PagedResponse {
     public typealias Data = SubscriptionPromotionalOfferPrice
 

@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # GET /v1/gameCenterLeaderboardSets/{id}/relationships/localizations
+     # List localization IDs for a Game Center leaderboard set
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-gameCenterLeaderboardSets-_id_-relationships-localizations>

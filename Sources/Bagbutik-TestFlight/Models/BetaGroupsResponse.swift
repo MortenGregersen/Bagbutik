@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # BetaGroupsResponse
- A response that contains a list of Beta Group resources.
+ The response body for endpoints that list TestFlight beta groups.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/betagroupsresponse>

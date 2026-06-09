@@ -3,7 +3,7 @@ import Foundation
 
 /**
  # AppStoreVersionExperimentV2
- The data structure that represents an app store version experiment v2 resource.
+ An A/B test comparing two product page variants for an App Store version to determine which drives more downloads.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionexperimentv2>

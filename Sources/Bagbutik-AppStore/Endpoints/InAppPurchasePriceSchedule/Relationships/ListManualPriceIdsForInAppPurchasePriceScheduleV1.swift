@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # GET /v1/inAppPurchasePriceSchedules/{id}/relationships/manualPrices
+     # List manual price IDs for an in-app purchase price schedule
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-inAppPurchasePriceSchedules-_id_-relationships-manualPrices>

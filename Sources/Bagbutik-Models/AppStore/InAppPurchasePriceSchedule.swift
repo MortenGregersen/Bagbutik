@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # InAppPurchasePriceSchedule
+ A time-based pricing schedule for an in-app purchase, managing base prices and planned price changes.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/inapppurchasepriceschedule>
+ */
 public struct InAppPurchasePriceSchedule: Codable, Sendable, Identifiable {
     public let id: String
     public var links: ResourceLinks?

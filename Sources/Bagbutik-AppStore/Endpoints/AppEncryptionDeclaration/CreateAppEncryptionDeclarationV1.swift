@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Create an App Encryption Declarations
+     # Create an app encryption declaration
      Add an app encryption delcaration for a specific app.
 
      Full documentation:

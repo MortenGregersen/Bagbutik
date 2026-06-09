@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # PreReleaseVersionsResponse
- A response that contains a list of Pre-Release Version resources.
+ A response containing a list of pre-release versions for an app.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/prereleaseversionsresponse>

@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # AppStoreVersionExperimentTreatment
+ One variant in an App Store product page A/B experiment, containing a set of alternative screenshots, previews, and promotional text.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionexperimenttreatment>
+ */
 public struct AppStoreVersionExperimentTreatment: Codable, Sendable, Identifiable {
     public let id: String
     public var links: ResourceLinks?

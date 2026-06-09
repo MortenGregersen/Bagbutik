@@ -2,6 +2,13 @@ import Bagbutik_Core
 import Bagbutik_Models
 import Foundation
 
+/**
+ # BetaAppReviewDetailWithoutIncludesResponse
+ A response containing a single beta app review detail, without related resources.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/betaappreviewdetailwithoutincludesresponse>
+ */
 public struct BetaAppReviewDetailWithoutIncludesResponse: Codable, Sendable {
     public let data: BetaAppReviewDetail
     public let links: DocumentLinks

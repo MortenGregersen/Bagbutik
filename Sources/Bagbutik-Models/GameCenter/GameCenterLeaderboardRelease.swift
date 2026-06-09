@@ -3,7 +3,7 @@ import Foundation
 
 /**
  # GameCenterLeaderboardRelease
- The data structure that represents a leaderboard release.
+ A record indicating that a Game Center leaderboard has been released to players, making it visible in the game.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterleaderboardrelease>

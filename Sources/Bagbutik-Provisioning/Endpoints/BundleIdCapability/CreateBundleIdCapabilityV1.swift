@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Enable a Capability
+     # Enable a capability
      Enable a capability for a bundle ID.
 
      Full documentation:

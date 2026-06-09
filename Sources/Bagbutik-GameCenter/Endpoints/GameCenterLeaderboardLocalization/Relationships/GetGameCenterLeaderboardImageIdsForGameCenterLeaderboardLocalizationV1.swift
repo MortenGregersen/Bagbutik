@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # GET /v1/gameCenterLeaderboardLocalizations/{id}/relationships/gameCenterLeaderboardImage
+     # Get the leaderboard image ID for a Game Center leaderboard localization
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-gameCenterLeaderboardLocalizations-_id_-relationships-gameCenterLeaderboardImage>

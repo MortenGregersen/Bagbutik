@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # GET /v1/subscriptionOfferCodes/{id}/relationships/customCodes
+     # List custom code IDs for a subscription offer code
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-subscriptionOfferCodes-_id_-relationships-customCodes>

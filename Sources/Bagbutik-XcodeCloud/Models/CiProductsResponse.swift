@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # CiProductsResponse
- A response that contains a list of Products resources.
+ The response body for endpoints that list Xcode Cloud products.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/ciproductsresponse>

@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Create an Advanced App Clip Experience
+     # Create an advanced app clip experience
      Configure a new advanced App Clip experience.
 
      Full documentation:

@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # AlternativeDistributionPackageResponse
- A response that contains a single alternative distribution package resource.
+ The response body for endpoints that read a single alternative distribution package.
 
  This object is the response that contains a single the alternative distribution package. For more information, see Creating and reading distribution packages. The schema of the response body is below.
  ```

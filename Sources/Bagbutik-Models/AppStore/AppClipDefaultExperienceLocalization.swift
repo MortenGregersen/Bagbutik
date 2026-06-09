@@ -3,7 +3,7 @@ import Foundation
 
 /**
  # AppClipDefaultExperienceLocalization
- The data structure that represents a Default App Clip Experience Localizations resource.
+ The localized metadata for a default App Clip experience, including the subtitle displayed on the App Clip card.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appclipdefaultexperiencelocalization>

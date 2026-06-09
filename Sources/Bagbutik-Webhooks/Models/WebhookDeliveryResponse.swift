@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # WebhookDeliveryResponse
- A response that contains a single webhook delivery response resource.
+ A response containing a single webhook delivery attempt record.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/webhookdeliveryresponse>

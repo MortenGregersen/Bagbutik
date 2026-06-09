@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # BetaCrashLog
+ The crash log details from a TestFlight tester’s device, including the stack trace and metadata captured at the time of the crash.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/betacrashlog>
+ */
 public struct BetaCrashLog: Codable, Sendable, Identifiable {
     public let id: String
     public var links: ResourceLinks?

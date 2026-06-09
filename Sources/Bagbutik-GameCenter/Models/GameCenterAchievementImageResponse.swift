@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # GameCenterAchievementImageResponse
- A response that contains a single achievement image resource.
+ The response body for endpoints that create, read, or modify a single Game Center achievement image.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterachievementimageresponse>

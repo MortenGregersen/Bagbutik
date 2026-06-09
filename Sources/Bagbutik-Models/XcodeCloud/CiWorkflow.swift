@@ -3,7 +3,7 @@ import Foundation
 
 /**
  # CiWorkflow
- The data structure that represents a Workflows resource.
+ An Xcode Cloud automation configuration specifying when to build, which actions to run, and how to distribute the output.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/ciworkflow>

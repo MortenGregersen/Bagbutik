@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # ProfileResponse
- A response that contains a single Profiles resource.
+ The response body for endpoints that create or read a single provisioning profile.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/profileresponse>

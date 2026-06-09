@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read the Parent Information of an App Category
+     # Read the parent information of an app category
      Get the App Store category to which a specific subcategory belongs.
 
      Full documentation:

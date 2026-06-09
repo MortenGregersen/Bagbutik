@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Modify a Capability Configuration
+     # Modify a capability configuration
      Update the configuration of a specific capability.
 
      Full documentation:

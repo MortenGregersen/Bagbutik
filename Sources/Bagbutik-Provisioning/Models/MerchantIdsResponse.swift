@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # MerchantIdsResponse
- A response that contains a list of merchant ID resources.
+ A response containing a list of Apple Pay merchant identifiers registered to your account.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/merchantidsresponse>

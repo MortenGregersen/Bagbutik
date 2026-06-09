@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # List One-Time Use Offer Code Values
+     # List one-time use offer code values
      Get a list of one-time use offer codes for an auto-renewable subscription in CSV format.
 
      Full documentation:

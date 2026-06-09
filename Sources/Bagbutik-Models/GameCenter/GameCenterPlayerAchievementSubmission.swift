@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # GameCenterPlayerAchievementSubmission
+ A batch operation submitting achievement completions for a specific player in Game Center.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterplayerachievementsubmission>
+ */
 public struct GameCenterPlayerAchievementSubmission: Codable, Sendable, Identifiable {
     public let id: String
     public var links: ResourceLinks?

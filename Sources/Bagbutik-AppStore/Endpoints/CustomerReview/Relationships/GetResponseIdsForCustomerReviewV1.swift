@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # GET /v1/customerReviews/{id}/relationships/response
+     # Get the response ID for a customer review
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-customerReviews-_id_-relationships-response>

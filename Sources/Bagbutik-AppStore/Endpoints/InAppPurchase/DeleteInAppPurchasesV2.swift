@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Delete an In-App Purchase
+     # Delete an in-app purchase
      Delete a specific in-app purchase from your app.
 
      Full documentation:

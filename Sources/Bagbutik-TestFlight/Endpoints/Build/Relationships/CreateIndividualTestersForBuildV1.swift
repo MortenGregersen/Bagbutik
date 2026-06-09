@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Assign Individual Testers to a Build
+     # Assign individual testers to a build
      Enable a beta tester who is not a part of a beta group to test a build.
 
      Full documentation:

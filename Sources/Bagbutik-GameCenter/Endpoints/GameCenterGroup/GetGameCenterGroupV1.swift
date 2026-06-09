@@ -3,8 +3,8 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read Group Information for a Specific Group
-     Read information for a specific group.
+     # Read information for a specific group
+     Read information for a specific Game Center group.
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-gameCenterGroups-_id_>

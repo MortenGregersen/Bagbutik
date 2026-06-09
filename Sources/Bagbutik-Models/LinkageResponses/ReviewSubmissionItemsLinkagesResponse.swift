@@ -3,7 +3,7 @@ import Foundation
 
 /**
  # ReviewSubmissionItemsLinkagesResponse
- A response that contains a list of IDs of related resources.
+ A response containing the resource identifiers of items included in a review submission.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/reviewsubmissionitemslinkagesresponse>

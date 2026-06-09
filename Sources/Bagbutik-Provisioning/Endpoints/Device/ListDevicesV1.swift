@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # List Devices
+     # List devices
      Find and list devices registered to your team.
 
      Full documentation:

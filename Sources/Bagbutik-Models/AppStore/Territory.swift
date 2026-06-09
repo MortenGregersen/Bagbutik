@@ -3,7 +3,7 @@ import Foundation
 
 /**
  # Territory
- The data structure that represents a Territories resource.
+ An App Store region (country or territory) where apps, subscriptions, and in-app purchases are offered.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/territory>

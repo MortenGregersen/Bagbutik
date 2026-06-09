@@ -3,7 +3,7 @@ import Foundation
 
 /**
  # CiBuildRun
- The data structure that represents a Build Runs resource.
+ A single execution of an Xcode Cloud workflow, capturing the trigger, commit, status, and artifacts produced.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/cibuildrun>

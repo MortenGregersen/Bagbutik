@@ -3,7 +3,7 @@ import Foundation
 
 /**
  # CustomerReviewResponseV1
- The data structure that represents the Customer Review Responses resource.
+ A developer’s public reply to a customer review on the App Store.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/customerreviewresponsev1>

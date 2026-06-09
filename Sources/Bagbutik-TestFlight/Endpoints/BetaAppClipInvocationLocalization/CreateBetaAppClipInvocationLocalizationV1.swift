@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Create Localized Metadata for a Beta App Clip Invocation
+     # Create localized metadata for a beta app clip invocation
      Provide localized metadata for an App Clip experience you make available to testers.
 
      Full documentation:

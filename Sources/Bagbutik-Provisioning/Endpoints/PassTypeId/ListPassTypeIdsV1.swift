@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # List Pass Type IDs
+     # List pass type ids
      Find and list pass type IDs that are registered to your team.
 
      Full documentation:

@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # List All Beta Groups for an App
+     # List all beta groups for an app
      Get a list of beta groups associated with a specific app.
 
      Full documentation:

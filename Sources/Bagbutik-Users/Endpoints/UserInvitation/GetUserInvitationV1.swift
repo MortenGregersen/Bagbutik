@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read User Invitation Information
+     # Read user invitation information
      Get information about a pending invitation to join your team.
 
      Full documentation:

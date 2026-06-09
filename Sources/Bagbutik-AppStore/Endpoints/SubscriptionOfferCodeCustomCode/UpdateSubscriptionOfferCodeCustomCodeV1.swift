@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Deactivate Custom Offer Codes
+     # Deactivate custom offer codes
      Deactivate a batch of custom offer codes for an auto-renewable subscription.
 
      Full documentation:

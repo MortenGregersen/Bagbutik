@@ -3,7 +3,7 @@ import Foundation
 
 /**
  # WebhookDelivery
- The data structure that represents a webhook delivery resource.
+ A recorded delivery attempt of an event notification to a webhook endpoint, including the request and response details.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/webhookdelivery>

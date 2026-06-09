@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Modify Merchant IDs
+     # Modify merchant ids
      Update a specific merchant ID.
 
      Full documentation:

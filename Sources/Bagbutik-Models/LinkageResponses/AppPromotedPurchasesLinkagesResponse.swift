@@ -3,7 +3,7 @@ import Foundation
 
 /**
  # AppPromotedPurchasesLinkagesResponse
- A response that contains a list of IDs of related resources.
+ A response containing the resource identifiers of in-app purchases and subscriptions promoted on an app’s product page.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/apppromotedpurchaseslinkagesresponse>

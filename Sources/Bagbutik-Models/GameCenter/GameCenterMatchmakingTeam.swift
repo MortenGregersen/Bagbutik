@@ -3,7 +3,7 @@ import Foundation
 
 /**
  # GameCenterMatchmakingTeam
- The data structure that represents a team.
+ A team configuration within a Game Center matchmaking rule set, defining team size and composition rules.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingteam>

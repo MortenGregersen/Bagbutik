@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # GameCenterPlayerAchievementSubmissionResponse
- A response that contains a single Game Center player achievement resource.
+ A response confirming a Game Center player achievement submission was processed.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterplayerachievementsubmissionresponse>

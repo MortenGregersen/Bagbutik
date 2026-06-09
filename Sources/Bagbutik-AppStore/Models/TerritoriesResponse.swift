@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # TerritoriesResponse
- A response that contains a list of Territory resources.
+ The response body for endpoints that list available App Store territories.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/territoriesresponse>

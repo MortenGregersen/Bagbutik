@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Get Boolean Rule Results
+     # Get boolean rule results
      Get the results of a specific matchmaking rule that returns Boolean values.
 
      Full documentation:

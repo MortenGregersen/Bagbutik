@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read the Routing App Coverage Information of an App Store Version
+     # Read the routing app coverage information of an app store version
      Get the routing app coverage file that is associated with a specific App Store version
 
      Full documentation:

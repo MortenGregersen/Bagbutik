@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read the App Store Review Details Resource Information of an App Store Version
+     # Read the app store review details resource information of an app store version
      Get the details you provide to App Review so they can test your app.
 
      Full documentation:

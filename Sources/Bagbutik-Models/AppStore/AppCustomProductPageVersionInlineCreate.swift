@@ -3,7 +3,7 @@ import Foundation
 
 /**
  # AppCustomProductPageVersionInlineCreate
- The data structure that represents an app custom product page version inline create resource.
+ An inline object for specifying a custom product page version when creating or updating a related resource.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appcustomproductpageversioninlinecreate>

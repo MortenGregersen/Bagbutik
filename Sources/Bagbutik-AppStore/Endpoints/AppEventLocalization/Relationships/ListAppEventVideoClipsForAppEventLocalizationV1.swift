@@ -3,7 +3,8 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # GET /v1/appEventLocalizations/{id}/appEventVideoClips
+     # List all video clips for an app event localization
+     Get a list of video clips for a specific app event localization.
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-appEventLocalizations-_id_-appEventVideoClips>
@@ -14,6 +15,7 @@ public extension Request {
      - Parameter limit: Maximum resources per page - maximum 200
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
+    @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
     static func listAppEventVideoClipsForAppEventLocalizationV1(id: String,
                                                                 fields: [ListAppEventVideoClipsForAppEventLocalizationV1.Field]? = nil,
                                                                 includes: [ListAppEventVideoClipsForAppEventLocalizationV1.Include]? = nil,

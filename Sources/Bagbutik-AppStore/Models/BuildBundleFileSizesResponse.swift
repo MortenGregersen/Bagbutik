@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # BuildBundleFileSizesResponse
- A response that contains a list of Build Bundle File Sizes resources.
+ A response containing a list of download and install size estimates for a build’s bundles.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/buildbundlefilesizesresponse>

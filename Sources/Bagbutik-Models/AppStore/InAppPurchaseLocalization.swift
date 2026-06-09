@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # InAppPurchaseLocalization
+ The localized display name and description for an in-app purchase shown to customers in a specific language.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/inapppurchaselocalization>
+ */
 public struct InAppPurchaseLocalization: Codable, Sendable, Identifiable {
     public let id: String
     public var links: ResourceLinks?

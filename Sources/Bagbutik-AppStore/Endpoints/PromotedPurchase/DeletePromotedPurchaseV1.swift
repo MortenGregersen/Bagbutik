@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Remove a Promoted Purchase
+     # Remove a promoted purchase
      Remove a promotion for an in-app purchase or auto-renewable subscription from the App Store listing.
 
      Full documentation:

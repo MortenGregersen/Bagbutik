@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # End an App Pre-Order
+     # End an app pre-order
      End the pre-order for your app and release to store immediately.
 
      Full documentation:

@@ -2,6 +2,13 @@ import Bagbutik_Core
 import Bagbutik_Models
 import Foundation
 
+/**
+ # AppPricePointsV3Response
+ A response containing a list of available App Store price points.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/apppricepointsv3response>
+ */
 public struct AppPricePointsV3Response: Codable, Sendable, PagedResponse {
     public typealias Data = AppPricePointV3
 

@@ -3,7 +3,7 @@ import Foundation
 
 /**
  # GameCenterDetailChallengeReleasesLinkagesResponse
- A response that contains a list of IDs of related resources.
+ A response containing the resource identifiers of challenge releases associated with a Game Center detail.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterdetailchallengereleaseslinkagesresponse>

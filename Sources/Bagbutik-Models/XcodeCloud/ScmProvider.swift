@@ -3,7 +3,7 @@ import Foundation
 
 /**
  # ScmProvider
- The data structure that represents a Providers resource.
+ A source code management provider, such as GitHub or Bitbucket, connected to Xcode Cloud for accessing repositories.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/scmprovider>

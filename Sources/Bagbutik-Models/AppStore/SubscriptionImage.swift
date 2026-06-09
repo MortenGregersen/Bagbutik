@@ -3,7 +3,7 @@ import Foundation
 
 /**
  # SubscriptionImage
- The data structure that represents a subscription image resource.
+ An image used to represent a subscription product on the App Store product page.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/subscriptionimage>

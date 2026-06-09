@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # PassTypeIdResponse
- A response that contains a single pass type id response resource.
+ A response containing a single Wallet pass type identifier.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/passtypeidresponse>

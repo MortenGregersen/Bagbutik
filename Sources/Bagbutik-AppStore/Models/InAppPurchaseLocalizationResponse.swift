@@ -2,6 +2,13 @@ import Bagbutik_Core
 import Bagbutik_Models
 import Foundation
 
+/**
+ # InAppPurchaseLocalizationResponse
+ The response body for endpoints that create, read, or modify a single in-app purchase localization.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/inapppurchaselocalizationresponse>
+ */
 public struct InAppPurchaseLocalizationResponse: Codable, Sendable {
     public let data: InAppPurchaseLocalization
     public var included: [InAppPurchaseV2]?

@@ -3,7 +3,7 @@ import Foundation
 
 /**
  # BuildBetaNotification
- The data structure that represents a Build Beta Notifications resource.
+ A push notification sent to eligible TestFlight testers when a new build is available to install.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/buildbetanotification>

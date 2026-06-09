@@ -2,6 +2,13 @@ import Bagbutik_Core
 import Bagbutik_Models
 import Foundation
 
+/**
+ # GameCenterAchievementLocalizationCreateRequest
+ The request body you use to create a Game Center achievement localization.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterachievementlocalizationcreaterequest>
+ */
 public struct GameCenterAchievementLocalizationCreateRequest: Codable, Sendable, RequestBody {
     public let data: Data
 

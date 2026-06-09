@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Delete an App Store Version
+     # Delete an app store version
      Delete an app store version that is associated with an app.
 
      Full documentation:

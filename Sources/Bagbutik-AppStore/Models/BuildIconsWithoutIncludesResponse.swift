@@ -2,6 +2,13 @@ import Bagbutik_Core
 import Bagbutik_Models
 import Foundation
 
+/**
+ # BuildIconsWithoutIncludesResponse
+ A response containing a list of build icons, without related resources.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/buildiconswithoutincludesresponse>
+ */
 public struct BuildIconsWithoutIncludesResponse: Codable, Sendable, PagedResponse {
     public typealias Data = BuildIcon
 

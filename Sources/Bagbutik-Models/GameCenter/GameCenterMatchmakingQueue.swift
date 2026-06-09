@@ -3,7 +3,7 @@ import Foundation
 
 /**
  # GameCenterMatchmakingQueue
- The data structure that represents a queue.
+ A queue in Game Center matchmaking that holds players waiting to be matched, governed by a rule set.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingqueue>

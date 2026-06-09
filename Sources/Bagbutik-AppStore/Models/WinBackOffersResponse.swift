@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # WinBackOffersResponse
- A response that contains a list of win-back offer resources.
+ The response body for endpoints that list win-back offers for a subscription.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/winbackoffersresponse>

@@ -3,7 +3,7 @@ import Foundation
 
 /**
  # BackgroundAssetUploadFile
- The data structure that represents a background asset upload file resource.
+ A file included in a background asset upload operation, with its upload URL and verification checksum.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/backgroundassetuploadfile>

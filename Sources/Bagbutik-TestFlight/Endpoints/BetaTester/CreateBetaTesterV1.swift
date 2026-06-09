@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Create a Beta Tester
+     # Create a beta tester
      Create a beta tester assigned to a group, a build, or an app.
 
      Full documentation:

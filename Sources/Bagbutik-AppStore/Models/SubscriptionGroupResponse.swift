@@ -2,6 +2,13 @@ import Bagbutik_Core
 import Bagbutik_Models
 import Foundation
 
+/**
+ # SubscriptionGroupResponse
+ The response body for endpoints that create, read, or modify a single subscription group.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/subscriptiongroupresponse>
+ */
 public struct SubscriptionGroupResponse: Codable, Sendable {
     public let data: SubscriptionGroup
     public var included: [Included]?

@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # GET /v1/userInvitations/{id}/relationships/visibleApps
+     # List visible app IDs for a user invitation
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-userInvitations-_id_-relationships-visibleApps>

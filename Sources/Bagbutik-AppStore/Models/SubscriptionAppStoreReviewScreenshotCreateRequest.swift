@@ -2,6 +2,13 @@ import Bagbutik_Core
 import Bagbutik_Models
 import Foundation
 
+/**
+ # SubscriptionAppStoreReviewScreenshotCreateRequest
+ The request body you use to create a subscription App Store review screenshot.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/subscriptionappstorereviewscreenshotcreaterequest>
+ */
 public struct SubscriptionAppStoreReviewScreenshotCreateRequest: Codable, Sendable, RequestBody {
     public let data: Data
 

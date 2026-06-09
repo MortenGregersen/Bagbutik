@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # AppStoreVersionPromotion
+ A promoted feature badge for an App Store version, highlighting it as new or updated in the App Store.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionpromotion>
+ */
 public struct AppStoreVersionPromotion: Codable, Sendable, Identifiable {
     public let id: String
     public var links: ResourceLinks?

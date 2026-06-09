@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # DeviceResponse
- A response that contains a single Devices resource.
+ The response body for endpoints that create, read, or modify a single registered device.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/deviceresponse>

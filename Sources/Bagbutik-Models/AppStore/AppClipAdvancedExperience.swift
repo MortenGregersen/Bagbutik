@@ -3,7 +3,7 @@ import Foundation
 
 /**
  # AppClipAdvancedExperience
- The data structure that represents an Advanced App Clip Experiences resource.
+ A configured trigger for an App Clip experience, associated with a physical location, NFC tag, QR code, or App Store link.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appclipadvancedexperience>

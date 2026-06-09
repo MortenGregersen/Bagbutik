@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # BackgroundAssetVersionsResponse
- A response that contains a list of background asset version resources.
+ A response containing a list of versions for a background asset.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/backgroundassetversionsresponse>

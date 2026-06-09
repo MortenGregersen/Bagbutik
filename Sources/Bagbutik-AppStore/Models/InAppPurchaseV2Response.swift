@@ -2,6 +2,13 @@ import Bagbutik_Core
 import Bagbutik_Models
 import Foundation
 
+/**
+ # InAppPurchaseV2Response
+ A response containing a single in-app purchase configured via the v2 API.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/inapppurchasev2response>
+ */
 public struct InAppPurchaseV2Response: Codable, Sendable {
     public let data: InAppPurchaseV2
     public var included: [Included]?

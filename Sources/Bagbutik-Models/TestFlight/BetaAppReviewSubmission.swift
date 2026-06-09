@@ -3,7 +3,7 @@ import Foundation
 
 /**
  # BetaAppReviewSubmission
- The data structure that represents a Beta App Review Submissions resource.
+ A submission of a build to Apple’s beta app review process, required before external testing.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/betaappreviewsubmission>

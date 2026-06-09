@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # CiXcodeVersionResponse
- A response that contains a single Xcode Versions resource.
+ The response body for endpoints that read a single Xcode version available in Xcode Cloud.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/cixcodeversionresponse>

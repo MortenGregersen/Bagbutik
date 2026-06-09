@@ -3,7 +3,8 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # GET /v1/appStoreVersionExperimentTreatmentLocalizations/{id}/appPreviewSets
+     # List all preview sets for an experiment treatment localization
+     Get a list of preview sets for a specific App Store version experiment treatment localization.
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-appStoreVersionExperimentTreatmentLocalizations-_id_-appPreviewSets>
@@ -15,6 +16,7 @@ public extension Request {
      - Parameter limits: Number of resources to return
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
+    @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
     static func listAppPreviewSetsForAppStoreVersionExperimentTreatmentLocalizationV1(id: String,
                                                                                       fields: [ListAppPreviewSetsForAppStoreVersionExperimentTreatmentLocalizationV1.Field]? = nil,
                                                                                       filters: [ListAppPreviewSetsForAppStoreVersionExperimentTreatmentLocalizationV1.Filter]? = nil,

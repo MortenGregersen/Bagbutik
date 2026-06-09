@@ -2,6 +2,13 @@ import Bagbutik_Core
 import Bagbutik_Models
 import Foundation
 
+/**
+ # InAppPurchaseAppStoreReviewScreenshotCreateRequest
+ The request body you use to create an in-app purchase App Store review screenshot.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/inapppurchaseappstorereviewscreenshotcreaterequest>
+ */
 public struct InAppPurchaseAppStoreReviewScreenshotCreateRequest: Codable, Sendable, RequestBody {
     public let data: Data
 

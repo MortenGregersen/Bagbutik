@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read Customer Review Information
+     # Read customer review information
      Get information about a specific customer review, including the review content.
 
      Full documentation:

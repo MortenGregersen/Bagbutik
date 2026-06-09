@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Cancel a User Invitation
+     # Cancel a user invitation
      Cancel a pending invitation for a user to join your team.
 
      Full documentation:

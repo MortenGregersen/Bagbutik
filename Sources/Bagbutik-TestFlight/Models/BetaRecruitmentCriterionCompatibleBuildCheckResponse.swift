@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # BetaRecruitmentCriterionCompatibleBuildCheckResponse
- A response that contains a single beta recruitment criteria-compatible, build-check resource.
+ A response containing a single result of checking whether a build meets the requirements of a beta recruitment criterion.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/betarecruitmentcriterioncompatiblebuildcheckresponse>

@@ -3,7 +3,7 @@ import Foundation
 
 /**
  # BuildIcon
- The data structure that represents the Build Icons resource.
+ A PNG icon image extracted from a build, used for display in App Store Connect and TestFlight.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/buildicon>

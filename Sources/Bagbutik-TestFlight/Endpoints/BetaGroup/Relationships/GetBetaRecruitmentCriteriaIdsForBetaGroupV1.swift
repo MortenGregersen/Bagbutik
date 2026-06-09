@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # GET /v1/betaGroups/{id}/relationships/betaRecruitmentCriteria
+     # List beta recruitment criterion IDs for a beta group
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-betaGroups-_id_-relationships-betaRecruitmentCriteria>

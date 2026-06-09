@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Delete an App Screenshot
+     # Delete an app screenshot
      Delete an app screenshot that is associated with a screenshot set.
 
      Full documentation:
@@ -12,6 +12,7 @@ public extension Request {
      - Parameter id: The id of the requested resource
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
+    @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
     static func deleteAppScreenshotV1(id: String) -> Request<EmptyResponse, ErrorResponse> {
         .init(
             path: "/v1/appScreenshots/\(id)",

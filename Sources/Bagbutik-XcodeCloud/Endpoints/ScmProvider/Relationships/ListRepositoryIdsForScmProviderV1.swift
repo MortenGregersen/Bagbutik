@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # GET /v1/scmProviders/{id}/relationships/repositories
+     # List repository IDs for an SCM provider
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-scmProviders-_id_-relationships-repositories>

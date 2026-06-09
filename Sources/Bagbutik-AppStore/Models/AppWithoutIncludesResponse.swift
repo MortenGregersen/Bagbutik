@@ -2,6 +2,13 @@ import Bagbutik_Core
 import Bagbutik_Models
 import Foundation
 
+/**
+ # AppWithoutIncludesResponse
+ A response containing a single app, without including related resources.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appwithoutincludesresponse>
+ */
 public struct AppWithoutIncludesResponse: Codable, Sendable {
     public let data: App
     public let links: DocumentLinks

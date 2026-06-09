@@ -2,6 +2,13 @@ import Bagbutik_Core
 import Bagbutik_Models
 import Foundation
 
+/**
+ # PrereleaseVersionWithoutIncludesResponse
+ A response containing a single pre-release version, without related resources.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/prereleaseversionwithoutincludesresponse>
+ */
 public struct PrereleaseVersionWithoutIncludesResponse: Codable, Sendable {
     public let data: PrereleaseVersion
     public let links: DocumentLinks

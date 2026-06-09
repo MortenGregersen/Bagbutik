@@ -2,6 +2,13 @@ import Bagbutik_Core
 import Bagbutik_Models
 import Foundation
 
+/**
+ # SubscriptionOfferCodeCustomCodeCreateRequest
+ The request body you use to create a subscription offer code custom code.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/subscriptionoffercodecustomcodecreaterequest>
+ */
 public struct SubscriptionOfferCodeCustomCodeCreateRequest: Codable, Sendable, RequestBody {
     public let data: Data
 

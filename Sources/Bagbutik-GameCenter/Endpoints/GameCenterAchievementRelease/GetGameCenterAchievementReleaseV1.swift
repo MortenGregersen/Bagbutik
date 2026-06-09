@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read Game Center Achievement Release Information
+     # Read game center achievement release information
      Read the state of a specific achievement release.
 
      Full documentation:

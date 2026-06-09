@@ -3,7 +3,7 @@ import Foundation
 
 /**
  # BetaBuildLocalization
- The data structure that represents a Beta Build Localizations resource.
+ The localized ‘What’s New’ text shown to TestFlight testers in a specific language for a build.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/betabuildlocalization>

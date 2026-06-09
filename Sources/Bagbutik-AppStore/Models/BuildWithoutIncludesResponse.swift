@@ -2,6 +2,13 @@ import Bagbutik_Core
 import Bagbutik_Models
 import Foundation
 
+/**
+ # BuildWithoutIncludesResponse
+ A response containing a single build, without related resources.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/buildwithoutincludesresponse>
+ */
 public struct BuildWithoutIncludesResponse: Codable, Sendable {
     public let data: Build
     public let links: DocumentLinks

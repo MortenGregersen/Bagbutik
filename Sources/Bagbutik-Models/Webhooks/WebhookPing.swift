@@ -3,7 +3,7 @@ import Foundation
 
 /**
  # WebhookPing
- The data structure that represents a webhook ping resource.
+ A test payload sent to verify that a webhook endpoint is reachable and correctly configured.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/webhookping>

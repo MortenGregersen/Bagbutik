@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # BetaBuildLocalizationsResponse
- A response that contains a list of Beta Build Localization resources.
+ The response body for endpoints that list localized TestFlight build metadata entries.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/betabuildlocalizationsresponse>

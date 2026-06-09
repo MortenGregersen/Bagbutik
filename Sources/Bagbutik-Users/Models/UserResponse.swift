@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # UserResponse
- A response that contains a single Users resource.
+ The response body for endpoints that read or modify a single App Store Connect team member.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/userresponse>

@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read Subscription Information
+     # Read subscription information
      Get information about a specific auto-renewable subscription.
 
      Full documentation:
@@ -39,6 +39,7 @@ public enum GetSubscriptionV1 {
         /// The fields to include for returned resources of type subscriptionAppStoreReviewScreenshots
         case subscriptionAppStoreReviewScreenshots([SubscriptionAppStoreReviewScreenshots])
         /// The fields to include for returned resources of type subscriptionAvailabilities
+        @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
         case subscriptionAvailabilities([SubscriptionAvailabilities])
         /// The fields to include for returned resources of type subscriptionGroups
         case subscriptionGroups([SubscriptionGroups])
@@ -50,6 +51,8 @@ public enum GetSubscriptionV1 {
         case subscriptionLocalizations([SubscriptionLocalizations])
         /// The fields to include for returned resources of type subscriptionOfferCodes
         case subscriptionOfferCodes([SubscriptionOfferCodes])
+        /// The fields to include for returned resources of type subscriptionPlanAvailabilities
+        case subscriptionPlanAvailabilities([SubscriptionPlanAvailabilities])
         /// The fields to include for returned resources of type subscriptionPrices
         case subscriptionPrices([SubscriptionPrices])
         /// The fields to include for returned resources of type subscriptionPromotionalOffers
@@ -184,6 +187,7 @@ public enum GetSubscriptionV1 {
             case startDate
             case subscription
             case subscriptionPricePoint
+            case targetSubscriptionPlanType
             case territory
 
             public init(from decoder: Decoder) throws {
@@ -240,6 +244,7 @@ public enum GetSubscriptionV1 {
             case productionCodeCount
             case sandboxCodeCount
             case subscription
+            case targetSubscriptionPlanType
             case totalNumberOfCodes
 
             public init(from decoder: Decoder) throws {
@@ -258,7 +263,29 @@ public enum GetSubscriptionV1 {
             }
         }
 
+        public enum SubscriptionPlanAvailabilities: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case availableInNewTerritories
+            case availableTerritories
+            case planType
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = SubscriptionPlanAvailabilities(rawValue: string) {
+                    self = value
+                } else if let value = SubscriptionPlanAvailabilities(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid SubscriptionPlanAvailabilities value: \(string)"
+                    )
+                }
+            }
+        }
+
         public enum SubscriptionPrices: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case planType
             case preserved
             case startDate
             case subscriptionPricePoint
@@ -288,6 +315,7 @@ public enum GetSubscriptionV1 {
             case offerMode
             case prices
             case subscription
+            case targetSubscriptionPlanType
 
             public init(from decoder: Decoder) throws {
                 let container = try decoder.singleValueContainer()
@@ -314,6 +342,7 @@ public enum GetSubscriptionV1 {
             case introductoryOffers
             case name
             case offerCodes
+            case planAvailabilities
             case pricePoints
             case prices
             case productId
@@ -356,6 +385,7 @@ public enum GetSubscriptionV1 {
             case promotionIntent
             case referenceName
             case startDate
+            case targetSubscriptionPlanType
 
             public init(from decoder: Decoder) throws {
                 let container = try decoder.singleValueContainer()
@@ -383,6 +413,7 @@ public enum GetSubscriptionV1 {
         case images
         case introductoryOffers
         case offerCodes
+        case planAvailabilities
         case prices
         case promotedPurchase
         case promotionalOffers
@@ -401,6 +432,8 @@ public enum GetSubscriptionV1 {
         case introductoryOffers(Int)
         /// Maximum number of related offerCodes returned (when they are included) - maximum 50
         case offerCodes(Int)
+        /// Maximum number of related planAvailabilities returned (when they are included) - maximum 50
+        case planAvailabilities(Int)
         /// Maximum number of related prices returned (when they are included) - maximum 50
         case prices(Int)
         /// Maximum number of related promotionalOffers returned (when they are included) - maximum 50

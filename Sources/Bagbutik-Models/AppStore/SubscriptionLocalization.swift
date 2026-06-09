@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # SubscriptionLocalization
+ The localized display name and description for an auto-renewable subscription shown to customers on the App Store.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/subscriptionlocalization>
+ */
 public struct SubscriptionLocalization: Codable, Sendable, Identifiable {
     public let id: String
     public var links: ResourceLinks?

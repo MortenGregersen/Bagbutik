@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # AppClipAppStoreReviewDetailResponse
- A response that contains a single App Clip App Store Review Details resource.
+ A response containing the App Store review details for a single App Clip.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appclipappstorereviewdetailresponse>

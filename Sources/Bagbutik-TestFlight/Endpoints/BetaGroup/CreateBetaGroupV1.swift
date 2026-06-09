@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Create a Beta Group
+     # Create a beta group
      Create a beta group associated with an app, optionally enabling TestFlight public links.
 
      Full documentation:

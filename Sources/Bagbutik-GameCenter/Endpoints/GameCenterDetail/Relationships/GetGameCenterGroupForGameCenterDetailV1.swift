@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read the Groups in a Game Center Detail
+     # Read the groups in a game center detail
      Get a list of groups in a Game Center detail.
 
      Full documentation:

@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # GET /v1/appStoreVersionExperiments/{id}/relationships/appStoreVersionExperimentTreatments
+     # List treatment IDs for an App Store version experiment
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-appStoreVersionExperiments-_id_-relationships-appStoreVersionExperimentTreatments>

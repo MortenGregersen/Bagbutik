@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # List Sandbox Testers
+     # List sandbox testers
      Get a list of Sandbox Testers for your team.
 
      Full documentation:

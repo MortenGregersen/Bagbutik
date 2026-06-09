@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read Actor Information
+     # Read actor information
      Get information about a specific actor.
 
      Full documentation:

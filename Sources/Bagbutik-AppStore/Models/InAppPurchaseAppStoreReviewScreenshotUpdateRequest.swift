@@ -2,6 +2,13 @@ import Bagbutik_Core
 import Bagbutik_Models
 import Foundation
 
+/**
+ # InAppPurchaseAppStoreReviewScreenshotUpdateRequest
+ The request body you use to update an in-app purchase App Store review screenshot update request.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/inapppurchaseappstorereviewscreenshotupdaterequest>
+ */
 public struct InAppPurchaseAppStoreReviewScreenshotUpdateRequest: Codable, Sendable, RequestBody {
     public let data: Data
 

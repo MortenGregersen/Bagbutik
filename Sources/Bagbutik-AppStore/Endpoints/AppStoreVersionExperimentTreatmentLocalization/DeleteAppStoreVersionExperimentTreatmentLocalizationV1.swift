@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Delete a Treatment Localization for an App Store Version Experiment
+     # Delete a treatment localization for an app store version experiment
      Delete localized metatdata that you configured for an App Store Version experiment treatment.
 
      Full documentation:

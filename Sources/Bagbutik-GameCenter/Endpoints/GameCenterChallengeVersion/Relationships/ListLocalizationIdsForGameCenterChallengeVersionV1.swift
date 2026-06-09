@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Get the Localization IDs for a Challenge Version
+     # Get the localization ids for a challenge version
      List all the localization IDs for a specific Game Center challenge version.
 
      Full documentation:

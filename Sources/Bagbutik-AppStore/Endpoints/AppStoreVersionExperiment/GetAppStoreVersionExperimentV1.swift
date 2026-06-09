@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read App Store Experiment Information V1
+     # Read app store experiment information v1
      Get information for a specific App Store version experiment.
 
      Full documentation:

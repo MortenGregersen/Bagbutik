@@ -2,6 +2,13 @@ import Bagbutik_Core
 import Bagbutik_Models
 import Foundation
 
+/**
+ # PreReleaseVersionsWithoutIncludesResponse
+ A response containing a list of pre-release versions, without related resources.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/prereleaseversionswithoutincludesresponse>
+ */
 public struct PreReleaseVersionsWithoutIncludesResponse: Codable, Sendable, PagedResponse {
     public typealias Data = PrereleaseVersion
 

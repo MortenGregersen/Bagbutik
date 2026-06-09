@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # List All Introductory Offer Resource IDs for an Auto-Renewable Subscription
+     # List all introductory offer resource ids for an auto-renewable subscription
      Get a list of resource IDs representing introductory offers for an auto-renewable subscription.
 
      Full documentation:

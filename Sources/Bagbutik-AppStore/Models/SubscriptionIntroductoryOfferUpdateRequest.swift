@@ -2,6 +2,13 @@ import Bagbutik_Core
 import Bagbutik_Models
 import Foundation
 
+/**
+ # SubscriptionIntroductoryOfferUpdateRequest
+ The request body you use to update a subscription introductory offer update request.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/subscriptionintroductoryofferupdaterequest>
+ */
 public struct SubscriptionIntroductoryOfferUpdateRequest: Codable, Sendable, RequestBody {
     public let data: Data
 

@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # CiWorkflowResponse
- A response that contains a single Workflows resource.
+ The response body for endpoints that create, read, or modify an Xcode Cloud workflow.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/ciworkflowresponse>

@@ -1,5 +1,12 @@
 import Foundation
 
+/**
+ # ErrorLinks
+ Navigation links within an error response, providing references to related resources or documentation.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/errorlinks>
+ */
 public struct ErrorLinks: Codable, Sendable {
     public var about: String?
     public var associated: Associated?

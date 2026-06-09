@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Create a Routing App Coverage
+     # Create a routing app coverage
      Attach a routing app coverage file to an App Store version.
 
      Full documentation:

@@ -3,8 +3,8 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # List All Search Keywords for a Customer Product Page Localization
-     Get a list of search keyword IDs for a customer product page localization.
+     # List all search keywords for a custom product page localization
+     Get a list of search keyword IDs for a custom product page localization.
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-appCustomProductPageLocalizations-_id_-relationships-searchKeywords>

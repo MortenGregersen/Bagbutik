@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read Subscription Review Screenshot Information
+     # Read subscription review screenshot information
      Get the information about a review screenshot for an auto-renewable subscription.
 
      Full documentation:
@@ -72,6 +72,7 @@ public enum GetSubscriptionAppStoreReviewScreenshotV1 {
             case introductoryOffers
             case name
             case offerCodes
+            case planAvailabilities
             case pricePoints
             case prices
             case productId

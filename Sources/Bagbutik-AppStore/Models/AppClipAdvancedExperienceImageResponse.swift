@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # AppClipAdvancedExperienceImageResponse
- A response that contains a single Advanced App Clip Experience Images resource.
+ A response containing a single image for an App Clip advanced experience card.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appclipadvancedexperienceimageresponse>

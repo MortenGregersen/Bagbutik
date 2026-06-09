@@ -3,7 +3,8 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # GET /v1/appEventLocalizations/{id}
+     # Read app event localization information
+     Get information about a specific app event localization.
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-appEventLocalizations-_id_>
@@ -36,8 +37,10 @@ public enum GetAppEventLocalizationV1 {
         /// The fields to include for returned resources of type appEventLocalizations
         case appEventLocalizations([AppEventLocalizations])
         /// The fields to include for returned resources of type appEventScreenshots
+        @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
         case appEventScreenshots([AppEventScreenshots])
         /// The fields to include for returned resources of type appEventVideoClips
+        @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
         case appEventVideoClips([AppEventVideoClips])
         /// The fields to include for returned resources of type appEvents
         case appEvents([AppEvents])

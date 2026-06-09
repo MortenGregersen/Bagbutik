@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # SubscriptionOfferCodeCustomCode
+ A merchant-defined alphanumeric promotional code granting a discounted or free subscription to the customer who redeems it.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/subscriptionoffercodecustomcode>
+ */
 public struct SubscriptionOfferCodeCustomCode: Codable, Sendable, Identifiable {
     public let id: String
     public var links: ResourceLinks?

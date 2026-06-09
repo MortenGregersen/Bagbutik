@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # List Game Center Leaderboards for a Group
+     # List game center leaderboards for a group
      Read Game Center leaderboard information for a specific group.
 
      Full documentation:

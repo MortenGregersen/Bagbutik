@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # CustomerReviewResponseV1Response
- A response that contains a single Customer Review Responses resource.
+ The response body for endpoints that create, read, or modify a developer’s response to a customer review.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/customerreviewresponsev1response>

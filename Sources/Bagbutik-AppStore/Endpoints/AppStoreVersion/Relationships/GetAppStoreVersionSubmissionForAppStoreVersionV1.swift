@@ -3,7 +3,8 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read the App Store Version Submission Information of an App Store Version
+     # Read the app store version submission information of an app store version
+     Get the App Review submission for a specific App Store version.
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-appStoreVersions-_id_-appStoreVersionSubmission>

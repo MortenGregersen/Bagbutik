@@ -4,7 +4,7 @@ import Bagbutik_Models
 public extension Request {
     /**
      # Delete a Leaderboard Set
-     Delete a specifc leaderboard set.
+     Delete a specific leaderboard set.
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/delete-v1-gameCenterLeaderboardSets-_id_>

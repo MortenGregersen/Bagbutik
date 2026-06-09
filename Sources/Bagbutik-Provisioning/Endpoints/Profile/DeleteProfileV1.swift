@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Delete a Profile
+     # Delete a profile
      Delete a provisioning profile that is used for app development or distribution.
 
      You can delete provisioning profiles, and may wish to do so if they are expiring or obsolete.

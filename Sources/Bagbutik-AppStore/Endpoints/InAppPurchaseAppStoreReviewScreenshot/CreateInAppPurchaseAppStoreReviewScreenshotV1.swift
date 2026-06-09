@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Create an In-App Purchase Review Screenshot
+     # Create an in-app purchase review screenshot
      Reserve a review screenshot for an in-app purchase.
 
      Full documentation:

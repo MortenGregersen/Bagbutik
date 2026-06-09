@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # SubscriptionSubmission
+ A submission of an auto-renewable subscription to App Store review.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/subscriptionsubmission>
+ */
 public struct SubscriptionSubmission: Codable, Sendable, Identifiable {
     public let id: String
     public var links: ResourceLinks?

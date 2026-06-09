@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read Routing App Coverage Information
+     # Read routing app coverage information
      Get information about the routing app coverage file and its upload and processing status.
 
      Full documentation:

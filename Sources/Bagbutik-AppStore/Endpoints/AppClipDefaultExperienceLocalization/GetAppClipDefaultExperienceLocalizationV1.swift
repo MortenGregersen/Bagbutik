@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read Localization Information of a Default App Clip Experience
+     # Read localization information of a default app clip experience
      Get localized metadata that appears on the App Clip card of a specific default App Clip experience.
 
      Full documentation:

@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read the Availability of a Subscription
+     # Read the availability of a subscription
      Get information about the territory availability for a subscription.
 
      Full documentation:
@@ -15,6 +15,7 @@ public extension Request {
      - Parameter limit: Maximum number of related availableTerritories returned (when they are included) - maximum 50
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
+    @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
     static func getSubscriptionAvailabilityV1(id: String,
                                               fields: [GetSubscriptionAvailabilityV1.Field]? = nil,
                                               includes: [GetSubscriptionAvailabilityV1.Include]? = nil,

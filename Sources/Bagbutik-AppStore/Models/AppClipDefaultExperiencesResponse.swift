@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # AppClipDefaultExperiencesResponse
- A response that contains a list of Default App Clip Experiences resources.
+ The response body for endpoints that list default App Clip experiences.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appclipdefaultexperiencesresponse>

@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Remove a Review Submission Item
+     # Remove a review submission item
      Remove a specific item from a review submission.
 
      Full documentation:

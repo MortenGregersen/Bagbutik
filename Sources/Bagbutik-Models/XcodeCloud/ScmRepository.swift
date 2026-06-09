@@ -3,7 +3,7 @@ import Foundation
 
 /**
  # ScmRepository
- The data structure that represents a Repositories resource.
+ A source code repository connected to Xcode Cloud, used as the source for workflow builds.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/scmrepository>

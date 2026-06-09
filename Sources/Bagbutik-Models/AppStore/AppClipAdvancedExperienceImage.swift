@@ -3,7 +3,7 @@ import Foundation
 
 /**
  # AppClipAdvancedExperienceImage
- The data structure that represents an image that appears on the App Clip card for an advanced App Clip experience.
+ The image displayed on the App Clip card for an advanced App Clip experience, shown when a user scans an NFC tag, QR code, or location-based trigger.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appclipadvancedexperienceimage>

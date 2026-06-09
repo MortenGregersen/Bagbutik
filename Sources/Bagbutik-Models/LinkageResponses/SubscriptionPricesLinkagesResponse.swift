@@ -3,7 +3,7 @@ import Foundation
 
 /**
  # SubscriptionPricesLinkagesResponse
- A response that contains a list of IDs of related resources.
+ A response containing the resource identifiers of prices linked to a subscription.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/subscriptionpriceslinkagesresponse>

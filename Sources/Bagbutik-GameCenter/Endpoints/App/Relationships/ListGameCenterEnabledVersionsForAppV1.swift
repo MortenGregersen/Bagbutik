@@ -3,7 +3,8 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # List All Game Center Enabled Versions for an App
+     # List all game center enabled versions for an app
+     Get a list of Game Center enabled versions for a specific app.
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-apps-_id_-gameCenterEnabledVersions>

@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read and Download Certificate Information
+     # Read and download certificate information
      Get information about a certificate and download the certificate data.
 
      Full documentation:

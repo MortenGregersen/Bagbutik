@@ -2,6 +2,13 @@ import Bagbutik_Core
 import Bagbutik_Models
 import Foundation
 
+/**
+ # BetaLicenseAgreementWithoutIncludesResponse
+ A response containing a single TestFlight license agreement, without related resources.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/betalicenseagreementwithoutincludesresponse>
+ */
 public struct BetaLicenseAgreementWithoutIncludesResponse: Codable, Sendable {
     public let data: BetaLicenseAgreement
     public let links: DocumentLinks

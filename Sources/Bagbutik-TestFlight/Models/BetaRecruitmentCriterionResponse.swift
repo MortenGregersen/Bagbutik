@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # BetaRecruitmentCriterionResponse
- A response that contains a single beta recruitment criterion resource.
+ A response containing a single beta recruitment criterion and its configured device/OS requirements.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/betarecruitmentcriterionresponse>

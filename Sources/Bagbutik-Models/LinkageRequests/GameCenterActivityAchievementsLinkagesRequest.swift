@@ -3,7 +3,7 @@ import Foundation
 
 /**
  # GameCenterActivityAchievementsLinkagesRequest
- The request body you use to create a link betweeen an achievement and an activity resource.
+ The request body for updating the list of achievements linked to a Game Center activity.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecenteractivityachievementslinkagesrequest>

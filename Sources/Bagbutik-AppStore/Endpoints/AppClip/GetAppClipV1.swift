@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read App Clip Information
+     # Read app clip information
      Get a specific App Clip.
 
      Full documentation:

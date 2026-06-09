@@ -3,7 +3,7 @@ import Foundation
 
 /**
  # WebhookEvent
- The data structure that represents a webhook event resource.
+ An event type that can trigger webhook notifications, such as build completion or review status changes.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/webhookevent>

@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read App Screenshot Information
+     # Read app screenshot information
      Get information about an app screenshot and its upload and processing status.
 
      Full documentation:
@@ -14,6 +14,7 @@ public extension Request {
      - Parameter includes: Relationship data to include in the response
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
+    @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
     static func getAppScreenshotV1(id: String,
                                    fields: [GetAppScreenshotV1.Field]? = nil,
                                    includes: [GetAppScreenshotV1.Include]? = nil) -> Request<AppScreenshotResponse, ErrorResponse> {
@@ -32,6 +33,7 @@ public enum GetAppScreenshotV1 {
      */
     public enum Field: FieldParameter {
         /// The fields to include for returned resources of type appScreenshotSets
+        @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
         case appScreenshotSets([AppScreenshotSets])
         /// The fields to include for returned resources of type appScreenshots
         case appScreenshots([AppScreenshots])

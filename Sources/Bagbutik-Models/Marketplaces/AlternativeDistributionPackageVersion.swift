@@ -3,7 +3,7 @@ import Foundation
 
 /**
  # AlternativeDistributionPackageVersion
- The data structure that represents an alternative distribution package version resource.
+ A versioned snapshot of an alternative distribution package, containing its variants and delta updates.
 
  For more information about the responses that includes alternative distribution package version objects, see [AlternativeDistributionPackageVersionResponse](https://developer.apple.com/documentation/appstoreconnectapi/alternativedistributionpackageversionresponse) or [AlternativeDistributionPackageVersionsResponse](https://developer.apple.com/documentation/appstoreconnectapi/alternativedistributionpackageversionsresponse).
 

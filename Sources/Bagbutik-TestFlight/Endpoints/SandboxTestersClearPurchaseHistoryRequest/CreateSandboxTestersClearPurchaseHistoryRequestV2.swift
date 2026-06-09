@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Clear Purchase History for a Sandbox Tester
+     # Clear purchase history for a sandbox tester
      Remove purchase history from a Sandbox Apple Account.
 
      Full documentation:

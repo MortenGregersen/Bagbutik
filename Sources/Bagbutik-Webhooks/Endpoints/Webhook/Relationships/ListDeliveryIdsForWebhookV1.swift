@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # GET /v1/webhooks/{id}/relationships/deliveries
+     # List delivery IDs for a webhook
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-webhooks-_id_-relationships-deliveries>

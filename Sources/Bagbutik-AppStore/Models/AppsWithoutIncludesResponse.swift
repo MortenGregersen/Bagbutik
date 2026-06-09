@@ -2,6 +2,13 @@ import Bagbutik_Core
 import Bagbutik_Models
 import Foundation
 
+/**
+ # AppsWithoutIncludesResponse
+ A response containing a list of apps, without including related resources.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appswithoutincludesresponse>
+ */
 public struct AppsWithoutIncludesResponse: Codable, Sendable, PagedResponse {
     public typealias Data = App
 

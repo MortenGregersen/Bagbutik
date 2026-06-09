@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Get the Build ID for an App Store Version
+     # Get the build id for an app store version
      Get the ID of the build that is attached to a specific App Store version.
 
      Full documentation:

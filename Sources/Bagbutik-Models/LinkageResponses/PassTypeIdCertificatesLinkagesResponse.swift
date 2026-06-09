@@ -3,7 +3,7 @@ import Foundation
 
 /**
  # PassTypeIdCertificatesLinkagesResponse
- A response that contains a list of pass type id certificates linkages response resources.
+ A response containing the resource identifiers of signing certificates associated with a pass type identifier.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/passtypeidcertificateslinkagesresponse>

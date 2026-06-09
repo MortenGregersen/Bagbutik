@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # CertificateResponse
- A response that contains a single Certificates resource.
+ The response body for endpoints that create or read a single signing certificate.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/certificateresponse>

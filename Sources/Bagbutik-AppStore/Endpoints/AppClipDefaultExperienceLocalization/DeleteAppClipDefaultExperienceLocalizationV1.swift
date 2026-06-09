@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Delete a Default App Clip Experience Localization
+     # Delete a default app clip experience localization
      Delete localized metadata that appears on the App Clip card of a default App Clip experience.
 
      Full documentation:

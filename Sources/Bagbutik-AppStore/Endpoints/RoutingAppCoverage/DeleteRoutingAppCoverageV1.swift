@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Delete a Routing App Coverage
+     # Delete a routing app coverage
      Delete the routing app coverage file that is associated with a version.
 
      Full documentation:

@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read the Primary Category Information of an App Info
+     # Read the primary category information of an app info
      Get an app’s primary App Store category.
 
      Full documentation:

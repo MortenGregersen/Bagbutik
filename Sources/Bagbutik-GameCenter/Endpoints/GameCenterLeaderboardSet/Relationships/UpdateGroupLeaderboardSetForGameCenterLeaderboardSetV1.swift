@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Edit the Releationship Between a Leaderboard and a Group Leaderboard
+     # Edit the relationship between a leaderboard and a group leaderboard
      Modify the group leaderboards in a leaderboard set.
 
      Full documentation:

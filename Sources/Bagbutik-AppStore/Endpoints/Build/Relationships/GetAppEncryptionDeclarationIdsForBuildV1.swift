@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Get the App Encryption Declaration ID for a Build
+     # Get the app encryption declaration id for a build
      Get the beta app encryption declaration resource ID associated with a build.
 
      Full documentation:

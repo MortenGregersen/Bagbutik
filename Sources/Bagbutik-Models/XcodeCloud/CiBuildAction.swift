@@ -3,7 +3,7 @@ import Foundation
 
 /**
  # CiBuildAction
- The data structure that represents a Build Actions resource.
+ The execution result of a specific action step within an Xcode Cloud build run, including its status and issues.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/cibuildaction>

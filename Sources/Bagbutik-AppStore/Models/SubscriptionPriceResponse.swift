@@ -2,6 +2,13 @@ import Bagbutik_Core
 import Bagbutik_Models
 import Foundation
 
+/**
+ # SubscriptionPriceResponse
+ The response body for endpoints that create a single subscription price.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/subscriptionpriceresponse>
+ */
 public struct SubscriptionPriceResponse: Codable, Sendable {
     public let data: SubscriptionPrice
     public var included: [Included]?

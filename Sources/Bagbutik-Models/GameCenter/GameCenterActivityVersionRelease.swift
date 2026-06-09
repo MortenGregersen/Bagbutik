@@ -3,7 +3,7 @@ import Foundation
 
 /**
  # GameCenterActivityVersionRelease
- The data structure that represents an activity version release resource.
+ A record indicating that a version of a Game Center activity has been released to players.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecenteractivityversionrelease>

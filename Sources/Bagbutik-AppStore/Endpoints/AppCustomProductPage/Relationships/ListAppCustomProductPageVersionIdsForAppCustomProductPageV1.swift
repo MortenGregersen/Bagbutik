@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Get All Version IDs for an App Custom Product Page
+     # Get all version ids for an app custom product page
      Get a list of custom product page version IDs associated with a custom product page.
 
      Full documentation:

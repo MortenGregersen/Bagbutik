@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Add Builds to a Beta Group
+     # Add builds to a beta group
      Associate builds with a beta group to enable the group to test the builds.
 
      Full documentation:

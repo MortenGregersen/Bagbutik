@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # TerritoryAvailabilitiesResponse
- A response that contains a list of territory availability resources.
+ The response body for endpoints that list an app’s availability across territories.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/territoryavailabilitiesresponse>

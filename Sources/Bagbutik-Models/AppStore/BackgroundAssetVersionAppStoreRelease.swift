@@ -3,7 +3,7 @@ import Foundation
 
 /**
  # BackgroundAssetVersionAppStoreRelease
- The data structure that represents a background asset version app store release resource.
+ A release of a background asset version to App Store customers, making the background content available on their devices.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/backgroundassetversionappstorerelease>

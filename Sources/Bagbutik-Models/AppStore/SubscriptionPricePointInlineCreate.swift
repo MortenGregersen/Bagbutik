@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # SubscriptionPricePointInlineCreate
+ An inline object for specifying a price point when creating a subscription pricing configuration.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/subscriptionpricepointinlinecreate>
+ */
 public struct SubscriptionPricePointInlineCreate: Codable, Sendable, Identifiable {
     public var id: String?
     public var type: String { "subscriptionPricePoints" }

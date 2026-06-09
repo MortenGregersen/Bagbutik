@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Delete an In-App Purchase Localization
+     # Delete an in-app purchase localization
      Delete the metadata for a single in-app purchase localization.
 
      Full documentation:

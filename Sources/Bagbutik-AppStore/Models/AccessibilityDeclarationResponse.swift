@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # AccessibilityDeclarationResponse
- A response that contains a single accessibility declaration resource.
+ A response containing a single accessibility declaration for an app.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/accessibilitydeclarationresponse>

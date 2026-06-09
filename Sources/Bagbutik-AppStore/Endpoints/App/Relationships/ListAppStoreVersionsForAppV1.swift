@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # List All App Store Versions for an App
+     # List all app store versions for an app
      Get a list of all App Store versions of an app across all platforms.
 
      Full documentation:

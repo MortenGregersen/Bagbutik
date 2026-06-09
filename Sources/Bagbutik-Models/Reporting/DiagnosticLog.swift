@@ -3,7 +3,7 @@ import Foundation
 
 /**
  # DiagnosticLog
- The data structure that represents the Diagnostic Logs resource.
+ A raw performance log file associated with a diagnostic signature, downloadable for detailed analysis.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/diagnosticlog>

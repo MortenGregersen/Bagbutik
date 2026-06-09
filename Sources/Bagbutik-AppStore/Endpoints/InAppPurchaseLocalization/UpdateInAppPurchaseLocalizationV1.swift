@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Modify an In-App Purchase Localization
+     # Modify an in-app purchase localization
      Update the display name and description for a specific locale of an in-app purchase.
 
      Full documentation:

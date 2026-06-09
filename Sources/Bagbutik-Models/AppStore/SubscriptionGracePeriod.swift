@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # SubscriptionGracePeriod
+ A grace period configuration for a subscription, allowing subscribers continued access while payment issues are resolved.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/subscriptiongraceperiod>
+ */
 public struct SubscriptionGracePeriod: Codable, Sendable, Identifiable {
     public let id: String
     public var links: ResourceLinks?

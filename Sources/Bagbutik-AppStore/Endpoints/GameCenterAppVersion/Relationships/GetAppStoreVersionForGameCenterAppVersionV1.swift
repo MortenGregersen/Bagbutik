@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # GET /v1/gameCenterAppVersions/{id}/appStoreVersion
+     # Read the App Store version for an app version
      Read the App Store version and related information for an app version.
 
      Full documentation:

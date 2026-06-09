@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Create a Subscription Price Change
+     # Create a subscription price change
      Schedule a subscription price change for a specific territory.
 
      Full documentation:

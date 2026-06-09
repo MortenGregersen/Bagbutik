@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # GET /v1/subscriptionPromotionalOffers/{id}/relationships/prices
+     # List price IDs for a subscription promotional offer
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-subscriptionPromotionalOffers-_id_-relationships-prices>

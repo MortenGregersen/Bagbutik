@@ -2,6 +2,13 @@ import Bagbutik_Core
 import Bagbutik_Models
 import Foundation
 
+/**
+ # DevicesWithoutIncludesResponse
+ A response containing a list of registered devices, without related resources.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/deviceswithoutincludesresponse>
+ */
 public struct DevicesWithoutIncludesResponse: Codable, Sendable, PagedResponse {
     public typealias Data = Device
 

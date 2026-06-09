@@ -2,6 +2,13 @@ import Bagbutik_Core
 import Bagbutik_Models
 import Foundation
 
+/**
+ # AppEventVideoClipUpdateRequest
+ The request body you use to update an app event video clip update request.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appeventvideoclipupdaterequest>
+ */
 public struct AppEventVideoClipUpdateRequest: Codable, Sendable, RequestBody {
     public let data: Data
 

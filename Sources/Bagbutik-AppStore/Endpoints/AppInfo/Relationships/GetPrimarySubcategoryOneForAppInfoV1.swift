@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read the Primary Subcategory One Information of an App Info
+     # Read the primary subcategory one information of an app info
      Get the first App Store subcategory within an app’s primary category.
 
      Full documentation:

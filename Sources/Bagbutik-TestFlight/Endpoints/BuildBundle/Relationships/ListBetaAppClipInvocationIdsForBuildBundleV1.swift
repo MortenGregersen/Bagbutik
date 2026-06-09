@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # GET /v1/buildBundles/{id}/relationships/betaAppClipInvocations
+     # List beta App Clip invocation IDs for a build bundle
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-buildBundles-_id_-relationships-betaAppClipInvocations>

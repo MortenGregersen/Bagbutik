@@ -3,7 +3,7 @@ import Foundation
 
 /**
  # RoutingAppCoverage
- The data structure that represents the Routing App Coverages resource.
+ A GeoJSON file defining the geographic coverage area of a turn-by-turn navigation app, required for App Store submission.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/routingappcoverage>

@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # SubscriptionOfferCodePrice
+ The territory-specific customer price and duration for a subscription promotional offer code.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/subscriptionoffercodeprice>
+ */
 public struct SubscriptionOfferCodePrice: Codable, Sendable, Identifiable {
     public let id: String
     public var links: ResourceLinks?

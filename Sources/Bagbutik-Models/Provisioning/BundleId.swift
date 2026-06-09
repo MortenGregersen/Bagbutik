@@ -3,7 +3,7 @@ import Foundation
 
 /**
  # BundleId
- The data structure that represents a Bundle IDs resource.
+ An App ID registered with Apple, associating a specific bundle identifier with capabilities and provisioning profiles.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/bundleid>

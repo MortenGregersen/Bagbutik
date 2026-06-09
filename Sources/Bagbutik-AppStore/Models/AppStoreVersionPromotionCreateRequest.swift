@@ -2,6 +2,13 @@ import Bagbutik_Core
 import Bagbutik_Models
 import Foundation
 
+/**
+ # AppStoreVersionPromotionCreateRequest
+ The request body you use to create an App Store version promotion.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionpromotioncreaterequest>
+ */
 public struct AppStoreVersionPromotionCreateRequest: Codable, Sendable, RequestBody {
     public let data: Data
 

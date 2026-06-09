@@ -3,7 +3,7 @@ import Foundation
 
 /**
  # AppClipHeaderImage
- The data structure that represents the image that appears on the App Clip card of a default App Clip experience.
+ The image displayed on the App Clip card for a default App Clip experience, uploaded as part of App Clip configuration.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appclipheaderimage>

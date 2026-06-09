@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read the App Clip Card Image
+     # Read the app clip card image
      Get the image that appears on the App Clip card of a default App Clip experience.
 
      Full documentation:

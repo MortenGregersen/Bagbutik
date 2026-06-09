@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # BuildIconsResponse
- A response that contains a list of Build Icon resources.
+ A response containing a list of icon images for a build.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/buildiconsresponse>

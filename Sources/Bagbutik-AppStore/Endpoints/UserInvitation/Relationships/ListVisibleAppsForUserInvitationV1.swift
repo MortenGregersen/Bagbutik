@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # List All Apps Visible to an Invited User
+     # List all apps visible to an invited user
      Get a list of apps that will be visible to a user with a pending invitation.
 
      Full documentation:

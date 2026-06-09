@@ -3,7 +3,8 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # PATCH /v1/appEventLocalizations/{id}
+     # Modify an app event localization
+     Update the localized metadata for a specific in-app event.
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/patch-v1-appEventLocalizations-_id_>

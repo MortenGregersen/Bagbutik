@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # List All In-App Purchases for an App V1
+     # List all in-app purchases for an app v1
      List the in-app purchases that are available for your app.
 
      Full documentation:

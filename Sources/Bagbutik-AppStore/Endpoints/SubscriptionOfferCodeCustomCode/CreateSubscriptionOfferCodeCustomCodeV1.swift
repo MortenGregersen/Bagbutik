@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Create Custom Offer Codes
+     # Create custom offer codes
      Create custom offer codes for an auto-renewable subscription offer.
 
      Full documentation:

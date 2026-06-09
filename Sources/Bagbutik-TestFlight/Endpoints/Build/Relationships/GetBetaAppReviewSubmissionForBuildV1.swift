@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read the Beta App Review Submission of a Build
+     # Read the beta app review submission of a build
      Get the beta app review submission status for a specific build.
 
      Full documentation:

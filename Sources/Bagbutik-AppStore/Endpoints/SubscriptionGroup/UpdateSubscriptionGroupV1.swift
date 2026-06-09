@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Modify a Subscription Group
+     # Modify a subscription group
      Update the reference name for a specific subscription group.
 
      Full documentation:

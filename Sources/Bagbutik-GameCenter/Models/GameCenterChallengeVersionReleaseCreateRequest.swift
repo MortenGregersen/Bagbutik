@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # GameCenterChallengeVersionReleaseCreateRequest
- The request body you use to create a challenge resource.
+ The request body for releasing a Game Center challenge version to players.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterchallengeversionreleasecreaterequest>

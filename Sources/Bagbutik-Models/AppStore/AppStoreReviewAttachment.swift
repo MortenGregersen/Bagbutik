@@ -3,7 +3,7 @@ import Foundation
 
 /**
  # AppStoreReviewAttachment
- The data structure that represent an App Store Review Attachments resource.
+ A file attached to an App Store review submission to provide reviewers with additional context, such as demo credentials or notes.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appstorereviewattachment>

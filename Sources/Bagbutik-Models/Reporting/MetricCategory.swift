@@ -8,6 +8,7 @@ public enum MetricCategory: String, Sendable, Codable, CaseIterable {
     case hang = "HANG"
     case launch = "LAUNCH"
     case memory = "MEMORY"
+    case storage = "STORAGE"
     case termination = "TERMINATION"
 
     public init(from decoder: Decoder) throws {

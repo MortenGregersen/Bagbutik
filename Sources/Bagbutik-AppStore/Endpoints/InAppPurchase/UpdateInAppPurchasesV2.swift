@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Modify an In-App Purchase
+     # Modify an in-app purchase
      Update the reference name of a specific in-app purchase.
 
      Full documentation:

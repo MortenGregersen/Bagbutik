@@ -3,7 +3,8 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # PATCH /v1/appEvents/{id}
+     # Modify an in-app event
+     Update the metadata for a specific in-app event.
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/patch-v1-appEvents-_id_>

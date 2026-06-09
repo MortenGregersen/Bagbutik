@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # SubscriptionGroupLocalization
+ The localized display name and optional custom app name for a subscription group, shown to customers on the App Store.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/subscriptiongrouplocalization>
+ */
 public struct SubscriptionGroupLocalization: Codable, Sendable, Identifiable {
     public let id: String
     public var links: ResourceLinks?

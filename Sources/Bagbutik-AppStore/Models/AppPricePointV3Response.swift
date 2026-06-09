@@ -2,6 +2,13 @@ import Bagbutik_Core
 import Bagbutik_Models
 import Foundation
 
+/**
+ # AppPricePointV3Response
+ A response containing a single App Store price point with its territory-specific pricing details.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/apppricepointv3response>
+ */
 public struct AppPricePointV3Response: Codable, Sendable {
     public let data: AppPricePointV3
     public var included: [Included]?

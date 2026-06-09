@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # AppStoreReviewDetailResponse
- A response that contains a single App Store Review Details resource.
+ The response body for endpoints that read or modify App Store review details for a version.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appstorereviewdetailresponse>

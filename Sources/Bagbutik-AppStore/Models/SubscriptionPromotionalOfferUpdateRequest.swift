@@ -2,6 +2,13 @@ import Bagbutik_Core
 import Bagbutik_Models
 import Foundation
 
+/**
+ # SubscriptionPromotionalOfferUpdateRequest
+ The request body you use to update a subscription promotional offer update request.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/subscriptionpromotionalofferupdaterequest>
+ */
 public struct SubscriptionPromotionalOfferUpdateRequest: Codable, Sendable, RequestBody {
     public let data: Data
     public var included: [SubscriptionPromotionalOfferPriceInlineCreate]?

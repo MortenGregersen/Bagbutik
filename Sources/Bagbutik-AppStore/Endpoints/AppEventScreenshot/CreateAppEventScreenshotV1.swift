@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # POST /v1/appEventScreenshots
+     # Create an app event screenshot
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/post-v1-appEventScreenshots>
@@ -11,6 +11,7 @@ public extension Request {
      - Parameter requestBody: AppEventScreenshot representation
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
+    @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
     static func createAppEventScreenshotV1(requestBody: AppEventScreenshotCreateRequest) -> Request<AppEventScreenshotResponse, ErrorResponse> {
         .init(
             path: "/v1/appEventScreenshots",

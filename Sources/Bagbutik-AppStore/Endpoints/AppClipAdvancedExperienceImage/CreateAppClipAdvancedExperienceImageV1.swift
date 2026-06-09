@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Create an App Clip Card Image for an Advanced App Clip Experience
+     # Create an app clip card image for an advanced app clip experience
      Reserve an image asset that appears on the App Clip card of an advanced App Clip experience.
 
      Full documentation:

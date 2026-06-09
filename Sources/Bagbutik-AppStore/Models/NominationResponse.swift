@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # NominationResponse
- A response that contains a single featuring nomination resource.
+ A response containing a single App Store nomination submission.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/nominationresponse>

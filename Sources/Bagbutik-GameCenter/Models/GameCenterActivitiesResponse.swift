@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # GameCenterActivitiesResponse
- A response that contains a list of activities resources.
+ A response containing a list of Game Center activities configured for an app.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecenteractivitiesresponse>

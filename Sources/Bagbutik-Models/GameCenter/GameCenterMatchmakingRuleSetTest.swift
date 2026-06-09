@@ -3,7 +3,7 @@ import Foundation
 
 /**
  # GameCenterMatchmakingRuleSetTest
- The data structure that represents the results of testing a rule set.
+ A test run of a Game Center matchmaking rule set using simulated player properties to validate the rules.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingrulesettest>

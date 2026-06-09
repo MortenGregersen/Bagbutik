@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read User Information
+     # Read user information
      Get information about a user on your team, such as name, roles, and app visibility.
 
      Full documentation:

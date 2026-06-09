@@ -3,7 +3,7 @@ import Foundation
 
 /**
  # BetaAppClipInvocation
- The data structure that represents a Beta App Clip Invocations resource.
+ A TestFlight URL scheme invocation that allows beta testers to launch an App Clip during testing.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/betaappclipinvocation>

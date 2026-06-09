@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # CustomerReviewSummarizationsResponse
- The data structure that represents a customer review summarizations response resource.
+ A response containing a list of AI-generated review summaries for an app across territories.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/customerreviewsummarizationsresponse>

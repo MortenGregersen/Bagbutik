@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Delete a Beta Tester
+     # Delete a beta tester
      Remove a beta tester’s ability to test all apps.
 
      Full documentation:

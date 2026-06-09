@@ -2,6 +2,13 @@ import Bagbutik_Core
 import Bagbutik_Models
 import Foundation
 
+/**
+ # BundleIdWithoutIncludesResponse
+ A response containing a single bundle ID, without including capability and profile details.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/bundleidwithoutincludesresponse>
+ */
 public struct BundleIdWithoutIncludesResponse: Codable, Sendable {
     public let data: BundleId
     public let links: DocumentLinks

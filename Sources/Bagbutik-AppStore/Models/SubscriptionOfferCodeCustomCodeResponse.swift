@@ -2,6 +2,13 @@ import Bagbutik_Core
 import Bagbutik_Models
 import Foundation
 
+/**
+ # SubscriptionOfferCodeCustomCodeResponse
+ A response containing a single custom promotional code for a subscription offer.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/subscriptionoffercodecustomcoderesponse>
+ */
 public struct SubscriptionOfferCodeCustomCodeResponse: Codable, Sendable {
     public let data: SubscriptionOfferCodeCustomCode
     public var included: [SubscriptionOfferCode]?

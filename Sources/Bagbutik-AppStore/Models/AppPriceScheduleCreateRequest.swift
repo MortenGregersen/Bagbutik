@@ -2,6 +2,13 @@ import Bagbutik_Core
 import Bagbutik_Models
 import Foundation
 
+/**
+ # AppPriceScheduleCreateRequest
+ The request body you use to create an app price schedule.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/apppriceschedulecreaterequest>
+ */
 public struct AppPriceScheduleCreateRequest: Codable, Sendable, RequestBody {
     public let data: Data
     public var included: [Included]?

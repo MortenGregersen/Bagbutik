@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # TerritoryAgeRatingsResponse
- A response that contains a list of territory age-rating resources.
+ A response containing a list of age ratings assigned to an app across App Store territories.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/territoryageratingsresponse>

@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Upload an App Encryption Declaration Document
+     # Upload an app encryption declaration document
      Add an App Encryption Declaration Document to an existing App Encryption Declaration.
 
      Full documentation:

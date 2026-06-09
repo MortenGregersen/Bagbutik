@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # AnalyticsReportSegmentResponse
- A response that contains a single analytics report segment resource.
+ The response body for endpoints that read a single downloadable segment of an analytics report.
 
  Use this object with [Read the Details for a Report Segment](https://developer.apple.com/documentation/appstoreconnectapi/get-v1-analyticsreportsegments-_id_).
 

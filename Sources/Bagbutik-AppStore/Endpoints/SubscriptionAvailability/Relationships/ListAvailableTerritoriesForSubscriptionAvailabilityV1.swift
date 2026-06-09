@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # List the Territory Availability of a Subscription
+     # List the territory availability of a subscription
      List the territory availability and currency of a specific subscription.
 
      Full documentation:
@@ -14,6 +14,7 @@ public extension Request {
      - Parameter limit: Maximum resources per page - maximum 200
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
+    @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
     static func listAvailableTerritoriesForSubscriptionAvailabilityV1(id: String,
                                                                       fields: [ListAvailableTerritoriesForSubscriptionAvailabilityV1.Field]? = nil,
                                                                       limit: Int? = nil) -> Request<TerritoriesResponse, ErrorResponse> {

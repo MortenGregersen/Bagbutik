@@ -2,6 +2,13 @@ import Bagbutik_Core
 import Bagbutik_Models
 import Foundation
 
+/**
+ # GameCenterAchievementLocalizationResponse
+ The response body for endpoints that create, read, or modify a single Game Center achievement localization.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterachievementlocalizationresponse>
+ */
 public struct GameCenterAchievementLocalizationResponse: Codable, Sendable {
     public let data: GameCenterAchievementLocalization
     public var included: [Included]?

@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # AlternativeDistributionKeyResponse
- A response that contains a single alternative distribution key resource.
+ The response body for endpoints that create or read a single alternative distribution key.
 
  This object is the response from the alternative distribution key endpoints. For more information about alternative distribution keys, see Creating and reading keys.
  ```

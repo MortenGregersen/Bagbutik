@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Register a New Device
+     # Register a new device
      Register a new device for app development.
 
      Full documentation:

@@ -2,6 +2,13 @@ import Bagbutik_Core
 import Bagbutik_Models
 import Foundation
 
+/**
+ # InAppPurchaseSubmissionCreateRequest
+ The request body you use to create an in-app purchase submission.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/inapppurchasesubmissioncreaterequest>
+ */
 public struct InAppPurchaseSubmissionCreateRequest: Codable, Sendable, RequestBody {
     public let data: Data
 

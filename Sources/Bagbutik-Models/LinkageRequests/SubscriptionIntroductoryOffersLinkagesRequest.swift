@@ -3,7 +3,7 @@ import Foundation
 
 /**
  # SubscriptionIntroductoryOffersLinkagesRequest
- The data structure that represents a subscription introductory offers linkages request resource.
+ The request body for updating the list of introductory offers linked to a subscription.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/subscriptionintroductoryofferslinkagesrequest>

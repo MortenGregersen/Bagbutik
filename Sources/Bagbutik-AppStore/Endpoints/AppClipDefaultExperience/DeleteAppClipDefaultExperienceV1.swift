@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Delete a Default App Clip Experience
+     # Delete a default app clip experience
      Delete a specific default App Clip experience.
 
      Full documentation:

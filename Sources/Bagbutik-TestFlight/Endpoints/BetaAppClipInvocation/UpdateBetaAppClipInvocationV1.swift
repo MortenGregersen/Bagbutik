@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Modify an App Clip Invocation You Provide to Testers
+     # Modify an app clip invocation you provide to testers
      Change an App Clip invocation you make available to testers in the TestFlight app.
 
      Full documentation:

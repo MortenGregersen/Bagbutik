@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Delete a Beta Build Localization
+     # Delete a beta build localization
      Delete a specific beta build localization associated with a build.
 
      Full documentation:

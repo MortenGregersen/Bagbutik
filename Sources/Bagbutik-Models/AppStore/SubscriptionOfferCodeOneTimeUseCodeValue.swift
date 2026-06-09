@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # SubscriptionOfferCodeOneTimeUseCodeValue
+ The alphanumeric code string and associated metadata for a one-time-use subscription offer code.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/subscriptionoffercodeonetimeusecodevalue>
+ */
 public struct SubscriptionOfferCodeOneTimeUseCodeValue: Codable, Sendable, Identifiable {
     public let id: String
     public var links: ResourceLinks?

@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read the App Information of a Beta App Localization
+     # Read the app information of a beta app localization
      Get the app information associated with a specific beta app localization.
 
      Full documentation:

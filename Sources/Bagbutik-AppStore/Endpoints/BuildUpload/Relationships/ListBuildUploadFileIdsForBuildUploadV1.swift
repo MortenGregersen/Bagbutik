@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read the Build Upload File ID for a Build Upload
+     # Read the build upload file id for a build upload
      Get the build upload file ID for a specific build upload.
 
      Full documentation:

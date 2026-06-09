@@ -2,6 +2,13 @@ import Bagbutik_Core
 import Bagbutik_Models
 import Foundation
 
+/**
+ # InAppPurchaseContentResponse
+ A response containing a single hosted content record for an in-app purchase.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/inapppurchasecontentresponse>
+ */
 public struct InAppPurchaseContentResponse: Codable, Sendable {
     public let data: InAppPurchaseContent
     public var included: [InAppPurchaseV2]?

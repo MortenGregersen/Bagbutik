@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # WebhookDeliveriesResponse
- A response that contains a list of response resources for webhook deliveries.
+ A response containing a list of webhook delivery records, each showing the outcome of a notification attempt.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/webhookdeliveriesresponse>

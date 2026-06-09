@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read App Category Information
+     # Read app category information
      Get a specific app category.
 
      Full documentation:

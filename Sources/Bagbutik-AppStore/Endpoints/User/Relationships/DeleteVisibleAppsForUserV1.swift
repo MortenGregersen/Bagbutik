@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Remove Visible Apps From a User
+     # Remove visible apps from a user
      Remove a user on your team’s access to one or more apps.
 
      Full documentation:

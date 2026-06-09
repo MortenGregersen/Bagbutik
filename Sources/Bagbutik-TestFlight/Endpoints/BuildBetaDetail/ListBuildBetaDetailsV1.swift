@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # List Build Beta Details
+     # List build beta details
      Find and list build beta details for all builds.
 
      Full documentation:

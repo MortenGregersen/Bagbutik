@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Get All IDs of Builds Individually Assigned to a Beta Tester
+     # Get all ids of builds individually assigned to a beta tester
      Get a list of build resource IDs individually assigned to a specific beta tester.
 
      Full documentation:

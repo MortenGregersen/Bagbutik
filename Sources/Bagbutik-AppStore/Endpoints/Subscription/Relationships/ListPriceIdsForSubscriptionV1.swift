@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # List All Subscription Prices IDs for an Auto-Renewable Subscription
+     # List all subscription price ids for an auto-renewable subscription
      Get a list of resource IDs representing subscription prices for an auto-renewable subscription.
 
      Full documentation:

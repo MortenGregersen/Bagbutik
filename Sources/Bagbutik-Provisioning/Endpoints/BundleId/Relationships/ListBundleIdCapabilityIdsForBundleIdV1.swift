@@ -3,7 +3,8 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # GET /v1/bundleIds/{id}/relationships/bundleIdCapabilities
+     # Read bundle Id capabilities ids for a bundle Id
+     List all bundleIdCapabilities IDs for a specific bundle Id.
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-bundleIds-_id_-relationships-bundleIdCapabilities>

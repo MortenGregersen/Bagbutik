@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # GET /v1/betaBuildLocalizations/{id}/relationships/build
+     # Get the build ID for a beta build localization
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-betaBuildLocalizations-_id_-relationships-build>

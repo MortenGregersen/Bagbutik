@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # List All Diagnostic Signatures for a Build
+     # List all diagnostic signatures for a build
      List the aggregate backtrace signatures captured for a specific build.
 
      The example below requests the top two weighted disk write diagnostic signatures. The example response returns two signatures that are responsible for 85% and 7% of disk writes.

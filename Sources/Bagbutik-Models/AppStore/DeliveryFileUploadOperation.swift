@@ -3,7 +3,7 @@ import Foundation
 
 /**
  # DeliveryFileUploadOperation
- The data structure that represents a delivery file upload operation resource.
+ An upload operation descriptor containing the URL, HTTP method, and required headers for uploading a background asset file to Apple’s servers.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/deliveryfileuploadoperation>

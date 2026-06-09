@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # InAppPurchasePricePoint
+ A standard price tier for in-app purchases, specifying the customer price and developer proceeds in a territory.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/inapppurchasepricepoint>
+ */
 public struct InAppPurchasePricePoint: Codable, Sendable, Identifiable {
     public let id: String
     public var links: ResourceLinks?

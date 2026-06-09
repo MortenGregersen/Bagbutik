@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Delete a Review Screenshot for an Auto-Renewable Subscription
+     # Delete a review screenshot for an auto-renewable subscription
      Delete an image that you uploaded for review of an auto-renewable subscription.
 
      Full documentation:

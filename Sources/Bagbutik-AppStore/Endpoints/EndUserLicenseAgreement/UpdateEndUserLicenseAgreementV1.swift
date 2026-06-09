@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Modify an End User License Agreement
+     # Modify an end user license agreement
      Update the text or territories for your custom end user license agreement.
 
      Use this endpoint to change the license agreement text or associate the agreement with different App Store territories.

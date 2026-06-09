@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # AppInfosResponse
- A response that contains a list of App Info resources.
+ The response body for endpoints that list an app’s App Store information entries.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appinfosresponse>

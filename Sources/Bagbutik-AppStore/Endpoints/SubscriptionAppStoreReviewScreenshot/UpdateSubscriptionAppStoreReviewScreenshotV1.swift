@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Commit a Review Screenshot for an Auto-Renewable Subscription
+     # Commit a review screenshot for an auto-renewable subscription
      Commit an uploaded image asset as a review screenshot for an auto-renewable subscription.
 
      Full documentation:

@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # GET /v1/betaAppLocalizations/{id}/relationships/app
+     # Get the app ID for a beta app localization
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-betaAppLocalizations-_id_-relationships-app>

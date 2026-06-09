@@ -3,7 +3,7 @@ import Foundation
 
 /**
  # CiIssueCounts
- The data structure that represents an Issue Counts resource.
+ A summary of the warnings, errors, analyzer warnings, and test failures in an Xcode Cloud build run.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/ciissuecounts>

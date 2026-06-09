@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # GET /v1/betaGroups/{id}/relationships/betaRecruitmentCriterionCompatibleBuildCheck
+     # Get the compatible build check ID for a beta group recruitment criterion
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-betaGroups-_id_-relationships-betaRecruitmentCriterionCompatibleBuildCheck>

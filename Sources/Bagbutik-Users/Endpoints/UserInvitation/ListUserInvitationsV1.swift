@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # List Invited Users
+     # List invited users
      Get a list of pending invitations to join your team.
 
      Full documentation:

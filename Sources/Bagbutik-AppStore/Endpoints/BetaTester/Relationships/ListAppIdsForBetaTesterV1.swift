@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Get All App Resource IDs for a Beta Tester
+     # Get all app resource ids for a beta tester
      Get a list of app resource IDs associated with a beta tester.
 
      Full documentation:

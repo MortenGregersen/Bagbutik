@@ -3,7 +3,7 @@ import Foundation
 
 /**
  # PassTypeId
- The data structure that represents a pass type id resource.
+ A pass type identifier used to create and manage Wallet passes such as boarding passes, coupons, or loyalty cards.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/passtypeid>

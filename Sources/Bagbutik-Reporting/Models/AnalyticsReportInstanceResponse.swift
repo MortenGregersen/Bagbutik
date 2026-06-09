@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # AnalyticsReportInstanceResponse
- A response that contains a single analytics report instance resource.
+ The response body for endpoints that read a single analytics report instance.
 
  Use this object with [Read Report Instance Information](https://developer.apple.com/documentation/appstoreconnectapi/get-v1-analyticsreportinstances-_id_).
 

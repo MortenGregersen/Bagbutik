@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # AppClipResponse
- A response that contains a single App Clips resource.
+ The response body for endpoints that read an App Clip associated with an app.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appclipresponse>

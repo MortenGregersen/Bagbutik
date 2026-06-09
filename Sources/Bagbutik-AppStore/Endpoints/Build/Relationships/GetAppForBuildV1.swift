@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read the App Information of a Build
+     # Read the app information of a build
      Get the app information for a specific build.
 
      Full documentation:

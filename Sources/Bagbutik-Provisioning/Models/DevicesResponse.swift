@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # DevicesResponse
- A response that contains a list of Devices resources.
+ The response body for endpoints that list registered devices.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/devicesresponse>

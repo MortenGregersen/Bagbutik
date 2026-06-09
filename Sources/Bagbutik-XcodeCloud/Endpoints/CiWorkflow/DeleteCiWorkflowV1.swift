@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Delete a Workflow
+     # Delete a workflow
      Delete an Xcode Cloud workflow and all of its associated data.
 
      To delete an Xcode Cloud workflow, call this endpoint using the HTTP `DELETE` method like this:

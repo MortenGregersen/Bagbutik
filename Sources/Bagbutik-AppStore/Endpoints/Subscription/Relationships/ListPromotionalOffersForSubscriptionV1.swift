@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # List All Promotional Offer Resource IDs for an Auto-Renewable Subscription
+     # List all promotional offer resource ids for an auto-renewable subscription
      Get a list of promotional offers for a specific auto-renewable subscription.
 
      Full documentation:
@@ -72,6 +72,7 @@ public enum ListPromotionalOffersForSubscriptionV1 {
             case offerMode
             case prices
             case subscription
+            case targetSubscriptionPlanType
 
             public init(from decoder: Decoder) throws {
                 let container = try decoder.singleValueContainer()
@@ -98,6 +99,7 @@ public enum ListPromotionalOffersForSubscriptionV1 {
             case introductoryOffers
             case name
             case offerCodes
+            case planAvailabilities
             case pricePoints
             case prices
             case productId

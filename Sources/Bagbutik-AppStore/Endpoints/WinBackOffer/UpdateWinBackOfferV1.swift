@@ -4,6 +4,8 @@ import Bagbutik_Models
 public extension Request {
     /**
      # Modify a Win-Back Offer
+     The data structure that represents a patch-v1-win back offers-{id} resource.
+
      Edit details for a specific win-back offer.
 
      Full documentation:

@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # InAppPurchaseV2
+ An in-app purchase item configured via the v2 API, supporting both consumable and non-consumable types.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/inapppurchasev2>
+ */
 public struct InAppPurchaseV2: Codable, Sendable, Identifiable {
     public let id: String
     public var links: ResourceLinks?

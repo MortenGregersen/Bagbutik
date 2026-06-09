@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Create a Review Submission for a Subscription Group
+     # Create a review submission for a subscription group
      Create a subscription group submission for review.
 
      Full documentation:

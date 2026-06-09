@@ -2,6 +2,13 @@ import Bagbutik_Core
 import Bagbutik_Models
 import Foundation
 
+/**
+ # InAppPurchaseAvailabilityCreateRequest
+ The request body you use to create an in-app purchase availability.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/inapppurchaseavailabilitycreaterequest>
+ */
 public struct InAppPurchaseAvailabilityCreateRequest: Codable, Sendable, RequestBody {
     public let data: Data
 

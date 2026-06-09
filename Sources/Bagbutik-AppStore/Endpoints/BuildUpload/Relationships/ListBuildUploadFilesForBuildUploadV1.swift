@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # GET /v1/buildUploads/{id}/buildUploadFiles
+     # Read build upload file information for a build upload
      Get build upload file information for a specific build upload.
 
      Full documentation:

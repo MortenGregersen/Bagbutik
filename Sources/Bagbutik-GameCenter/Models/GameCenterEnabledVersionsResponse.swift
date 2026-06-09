@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # GameCenterEnabledVersionsResponse
- A response that contains a list of Game Center Enabled Version resources.
+ A response containing a list of app versions with Game Center enabled (deprecated; use GameCenterAppVersion).
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterenabledversionsresponse>

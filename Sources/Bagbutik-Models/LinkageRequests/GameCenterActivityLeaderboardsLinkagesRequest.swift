@@ -3,7 +3,7 @@ import Foundation
 
 /**
  # GameCenterActivityLeaderboardsLinkagesRequest
- The request body you use to create a link betweeen a leaderboard and an activity resource.
+ The request body for updating the list of leaderboards linked to a Game Center activity.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecenteractivityleaderboardslinkagesrequest>

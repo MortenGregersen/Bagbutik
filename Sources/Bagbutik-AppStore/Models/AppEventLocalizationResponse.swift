@@ -2,6 +2,13 @@ import Bagbutik_Core
 import Bagbutik_Models
 import Foundation
 
+/**
+ # AppEventLocalizationResponse
+ The response body for endpoints that create, read, or modify a localized in-app event entry.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appeventlocalizationresponse>
+ */
 public struct AppEventLocalizationResponse: Codable, Sendable {
     public let data: AppEventLocalization
     public var included: [Included]?
@@ -35,30 +42,6 @@ public struct AppEventLocalizationResponse: Codable, Sendable {
             guard case let .appEvent(appEvent) = relationship else { return nil }
             return appEvent
         }.first { $0.id == data.relationships?.appEvent?.data?.id }
-    }
-
-    public func getAppEventScreenshots() -> [AppEventScreenshot] {
-        guard let appEventScreenshotIds = data.relationships?.appEventScreenshots?.data?.map(\.id),
-              let appEventScreenshots = included?.compactMap({ relationship -> AppEventScreenshot? in
-                  guard case let .appEventScreenshot(appEventScreenshot) = relationship else { return nil }
-                  return appEventScreenshotIds.contains(appEventScreenshot.id) ? appEventScreenshot : nil
-              })
-        else {
-            return []
-        }
-        return appEventScreenshots
-    }
-
-    public func getAppEventVideoClips() -> [AppEventVideoClip] {
-        guard let appEventVideoClipIds = data.relationships?.appEventVideoClips?.data?.map(\.id),
-              let appEventVideoClips = included?.compactMap({ relationship -> AppEventVideoClip? in
-                  guard case let .appEventVideoClip(appEventVideoClip) = relationship else { return nil }
-                  return appEventVideoClipIds.contains(appEventVideoClip.id) ? appEventVideoClip : nil
-              })
-        else {
-            return []
-        }
-        return appEventVideoClips
     }
 
     public enum Included: Codable, Sendable {

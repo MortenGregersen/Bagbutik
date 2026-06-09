@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # List All Activities for a Game Center Group
+     # List all activities for a game center group
      Get a list of all activities for a Game Center group.
 
      Full documentation:

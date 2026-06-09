@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # BuildUploadFileResponse
- A response that contains a list of build upload resources.
+ A response containing a single file upload record for a build upload.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/builduploadfileresponse>

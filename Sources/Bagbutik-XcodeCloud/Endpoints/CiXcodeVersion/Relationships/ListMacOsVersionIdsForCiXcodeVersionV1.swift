@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # GET /v1/ciXcodeVersions/{id}/relationships/macOsVersions
+     # List macOS version IDs for a CI Xcode version
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-ciXcodeVersions-_id_-relationships-macOsVersions>

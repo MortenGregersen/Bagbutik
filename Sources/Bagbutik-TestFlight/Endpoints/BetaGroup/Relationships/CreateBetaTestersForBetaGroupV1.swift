@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Add Beta Testers to a Beta Group
+     # Add beta testers to a beta group
      Add a specific beta tester to one or more beta groups for beta testing.
 
      Full documentation:

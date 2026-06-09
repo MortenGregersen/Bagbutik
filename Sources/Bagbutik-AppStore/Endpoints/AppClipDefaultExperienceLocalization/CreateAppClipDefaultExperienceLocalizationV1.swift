@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Create the Localized Metadata for a Default App Clip Experience
+     # Create the localized metadata for a default app clip experience
      Provide localized metadata that appears on the App Clip card of a default App Clip experience.
 
      Full documentation:

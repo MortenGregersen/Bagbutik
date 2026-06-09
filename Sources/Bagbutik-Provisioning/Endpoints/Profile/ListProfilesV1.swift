@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # List and Download Profiles
+     # List and download profiles
      Find and list provisioning profiles and download their data.
 
      Full documentation:

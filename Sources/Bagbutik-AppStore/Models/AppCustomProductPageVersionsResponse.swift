@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # AppCustomProductPageVersionsResponse
- A response that contains a list of app customer product page version resources.
+ The response body for endpoints that list versions of a custom App Store product page.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appcustomproductpageversionsresponse>

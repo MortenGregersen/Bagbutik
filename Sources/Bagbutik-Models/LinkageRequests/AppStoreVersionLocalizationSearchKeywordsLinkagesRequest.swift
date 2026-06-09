@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # AppStoreVersionLocalizationSearchKeywordsLinkagesRequest
+ The request body for updating the list of search keywords linked to an App Store version localization.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionlocalizationsearchkeywordslinkagesrequest>
+ */
 public struct AppStoreVersionLocalizationSearchKeywordsLinkagesRequest: Codable, Sendable, RequestBody {
     public let data: [Data]
 

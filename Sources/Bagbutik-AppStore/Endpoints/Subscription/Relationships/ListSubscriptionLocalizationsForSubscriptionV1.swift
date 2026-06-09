@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # List All Localizations for an Auto-Renewable Subscription
+     # List all localizations for an auto-renewable subscription
      Get a list of the subscription localizations for a specific auto-renewable subscription.
 
      Full documentation:
@@ -71,6 +71,7 @@ public enum ListSubscriptionLocalizationsForSubscriptionV1 {
             case introductoryOffers
             case name
             case offerCodes
+            case planAvailabilities
             case pricePoints
             case prices
             case productId

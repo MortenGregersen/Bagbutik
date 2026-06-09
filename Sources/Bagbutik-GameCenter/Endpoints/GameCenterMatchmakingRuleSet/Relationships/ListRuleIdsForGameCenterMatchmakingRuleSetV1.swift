@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # GET /v1/gameCenterMatchmakingRuleSets/{id}/relationships/rules
+     # List rule IDs for a Game Center matchmaking rule set
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-gameCenterMatchmakingRuleSets-_id_-relationships-rules>

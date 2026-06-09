@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Delete an App Event Localization
+     # Delete an app event localization
      Delete localized metadata that you configured for an in-app event.
 
      Full documentation:

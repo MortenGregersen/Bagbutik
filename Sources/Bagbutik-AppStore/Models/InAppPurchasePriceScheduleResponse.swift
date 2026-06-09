@@ -2,6 +2,13 @@ import Bagbutik_Core
 import Bagbutik_Models
 import Foundation
 
+/**
+ # InAppPurchasePriceScheduleResponse
+ A response containing a single pricing schedule for an in-app purchase.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/inapppurchasepricescheduleresponse>
+ */
 public struct InAppPurchasePriceScheduleResponse: Codable, Sendable {
     public let data: InAppPurchasePriceSchedule
     public var included: [Included]?

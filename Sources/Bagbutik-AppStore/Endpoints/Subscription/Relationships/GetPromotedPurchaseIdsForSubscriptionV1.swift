@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # GET /v1/subscriptions/{id}/relationships/promotedPurchase
+     # Get the promoted purchase ID for an auto-renewable subscription
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-subscriptions-_id_-relationships-promotedPurchase>

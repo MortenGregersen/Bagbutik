@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # List All Customer Reviews for an App
+     # List all customer reviews for an app
      Get a list of customer reviews for a specific app.
 
      The example below limits the number of reviews returned in the response.

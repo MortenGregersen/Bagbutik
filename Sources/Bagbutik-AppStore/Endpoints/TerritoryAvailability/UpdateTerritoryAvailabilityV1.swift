@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Modify the Territory Availabilty for an App Pre-Order
+     # Modify the territory availability for an app pre-order
      Update the release territories for your app pre-order.
 
      Full documentation:

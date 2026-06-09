@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Modify a Subscription Group Localization
+     # Modify a subscription group localization
      Update a specific localized display name and optional custom app name for a subscription group.
 
      Full documentation:

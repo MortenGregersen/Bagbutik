@@ -3,7 +3,8 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # GET /v1/appStoreVersionExperimentTreatments/{id}
+     # Read app store version experiment treatment information
+     Get information about a specific App Store version experiment treatment.
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-appStoreVersionExperimentTreatments-_id_>

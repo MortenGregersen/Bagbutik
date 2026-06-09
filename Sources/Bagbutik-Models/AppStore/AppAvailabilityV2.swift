@@ -3,7 +3,7 @@ import Foundation
 
 /**
  # AppAvailabilityV2
- The data structure that represents an app availability resource.
+ The territory availability configuration for an app, specifying which App Store territories it’s available in and the release date settings.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appavailabilityv2>

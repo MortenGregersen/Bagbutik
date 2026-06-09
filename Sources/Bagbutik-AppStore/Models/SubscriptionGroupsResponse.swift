@@ -2,6 +2,13 @@ import Bagbutik_Core
 import Bagbutik_Models
 import Foundation
 
+/**
+ # SubscriptionGroupsResponse
+ The response body for endpoints that list subscription groups for an app.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/subscriptiongroupsresponse>
+ */
 public struct SubscriptionGroupsResponse: Codable, Sendable, PagedResponse {
     public typealias Data = SubscriptionGroup
 

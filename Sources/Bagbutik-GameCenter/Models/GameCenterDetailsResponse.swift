@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # GameCenterDetailsResponse
- A response that contains a list of Game Center detail resources.
+ The response body for endpoints that list Game Center details resources.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterdetailsresponse>

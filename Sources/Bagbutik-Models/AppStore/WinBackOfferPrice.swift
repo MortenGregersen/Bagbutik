@@ -3,7 +3,7 @@ import Foundation
 
 /**
  # WinBackOfferPrice
- The data structure that represents a winback offer price resource.
+ The territory-specific customer price and duration for a win-back subscription offer.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/winbackofferprice>

@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Revoke a Certificate
+     # Revoke a certificate
      Revoke a lost, stolen, compromised, or expiring signing certificate.
 
      Full documentation:

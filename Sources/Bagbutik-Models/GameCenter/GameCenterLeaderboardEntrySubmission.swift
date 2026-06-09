@@ -3,7 +3,7 @@ import Foundation
 
 /**
  # GameCenterLeaderboardEntrySubmission
- The data structure that represent an Game Center leaderboard entry submission resource.
+ A player’s score submission to a Game Center leaderboard, including the score value and context.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterleaderboardentrysubmission>

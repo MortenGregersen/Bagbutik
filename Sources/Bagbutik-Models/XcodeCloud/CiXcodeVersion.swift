@@ -3,7 +3,7 @@ import Foundation
 
 /**
  # CiXcodeVersion
- The data structure that represents an Xcode Versions resource.
+ An Xcode version available in Xcode Cloud for running workflow builds and tests.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/cixcodeversion>

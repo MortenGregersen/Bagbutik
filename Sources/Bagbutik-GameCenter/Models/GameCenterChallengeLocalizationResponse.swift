@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # GameCenterChallengeLocalizationResponse
- A response that contains a single challenge resource.
+ A response containing a single localization for a Game Center challenge.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterchallengelocalizationresponse>

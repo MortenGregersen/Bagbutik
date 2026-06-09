@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read the App Information of a Bundle ID
+     # Read the app information of a bundle id
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-bundleIds-_id_-app>

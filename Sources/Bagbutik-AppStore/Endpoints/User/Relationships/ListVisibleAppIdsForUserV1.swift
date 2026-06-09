@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Get All Visible App Resource IDs for a User
+     # Get all visible app resource ids for a user
      Get a list of app resource IDs to which a user on your team has access.
 
      Full documentation:

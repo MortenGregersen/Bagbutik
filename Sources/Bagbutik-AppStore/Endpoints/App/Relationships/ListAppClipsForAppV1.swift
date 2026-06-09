@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # List All App Clips for an App
+     # List all app clips for an app
      List your app’s associated App Clips.
 
      Full documentation:

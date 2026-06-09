@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # GameCenterLeaderboardEntrySubmissionResponse
- A response that contains a Game Center leaderboard entry submission.
+ A response confirming a player’s score submission to a Game Center leaderboard.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterleaderboardentrysubmissionresponse>

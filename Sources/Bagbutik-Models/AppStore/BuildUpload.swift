@@ -3,7 +3,7 @@ import Foundation
 
 /**
  # BuildUpload
- The data structure that represents a build upload resource.
+ A multi-file upload operation for submitting an app build to App Store Connect.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/buildupload>

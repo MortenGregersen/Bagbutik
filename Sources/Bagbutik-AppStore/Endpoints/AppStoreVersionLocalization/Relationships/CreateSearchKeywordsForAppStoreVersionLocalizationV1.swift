@@ -3,7 +3,8 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # POST /v1/appStoreVersionLocalizations/{id}/relationships/searchKeywords
+     # Add search keywords to an app store version localization
+     Add search keywords to a specific App Store version localization.
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/post-v1-appStoreVersionLocalizations-_id_-relationships-searchKeywords>

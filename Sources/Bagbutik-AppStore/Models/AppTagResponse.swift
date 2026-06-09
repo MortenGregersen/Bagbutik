@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # AppTagResponse
- A response that contains a single app tag response resource.
+ A response containing a single app tag.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/apptagresponse>

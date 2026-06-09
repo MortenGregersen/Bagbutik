@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # List All Territories for an End User License Agreement
+     # List all territories for an end user license agreement
      List all the App Store territories to which a specific custom app license agreement applies.
 
      Full documentation:

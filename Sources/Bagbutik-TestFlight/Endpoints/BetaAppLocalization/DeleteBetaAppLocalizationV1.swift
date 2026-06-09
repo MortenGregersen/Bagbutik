@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Delete a Beta App Localization
+     # Delete a beta app localization
      Delete a beta app localization associated with an app.
 
      Full documentation:

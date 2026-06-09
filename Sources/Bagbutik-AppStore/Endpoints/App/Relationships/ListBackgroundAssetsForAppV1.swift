@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # List All Assets Packs for an App
+     # List all background assets for an app
      Get information about the Apple-hosted background assets for a specific app.
 
      Full documentation:
@@ -128,6 +128,7 @@ public enum ListBackgroundAssetsForAppV1 {
             case createdDate
             case externalBetaRelease
             case internalBetaRelease
+            case locale
             case manifestFile
             case platforms
             case state
@@ -186,6 +187,8 @@ public enum ListBackgroundAssetsForAppV1 {
         case archived([String])
         /// Filter by attribute 'assetPackIdentifier'
         case assetPackIdentifier([String])
+        /// Filter by attribute 'versions.locale'
+        case versions_locale([String])
         /// Filter by attribute 'versions.platforms'
         case versions_platforms([Platform])
     }

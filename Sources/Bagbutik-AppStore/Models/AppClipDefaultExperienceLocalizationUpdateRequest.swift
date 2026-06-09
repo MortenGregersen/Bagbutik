@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # AppClipDefaultExperienceLocalizationUpdateRequest
- The request body you use to update a Default App Clip Experiences resource.
+ The request body for updating the localized subtitle and action button label for a default App Clip experience.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appclipdefaultexperiencelocalizationupdaterequest>

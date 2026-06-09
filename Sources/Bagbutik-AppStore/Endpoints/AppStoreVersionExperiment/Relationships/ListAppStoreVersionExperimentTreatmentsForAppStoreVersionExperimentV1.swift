@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # List All Treatments for an App Store Experiment V1
+     # List all treatments for an app store experiment v1
      Get a list of all treatments for a specific App Store version experiment.
 
      Full documentation:

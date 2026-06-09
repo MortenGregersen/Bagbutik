@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Modify a Beta Group
+     # Modify a beta group
      Modify a beta group’s metadata, including changing its TestFlight public link status.
 
      Full documentation:

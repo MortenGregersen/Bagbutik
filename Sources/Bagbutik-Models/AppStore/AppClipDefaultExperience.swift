@@ -3,7 +3,7 @@ import Foundation
 
 /**
  # AppClipDefaultExperience
- The data structure that represents a Default App Clip Experiences resource.
+ The default App Clip experience that launches when no advanced experience matches, linking to an App Store review detail and localized metadata.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appclipdefaultexperience>

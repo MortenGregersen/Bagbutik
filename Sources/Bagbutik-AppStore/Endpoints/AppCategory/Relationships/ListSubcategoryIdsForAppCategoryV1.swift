@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # GET /v1/appCategories/{id}/relationships/subcategories
+     # List subcategory IDs for an app category
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-appCategories-_id_-relationships-subcategories>

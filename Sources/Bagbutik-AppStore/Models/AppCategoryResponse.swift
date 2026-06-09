@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # AppCategoryResponse
- A response that contains a single App Categories resource.
+ The response body for endpoints that read a single App Store category.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appcategoryresponse>

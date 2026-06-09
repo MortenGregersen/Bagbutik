@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # ScmPullRequestsResponse
- A response that contains a list of Pull Requests resources.
+ The response body for endpoints that list SCM pull requests linked to Xcode Cloud.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/scmpullrequestsresponse>

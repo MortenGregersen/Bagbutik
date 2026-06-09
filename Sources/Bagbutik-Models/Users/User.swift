@@ -3,7 +3,7 @@ import Foundation
 
 /**
  # User
- The data structure that represents a Users resource.
+ A member of your App Store Connect team, with assigned roles and access to specific apps.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/user>

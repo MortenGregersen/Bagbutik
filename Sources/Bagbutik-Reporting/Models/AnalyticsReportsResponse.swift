@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # AnalyticsReportsResponse
- A response that contains a list of analytics report resources.
+ The response body for endpoints that list analytics reports for a report request.
 
  Use this object with [Read Reports for a Specific Request](https://developer.apple.com/documentation/appstoreconnectapi/get-v1-analyticsreportrequests-_id_-reports).
 

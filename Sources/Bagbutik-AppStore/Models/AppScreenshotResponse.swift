@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # AppScreenshotResponse
- A response that contains a single App Screenshots resource.
+ The response body for endpoints that create, read, or modify an app screenshot.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appscreenshotresponse>

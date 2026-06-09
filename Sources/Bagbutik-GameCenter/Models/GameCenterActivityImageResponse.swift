@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # GameCenterActivityImageResponse
- A response that contains a single activity resource.
+ A response containing a single image asset for a Game Center activity.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecenteractivityimageresponse>

@@ -3,7 +3,7 @@ import Foundation
 
 /**
  # PrereleaseVersion
- The data structure that represents a Prerelease Versions  resource.
+ A pre-release version associated with a build, representing a development or beta software version before App Store submission.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/prereleaseversion>

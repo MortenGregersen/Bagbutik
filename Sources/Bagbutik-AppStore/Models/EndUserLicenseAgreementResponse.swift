@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # EndUserLicenseAgreementResponse
- A response that contains a single End User License Agreements resource.
+ The response body for endpoints that read or modify a custom end user license agreement for an app.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/enduserlicenseagreementresponse>

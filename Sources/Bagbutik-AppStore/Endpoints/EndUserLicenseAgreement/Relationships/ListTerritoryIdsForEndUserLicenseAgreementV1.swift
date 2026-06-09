@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # GET /v1/endUserLicenseAgreements/{id}/relationships/territories
+     # List territory IDs for an end user license agreement
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-endUserLicenseAgreements-_id_-relationships-territories>

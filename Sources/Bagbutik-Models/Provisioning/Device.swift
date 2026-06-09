@@ -3,7 +3,7 @@ import Foundation
 
 /**
  # Device
- The data structure that represents a Devices resource.
+ A physical Apple device registered in your developer account for testing, identified by its UDID and device type.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/device>

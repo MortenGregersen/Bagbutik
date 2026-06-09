@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # ProfilesResponse
- A response that contains a list of Profiles resources.
+ The response body for endpoints that list provisioning profiles.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/profilesresponse>

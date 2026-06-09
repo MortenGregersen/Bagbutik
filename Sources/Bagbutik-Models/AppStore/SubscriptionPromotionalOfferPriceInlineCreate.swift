@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # SubscriptionPromotionalOfferPriceInlineCreate
+ An inline object for specifying territory pricing when creating a subscription promotional offer.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/subscriptionpromotionalofferpriceinlinecreate>
+ */
 public struct SubscriptionPromotionalOfferPriceInlineCreate: Codable, Sendable, Identifiable {
     public var id: String?
     public var type: String { "subscriptionPromotionalOfferPrices" }

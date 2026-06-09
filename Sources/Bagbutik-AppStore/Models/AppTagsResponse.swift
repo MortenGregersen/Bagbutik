@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # AppTagsResponse
- A response that contains a list of app tags response resources.
+ A response containing a list of tags associated with apps.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/apptagsresponse>

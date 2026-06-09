@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # SubscriptionPriceInlineCreate
+ An inline object for specifying a territory-specific subscription price within a price schedule.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/subscriptionpriceinlinecreate>
+ */
 public struct SubscriptionPriceInlineCreate: Codable, Sendable, Identifiable {
     public var id: String?
     public var type: String { "subscriptionPrices" }
@@ -35,24 +42,29 @@ public struct SubscriptionPriceInlineCreate: Codable, Sendable, Identifiable {
     }
 
     public struct Attributes: Codable, Sendable {
+        public var planType: SubscriptionPlanType?
         public var preserveCurrentPrice: Bool?
         public var startDate: String?
 
-        public init(preserveCurrentPrice: Bool? = nil,
+        public init(planType: SubscriptionPlanType? = nil,
+                    preserveCurrentPrice: Bool? = nil,
                     startDate: String? = nil)
         {
+            self.planType = planType
             self.preserveCurrentPrice = preserveCurrentPrice
             self.startDate = startDate
         }
 
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: AnyCodingKey.self)
+            planType = try container.decodeIfPresent(SubscriptionPlanType.self, forKey: "planType")
             preserveCurrentPrice = try container.decodeIfPresent(Bool.self, forKey: "preserveCurrentPrice")
             startDate = try container.decodeIfPresent(String.self, forKey: "startDate")
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: AnyCodingKey.self)
+            try container.encodeIfPresent(planType, forKey: "planType")
             try container.encodeIfPresent(preserveCurrentPrice, forKey: "preserveCurrentPrice")
             try container.encodeIfPresent(startDate, forKey: "startDate")
         }

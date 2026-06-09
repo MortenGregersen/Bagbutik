@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Modify an App Preview
+     # Modify an app preview
      Commit the app preview after uploading it, and update the poster frame timecode.
 
      Full documentation:
@@ -13,6 +13,7 @@ public extension Request {
      - Parameter requestBody: AppPreview representation
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
+    @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
     static func updateAppPreviewV1(id: String,
                                    requestBody: AppPreviewUpdateRequest) -> Request<AppPreviewResponse, ErrorResponse> {
         .init(

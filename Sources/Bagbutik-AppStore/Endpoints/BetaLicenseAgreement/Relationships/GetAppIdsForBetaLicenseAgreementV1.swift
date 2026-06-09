@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # GET /v1/betaLicenseAgreements/{id}/relationships/app
+     # Get the app ID for a beta license agreement
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-betaLicenseAgreements-_id_-relationships-app>

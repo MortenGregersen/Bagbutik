@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Delete a Default App Clip Experience Image
+     # Delete a default app clip experience image
      Delete the image asset that appears on the App Clip card for a default App Clip experience.
 
      Full documentation:

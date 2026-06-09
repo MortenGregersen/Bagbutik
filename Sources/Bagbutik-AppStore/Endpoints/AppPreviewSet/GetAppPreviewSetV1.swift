@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read App Preview Set Information
+     # Read app preview set information
      Get an app preview set that includes its display target, language, and the previews it contains.
 
      Full documentation:
@@ -15,6 +15,7 @@ public extension Request {
      - Parameter limit: Maximum number of related appPreviews returned (when they are included) - maximum 50
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
+    @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
     static func getAppPreviewSetV1(id: String,
                                    fields: [GetAppPreviewSetV1.Field]? = nil,
                                    includes: [GetAppPreviewSetV1.Include]? = nil,
@@ -39,6 +40,7 @@ public enum GetAppPreviewSetV1 {
         /// The fields to include for returned resources of type appPreviewSets
         case appPreviewSets([AppPreviewSets])
         /// The fields to include for returned resources of type appPreviews
+        @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
         case appPreviews([AppPreviews])
         /// The fields to include for returned resources of type appStoreVersionExperimentTreatmentLocalizations
         case appStoreVersionExperimentTreatmentLocalizations([AppStoreVersionExperimentTreatmentLocalizations])

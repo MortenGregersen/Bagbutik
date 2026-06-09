@@ -3,7 +3,7 @@ import Foundation
 
 /**
  # BackgroundAssetVersionExternalBetaRelease
- The data structure that represents a background asset version external beta release resource.
+ A release of a background asset version to external TestFlight testers for validation.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/backgroundassetversionexternalbetarelease>

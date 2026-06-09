@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read Device Information
+     # Read device information
      Get information for a specific device registered to your team.
 
      Full documentation:

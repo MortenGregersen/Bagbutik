@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # GET /v1/appInfos/{id}/relationships/secondarySubcategoryTwo
+     # Get the second secondary subcategory ID for an app info
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-appInfos-_id_-relationships-secondarySubcategoryTwo>

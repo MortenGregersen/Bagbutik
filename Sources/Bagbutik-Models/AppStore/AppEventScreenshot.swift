@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # AppEventScreenshot
+ A screenshot image used to promote an app event on the App Store product page.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appeventscreenshot>
+ */
 public struct AppEventScreenshot: Codable, Sendable, Identifiable {
     public let id: String
     public var links: ResourceLinks?

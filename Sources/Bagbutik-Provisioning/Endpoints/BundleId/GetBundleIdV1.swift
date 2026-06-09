@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read Bundle ID Information
+     # Read bundle id information
      Get information about a specific bundle ID.
 
      Full documentation:

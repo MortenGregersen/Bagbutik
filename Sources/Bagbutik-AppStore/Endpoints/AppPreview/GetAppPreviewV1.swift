@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read App Preview Information
+     # Read app preview information
      Get information about an app preview and its upload and processing status.
 
      Full documentation:
@@ -14,6 +14,7 @@ public extension Request {
      - Parameter includes: Relationship data to include in the response
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
+    @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
     static func getAppPreviewV1(id: String,
                                 fields: [GetAppPreviewV1.Field]? = nil,
                                 includes: [GetAppPreviewV1.Include]? = nil) -> Request<AppPreviewResponse, ErrorResponse> {
@@ -32,6 +33,7 @@ public enum GetAppPreviewV1 {
      */
     public enum Field: FieldParameter {
         /// The fields to include for returned resources of type appPreviewSets
+        @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
         case appPreviewSets([AppPreviewSets])
         /// The fields to include for returned resources of type appPreviews
         case appPreviews([AppPreviews])

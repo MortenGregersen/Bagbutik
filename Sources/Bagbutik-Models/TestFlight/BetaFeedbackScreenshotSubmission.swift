@@ -3,7 +3,7 @@ import Foundation
 
 /**
  # BetaFeedbackScreenshotSubmission
- The data structure that represents a BetaFeedbackScreenshotSubmission resource.
+ A screenshot and feedback note submitted by a TestFlight beta tester while testing a specific build.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/betafeedbackscreenshotsubmission>

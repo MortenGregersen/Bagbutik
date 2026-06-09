@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # List Territories
+     # List territories
      List all territories where the App Store operates.
 
      Full documentation:

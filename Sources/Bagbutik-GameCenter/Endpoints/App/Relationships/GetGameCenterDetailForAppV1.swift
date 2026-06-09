@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read the State of Game Center for an App
+     # Read the state of game center for an app
      Get Game Center detail information for an app.
 
      Full documentation:

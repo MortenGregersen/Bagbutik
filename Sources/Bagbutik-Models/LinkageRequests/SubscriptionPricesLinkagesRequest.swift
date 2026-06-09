@@ -3,7 +3,7 @@ import Foundation
 
 /**
  # SubscriptionPricesLinkagesRequest
- The data structure that represents a subscription prices linkages request resource.
+ The request body for updating the list of prices linked to a subscription.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/subscriptionpriceslinkagesrequest>

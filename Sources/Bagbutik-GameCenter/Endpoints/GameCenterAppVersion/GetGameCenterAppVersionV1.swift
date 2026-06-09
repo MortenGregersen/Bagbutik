@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # GET /v1/gameCenterAppVersions/{id}
+     # Read app version information
      Read the Game Center enablement state and related app version information.
 
      Full documentation:

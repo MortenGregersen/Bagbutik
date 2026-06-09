@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # List All Subcategories for an App Category
+     # List all subcategories for an app category
      List all App Store subcategories that belong to a specific category.
 
      Full documentation:

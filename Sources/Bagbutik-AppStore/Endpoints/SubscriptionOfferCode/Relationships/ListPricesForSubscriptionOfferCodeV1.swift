@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # List All Subscription Offer Code Prices
+     # List all subscription offer code prices
      Get a list of price tiers for a subscription offer code.
 
      Full documentation:

@@ -3,7 +3,7 @@ import Foundation
 
 /**
  # ReviewSubmissionItem
- The data structure that represents a review submission item resource.
+ An individual reviewable item — such as an app version, in-app purchase, or App Clip — included in a review submission.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/reviewsubmissionitem>

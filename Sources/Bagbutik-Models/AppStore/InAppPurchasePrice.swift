@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # InAppPurchasePrice
+ A configured price for an in-app purchase in a specific App Store territory.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/inapppurchaseprice>
+ */
 public struct InAppPurchasePrice: Codable, Sendable, Identifiable {
     public let id: String
     public var links: ResourceLinks?

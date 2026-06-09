@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # BuildsResponse
- A response that contains a list of Builds resources.
+ The response body for endpoints that list builds.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/buildsresponse>

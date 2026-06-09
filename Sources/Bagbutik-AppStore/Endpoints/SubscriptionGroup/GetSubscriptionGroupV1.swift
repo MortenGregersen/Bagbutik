@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read Subscription Group Information
+     # Read subscription group information
      Get the details of a specific subscription group.
 
      Full documentation:
@@ -94,6 +94,7 @@ public enum GetSubscriptionGroupV1 {
             case introductoryOffers
             case name
             case offerCodes
+            case planAvailabilities
             case pricePoints
             case prices
             case productId

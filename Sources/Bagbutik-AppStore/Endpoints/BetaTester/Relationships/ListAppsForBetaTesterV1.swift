@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # List All Apps for a Beta Tester
+     # List all apps for a beta tester
      Get a list of apps that a beta tester can test.
 
      Full documentation:

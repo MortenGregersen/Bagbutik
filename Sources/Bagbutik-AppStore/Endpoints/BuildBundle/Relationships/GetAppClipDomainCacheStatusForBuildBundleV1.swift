@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read the App Clip Domain Cache Status Information for a Build Bundle
+     # Read the app clip domain cache status information for a build bundle
      Get the cache status of the domain you associate with your App Clip for a specific build bundle.
 
      Full documentation:

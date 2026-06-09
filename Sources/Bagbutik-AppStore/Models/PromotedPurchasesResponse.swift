@@ -2,6 +2,13 @@ import Bagbutik_Core
 import Bagbutik_Models
 import Foundation
 
+/**
+ # PromotedPurchasesResponse
+ The response body for endpoints that list promoted in-app purchases and subscriptions for an app.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/promotedpurchasesresponse>
+ */
 public struct PromotedPurchasesResponse: Codable, Sendable, PagedResponse {
     public typealias Data = PromotedPurchase
 

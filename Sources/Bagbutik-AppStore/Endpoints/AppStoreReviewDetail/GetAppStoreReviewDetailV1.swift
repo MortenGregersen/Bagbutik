@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read App Store Review Detail Information
+     # Read app store review detail information
      Get App Review details you provided, including contact information, demo account, and notes.
 
      Full documentation:

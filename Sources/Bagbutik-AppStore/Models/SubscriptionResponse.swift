@@ -2,6 +2,13 @@ import Bagbutik_Core
 import Bagbutik_Models
 import Foundation
 
+/**
+ # SubscriptionResponse
+ The response body for endpoints that create, read, or modify a single auto-renewable subscription.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/subscriptionresponse>
+ */
 public struct SubscriptionResponse: Codable, Sendable {
     public let data: Subscription
     public var included: [Included]?
@@ -80,6 +87,18 @@ public struct SubscriptionResponse: Codable, Sendable {
         return offerCodes
     }
 
+    public func getPlanAvailabilities() -> [SubscriptionPlanAvailability] {
+        guard let planAvailabilityIds = data.relationships?.planAvailabilities?.data?.map(\.id),
+              let planAvailabilities = included?.compactMap({ relationship -> SubscriptionPlanAvailability? in
+                  guard case let .subscriptionPlanAvailability(planAvailability) = relationship else { return nil }
+                  return planAvailabilityIds.contains(planAvailability.id) ? planAvailability : nil
+              })
+        else {
+            return []
+        }
+        return planAvailabilities
+    }
+
     public func getPrices() -> [SubscriptionPrice] {
         guard let priceIds = data.relationships?.prices?.data?.map(\.id),
               let prices = included?.compactMap({ relationship -> SubscriptionPrice? in
@@ -109,13 +128,6 @@ public struct SubscriptionResponse: Codable, Sendable {
             return []
         }
         return promotionalOffers
-    }
-
-    public func getSubscriptionAvailability() -> SubscriptionAvailability? {
-        included?.compactMap { relationship -> SubscriptionAvailability? in
-            guard case let .subscriptionAvailability(subscriptionAvailability) = relationship else { return nil }
-            return subscriptionAvailability
-        }.first { $0.id == data.relationships?.subscriptionAvailability?.data?.id }
     }
 
     public func getSubscriptionLocalizations() -> [SubscriptionLocalization] {
@@ -151,6 +163,7 @@ public struct SubscriptionResponse: Codable, Sendable {
         case subscriptionIntroductoryOffer(SubscriptionIntroductoryOffer)
         case subscriptionLocalization(SubscriptionLocalization)
         case subscriptionOfferCode(SubscriptionOfferCode)
+        case subscriptionPlanAvailability(SubscriptionPlanAvailability)
         case subscriptionPrice(SubscriptionPrice)
         case subscriptionPromotionalOffer(SubscriptionPromotionalOffer)
         case winBackOffer(WinBackOffer)
@@ -175,6 +188,8 @@ public struct SubscriptionResponse: Codable, Sendable {
                 self = .subscriptionLocalization(try SubscriptionLocalization(from: decoder))
             case "subscriptionOfferCodes":
                 self = .subscriptionOfferCode(try SubscriptionOfferCode(from: decoder))
+            case "subscriptionPlanAvailabilities":
+                self = .subscriptionPlanAvailability(try SubscriptionPlanAvailability(from: decoder))
             case "subscriptionPrices":
                 self = .subscriptionPrice(try SubscriptionPrice(from: decoder))
             case "subscriptionPromotionalOffers":
@@ -206,6 +221,8 @@ public struct SubscriptionResponse: Codable, Sendable {
             case let .subscriptionLocalization(value):
                 try value.encode(to: encoder)
             case let .subscriptionOfferCode(value):
+                try value.encode(to: encoder)
+            case let .subscriptionPlanAvailability(value):
                 try value.encode(to: encoder)
             case let .subscriptionPrice(value):
                 try value.encode(to: encoder)

@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # GET /v1/ciBuildRuns/{id}/relationships/builds
+     # List build IDs for a CI build run
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-ciBuildRuns-_id_-relationships-builds>

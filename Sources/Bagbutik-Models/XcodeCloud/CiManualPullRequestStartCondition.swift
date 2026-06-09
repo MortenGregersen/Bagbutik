@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # CiManualPullRequestStartCondition
+ A workflow start condition that triggers an Xcode Cloud build for a manually specified pull request.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/cimanualpullrequeststartcondition>
+ */
 public struct CiManualPullRequestStartCondition: Codable, Sendable {
     public var destination: CiBranchPatterns?
     public var source: CiBranchPatterns?

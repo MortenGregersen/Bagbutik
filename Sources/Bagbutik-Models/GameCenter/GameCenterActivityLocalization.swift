@@ -3,7 +3,7 @@ import Foundation
 
 /**
  # GameCenterActivityLocalization
- The data structure that represents an activity localization resource.
+ The localized name, description, and image for a Game Center activity in a specific language.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecenteractivitylocalization>

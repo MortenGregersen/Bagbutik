@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read Background Asset Version App Store Releases Information.
+     # Read background asset version app store releases information
      Get the state of a background asset version App Store release.
 
      Full documentation:
@@ -64,6 +64,7 @@ public enum GetBackgroundAssetVersionAppStoreReleaseV1 {
             case createdDate
             case externalBetaRelease
             case internalBetaRelease
+            case locale
             case manifestFile
             case platforms
             case state

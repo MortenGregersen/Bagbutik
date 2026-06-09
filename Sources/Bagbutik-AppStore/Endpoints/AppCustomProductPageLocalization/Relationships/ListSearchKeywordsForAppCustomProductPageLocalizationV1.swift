@@ -3,8 +3,8 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # List App Preview Sets for a Custom Product Page Localization
-     List the app preview sets for a specific custom product page localization.
+     # List keywords for a custom product page localization
+     List the search keywords for a specific custom product page localization.
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-appCustomProductPageLocalizations-_id_-searchKeywords>

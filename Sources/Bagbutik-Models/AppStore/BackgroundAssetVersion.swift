@@ -3,7 +3,7 @@ import Foundation
 
 /**
  # BackgroundAssetVersion
- The data structure that represents a background asset version resource.
+ A specific version of a background asset, containing the upload files your app downloads after installation.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/backgroundassetversion>
@@ -48,18 +48,21 @@ public struct BackgroundAssetVersion: Codable, Sendable, Identifiable {
 
     public struct Attributes: Codable, Sendable {
         public var createdDate: Date?
+        public var locale: String?
         public var platforms: [Platform]?
         public var state: BackgroundAssetVersionState?
         public var stateDetails: StateDetails?
         public var version: String?
 
         public init(createdDate: Date? = nil,
+                    locale: String? = nil,
                     platforms: [Platform]? = nil,
                     state: BackgroundAssetVersionState? = nil,
                     stateDetails: StateDetails? = nil,
                     version: String? = nil)
         {
             self.createdDate = createdDate
+            self.locale = locale
             self.platforms = platforms
             self.state = state
             self.stateDetails = stateDetails
@@ -69,6 +72,7 @@ public struct BackgroundAssetVersion: Codable, Sendable, Identifiable {
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: AnyCodingKey.self)
             createdDate = try container.decodeIfPresent(Date.self, forKey: "createdDate")
+            locale = try container.decodeIfPresent(String.self, forKey: "locale")
             platforms = try container.decodeIfPresent([Platform].self, forKey: "platforms")
             state = try container.decodeIfPresent(BackgroundAssetVersionState.self, forKey: "state")
             stateDetails = try container.decodeIfPresent(StateDetails.self, forKey: "stateDetails")
@@ -78,6 +82,7 @@ public struct BackgroundAssetVersion: Codable, Sendable, Identifiable {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: AnyCodingKey.self)
             try container.encodeIfPresent(createdDate, forKey: "createdDate")
+            try container.encodeIfPresent(locale, forKey: "locale")
             try container.encodeIfPresent(platforms, forKey: "platforms")
             try container.encodeIfPresent(state, forKey: "state")
             try container.encodeIfPresent(stateDetails, forKey: "stateDetails")

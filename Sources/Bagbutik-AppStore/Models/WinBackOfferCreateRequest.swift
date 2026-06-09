@@ -73,6 +73,7 @@ public struct WinBackOfferCreateRequest: Codable, Sendable, RequestBody {
             public var promotionIntent: WinBackOffer.Attributes.PromotionIntent?
             public let referenceName: String
             public let startDate: String
+            public var targetSubscriptionPlanType: SubscriptionPlanType?
 
             public init(customerEligibilityPaidSubscriptionDurationInMonths: Int,
                         customerEligibilityTimeSinceLastSubscribedInMonths: IntegerRange,
@@ -85,7 +86,8 @@ public struct WinBackOfferCreateRequest: Codable, Sendable, RequestBody {
                         priority: WinBackOffer.Attributes.Priority,
                         promotionIntent: WinBackOffer.Attributes.PromotionIntent? = nil,
                         referenceName: String,
-                        startDate: String)
+                        startDate: String,
+                        targetSubscriptionPlanType: SubscriptionPlanType? = nil)
             {
                 self.customerEligibilityPaidSubscriptionDurationInMonths = customerEligibilityPaidSubscriptionDurationInMonths
                 self.customerEligibilityTimeSinceLastSubscribedInMonths = customerEligibilityTimeSinceLastSubscribedInMonths
@@ -99,6 +101,7 @@ public struct WinBackOfferCreateRequest: Codable, Sendable, RequestBody {
                 self.promotionIntent = promotionIntent
                 self.referenceName = referenceName
                 self.startDate = startDate
+                self.targetSubscriptionPlanType = targetSubscriptionPlanType
             }
 
             public init(from decoder: Decoder) throws {
@@ -115,6 +118,7 @@ public struct WinBackOfferCreateRequest: Codable, Sendable, RequestBody {
                 promotionIntent = try container.decodeIfPresent(WinBackOffer.Attributes.PromotionIntent.self, forKey: "promotionIntent")
                 referenceName = try container.decode(String.self, forKey: "referenceName")
                 startDate = try container.decode(String.self, forKey: "startDate")
+                targetSubscriptionPlanType = try container.decodeIfPresent(SubscriptionPlanType.self, forKey: "targetSubscriptionPlanType")
             }
 
             public func encode(to encoder: Encoder) throws {
@@ -131,6 +135,7 @@ public struct WinBackOfferCreateRequest: Codable, Sendable, RequestBody {
                 try container.encodeIfPresent(promotionIntent, forKey: "promotionIntent")
                 try container.encode(referenceName, forKey: "referenceName")
                 try container.encode(startDate, forKey: "startDate")
+                try container.encodeIfPresent(targetSubscriptionPlanType, forKey: "targetSubscriptionPlanType")
             }
         }
 

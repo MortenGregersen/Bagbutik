@@ -3,7 +3,7 @@ import Foundation
 
 /**
  # GameCenterActivityImage
- The data structure that represents an activity image resource.
+ An image asset representing a Game Center activity in the player interface.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecenteractivityimage>

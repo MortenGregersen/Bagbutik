@@ -4,6 +4,8 @@ import Bagbutik_Models
 public extension Request {
     /**
      # List In-App Purchase Images
+     The data structure that represents a get-v2-in-app purchases-{id}-images resource.
+
      List all images for a specific in-app purchase.
 
      Full documentation:

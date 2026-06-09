@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # SubscriptionIntroductoryOffer
+ A discounted price or free trial period offered to new subscribers of an auto-renewable subscription.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/subscriptionintroductoryoffer>
+ */
 public struct SubscriptionIntroductoryOffer: Codable, Sendable, Identifiable {
     public let id: String
     public var links: ResourceLinks?
@@ -45,18 +52,21 @@ public struct SubscriptionIntroductoryOffer: Codable, Sendable, Identifiable {
         public var numberOfPeriods: Int?
         public var offerMode: SubscriptionOfferMode?
         public var startDate: String?
+        public var targetSubscriptionPlanType: SubscriptionPlanType?
 
         public init(duration: SubscriptionOfferDuration? = nil,
                     endDate: String? = nil,
                     numberOfPeriods: Int? = nil,
                     offerMode: SubscriptionOfferMode? = nil,
-                    startDate: String? = nil)
+                    startDate: String? = nil,
+                    targetSubscriptionPlanType: SubscriptionPlanType? = nil)
         {
             self.duration = duration
             self.endDate = endDate
             self.numberOfPeriods = numberOfPeriods
             self.offerMode = offerMode
             self.startDate = startDate
+            self.targetSubscriptionPlanType = targetSubscriptionPlanType
         }
 
         public init(from decoder: Decoder) throws {
@@ -66,6 +76,7 @@ public struct SubscriptionIntroductoryOffer: Codable, Sendable, Identifiable {
             numberOfPeriods = try container.decodeIfPresent(Int.self, forKey: "numberOfPeriods")
             offerMode = try container.decodeIfPresent(SubscriptionOfferMode.self, forKey: "offerMode")
             startDate = try container.decodeIfPresent(String.self, forKey: "startDate")
+            targetSubscriptionPlanType = try container.decodeIfPresent(SubscriptionPlanType.self, forKey: "targetSubscriptionPlanType")
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -75,6 +86,7 @@ public struct SubscriptionIntroductoryOffer: Codable, Sendable, Identifiable {
             try container.encodeIfPresent(numberOfPeriods, forKey: "numberOfPeriods")
             try container.encodeIfPresent(offerMode, forKey: "offerMode")
             try container.encodeIfPresent(startDate, forKey: "startDate")
+            try container.encodeIfPresent(targetSubscriptionPlanType, forKey: "targetSubscriptionPlanType")
         }
     }
 

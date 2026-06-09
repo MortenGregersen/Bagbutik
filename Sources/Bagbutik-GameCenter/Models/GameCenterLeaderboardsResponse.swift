@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # GameCenterLeaderboardsResponse
- A response that contains multiple leaderboard resources.
+ The response body for endpoints that list Game Center leaderboards.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterleaderboardsresponse>

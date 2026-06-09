@@ -3,7 +3,7 @@ import Foundation
 
 /**
  # GameCenterEnabledVersion
- The data structure that represents the Game Center Enabled Versions resource.
+ An app version with Game Center enabled. Deprecated in API version 3.0; use [GameCenterAppVersion](https://developer.apple.com/documentation/appstoreconnectapi/gamecenterappversion) instead.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterenabledversion>

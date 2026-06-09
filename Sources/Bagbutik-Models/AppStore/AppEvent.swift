@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # AppEvent
+ A time-limited promotional or informational event for an app, displayed to customers on the App Store product page.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appevent>
+ */
 public struct AppEvent: Codable, Sendable, Identifiable {
     public let id: String
     public var links: ResourceLinks?

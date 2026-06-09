@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Create a Profile
+     # Create a profile
      Create a new provisioning profile.
 
      Full documentation:

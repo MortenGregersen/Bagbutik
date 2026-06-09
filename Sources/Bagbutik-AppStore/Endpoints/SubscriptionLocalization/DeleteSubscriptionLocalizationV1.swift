@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Delete a Subscription Localization
+     # Delete a subscription localization
      Delete localized metadata that you configured for an auto-renewable subscription.
 
      Full documentation:

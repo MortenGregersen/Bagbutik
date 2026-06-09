@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read App Availabilty
+     # Read app availability
      Get information about your app’s availalbility.
 
      Full documentation:

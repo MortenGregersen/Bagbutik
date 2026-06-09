@@ -3,7 +3,8 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # POST /v1/appEventLocalizations
+     # Create an app event localization
+     Add a new localization for an in-app event.
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/post-v1-appEventLocalizations>

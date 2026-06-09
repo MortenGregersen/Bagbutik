@@ -3,7 +3,7 @@ import Foundation
 
 /**
  # CiMacOsVersion
- The data structure that represents a macOS Versions resource.
+ A macOS version available in Xcode Cloud infrastructure for running workflow builds.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/cimacosversion>

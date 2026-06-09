@@ -64,6 +64,7 @@ public enum GetBackgroundAssetVersionExternalBetaReleaseV1 {
             case createdDate
             case externalBetaRelease
             case internalBetaRelease
+            case locale
             case manifestFile
             case platforms
             case state

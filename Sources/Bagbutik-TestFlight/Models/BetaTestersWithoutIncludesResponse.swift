@@ -2,6 +2,13 @@ import Bagbutik_Core
 import Bagbutik_Models
 import Foundation
 
+/**
+ # BetaTestersWithoutIncludesResponse
+ A response containing a list of TestFlight beta testers, without related resources.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/betatesterswithoutincludesresponse>
+ */
 public struct BetaTestersWithoutIncludesResponse: Codable, Sendable, PagedResponse {
     public typealias Data = BetaTester
 

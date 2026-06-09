@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read Content Information for an In-App Purchase
+     # Read content information for an in-app purchase
      Get the details about hosted content for an in-app purchase.
 
      Full documentation:

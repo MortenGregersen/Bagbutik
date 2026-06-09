@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # GameCenterChallengeImageResponse
- A response that contains a single challenge resource.
+ A response containing a single image asset for a Game Center challenge.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterchallengeimageresponse>

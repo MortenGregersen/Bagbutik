@@ -2,6 +2,13 @@ import Bagbutik_Core
 import Bagbutik_Models
 import Foundation
 
+/**
+ # InAppPurchaseAvailabilityResponse
+ A response containing a single territory availability configuration for an in-app purchase.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/inapppurchaseavailabilityresponse>
+ */
 public struct InAppPurchaseAvailabilityResponse: Codable, Sendable {
     public let data: InAppPurchaseAvailability
     public var included: [Territory]?

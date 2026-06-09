@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Send an Invitation to a Beta Tester
+     # Send an invitation to a beta tester
      Send or resend an invitation to a beta tester to test a specified app.
 
      Full documentation:

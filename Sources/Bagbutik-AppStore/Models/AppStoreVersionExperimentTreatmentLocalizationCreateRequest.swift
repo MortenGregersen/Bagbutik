@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # AppStoreVersionExperimentTreatmentLocalizationCreateRequest
- The request body you use to create an store resource.
+ The request body you use to create an App Store version experiment treatment localization.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionexperimenttreatmentlocalizationcreaterequest>

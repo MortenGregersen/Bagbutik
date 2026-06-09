@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Create an Auto-Renewable Subscription
+     # Create an auto-renewable subscription
      Create an auto-renewable subscription for your app.
 
      Full documentation:

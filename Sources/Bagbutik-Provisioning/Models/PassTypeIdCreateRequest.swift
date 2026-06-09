@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # PassTypeIdCreateRequest
- The request body you use to create a pass type id create request resource.
+ The request body for registering a new pass type identifier for Wallet pass signing.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/passtypeidcreaterequest>

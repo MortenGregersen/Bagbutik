@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Delete an App Event
+     # Delete an app event
      Delete an in-app event and its related metadata.
 
      Full documentation:

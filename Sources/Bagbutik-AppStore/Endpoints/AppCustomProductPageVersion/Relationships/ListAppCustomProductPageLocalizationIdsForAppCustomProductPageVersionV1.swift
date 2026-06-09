@@ -3,7 +3,8 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # GET /v1/appCustomProductPageVersions/{id}/relationships/appCustomProductPageLocalizations
+     # List localization IDs for a custom product page version
+     Get a list of localization IDs for a specific custom product page version.
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-appCustomProductPageVersions-_id_-relationships-appCustomProductPageLocalizations>

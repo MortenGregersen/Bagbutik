@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # SandboxTesterV2
+ A sandbox Apple ID you use to test in-app purchases and subscriptions in the Xcode sandbox environment.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/sandboxtesterv2>
+ */
 public struct SandboxTesterV2: Codable, Sendable, Identifiable {
     public let id: String
     public var links: ResourceLinks?

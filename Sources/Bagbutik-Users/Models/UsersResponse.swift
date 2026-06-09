@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # UsersResponse
- A response that contains a list of Users resources.
+ A response containing a list of team members who have access to your App Store Connect account.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/usersresponse>

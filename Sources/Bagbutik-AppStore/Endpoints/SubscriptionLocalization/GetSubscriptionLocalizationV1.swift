@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read Subscription Localization Information
+     # Read subscription localization information
      Get the specific localized metadata for an auto-renewable subscription.
 
      Full documentation:
@@ -68,6 +68,7 @@ public enum GetSubscriptionLocalizationV1 {
             case introductoryOffers
             case name
             case offerCodes
+            case planAvailabilities
             case pricePoints
             case prices
             case productId

@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # CertificatesResponse
- A response that contains a list of Certificates resources.
+ The response body for endpoints that list signing certificates.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/certificatesresponse>

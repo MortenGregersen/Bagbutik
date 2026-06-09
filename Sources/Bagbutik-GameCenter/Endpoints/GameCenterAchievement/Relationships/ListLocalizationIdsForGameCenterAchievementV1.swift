@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # GET /v1/gameCenterAchievements/{id}/relationships/localizations
+     # List localization IDs for a Game Center achievement
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-gameCenterAchievements-_id_-relationships-localizations>

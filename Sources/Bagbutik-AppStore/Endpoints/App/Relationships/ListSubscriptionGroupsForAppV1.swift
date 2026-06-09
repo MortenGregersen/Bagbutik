@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # List All Subscription Groups for an App
+     # List all subscription groups for an app
      Get a list of subscription groups for a specific app.
 
      Full documentation:
@@ -100,6 +100,7 @@ public enum ListSubscriptionGroupsForAppV1 {
             case introductoryOffers
             case name
             case offerCodes
+            case planAvailabilities
             case pricePoints
             case prices
             case productId

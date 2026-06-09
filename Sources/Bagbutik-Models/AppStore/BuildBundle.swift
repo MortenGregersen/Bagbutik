@@ -3,7 +3,7 @@ import Foundation
 
 /**
  # BuildBundle
- The data structure that represents Build Bundles resource.
+ A specific binary bundle within a build, such as an app extension, App Clip, or nested app target.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/buildbundle>

@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # GET /v1/appInfos/{id}/relationships/primaryCategory
+     # Get the primary category ID for an app info
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-appInfos-_id_-relationships-primaryCategory>

@@ -2,6 +2,13 @@ import Bagbutik_Core
 import Bagbutik_Models
 import Foundation
 
+/**
+ # BetaAppLocalizationsWithoutIncludesResponse
+ A response containing a list of TestFlight app localizations, without related resources.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/betaapplocalizationswithoutincludesresponse>
+ */
 public struct BetaAppLocalizationsWithoutIncludesResponse: Codable, Sendable, PagedResponse {
     public typealias Data = BetaAppLocalization
 

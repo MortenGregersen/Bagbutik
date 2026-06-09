@@ -3,7 +3,8 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # PATCH /v1/appEventVideoClips/{id}
+     # Modify an app event video clip
+     Commit an uploaded video clip asset for an in-app event.
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/patch-v1-appEventVideoClips-_id_>
@@ -12,6 +13,7 @@ public extension Request {
      - Parameter requestBody: AppEventVideoClip representation
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
+    @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
     static func updateAppEventVideoClipV1(id: String,
                                           requestBody: AppEventVideoClipUpdateRequest) -> Request<AppEventVideoClipResponse, ErrorResponse> {
         .init(

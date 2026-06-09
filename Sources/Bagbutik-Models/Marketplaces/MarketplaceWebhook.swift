@@ -3,7 +3,7 @@ import Foundation
 
 /**
  # MarketplaceWebhook
- The data structure that represents a marketplace webhook resource.
+ A webhook endpoint that receives event notifications from an alternative marketplace, such as app availability changes.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/marketplacewebhook>

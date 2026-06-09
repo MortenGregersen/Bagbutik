@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # GET /v1/appClipDefaultExperiences/{id}/relationships/appClipDefaultExperienceLocalizations
+     # List localization IDs for an App Clip default experience
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-appClipDefaultExperiences-_id_-relationships-appClipDefaultExperienceLocalizations>

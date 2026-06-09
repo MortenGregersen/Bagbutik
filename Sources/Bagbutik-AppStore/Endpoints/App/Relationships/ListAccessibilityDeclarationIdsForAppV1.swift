@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # GET /v1/apps/{id}/relationships/accessibilityDeclarations
+     # List accessibility declaration IDs for an app
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-apps-_id_-relationships-accessibilityDeclarations>

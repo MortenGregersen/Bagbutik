@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # PATCH /v1/gameCenterLeaderboards/{id}/relationships/challenge
+     # Modify the challenge for a Game Center leaderboard
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/patch-v1-gameCenterLeaderboards-_id_-relationships-challenge>

@@ -3,8 +3,8 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read Build Compatibilty for a Beta Group
-     Get the build compatibilty information for a specific beta group.
+     # Read build compatibility for a beta group
+     Get the build compatibility information for a specific beta group.
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-betaGroups-_id_-betaRecruitmentCriterionCompatibleBuildCheck>

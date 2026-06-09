@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Send Notification of an Available Build
+     # Send notification of an available build
      Send a notification to all assigned beta testers that a build is available for testing.
 
      Full documentation:

@@ -3,7 +3,7 @@ import Foundation
 
 /**
  # MarketplaceSearchDetail
- The data structure that represents an alternative marketplace search detail resource.
+ The search configuration for an alternative marketplace, specifying how apps are indexed and surfaced in search.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/marketplacesearchdetail>

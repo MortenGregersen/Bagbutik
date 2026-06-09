@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # GET /v1/ciProducts/{id}/relationships/workflows
+     # List workflow IDs for a CI product
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-ciProducts-_id_-relationships-workflows>

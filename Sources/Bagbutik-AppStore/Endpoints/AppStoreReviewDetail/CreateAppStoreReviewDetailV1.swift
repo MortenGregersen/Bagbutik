@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Create an App Store Review Detail
+     # Create an app store review detail
      Add App Store review details to an App Store version, including contact and demo account information.
 
      Full documentation:
