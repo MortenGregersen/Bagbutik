@@ -288,7 +288,7 @@ final class GeneratorTests: XCTestCase {
 
         XCTAssertEqual(fileManager.filesCreated.map(\.name), ["ListUsersV1.swift"])
         XCTAssertEqual(fileManager.directoriesCreated.filter { $0.hasSuffix("/Bagbutik-Users/Endpoints/Users") }.count, 1)
-    }   
+    }
 
     func testInferPackageNameForNonRequestSchemaUsesGeneralModelsDirectory() async throws {
         let fileManager = MockFileManager()
