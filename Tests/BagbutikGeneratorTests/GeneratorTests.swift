@@ -216,7 +216,7 @@ final class GeneratorTests: XCTestCase {
     func testNoDocumentationForOperation() async throws {
         // Given
         let fileManager = MockFileManager()
-        let docsLoader = DocsLoader(loadFile: { _ in "{}".data(using: .utf8)! })
+        let docsLoader = self.docsLoader
         #if compiler(<6.0)
         let printer = await Printer()
         #else
@@ -311,12 +311,12 @@ final class GeneratorTests: XCTestCase {
                     .init(id: "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-subscriptionPlans-_id_-relationships-prices",
                           name: "listPriceIdsForSubscriptionPlan",
                           method: .get,
-                          successResponseType: "SubscriptionPricesLinkagesResponse",
+                          successResponseType: "UserVisibleAppsLinkagesResponse",
                           errorResponseType: "ErrorResponse"),
                 ]),
             ], components: .init(schemas: [
                 "ErrorResponse": .object(.init(name: "ErrorResponse", url: "some://url")),
-                "SubscriptionPricesLinkagesResponse": .object(.init(name: "SubscriptionPricesLinkagesResponse", url: "some://url")),
+                "UserVisibleAppsLinkagesResponse": .object(.init(name: "UserVisibleAppsLinkagesResponse", url: "some://url")),
                 "SubscriptionResponse": .object(.init(name: "SubscriptionResponse", url: "some://url")),
             ]))
         }, fileManager: fileManager, docsLoader: docsLoader, print: printer.print)
@@ -327,7 +327,7 @@ final class GeneratorTests: XCTestCase {
             "ErrorResponse.swift",
             "GetSubscriptionPlanV1.swift",
             "ListPriceIdsForSubscriptionPlanV1.swift",
-            "SubscriptionPricesLinkagesResponse.swift",
+            "UserVisibleAppsLinkagesResponse.swift",
             "SubscriptionResponse.swift",
         ])
         XCTAssertEqual(fileManager.directoriesCreated.filter { $0.hasSuffix("/Bagbutik-AppStore/Endpoints/Subscription") }.count, 1)
