@@ -2,6 +2,13 @@ import Bagbutik_Core
 import Bagbutik_Models
 import Foundation
 
+/**
+ # SandboxTesterV2Response
+ The response body for endpoints that read or modify a single sandbox Apple ID for testing.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/sandboxtesterv2response>
+ */
 public struct SandboxTesterV2Response: Codable, Sendable {
     public let data: SandboxTesterV2
     public let links: DocumentLinks

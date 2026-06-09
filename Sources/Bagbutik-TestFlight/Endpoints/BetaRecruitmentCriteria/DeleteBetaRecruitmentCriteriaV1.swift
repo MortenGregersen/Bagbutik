@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Remove Recruitment Criteria
+     # Remove recruitment criteria
      Remove the recruitment criteria for your TestFlight build.
 
      Full documentation:

@@ -2,6 +2,13 @@ import Bagbutik_Core
 import Bagbutik_Models
 import Foundation
 
+/**
+ # AppCategoriesWithoutIncludesResponse
+ A response containing a list of App Store categories, without including subcategory resources.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appcategorieswithoutincludesresponse>
+ */
 public struct AppCategoriesWithoutIncludesResponse: Codable, Sendable, PagedResponse {
     public typealias Data = AppCategory
 

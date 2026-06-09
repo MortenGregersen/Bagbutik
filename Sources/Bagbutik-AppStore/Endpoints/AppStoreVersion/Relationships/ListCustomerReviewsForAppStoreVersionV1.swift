@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # List All Customer Reviews for an App Store Version
+     # List all customer reviews for an app store version
      Get a list of customer reviews for a specific version of your app.
 
      Full documentation:

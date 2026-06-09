@@ -3,7 +3,7 @@ import Foundation
 
 /**
  # ScmGitReference
- The data structure that represents a Git References resource.
+ A Git branch, tag, or commit reference in a source code repository connected to Xcode Cloud.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/scmgitreference>

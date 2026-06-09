@@ -39,8 +39,10 @@ public enum GetAppCustomProductPageLocalizationV1 {
         /// The fields to include for returned resources of type appCustomProductPageVersions
         case appCustomProductPageVersions([AppCustomProductPageVersions])
         /// The fields to include for returned resources of type appPreviewSets
+        @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
         case appPreviewSets([AppPreviewSets])
         /// The fields to include for returned resources of type appScreenshotSets
+        @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
         case appScreenshotSets([AppScreenshotSets])
 
         public enum AppCustomProductPageLocalizations: String, Sendable, ParameterValue, Codable, CaseIterable {

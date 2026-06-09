@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # AppEncryptionDeclarationsResponse
- A response that contains a list of App Encryption Declaration resources.
+ A response containing a list of encryption declarations for an app.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appencryptiondeclarationsresponse>

@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # AppsResponse
- A response that contains a list of Apps resources.
+ A response containing a list of apps registered in your App Store Connect team.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appsresponse>

@@ -3,7 +3,7 @@ import Foundation
 
 /**
  # BetaGroup
- The data structure that represents a Beta Groups resource.
+ A group of beta testers and builds that you use to manage TestFlight distribution for an app.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/betagroup>

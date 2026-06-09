@@ -2,6 +2,13 @@ import Bagbutik_Core
 import Bagbutik_Models
 import Foundation
 
+/**
+ # AppEventLocalizationCreateRequest
+ The request body you use to create an app event localization.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appeventlocalizationcreaterequest>
+ */
 public struct AppEventLocalizationCreateRequest: Codable, Sendable, RequestBody {
     public let data: Data
 

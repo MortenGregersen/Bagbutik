@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # BetaAppReviewDetailsResponse
- A response that contains a list of Beta App Review Detail resources.
+ A response containing a list of beta app review detail records.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/betaappreviewdetailsresponse>

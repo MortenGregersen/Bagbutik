@@ -3,7 +3,8 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # GET /v1/passTypeIds/{id}/relationships/certificates
+     # List certificate ids for a passtypeid
+     List all certificate IDs for a specific pass type ID.
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-passTypeIds-_id_-relationships-certificates>

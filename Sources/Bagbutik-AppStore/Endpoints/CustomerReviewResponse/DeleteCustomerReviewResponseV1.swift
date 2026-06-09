@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Delete a Response to a Customer Review
+     # Delete a response to a customer review
      Delete a specific response you wrote to a customer review.
 
      Deletions of responses don’t take effect instantly in the App Store. Allow some time for the deletion to take effect.

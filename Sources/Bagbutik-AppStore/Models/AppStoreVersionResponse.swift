@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # AppStoreVersionResponse
- A response that contains a single App Store Versions resource.
+ The response body for endpoints that create, read, or modify an App Store version.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionresponse>

@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # AppStoreVersionExperimentV2CreateRequest
- The request body you use to create an store resource.
+ The request body you use to create an App Store version experiment.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionexperimentv2createrequest>

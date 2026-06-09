@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # GameCenterChallengeResponse
- A response that contains a single challenge resource.
+ A response containing a single Game Center challenge configuration.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterchallengeresponse>

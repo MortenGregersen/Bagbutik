@@ -3,7 +3,7 @@ import Foundation
 
 /**
  # AppEncryptionDeclarationDocument
- The data structure that represents an app encryption declaration document resource.
+ An uploaded export compliance document supporting an app encryption declaration.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appencryptiondeclarationdocument>

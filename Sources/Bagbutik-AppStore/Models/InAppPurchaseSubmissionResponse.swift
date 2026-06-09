@@ -2,6 +2,13 @@ import Bagbutik_Core
 import Bagbutik_Models
 import Foundation
 
+/**
+ # InAppPurchaseSubmissionResponse
+ A response confirming the submission of an in-app purchase for App Store review.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/inapppurchasesubmissionresponse>
+ */
 public struct InAppPurchaseSubmissionResponse: Codable, Sendable {
     public let data: InAppPurchaseSubmission
     public var included: [InAppPurchaseV2]?

@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Delete an App Store Version Phased Release
+     # Delete an app store version phased release
      Cancel a planned phased release that has not been started.
 
      Full documentation:

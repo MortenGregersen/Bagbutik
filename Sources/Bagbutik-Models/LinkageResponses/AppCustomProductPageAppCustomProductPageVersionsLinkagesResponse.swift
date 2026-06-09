@@ -3,7 +3,7 @@ import Foundation
 
 /**
  # AppCustomProductPageAppCustomProductPageVersionsLinkagesResponse
- A response that contains a list of IDs of related resources.
+ A response containing the resource identifiers of versions for a custom App Store product page.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appcustomproductpageappcustomproductpageversionslinkagesresponse>

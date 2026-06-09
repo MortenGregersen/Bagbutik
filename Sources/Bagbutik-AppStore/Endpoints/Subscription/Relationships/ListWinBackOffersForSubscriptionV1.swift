@@ -4,6 +4,8 @@ import Bagbutik_Models
 public extension Request {
     /**
      # List Win-Back Offers
+     The data structure that represents a get-v1-subscriptions-{id}-win back offers resource.
+
      List all win-back offers for a specific subscription.
 
      Full documentation:
@@ -73,6 +75,7 @@ public enum ListWinBackOffersForSubscriptionV1 {
             case promotionIntent
             case referenceName
             case startDate
+            case targetSubscriptionPlanType
 
             public init(from decoder: Decoder) throws {
                 let container = try decoder.singleValueContainer()

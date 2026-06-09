@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # GameCenterPlayerAchievementSubmissionCreateRequest
- The request body you use to create an Game Center player achievement.
+ The request body you use to create a Game Center player achievement.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterplayerachievementsubmissioncreaterequest>

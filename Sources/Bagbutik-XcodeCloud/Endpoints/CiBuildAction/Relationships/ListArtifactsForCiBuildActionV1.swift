@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # List All Artifacts for a Build Action
+     # List all artifacts for a build action
      List all artifacts Xcode Cloud created when it performed an action.
 
      Full documentation:

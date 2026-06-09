@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Create a Promotional Offer
+     # Create a promotional offer
      Create a promotional offer for an auto-renewable subscription.
 
      Full documentation:

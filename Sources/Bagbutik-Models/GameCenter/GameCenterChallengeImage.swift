@@ -3,7 +3,7 @@ import Foundation
 
 /**
  # GameCenterChallengeImage
- The data structure that represents a challenge image.
+ An image asset used to represent a Game Center challenge in the player interface.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterchallengeimage>

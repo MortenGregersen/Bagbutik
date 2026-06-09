@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # BetaAppClipInvocationsResponse
- A response that contains a list of Beta App Clip Invocations resources.
+ A response containing a list of TestFlight App Clip invocations for a beta build.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/betaappclipinvocationsresponse>

@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Create One-Time Use Offer Codes
+     # Create one-time use offer codes
      Create one-time use codes for an auto-renewable subscription offer.
 
      Full documentation:

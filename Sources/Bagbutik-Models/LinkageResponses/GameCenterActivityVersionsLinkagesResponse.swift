@@ -3,7 +3,7 @@ import Foundation
 
 /**
  # GameCenterActivityVersionsLinkagesResponse
- A response that contains a list of IDs of related resources.
+ A response containing the resource identifiers of versions for a Game Center activity.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecenteractivityversionslinkagesresponse>

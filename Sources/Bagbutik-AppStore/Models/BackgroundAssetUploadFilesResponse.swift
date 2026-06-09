@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # BackgroundAssetUploadFilesResponse
- A response that contains a list of background asset upload file resources.
+ A response containing a list of upload files for a background asset.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/backgroundassetuploadfilesresponse>

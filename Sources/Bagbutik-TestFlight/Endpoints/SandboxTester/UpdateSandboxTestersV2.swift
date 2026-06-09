@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Modify a Sandbox Tester
+     # Modify a sandbox tester
      Change the subscription renewal time rate, set interrupted purchases or change territory of Sandbox Apple Account.
 
      Full documentation:

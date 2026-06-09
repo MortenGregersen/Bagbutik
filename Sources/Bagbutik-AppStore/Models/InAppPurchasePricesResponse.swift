@@ -2,6 +2,13 @@ import Bagbutik_Core
 import Bagbutik_Models
 import Foundation
 
+/**
+ # InAppPurchasePricesResponse
+ A response containing a list of configured prices for an in-app purchase.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/inapppurchasepricesresponse>
+ */
 public struct InAppPurchasePricesResponse: Codable, Sendable, PagedResponse {
     public typealias Data = InAppPurchasePrice
 

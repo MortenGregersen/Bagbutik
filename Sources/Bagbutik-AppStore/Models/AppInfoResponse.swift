@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # AppInfoResponse
- A response that contains a single App Infos resource.
+ The response body for endpoints that read or modify an app’s App Store information.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appinforesponse>

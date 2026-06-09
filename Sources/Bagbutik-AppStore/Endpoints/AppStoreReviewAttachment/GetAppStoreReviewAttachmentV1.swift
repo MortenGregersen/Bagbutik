@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read App Store Review Attachment Information
+     # Read app store review attachment information
      Get information about an App Store review attachment and its upload and processing status.
 
      Full documentation:

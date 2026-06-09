@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # List All Custom Offer Codes for an Auto-Renewable Subscription
+     # List all custom offer codes for an auto-renewable subscription
      Get details about a custom code for a specific subscription offer for an auto-renewable subscription.
 
      Full documentation:
@@ -78,6 +78,7 @@ public enum ListCustomCodesForSubscriptionOfferCodeV1 {
             case productionCodeCount
             case sandboxCodeCount
             case subscription
+            case targetSubscriptionPlanType
             case totalNumberOfCodes
 
             public init(from decoder: Decoder) throws {

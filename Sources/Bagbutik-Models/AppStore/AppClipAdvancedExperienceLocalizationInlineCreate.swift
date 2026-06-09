@@ -3,7 +3,7 @@ import Foundation
 
 /**
  # AppClipAdvancedExperienceLocalizationInlineCreate
- The data structure that represents an Advanced App Clip Experience Localization Inline Creates resource.
+ An inline object for specifying localized text and action button when creating an App Clip advanced experience.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appclipadvancedexperiencelocalizationinlinecreate>

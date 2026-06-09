@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # WebhookCreateRequest
- The request body you use to create a webhook create request resource.
+ The request body for registering a webhook endpoint to receive App Store Connect event notifications.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/webhookcreaterequest>

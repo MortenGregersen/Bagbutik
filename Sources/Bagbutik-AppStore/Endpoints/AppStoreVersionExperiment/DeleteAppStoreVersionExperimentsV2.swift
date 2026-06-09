@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Delete an App Store Experiment
+     # Delete an app store experiment
      Delete a specific App Store version experiment before it starts.
 
      Full documentation:

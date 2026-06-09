@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # MarketplaceSearchDetailResponse
- A response that contains a single alternative marketplace search detail resource.
+ A response containing the search configuration for a single alternative marketplace.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/marketplacesearchdetailresponse>

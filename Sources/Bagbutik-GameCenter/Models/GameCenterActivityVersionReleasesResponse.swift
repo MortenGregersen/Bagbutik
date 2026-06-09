@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # GameCenterActivityVersionReleasesResponse
- A response that contains a list of activity version release resources.
+ A response containing a list of release records for a Game Center activity version.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecenteractivityversionreleasesresponse>

@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # WebhookDeliveryCreateRequest
- The request body you use to create a webhook delivery create request resource.
+ The request body for retrying a failed webhook delivery.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/webhookdeliverycreaterequest>

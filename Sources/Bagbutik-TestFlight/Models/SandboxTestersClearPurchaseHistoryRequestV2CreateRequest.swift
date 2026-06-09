@@ -2,6 +2,13 @@ import Bagbutik_Core
 import Bagbutik_Models
 import Foundation
 
+/**
+ # SandboxTestersClearPurchaseHistoryRequestV2CreateRequest
+ The request body you use to create a request to clear sandbox tester purchase history.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/sandboxtestersclearpurchasehistoryrequestv2createrequest>
+ */
 public struct SandboxTestersClearPurchaseHistoryRequestV2CreateRequest: Codable, Sendable, RequestBody {
     public let data: Data
 

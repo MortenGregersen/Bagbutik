@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Delete a Review Screenshot for an In-App Purchase
+     # Delete a review screenshot for an in-app purchase
      Delete an image that you uploaded for review of an in-app purchase.
 
      Full documentation:

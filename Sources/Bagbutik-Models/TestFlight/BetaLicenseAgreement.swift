@@ -3,7 +3,7 @@ import Foundation
 
 /**
  # BetaLicenseAgreement
- The data structure that represents a Beta License Agreements resource.
+ The custom terms and conditions presented to TestFlight testers before they begin testing an app.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/betalicenseagreement>

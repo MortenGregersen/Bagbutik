@@ -3,7 +3,7 @@ import Foundation
 
 /**
  # BetaAppClipInvocationLocalization
- The data structure that represents a Beta App Clip Invocation Localizations resource.
+ The localized title displayed to beta testers for a specific App Clip invocation.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/betaappclipinvocationlocalization>

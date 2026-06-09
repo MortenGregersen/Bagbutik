@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read App Information for an Xcode Cloud Product
+     # Read app information for an xcode cloud product
      Get the app in App Store Connect that’s related to an Xcode Cloud product.
 
      Full documentation:
@@ -224,7 +224,6 @@ public enum GetAppForCiProductV1 {
             case brazilAgeRating
             case brazilAgeRatingV2
             case franceAgeRating
-            case kidsAgeBand
             case koreaAgeRating
             case primaryCategory
             case primarySubcategoryOne

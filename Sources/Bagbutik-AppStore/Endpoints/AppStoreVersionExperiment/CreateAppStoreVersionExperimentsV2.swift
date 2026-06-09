@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Create an App Store Experiment
+     # Create an app store experiment
      Add a new experiment to an App Store version.
 
      Full documentation:

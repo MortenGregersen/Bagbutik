@@ -3,7 +3,7 @@ import Foundation
 
 /**
  # GameCenterAchievement
- The data structure that represents a Game Center achievement resource.
+ A reward in Game Center that players earn by completing specific challenges or milestones in a game.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterachievement>

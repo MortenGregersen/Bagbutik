@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read Advanced App Clip Experience Information
+     # Read advanced app clip experience information
      Get information about a specific advanced App Clip experience.
 
      Full documentation:

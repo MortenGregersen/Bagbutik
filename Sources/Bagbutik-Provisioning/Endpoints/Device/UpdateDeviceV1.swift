@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Modify a Registered Device
+     # Modify a registered device
      Update the name or status of a specific device.
 
      Full documentation:

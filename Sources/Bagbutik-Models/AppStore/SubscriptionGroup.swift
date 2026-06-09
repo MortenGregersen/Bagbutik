@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # SubscriptionGroup
+ A group of related auto-renewable subscriptions that share upgrade, downgrade, and cross-grade eligibility for customers.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/subscriptiongroup>
+ */
 public struct SubscriptionGroup: Codable, Sendable, Identifiable {
     public let id: String
     public var links: ResourceLinks?

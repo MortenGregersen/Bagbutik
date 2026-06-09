@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Create a Review Submission for a Subscription
+     # Create a review submission for a subscription
      Create a review submission for an auto-renewable subscription.
 
      Full documentation:

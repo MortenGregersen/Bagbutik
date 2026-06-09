@@ -3,7 +3,7 @@ import Foundation
 
 /**
  # GameCenterDetail
- The data structure that represents a Game Center detail resource.
+ The Game Center configuration for an app, linking it to leaderboards, achievement sets, and groups.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterdetail>

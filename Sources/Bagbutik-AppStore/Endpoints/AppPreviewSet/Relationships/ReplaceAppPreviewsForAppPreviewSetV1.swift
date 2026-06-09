@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Replace All App Previews for an App Preview Set
+     # Replace all app previews for an app preview set
      Change the order of the app previews in a preview set.
 
      Full documentation:
@@ -13,6 +13,7 @@ public extension Request {
      - Parameter requestBody: List of related linkages
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
+    @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
     static func replaceAppPreviewsForAppPreviewSetV1(id: String,
                                                      requestBody: AppPreviewSetAppPreviewsLinkagesRequest) -> Request<EmptyResponse, ErrorResponse> {
         .init(

@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # CiXcodeVersionsResponse
- A response that contains a list of Xcode Versions resources.
+ The response body for endpoints that list Xcode versions available for Xcode Cloud.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/cixcodeversionsresponse>

@@ -4,9 +4,9 @@ import Foundation
 
 /**
  # AlternativeDistributionPackageVariantResponse
- A response that contains a single alternative distribution package variant resource.
+ A response containing a single variant of an alternative distribution package.
 
- This object is the response that contains a single alternative distribution package variant. For more information, see [Read Information for an Alternative Distribution Package Variants](https://developer.apple.com/documentation/appstoreconnectapi/get-v1-alternativedistributionpackagevariants-_id_). The schema of the response body is below.
+ This object is the response that contains a single alternative distribution package variant. For more information, see [Read variant information for an alternative distribution package](https://developer.apple.com/documentation/appstoreconnectapi/get-v1-alternativedistributionpackagevariants-_id_). The schema of the response body is below.
  ```
  {
  ```

@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # List All Profiles for a Bundle ID
+     # List all profiles for a bundle id
      Get a list of all profiles for a specific bundle ID.
 
      Full documentation:

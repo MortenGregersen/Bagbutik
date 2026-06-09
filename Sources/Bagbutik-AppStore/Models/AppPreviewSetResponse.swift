@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # AppPreviewSetResponse
- A response that contains a single App Preview Sets resource.
+ The response body for endpoints that create or read a set of app preview videos for a display size.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/apppreviewsetresponse>

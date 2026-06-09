@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # CiManualBranchStartCondition
+ A workflow start condition that triggers an Xcode Cloud build when a specified branch is manually selected.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/cimanualbranchstartcondition>
+ */
 public struct CiManualBranchStartCondition: Codable, Sendable {
     public var source: CiBranchPatterns?
 

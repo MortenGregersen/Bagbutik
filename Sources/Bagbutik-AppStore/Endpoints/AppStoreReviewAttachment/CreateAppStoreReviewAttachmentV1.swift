@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Create an App Store Review Attachment
+     # Create an app store review attachment
      Attach a document for App Review to an App Store version.
 
      Full documentation:

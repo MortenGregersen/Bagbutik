@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Delete a Subscription Group Localization
+     # Delete a subscription group localization
      Delete localized metadata that you configured for a subscription group.
 
      Full documentation:

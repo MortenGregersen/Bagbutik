@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # List Delta IDs
+     # List delta ids
      List all delta Ids for a specific alternative distribution package version.
 
      Full documentation:

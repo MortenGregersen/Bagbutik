@@ -3,7 +3,8 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # GET /v2/inAppPurchases/{id}/relationships/content
+     # Read the content ID for an in-app purchase
+     Get the content ID for a specific in-app purchase.
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/get-v2-inAppPurchases-_id_-relationships-content>

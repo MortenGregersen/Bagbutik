@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # SubscriptionAppStoreReviewScreenshot
+ A screenshot of the subscription paywall submitted alongside a subscription for App Store review.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/subscriptionappstorereviewscreenshot>
+ */
 public struct SubscriptionAppStoreReviewScreenshot: Codable, Sendable, Identifiable {
     public let id: String
     public var links: ResourceLinks?

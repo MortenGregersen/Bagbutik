@@ -3,7 +3,7 @@ import Foundation
 
 /**
  # GameCenterActivity
- The data structure that represents a Game Center activity resource.
+ A social or competitive event in Game Center that players can participate in, such as a leaderboard challenge.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecenteractivity>

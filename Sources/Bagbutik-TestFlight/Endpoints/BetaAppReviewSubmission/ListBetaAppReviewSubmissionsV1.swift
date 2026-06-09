@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # List Beta App Review Submissions
+     # List beta app review submissions
      Find and list beta app review submissions for all builds.
 
      Full documentation:

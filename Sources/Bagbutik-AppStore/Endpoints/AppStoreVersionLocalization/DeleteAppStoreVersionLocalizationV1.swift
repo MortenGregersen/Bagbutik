@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Delete an App Store Version Localization
+     # Delete an app store version localization
      Delete a language from your version metadata.
 
      Full documentation:

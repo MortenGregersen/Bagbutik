@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # List All Promotional Offer Prices for a Subscription
+     # List all promotional offer prices for a subscription
      Get a list of prices of a promotional offer for an auto-renewable subscription, for a specified territory.
 
      Full documentation:

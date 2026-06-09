@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Modify an App Info Localization
+     # Modify an app info localization
      Modify localized app-level information for a particular language.
 
      Full documentation:

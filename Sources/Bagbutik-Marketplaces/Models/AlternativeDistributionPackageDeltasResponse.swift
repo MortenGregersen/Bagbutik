@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # AlternativeDistributionPackageDeltasResponse
- A response that contains a list of alternative distribution package delta resources.
+ A response containing a list of delta updates available for an alternative distribution package.
 
  This object is the response that contains a list of alternative distribution package deltas. For more information about alternative distribution package deltas, see [List Deltas Information](https://developer.apple.com/documentation/appstoreconnectapi/get-v1-alternativedistributionpackageversions-_id_-deltas). The schema of the response body is below.
  ```

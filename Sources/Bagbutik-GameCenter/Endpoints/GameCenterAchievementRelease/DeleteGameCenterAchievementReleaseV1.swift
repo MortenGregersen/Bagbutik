@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Delete a Game Center Achievement Release
+     # Delete a game center achievement release
      Delete a release of an achievement or Game Center detail.
 
      Full documentation:

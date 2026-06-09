@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # List Merchant IDs
+     # List merchant ids
      List all merchant Ids for your team.
 
      Full documentation:

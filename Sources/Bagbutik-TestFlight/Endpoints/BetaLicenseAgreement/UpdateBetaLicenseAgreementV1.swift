@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Modify a Beta License Agreement
+     # Modify a beta license agreement
      Update the text for your beta license agreement.
 
      Full documentation:

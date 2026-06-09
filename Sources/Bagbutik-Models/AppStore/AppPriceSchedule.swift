@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # AppPriceSchedule
+ The pricing schedule for an app, specifying base territory prices, manual prices for other territories, and scheduled price changes.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/apppriceschedule>
+ */
 public struct AppPriceSchedule: Codable, Sendable, Identifiable {
     public let id: String
     public var links: ResourceLinks?

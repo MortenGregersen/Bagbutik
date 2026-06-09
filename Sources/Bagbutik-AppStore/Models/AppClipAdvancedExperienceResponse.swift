@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # AppClipAdvancedExperienceResponse
- A response that contains a single Advanced App Clip Experiences resource.
+ A response containing a single App Clip advanced experience configuration.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appclipadvancedexperienceresponse>

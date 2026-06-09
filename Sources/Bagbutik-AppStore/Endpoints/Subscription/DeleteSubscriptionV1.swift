@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Delete a Subscription
+     # Delete a subscription
      Delete a specific auto-renewable subscription that you configured for an app.
 
      Full documentation:

@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read Promoted Purchase Information for a Subscription
+     # Read promoted purchase information for a subscription
      Get details about the promoted purchase of an auto-renewable subscription.
 
      Full documentation:
@@ -104,6 +104,7 @@ public enum GetPromotedPurchaseForSubscriptionV1 {
             case introductoryOffers
             case name
             case offerCodes
+            case planAvailabilities
             case pricePoints
             case prices
             case productId

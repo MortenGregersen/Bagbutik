@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Delete an Introductory Offer for a Subscription
+     # Delete an introductory offer for a subscription
      Delete a specific introductory offer for an auto-renewable subscription.
 
      Full documentation:

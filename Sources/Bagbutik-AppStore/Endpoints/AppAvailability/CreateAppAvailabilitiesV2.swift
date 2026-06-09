@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Create an App Pre-Order
+     # Create an app pre-order
      Create an app pre-order and set the expected app release date.
 
      Full documentation:

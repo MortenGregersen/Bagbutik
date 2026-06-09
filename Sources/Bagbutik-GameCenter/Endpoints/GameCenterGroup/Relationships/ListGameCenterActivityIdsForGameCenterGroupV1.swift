@@ -3,7 +3,8 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # GET /v1/gameCenterGroups/{id}/relationships/gameCenterActivities
+     # List activity IDs for a Game Center group
+     Get a list of activity IDs for a specific Game Center group.
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-gameCenterGroups-_id_-relationships-gameCenterActivities>

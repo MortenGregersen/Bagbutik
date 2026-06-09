@@ -2,6 +2,13 @@ import Bagbutik_Core
 import Bagbutik_Models
 import Foundation
 
+/**
+ # GameCenterAchievementLocalizationsResponse
+ The response body for endpoints that list Game Center achievement localizations.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterachievementlocalizationsresponse>
+ */
 public struct GameCenterAchievementLocalizationsResponse: Codable, Sendable, PagedResponse {
     public typealias Data = GameCenterAchievementLocalization
 

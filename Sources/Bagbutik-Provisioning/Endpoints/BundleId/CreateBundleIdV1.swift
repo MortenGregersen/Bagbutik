@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Register a New Bundle ID
+     # Register a new bundle id
      Register a new bundle ID for app development.
 
      Full documentation:

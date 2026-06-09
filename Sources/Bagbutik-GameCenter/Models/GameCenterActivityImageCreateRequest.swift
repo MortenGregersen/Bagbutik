@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # GameCenterActivityImageCreateRequest
- The request body you use to create an activity resource.
+ The request body for creating an image asset for a Game Center activity.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecenteractivityimagecreaterequest>

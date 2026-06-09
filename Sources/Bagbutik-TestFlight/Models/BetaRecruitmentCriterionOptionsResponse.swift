@@ -2,6 +2,13 @@ import Bagbutik_Core
 import Bagbutik_Models
 import Foundation
 
+/**
+ # BetaRecruitmentCriterionOptionsResponse
+ A response containing a list of device family and OS version options for configuring a beta recruitment criterion.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/betarecruitmentcriterionoptionsresponse>
+ */
 public struct BetaRecruitmentCriterionOptionsResponse: Codable, Sendable, PagedResponse {
     public typealias Data = BetaRecruitmentCriterionOption
 

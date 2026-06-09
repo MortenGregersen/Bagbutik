@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # GET /v1/ciBuildActions/{id}/relationships/testResults
+     # List test result IDs for a CI build action
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-ciBuildActions-_id_-relationships-testResults>

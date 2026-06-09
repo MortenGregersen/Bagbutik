@@ -3,7 +3,7 @@ import Foundation
 
 /**
  # AnalyticsReport
- The data structure that represents an analytics report.
+ A generated analytics report containing App Store performance data produced from a report request.
 
  To learn more about the response that includes this analytics report request object, see [AnalyticsReportResponse](https://developer.apple.com/documentation/appstoreconnectapi/analyticsreportresponse).
 

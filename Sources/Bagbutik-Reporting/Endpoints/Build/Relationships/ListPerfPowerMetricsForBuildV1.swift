@@ -3,10 +3,10 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Get Power and Performance Metrics for a Build
+     # Get power and performance metrics for a build
      Get the performance and power metrics data for a specific build.
 
-     The example below requests iOS animation metrics on all iPads for a specific build. To get the metrics for all of the most-recent app versions instead, use the [Get Power and Performance Metrics for an App](https://developer.apple.com/documentation/appstoreconnectapi/get-v1-apps-_id_-perfpowermetrics) endpoint.
+     The example below requests iOS animation metrics on all iPads for a specific build. To get the metrics for all of the most-recent app versions instead, use the [Get power and performance metrics for an app](https://developer.apple.com/documentation/appstoreconnectapi/get-v1-apps-_id_-perfpowermetrics) endpoint.
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-builds-_id_-perfPowerMetrics>
@@ -43,6 +43,7 @@ public enum ListPerfPowerMetricsForBuildV1 {
             case hang = "HANG"
             case launch = "LAUNCH"
             case memory = "MEMORY"
+            case storage = "STORAGE"
             case termination = "TERMINATION"
 
             public init(from decoder: Decoder) throws {

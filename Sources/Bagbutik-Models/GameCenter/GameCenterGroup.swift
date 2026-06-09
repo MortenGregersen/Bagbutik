@@ -3,7 +3,7 @@ import Foundation
 
 /**
  # GameCenterGroup
- The data structure that represents a group resource.
+ A named group that shares leaderboards and achievements across multiple apps in Game Center.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecentergroup>

@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Create App Store Review Details for an App Clip
+     # Create app store review details for an app clip
      Provide App Clip metadata required by App Store Review.
 
      Full documentation:

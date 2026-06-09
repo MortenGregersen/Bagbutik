@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Delete a Product
+     # Delete a product
      Delete an Xcode Cloud product and all of its associated workflows, builds, and artifacts.
 
      To delete an Xcode Cloud product, call this endpoint using the HTTP `DELETE` method like this:

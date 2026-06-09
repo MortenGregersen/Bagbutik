@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read Beta App Clip Invocation Information
+     # Read beta app clip invocation information
      Get a specific App Clip invocation you configure for testing.
 
      Full documentation:

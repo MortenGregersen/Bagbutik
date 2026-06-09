@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # GET /v1/appClips/{id}/relationships/appClipAdvancedExperiences
+     # List App Clip advanced experience IDs for an App Clip
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-appClips-_id_-relationships-appClipAdvancedExperiences>

@@ -4,6 +4,8 @@ import Bagbutik_Models
 public extension Request {
     /**
      # List Win-Back Offer Prices
+     The data structure that represents a get-v1-win back offers-{id}-prices resource.
+
      List all prices for specific win-back offers.
 
      Full documentation:

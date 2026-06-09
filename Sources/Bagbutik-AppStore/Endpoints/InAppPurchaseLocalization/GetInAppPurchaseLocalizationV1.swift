@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read In-App Purchase Localization Information
+     # Read in-app purchase localization information
      Get the display name and description for a specific locale for an in-app purchase.
 
      Full documentation:

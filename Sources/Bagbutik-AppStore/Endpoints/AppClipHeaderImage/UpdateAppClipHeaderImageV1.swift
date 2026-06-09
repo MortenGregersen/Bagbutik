@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Modify an App Clip Card Image
+     # Modify an app clip card image
      Change the image that appears on the App Clip card of a default App Clip experience.
 
      Full documentation:

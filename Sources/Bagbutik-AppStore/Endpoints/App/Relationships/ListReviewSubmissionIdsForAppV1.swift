@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # List Review Submission IDs
+     # List review submission IDs
      Get the list of review submission IDs for a specific app.
 
      Full documentation:

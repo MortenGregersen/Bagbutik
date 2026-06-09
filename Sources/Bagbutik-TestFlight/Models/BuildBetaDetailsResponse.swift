@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # BuildBetaDetailsResponse
- A response that contains a list of Build Beta Detail resources.
+ The response body for endpoints that list beta testing details across builds.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/buildbetadetailsresponse>

@@ -3,7 +3,7 @@ import Foundation
 
 /**
  # CiProduct
- The data structure that represents a Products resource.
+ An app or framework registered in Xcode Cloud that has one or more workflows and build history.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/ciproduct>

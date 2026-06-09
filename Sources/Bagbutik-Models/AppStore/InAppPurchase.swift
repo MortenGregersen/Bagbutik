@@ -3,7 +3,7 @@ import Foundation
 
 /**
  # InAppPurchase
- The data structure that represents the In-App Purchases resource.
+ A one-time purchasable item available in an app, such as a consumable, non-consumable, or non-renewing subscription.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/inapppurchase>

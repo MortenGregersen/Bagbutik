@@ -3,7 +3,7 @@ import Foundation
 
 /**
  # BundleIdCapability
- The data structure that represents a Bundle ID Capabilities resource.
+ An entitlement or service (such as Push Notifications or In-App Purchases) enabled for a registered bundle ID.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/bundleidcapability>

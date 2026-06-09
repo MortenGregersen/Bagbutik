@@ -2,6 +2,13 @@ import Bagbutik_Core
 import Bagbutik_Models
 import Foundation
 
+/**
+ # AppCategoryWithoutIncludesResponse
+ A response containing a single App Store category, without including subcategory resources.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appcategorywithoutincludesresponse>
+ */
 public struct AppCategoryWithoutIncludesResponse: Codable, Sendable {
     public let data: AppCategory
     public let links: DocumentLinks

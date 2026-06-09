@@ -2,6 +2,13 @@ import Bagbutik_Core
 import Bagbutik_Models
 import Foundation
 
+/**
+ # SubscriptionAppStoreReviewScreenshotResponse
+ A response containing a single App Store review screenshot for a subscription.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/subscriptionappstorereviewscreenshotresponse>
+ */
 public struct SubscriptionAppStoreReviewScreenshotResponse: Codable, Sendable {
     public let data: SubscriptionAppStoreReviewScreenshot
     public var included: [Subscription]?

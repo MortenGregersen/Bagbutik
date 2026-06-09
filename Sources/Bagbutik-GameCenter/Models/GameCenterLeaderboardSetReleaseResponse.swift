@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # GameCenterLeaderboardSetReleaseResponse
- A response that contains a single leaderboard set release resource.
+ The response body for endpoints that create, read, or modify a single Game Center leaderboard set release.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterleaderboardsetreleaseresponse>

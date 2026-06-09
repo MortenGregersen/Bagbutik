@@ -3,8 +3,8 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read the Challenges for a Game Center Group
-     Get challenge information for a specific Game Center group.
+     # Read the versions for a Game Center challenge
+     Get version information for a specific Game Center challenge.
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-gameCenterChallenges-_id_-relationships-versions>

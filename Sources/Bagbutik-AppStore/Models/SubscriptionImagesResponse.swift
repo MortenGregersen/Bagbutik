@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # SubscriptionImagesResponse
- A response that contains a list of subscription image resources.
+ A response containing a list of images for a subscription product.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/subscriptionimagesresponse>

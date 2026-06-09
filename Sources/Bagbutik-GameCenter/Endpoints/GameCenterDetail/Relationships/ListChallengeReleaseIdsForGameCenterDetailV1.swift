@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read Challenge Release IDs for a Game Center Detail
+     # Read challenge release ids for a game center detail
      List all the challenge release IDs for a specific Game Center detail.
 
      Full documentation:

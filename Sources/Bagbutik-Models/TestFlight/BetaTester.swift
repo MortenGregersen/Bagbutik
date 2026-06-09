@@ -3,7 +3,7 @@ import Foundation
 
 /**
  # BetaTester
- The data structure that represents a Beta Testers resource.
+ An individual enrolled as a beta tester in TestFlight, identified by their email address and associated with one or more apps or groups.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/betatester>

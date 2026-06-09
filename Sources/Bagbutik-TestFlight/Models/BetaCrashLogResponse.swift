@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # BetaCrashLogResponse
- A response that contains a single beta crash log response resource.
+ A response containing a single crash log from a TestFlight tester’s device.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/betacrashlogresponse>

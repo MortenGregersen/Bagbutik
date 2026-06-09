@@ -3,7 +3,7 @@ import Foundation
 
 /**
  # Webhook
- The data structure that represents a webhook resource.
+ A configured HTTP endpoint in App Store Connect that receives notifications when specific events occur.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/webhook>

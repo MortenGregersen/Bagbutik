@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # GET /v1/betaAppReviewSubmissions/{id}/relationships/build
+     # Get the build ID for a beta app review submission
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-betaAppReviewSubmissions-_id_-relationships-build>

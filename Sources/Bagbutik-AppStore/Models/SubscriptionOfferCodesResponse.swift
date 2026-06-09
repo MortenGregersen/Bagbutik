@@ -2,6 +2,13 @@ import Bagbutik_Core
 import Bagbutik_Models
 import Foundation
 
+/**
+ # SubscriptionOfferCodesResponse
+ The response body for endpoints that list offer codes for a subscription.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/subscriptionoffercodesresponse>
+ */
 public struct SubscriptionOfferCodesResponse: Codable, Sendable, PagedResponse {
     public typealias Data = SubscriptionOfferCode
 

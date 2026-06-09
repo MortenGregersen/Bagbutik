@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Create a Default App Clip Experience
+     # Create a default app clip experience
      Configure a new default App Clip experience.
 
      Full documentation:

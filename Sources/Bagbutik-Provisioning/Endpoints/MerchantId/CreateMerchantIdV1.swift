@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Create a Merchant ID
+     # Create a merchant id
      Add a new merchant ID to your team.
 
      Full documentation:

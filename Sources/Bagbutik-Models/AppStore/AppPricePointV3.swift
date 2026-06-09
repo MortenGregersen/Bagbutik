@@ -3,7 +3,7 @@ import Foundation
 
 /**
  # AppPricePointV3
- The data structure that represents an App Price Point V3 resource.
+ A specific price tier in App Store pricing, defining the customer price and developer proceeds across territories.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/apppricepointv3>

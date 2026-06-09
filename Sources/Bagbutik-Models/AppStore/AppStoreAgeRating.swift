@@ -26,6 +26,7 @@ public enum AppStoreAgeRating: String, Sendable, Codable, CaseIterable {
     case twentyPlus = "TWENTY_PLUS"
     case twoPlus = "TWO_PLUS"
     case unrated = "UNRATED"
+    case zeroZero = "ZERO_ZERO"
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()

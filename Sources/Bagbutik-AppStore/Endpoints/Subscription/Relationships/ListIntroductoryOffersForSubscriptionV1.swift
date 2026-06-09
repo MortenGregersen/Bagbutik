@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # List All Introductory Offers for a Subscription
+     # List all introductory offers for a subscription
      Get a list of introductory offers for a specific auto-renewable subscription.
 
      Full documentation:
@@ -54,6 +54,7 @@ public enum ListIntroductoryOffersForSubscriptionV1 {
             case startDate
             case subscription
             case subscriptionPricePoint
+            case targetSubscriptionPlanType
             case territory
 
             public init(from decoder: Decoder) throws {
@@ -104,6 +105,7 @@ public enum ListIntroductoryOffersForSubscriptionV1 {
             case introductoryOffers
             case name
             case offerCodes
+            case planAvailabilities
             case pricePoints
             case prices
             case productId

@@ -3,7 +3,7 @@ import Foundation
 
 /**
  # AppTag
- The data structure that represents an app tag resource.
+ A label used to categorize an app for internal organization or to control which App Store territories feature it.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/apptag>

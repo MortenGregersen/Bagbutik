@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Modify the Localization for a Default App Clip Experience
+     # Modify the localization for a default app clip experience
      Update localized metadata for a specific default App Clip experience.
 
      Full documentation:

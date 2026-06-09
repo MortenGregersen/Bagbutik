@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # PromotedPurchase
+ An in-app purchase or subscription configured to appear on the app’s App Store product page.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/promotedpurchase>
+ */
 public struct PromotedPurchase: Codable, Sendable, Identifiable {
     public let id: String
     public var links: ResourceLinks?

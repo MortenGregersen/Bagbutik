@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Modify an App Info
+     # Modify an app info
      Update the App Store categories and sub-categories for your app.
 
      Use this endpoint to modify the primary and secondary categories and subcategories for an app.

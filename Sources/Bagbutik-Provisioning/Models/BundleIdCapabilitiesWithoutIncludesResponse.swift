@@ -2,6 +2,13 @@ import Bagbutik_Core
 import Bagbutik_Models
 import Foundation
 
+/**
+ # BundleIdCapabilitiesWithoutIncludesResponse
+ A response containing a list of bundle ID capabilities, without related resources.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/bundleidcapabilitieswithoutincludesresponse>
+ */
 public struct BundleIdCapabilitiesWithoutIncludesResponse: Codable, Sendable, PagedResponse {
     public typealias Data = BundleIdCapability
 

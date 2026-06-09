@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Get All Build IDs in a Beta Group
+     # Get all build ids in a beta group
      Get a list of build resource IDs in a specific beta group.
 
      Full documentation:

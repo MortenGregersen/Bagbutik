@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # NominationsResponse
- A response that contains a list of featuring nominations.
+ A response containing a list of app nominations submitted for App Store editorial featuring consideration.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/nominationsresponse>

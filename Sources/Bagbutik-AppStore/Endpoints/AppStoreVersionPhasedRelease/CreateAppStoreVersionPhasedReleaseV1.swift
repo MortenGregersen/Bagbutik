@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Create an App Store Version Phased Release
+     # Create an app store version phased release
      Enable phased release for an App Store version.
 
      Full documentation:

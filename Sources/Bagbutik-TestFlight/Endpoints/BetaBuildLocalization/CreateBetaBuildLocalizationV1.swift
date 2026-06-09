@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Create a Beta Build Localization
+     # Create a beta build localization
      Create localized What’s New text for a build.
 
      Full documentation:

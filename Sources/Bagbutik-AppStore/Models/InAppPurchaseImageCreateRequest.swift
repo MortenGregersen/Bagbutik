@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # InAppPurchaseImageCreateRequest
- The request body you use to create a in-app purchase purchase image reservation.
+ The request body you use to create an in-app purchase image reservation.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/inapppurchaseimagecreaterequest>

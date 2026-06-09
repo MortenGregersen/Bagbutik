@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # AppStoreVersionExperimentTreatmentsResponse
- A response that contains a list of app store version experiment treatments response resources.
+ The response body for endpoints that list treatments for an App Store version experiment.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionexperimenttreatmentsresponse>

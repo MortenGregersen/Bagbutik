@@ -3,7 +3,7 @@ import Foundation
 
 /**
  # ReviewSubmission
- The data structure that represents a review submission resource.
+ A formal submission to App Store review grouping one or more items — app versions, in-app purchases, or events — for simultaneous review.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/reviewsubmission>

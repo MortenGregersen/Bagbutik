@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # WebhookPingCreateRequest
- The request body you use to create a webhook ping create request resource.
+ The request body for sending a test ping event to verify that a webhook endpoint is reachable.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/webhookpingcreaterequest>

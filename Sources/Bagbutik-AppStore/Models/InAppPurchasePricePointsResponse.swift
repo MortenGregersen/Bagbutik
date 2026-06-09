@@ -2,6 +2,13 @@ import Bagbutik_Core
 import Bagbutik_Models
 import Foundation
 
+/**
+ # InAppPurchasePricePointsResponse
+ The response body for endpoints that list available price points for an in-app purchase.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/inapppurchasepricepointsresponse>
+ */
 public struct InAppPurchasePricePointsResponse: Codable, Sendable, PagedResponse {
     public typealias Data = InAppPurchasePricePoint
 

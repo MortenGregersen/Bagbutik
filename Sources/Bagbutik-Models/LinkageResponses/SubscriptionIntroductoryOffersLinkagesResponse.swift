@@ -3,7 +3,7 @@ import Foundation
 
 /**
  # SubscriptionIntroductoryOffersLinkagesResponse
- A response that contains a list of IDs of related resources.
+ A response containing the resource identifiers of introductory offers linked to a subscription.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/subscriptionintroductoryofferslinkagesresponse>

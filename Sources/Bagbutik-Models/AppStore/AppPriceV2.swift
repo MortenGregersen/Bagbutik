@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # AppPriceV2
+ A price configured for an app in a specific App Store territory under the v2 pricing model.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/apppricev2>
+ */
 public struct AppPriceV2: Codable, Sendable, Identifiable {
     public let id: String
     public var links: ResourceLinks?

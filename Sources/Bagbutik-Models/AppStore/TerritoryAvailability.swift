@@ -3,7 +3,7 @@ import Foundation
 
 /**
  # TerritoryAvailability
- The data structure that represents a territory availability resource.
+ The availability setting for an app or content in a specific App Store territory, including release date configuration.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/territoryavailability>

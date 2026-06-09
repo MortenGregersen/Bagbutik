@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # BetaRecruitmentCriterionOption
+ A specific device family and OS version combination available as a value for a beta recruitment criterion.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/betarecruitmentcriterionoption>
+ */
 public struct BetaRecruitmentCriterionOption: Codable, Sendable, Identifiable {
     public let id: String
     public var links: ResourceLinks?

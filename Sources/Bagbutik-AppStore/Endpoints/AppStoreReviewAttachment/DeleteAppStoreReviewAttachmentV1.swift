@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Delete an App Store Review Attachment
+     # Delete an app store review attachment
      Remove an attachment before you send your app to App Review.
 
      Full documentation:

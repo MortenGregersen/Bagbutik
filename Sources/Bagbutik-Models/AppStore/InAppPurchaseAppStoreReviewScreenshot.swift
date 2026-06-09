@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # InAppPurchaseAppStoreReviewScreenshot
+ A screenshot of the in-app purchase flow submitted alongside an in-app purchase for App Store review.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/inapppurchaseappstorereviewscreenshot>
+ */
 public struct InAppPurchaseAppStoreReviewScreenshot: Codable, Sendable, Identifiable {
     public let id: String
     public var links: ResourceLinks?

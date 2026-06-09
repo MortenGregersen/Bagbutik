@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # GET /v1/preReleaseVersions/{id}/relationships/builds
+     # List build IDs for a prerelease version
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-preReleaseVersions-_id_-relationships-builds>

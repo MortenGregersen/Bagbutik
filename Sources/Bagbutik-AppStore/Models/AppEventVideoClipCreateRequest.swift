@@ -2,6 +2,13 @@ import Bagbutik_Core
 import Bagbutik_Models
 import Foundation
 
+/**
+ # AppEventVideoClipCreateRequest
+ The request body you use to create an app event video clip.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appeventvideoclipcreaterequest>
+ */
 public struct AppEventVideoClipCreateRequest: Codable, Sendable, RequestBody {
     public let data: Data
 

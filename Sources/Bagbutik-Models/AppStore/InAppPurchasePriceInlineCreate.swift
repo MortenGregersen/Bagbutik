@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # InAppPurchasePriceInlineCreate
+ An inline object for specifying a territory-specific price when creating or updating an in-app purchase price schedule.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/inapppurchasepriceinlinecreate>
+ */
 public struct InAppPurchasePriceInlineCreate: Codable, Sendable, Identifiable {
     public var id: String?
     public var type: String { "inAppPurchasePrices" }

@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read App Information
+     # Read app information
      Get information about a specific app.
 
      Full documentation:
@@ -225,7 +225,6 @@ public enum GetAppV1 {
             case brazilAgeRating
             case brazilAgeRatingV2
             case franceAgeRating
-            case kidsAgeBand
             case koreaAgeRating
             case primaryCategory
             case primarySubcategoryOne

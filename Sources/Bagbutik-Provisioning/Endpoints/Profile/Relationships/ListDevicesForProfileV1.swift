@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # List All Devices in a Profile
+     # List all devices in a profile
      Get a list of all devices for a specific provisioning profile.
 
      Full documentation:

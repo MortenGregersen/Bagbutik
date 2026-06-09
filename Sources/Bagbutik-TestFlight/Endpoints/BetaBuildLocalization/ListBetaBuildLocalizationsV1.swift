@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # List Beta Build Localizations
+     # List beta build localizations
      Find and list beta build localizations currently associated with apps.
 
      Full documentation:

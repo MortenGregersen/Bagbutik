@@ -3,7 +3,7 @@ import Foundation
 
 /**
  # BackgroundAssetVersionInternalBetaRelease
- The data structure that represents a background asset version internal beta release resource.
+ A release of a background asset version to internal testers, allowing you to validate asset delivery before public distribution.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/backgroundassetversioninternalbetarelease>

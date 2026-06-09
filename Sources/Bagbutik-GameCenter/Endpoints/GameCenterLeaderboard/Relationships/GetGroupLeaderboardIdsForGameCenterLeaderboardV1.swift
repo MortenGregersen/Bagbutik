@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # List All Groups to Which a Leaderboard Belongs
+     # List all groups to which a leaderboard belongs
      List associated group leaderboards for a specific leaderboard.
 
      Full documentation:

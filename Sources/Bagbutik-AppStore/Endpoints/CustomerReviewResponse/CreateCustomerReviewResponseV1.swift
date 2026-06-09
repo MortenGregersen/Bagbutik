@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Create or Update a Response to a Customer Review
+     # Create or update a response to a customer review
      Create a response or replace an existing response you wrote to a customer review.
 
      Use this endpoint to create a response to a customer review and publish it in the App Store. If a response already exists, this endpoint updates the response by overwriting it.

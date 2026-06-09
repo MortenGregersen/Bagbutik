@@ -4,6 +4,7 @@ import Bagbutik_Models
 public extension Request {
     /**
      # Read In-App Event Information
+     Get information about a specific in-app event.
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-appEvents-_id_>

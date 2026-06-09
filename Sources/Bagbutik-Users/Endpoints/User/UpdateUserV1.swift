@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Modify a User Account
+     # Modify a user account
      Change a user’s role, app visibility information, or other account details.
 
      Full documentation:

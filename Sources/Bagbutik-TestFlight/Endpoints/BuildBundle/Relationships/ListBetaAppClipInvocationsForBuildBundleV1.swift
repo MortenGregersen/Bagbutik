@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # List All Beta App Clip Invocations for a Build Bundle
+     # List all beta app clip invocations for a build bundle
      Get all App Clip invocations you configure for testing for a specific build bundle.
 
      Full documentation:

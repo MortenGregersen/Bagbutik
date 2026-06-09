@@ -2,6 +2,13 @@ import Bagbutik_Core
 import Bagbutik_Models
 import Foundation
 
+/**
+ # AppEventsResponse
+ The response body for endpoints that list in-app events for an app.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appeventsresponse>
+ */
 public struct AppEventsResponse: Codable, Sendable, PagedResponse {
     public typealias Data = AppEvent
 

@@ -3,7 +3,7 @@ import Foundation
 
 /**
  # AlternativeDistributionPackageVariant
- The data structure that represents an alternative distribution package variant resource.
+ A device-specific file package within an alternative distribution app, targeting a particular device family.
 
  To learn more about the responses that include alternative distribution package variant objects, see [AlternativeDistributionPackageVariantResponse](https://developer.apple.com/documentation/appstoreconnectapi/alternativedistributionpackagevariantresponse) or [AlternativeDistributionPackageVariantsResponse](https://developer.apple.com/documentation/appstoreconnectapi/alternativedistributionpackagevariantsresponse).
 

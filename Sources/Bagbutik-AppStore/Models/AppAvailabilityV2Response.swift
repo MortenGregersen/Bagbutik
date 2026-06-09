@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # AppAvailabilityV2Response
- A response that contains a single app availability resource.
+ The response body for endpoints that read or modify the availability settings for an app.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appavailabilityv2response>

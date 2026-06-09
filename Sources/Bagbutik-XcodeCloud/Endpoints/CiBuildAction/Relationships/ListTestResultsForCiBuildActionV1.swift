@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # List All Test Results for an Xcode Cloud Test Action
+     # List all test results for an xcode cloud test action
      List all test results for a specific test action Xcode Cloud performed as part of a build.
 
      The example request below lists the test results for an Xcode Cloud build that performed a test action. Use the information provided in the response to display test results on a dashboard, create a new task for a failing test in your issue tracker, and so on.

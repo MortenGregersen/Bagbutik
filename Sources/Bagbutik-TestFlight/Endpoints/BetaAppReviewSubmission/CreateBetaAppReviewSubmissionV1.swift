@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Submit an App for Beta Review
+     # Submit an app for beta review
      Submit an app for beta app review to allow external testing.
 
      Full documentation:

@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Modify an App
+     # Modify an app
      Update app information, including bundle ID, primary locale, price schedule, and global availability.
 
      Full documentation:

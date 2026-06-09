@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # AppPreviewSetsResponse
- A response that contains a list of App Preview Set resources.
+ The response body for endpoints that list app preview sets for an App Store version localization.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/apppreviewsetsresponse>

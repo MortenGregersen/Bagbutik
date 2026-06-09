@@ -2,6 +2,13 @@ import Bagbutik_Core
 import Bagbutik_Models
 import Foundation
 
+/**
+ # AppStoreVersionPhasedReleaseWithoutIncludesResponse
+ A response containing a single phased release configuration, without related resources.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionphasedreleasewithoutincludesresponse>
+ */
 public struct AppStoreVersionPhasedReleaseWithoutIncludesResponse: Codable, Sendable {
     public let data: AppStoreVersionPhasedRelease
     public let links: DocumentLinks

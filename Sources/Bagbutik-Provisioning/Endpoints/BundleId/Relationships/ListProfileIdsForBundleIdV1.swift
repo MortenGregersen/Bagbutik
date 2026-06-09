@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # GET /v1/bundleIds/{id}/relationships/profiles
+     # List profile IDs for a bundle ID
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-bundleIds-_id_-relationships-profiles>

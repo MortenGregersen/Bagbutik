@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read Image Information for an Advanced App Clip Experience
+     # Read image information for an advanced app clip experience
      Get information about the image that appears on the App Clip card of an advanced App Clip experience.
 
      Full documentation:

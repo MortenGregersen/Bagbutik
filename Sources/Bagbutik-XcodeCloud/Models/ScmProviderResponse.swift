@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # ScmProviderResponse
- A response that contains a single Providers resource.
+ The response body for endpoints that read a single SCM provider connected to Xcode Cloud.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/scmproviderresponse>

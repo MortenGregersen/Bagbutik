@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # GameCenterAchievementLocalization
+ The localized name, description, and badge image for a Game Center achievement in a specific language.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterachievementlocalization>
+ */
 public struct GameCenterAchievementLocalization: Codable, Sendable, Identifiable {
     public let id: String
     public var links: ResourceLinks?

@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read the App Store Review Details of an App Clip
+     # Read the app store review details of an app clip
      Get App Store Review details for an App Clip.
 
      Full documentation:

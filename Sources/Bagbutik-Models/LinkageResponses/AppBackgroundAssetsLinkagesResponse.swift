@@ -3,7 +3,7 @@ import Foundation
 
 /**
  # AppBackgroundAssetsLinkagesResponse
- A response that contains a list of IDs of related background assets.
+ A response containing the resource identifiers of background asset versions linked to an app.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appbackgroundassetslinkagesresponse>

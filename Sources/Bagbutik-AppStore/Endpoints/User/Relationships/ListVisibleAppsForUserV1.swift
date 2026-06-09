@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # List All Apps Visible to a User
+     # List all apps visible to a user
      Get a list of apps that a user on your team can view.
 
      Full documentation:

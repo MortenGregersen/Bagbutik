@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read Git Reference Information
+     # Read git reference information
      Get information about a specific Git reference.
 
      Full documentation:

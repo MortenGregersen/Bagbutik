@@ -2,6 +2,13 @@ import Bagbutik_Core
 import Bagbutik_Models
 import Foundation
 
+/**
+ # SubscriptionLocalizationResponse
+ The response body for endpoints that create, read, or modify a single subscription localization.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/subscriptionlocalizationresponse>
+ */
 public struct SubscriptionLocalizationResponse: Codable, Sendable {
     public let data: SubscriptionLocalization
     public var included: [Subscription]?

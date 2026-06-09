@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # BackgroundAssetVersionInternalBetaReleaseResponse
- A response that contains a single background asset version internal beta release resource.
+ A response containing a single internal beta release record for a background asset version.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/backgroundassetversioninternalbetareleaseresponse>

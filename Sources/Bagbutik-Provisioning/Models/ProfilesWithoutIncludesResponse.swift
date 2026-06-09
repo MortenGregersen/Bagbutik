@@ -2,6 +2,13 @@ import Bagbutik_Core
 import Bagbutik_Models
 import Foundation
 
+/**
+ # ProfilesWithoutIncludesResponse
+ A response containing a list of provisioning profiles, without related resources.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/profileswithoutincludesresponse>
+ */
 public struct ProfilesWithoutIncludesResponse: Codable, Sendable, PagedResponse {
     public typealias Data = Profile
 

@@ -3,7 +3,7 @@ import Foundation
 
 /**
  # AppAppTagsLinkagesResponse
- A response that contains a list of IDs of related resources.
+ A response containing the resource identifiers of tags associated with an app.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appapptagslinkagesresponse>

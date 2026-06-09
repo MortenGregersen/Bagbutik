@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # RoutingAppCoverageResponse
- A response that contains a single Routing App Coverages resource.
+ The response body for endpoints that read or modify the routing app coverage file for an app version.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/routingappcoverageresponse>

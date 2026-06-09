@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # GameCenterChallengeImageCreateRequest
- The request body you use to create a challenge resource.
+ The request body for uploading an image asset for a Game Center challenge.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterchallengeimagecreaterequest>

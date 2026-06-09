@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Create a Beta App Localization
+     # Create a beta app localization
      Create localized descriptive information for an app.
 
      Full documentation:

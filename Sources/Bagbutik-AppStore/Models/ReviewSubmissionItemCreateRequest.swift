@@ -2,6 +2,13 @@ import Bagbutik_Core
 import Bagbutik_Models
 import Foundation
 
+/**
+ # ReviewSubmissionItemCreateRequest
+ The request body you use to create a review submission item.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/reviewsubmissionitemcreaterequest>
+ */
 public struct ReviewSubmissionItemCreateRequest: Codable, Sendable, RequestBody {
     public let data: Data
 

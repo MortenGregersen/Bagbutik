@@ -2,6 +2,13 @@ import Bagbutik_Core
 import Bagbutik_Models
 import Foundation
 
+/**
+ # SandboxTestersClearPurchaseHistoryRequestV2Response
+ A response confirming that the purchase history for sandbox testers was cleared.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/sandboxtestersclearpurchasehistoryrequestv2response>
+ */
 public struct SandboxTestersClearPurchaseHistoryRequestV2Response: Codable, Sendable {
     public let data: SandboxTestersClearPurchaseHistoryRequestV2
     public let links: DocumentLinks

@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # List All Promoted Purchases for an App
+     # List all promoted purchases for an app
      Get a list of promoted in-app purchases, including promoted auto-renewable subscriptions, for an app.
 
      Full documentation:
@@ -107,6 +107,7 @@ public enum ListPromotedPurchasesForAppV1 {
             case introductoryOffers
             case name
             case offerCodes
+            case planAvailabilities
             case pricePoints
             case prices
             case productId

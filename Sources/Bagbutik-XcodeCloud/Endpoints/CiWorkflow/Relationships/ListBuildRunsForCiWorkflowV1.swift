@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # List All Xcode Cloud Builds for a Workflow
+     # List all xcode cloud builds for a workflow
      List all builds Xcode Cloud performed for a specific workflow.
 
      Full documentation:

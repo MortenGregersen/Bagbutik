@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # BundleIdCapabilitiesResponse
- A response that contains a list of Bundle ID Capability resources.
+ The response body for endpoints that list capabilities enabled for a bundle ID.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/bundleidcapabilitiesresponse>

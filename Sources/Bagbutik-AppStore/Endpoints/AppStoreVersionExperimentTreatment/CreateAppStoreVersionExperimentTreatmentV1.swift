@@ -3,7 +3,8 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # POST /v1/appStoreVersionExperimentTreatments
+     # Create an app store version experiment treatment
+     Add a new treatment to an App Store version experiment.
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/post-v1-appStoreVersionExperimentTreatments>

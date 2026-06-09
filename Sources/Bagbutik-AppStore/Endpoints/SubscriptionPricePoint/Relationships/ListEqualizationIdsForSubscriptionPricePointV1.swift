@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # GET /v1/subscriptionPricePoints/{id}/relationships/equalizations
+     # List equalization IDs for a subscription price point
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-subscriptionPricePoints-_id_-relationships-equalizations>

@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # GET /v1/merchantIds/{id}/relationships/certificates
+     # List certificate IDs for a merchant ID
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-merchantIds-_id_-relationships-certificates>

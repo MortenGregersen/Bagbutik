@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # WebhooksResponse
- A response that contains a list of webhooks response resources.
+ The response body for endpoints that list webhooks.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/webhooksresponse>

@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # AppInfoTerritoryAgeRatingsLinkagesResponse
+ A response containing the resource identifiers of territory-specific age ratings for an app info record.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appinfoterritoryageratingslinkagesresponse>
+ */
 public struct AppInfoTerritoryAgeRatingsLinkagesResponse: Codable, Sendable, PagedResponse {
     public let data: [Data]
     public let links: PagedDocumentLinks

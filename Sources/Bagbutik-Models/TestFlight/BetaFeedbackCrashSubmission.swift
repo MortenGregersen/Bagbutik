@@ -3,7 +3,7 @@ import Foundation
 
 /**
  # BetaFeedbackCrashSubmission
- The data structure that represents a BetaFeedbackCrashSubmission resource.
+ A crash report submitted by a TestFlight beta tester, linked to the build, bundle, and tester that produced it.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/betafeedbackcrashsubmission>

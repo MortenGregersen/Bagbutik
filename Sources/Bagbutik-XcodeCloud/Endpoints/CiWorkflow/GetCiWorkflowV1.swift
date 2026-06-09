@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read Xcode Cloud Workflow Information
+     # Read xcode cloud workflow information
      Get information about a specific Xcode Cloud workflow.
 
      The example request below accesses information about an Xcode Cloud workflow. Display the workflow data provided in the response on a dashboard or use it to read additional information; for example, detailed data about builds Xcode Cloud performed.

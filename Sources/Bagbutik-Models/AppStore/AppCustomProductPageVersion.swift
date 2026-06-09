@@ -3,7 +3,7 @@ import Foundation
 
 /**
  # AppCustomProductPageVersion
- The data structure that represents an app custom product page version resource.
+ A version of a custom App Store product page, containing its localizations and review status.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appcustomproductpageversion>

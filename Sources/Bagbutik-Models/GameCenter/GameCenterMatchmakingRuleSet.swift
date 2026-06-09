@@ -3,7 +3,7 @@ import Foundation
 
 /**
  # GameCenterMatchmakingRuleSet
- The data structure that represents a rule set.
+ A named collection of matchmaking rules and queues that defines the logic for matching players in a Game Center game.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingruleset>

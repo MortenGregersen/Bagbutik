@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # AnalyticsReportRequest
- The data structure that represents an analytics report request.
+ A request to generate ongoing analytics reports for an app, specifying the report type and access frequency.
 
  To learn more about the response that includes this analytics report request object, see [AnalyticsReportRequestCreateRequest](https://developer.apple.com/documentation/appstoreconnectapi/analyticsreportrequestcreaterequest).
 

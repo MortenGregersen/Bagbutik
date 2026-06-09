@@ -2,6 +2,13 @@ import Bagbutik_Core
 import Bagbutik_Models
 import Foundation
 
+/**
+ # SubscriptionGracePeriodUpdateRequest
+ The request body you use to update a subscription grace period update request.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/subscriptiongraceperiodupdaterequest>
+ */
 public struct SubscriptionGracePeriodUpdateRequest: Codable, Sendable, RequestBody {
     public let data: Data
 

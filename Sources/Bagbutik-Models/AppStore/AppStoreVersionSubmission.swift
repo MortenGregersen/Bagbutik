@@ -3,7 +3,7 @@ import Foundation
 
 /**
  # AppStoreVersionSubmission
- The data structure that represents an App Store Version Submissions resource.
+ A submission of an App Store version to Apple’s review queue, triggering the review process.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionsubmission>

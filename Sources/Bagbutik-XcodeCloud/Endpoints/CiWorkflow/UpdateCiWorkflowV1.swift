@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Update an Xcode Cloud Workflow
+     # Update an xcode cloud workflow
      Make changes to an Xcode Cloud workflow.
 
      The example request below updates the name of an existing Xcode Cloud workflow. For a successful update, the response includes detailed information about the workflow. Use it to access additional information, start a new build, and so on.

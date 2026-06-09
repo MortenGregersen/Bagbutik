@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # BetaTesterInvitationResponse
- A response that contains a single Beta Tester Invitations resource.
+ The response body for the endpoint that sends a TestFlight invitation to a beta tester.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/betatesterinvitationresponse>

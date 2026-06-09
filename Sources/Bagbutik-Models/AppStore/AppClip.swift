@@ -3,7 +3,7 @@ import Foundation
 
 /**
  # AppClip
- The data structure that represents an App Clips resource.
+ A lightweight version of an app that users can launch instantly without installation, associated with a registered parent app.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appclip>

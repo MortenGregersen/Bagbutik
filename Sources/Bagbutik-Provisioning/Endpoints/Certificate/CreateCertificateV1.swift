@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Create a Certificate
+     # Create a certificate
      Create a new certificate using a certificate signing request.
 
      Full documentation:

@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read Subscription Group Localization Information
+     # Read subscription group localization information
      Get the specific localized subscription group display name and optional custom app name for a subscription group.
 
      Full documentation:

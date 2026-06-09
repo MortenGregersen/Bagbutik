@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Get a Customer Review Response
+     # Get a customer review response
      Get the response to a specific customer review.
 
      Full documentation:

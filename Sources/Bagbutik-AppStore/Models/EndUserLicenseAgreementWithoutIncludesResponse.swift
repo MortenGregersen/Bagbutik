@@ -2,6 +2,13 @@ import Bagbutik_Core
 import Bagbutik_Models
 import Foundation
 
+/**
+ # EndUserLicenseAgreementWithoutIncludesResponse
+ A response containing a single EULA, without including territory details.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/enduserlicenseagreementwithoutincludesresponse>
+ */
 public struct EndUserLicenseAgreementWithoutIncludesResponse: Codable, Sendable {
     public let data: EndUserLicenseAgreement
     public let links: DocumentLinks

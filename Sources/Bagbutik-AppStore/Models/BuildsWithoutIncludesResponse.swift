@@ -2,6 +2,13 @@ import Bagbutik_Core
 import Bagbutik_Models
 import Foundation
 
+/**
+ # BuildsWithoutIncludesResponse
+ A response containing a list of builds, without related resources.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/buildswithoutincludesresponse>
+ */
 public struct BuildsWithoutIncludesResponse: Codable, Sendable, PagedResponse {
     public typealias Data = Build
 

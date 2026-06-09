@@ -3,7 +3,7 @@ import Foundation
 
 /**
  # GameCenterMatchmakingTestPlayerProperty
- The data structure that represents a test player’s type and ID.
+ A simulated player attribute used when testing Game Center matchmaking rule sets.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingtestplayerproperty>

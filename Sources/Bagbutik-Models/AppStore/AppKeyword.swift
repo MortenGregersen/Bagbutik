@@ -3,7 +3,7 @@ import Foundation
 
 /**
  # AppKeyword
- The data structure that represents an app keyword resource.
+ A search keyword associated with an App Store listing or custom product page for discoverability.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appkeyword>

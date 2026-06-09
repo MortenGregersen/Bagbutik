@@ -3,7 +3,7 @@ import Foundation
 
 /**
  # BackgroundAsset
- The data structure that represents a background asset resource.
+ A downloadable content package that your app fetches in the background before or after installation, managed through Apple-hosted background assets.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/backgroundasset>

@@ -2,6 +2,13 @@ import Bagbutik_Core
 import Bagbutik_Models
 import Foundation
 
+/**
+ # SubscriptionAvailabilityResponse
+ A response containing a single territory availability configuration for a subscription.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/subscriptionavailabilityresponse>
+ */
 public struct SubscriptionAvailabilityResponse: Codable, Sendable {
     public let data: SubscriptionAvailability
     public var included: [Territory]?

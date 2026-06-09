@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # AgeRatingDeclarationResponse
- A response that contains a single Age Rating Declarations resource.
+ A response containing a single age rating declaration with your app’s content descriptors.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/ageratingdeclarationresponse>

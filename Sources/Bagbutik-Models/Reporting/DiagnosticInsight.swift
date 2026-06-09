@@ -3,7 +3,7 @@ import Foundation
 
 /**
  # DiagnosticInsight
- The data structure that represents the Diagnostic Insight resource.
+ An AI-generated analysis of a recurring performance issue identified in your app’s diagnostic logs, with suggested fixes.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/diagnosticinsight>

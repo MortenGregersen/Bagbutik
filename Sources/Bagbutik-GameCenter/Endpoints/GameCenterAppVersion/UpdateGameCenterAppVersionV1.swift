@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # PATCH /v1/gameCenterAppVersions/{id}
+     # Modify an app version
      Change the state of Game Center enablement for an app version.
 
      Full documentation:

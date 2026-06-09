@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Get All Beta Tester IDs in a Beta Group
+     # Get all beta tester ids in a beta group
      Get a list of the beta tester resource IDs in a specific beta group.
 
      Full documentation:

@@ -2,6 +2,13 @@ import Bagbutik_Core
 import Bagbutik_Models
 import Foundation
 
+/**
+ # SubscriptionIntroductoryOffersResponse
+ The response body for endpoints that list introductory offers for a subscription.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/subscriptionintroductoryoffersresponse>
+ */
 public struct SubscriptionIntroductoryOffersResponse: Codable, Sendable, PagedResponse {
     public typealias Data = SubscriptionIntroductoryOffer
 

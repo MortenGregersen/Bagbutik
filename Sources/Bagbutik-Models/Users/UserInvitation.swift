@@ -3,7 +3,7 @@ import Foundation
 
 /**
  # UserInvitation
- The data structure that represents a User Invitations resource.
+ A pending invitation for a person to join your App Store Connect team with a specified role and app access.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/userinvitation>

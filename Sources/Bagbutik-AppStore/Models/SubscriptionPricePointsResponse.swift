@@ -2,6 +2,13 @@ import Bagbutik_Core
 import Bagbutik_Models
 import Foundation
 
+/**
+ # SubscriptionPricePointsResponse
+ The response body for endpoints that list available price points for a subscription.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/subscriptionpricepointsresponse>
+ */
 public struct SubscriptionPricePointsResponse: Codable, Sendable, PagedResponse {
     public typealias Data = SubscriptionPricePoint
 

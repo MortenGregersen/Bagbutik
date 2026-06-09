@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Modify and Delete an Advanced App Clip Experience
+     # Modify and delete an advanced app clip experience
      Update and delete an existing advanced App Clip experience.
 
      Full documentation:

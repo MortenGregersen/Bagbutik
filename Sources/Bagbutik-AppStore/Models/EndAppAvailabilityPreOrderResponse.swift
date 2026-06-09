@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # EndAppAvailabilityPreOrderResponse
- A response that contains a single end app availability resource.
+ A response confirming that an app’s pre-order period has ended and the app is now available.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/endappavailabilitypreorderresponse>

@@ -2,6 +2,13 @@ import Bagbutik_Core
 import Bagbutik_Models
 import Foundation
 
+/**
+ # SubscriptionLocalizationCreateRequest
+ The request body you use to create a subscription localization.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/subscriptionlocalizationcreaterequest>
+ */
 public struct SubscriptionLocalizationCreateRequest: Codable, Sendable, RequestBody {
     public let data: Data
 

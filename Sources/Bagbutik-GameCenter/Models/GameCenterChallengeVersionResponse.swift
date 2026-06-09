@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # GameCenterChallengeVersionResponse
- A response that contains a single challenge version resource.
+ A response containing a single version of a Game Center challenge.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterchallengeversionresponse>

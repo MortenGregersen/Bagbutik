@@ -3,7 +3,7 @@ import Foundation
 
 /**
  # GameCenterDetailChallengesMinimumPlatformVersionsLinkagesRequest
- The data structure that represents a detail resource.
+ The request body for updating the minimum platform versions required for challenges in a Game Center detail.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterdetailchallengesminimumplatformversionslinkagesrequest>

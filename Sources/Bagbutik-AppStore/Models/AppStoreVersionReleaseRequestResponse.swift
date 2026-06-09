@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # AppStoreVersionReleaseRequestResponse
- A response that contains a single App Store Version Release Request resource.
+ A response containing a single manual release request for an App Store version.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionreleaserequestresponse>

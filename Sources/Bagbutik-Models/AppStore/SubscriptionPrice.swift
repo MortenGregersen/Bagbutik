@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # SubscriptionPrice
+ A configured price for an auto-renewable subscription in a specific App Store territory.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/subscriptionprice>
+ */
 public struct SubscriptionPrice: Codable, Sendable, Identifiable {
     public let id: String
     public var links: ResourceLinks?
@@ -40,24 +47,29 @@ public struct SubscriptionPrice: Codable, Sendable, Identifiable {
     }
 
     public struct Attributes: Codable, Sendable {
+        public var planType: SubscriptionPlanType?
         public var preserved: Bool?
         public var startDate: String?
 
-        public init(preserved: Bool? = nil,
+        public init(planType: SubscriptionPlanType? = nil,
+                    preserved: Bool? = nil,
                     startDate: String? = nil)
         {
+            self.planType = planType
             self.preserved = preserved
             self.startDate = startDate
         }
 
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: AnyCodingKey.self)
+            planType = try container.decodeIfPresent(SubscriptionPlanType.self, forKey: "planType")
             preserved = try container.decodeIfPresent(Bool.self, forKey: "preserved")
             startDate = try container.decodeIfPresent(String.self, forKey: "startDate")
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: AnyCodingKey.self)
+            try container.encodeIfPresent(planType, forKey: "planType")
             try container.encodeIfPresent(preserved, forKey: "preserved")
             try container.encodeIfPresent(startDate, forKey: "startDate")
         }

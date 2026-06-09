@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # CiMacOsVersionResponse
- A response that contains a single macOS Versions resource.
+ A response containing a single macOS version available in Xcode Cloud.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/cimacosversionresponse>

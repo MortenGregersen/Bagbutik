@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # AppCustomProductPageLocalizationsResponse
- A response that contains a list of alternative distribution package variant resources.
+ A response containing a list of localizations for a custom App Store product page.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appcustomproductpagelocalizationsresponse>
@@ -49,30 +49,6 @@ public struct AppCustomProductPageLocalizationsResponse: Codable, Sendable, Page
             guard case let .appCustomProductPageVersion(appCustomProductPageVersion) = relationship else { return nil }
             return appCustomProductPageVersion
         }.first { $0.id == appCustomProductPageLocalization.relationships?.appCustomProductPageVersion?.data?.id }
-    }
-
-    public func getAppPreviewSets(for appCustomProductPageLocalization: AppCustomProductPageLocalization) -> [AppPreviewSet] {
-        guard let appPreviewSetIds = appCustomProductPageLocalization.relationships?.appPreviewSets?.data?.map(\.id),
-              let appPreviewSets = included?.compactMap({ relationship -> AppPreviewSet? in
-                  guard case let .appPreviewSet(appPreviewSet) = relationship else { return nil }
-                  return appPreviewSetIds.contains(appPreviewSet.id) ? appPreviewSet : nil
-              })
-        else {
-            return []
-        }
-        return appPreviewSets
-    }
-
-    public func getAppScreenshotSets(for appCustomProductPageLocalization: AppCustomProductPageLocalization) -> [AppScreenshotSet] {
-        guard let appScreenshotSetIds = appCustomProductPageLocalization.relationships?.appScreenshotSets?.data?.map(\.id),
-              let appScreenshotSets = included?.compactMap({ relationship -> AppScreenshotSet? in
-                  guard case let .appScreenshotSet(appScreenshotSet) = relationship else { return nil }
-                  return appScreenshotSetIds.contains(appScreenshotSet.id) ? appScreenshotSet : nil
-              })
-        else {
-            return []
-        }
-        return appScreenshotSets
     }
 
     public func getSearchKeywords(for appCustomProductPageLocalization: AppCustomProductPageLocalization) -> [AppKeyword] {

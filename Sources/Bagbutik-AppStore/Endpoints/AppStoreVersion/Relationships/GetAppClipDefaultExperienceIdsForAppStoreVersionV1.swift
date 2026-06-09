@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Get the Default App Clip Experiences Resource ID for an App Store Version
+     # Get the default app clip experiences resource id for an app store version
      Get the ID of an app’s related default App Clip experience.
 
      Full documentation:

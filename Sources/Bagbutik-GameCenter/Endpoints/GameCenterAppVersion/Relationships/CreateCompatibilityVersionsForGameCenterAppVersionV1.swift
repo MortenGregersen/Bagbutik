@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # POST /v1/gameCenterAppVersions/{id}/relationships/compatibilityVersions
+     # Add compatible app version relationships
      Create a relationship between two Game Center app versions.
 
      Full documentation:

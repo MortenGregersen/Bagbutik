@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Delete a Subscription Group
+     # Delete a subscription group
      Delete a specific empty subscription group.
 
      Full documentation:

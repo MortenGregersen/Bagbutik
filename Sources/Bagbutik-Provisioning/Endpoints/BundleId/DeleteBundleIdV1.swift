@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Delete a Bundle ID
+     # Delete a bundle id
      You can only delete bundle IDs that are used for development. You can’t delete bundle IDs that are being used by an app in App Store Connect.
 
      Full documentation:

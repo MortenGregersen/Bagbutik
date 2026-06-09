@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # SubscriptionPricePoint
+ A standard price tier for auto-renewable subscriptions, defining the customer price and developer proceeds.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/subscriptionpricepoint>
+ */
 public struct SubscriptionPricePoint: Codable, Sendable, Identifiable {
     public let id: String
     public var links: ResourceLinks?

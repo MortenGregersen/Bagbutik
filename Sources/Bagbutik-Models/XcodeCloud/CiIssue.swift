@@ -3,7 +3,7 @@ import Foundation
 
 /**
  # CiIssue
- The data structure that represents an Issues resource.
+ A warning or error produced during an Xcode Cloud build action, associated with a source file location.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/ciissue>

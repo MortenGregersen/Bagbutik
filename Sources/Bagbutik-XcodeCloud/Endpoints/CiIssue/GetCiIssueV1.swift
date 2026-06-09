@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read Xcode Cloud Issue Information
+     # Read xcode cloud issue information
      Get information about a specific issue that occurred when Xcode Cloud performed a build.
 
      The example request below retrieves information about a specific issue Xcode Cloud encountered when it performed a build. Use the information provided to display issues on a dashboard, create reports, and so on.

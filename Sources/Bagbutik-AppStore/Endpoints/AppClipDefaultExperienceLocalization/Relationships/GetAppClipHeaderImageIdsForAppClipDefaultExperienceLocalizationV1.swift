@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # GET /v1/appClipDefaultExperienceLocalizations/{id}/relationships/appClipHeaderImage
+     # Get the header image ID for an App Clip default experience localization
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-appClipDefaultExperienceLocalizations-_id_-relationships-appClipHeaderImage>

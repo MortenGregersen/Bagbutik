@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # List All Prices for a Subscription
+     # List all prices for a subscription
      Get a list of prices for an auto-renewable subscription, by territory.
 
      Full documentation:
@@ -68,6 +68,7 @@ public enum ListPricesForSubscriptionV1 {
         }
 
         public enum SubscriptionPrices: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case planType
             case preserved
             case startDate
             case subscriptionPricePoint
@@ -113,6 +114,8 @@ public enum ListPricesForSubscriptionV1 {
      Attributes, relationships, and IDs by which to filter.
      */
     public enum Filter: FilterParameter {
+        /// Filter by attribute 'planType'
+        case planType([SubscriptionPlanType])
         /// Filter by id(s) of related 'subscriptionPricePoint'
         case subscriptionPricePoint([String])
         /// Filter by id(s) of related 'territory'

@@ -3,7 +3,7 @@ import Foundation
 
 /**
  # AlternativeDistributionDomain
- The data structure that represents an alternative distribution domain resource.
+ A web domain authorized to distribute your app outside the App Store via web distribution or an alternative marketplace.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/alternativedistributiondomain>

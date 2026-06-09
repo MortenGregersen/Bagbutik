@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Invite a User
+     # Invite a user
      Invite a user with assigned user roles to join your team.
 
      Full documentation:

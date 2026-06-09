@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Deactivate One-Time Use Offer Codes
+     # Deactivate one-time use offer codes
      Deactivate a batch of one-time use offer codes for an auto-renewable subscription.
 
      Full documentation:

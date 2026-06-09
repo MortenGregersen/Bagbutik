@@ -2,6 +2,13 @@ import Bagbutik_Core
 import Bagbutik_Models
 import Foundation
 
+/**
+ # SandboxTesterV2UpdateRequest
+ The request body you use to update a sandbox tester v2update request.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/sandboxtesterv2updaterequest>
+ */
 public struct SandboxTesterV2UpdateRequest: Codable, Sendable, RequestBody {
     public let data: Data
 

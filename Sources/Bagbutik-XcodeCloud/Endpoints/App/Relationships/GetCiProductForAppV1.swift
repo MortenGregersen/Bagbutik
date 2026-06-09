@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read the Xcode Cloud Product for an App
+     # Read the xcode cloud product for an app
      Get the Xcode Cloud product information for an app you build with Xcode Cloud.
 
      The example request below retrieves information about a specific Xcode Cloud product. Use the data provided in the response to read additional information; for example, workflow information.

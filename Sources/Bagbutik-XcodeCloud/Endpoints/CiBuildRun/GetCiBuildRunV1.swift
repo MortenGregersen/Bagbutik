@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read Xcode Cloud Build Information
+     # Read xcode cloud build information
      Get information about a specific Xcode Cloud build.
 
      The example request below retrieves detailed information for a specific build. Use the data provided in the response to display detailed build information on a dashboard or to access related information for each action Xcode Cloud performed.

@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Modify the Order of a Promoted Purchase for an App
+     # Modify the order of a promoted purchase for an app
      Update the order of promoted purchases.
 
      Full documentation:

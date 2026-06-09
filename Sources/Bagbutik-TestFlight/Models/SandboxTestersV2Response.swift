@@ -2,6 +2,13 @@ import Bagbutik_Core
 import Bagbutik_Models
 import Foundation
 
+/**
+ # SandboxTestersV2Response
+ The response body for endpoints that list sandbox Apple IDs used for testing.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/sandboxtestersv2response>
+ */
 public struct SandboxTestersV2Response: Codable, Sendable, PagedResponse {
     public typealias Data = SandboxTesterV2
 

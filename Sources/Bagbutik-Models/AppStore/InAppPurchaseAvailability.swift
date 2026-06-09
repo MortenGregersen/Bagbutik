@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # InAppPurchaseAvailability
+ The territory availability configuration for an in-app purchase, specifying which App Store regions it’s offered in.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/inapppurchaseavailability>
+ */
 public struct InAppPurchaseAvailability: Codable, Sendable, Identifiable {
     public let id: String
     public var links: ResourceLinks?

@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # List All Builds of a Prerelease Version
+     # List all builds of a prerelease version
      Get a list of builds of a specific prerelease version.
 
      Full documentation:

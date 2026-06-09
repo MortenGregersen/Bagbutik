@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Modify an Age Rating Declaration
+     # Modify an age rating declaration
      Provide age-related information so the App Store can determine the age rating for your app.
 
      Every App Store version has an age rating declaration. Use this endpoint to edit the declaration and provide app-characteristic information so App Store Connect can determine the appropriate age rating for the app.

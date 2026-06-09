@@ -2,6 +2,13 @@ import Bagbutik_Core
 import Bagbutik_Models
 import Foundation
 
+/**
+ # SubscriptionSubmissionResponse
+ A response confirming the submission of a subscription for App Store review.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/subscriptionsubmissionresponse>
+ */
 public struct SubscriptionSubmissionResponse: Codable, Sendable {
     public let data: SubscriptionSubmission
     public var included: [Subscription]?

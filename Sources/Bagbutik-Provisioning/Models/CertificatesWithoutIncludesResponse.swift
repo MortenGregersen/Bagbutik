@@ -2,6 +2,13 @@ import Bagbutik_Core
 import Bagbutik_Models
 import Foundation
 
+/**
+ # CertificatesWithoutIncludesResponse
+ A response containing a list of certificates, without related resources.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/certificateswithoutincludesresponse>
+ */
 public struct CertificatesWithoutIncludesResponse: Codable, Sendable, PagedResponse {
     public typealias Data = Certificate
 

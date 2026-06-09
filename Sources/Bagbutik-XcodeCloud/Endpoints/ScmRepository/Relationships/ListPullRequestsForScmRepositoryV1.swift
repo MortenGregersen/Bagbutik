@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # List All Pull Requests for a Repository
+     # List all pull requests for a repository
      List all pull requests for a specific repository that Xcode Cloud can access.
 
      Full documentation:

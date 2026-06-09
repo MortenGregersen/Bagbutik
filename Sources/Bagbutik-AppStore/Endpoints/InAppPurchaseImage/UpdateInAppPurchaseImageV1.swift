@@ -3,8 +3,8 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read In-App Purchase Image Information
-     Read details about a specific in-app purchase image.
+     # Commit an image for an in-app purchase
+     Commit an uploaded image asset for an in-app purchase.
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/patch-v1-inAppPurchaseImages-_id_>

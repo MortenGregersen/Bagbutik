@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # GET /v1/scmRepositories/{id}/relationships/pullRequests
+     # List pull request IDs for an SCM repository
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-scmRepositories-_id_-relationships-pullRequests>

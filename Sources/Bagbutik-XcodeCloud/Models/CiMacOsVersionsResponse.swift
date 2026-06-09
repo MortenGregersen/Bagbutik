@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # CiMacOsVersionsResponse
- A response that contains a list of macOS Versions resources.
+ A response containing a list of macOS versions supported by Xcode Cloud.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/cimacosversionsresponse>

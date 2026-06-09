@@ -3,7 +3,7 @@ import Foundation
 
 /**
  # Nomination
- The data structure that represents a nomination resource.
+ A developer recommendation submitted to Apple proposing an app or in-app event for App Store editorial featuring.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/nomination>

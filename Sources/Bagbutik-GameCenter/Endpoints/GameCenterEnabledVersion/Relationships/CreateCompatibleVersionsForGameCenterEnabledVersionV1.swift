@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Add Compatible Versions to a Game Center Enabled Version
+     # Add compatible versions to a game center enabled version
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/post-v1-gameCenterEnabledVersions-_id_-relationships-compatibleVersions>

@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Delete an End User License Agreement
+     # Delete an end user license agreement
      Delete the custom end user license agreement that is associated with an app.
 
      Full documentation:

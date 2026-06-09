@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # AppEncryptionDeclarationWithoutIncludesResponse
- A response that contains a list of app encryption declaration without includes response resources.
+ A response containing a single encryption declaration, without related resources.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appencryptiondeclarationwithoutincludesresponse>

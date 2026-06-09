@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # Subscription
+ An auto-renewable subscription product offered within an app, with configurable pricing, duration, and promotional offers.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/subscription>
+ */
 public struct Subscription: Codable, Sendable, Identifiable {
     public let id: String
     public var links: ResourceLinks?
@@ -146,19 +153,23 @@ public struct Subscription: Codable, Sendable, Identifiable {
         public var images: Images?
         public var introductoryOffers: IntroductoryOffers?
         public var offerCodes: OfferCodes?
+        public var planAvailabilities: PlanAvailabilities?
         public var pricePoints: PricePoints?
         public var prices: Prices?
         public var promotedPurchase: PromotedPurchase?
         public var promotionalOffers: PromotionalOffers?
-        public var subscriptionAvailability: SubscriptionAvailability?
+        @available(*, deprecated, message: "Apple has marked this property deprecated and it will be removed sometime in the future.")
+        public var subscriptionAvailability: SubscriptionAvailability? = nil
         public var subscriptionLocalizations: SubscriptionLocalizations?
         public var winBackOffers: WinBackOffers?
 
+        @available(*, deprecated, message: "This uses a property Apple has marked as deprecated.")
         public init(appStoreReviewScreenshot: AppStoreReviewScreenshot? = nil,
                     group: Group? = nil,
                     images: Images? = nil,
                     introductoryOffers: IntroductoryOffers? = nil,
                     offerCodes: OfferCodes? = nil,
+                    planAvailabilities: PlanAvailabilities? = nil,
                     pricePoints: PricePoints? = nil,
                     prices: Prices? = nil,
                     promotedPurchase: PromotedPurchase? = nil,
@@ -172,11 +183,39 @@ public struct Subscription: Codable, Sendable, Identifiable {
             self.images = images
             self.introductoryOffers = introductoryOffers
             self.offerCodes = offerCodes
+            self.planAvailabilities = planAvailabilities
             self.pricePoints = pricePoints
             self.prices = prices
             self.promotedPurchase = promotedPurchase
             self.promotionalOffers = promotionalOffers
             self.subscriptionAvailability = subscriptionAvailability
+            self.subscriptionLocalizations = subscriptionLocalizations
+            self.winBackOffers = winBackOffers
+        }
+
+        public init(appStoreReviewScreenshot: AppStoreReviewScreenshot? = nil,
+                    group: Group? = nil,
+                    images: Images? = nil,
+                    introductoryOffers: IntroductoryOffers? = nil,
+                    offerCodes: OfferCodes? = nil,
+                    planAvailabilities: PlanAvailabilities? = nil,
+                    pricePoints: PricePoints? = nil,
+                    prices: Prices? = nil,
+                    promotedPurchase: PromotedPurchase? = nil,
+                    promotionalOffers: PromotionalOffers? = nil,
+                    subscriptionLocalizations: SubscriptionLocalizations? = nil,
+                    winBackOffers: WinBackOffers? = nil)
+        {
+            self.appStoreReviewScreenshot = appStoreReviewScreenshot
+            self.group = group
+            self.images = images
+            self.introductoryOffers = introductoryOffers
+            self.offerCodes = offerCodes
+            self.planAvailabilities = planAvailabilities
+            self.pricePoints = pricePoints
+            self.prices = prices
+            self.promotedPurchase = promotedPurchase
+            self.promotionalOffers = promotionalOffers
             self.subscriptionLocalizations = subscriptionLocalizations
             self.winBackOffers = winBackOffers
         }
@@ -188,6 +227,7 @@ public struct Subscription: Codable, Sendable, Identifiable {
             images = try container.decodeIfPresent(Images.self, forKey: "images")
             introductoryOffers = try container.decodeIfPresent(IntroductoryOffers.self, forKey: "introductoryOffers")
             offerCodes = try container.decodeIfPresent(OfferCodes.self, forKey: "offerCodes")
+            planAvailabilities = try container.decodeIfPresent(PlanAvailabilities.self, forKey: "planAvailabilities")
             pricePoints = try container.decodeIfPresent(PricePoints.self, forKey: "pricePoints")
             prices = try container.decodeIfPresent(Prices.self, forKey: "prices")
             promotedPurchase = try container.decodeIfPresent(PromotedPurchase.self, forKey: "promotedPurchase")
@@ -204,6 +244,7 @@ public struct Subscription: Codable, Sendable, Identifiable {
             try container.encodeIfPresent(images, forKey: "images")
             try container.encodeIfPresent(introductoryOffers, forKey: "introductoryOffers")
             try container.encodeIfPresent(offerCodes, forKey: "offerCodes")
+            try container.encodeIfPresent(planAvailabilities, forKey: "planAvailabilities")
             try container.encodeIfPresent(pricePoints, forKey: "pricePoints")
             try container.encodeIfPresent(prices, forKey: "prices")
             try container.encodeIfPresent(promotedPurchase, forKey: "promotedPurchase")
@@ -436,6 +477,58 @@ public struct Subscription: Codable, Sendable, Identifiable {
             public struct Data: Codable, Sendable, Identifiable {
                 public let id: String
                 public var type: String { "subscriptionOfferCodes" }
+
+                public init(id: String) {
+                    self.id = id
+                }
+
+                public init(from decoder: Decoder) throws {
+                    let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                    id = try container.decode(String.self, forKey: "id")
+                    if try container.decode(String.self, forKey: "type") != type {
+                        throw DecodingError.dataCorruptedError(forKey: "type", in: container, debugDescription: "Not matching \(type)")
+                    }
+                }
+
+                public func encode(to encoder: Encoder) throws {
+                    var container = encoder.container(keyedBy: AnyCodingKey.self)
+                    try container.encode(id, forKey: "id")
+                    try container.encode(type, forKey: "type")
+                }
+            }
+        }
+
+        public struct PlanAvailabilities: Codable, Sendable {
+            @NullCodable public var data: [Data]?
+            public var links: RelationshipLinks?
+            public var meta: PagingInformation?
+
+            public init(data: [Data]? = nil,
+                        links: RelationshipLinks? = nil,
+                        meta: PagingInformation? = nil)
+            {
+                self.data = data
+                self.links = links
+                self.meta = meta
+            }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                data = try container.decodeIfPresent([Data].self, forKey: "data")
+                links = try container.decodeIfPresent(RelationshipLinks.self, forKey: "links")
+                meta = try container.decodeIfPresent(PagingInformation.self, forKey: "meta")
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: AnyCodingKey.self)
+                try container.encode(data, forKey: "data")
+                try container.encodeIfPresent(links, forKey: "links")
+                try container.encodeIfPresent(meta, forKey: "meta")
+            }
+
+            public struct Data: Codable, Sendable, Identifiable {
+                public let id: String
+                public var type: String { "subscriptionPlanAvailabilities" }
 
                 public init(id: String) {
                     self.id = id

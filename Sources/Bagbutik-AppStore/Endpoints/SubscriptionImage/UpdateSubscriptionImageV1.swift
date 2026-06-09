@@ -3,8 +3,8 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read Subscription Image Information
-     Read details about a specific subscription image.
+     # Commit a subscription image
+     Commit an uploaded subscription image.
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/patch-v1-subscriptionImages-_id_>

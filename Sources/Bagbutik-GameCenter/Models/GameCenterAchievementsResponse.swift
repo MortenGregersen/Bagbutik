@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # GameCenterAchievementsResponse
- A response that contains a list of Game Center achievement resources.
+ The response body for endpoints that list Game Center achievements.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterachievementsresponse>

@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Modify an App Store Experiment
+     # Modify an app store experiment
      Update the name, the started state, and the proportion of traffic to send to an App Store experiment.
 
      Full documentation:

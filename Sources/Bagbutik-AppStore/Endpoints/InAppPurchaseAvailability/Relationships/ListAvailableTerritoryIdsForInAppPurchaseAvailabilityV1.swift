@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # GET /v1/inAppPurchaseAvailabilities/{id}/relationships/availableTerritories
+     # List available territory IDs for an in-app purchase availability
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-inAppPurchaseAvailabilities-_id_-relationships-availableTerritories>

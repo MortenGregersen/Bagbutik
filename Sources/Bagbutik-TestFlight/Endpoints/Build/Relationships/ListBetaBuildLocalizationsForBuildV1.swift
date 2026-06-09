@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # List All Beta Build Localizations of a Build
+     # List all beta build localizations of a build
      Get a list of localized beta test information for a specific build.
 
      Full documentation:

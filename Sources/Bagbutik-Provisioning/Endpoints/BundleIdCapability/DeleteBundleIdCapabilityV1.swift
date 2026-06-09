@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Disable a Capability
+     # Disable a capability
      Disable a capability for a bundle ID.
 
      Full documentation:

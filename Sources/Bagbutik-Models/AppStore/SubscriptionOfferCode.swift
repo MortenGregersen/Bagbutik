@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # SubscriptionOfferCode
+ A promotional code that gives customers a discounted or free subscription for a specified duration and eligibility group.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/subscriptionoffercode>
+ */
 public struct SubscriptionOfferCode: Codable, Sendable, Identifiable {
     public let id: String
     public var links: ResourceLinks?
@@ -50,6 +57,7 @@ public struct SubscriptionOfferCode: Codable, Sendable, Identifiable {
         public var offerMode: SubscriptionOfferMode?
         public var productionCodeCount: Int?
         public var sandboxCodeCount: Int?
+        public var targetSubscriptionPlanType: SubscriptionPlanType?
         public var totalNumberOfCodes: Int?
 
         public init(active: Bool? = nil,
@@ -62,6 +70,7 @@ public struct SubscriptionOfferCode: Codable, Sendable, Identifiable {
                     offerMode: SubscriptionOfferMode? = nil,
                     productionCodeCount: Int? = nil,
                     sandboxCodeCount: Int? = nil,
+                    targetSubscriptionPlanType: SubscriptionPlanType? = nil,
                     totalNumberOfCodes: Int? = nil)
         {
             self.active = active
@@ -74,6 +83,7 @@ public struct SubscriptionOfferCode: Codable, Sendable, Identifiable {
             self.offerMode = offerMode
             self.productionCodeCount = productionCodeCount
             self.sandboxCodeCount = sandboxCodeCount
+            self.targetSubscriptionPlanType = targetSubscriptionPlanType
             self.totalNumberOfCodes = totalNumberOfCodes
         }
 
@@ -89,6 +99,7 @@ public struct SubscriptionOfferCode: Codable, Sendable, Identifiable {
             offerMode = try container.decodeIfPresent(SubscriptionOfferMode.self, forKey: "offerMode")
             productionCodeCount = try container.decodeIfPresent(Int.self, forKey: "productionCodeCount")
             sandboxCodeCount = try container.decodeIfPresent(Int.self, forKey: "sandboxCodeCount")
+            targetSubscriptionPlanType = try container.decodeIfPresent(SubscriptionPlanType.self, forKey: "targetSubscriptionPlanType")
             totalNumberOfCodes = try container.decodeIfPresent(Int.self, forKey: "totalNumberOfCodes")
         }
 
@@ -104,6 +115,7 @@ public struct SubscriptionOfferCode: Codable, Sendable, Identifiable {
             try container.encodeIfPresent(offerMode, forKey: "offerMode")
             try container.encodeIfPresent(productionCodeCount, forKey: "productionCodeCount")
             try container.encodeIfPresent(sandboxCodeCount, forKey: "sandboxCodeCount")
+            try container.encodeIfPresent(targetSubscriptionPlanType, forKey: "targetSubscriptionPlanType")
             try container.encodeIfPresent(totalNumberOfCodes, forKey: "totalNumberOfCodes")
         }
     }

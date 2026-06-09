@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # BetaLicenseAgreementsResponse
- A response that contains a list of Beta License Agreement resources.
+ The response body for endpoints that list TestFlight license agreements.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/betalicenseagreementsresponse>

@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # BetaAppLocalizationResponse
- A response that contains a single Beta App Localizations resource.
+ The response body for endpoints that create, read, or modify localized TestFlight app metadata.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/betaapplocalizationresponse>

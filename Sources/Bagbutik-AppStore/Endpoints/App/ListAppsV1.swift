@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # List Apps
+     # List apps
      Find and list apps in App Store Connect.
 
      Full documentation:
@@ -232,7 +232,6 @@ public enum ListAppsV1 {
             case brazilAgeRating
             case brazilAgeRatingV2
             case franceAgeRating
-            case kidsAgeBand
             case koreaAgeRating
             case primaryCategory
             case primarySubcategoryOne

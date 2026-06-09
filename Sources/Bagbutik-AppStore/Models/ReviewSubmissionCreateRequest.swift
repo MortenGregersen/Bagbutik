@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # ReviewSubmissionCreateRequest
- The request body you use to create a review submission create request resource.
+ The request body for creating a review submission for an App Store version or associated items.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/reviewsubmissioncreaterequest>

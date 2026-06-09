@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # WebhookResponse
- A response that contains a single webhook response resource.
+ The response body for endpoints that create, read, or modify a single webhook.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/webhookresponse>

@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # AppStoreVersionLocalizationSearchKeywordsLinkagesResponse
+ A response containing the resource identifiers of search keywords linked to an App Store version localization.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionlocalizationsearchkeywordslinkagesresponse>
+ */
 public struct AppStoreVersionLocalizationSearchKeywordsLinkagesResponse: Codable, Sendable, PagedResponse {
     public let data: [Data]
     public let links: PagedDocumentLinks

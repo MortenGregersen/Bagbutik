@@ -2,6 +2,13 @@ import Bagbutik_Core
 import Bagbutik_Models
 import Foundation
 
+/**
+ # SubscriptionIntroductoryOfferResponse
+ The response body for endpoints that create, read, or modify a single subscription introductory offer.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/subscriptionintroductoryofferresponse>
+ */
 public struct SubscriptionIntroductoryOfferResponse: Codable, Sendable {
     public let data: SubscriptionIntroductoryOffer
     public var included: [Included]?

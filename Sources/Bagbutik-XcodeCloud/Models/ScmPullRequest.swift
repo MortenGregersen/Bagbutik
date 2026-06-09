@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # ScmPullRequest
- The data structure that represents a Pull Requests resource.
+ A pull request in a source code repository connected to Xcode Cloud, which can automatically trigger workflow builds.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/scmpullrequest>

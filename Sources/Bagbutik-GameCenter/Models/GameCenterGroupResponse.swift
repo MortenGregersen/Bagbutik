@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # GameCenterGroupResponse
- A response that contains a single group resource.
+ A response containing a single Game Center group that shares leaderboards and achievements across apps.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecentergroupresponse>

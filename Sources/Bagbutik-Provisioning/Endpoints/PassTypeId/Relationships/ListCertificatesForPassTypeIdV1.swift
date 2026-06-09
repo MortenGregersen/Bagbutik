@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # List All Certificates for a Passtypeid
+     # List all certificates for a passtypeid
      List all certificates for a specific pass type ID.
 
      Full documentation:

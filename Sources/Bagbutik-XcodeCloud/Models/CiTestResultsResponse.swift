@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # CiTestResultsResponse
- A response that contains a list of Test Results resources.
+ The response body for endpoints that list test results from an Xcode Cloud build action.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/citestresultsresponse>

@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # AppEncryptionDeclarationDocumentResponse
- A response that contains a single app encryption declaration document response resource.
+ A response containing a single encryption compliance document for an app.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appencryptiondeclarationdocumentresponse>

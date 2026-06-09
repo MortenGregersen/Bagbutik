@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # ReviewSubmissionResponse
- A response that contains a single review submission resource.
+ The response body for endpoints that create, read, or modify a single review submission.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/reviewsubmissionresponse>

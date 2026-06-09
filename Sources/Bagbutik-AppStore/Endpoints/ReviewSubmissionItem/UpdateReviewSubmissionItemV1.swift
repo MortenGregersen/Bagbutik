@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Modify a Review Submission Item
+     # Update a review submission item
      Update a specific review submission item.
 
      Full documentation:

@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read End User License Agreement Information
+     # Read end user license agreement information
      Get the custom end user license agreement associated with an app, and the territories it applies to.
 
      Full documentation:

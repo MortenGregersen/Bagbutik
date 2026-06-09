@@ -3,7 +3,7 @@ import Foundation
 
 /**
  # Certificate
- The data structure that represents a Certificates resource.
+ A code signing certificate registered in your Apple developer account, used for development, distribution, or provisioning.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/certificate>

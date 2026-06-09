@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # WebhookPingResponse
- A response that contains a single webhook ping response resource.
+ A response confirming that a test ping was sent to a webhook endpoint.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/webhookpingresponse>

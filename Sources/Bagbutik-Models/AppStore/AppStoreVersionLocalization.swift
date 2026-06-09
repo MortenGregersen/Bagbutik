@@ -96,11 +96,14 @@ public struct AppStoreVersionLocalization: Codable, Sendable, Identifiable {
     }
 
     public struct Relationships: Codable, Sendable {
-        public var appPreviewSets: AppPreviewSets?
-        public var appScreenshotSets: AppScreenshotSets?
+        @available(*, deprecated, message: "Apple has marked this property deprecated and it will be removed sometime in the future.")
+        public var appPreviewSets: AppPreviewSets? = nil
+        @available(*, deprecated, message: "Apple has marked this property deprecated and it will be removed sometime in the future.")
+        public var appScreenshotSets: AppScreenshotSets? = nil
         public var appStoreVersion: AppStoreVersion?
         public var searchKeywords: SearchKeywords?
 
+        @available(*, deprecated, message: "This uses a property Apple has marked as deprecated.")
         public init(appPreviewSets: AppPreviewSets? = nil,
                     appScreenshotSets: AppScreenshotSets? = nil,
                     appStoreVersion: AppStoreVersion? = nil,
@@ -108,6 +111,13 @@ public struct AppStoreVersionLocalization: Codable, Sendable, Identifiable {
         {
             self.appPreviewSets = appPreviewSets
             self.appScreenshotSets = appScreenshotSets
+            self.appStoreVersion = appStoreVersion
+            self.searchKeywords = searchKeywords
+        }
+
+        public init(appStoreVersion: AppStoreVersion? = nil,
+                    searchKeywords: SearchKeywords? = nil)
+        {
             self.appStoreVersion = appStoreVersion
             self.searchKeywords = searchKeywords
         }

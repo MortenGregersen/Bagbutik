@@ -3,7 +3,7 @@ import Foundation
 
 /**
  # Build
- The data structure that represents a Builds resource.
+ A processed binary uploaded to App Store Connect, ready for TestFlight distribution or App Store submission.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/build>

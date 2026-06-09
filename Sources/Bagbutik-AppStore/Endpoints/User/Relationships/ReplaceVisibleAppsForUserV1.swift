@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Replace the List of Visible Apps for a User
+     # Replace the list of visible apps for a user
      Replace the list of apps a user on your team can see.
 
      Full documentation:

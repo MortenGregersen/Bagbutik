@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # AppEncryptionDeclarationDocumentCreateRequest
- The request body you use to create an encryption resource.
+ The request body for uploading an encryption compliance document for an app.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appencryptiondeclarationdocumentcreaterequest>

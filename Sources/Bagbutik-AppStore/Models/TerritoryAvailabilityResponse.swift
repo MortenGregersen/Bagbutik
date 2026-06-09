@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # TerritoryAvailabilityResponse
- A response that contains a single territory availability resource.
+ The response body for endpoints that read or modify an app’s availability in a single territory.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/territoryavailabilityresponse>

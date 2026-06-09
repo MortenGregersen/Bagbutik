@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # AppSearchKeywordsLinkagesResponse
+ A response containing the resource identifiers of search keywords associated with an app.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appsearchkeywordslinkagesresponse>
+ */
 public struct AppSearchKeywordsLinkagesResponse: Codable, Sendable, PagedResponse {
     public let data: [Data]
     public let links: PagedDocumentLinks

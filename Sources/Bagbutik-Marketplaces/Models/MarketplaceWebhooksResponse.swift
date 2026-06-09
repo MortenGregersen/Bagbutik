@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # MarketplaceWebhooksResponse
- A response that contains a list of a marketplace webhook resources.
+ A response containing a list of webhook endpoints for an alternative marketplace.
 
  Use this object with [Read Marketplace Webhook Information](https://developer.apple.com/documentation/appstoreconnectapi/get-v1-marketplacewebhooks).
 

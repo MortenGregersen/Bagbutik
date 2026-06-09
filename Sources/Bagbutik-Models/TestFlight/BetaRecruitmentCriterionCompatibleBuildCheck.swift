@@ -3,7 +3,7 @@ import Foundation
 
 /**
  # BetaRecruitmentCriterionCompatibleBuildCheck
- The data structure that represents a beta recruitment criteria-compatible, build-check resource.
+ The result of checking whether a specific build meets the device family and OS version requirements of a beta recruitment criterion.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/betarecruitmentcriterioncompatiblebuildcheck>

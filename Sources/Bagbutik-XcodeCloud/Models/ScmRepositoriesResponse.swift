@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # ScmRepositoriesResponse
- A response that contains a list of Repositories resources.
+ The response body for endpoints that list SCM repositories connected to Xcode Cloud.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/scmrepositoriesresponse>

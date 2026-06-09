@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Modify a Beta App Review Detail
+     # Modify a beta app review detail
      Update the details for a specific app’s beta app review.
 
      Full documentation:

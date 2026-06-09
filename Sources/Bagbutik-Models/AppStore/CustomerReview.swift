@@ -3,7 +3,7 @@ import Foundation
 
 /**
  # CustomerReview
- The data structure that represents a Customer Reviews resource.
+ A customer’s rating and written review of your app on the App Store.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/customerreview>

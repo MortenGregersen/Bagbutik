@@ -3,7 +3,7 @@ import Foundation
 
 /**
  # BetaRecruitmentCriterion
- The data structure that represents a beta recruitment criterion resource.
+ A rule that controls which testers are automatically invited to a beta group based on device family and OS version.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/betarecruitmentcriterion>

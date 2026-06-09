@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Modify an App Screenshot
+     # Modify an app screenshot
      Commit an app screenshot after uploading it.
 
      Full documentation:
@@ -13,6 +13,7 @@ public extension Request {
      - Parameter requestBody: AppScreenshot representation
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
+    @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
     static func updateAppScreenshotV1(id: String,
                                       requestBody: AppScreenshotUpdateRequest) -> Request<AppScreenshotResponse, ErrorResponse> {
         .init(

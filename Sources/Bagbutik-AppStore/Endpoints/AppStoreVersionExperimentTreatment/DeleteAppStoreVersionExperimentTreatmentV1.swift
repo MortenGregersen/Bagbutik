@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Delete a Treatment for an App Store Version Experiment
+     # Delete a treatment for an app store version experiment
      Delete metadata that you configured for an App Store Version experiment.
 
      Full documentation:

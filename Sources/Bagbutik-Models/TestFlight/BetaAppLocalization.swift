@@ -3,7 +3,7 @@ import Foundation
 
 /**
  # BetaAppLocalization
- The data structure that represents a Beta App Localizations resource.
+ The localized feedback URL, marketing URL, and privacy policy URL shown to TestFlight testers for a specific language.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/betaapplocalization>

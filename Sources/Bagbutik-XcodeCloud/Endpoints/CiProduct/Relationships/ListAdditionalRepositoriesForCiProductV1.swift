@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # List All Additional Repositories for an Xcode Cloud Product
+     # List all additional repositories for an xcode cloud product
      List all additional Git repositories you associated with an Xcode Cloud product.
 
      Full documentation:

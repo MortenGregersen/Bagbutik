@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # PATCH /v1/gameCenterAchievements/{id}/relationships/activity
+     # Modify the activity for a Game Center achievement
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/patch-v1-gameCenterAchievements-_id_-relationships-activity>

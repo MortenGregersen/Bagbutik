@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read the Billing Grace Period Value for an App
+     # Read the billing grace period value for an app
      Get the Boolean value that represents the grace period opt-in state for your app.
 
      Full documentation:

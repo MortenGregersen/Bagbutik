@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read the App Store Version Phased Release Information of an App Store Version
+     # Read the app store version phased release information of an app store version
      Read the phased release status and configuration for a version with phased release enabled.
 
      Full documentation:

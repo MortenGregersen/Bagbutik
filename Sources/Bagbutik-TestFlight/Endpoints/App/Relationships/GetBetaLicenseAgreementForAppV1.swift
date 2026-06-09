@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read the Beta License Agreement of an App
+     # Read the beta license agreement of an app
      Get the beta license agreement for a specific app.
 
      Full documentation:

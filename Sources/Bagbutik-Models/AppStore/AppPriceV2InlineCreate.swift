@@ -3,7 +3,7 @@ import Foundation
 
 /**
  # AppPriceV2InlineCreate
- The data structure that represents a App Price V2 Inline Create resource.
+ An inline object for specifying a territory-specific price when creating or updating an app price schedule.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/apppricev2inlinecreate>

@@ -2,6 +2,13 @@ import Bagbutik_Core
 import Bagbutik_Models
 import Foundation
 
+/**
+ # InAppPurchaseLocalizationCreateRequest
+ The request body you use to create an in-app purchase localization.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/inapppurchaselocalizationcreaterequest>
+ */
 public struct InAppPurchaseLocalizationCreateRequest: Codable, Sendable, RequestBody {
     public let data: Data
 

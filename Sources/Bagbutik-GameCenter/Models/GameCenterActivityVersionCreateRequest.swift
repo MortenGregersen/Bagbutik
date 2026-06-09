@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # GameCenterActivityVersionCreateRequest
- The request body you use to create an activity version resource.
+ The request body for creating a version of a Game Center activity.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecenteractivityversioncreaterequest>

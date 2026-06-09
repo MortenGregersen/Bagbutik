@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read the App Store Version Information of a Build
+     # Read the app store version information of a build
      Get the App Store version of a specific build.
 
      Full documentation:

@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # List All Primary Git Repositories for an Xcode Cloud Product
+     # List all primary git repositories for an xcode cloud product
      List all primary Git repositories for a specific Xcode Cloud product.
 
      Full documentation:

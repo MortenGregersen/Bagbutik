@@ -2,6 +2,13 @@ import Bagbutik_Core
 import Bagbutik_Models
 import Foundation
 
+/**
+ # InAppPurchaseAppStoreReviewScreenshotResponse
+ A response containing a single App Store review screenshot for an in-app purchase.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/inapppurchaseappstorereviewscreenshotresponse>
+ */
 public struct InAppPurchaseAppStoreReviewScreenshotResponse: Codable, Sendable {
     public let data: InAppPurchaseAppStoreReviewScreenshot
     public var included: [InAppPurchaseV2]?

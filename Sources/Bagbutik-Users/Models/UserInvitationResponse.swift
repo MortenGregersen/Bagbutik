@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # UserInvitationResponse
- A response that contains a single User Invitations resource.
+ The response body for endpoints that read or modify a pending App Store Connect team invitation.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/userinvitationresponse>

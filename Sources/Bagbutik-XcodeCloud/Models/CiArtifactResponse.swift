@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # CiArtifactResponse
- A response that contains a single Artifacts resource.
+ The response body for endpoints that read a single artifact produced by an Xcode Cloud build action.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/ciartifactresponse>

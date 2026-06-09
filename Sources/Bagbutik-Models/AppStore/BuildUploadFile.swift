@@ -3,7 +3,7 @@ import Foundation
 
 /**
  # BuildUploadFile
- The data structure that represents a build upload resource.
+ A single file upload record within a build upload operation, containing the upload URL and checksum for verification.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/builduploadfile>

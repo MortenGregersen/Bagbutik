@@ -2,6 +2,13 @@ import Bagbutik_Core
 import Bagbutik_Models
 import Foundation
 
+/**
+ # BetaPublicLinkUsagesV1MetricResponse
+ A metrics response containing usage data for a TestFlight public invite link, showing tester enrollment trends.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/betapubliclinkusagesv1metricresponse>
+ */
 public struct BetaPublicLinkUsagesV1MetricResponse: Codable, Sendable, PagedResponse {
     public let data: [Data]
     public let links: PagedDocumentLinks

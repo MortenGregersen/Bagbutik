@@ -2,6 +2,13 @@ import Bagbutik_Core
 import Bagbutik_Models
 import Foundation
 
+/**
+ # SubscriptionUpdateRequest
+ The request body you use to update a subscription update request.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/subscriptionupdaterequest>
+ */
 public struct SubscriptionUpdateRequest: Codable, Sendable, RequestBody {
     public let data: Data
     public var included: [Included]?

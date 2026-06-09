@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Assign Builds to an App Encryption Declaration
+     # Assign builds to an app encryption declaration
      Assign one or more builds to an app encryption declaration.
 
      Full documentation:

@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read Background Assets Information
+     # Read background asset version information
      Get details about a specific background asset version.
 
      Full documentation:
@@ -138,6 +138,7 @@ public enum GetBackgroundAssetVersionV1 {
             case createdDate
             case externalBetaRelease
             case internalBetaRelease
+            case locale
             case manifestFile
             case platforms
             case state

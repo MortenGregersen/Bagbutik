@@ -4,6 +4,8 @@ import Bagbutik_Models
 public extension Request {
     /**
      # List Availability for an App
+     The data structure that represents a get-v1-apps-{id}-app availability v2 resource.
+
      Get a list of availabilities for a specific app.
 
      Full documentation:

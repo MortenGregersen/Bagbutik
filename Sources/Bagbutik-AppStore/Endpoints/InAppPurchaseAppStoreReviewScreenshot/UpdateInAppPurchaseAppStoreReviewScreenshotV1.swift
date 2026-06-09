@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Commit a Review Screenshot for an In-App Purchase
+     # Commit a review screenshot for an in-app purchase
      Commit an uploaded image asset as a review screenshot for an in-app purchase.
 
      Full documentation:

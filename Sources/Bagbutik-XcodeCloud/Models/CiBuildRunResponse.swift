@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # CiBuildRunResponse
- A response that contains a single Build Runs resource.
+ The response body for endpoints that start or read a single Xcode Cloud build run.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/cibuildrunresponse>

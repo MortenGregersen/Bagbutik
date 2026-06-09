@@ -2,6 +2,13 @@ import Bagbutik_Core
 import Bagbutik_Models
 import Foundation
 
+/**
+ # SubscriptionOfferCodeResponse
+ The response body for endpoints that create, read, or modify a single subscription offer code.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/subscriptionoffercoderesponse>
+ */
 public struct SubscriptionOfferCodeResponse: Codable, Sendable {
     public let data: SubscriptionOfferCode
     public var included: [Included]?

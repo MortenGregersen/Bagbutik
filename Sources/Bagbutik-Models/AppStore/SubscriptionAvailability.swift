@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # SubscriptionAvailability
+ The territory availability configuration for a subscription, specifying which App Store regions it’s offered in.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/subscriptionavailability>
+ */
 public struct SubscriptionAvailability: Codable, Sendable, Identifiable {
     public let id: String
     public var links: ResourceLinks?

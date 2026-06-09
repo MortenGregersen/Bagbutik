@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # CiArtifactsResponse
- A response that contains a list of Artifacts resources.
+ The response body for endpoints that list artifacts produced by an Xcode Cloud build action.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/ciartifactsresponse>

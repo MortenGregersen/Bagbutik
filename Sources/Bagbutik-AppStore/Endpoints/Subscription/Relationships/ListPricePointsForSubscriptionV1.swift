@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # List All Price Points for a Subscription
+     # List all price points for a subscription
      Get a list of price points for an auto-renewable subscription by territory.
 
      Full documentation:

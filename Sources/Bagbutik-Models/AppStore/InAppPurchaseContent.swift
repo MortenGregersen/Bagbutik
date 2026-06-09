@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # InAppPurchaseContent
+ Hosted downloadable content associated with a non-consumable in-app purchase.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/inapppurchasecontent>
+ */
 public struct InAppPurchaseContent: Codable, Sendable, Identifiable {
     public let id: String
     public var links: ResourceLinks?

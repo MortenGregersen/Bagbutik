@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # List All Capabilities for a Bundle ID
+     # List all capabilities for a bundle id
      Get a list of all capabilities for a specific bundle ID.
 
      Full documentation:

@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # List All Subscription Group Localizations
+     # List all subscription group localizations
      Get a list of all localized metadata for a specific subscription group.
 
      Full documentation:

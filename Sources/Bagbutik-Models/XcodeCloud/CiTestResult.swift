@@ -3,7 +3,7 @@ import Foundation
 
 /**
  # CiTestResult
- The data structure that represents a Test Results resource.
+ The outcome of a single test case in an Xcode Cloud test action, including its pass/fail status and duration.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/citestresult>

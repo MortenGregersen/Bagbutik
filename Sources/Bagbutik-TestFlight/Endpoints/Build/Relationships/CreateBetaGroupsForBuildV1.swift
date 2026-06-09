@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Add Access for Beta Groups to a Build
+     # Add access for beta groups to a build
      Add or create a beta group to a build to enable testing.
 
      Full documentation:

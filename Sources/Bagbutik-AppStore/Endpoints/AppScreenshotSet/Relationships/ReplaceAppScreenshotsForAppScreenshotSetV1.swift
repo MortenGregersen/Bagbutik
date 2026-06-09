@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Replace All App Screenshots for an App Screenshot Set
+     # Replace all app screenshots for an app screenshot set
      Change the order of the screenshots in a screenshot set.
 
      Full documentation:
@@ -13,6 +13,7 @@ public extension Request {
      - Parameter requestBody: List of related linkages
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
+    @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
     static func replaceAppScreenshotsForAppScreenshotSetV1(id: String,
                                                            requestBody: AppScreenshotSetAppScreenshotsLinkagesRequest) -> Request<EmptyResponse, ErrorResponse> {
         .init(

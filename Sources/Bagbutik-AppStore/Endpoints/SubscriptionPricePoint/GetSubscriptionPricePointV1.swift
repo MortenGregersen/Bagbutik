@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read Subscription Price Point Information
+     # Read subscription price point information
      Get details about a specific subscription price point.
 
      Full documentation:

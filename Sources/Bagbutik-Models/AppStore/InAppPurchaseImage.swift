@@ -3,7 +3,7 @@ import Foundation
 
 /**
  # InAppPurchaseImage
- The data structure that represents a in-app purchase image resource.
+ A screenshot or image associated with an in-app purchase or subscription, displayed on the App Store product page.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/inapppurchaseimage>

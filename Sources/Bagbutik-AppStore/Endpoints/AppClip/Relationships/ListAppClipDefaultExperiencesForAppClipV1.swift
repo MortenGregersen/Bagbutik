@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # List All Default App Clip Experiences for an App Clip
+     # List all default app clip experiences for an app clip
      Get all default App Clip experiences for an App Clip.
 
      Full documentation:

@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Create a Game Center Achievement Release
+     # Create a game center achievement release
      Create a release for an achievement and a Game Center detail.
 
      Full documentation:

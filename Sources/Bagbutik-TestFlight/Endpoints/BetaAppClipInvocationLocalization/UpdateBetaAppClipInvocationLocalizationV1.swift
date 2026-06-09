@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Modify Localized Metadata of an App Clip Invocation for Testers
+     # Modify localized metadata of an app clip invocation for testers
      Change the metadata for an App Clip you make available to testers in the TestFlight app.
 
      Full documentation:

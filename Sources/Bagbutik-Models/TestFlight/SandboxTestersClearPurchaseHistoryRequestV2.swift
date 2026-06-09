@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # SandboxTestersClearPurchaseHistoryRequestV2
+ A batch request to reset the in-app purchase and subscription history for one or more sandbox Apple IDs.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/sandboxtestersclearpurchasehistoryrequestv2>
+ */
 public struct SandboxTestersClearPurchaseHistoryRequestV2: Codable, Sendable, Identifiable {
     public let id: String
     public var links: ResourceLinks?

@@ -2,6 +2,13 @@ import Bagbutik_Core
 import Bagbutik_Models
 import Foundation
 
+/**
+ # AppEventVideoClipResponse
+ The response body for endpoints that create, read, or modify an in-app event video clip.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appeventvideoclipresponse>
+ */
 public struct AppEventVideoClipResponse: Codable, Sendable {
     public let data: AppEventVideoClip
     public var included: [AppEventLocalization]?

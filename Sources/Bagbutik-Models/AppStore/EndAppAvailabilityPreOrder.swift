@@ -3,7 +3,7 @@ import Foundation
 
 /**
  # EndAppAvailabilityPreOrder
- The data structure that represents the ending of an app preorder resource.
+ A request action to end an active pre-order and immediately make an app available for download.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/endappavailabilitypreorder>

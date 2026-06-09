@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # AppClipDomainStatusResponse
- A response that contains a single App Clip Domain Statuses resource.
+ A response containing the validation status of associated domains configured for an App Clip.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appclipdomainstatusresponse>

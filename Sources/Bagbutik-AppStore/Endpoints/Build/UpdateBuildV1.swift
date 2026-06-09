@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Modify a Build
+     # Modify a build
      Expire a build or change its encryption exemption setting.
 
      Full documentation:

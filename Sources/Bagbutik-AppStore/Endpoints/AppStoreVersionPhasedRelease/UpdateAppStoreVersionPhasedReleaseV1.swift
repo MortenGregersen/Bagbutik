@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Modify an App Store Version Phased Release
+     # Modify an app store version phased release
      Pause or resume a phased release, or immediately release an app.
 
      Full documentation:

@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # AppKeywordsResponse
- A response that contains a list of app keywords response resources.
+ A response containing a list of search keywords for an App Store listing.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appkeywordsresponse>

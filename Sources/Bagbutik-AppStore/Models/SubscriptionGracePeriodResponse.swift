@@ -2,6 +2,13 @@ import Bagbutik_Core
 import Bagbutik_Models
 import Foundation
 
+/**
+ # SubscriptionGracePeriodResponse
+ A response containing a single grace period configuration for a subscription.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/subscriptiongraceperiodresponse>
+ */
 public struct SubscriptionGracePeriodResponse: Codable, Sendable {
     public let data: SubscriptionGracePeriod
     public let links: DocumentLinks

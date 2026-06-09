@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read the Primary Subcategory Two Information of an App Info
+     # Read the primary subcategory two information of an app info
      Get the second App Store subcategory within an app’s primary category.
 
      Full documentation:

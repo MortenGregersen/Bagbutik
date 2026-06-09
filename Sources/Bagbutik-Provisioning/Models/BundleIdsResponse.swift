@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # BundleIdsResponse
- A response that contains a list of Bundle ID resources.
+ The response body for endpoints that list bundle IDs.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/bundleidsresponse>

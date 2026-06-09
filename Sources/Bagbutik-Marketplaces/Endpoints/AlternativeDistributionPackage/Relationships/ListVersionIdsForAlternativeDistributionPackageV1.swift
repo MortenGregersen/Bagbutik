@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read Version IDs for an Alternative Distribution Package
+     # Read version ids for an alternative distribution package
      Get version IDs about a specific alternative distribution package.
 
      Full documentation:

@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Delete an App Store Version Submission
+     # Delete an app store version submission
      Remove a version from App Store review.
 
      Use this endpoint to remove a version from App Review. This request fails with an appropriate error if the app can’t be removed from review. For more information, see [Remove a submission from review](https://developer.apple.comhttps://developer.apple.com/help/app-store-connect/manage-submissions-to-app-review/remove-a-submission-from-review).

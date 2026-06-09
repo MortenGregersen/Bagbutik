@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # List Promoted Purchase IDs for an App
+     # List promoted purchase ids for an app
      Get a list of resource IDs representing promoted purchases for an auto-renewable subscription.
 
      Full documentation:

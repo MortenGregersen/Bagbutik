@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Create a Subscription Group
+     # Create a subscription group
      Create a subscription group for an app.
 
      Full documentation:

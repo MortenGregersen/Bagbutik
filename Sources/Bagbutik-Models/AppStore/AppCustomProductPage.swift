@@ -3,7 +3,7 @@ import Foundation
 
 /**
  # AppCustomProductPage
- The data structure that represents an app custom product page resource.
+ A custom variant of an app’s App Store product page, used for targeted marketing campaigns.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appcustomproductpage>

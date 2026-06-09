@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Modify the Related App Store Version for a Default App Clip Experience
+     # Modify the related app store version for a default app clip experience
      Update the relationship between a default App Clip experience and an App Store Version.
 
      Full documentation:

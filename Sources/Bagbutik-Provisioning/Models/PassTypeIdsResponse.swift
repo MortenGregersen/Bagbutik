@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # PassTypeIdsResponse
- A response that contains a list of pass type ids response resources.
+ A response containing a list of Wallet pass type identifiers registered in your account.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/passtypeidsresponse>

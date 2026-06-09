@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Remove a User Account
+     # Remove a user account
      Remove a user from your team.
 
      Full documentation:

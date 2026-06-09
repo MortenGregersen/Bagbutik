@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Download Logs for a Diagnostic Signature
+     # Download logs for a diagnostic signature
      Get the anonymized backtrace logs associated with a specific diagnostic signature.
 
      The example below requests a single disk write diagnostic log for a specific signature.

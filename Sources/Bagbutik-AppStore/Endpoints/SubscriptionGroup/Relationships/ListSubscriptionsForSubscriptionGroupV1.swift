@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # List All Subscriptions for a Subscription Group
+     # List all subscriptions for a subscription group
      Get a list of all auto-renewable subscriptions in a subscription group.
 
      Full documentation:
@@ -56,6 +56,8 @@ public enum ListSubscriptionsForSubscriptionGroupV1 {
         case subscriptionLocalizations([SubscriptionLocalizations])
         /// The fields to include for returned resources of type subscriptionOfferCodes
         case subscriptionOfferCodes([SubscriptionOfferCodes])
+        /// The fields to include for returned resources of type subscriptionPlanAvailabilities
+        case subscriptionPlanAvailabilities([SubscriptionPlanAvailabilities])
         /// The fields to include for returned resources of type subscriptionPrices
         case subscriptionPrices([SubscriptionPrices])
         /// The fields to include for returned resources of type subscriptionPromotionalOffers
@@ -190,6 +192,7 @@ public enum ListSubscriptionsForSubscriptionGroupV1 {
             case startDate
             case subscription
             case subscriptionPricePoint
+            case targetSubscriptionPlanType
             case territory
 
             public init(from decoder: Decoder) throws {
@@ -246,6 +249,7 @@ public enum ListSubscriptionsForSubscriptionGroupV1 {
             case productionCodeCount
             case sandboxCodeCount
             case subscription
+            case targetSubscriptionPlanType
             case totalNumberOfCodes
 
             public init(from decoder: Decoder) throws {
@@ -264,7 +268,29 @@ public enum ListSubscriptionsForSubscriptionGroupV1 {
             }
         }
 
+        public enum SubscriptionPlanAvailabilities: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case availableInNewTerritories
+            case availableTerritories
+            case planType
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = SubscriptionPlanAvailabilities(rawValue: string) {
+                    self = value
+                } else if let value = SubscriptionPlanAvailabilities(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid SubscriptionPlanAvailabilities value: \(string)"
+                    )
+                }
+            }
+        }
+
         public enum SubscriptionPrices: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case planType
             case preserved
             case startDate
             case subscriptionPricePoint
@@ -294,6 +320,7 @@ public enum ListSubscriptionsForSubscriptionGroupV1 {
             case offerMode
             case prices
             case subscription
+            case targetSubscriptionPlanType
 
             public init(from decoder: Decoder) throws {
                 let container = try decoder.singleValueContainer()
@@ -320,6 +347,7 @@ public enum ListSubscriptionsForSubscriptionGroupV1 {
             case introductoryOffers
             case name
             case offerCodes
+            case planAvailabilities
             case pricePoints
             case prices
             case productId
@@ -362,6 +390,7 @@ public enum ListSubscriptionsForSubscriptionGroupV1 {
             case promotionIntent
             case referenceName
             case startDate
+            case targetSubscriptionPlanType
 
             public init(from decoder: Decoder) throws {
                 let container = try decoder.singleValueContainer()
@@ -429,6 +458,7 @@ public enum ListSubscriptionsForSubscriptionGroupV1 {
         case images
         case introductoryOffers
         case offerCodes
+        case planAvailabilities
         case prices
         case promotedPurchase
         case promotionalOffers
@@ -457,6 +487,8 @@ public enum ListSubscriptionsForSubscriptionGroupV1 {
         case limit(Int)
         /// Maximum number of related offerCodes returned (when they are included) - maximum 50
         case offerCodes(Int)
+        /// Maximum number of related planAvailabilities returned (when they are included) - maximum 50
+        case planAvailabilities(Int)
         /// Maximum number of related prices returned (when they are included) - maximum 50
         case prices(Int)
         /// Maximum number of related promotionalOffers returned (when they are included) - maximum 50

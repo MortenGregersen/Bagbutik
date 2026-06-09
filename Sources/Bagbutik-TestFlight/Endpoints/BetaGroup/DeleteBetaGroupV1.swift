@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Delete a Beta Group
+     # Delete a beta group
      Delete a beta group and remove beta tester access to associated builds.
 
      Full documentation:

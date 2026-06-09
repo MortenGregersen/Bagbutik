@@ -3,7 +3,8 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # GET /v1/apps/{id}/appStoreVersionExperimentsV2
+     # List all app store experiments for an app
+     Get a list of all App Store version experiments for a specific app.
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-apps-_id_-appStoreVersionExperimentsV2>

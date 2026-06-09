@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Delete a Merchant ID
+     # Delete a merchant id
      Delete a specific merchant ID.
 
      Full documentation:

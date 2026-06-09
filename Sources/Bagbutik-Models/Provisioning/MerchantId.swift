@@ -3,13 +3,13 @@ import Foundation
 
 /**
  # MerchantId
- The data structure that represents a merchant ID resource.
+ An Apple Pay merchant identifier registered to your account, used to associate payment capabilities with your app’s bundle ID.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/merchantid>
  */
 public struct MerchantId: Codable, Sendable, Identifiable {
-    /// An opaque resource ID that uniquely identifies the resource. Obtain the merchant ID resource ID from the [List Merchant IDs](https://developer.apple.com/documentation/appstoreconnectapi/get-v1-merchantids) response.
+    /// An opaque resource ID that uniquely identifies the resource. Obtain the merchant ID resource ID from the [List merchant ids](https://developer.apple.com/documentation/appstoreconnectapi/get-v1-merchantids) response.
     public let id: String
     /// Navigational links that include the self-link.
     public var links: ResourceLinks?

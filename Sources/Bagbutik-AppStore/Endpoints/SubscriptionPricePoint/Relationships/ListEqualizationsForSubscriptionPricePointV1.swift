@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # List All Subscription Price Point Equalizations
+     # List all subscription price point equalizations
      Get a list of subscription price points and their equivalent in a specified currency.
 
      Full documentation:

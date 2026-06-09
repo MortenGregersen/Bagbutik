@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read Build Information
+     # Read build information
      Get information about a specific build.
 
      Full documentation:

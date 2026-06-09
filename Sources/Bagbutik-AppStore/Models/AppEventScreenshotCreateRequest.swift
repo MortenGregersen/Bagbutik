@@ -2,6 +2,13 @@ import Bagbutik_Core
 import Bagbutik_Models
 import Foundation
 
+/**
+ # AppEventScreenshotCreateRequest
+ The request body you use to create an app event screenshot.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appeventscreenshotcreaterequest>
+ */
 public struct AppEventScreenshotCreateRequest: Codable, Sendable, RequestBody {
     public let data: Data
 

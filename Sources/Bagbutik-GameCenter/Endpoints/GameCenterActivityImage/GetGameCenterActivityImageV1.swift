@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read Activity Image Information
+     # Read activity image information
      Get information for a specific Game Center activity image.
 
      Full documentation:

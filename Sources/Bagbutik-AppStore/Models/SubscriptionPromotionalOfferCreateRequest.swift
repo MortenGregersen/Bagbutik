@@ -2,6 +2,13 @@ import Bagbutik_Core
 import Bagbutik_Models
 import Foundation
 
+/**
+ # SubscriptionPromotionalOfferCreateRequest
+ The request body you use to create a subscription promotional offer.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/subscriptionpromotionaloffercreaterequest>
+ */
 public struct SubscriptionPromotionalOfferCreateRequest: Codable, Sendable, RequestBody {
     public let data: Data
     public var included: [SubscriptionPromotionalOfferPriceInlineCreate]?
@@ -59,18 +66,21 @@ public struct SubscriptionPromotionalOfferCreateRequest: Codable, Sendable, Requ
             public let numberOfPeriods: Int
             public let offerCode: String
             public let offerMode: SubscriptionOfferMode
+            public var targetSubscriptionPlanType: SubscriptionPlanType?
 
             public init(duration: SubscriptionOfferDuration,
                         name: String,
                         numberOfPeriods: Int,
                         offerCode: String,
-                        offerMode: SubscriptionOfferMode)
+                        offerMode: SubscriptionOfferMode,
+                        targetSubscriptionPlanType: SubscriptionPlanType? = nil)
             {
                 self.duration = duration
                 self.name = name
                 self.numberOfPeriods = numberOfPeriods
                 self.offerCode = offerCode
                 self.offerMode = offerMode
+                self.targetSubscriptionPlanType = targetSubscriptionPlanType
             }
 
             public init(from decoder: Decoder) throws {
@@ -80,6 +90,7 @@ public struct SubscriptionPromotionalOfferCreateRequest: Codable, Sendable, Requ
                 numberOfPeriods = try container.decode(Int.self, forKey: "numberOfPeriods")
                 offerCode = try container.decode(String.self, forKey: "offerCode")
                 offerMode = try container.decode(SubscriptionOfferMode.self, forKey: "offerMode")
+                targetSubscriptionPlanType = try container.decodeIfPresent(SubscriptionPlanType.self, forKey: "targetSubscriptionPlanType")
             }
 
             public func encode(to encoder: Encoder) throws {
@@ -89,6 +100,7 @@ public struct SubscriptionPromotionalOfferCreateRequest: Codable, Sendable, Requ
                 try container.encode(numberOfPeriods, forKey: "numberOfPeriods")
                 try container.encode(offerCode, forKey: "offerCode")
                 try container.encode(offerMode, forKey: "offerMode")
+                try container.encodeIfPresent(targetSubscriptionPlanType, forKey: "targetSubscriptionPlanType")
             }
         }
 

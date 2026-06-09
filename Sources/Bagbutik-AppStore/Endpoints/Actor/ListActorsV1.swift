@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # List All Actors
+     # List all actors
      Get a list of actors.
 
      This endpoint supports multiple id’s in the filter paramenter.

@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # GET /v1/inAppPurchasePriceSchedules/{id}/relationships/baseTerritory
+     # Get the base territory ID for an in-app purchase price schedule
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-inAppPurchasePriceSchedules-_id_-relationships-baseTerritory>

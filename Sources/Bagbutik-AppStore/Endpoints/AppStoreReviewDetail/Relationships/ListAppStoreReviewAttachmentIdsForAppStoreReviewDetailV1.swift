@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # GET /v1/appStoreReviewDetails/{id}/relationships/appStoreReviewAttachments
+     # List App Store review attachment IDs for an App Store review detail
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-appStoreReviewDetails-_id_-relationships-appStoreReviewAttachments>

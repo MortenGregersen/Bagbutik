@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Individually Assign a Beta Tester to Builds
+     # Individually assign a beta tester to builds
      Individually assign a beta tester to a build.
 
      Full documentation:

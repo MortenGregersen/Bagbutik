@@ -3,7 +3,7 @@ import Foundation
 
 /**
  # AppClipDomainStatus
- The data structure that represents the App Clip Domain Statuses resource.
+ The validation status of the associated domains configured for an App Clip, indicating whether each domain is reachable and correctly set up.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appclipdomainstatus>

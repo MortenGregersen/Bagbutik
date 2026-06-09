@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # InAppPurchaseImagesResponse
- A response that contains a list of in-app purchase image resources.
+ A response containing a list of images for an in-app purchase.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/inapppurchaseimagesresponse>

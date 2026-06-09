@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # AlternativeDistributionDomainResponse
- A response that contains a single alternative distribution domain resource.
+ The response body for endpoints that create or read a single alternative distribution domain.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/alternativedistributiondomainresponse>

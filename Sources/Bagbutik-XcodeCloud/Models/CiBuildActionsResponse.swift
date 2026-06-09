@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # CiBuildActionsResponse
- A response that contains a list of Build Actions resources.
+ The response body for endpoints that list actions for an Xcode Cloud build run.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/cibuildactionsresponse>

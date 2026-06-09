@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # List All Xcode Versions Available in Xcode Cloud
+     # List all xcode versions available in xcode cloud
      List all Xcode versions that are available to Xcode Cloud workflows.
 
      The example request below lists Xcode versions available to Xcode Cloud workflows and supported test destinations, including information about available simulated devices. Use the data provided in the response to display available Xcode versions and test destinations on a dashboard or to read additional information; for example, macOS version information.

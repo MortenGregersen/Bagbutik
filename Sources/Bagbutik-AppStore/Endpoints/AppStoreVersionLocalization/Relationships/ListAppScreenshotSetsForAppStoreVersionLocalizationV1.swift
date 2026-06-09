@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # List All App Screenshot Sets for an App Store Version Localization
+     # List all app screenshot sets for an app store version localization
      List all screenshot sets for a specific localization.
 
      Full documentation:
@@ -16,6 +16,7 @@ public extension Request {
      - Parameter limits: Number of resources to return
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
+    @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
     static func listAppScreenshotSetsForAppStoreVersionLocalizationV1(id: String,
                                                                       fields: [ListAppScreenshotSetsForAppStoreVersionLocalizationV1.Field]? = nil,
                                                                       filters: [ListAppScreenshotSetsForAppStoreVersionLocalizationV1.Filter]? = nil,

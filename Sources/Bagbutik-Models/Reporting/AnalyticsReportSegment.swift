@@ -3,7 +3,7 @@ import Foundation
 
 /**
  # AnalyticsReportSegment
- The data structure that represents an analytics report segment.
+ A downloadable segment within an analytics report instance, containing a portion of the report’s CSV data.
 
  To learn more about the response that includes this analytics report segment object, see [AnalyticsReportSegmentResponse](https://developer.apple.com/documentation/appstoreconnectapi/analyticsreportsegmentresponse).
 

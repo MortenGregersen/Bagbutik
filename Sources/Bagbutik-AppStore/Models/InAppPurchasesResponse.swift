@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # InAppPurchasesResponse
- A response that contains a list of In-App Purchases resources.
+ The response body for endpoints that list in-app purchases for an app.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/inapppurchasesresponse>

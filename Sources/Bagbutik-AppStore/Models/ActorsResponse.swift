@@ -2,6 +2,13 @@ import Bagbutik_Core
 import Bagbutik_Models
 import Foundation
 
+/**
+ # ActorsResponse
+ A response containing a list of audit log actors who performed actions in App Store Connect.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/actorsresponse>
+ */
 public struct ActorsResponse: Codable, Sendable, PagedResponse {
     public typealias Data = Actor
 

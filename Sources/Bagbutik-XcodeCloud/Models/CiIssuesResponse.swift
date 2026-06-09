@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # CiIssuesResponse
- A response that contains a list of Issues resources.
+ The response body for endpoints that list issues from an Xcode Cloud build action.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/ciissuesresponse>

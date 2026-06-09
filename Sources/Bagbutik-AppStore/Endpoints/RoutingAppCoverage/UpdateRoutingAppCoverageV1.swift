@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Modify a Routing App Coverage
+     # Modify a routing app coverage
      Commit a routing app coverage file after uploading it.
 
      Full documentation:

@@ -2,6 +2,13 @@ import Bagbutik_Core
 import Bagbutik_Models
 import Foundation
 
+/**
+ # SubscriptionAvailabilityCreateRequest
+ The request body you use to create a subscription availability.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/subscriptionavailabilitycreaterequest>
+ */
 public struct SubscriptionAvailabilityCreateRequest: Codable, Sendable, RequestBody {
     public let data: Data
 

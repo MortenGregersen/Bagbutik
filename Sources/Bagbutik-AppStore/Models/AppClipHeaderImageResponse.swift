@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # AppClipHeaderImageResponse
- A response that contains a single App Clip Header Images resource.
+ A response containing a single header image for a default App Clip experience.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appclipheaderimageresponse>

@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # BetaFeedbackCrashSubmissionResponse
- A response that contains a single BetaFeedbackCrashSubmissionResponse resource.
+ A response containing a single crash report submitted by a TestFlight beta tester.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/betafeedbackcrashsubmissionresponse>

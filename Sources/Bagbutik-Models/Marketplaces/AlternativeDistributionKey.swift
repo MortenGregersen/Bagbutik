@@ -3,7 +3,7 @@ import Foundation
 
 /**
  # AlternativeDistributionKey
- The data structure that represents an alternative distribution key resource.
+ A public key used to authorize an alternative marketplace or web distribution to offer your app outside the App Store.
 
  For more information about the response that includes this alternative distribution key object, see [AlternativeDistributionKeyResponse](https://developer.apple.com/documentation/appstoreconnectapi/alternativedistributionkeyresponse).
 

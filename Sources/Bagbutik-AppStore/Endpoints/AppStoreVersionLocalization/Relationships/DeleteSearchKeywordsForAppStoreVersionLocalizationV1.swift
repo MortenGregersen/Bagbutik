@@ -3,7 +3,8 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # DELETE /v1/appStoreVersionLocalizations/{id}/relationships/searchKeywords
+     # Remove search keywords from an app store version localization
+     Remove search keywords from a specific App Store version localization.
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/delete-v1-appStoreVersionLocalizations-_id_-relationships-searchKeywords>

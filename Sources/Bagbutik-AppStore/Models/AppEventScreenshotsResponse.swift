@@ -2,6 +2,13 @@ import Bagbutik_Core
 import Bagbutik_Models
 import Foundation
 
+/**
+ # AppEventScreenshotsResponse
+ The response body for endpoints that list screenshots for an in-app event localization.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appeventscreenshotsresponse>
+ */
 public struct AppEventScreenshotsResponse: Codable, Sendable, PagedResponse {
     public typealias Data = AppEventScreenshot
 

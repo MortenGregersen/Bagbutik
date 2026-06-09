@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # AlternativeDistributionPackageVariantsResponse
- A response that contains a list of alternative distribution package variant resources.
+ A response containing a list of device-specific variants within an alternative distribution package.
 
  This object is the response that contains a list of alternative distribution package variants. For more information, see [List Variants Information](https://developer.apple.com/documentation/appstoreconnectapi/get-v1-alternativedistributionpackageversions-_id_-variants). The schema of the response body is below.
  ```

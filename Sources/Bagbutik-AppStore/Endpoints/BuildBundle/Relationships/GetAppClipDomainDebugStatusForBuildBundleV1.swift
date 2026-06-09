@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read App Clip Domain Debug Status Information for a Build Bundle
+     # Read app clip domain debug status information for a build bundle
      Get the debug status of the domain you associate with your App Clip for a specific build bundle.
 
      Full documentation:

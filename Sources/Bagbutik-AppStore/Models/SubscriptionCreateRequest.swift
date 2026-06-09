@@ -2,6 +2,13 @@ import Bagbutik_Core
 import Bagbutik_Models
 import Foundation
 
+/**
+ # SubscriptionCreateRequest
+ The request body you use to create a subscription.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/subscriptioncreaterequest>
+ */
 public struct SubscriptionCreateRequest: Codable, Sendable, RequestBody {
     public let data: Data
 

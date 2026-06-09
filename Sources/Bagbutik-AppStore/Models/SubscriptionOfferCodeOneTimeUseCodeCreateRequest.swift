@@ -2,6 +2,13 @@ import Bagbutik_Core
 import Bagbutik_Models
 import Foundation
 
+/**
+ # SubscriptionOfferCodeOneTimeUseCodeCreateRequest
+ The request body you use to create a subscription offer code one-time-use code.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/subscriptionoffercodeonetimeusecodecreaterequest>
+ */
 public struct SubscriptionOfferCodeOneTimeUseCodeCreateRequest: Codable, Sendable, RequestBody {
     public let data: Data
 

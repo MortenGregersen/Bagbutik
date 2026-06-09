@@ -2,6 +2,13 @@ import Bagbutik_Core
 import Bagbutik_Models
 import Foundation
 
+/**
+ # BetaBuildLocalizationsWithoutIncludesResponse
+ A response containing a list of TestFlight build localizations, without related resources.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/betabuildlocalizationswithoutincludesresponse>
+ */
 public struct BetaBuildLocalizationsWithoutIncludesResponse: Codable, Sendable, PagedResponse {
     public typealias Data = BetaBuildLocalization
 

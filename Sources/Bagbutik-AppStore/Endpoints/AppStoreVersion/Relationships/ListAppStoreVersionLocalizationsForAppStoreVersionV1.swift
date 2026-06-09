@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # List All App Store Version Localizations for an App Store Version
+     # List all app store version localizations for an app store version
      Get a list of localized, version-level information about an app, for all locales.
 
      Full documentation:

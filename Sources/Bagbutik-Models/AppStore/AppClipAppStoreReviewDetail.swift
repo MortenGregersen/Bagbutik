@@ -3,7 +3,7 @@ import Foundation
 
 /**
  # AppClipAppStoreReviewDetail
- The data structure that represents an App Clip App Store Review Details resource.
+ The review submission details for an App Clip, including the invocation URLs required for App Store review.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appclipappstorereviewdetail>

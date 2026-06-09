@@ -3,7 +3,7 @@ import Foundation
 
 /**
  # AppBuildUploadsLinkagesResponse
- A response that contains a list of IDs of related resources.
+ A response containing the resource identifiers of builds associated with an app’s upload operations.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appbuilduploadslinkagesresponse>

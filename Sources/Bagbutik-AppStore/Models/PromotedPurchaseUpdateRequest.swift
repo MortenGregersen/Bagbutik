@@ -2,6 +2,13 @@ import Bagbutik_Core
 import Bagbutik_Models
 import Foundation
 
+/**
+ # PromotedPurchaseUpdateRequest
+ The request body you use to update a promoted purchase update request.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/promotedpurchaseupdaterequest>
+ */
 public struct PromotedPurchaseUpdateRequest: Codable, Sendable, RequestBody {
     public let data: Data
 

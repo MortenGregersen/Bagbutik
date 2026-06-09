@@ -3,7 +3,7 @@ import Foundation
 
 /**
  # AppClipAdvancedExperienceLocalization
- The data structure that represents the Advanced App Clip Localizations resource.
+ The localized text and action button label for an App Clip advanced experience in a specific language.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appclipadvancedexperiencelocalization>

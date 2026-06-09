@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Modify a Promotional Offer
+     # Modify a promotional offer
      Update the prices for a specific promotional offer for an auto-renewable subscription.
 
      Full documentation:

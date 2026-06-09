@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read Git Repository Information
+     # Read git repository information
      Get information about a Git repository that Xcode Cloud can access.
 
      The example request below retrieves information about a specific Git repository that Xcode Cloud can access. Use the data provided in the response to read additional information; for example, pull request information.

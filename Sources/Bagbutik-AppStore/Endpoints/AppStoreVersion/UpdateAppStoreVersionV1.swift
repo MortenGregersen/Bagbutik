@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Modify an App Store Version
+     # Modify an app store version
      Update the App Store version for a specific app.
 
      Full documentation:

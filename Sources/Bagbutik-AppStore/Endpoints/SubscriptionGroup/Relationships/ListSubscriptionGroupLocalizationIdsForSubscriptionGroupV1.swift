@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # GET /v1/subscriptionGroups/{id}/relationships/subscriptionGroupLocalizations
+     # List localization IDs for a subscription group
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-subscriptionGroups-_id_-relationships-subscriptionGroupLocalizations>

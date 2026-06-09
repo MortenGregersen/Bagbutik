@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read App Clip Card Image Information for a Localized Default App Clip Experience
+     # Read app clip card image information for a localized default app clip experience
      Get the image that appears on the App Clip card, specific to a locale, for a default App Clip experience.
 
      Full documentation:

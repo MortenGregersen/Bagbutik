@@ -3,7 +3,8 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # GET /v1/subscriptions/{id}/relationships/images
+     # List subscription image ids
+     List all images IDs for a specific subscription.
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-subscriptions-_id_-relationships-images>

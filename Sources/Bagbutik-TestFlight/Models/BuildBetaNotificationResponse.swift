@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # BuildBetaNotificationResponse
- A response that contains a single Build Beta Notifications resource.
+ The response body for the endpoint that sends a beta test notification for a build.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/buildbetanotificationresponse>

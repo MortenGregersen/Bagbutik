@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Add Visible Apps to a User
+     # Add visible apps to a user
      Give a user on your team access to one or more apps.
 
      Full documentation:

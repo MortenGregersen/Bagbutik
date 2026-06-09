@@ -1,5 +1,12 @@
 import Foundation
 
+/**
+ # HttpHeader
+ A name-value pair representing an HTTP header included in an upload operation request.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/httpheader>
+ */
 public struct HttpHeader: Codable, Sendable {
     public var name: String?
     public var value: String?

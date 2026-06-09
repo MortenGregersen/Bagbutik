@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # GameCenterActivityLocalizationCreateRequest
- The request body you use to create an activity localization resource.
+ The request body for creating a localization for a Game Center activity.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecenteractivitylocalizationcreaterequest>

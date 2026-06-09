@@ -2,6 +2,13 @@ import Bagbutik_Core
 import Bagbutik_Models
 import Foundation
 
+/**
+ # SubscriptionOfferCodeCustomCodeUpdateRequest
+ The request body you use to update a subscription offer code custom code update request.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/subscriptionoffercodecustomcodeupdaterequest>
+ */
 public struct SubscriptionOfferCodeCustomCodeUpdateRequest: Codable, Sendable, RequestBody {
     public let data: Data
 

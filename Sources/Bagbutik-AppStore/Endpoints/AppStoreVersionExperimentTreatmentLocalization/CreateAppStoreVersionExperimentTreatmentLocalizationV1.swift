@@ -3,7 +3,8 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # POST /v1/appStoreVersionExperimentTreatmentLocalizations
+     # Create an app store version experiment treatment localization
+     Add a new localization for an App Store version experiment treatment.
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/post-v1-appStoreVersionExperimentTreatmentLocalizations>

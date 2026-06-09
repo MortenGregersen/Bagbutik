@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read App Info Localization Information
+     # Read app info localization information
      Read localized app-level information.
 
      Full documentation:
@@ -71,7 +71,6 @@ public enum GetAppInfoLocalizationV1 {
             case brazilAgeRating
             case brazilAgeRatingV2
             case franceAgeRating
-            case kidsAgeBand
             case koreaAgeRating
             case primaryCategory
             case primarySubcategoryOne

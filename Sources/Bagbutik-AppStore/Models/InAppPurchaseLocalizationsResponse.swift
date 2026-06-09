@@ -2,6 +2,13 @@ import Bagbutik_Core
 import Bagbutik_Models
 import Foundation
 
+/**
+ # InAppPurchaseLocalizationsResponse
+ The response body for endpoints that list localizations for an in-app purchase.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/inapppurchaselocalizationsresponse>
+ */
 public struct InAppPurchaseLocalizationsResponse: Codable, Sendable, PagedResponse {
     public typealias Data = InAppPurchaseLocalization
 

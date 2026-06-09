@@ -3,7 +3,7 @@ import Foundation
 
 /**
  # BackgroundAssetVersionBackgroundAssetUploadFilesLinkagesResponse
- A response that contains a list of background asset upload files related to a background asset version.
+ A response containing the resource identifiers of upload files associated with a background asset version.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/backgroundassetversionbackgroundassetuploadfileslinkagesresponse>

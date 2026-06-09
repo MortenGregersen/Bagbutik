@@ -3,7 +3,7 @@ import Foundation
 
 /**
  # CiGitUser
- The data structure that represents a Git Users resource.
+ The Git identity (name and email) of the person who authored or committed the code change that triggered an Xcode Cloud build.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/cigituser>

@@ -2,6 +2,13 @@ import Bagbutik_Core
 import Bagbutik_Models
 import Foundation
 
+/**
+ # TerritoriesWithoutIncludesResponse
+ A response containing a list of App Store territories, without related resources.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/territorieswithoutincludesresponse>
+ */
 public struct TerritoriesWithoutIncludesResponse: Codable, Sendable, PagedResponse {
     public typealias Data = Territory
 

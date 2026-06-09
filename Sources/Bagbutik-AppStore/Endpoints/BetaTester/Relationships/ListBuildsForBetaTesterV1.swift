@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # List All Builds Individually Assigned to a Beta Tester
+     # List all builds individually assigned to a beta tester
      Get a list of builds individually assigned to a specific beta tester.
 
      Full documentation:

@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # AppPreviewResponse
- A response that contains a single App Previews resource.
+ The response body for endpoints that create, read, or modify an app preview video.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/apppreviewresponse>

@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # AppClipDefaultExperienceLocalizationResponse
- A response that contains a single Default App Clip Experience Localizations resource.
+ The response body for endpoints that create, read, or modify a localized App Clip card subtitle.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appclipdefaultexperiencelocalizationresponse>

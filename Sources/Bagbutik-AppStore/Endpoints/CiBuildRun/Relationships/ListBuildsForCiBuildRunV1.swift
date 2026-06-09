@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # List All Builds Xcode Cloud Created in App Store Connect
+     # List all builds xcode cloud created in app store connect
      List All App Store Connect and TestFlight Builds when it performed a build.
 
      Full documentation:

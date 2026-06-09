@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # List All Icons for a Build
+     # List all icons for a build
      List all the icons for various platforms delivered with a build.
 
      Full documentation:

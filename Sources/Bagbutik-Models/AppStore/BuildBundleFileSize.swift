@@ -3,7 +3,7 @@ import Foundation
 
 /**
  # BuildBundleFileSize
- The data structure that represents a Build Bundle File Sizes resource.
+ The estimated and actual download and install sizes for a build bundle, broken down by device type.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/buildbundlefilesize>

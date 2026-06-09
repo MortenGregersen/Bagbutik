@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # AppCustomProductPagesResponse
- A response that contains a list of app custom product page resources.
+ The response body for endpoints that list custom App Store product pages for an app.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appcustomproductpagesresponse>

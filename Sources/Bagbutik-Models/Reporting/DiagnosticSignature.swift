@@ -3,7 +3,7 @@ import Foundation
 
 /**
  # DiagnosticSignature
- The data structure that represents the Diagnostic Signatures resource.
+ A unique pattern identifying a recurring crash, hang, or disk-write exception in your app’s diagnostic logs.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/diagnosticsignature>

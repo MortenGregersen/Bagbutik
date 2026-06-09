@@ -2,6 +2,13 @@ import Bagbutik_Core
 import Bagbutik_Models
 import Foundation
 
+/**
+ # AppEventScreenshotResponse
+ The response body for endpoints that create, read, or modify an in-app event screenshot.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appeventscreenshotresponse>
+ */
 public struct AppEventScreenshotResponse: Codable, Sendable {
     public let data: AppEventScreenshot
     public var included: [AppEventLocalization]?

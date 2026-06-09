@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # CiManualTagStartCondition
+ A workflow start condition that triggers an Xcode Cloud build when a specified tag is manually selected.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/cimanualtagstartcondition>
+ */
 public struct CiManualTagStartCondition: Codable, Sendable {
     public var source: CiTagPatterns?
 

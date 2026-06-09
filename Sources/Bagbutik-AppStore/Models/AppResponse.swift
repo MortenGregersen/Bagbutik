@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # AppResponse
- A response that contains a single Apps resource.
+ The response body for endpoints that read or modify a single app in your team.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appresponse>

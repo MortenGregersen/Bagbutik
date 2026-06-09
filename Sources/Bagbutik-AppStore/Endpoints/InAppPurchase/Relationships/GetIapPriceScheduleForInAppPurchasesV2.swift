@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read the Price Schedule for an In-App Purchase
+     # Read the price schedule for an in-app purchase
      Get a list of the scheduled prices for an in-app purchase.
 
      Full documentation:

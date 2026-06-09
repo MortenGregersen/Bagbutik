@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # GameCenterLeaderboardSetLocalizationResponse
- A response that contains a single leaderboard set localization resource.
+ The response body for endpoints that create, read, or modify a single Game Center leaderboard set localization.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterleaderboardsetlocalizationresponse>

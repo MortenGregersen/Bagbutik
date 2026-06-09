@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # GET /v1/gameCenterDetails/{id}/relationships/leaderboardReleases
+     # List leaderboard release IDs for a Game Center detail
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-gameCenterDetails-_id_-relationships-leaderboardReleases>

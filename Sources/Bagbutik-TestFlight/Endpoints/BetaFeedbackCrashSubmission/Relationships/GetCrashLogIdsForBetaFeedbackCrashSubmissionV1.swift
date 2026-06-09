@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # GET /v1/betaFeedbackCrashSubmissions/{id}/relationships/crashLog
+     # Get the crash log ID for a beta feedback crash submission
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-betaFeedbackCrashSubmissions-_id_-relationships-crashLog>

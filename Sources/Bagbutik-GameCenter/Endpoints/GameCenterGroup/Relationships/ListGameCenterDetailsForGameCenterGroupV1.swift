@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # List Game Center Details for a Group
+     # List game center details for a group
      Read Game Center detail information for a specific group.
 
      Full documentation:

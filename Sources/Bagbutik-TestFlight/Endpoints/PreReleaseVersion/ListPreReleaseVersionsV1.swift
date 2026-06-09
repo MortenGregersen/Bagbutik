@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # List Prerelease Versions
+     # List prerelease versions
      Get a list of prerelease versions for all apps.
 
      Full documentation:

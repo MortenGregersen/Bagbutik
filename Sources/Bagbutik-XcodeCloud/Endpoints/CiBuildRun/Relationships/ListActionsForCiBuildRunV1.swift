@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # List All Actions for an Xcode Cloud Build
+     # List all actions for an xcode cloud build
      List all actions Xcode Cloud performed during a specific build.
 
      The example request below lists actions Xcode Cloud performed during a specific build. Use the information provided in the response to display detailed action information on a dashboard or to read additional data; for example, test results.

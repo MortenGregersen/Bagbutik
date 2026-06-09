@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # AppStoreVersionReleaseRequest
- The data structure that represents an App Store Version Release Request resource.
+ A request to manually release an App Store version that was set to manual release after review approval.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionreleaserequest>

@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # AppStoreVersionExperimentV2Response
- A response that contains a single app store version experiment v2response resource.
+ A response containing a single App Store product page A/B experiment.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionexperimentv2response>

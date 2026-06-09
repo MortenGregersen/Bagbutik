@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # BetaRecruitmentCriterionUpdateRequest
- The request body you use to update a beta recruitment criterion resource.
+ The request body for updating the device family and OS version requirements of a beta recruitment criterion.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/betarecruitmentcriterionupdaterequest>

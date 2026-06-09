@@ -3,7 +3,7 @@ import Foundation
 
 /**
  # WinBackOfferPriceInlineCreate
- The data structure that represents a win-back offer price inline create resource.
+ An inline object for specifying territory-specific pricing when creating or updating a win-back offer.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/winbackofferpriceinlinecreate>

@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # List Users
+     # List users
      Get a list of the users on your team.
 
      Full documentation:

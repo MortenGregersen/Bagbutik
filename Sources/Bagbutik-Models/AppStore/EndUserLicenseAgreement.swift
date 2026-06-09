@@ -3,7 +3,7 @@ import Foundation
 
 /**
  # EndUserLicenseAgreement
- The data structure that represents the End User License Agreement resource.
+ A custom end-user license agreement (EULA) for an app, targeting specific territories where it applies.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/enduserlicenseagreement>

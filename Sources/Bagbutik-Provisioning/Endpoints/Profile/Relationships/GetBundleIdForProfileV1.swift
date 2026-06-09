@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read the Bundle ID in a Profile
+     # Read the bundle id in a profile
      Get the bundle ID information for a specific provisioning profile.
 
      Full documentation:

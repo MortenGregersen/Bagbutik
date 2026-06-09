@@ -3,7 +3,7 @@ import Foundation
 
 /**
  # CiAction
- The data structure that represents an Xcode Cloud workflow action resource.
+ A step within an Xcode Cloud workflow, such as building, running tests, analyzing, or deploying an app.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/ciaction>

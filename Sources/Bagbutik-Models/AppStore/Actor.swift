@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # Actor
+ An entity in the audit log representing the person, service, or system that performed an action in App Store Connect.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/actor>
+ */
 public struct Actor: Codable, Sendable, Identifiable {
     public let id: String
     public var links: ResourceLinks?

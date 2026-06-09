@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # GameCenterLeaderboardEntrySubmissionCreateRequest
- The request body you use to create an Game Center leaderboard entry submssion.
+ The request body you use to create a Game Center leaderboard entry submission.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterleaderboardentrysubmissioncreaterequest>

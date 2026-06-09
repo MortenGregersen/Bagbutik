@@ -2,6 +2,13 @@ import Bagbutik_Core
 import Bagbutik_Models
 import Foundation
 
+/**
+ # AppEventCreateRequest
+ The request body you use to create an app event.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appeventcreaterequest>
+ */
 public struct AppEventCreateRequest: Codable, Sendable, RequestBody {
     public let data: Data
 

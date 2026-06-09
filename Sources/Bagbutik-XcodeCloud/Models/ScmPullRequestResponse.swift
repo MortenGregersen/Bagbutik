@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # ScmPullRequestResponse
- A response that contains a single Pull Requests resource.
+ The response body for endpoints that read a single SCM pull request linked to Xcode Cloud.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/scmpullrequestresponse>

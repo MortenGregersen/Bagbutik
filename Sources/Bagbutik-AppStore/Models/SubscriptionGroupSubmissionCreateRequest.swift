@@ -2,6 +2,13 @@ import Bagbutik_Core
 import Bagbutik_Models
 import Foundation
 
+/**
+ # SubscriptionGroupSubmissionCreateRequest
+ The request body you use to create a subscription group submission.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/subscriptiongroupsubmissioncreaterequest>
+ */
 public struct SubscriptionGroupSubmissionCreateRequest: Codable, Sendable, RequestBody {
     public let data: Data
 

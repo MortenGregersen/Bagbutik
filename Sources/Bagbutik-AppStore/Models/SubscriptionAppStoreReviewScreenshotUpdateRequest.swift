@@ -2,6 +2,13 @@ import Bagbutik_Core
 import Bagbutik_Models
 import Foundation
 
+/**
+ # SubscriptionAppStoreReviewScreenshotUpdateRequest
+ The request body you use to update a subscription app store review screenshot update request.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/subscriptionappstorereviewscreenshotupdaterequest>
+ */
 public struct SubscriptionAppStoreReviewScreenshotUpdateRequest: Codable, Sendable, RequestBody {
     public let data: Data
 

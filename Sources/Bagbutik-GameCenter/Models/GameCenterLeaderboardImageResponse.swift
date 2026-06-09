@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # GameCenterLeaderboardImageResponse
- A response that contains a single leaderboard image resource.
+ The response body for endpoints that create, read, or modify a single Game Center leaderboard image.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterleaderboardimageresponse>

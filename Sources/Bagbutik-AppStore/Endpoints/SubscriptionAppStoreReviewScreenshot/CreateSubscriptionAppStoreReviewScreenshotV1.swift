@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Create a Review Screenshot for an Auto-Renewable Subscription
+     # Create a review screenshot for an auto-renewable subscription
      Reserve a review screenshot for an auto-renewable subscription.
 
      Full documentation:

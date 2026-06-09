@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # BetaAppClipInvocationLocalizationResponse
- A response that contains a single Beta App Clip Invocation Localizations resource.
+ A response containing a single localized title for a beta App Clip invocation.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/betaappclipinvocationlocalizationresponse>

@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # List the Assets Packs IDs for an App
+     # List the assets packs ids for an app
      Get a list of the Apple hosted background asset IDs for a specific app.
 
      Full documentation:

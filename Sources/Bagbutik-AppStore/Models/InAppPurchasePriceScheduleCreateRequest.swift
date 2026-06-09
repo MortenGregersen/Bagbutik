@@ -2,6 +2,13 @@ import Bagbutik_Core
 import Bagbutik_Models
 import Foundation
 
+/**
+ # InAppPurchasePriceScheduleCreateRequest
+ The request body you use to create an in-app purchase price schedule.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/inapppurchasepriceschedulecreaterequest>
+ */
 public struct InAppPurchasePriceScheduleCreateRequest: Codable, Sendable, RequestBody {
     public let data: Data
     public var included: [Included]?

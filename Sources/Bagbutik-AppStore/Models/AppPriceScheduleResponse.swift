@@ -2,6 +2,13 @@ import Bagbutik_Core
 import Bagbutik_Models
 import Foundation
 
+/**
+ # AppPriceScheduleResponse
+ A response containing a single app pricing schedule with its territory configurations.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/apppricescheduleresponse>
+ */
 public struct AppPriceScheduleResponse: Codable, Sendable {
     public let data: AppPriceSchedule
     public var included: [Included]?

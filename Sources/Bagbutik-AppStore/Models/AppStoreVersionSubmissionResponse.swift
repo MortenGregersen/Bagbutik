@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # AppStoreVersionSubmissionResponse
- A response that contains a single App Store Version Submissions resource.
+ The response body for endpoints that submit an App Store version for review.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionsubmissionresponse>

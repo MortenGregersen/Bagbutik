@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # TerritoryAvailabilityUpdateRequest
- The request body you use to update a single territory availability resource.
+ The request body for updating the availability settings for an app or content in a specific territory.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/territoryavailabilityupdaterequest>

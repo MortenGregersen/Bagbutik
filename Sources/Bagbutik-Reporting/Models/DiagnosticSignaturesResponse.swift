@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # DiagnosticSignaturesResponse
- A response that contains a list of Diagnostic Signature resources.
+ A response containing a list of unique performance issue signatures identified in your app’s diagnostic data.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/diagnosticsignaturesresponse>

@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # BetaTestersResponse
- A response that contains a list of Beta Tester resources.
+ The response body for endpoints that list TestFlight beta testers.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/betatestersresponse>

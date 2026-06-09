@@ -3,7 +3,7 @@ import Foundation
 
 /**
  # AppStoreVersionExperimentTreatmentLocalization
- The data structure that represents an app store version experiment treatment localization resource.
+ The localized screenshots, previews, and text for one treatment variant in an App Store product page A/B experiment.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionexperimenttreatmentlocalization>
@@ -65,16 +65,23 @@ public struct AppStoreVersionExperimentTreatmentLocalization: Codable, Sendable,
     }
 
     public struct Relationships: Codable, Sendable {
-        public var appPreviewSets: AppPreviewSets?
-        public var appScreenshotSets: AppScreenshotSets?
+        @available(*, deprecated, message: "Apple has marked this property deprecated and it will be removed sometime in the future.")
+        public var appPreviewSets: AppPreviewSets? = nil
+        @available(*, deprecated, message: "Apple has marked this property deprecated and it will be removed sometime in the future.")
+        public var appScreenshotSets: AppScreenshotSets? = nil
         public var appStoreVersionExperimentTreatment: AppStoreVersionExperimentTreatment?
 
+        @available(*, deprecated, message: "This uses a property Apple has marked as deprecated.")
         public init(appPreviewSets: AppPreviewSets? = nil,
                     appScreenshotSets: AppScreenshotSets? = nil,
                     appStoreVersionExperimentTreatment: AppStoreVersionExperimentTreatment? = nil)
         {
             self.appPreviewSets = appPreviewSets
             self.appScreenshotSets = appScreenshotSets
+            self.appStoreVersionExperimentTreatment = appStoreVersionExperimentTreatment
+        }
+
+        public init(appStoreVersionExperimentTreatment: AppStoreVersionExperimentTreatment? = nil) {
             self.appStoreVersionExperimentTreatment = appStoreVersionExperimentTreatment
         }
 

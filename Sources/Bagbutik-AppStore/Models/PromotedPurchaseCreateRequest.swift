@@ -2,6 +2,13 @@ import Bagbutik_Core
 import Bagbutik_Models
 import Foundation
 
+/**
+ # PromotedPurchaseCreateRequest
+ The request body you use to create a promoted purchase.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/promotedpurchasecreaterequest>
+ */
 public struct PromotedPurchaseCreateRequest: Codable, Sendable, RequestBody {
     public let data: Data
 

@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # SubscriptionImageUpdateRequest
- The data structure that represents a subscription image update request resource.
+ The request body for updating the upload status or content of a subscription product image.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/subscriptionimageupdaterequest>

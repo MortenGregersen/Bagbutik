@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read App Availability Territories
+     # Read app availablity territories
      Read the territory availablity for a specific app.
 
      Full documentation:

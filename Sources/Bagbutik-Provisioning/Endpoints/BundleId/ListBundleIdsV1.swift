@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # List Bundle IDs
+     # List bundle ids
      Find and list bundle IDs that are registered to your team.
 
      Full documentation:

@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Modify a Beta App Localization
+     # Modify a beta app localization
      Update the localized information for a specific beta app and locale.
 
      Full documentation:

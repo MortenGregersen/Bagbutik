@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # List All Builds of an App
+     # List all builds of an app
      Get a list of builds associated with a specific app.
 
      Full documentation:

@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # List Builds
+     # List builds
      Find and list builds for all apps in App Store Connect.
 
      Full documentation:

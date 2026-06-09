@@ -3,7 +3,8 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # POST /v1/appStoreVersionPromotions
+     # Create an app store version promotion
+     Promote a specific App Store version.
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/post-v1-appStoreVersionPromotions>

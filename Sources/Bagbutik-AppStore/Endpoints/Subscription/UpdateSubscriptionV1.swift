@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Modify an Auto-Renewable Subscription
+     # Modify an auto-renewable subscription
      Update a specific auto-renewable subscription.
 
      Full documentation:

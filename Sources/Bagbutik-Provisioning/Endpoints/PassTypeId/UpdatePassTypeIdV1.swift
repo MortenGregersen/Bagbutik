@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Modify a Passtypeid
+     # Modify a passtypeid
      Update a specific pass type ID’s name.
 
      Full documentation:

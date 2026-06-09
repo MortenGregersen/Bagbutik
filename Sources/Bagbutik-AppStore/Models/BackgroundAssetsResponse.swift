@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # BackgroundAssetsResponse
- A response that contains a list of background asset version resources.
+ A response containing a list of background assets for an app.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/backgroundassetsresponse>

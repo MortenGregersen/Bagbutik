@@ -4,7 +4,7 @@ import Foundation
 
 /**
  # AppStoreVersionPhasedReleaseResponse
- A response that contains a single App Store Version Phased Releases resource.
+ The response body for endpoints that create, read, or modify the phased release schedule for an App Store version.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionphasedreleaseresponse>

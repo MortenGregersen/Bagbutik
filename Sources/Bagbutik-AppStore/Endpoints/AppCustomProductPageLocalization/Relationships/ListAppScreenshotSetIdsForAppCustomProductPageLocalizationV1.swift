@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # List App Screenshot Sets IDs for a Custom Product Page Localization
+     # List app screenshot sets IDs for a custom product page localization
      List the app screenshot set IDs for a specific custom product page localization.
 
      Full documentation:
@@ -13,6 +13,7 @@ public extension Request {
      - Parameter limit: Maximum resources per page - maximum 200
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
+    @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
     static func listAppScreenshotSetIdsForAppCustomProductPageLocalizationV1(id: String,
                                                                              limit: Int? = nil) -> Request<AppCustomProductPageLocalizationAppScreenshotSetsLinkagesResponse, ErrorResponse> {
         .init(
