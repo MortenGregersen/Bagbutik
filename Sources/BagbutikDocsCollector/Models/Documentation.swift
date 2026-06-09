@@ -98,24 +98,38 @@ public enum Documentation: Codable, Equatable, Sendable {
         let id = try container.decode(Identifier.self, forKey: .identifier).url
         let hierarchy = try container.decode(Hierarchy.self, forKey: .hierarchy)
         let metadata = try container.decode(Metadata.self, forKey: .metadata)
-        let abstract = try container.decodeIfPresent([Abstract].self, forKey: .abstract)?.map(\.text).joined()
         let references = try container.decodeIfPresent([String: Reference].self, forKey: .references)
+        let formatReference: (String) -> String? = { identifier in
+            guard let reference = references?[identifier] else { return nil }
+            switch reference.role {
+            case .dictionarySymbol:
+                let formattedReference = reference.title
+                    .replacingOccurrences(of: ".", with: "/")
+                    .capitalizingFirstLetter()
+                return "``\(formattedReference)``"
+            case .symbol, .article, .link, .none:
+                return "[\(reference.title)](\(reference.url))"
+            }
+        }
+        let abstract = try container.decodeIfPresent([DecodedAbstract].self, forKey: .abstract)?.reduce(into: "") { partialResult, abstract in
+            switch abstract {
+            case .text(let text):
+                partialResult.append(text)
+            case .code(let code):
+                partialResult.append(code)
+            case .reference(let identifier):
+                guard let reference = formatReference(identifier) else { return }
+                partialResult.append(reference)
+            }
+        }
         let formatContent: (Content?) -> String? = { content in
             content?.inlineContent.reduce(into: "") { contentResult, inlineContent in
                 switch inlineContent {
                 case .text(let text):
                     contentResult.append(text)
                 case .reference(let identifier):
-                    guard let reference = references?[identifier] else { return }
-                    switch reference.role {
-                    case .dictionarySymbol:
-                        let formattedReference = reference.title
-                            .replacingOccurrences(of: ".", with: "/")
-                            .capitalizingFirstLetter()
-                        contentResult.append("``\(formattedReference)``")
-                    case .symbol, .article, .link, .none:
-                        contentResult.append("[\(reference.title)](\(reference.url))")
-                    }
+                    guard let reference = formatReference(identifier) else { return }
+                    contentResult.append(reference)
                 }
             }
         }
@@ -218,7 +232,7 @@ public enum Documentation: Codable, Equatable, Sendable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(Identifier(url: id), forKey: .identifier)
         if let abstract {
-            try container.encode([Abstract(text: abstract)], forKey: .abstract)
+            try container.encode([EncodedAbstract(text: abstract)], forKey: .abstract)
         }
         try container.encode(hierarchy, forKey: .hierarchy)
         var contentSections = [ContentSection]()
@@ -282,20 +296,10 @@ public enum Documentation: Codable, Equatable, Sendable {
         let symbolKind: String
     }
 
-    private enum Abstract: Codable {
+    private enum DecodedAbstract: Decodable {
         case text(String)
         case code(String)
-
-        var text: String {
-            switch self {
-            case .text(let text): text
-            case .code(let code): code
-            }
-        }
-        
-        init(text: String) {
-            self = .text(text)
-        }
+        case reference(String)
 
         init(from decoder: any Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
@@ -304,26 +308,32 @@ public enum Documentation: Codable, Equatable, Sendable {
                 self = try .text(container.decode(String.self, forKey: .text))
             } else if type == "codeVoice" {
                 self = try .code(container.decode(String.self, forKey: .code))
+            } else if type == "reference" {
+                self = try .reference(container.decode(String.self, forKey: .identifier))
             } else {
                 throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Unknown type '\(type)' for Abstract")
-            }
-        }
-
-        func encode(to encoder: any Encoder) throws {
-            var container = encoder.container(keyedBy: CodingKeys.self)
-            switch self {
-            case .text(let text):
-                try container.encode("text", forKey: .type)
-                try container.encode(text, forKey: .text)
-            case .code(let code):
-                try container.encode("codeVoice", forKey: .type)
-                try container.encode(code, forKey: .code)
             }
         }
 
         enum CodingKeys: CodingKey {
             case text
             case code
+            case identifier
+            case type
+        }
+    }
+
+    private struct EncodedAbstract: Encodable {
+        let text: String
+
+        func encode(to encoder: any Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encode("text", forKey: .type)
+            try container.encode(text, forKey: .text)
+        }
+
+        enum CodingKeys: CodingKey {
+            case text
             case type
         }
     }
