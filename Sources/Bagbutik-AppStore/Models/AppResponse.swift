@@ -225,6 +225,19 @@ public struct AppResponse: Codable, Sendable {
         return gameCenterEnabledVersions
     }
 
+    @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
+    public func getInAppPurchases() -> [InAppPurchase] {
+        guard let inAppPurchaseIds = data.relationships?.inAppPurchases?.data?.map(\.id),
+              let inAppPurchases = included?.compactMap({ relationship -> InAppPurchase? in
+                  guard case let .inAppPurchase(inAppPurchase) = relationship else { return nil }
+                  return inAppPurchaseIds.contains(inAppPurchase.id) ? inAppPurchase : nil
+              })
+        else {
+            return []
+        }
+        return inAppPurchases
+    }
+
     public func getInAppPurchasesV2() -> [InAppPurchase] {
         guard let inAppPurchasesV2Ids = data.relationships?.inAppPurchasesV2?.data?.map(\.id),
               let inAppPurchasesV2 = included?.compactMap({ relationship -> InAppPurchase? in

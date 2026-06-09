@@ -39,11 +39,32 @@ public struct AppEncryptionDeclarationResponse: Codable, Sendable {
         try container.encode(links, forKey: "links")
     }
 
+    @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
+    public func getApp() -> App? {
+        included?.compactMap { relationship -> App? in
+            guard case let .app(app) = relationship else { return nil }
+            return app
+        }.first { $0.id == data.relationships?.app?.data?.id }
+    }
+
     public func getAppEncryptionDeclarationDocument() -> AppEncryptionDeclarationDocument? {
         included?.compactMap { relationship -> AppEncryptionDeclarationDocument? in
             guard case let .appEncryptionDeclarationDocument(appEncryptionDeclarationDocument) = relationship else { return nil }
             return appEncryptionDeclarationDocument
         }.first { $0.id == data.relationships?.appEncryptionDeclarationDocument?.data?.id }
+    }
+
+    @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
+    public func getBuilds() -> [Build] {
+        guard let buildIds = data.relationships?.builds?.data?.map(\.id),
+              let builds = included?.compactMap({ relationship -> Build? in
+                  guard case let .build(build) = relationship else { return nil }
+                  return buildIds.contains(build.id) ? build : nil
+              })
+        else {
+            return []
+        }
+        return builds
     }
 
     public enum Included: Codable, Sendable {

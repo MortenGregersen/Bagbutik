@@ -236,7 +236,7 @@ public class ObjectSchemaRenderer: Renderer {
         guard case .object(let dataSchema) = otherSchemas[dataSchemaName],
               case .schema(let relationshipsSchema) = dataSchema.properties["relationships"]?.type else { return [] }
         return relationshipsSchema.properties.sorted(by: { $0.key < $1.key }).compactMap { relationship -> String? in
-            guard !relationship.value.deprecated, case .schema(let relationshipPropertySchema) = relationship.value.type else { return nil }
+            guard case .schema(let relationshipPropertySchema) = relationship.value.type else { return nil }
             let pagedType = dataSchemaName.lowercasedFirstLetter()
             let relationshipDataProperty = relationshipPropertySchema.properties["data"]
             let relationshipDataSchema: ObjectSchema
@@ -313,7 +313,7 @@ public class ObjectSchemaRenderer: Renderer {
             }
             let functionName = "get\(relationship.key.capitalizingFirstLetter())"
             let returnType = isArrayReturnType ? "[\(includedSchemaName)]" : "\(includedSchemaName)?"
-            return renderFunction(named: functionName, parameters: parameters, returnType: returnType) {
+            return renderFunction(named: functionName, parameters: parameters, returnType: returnType, deprecated: relationship.value.deprecated) {
                 functionContent
             }
         }

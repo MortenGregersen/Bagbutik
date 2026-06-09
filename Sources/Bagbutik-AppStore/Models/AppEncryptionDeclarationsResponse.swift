@@ -47,11 +47,32 @@ public struct AppEncryptionDeclarationsResponse: Codable, Sendable, PagedRespons
         try container.encodeIfPresent(meta, forKey: "meta")
     }
 
+    @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
+    public func getApp(for appEncryptionDeclaration: AppEncryptionDeclaration) -> App? {
+        included?.compactMap { relationship -> App? in
+            guard case let .app(app) = relationship else { return nil }
+            return app
+        }.first { $0.id == appEncryptionDeclaration.relationships?.app?.data?.id }
+    }
+
     public func getAppEncryptionDeclarationDocument(for appEncryptionDeclaration: AppEncryptionDeclaration) -> AppEncryptionDeclarationDocument? {
         included?.compactMap { relationship -> AppEncryptionDeclarationDocument? in
             guard case let .appEncryptionDeclarationDocument(appEncryptionDeclarationDocument) = relationship else { return nil }
             return appEncryptionDeclarationDocument
         }.first { $0.id == appEncryptionDeclaration.relationships?.appEncryptionDeclarationDocument?.data?.id }
+    }
+
+    @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
+    public func getBuilds(for appEncryptionDeclaration: AppEncryptionDeclaration) -> [Build] {
+        guard let buildIds = appEncryptionDeclaration.relationships?.builds?.data?.map(\.id),
+              let builds = included?.compactMap({ relationship -> Build? in
+                  guard case let .build(build) = relationship else { return nil }
+                  return buildIds.contains(build.id) ? build : nil
+              })
+        else {
+            return []
+        }
+        return builds
     }
 
     public enum Included: Codable, Sendable {

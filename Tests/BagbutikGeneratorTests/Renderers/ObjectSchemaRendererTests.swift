@@ -991,6 +991,19 @@ final class ObjectSchemaRendererTests: XCTestCase {
                 }.first { $0.id == build.relationships?.preReleaseVersion?.data?.id }
             }
 
+            @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
+            public func getSomethingOld(for build: Build) -> [SomethingOld] {
+                guard let somethingOldIds = build.relationships?.somethingOld?.data?.map(\.id),
+                      let somethingOld = included?.compactMap({ relationship -> SomethingOld? in
+                          guard case let .somethingOld(somethingOld) = relationship else { return nil }
+                          return somethingOldIds.contains(somethingOld.id) ? somethingOld : nil
+                      })
+                else {
+                    return []
+                }
+                return somethingOld
+            }
+
             public enum Included: Codable, Sendable {
                 case betaTester(BetaTester)
                 case prereleaseVersion(PrereleaseVersion)
