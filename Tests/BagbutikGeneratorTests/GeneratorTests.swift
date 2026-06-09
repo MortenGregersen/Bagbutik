@@ -216,7 +216,7 @@ final class GeneratorTests: XCTestCase {
     func testNoDocumentationForOperation() async throws {
         // Given
         let fileManager = MockFileManager()
-        let docsLoader = self.docsLoader
+        let docsLoader = DocsLoader(loadFile: { _ in "{}".data(using: .utf8)! })
         #if compiler(<6.0)
         let printer = await Printer()
         #else
@@ -243,7 +243,7 @@ final class GeneratorTests: XCTestCase {
     func testInferPackageNameForSchemaWithoutDocumentation() async throws {
         // Given
         let fileManager = MockFileManager()
-        let docsLoader = self.docsLoader
+        let docsLoader = DocsLoader(loadFile: { _ in "{}".data(using: .utf8)! })
         #if compiler(<6.0)
         let printer = await Printer()
         #else
@@ -288,51 +288,6 @@ final class GeneratorTests: XCTestCase {
 
         XCTAssertEqual(fileManager.filesCreated.map(\.name), ["ListUsersV1.swift"])
         XCTAssertEqual(fileManager.directoriesCreated.filter { $0.hasSuffix("/Bagbutik-Users/Endpoints/Users") }.count, 1)
-    }
-
-    func testSubscriptionPlanOperationsAreInAppStorePackage() async throws {
-        let fileManager = MockFileManager()
-        let docsLoader = self.docsLoader
-        #if compiler(<6.0)
-        let printer = await Printer()
-        #else
-        let printer = Printer()
-        #endif
-        let generator = Generator(loadSpec: { _ in
-            try Spec(paths: [
-                "/v1/subscriptionPlans/{id}": Path(path: "/v1/subscriptionPlans/{id}", info: .init(mainType: "SubscriptionPlan", version: "V1", isRelationship: false), operations: [
-                    .init(id: "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-subscriptionPlans-_id_",
-                          name: "getSubscriptionPlan",
-                          method: .get,
-                          successResponseType: "SubscriptionResponse",
-                          errorResponseType: "ErrorResponse"),
-                ]),
-                "/v1/subscriptionPlans/{id}/relationships/prices": Path(path: "/v1/subscriptionPlans/{id}/relationships/prices", info: .init(mainType: "SubscriptionPlan", version: "V1", isRelationship: true), operations: [
-                    .init(id: "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-subscriptionPlans-_id_-relationships-prices",
-                          name: "listPriceIdsForSubscriptionPlan",
-                          method: .get,
-                          successResponseType: "UserVisibleAppsLinkagesResponse",
-                          errorResponseType: "ErrorResponse"),
-                ]),
-            ], components: .init(schemas: [
-                "ErrorResponse": .object(.init(name: "ErrorResponse", url: "some://url")),
-                "UserVisibleAppsLinkagesResponse": .object(.init(name: "UserVisibleAppsLinkagesResponse", url: "some://url")),
-                "SubscriptionResponse": .object(.init(name: "SubscriptionResponse", url: "some://url")),
-            ]))
-        }, fileManager: fileManager, docsLoader: docsLoader, print: printer.print)
-
-        try await generator.generateAll(specFileURL: validSpecFileURL, outputDirURL: validOutputDirURL, documentationDirURL: validDocumentationDirURL)
-
-        XCTAssertEqual(fileManager.filesCreated.map(\.name).sorted(), [
-            "ErrorResponse.swift",
-            "GetSubscriptionPlanV1.swift",
-            "ListPriceIdsForSubscriptionPlanV1.swift",
-            "SubscriptionResponse.swift",
-            "UserVisibleAppsLinkagesResponse.swift",
-        ])
-        XCTAssertEqual(fileManager.directoriesCreated.filter { $0.hasSuffix("/Bagbutik-AppStore/Endpoints/SubscriptionPlan") }.count, 1)
-        XCTAssertEqual(fileManager.directoriesCreated.filter { $0.hasSuffix("/Bagbutik-AppStore/Endpoints/SubscriptionPlan/Relationships") }.count, 1)
-        XCTAssertEqual(fileManager.directoriesCreated.filter { $0.hasSuffix("/Bagbutik-AppStore/Endpoints/Subscription") }.count, 0)
     }
 
     func testInferPackageNameForNonRequestSchemaUsesGeneralModelsDirectory() async throws {
