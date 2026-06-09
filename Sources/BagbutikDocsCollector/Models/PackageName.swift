@@ -92,6 +92,7 @@ public enum PackageName: CaseIterable, Codable, Equatable {
             || resource.hasPrefix("offerCode")
             || resource.hasPrefix("parent")
             || resource.hasPrefix("phasedRelease")
+            || resource.hasPrefix("planAvailabilit")
             || resource.hasPrefix("preview")
             || resource.hasPrefix("price")
             || resource.hasPrefix("primaryCategory")
