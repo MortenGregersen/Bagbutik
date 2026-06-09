@@ -327,8 +327,8 @@ final class GeneratorTests: XCTestCase {
             "ErrorResponse.swift",
             "GetSubscriptionPlanV1.swift",
             "ListPriceIdsForSubscriptionPlanV1.swift",
-            "UserVisibleAppsLinkagesResponse.swift",
             "SubscriptionResponse.swift",
+            "UserVisibleAppsLinkagesResponse.swift",
         ])
         XCTAssertEqual(fileManager.directoriesCreated.filter { $0.hasSuffix("/Bagbutik-AppStore/Endpoints/Subscription") }.count, 1)
         XCTAssertEqual(fileManager.directoriesCreated.filter { $0.hasSuffix("/Bagbutik-AppStore/Endpoints/Subscription/Relationships") }.count, 1)
