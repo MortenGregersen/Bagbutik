@@ -290,7 +290,7 @@ final class GeneratorTests: XCTestCase {
         XCTAssertEqual(fileManager.directoriesCreated.filter { $0.hasSuffix("/Bagbutik-Users/Endpoints/Users") }.count, 1)
     }
 
-    func testMapSubscriptionPlanOperationsIntoSubscriptionFolders() async throws {
+    func testSubscriptionPlanOperationsAreInAppStorePackage() async throws {
         let fileManager = MockFileManager()
         let docsLoader = self.docsLoader
         #if compiler(<6.0)
@@ -330,9 +330,9 @@ final class GeneratorTests: XCTestCase {
             "SubscriptionResponse.swift",
             "UserVisibleAppsLinkagesResponse.swift",
         ])
-        XCTAssertEqual(fileManager.directoriesCreated.filter { $0.hasSuffix("/Bagbutik-AppStore/Endpoints/Subscription") }.count, 1)
-        XCTAssertEqual(fileManager.directoriesCreated.filter { $0.hasSuffix("/Bagbutik-AppStore/Endpoints/Subscription/Relationships") }.count, 1)
-        XCTAssertEqual(fileManager.directoriesCreated.filter { $0.hasSuffix("/Bagbutik-AppStore/Endpoints/SubscriptionPlan") }.count, 0)
+        XCTAssertEqual(fileManager.directoriesCreated.filter { $0.hasSuffix("/Bagbutik-AppStore/Endpoints/SubscriptionPlan") }.count, 1)
+        XCTAssertEqual(fileManager.directoriesCreated.filter { $0.hasSuffix("/Bagbutik-AppStore/Endpoints/SubscriptionPlan/Relationships") }.count, 1)
+        XCTAssertEqual(fileManager.directoriesCreated.filter { $0.hasSuffix("/Bagbutik-AppStore/Endpoints/Subscription") }.count, 0)
     }
 
     func testInferPackageNameForNonRequestSchemaUsesGeneralModelsDirectory() async throws {

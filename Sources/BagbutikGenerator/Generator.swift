@@ -194,10 +194,6 @@ public class Generator {
         let contents: String
     }
 
-    private static let endpointFolderMappings = [
-        "SubscriptionPlan": "Subscription"
-    ]
-
     private func removeChildren(at url: URL) throws {
         if fileManager.fileExists(atPath: url.path) {
             try fileManager.removeItem(at: url)
@@ -205,8 +201,7 @@ public class Generator {
     }
 
     private static func getOperationsDirURL(for path: Path, in endpointsDirURL: URL) -> URL {
-        let mainType = endpointFolderMappings[path.info.mainType] ?? path.info.mainType
-        let operationsDirURL = endpointsDirURL.appendingPathComponent(mainType)
+        let operationsDirURL = endpointsDirURL.appendingPathComponent(path.info.mainType)
         guard path.info.isRelationship else { return operationsDirURL }
         return operationsDirURL.appendingPathComponent("Relationships")
     }
