@@ -44,6 +44,32 @@ public struct AppStoreVersionLocalizationsResponse: Codable, Sendable, PagedResp
         try container.encodeIfPresent(meta, forKey: "meta")
     }
 
+    @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
+    public func getAppPreviewSets(for appStoreVersionLocalization: AppStoreVersionLocalization) -> [AppPreviewSet] {
+        guard let appPreviewSetIds = appStoreVersionLocalization.relationships?.appPreviewSets?.data?.map(\.id),
+              let appPreviewSets = included?.compactMap({ relationship -> AppPreviewSet? in
+                  guard case let .appPreviewSet(appPreviewSet) = relationship else { return nil }
+                  return appPreviewSetIds.contains(appPreviewSet.id) ? appPreviewSet : nil
+              })
+        else {
+            return []
+        }
+        return appPreviewSets
+    }
+
+    @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
+    public func getAppScreenshotSets(for appStoreVersionLocalization: AppStoreVersionLocalization) -> [AppScreenshotSet] {
+        guard let appScreenshotSetIds = appStoreVersionLocalization.relationships?.appScreenshotSets?.data?.map(\.id),
+              let appScreenshotSets = included?.compactMap({ relationship -> AppScreenshotSet? in
+                  guard case let .appScreenshotSet(appScreenshotSet) = relationship else { return nil }
+                  return appScreenshotSetIds.contains(appScreenshotSet.id) ? appScreenshotSet : nil
+              })
+        else {
+            return []
+        }
+        return appScreenshotSets
+    }
+
     public func getAppStoreVersion(for appStoreVersionLocalization: AppStoreVersionLocalization) -> AppStoreVersion? {
         included?.compactMap { relationship -> AppStoreVersion? in
             guard case let .appStoreVersion(appStoreVersion) = relationship else { return nil }

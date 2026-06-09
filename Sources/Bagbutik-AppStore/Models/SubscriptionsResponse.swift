@@ -137,6 +137,14 @@ public struct SubscriptionsResponse: Codable, Sendable, PagedResponse {
         return promotionalOffers
     }
 
+    @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
+    public func getSubscriptionAvailability(for subscription: Subscription) -> SubscriptionAvailability? {
+        included?.compactMap { relationship -> SubscriptionAvailability? in
+            guard case let .subscriptionAvailability(subscriptionAvailability) = relationship else { return nil }
+            return subscriptionAvailability
+        }.first { $0.id == subscription.relationships?.subscriptionAvailability?.data?.id }
+    }
+
     public func getSubscriptionLocalizations(for subscription: Subscription) -> [SubscriptionLocalization] {
         guard let subscriptionLocalizationIds = subscription.relationships?.subscriptionLocalizations?.data?.map(\.id),
               let subscriptionLocalizations = included?.compactMap({ relationship -> SubscriptionLocalization? in

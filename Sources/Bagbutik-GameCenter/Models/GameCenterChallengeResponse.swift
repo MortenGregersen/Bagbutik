@@ -51,6 +51,14 @@ public struct GameCenterChallengeResponse: Codable, Sendable {
         }.first { $0.id == data.relationships?.gameCenterGroup?.data?.id }
     }
 
+    @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
+    public func getLeaderboard() -> GameCenterLeaderboard? {
+        included?.compactMap { relationship -> GameCenterLeaderboard? in
+            guard case let .gameCenterLeaderboard(leaderboard) = relationship else { return nil }
+            return leaderboard
+        }.first { $0.id == data.relationships?.leaderboard?.data?.id }
+    }
+
     public func getLeaderboardV2() -> GameCenterLeaderboard? {
         included?.compactMap { relationship -> GameCenterLeaderboard? in
             guard case let .gameCenterLeaderboard(leaderboardV2) = relationship else { return nil }

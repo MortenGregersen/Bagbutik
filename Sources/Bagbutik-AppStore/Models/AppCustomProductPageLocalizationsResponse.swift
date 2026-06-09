@@ -51,6 +51,32 @@ public struct AppCustomProductPageLocalizationsResponse: Codable, Sendable, Page
         }.first { $0.id == appCustomProductPageLocalization.relationships?.appCustomProductPageVersion?.data?.id }
     }
 
+    @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
+    public func getAppPreviewSets(for appCustomProductPageLocalization: AppCustomProductPageLocalization) -> [AppPreviewSet] {
+        guard let appPreviewSetIds = appCustomProductPageLocalization.relationships?.appPreviewSets?.data?.map(\.id),
+              let appPreviewSets = included?.compactMap({ relationship -> AppPreviewSet? in
+                  guard case let .appPreviewSet(appPreviewSet) = relationship else { return nil }
+                  return appPreviewSetIds.contains(appPreviewSet.id) ? appPreviewSet : nil
+              })
+        else {
+            return []
+        }
+        return appPreviewSets
+    }
+
+    @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
+    public func getAppScreenshotSets(for appCustomProductPageLocalization: AppCustomProductPageLocalization) -> [AppScreenshotSet] {
+        guard let appScreenshotSetIds = appCustomProductPageLocalization.relationships?.appScreenshotSets?.data?.map(\.id),
+              let appScreenshotSets = included?.compactMap({ relationship -> AppScreenshotSet? in
+                  guard case let .appScreenshotSet(appScreenshotSet) = relationship else { return nil }
+                  return appScreenshotSetIds.contains(appScreenshotSet.id) ? appScreenshotSet : nil
+              })
+        else {
+            return []
+        }
+        return appScreenshotSets
+    }
+
     public func getSearchKeywords(for appCustomProductPageLocalization: AppCustomProductPageLocalization) -> [AppKeyword] {
         guard let searchKeywordIds = appCustomProductPageLocalization.relationships?.searchKeywords?.data?.map(\.id),
               let searchKeywords = included?.compactMap({ relationship -> AppKeyword? in

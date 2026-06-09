@@ -63,6 +63,14 @@ public struct GameCenterLeaderboardSetResponse: Codable, Sendable {
         return gameCenterLeaderboards
     }
 
+    @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
+    public func getGroupLeaderboardSet() -> GameCenterLeaderboardSet? {
+        included?.compactMap { relationship -> GameCenterLeaderboardSet? in
+            guard case let .gameCenterLeaderboardSet(groupLeaderboardSet) = relationship else { return nil }
+            return groupLeaderboardSet
+        }.first { $0.id == data.relationships?.groupLeaderboardSet?.data?.id }
+    }
+
     public func getLocalizations() -> [GameCenterLeaderboardSetLocalization] {
         guard let localizationIds = data.relationships?.localizations?.data?.map(\.id),
               let localizations = included?.compactMap({ relationship -> GameCenterLeaderboardSetLocalization? in
