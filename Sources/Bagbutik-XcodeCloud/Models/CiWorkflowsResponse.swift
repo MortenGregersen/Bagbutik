@@ -83,20 +83,22 @@ public struct CiWorkflowsResponse: Codable, Sendable, PagedResponse {
         case scmRepository(ScmRepository)
 
         public init(from decoder: Decoder) throws {
-            if let ciMacOsVersion = try? CiMacOsVersion(from: decoder) {
-                self = .ciMacOsVersion(ciMacOsVersion)
-            } else if let ciProduct = try? CiProduct(from: decoder) {
-                self = .ciProduct(ciProduct)
-            } else if let ciXcodeVersion = try? CiXcodeVersion(from: decoder) {
-                self = .ciXcodeVersion(ciXcodeVersion)
-            } else if let scmRepository = try? ScmRepository(from: decoder) {
-                self = .scmRepository(scmRepository)
-            } else {
-                throw DecodingError.typeMismatch(
-                    Included.self,
-                    DecodingError.Context(
-                        codingPath: decoder.codingPath,
-                        debugDescription: "Unknown Included"))
+            let container = try decoder.container(keyedBy: AnyCodingKey.self)
+            let discriminatorValue = try container.decode(String.self, forKey: "type")
+            switch discriminatorValue {
+            case "ciMacOsVersions":
+                self = .ciMacOsVersion(try CiMacOsVersion(from: decoder))
+            case "ciProducts":
+                self = .ciProduct(try CiProduct(from: decoder))
+            case "ciXcodeVersions":
+                self = .ciXcodeVersion(try CiXcodeVersion(from: decoder))
+            case "scmRepositories":
+                self = .scmRepository(try ScmRepository(from: decoder))
+            default:
+                throw DecodingError.dataCorruptedError(
+                    forKey: "type",
+                    in: container,
+                    debugDescription: "Unknown Included type '\(discriminatorValue)'")
             }
         }
 

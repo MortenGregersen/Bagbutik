@@ -21,7 +21,77 @@ public class OneOfSchemaRenderer: Renderer {
         }
 
         var enumContent = [String]()
-        enumContent.append(renderInitializer(parameters: [.init(prefix: "from", name: "decoder", type: "Decoder")], throwing: true, content: {
+        if let discriminator = oneOfSchema.discriminator,
+           let discriminatorCases = createDiscriminatorCases(for: options, discriminator: discriminator) {
+            enumContent.append(renderDiscriminatorInitializer(name: name, discriminator: discriminator, discriminatorCases: discriminatorCases))
+        } else {
+            enumContent.append(renderFallbackInitializer(name: name, options: options))
+        }
+        enumContent.append(renderFunction(named: "encode", parameters: [.init(prefix: "to", name: "encoder", type: "Encoder")], throwing: true, content: {
+            var rendered = "switch self {\n"
+            rendered += options.map { option in
+                """
+                case let .\(option.id)(value):
+                    try value.encode(to: encoder)
+                """
+            }.joined(separator: "\n")
+            rendered += "\n}"
+            return rendered
+        }))
+        let objectRenderer = ObjectSchemaRenderer(docsLoader: docsLoader, shouldFormat: false)
+        for subSchema in subSchemas {
+            try await enumContent.append(objectRenderer.render(objectSchema: subSchema, otherSchemas: [:]))
+        }
+        let protocols = ["Codable", "Sendable"] + oneOfSchema.additionalProtocols
+        return renderEnum(named: name,
+                          protocols: protocols,
+                          cases: options,
+                          caseValueIsAssociated: true,
+                          content: enumContent.joined(separator: "\n\n"))
+    }
+
+    private func createDiscriminatorCases(for options: [EnumCase], discriminator: Discriminator) -> [DiscriminatorCase]? {
+        guard !discriminator.mapping.isEmpty else { return nil }
+        let discriminatorCases = options.compactMap { option -> DiscriminatorCase? in
+            let matchingValues = discriminator.mapping.compactMap { value, schemaRef -> String? in
+                let schemaName = schemaRef.components(separatedBy: "/").last ?? schemaRef
+                return schemaName == option.value ? value : nil
+            }
+            guard let discriminatorValue = matchingValues.sorted().first else { return nil }
+            return DiscriminatorCase(id: option.id, type: option.value, discriminatorValue: discriminatorValue)
+        }
+        return discriminatorCases.count == options.count ? discriminatorCases : nil
+    }
+
+    private func renderDiscriminatorInitializer(name: String, discriminator: Discriminator, discriminatorCases: [DiscriminatorCase]) -> String {
+        renderInitializer(parameters: [.init(prefix: "from", name: "decoder", type: "Decoder")], throwing: true, content: {
+            var rendered = """
+            let container = try decoder.container(keyedBy: AnyCodingKey.self)
+            let discriminatorValue = try container.decode(String.self, forKey: "\(discriminator.propertyName)")
+            switch discriminatorValue {
+
+            """
+            rendered += discriminatorCases.map { discriminatorCase in
+                """
+                case "\(discriminatorCase.discriminatorValue)":
+                    self = .\(discriminatorCase.id)(try \(discriminatorCase.type)(from: decoder))
+                """
+            }.joined(separator: "\n")
+            rendered += """
+
+            default:
+                throw DecodingError.dataCorruptedError(
+                    forKey: "\(discriminator.propertyName)",
+                    in: container,
+                    debugDescription: "Unknown \(name) \(discriminator.propertyName) '\\(discriminatorValue)'")
+            }
+            """
+            return rendered
+        })
+    }
+
+    private func renderFallbackInitializer(name: String, options: [EnumCase]) -> String {
+        renderInitializer(parameters: [.init(prefix: "from", name: "decoder", type: "Decoder")], throwing: true, content: {
             var rendered = ""
             for item in options.enumerated() {
                 let option = item.element
@@ -46,27 +116,12 @@ public class OneOfSchemaRenderer: Renderer {
             }
             """
             return rendered
-        }))
-        enumContent.append(renderFunction(named: "encode", parameters: [.init(prefix: "to", name: "encoder", type: "Encoder")], throwing: true, content: {
-            var rendered = "switch self {\n"
-            rendered += options.map { option in
-                """
-                case let .\(option.id)(value):
-                    try value.encode(to: encoder)
-                """
-            }.joined(separator: "\n")
-            rendered += "\n}"
-            return rendered
-        }))
-        let objectRenderer = ObjectSchemaRenderer(docsLoader: docsLoader, shouldFormat: false)
-        for subSchema in subSchemas {
-            try await enumContent.append(objectRenderer.render(objectSchema: subSchema, otherSchemas: [:]))
-        }
-        let protocols = ["Codable", "Sendable"] + oneOfSchema.additionalProtocols
-        return renderEnum(named: name,
-                          protocols: protocols,
-                          cases: options,
-                          caseValueIsAssociated: true,
-                          content: enumContent.joined(separator: "\n\n"))
+        })
+    }
+
+    private struct DiscriminatorCase {
+        let id: String
+        let type: String
+        let discriminatorValue: String
     }
 }

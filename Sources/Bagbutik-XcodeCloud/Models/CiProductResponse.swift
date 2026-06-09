@@ -72,18 +72,20 @@ public struct CiProductResponse: Codable, Sendable {
         case scmRepository(ScmRepository)
 
         public init(from decoder: Decoder) throws {
-            if let app = try? App(from: decoder) {
-                self = .app(app)
-            } else if let bundleId = try? BundleId(from: decoder) {
-                self = .bundleId(bundleId)
-            } else if let scmRepository = try? ScmRepository(from: decoder) {
-                self = .scmRepository(scmRepository)
-            } else {
-                throw DecodingError.typeMismatch(
-                    Included.self,
-                    DecodingError.Context(
-                        codingPath: decoder.codingPath,
-                        debugDescription: "Unknown Included"))
+            let container = try decoder.container(keyedBy: AnyCodingKey.self)
+            let discriminatorValue = try container.decode(String.self, forKey: "type")
+            switch discriminatorValue {
+            case "apps":
+                self = .app(try App(from: decoder))
+            case "bundleIds":
+                self = .bundleId(try BundleId(from: decoder))
+            case "scmRepositories":
+                self = .scmRepository(try ScmRepository(from: decoder))
+            default:
+                throw DecodingError.dataCorruptedError(
+                    forKey: "type",
+                    in: container,
+                    debugDescription: "Unknown Included type '\(discriminatorValue)'")
             }
         }
 

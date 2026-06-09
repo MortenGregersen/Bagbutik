@@ -72,18 +72,20 @@ public struct AppClipAdvancedExperienceResponse: Codable, Sendable {
         case appClipAdvancedExperienceLocalization(AppClipAdvancedExperienceLocalization)
 
         public init(from decoder: Decoder) throws {
-            if let appClip = try? AppClip(from: decoder) {
-                self = .appClip(appClip)
-            } else if let appClipAdvancedExperienceImage = try? AppClipAdvancedExperienceImage(from: decoder) {
-                self = .appClipAdvancedExperienceImage(appClipAdvancedExperienceImage)
-            } else if let appClipAdvancedExperienceLocalization = try? AppClipAdvancedExperienceLocalization(from: decoder) {
-                self = .appClipAdvancedExperienceLocalization(appClipAdvancedExperienceLocalization)
-            } else {
-                throw DecodingError.typeMismatch(
-                    Included.self,
-                    DecodingError.Context(
-                        codingPath: decoder.codingPath,
-                        debugDescription: "Unknown Included"))
+            let container = try decoder.container(keyedBy: AnyCodingKey.self)
+            let discriminatorValue = try container.decode(String.self, forKey: "type")
+            switch discriminatorValue {
+            case "appClips":
+                self = .appClip(try AppClip(from: decoder))
+            case "appClipAdvancedExperienceImages":
+                self = .appClipAdvancedExperienceImage(try AppClipAdvancedExperienceImage(from: decoder))
+            case "appClipAdvancedExperienceLocalizations":
+                self = .appClipAdvancedExperienceLocalization(try AppClipAdvancedExperienceLocalization(from: decoder))
+            default:
+                throw DecodingError.dataCorruptedError(
+                    forKey: "type",
+                    in: container,
+                    debugDescription: "Unknown Included type '\(discriminatorValue)'")
             }
         }
 

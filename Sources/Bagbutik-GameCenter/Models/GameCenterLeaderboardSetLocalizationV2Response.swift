@@ -56,16 +56,18 @@ public struct GameCenterLeaderboardSetLocalizationV2Response: Codable, Sendable 
         case gameCenterLeaderboardSetVersionV2(GameCenterLeaderboardSetVersionV2)
 
         public init(from decoder: Decoder) throws {
-            if let gameCenterLeaderboardSetImageV2 = try? GameCenterLeaderboardSetImageV2(from: decoder) {
-                self = .gameCenterLeaderboardSetImageV2(gameCenterLeaderboardSetImageV2)
-            } else if let gameCenterLeaderboardSetVersionV2 = try? GameCenterLeaderboardSetVersionV2(from: decoder) {
-                self = .gameCenterLeaderboardSetVersionV2(gameCenterLeaderboardSetVersionV2)
-            } else {
-                throw DecodingError.typeMismatch(
-                    Included.self,
-                    DecodingError.Context(
-                        codingPath: decoder.codingPath,
-                        debugDescription: "Unknown Included"))
+            let container = try decoder.container(keyedBy: AnyCodingKey.self)
+            let discriminatorValue = try container.decode(String.self, forKey: "type")
+            switch discriminatorValue {
+            case "gameCenterLeaderboardSetImages":
+                self = .gameCenterLeaderboardSetImageV2(try GameCenterLeaderboardSetImageV2(from: decoder))
+            case "gameCenterLeaderboardSetVersions":
+                self = .gameCenterLeaderboardSetVersionV2(try GameCenterLeaderboardSetVersionV2(from: decoder))
+            default:
+                throw DecodingError.dataCorruptedError(
+                    forKey: "type",
+                    in: container,
+                    debugDescription: "Unknown Included type '\(discriminatorValue)'")
             }
         }
 

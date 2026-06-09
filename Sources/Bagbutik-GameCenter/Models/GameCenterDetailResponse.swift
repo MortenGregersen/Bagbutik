@@ -166,40 +166,42 @@ public struct GameCenterDetailResponse: Codable, Sendable {
         case gameCenterLeaderboardSetRelease(GameCenterLeaderboardSetRelease)
 
         public init(from decoder: Decoder) throws {
-            if let app = try? App(from: decoder) {
-                self = .app(app)
-            } else if let appStoreVersion = try? AppStoreVersion(from: decoder) {
-                self = .appStoreVersion(appStoreVersion)
-            } else if let gameCenterAchievement = try? GameCenterAchievement(from: decoder) {
-                self = .gameCenterAchievement(gameCenterAchievement)
-            } else if let gameCenterAchievementRelease = try? GameCenterAchievementRelease(from: decoder) {
-                self = .gameCenterAchievementRelease(gameCenterAchievementRelease)
-            } else if let gameCenterActivity = try? GameCenterActivity(from: decoder) {
-                self = .gameCenterActivity(gameCenterActivity)
-            } else if let gameCenterActivityVersionRelease = try? GameCenterActivityVersionRelease(from: decoder) {
-                self = .gameCenterActivityVersionRelease(gameCenterActivityVersionRelease)
-            } else if let gameCenterAppVersion = try? GameCenterAppVersion(from: decoder) {
-                self = .gameCenterAppVersion(gameCenterAppVersion)
-            } else if let gameCenterChallenge = try? GameCenterChallenge(from: decoder) {
-                self = .gameCenterChallenge(gameCenterChallenge)
-            } else if let gameCenterChallengeVersionRelease = try? GameCenterChallengeVersionRelease(from: decoder) {
-                self = .gameCenterChallengeVersionRelease(gameCenterChallengeVersionRelease)
-            } else if let gameCenterGroup = try? GameCenterGroup(from: decoder) {
-                self = .gameCenterGroup(gameCenterGroup)
-            } else if let gameCenterLeaderboard = try? GameCenterLeaderboard(from: decoder) {
-                self = .gameCenterLeaderboard(gameCenterLeaderboard)
-            } else if let gameCenterLeaderboardRelease = try? GameCenterLeaderboardRelease(from: decoder) {
-                self = .gameCenterLeaderboardRelease(gameCenterLeaderboardRelease)
-            } else if let gameCenterLeaderboardSet = try? GameCenterLeaderboardSet(from: decoder) {
-                self = .gameCenterLeaderboardSet(gameCenterLeaderboardSet)
-            } else if let gameCenterLeaderboardSetRelease = try? GameCenterLeaderboardSetRelease(from: decoder) {
-                self = .gameCenterLeaderboardSetRelease(gameCenterLeaderboardSetRelease)
-            } else {
-                throw DecodingError.typeMismatch(
-                    Included.self,
-                    DecodingError.Context(
-                        codingPath: decoder.codingPath,
-                        debugDescription: "Unknown Included"))
+            let container = try decoder.container(keyedBy: AnyCodingKey.self)
+            let discriminatorValue = try container.decode(String.self, forKey: "type")
+            switch discriminatorValue {
+            case "apps":
+                self = .app(try App(from: decoder))
+            case "appStoreVersions":
+                self = .appStoreVersion(try AppStoreVersion(from: decoder))
+            case "gameCenterAchievements":
+                self = .gameCenterAchievement(try GameCenterAchievement(from: decoder))
+            case "gameCenterAchievementReleases":
+                self = .gameCenterAchievementRelease(try GameCenterAchievementRelease(from: decoder))
+            case "gameCenterActivities":
+                self = .gameCenterActivity(try GameCenterActivity(from: decoder))
+            case "gameCenterActivityVersionReleases":
+                self = .gameCenterActivityVersionRelease(try GameCenterActivityVersionRelease(from: decoder))
+            case "gameCenterAppVersions":
+                self = .gameCenterAppVersion(try GameCenterAppVersion(from: decoder))
+            case "gameCenterChallenges":
+                self = .gameCenterChallenge(try GameCenterChallenge(from: decoder))
+            case "gameCenterChallengeVersionReleases":
+                self = .gameCenterChallengeVersionRelease(try GameCenterChallengeVersionRelease(from: decoder))
+            case "gameCenterGroups":
+                self = .gameCenterGroup(try GameCenterGroup(from: decoder))
+            case "gameCenterLeaderboards":
+                self = .gameCenterLeaderboard(try GameCenterLeaderboard(from: decoder))
+            case "gameCenterLeaderboardReleases":
+                self = .gameCenterLeaderboardRelease(try GameCenterLeaderboardRelease(from: decoder))
+            case "gameCenterLeaderboardSets":
+                self = .gameCenterLeaderboardSet(try GameCenterLeaderboardSet(from: decoder))
+            case "gameCenterLeaderboardSetReleases":
+                self = .gameCenterLeaderboardSetRelease(try GameCenterLeaderboardSetRelease(from: decoder))
+            default:
+                throw DecodingError.dataCorruptedError(
+                    forKey: "type",
+                    in: container,
+                    debugDescription: "Unknown Included type '\(discriminatorValue)'")
             }
         }
 

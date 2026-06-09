@@ -84,20 +84,22 @@ public struct AppPreviewSetsResponse: Codable, Sendable, PagedResponse {
         case appStoreVersionLocalization(AppStoreVersionLocalization)
 
         public init(from decoder: Decoder) throws {
-            if let appCustomProductPageLocalization = try? AppCustomProductPageLocalization(from: decoder) {
-                self = .appCustomProductPageLocalization(appCustomProductPageLocalization)
-            } else if let appPreview = try? AppPreview(from: decoder) {
-                self = .appPreview(appPreview)
-            } else if let appStoreVersionExperimentTreatmentLocalization = try? AppStoreVersionExperimentTreatmentLocalization(from: decoder) {
-                self = .appStoreVersionExperimentTreatmentLocalization(appStoreVersionExperimentTreatmentLocalization)
-            } else if let appStoreVersionLocalization = try? AppStoreVersionLocalization(from: decoder) {
-                self = .appStoreVersionLocalization(appStoreVersionLocalization)
-            } else {
-                throw DecodingError.typeMismatch(
-                    Included.self,
-                    DecodingError.Context(
-                        codingPath: decoder.codingPath,
-                        debugDescription: "Unknown Included"))
+            let container = try decoder.container(keyedBy: AnyCodingKey.self)
+            let discriminatorValue = try container.decode(String.self, forKey: "type")
+            switch discriminatorValue {
+            case "appCustomProductPageLocalizations":
+                self = .appCustomProductPageLocalization(try AppCustomProductPageLocalization(from: decoder))
+            case "appPreviews":
+                self = .appPreview(try AppPreview(from: decoder))
+            case "appStoreVersionExperimentTreatmentLocalizations":
+                self = .appStoreVersionExperimentTreatmentLocalization(try AppStoreVersionExperimentTreatmentLocalization(from: decoder))
+            case "appStoreVersionLocalizations":
+                self = .appStoreVersionLocalization(try AppStoreVersionLocalization(from: decoder))
+            default:
+                throw DecodingError.dataCorruptedError(
+                    forKey: "type",
+                    in: container,
+                    debugDescription: "Unknown Included type '\(discriminatorValue)'")
             }
         }
 

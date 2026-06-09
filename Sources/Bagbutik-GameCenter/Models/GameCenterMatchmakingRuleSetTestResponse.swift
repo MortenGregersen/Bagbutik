@@ -42,16 +42,18 @@ public struct GameCenterMatchmakingRuleSetTestResponse: Codable, Sendable {
         case gameCenterMatchmakingTestRequest(GameCenterMatchmakingTestRequest)
 
         public init(from decoder: Decoder) throws {
-            if let gameCenterMatchmakingTestPlayerProperty = try? GameCenterMatchmakingTestPlayerProperty(from: decoder) {
-                self = .gameCenterMatchmakingTestPlayerProperty(gameCenterMatchmakingTestPlayerProperty)
-            } else if let gameCenterMatchmakingTestRequest = try? GameCenterMatchmakingTestRequest(from: decoder) {
-                self = .gameCenterMatchmakingTestRequest(gameCenterMatchmakingTestRequest)
-            } else {
-                throw DecodingError.typeMismatch(
-                    Included.self,
-                    DecodingError.Context(
-                        codingPath: decoder.codingPath,
-                        debugDescription: "Unknown Included"))
+            let container = try decoder.container(keyedBy: AnyCodingKey.self)
+            let discriminatorValue = try container.decode(String.self, forKey: "type")
+            switch discriminatorValue {
+            case "gameCenterMatchmakingTestPlayerProperties":
+                self = .gameCenterMatchmakingTestPlayerProperty(try GameCenterMatchmakingTestPlayerProperty(from: decoder))
+            case "gameCenterMatchmakingTestRequests":
+                self = .gameCenterMatchmakingTestRequest(try GameCenterMatchmakingTestRequest(from: decoder))
+            default:
+                throw DecodingError.dataCorruptedError(
+                    forKey: "type",
+                    in: container,
+                    debugDescription: "Unknown Included type '\(discriminatorValue)'")
             }
         }
 

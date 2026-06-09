@@ -145,4 +145,50 @@ final class OneOfSchemaRendererTests: XCTestCase {
         }
         """#)
     }
+
+    func testRenderWithDiscriminator() async throws {
+        // Given
+        let docsLoader = DocsLoader(schemaDocumentationById: [:])
+        let renderer = OneOfSchemaRenderer(docsLoader: docsLoader, shouldFormat: true)
+        let schema = OneOfSchema(
+            options: [.schemaRef("BundleId"), .schemaRef("App")],
+            discriminator: .init(propertyName: "type", mapping: [
+                "bundleIds": "#/components/schemas/BundleId",
+                "apps": "#/components/schemas/App"
+            ]))
+        // When
+        let rendered = try await renderer.render(name: "Included", oneOfSchema: schema)
+        // Then
+        XCTAssertEqual(rendered, #"""
+        public enum Included: Codable, Sendable {
+            case app(App)
+            case bundleId(BundleId)
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                let discriminatorValue = try container.decode(String.self, forKey: "type")
+                switch discriminatorValue {
+                case "apps":
+                    self = .app(try App(from: decoder))
+                case "bundleIds":
+                    self = .bundleId(try BundleId(from: decoder))
+                default:
+                    throw DecodingError.dataCorruptedError(
+                        forKey: "type",
+                        in: container,
+                        debugDescription: "Unknown Included type '\(discriminatorValue)'")
+                }
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                switch self {
+                case let .app(value):
+                    try value.encode(to: encoder)
+                case let .bundleId(value):
+                    try value.encode(to: encoder)
+                }
+            }
+        }
+        """#)
+    }
 }

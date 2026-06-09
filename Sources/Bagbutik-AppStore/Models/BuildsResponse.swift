@@ -171,36 +171,38 @@ public struct BuildsResponse: Codable, Sendable, PagedResponse {
         case prereleaseVersion(PrereleaseVersion)
 
         public init(from decoder: Decoder) throws {
-            if let app = try? App(from: decoder) {
-                self = .app(app)
-            } else if let appEncryptionDeclaration = try? AppEncryptionDeclaration(from: decoder) {
-                self = .appEncryptionDeclaration(appEncryptionDeclaration)
-            } else if let appStoreVersion = try? AppStoreVersion(from: decoder) {
-                self = .appStoreVersion(appStoreVersion)
-            } else if let betaAppReviewSubmission = try? BetaAppReviewSubmission(from: decoder) {
-                self = .betaAppReviewSubmission(betaAppReviewSubmission)
-            } else if let betaBuildLocalization = try? BetaBuildLocalization(from: decoder) {
-                self = .betaBuildLocalization(betaBuildLocalization)
-            } else if let betaGroup = try? BetaGroup(from: decoder) {
-                self = .betaGroup(betaGroup)
-            } else if let betaTester = try? BetaTester(from: decoder) {
-                self = .betaTester(betaTester)
-            } else if let buildBetaDetail = try? BuildBetaDetail(from: decoder) {
-                self = .buildBetaDetail(buildBetaDetail)
-            } else if let buildBundle = try? BuildBundle(from: decoder) {
-                self = .buildBundle(buildBundle)
-            } else if let buildIcon = try? BuildIcon(from: decoder) {
-                self = .buildIcon(buildIcon)
-            } else if let buildUpload = try? BuildUpload(from: decoder) {
-                self = .buildUpload(buildUpload)
-            } else if let prereleaseVersion = try? PrereleaseVersion(from: decoder) {
-                self = .prereleaseVersion(prereleaseVersion)
-            } else {
-                throw DecodingError.typeMismatch(
-                    Included.self,
-                    DecodingError.Context(
-                        codingPath: decoder.codingPath,
-                        debugDescription: "Unknown Included"))
+            let container = try decoder.container(keyedBy: AnyCodingKey.self)
+            let discriminatorValue = try container.decode(String.self, forKey: "type")
+            switch discriminatorValue {
+            case "apps":
+                self = .app(try App(from: decoder))
+            case "appEncryptionDeclarations":
+                self = .appEncryptionDeclaration(try AppEncryptionDeclaration(from: decoder))
+            case "appStoreVersions":
+                self = .appStoreVersion(try AppStoreVersion(from: decoder))
+            case "betaAppReviewSubmissions":
+                self = .betaAppReviewSubmission(try BetaAppReviewSubmission(from: decoder))
+            case "betaBuildLocalizations":
+                self = .betaBuildLocalization(try BetaBuildLocalization(from: decoder))
+            case "betaGroups":
+                self = .betaGroup(try BetaGroup(from: decoder))
+            case "betaTesters":
+                self = .betaTester(try BetaTester(from: decoder))
+            case "buildBetaDetails":
+                self = .buildBetaDetail(try BuildBetaDetail(from: decoder))
+            case "buildBundles":
+                self = .buildBundle(try BuildBundle(from: decoder))
+            case "buildIcons":
+                self = .buildIcon(try BuildIcon(from: decoder))
+            case "buildUploads":
+                self = .buildUpload(try BuildUpload(from: decoder))
+            case "preReleaseVersions":
+                self = .prereleaseVersion(try PrereleaseVersion(from: decoder))
+            default:
+                throw DecodingError.dataCorruptedError(
+                    forKey: "type",
+                    in: container,
+                    debugDescription: "Unknown Included type '\(discriminatorValue)'")
             }
         }
 

@@ -67,16 +67,18 @@ public struct CustomerReviewsResponse: Codable, Sendable, PagedResponse {
         case territory(Territory)
 
         public init(from decoder: Decoder) throws {
-            if let customerReviewResponseV1 = try? CustomerReviewResponseV1(from: decoder) {
-                self = .customerReviewResponseV1(customerReviewResponseV1)
-            } else if let territory = try? Territory(from: decoder) {
-                self = .territory(territory)
-            } else {
-                throw DecodingError.typeMismatch(
-                    Included.self,
-                    DecodingError.Context(
-                        codingPath: decoder.codingPath,
-                        debugDescription: "Unknown Included"))
+            let container = try decoder.container(keyedBy: AnyCodingKey.self)
+            let discriminatorValue = try container.decode(String.self, forKey: "type")
+            switch discriminatorValue {
+            case "customerReviewResponses":
+                self = .customerReviewResponseV1(try CustomerReviewResponseV1(from: decoder))
+            case "territories":
+                self = .territory(try Territory(from: decoder))
+            default:
+                throw DecodingError.dataCorruptedError(
+                    forKey: "type",
+                    in: container,
+                    debugDescription: "Unknown Included type '\(discriminatorValue)'")
             }
         }
 

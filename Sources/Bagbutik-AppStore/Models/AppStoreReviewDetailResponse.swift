@@ -61,16 +61,18 @@ public struct AppStoreReviewDetailResponse: Codable, Sendable {
         case appStoreVersion(AppStoreVersion)
 
         public init(from decoder: Decoder) throws {
-            if let appStoreReviewAttachment = try? AppStoreReviewAttachment(from: decoder) {
-                self = .appStoreReviewAttachment(appStoreReviewAttachment)
-            } else if let appStoreVersion = try? AppStoreVersion(from: decoder) {
-                self = .appStoreVersion(appStoreVersion)
-            } else {
-                throw DecodingError.typeMismatch(
-                    Included.self,
-                    DecodingError.Context(
-                        codingPath: decoder.codingPath,
-                        debugDescription: "Unknown Included"))
+            let container = try decoder.container(keyedBy: AnyCodingKey.self)
+            let discriminatorValue = try container.decode(String.self, forKey: "type")
+            switch discriminatorValue {
+            case "appStoreReviewAttachments":
+                self = .appStoreReviewAttachment(try AppStoreReviewAttachment(from: decoder))
+            case "appStoreVersions":
+                self = .appStoreVersion(try AppStoreVersion(from: decoder))
+            default:
+                throw DecodingError.dataCorruptedError(
+                    forKey: "type",
+                    in: container,
+                    debugDescription: "Unknown Included type '\(discriminatorValue)'")
             }
         }
 

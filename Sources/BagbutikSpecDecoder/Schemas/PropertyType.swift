@@ -86,16 +86,11 @@ public indirect enum PropertyType: Decodable, Equatable, CustomStringConvertible
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if var type = try container.decodeIfPresent(String.self, forKey: .type) {
             if type == "array" {
-                if let oneOfOptions = try container
-                    .nestedContainer(keyedBy: CodingKeys.self, forKey: .items)
-                    .decodeIfPresent([OneOfOption].self, forKey: .oneOf)?
-                    .reduce(into: [OneOfOption](), { uniqueOptions, option in
-                        if !uniqueOptions.contains(option) {
-                            uniqueOptions.append(option)
-                        }
-                    }),
-                    let oneOfName = container.codingPath.last?.stringValue.capitalizingFirstLetter() {
-                    self = .arrayOfOneOf(name: oneOfName, schema: OneOfSchema(options: oneOfOptions))
+                let itemsContainer = try container.nestedContainer(keyedBy: CodingKeys.self, forKey: .items)
+                if itemsContainer.contains(.oneOf),
+                   let oneOfName = container.codingPath.last?.stringValue.capitalizingFirstLetter() {
+                    let oneOfSchema = try container.decode(OneOfSchema.self, forKey: .items)
+                    self = .arrayOfOneOf(name: oneOfName, schema: oneOfSchema)
                 } else if case .schemaRef(let schemaName) = try? container.decodeIfPresent(PropertyType.self, forKey: .items) {
                     self = .arrayOfSchemaRef(schemaName)
                 } else if let schema = try? container.decodeIfPresent(ObjectSchema.self, forKey: .items),
@@ -139,9 +134,10 @@ public indirect enum PropertyType: Decodable, Equatable, CustomStringConvertible
             } else {
                 self = .schemaRef(schemaName)
             }
-        } else if let oneOfOptions = try container.decodeIfPresent([OneOfOption].self, forKey: .oneOf),
+        } else if container.contains(.oneOf),
                   let oneOfName = container.codingPath.last?.stringValue.capitalizingFirstLetter() {
-            self = .oneOf(name: oneOfName, schema: OneOfSchema(options: oneOfOptions))
+            let oneOfSchema = try OneOfSchema(from: decoder)
+            self = .oneOf(name: oneOfName, schema: oneOfSchema)
         } else if container.codingPath.last?.stringValue == "additionalProperties" {
             self = .simple(.string())
         } else {

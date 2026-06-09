@@ -63,16 +63,18 @@ public struct BetaFeedbackCrashSubmissionsResponse: Codable, Sendable, PagedResp
         case build(Build)
 
         public init(from decoder: Decoder) throws {
-            if let betaTester = try? BetaTester(from: decoder) {
-                self = .betaTester(betaTester)
-            } else if let build = try? Build(from: decoder) {
-                self = .build(build)
-            } else {
-                throw DecodingError.typeMismatch(
-                    Included.self,
-                    DecodingError.Context(
-                        codingPath: decoder.codingPath,
-                        debugDescription: "Unknown Included"))
+            let container = try decoder.container(keyedBy: AnyCodingKey.self)
+            let discriminatorValue = try container.decode(String.self, forKey: "type")
+            switch discriminatorValue {
+            case "betaTesters":
+                self = .betaTester(try BetaTester(from: decoder))
+            case "builds":
+                self = .build(try Build(from: decoder))
+            default:
+                throw DecodingError.dataCorruptedError(
+                    forKey: "type",
+                    in: container,
+                    debugDescription: "Unknown Included type '\(discriminatorValue)'")
             }
         }
 

@@ -89,18 +89,20 @@ public struct BetaTestersResponse: Codable, Sendable, PagedResponse {
         case build(Build)
 
         public init(from decoder: Decoder) throws {
-            if let app = try? App(from: decoder) {
-                self = .app(app)
-            } else if let betaGroup = try? BetaGroup(from: decoder) {
-                self = .betaGroup(betaGroup)
-            } else if let build = try? Build(from: decoder) {
-                self = .build(build)
-            } else {
-                throw DecodingError.typeMismatch(
-                    Included.self,
-                    DecodingError.Context(
-                        codingPath: decoder.codingPath,
-                        debugDescription: "Unknown Included"))
+            let container = try decoder.container(keyedBy: AnyCodingKey.self)
+            let discriminatorValue = try container.decode(String.self, forKey: "type")
+            switch discriminatorValue {
+            case "apps":
+                self = .app(try App(from: decoder))
+            case "betaGroups":
+                self = .betaGroup(try BetaGroup(from: decoder))
+            case "builds":
+                self = .build(try Build(from: decoder))
+            default:
+                throw DecodingError.dataCorruptedError(
+                    forKey: "type",
+                    in: container,
+                    debugDescription: "Unknown Included type '\(discriminatorValue)'")
             }
         }
 

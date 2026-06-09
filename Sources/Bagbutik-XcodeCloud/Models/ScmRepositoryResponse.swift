@@ -59,16 +59,18 @@ public struct ScmRepositoryResponse: Codable, Sendable {
         case scmProvider(ScmProvider)
 
         public init(from decoder: Decoder) throws {
-            if let scmGitReference = try? ScmGitReference(from: decoder) {
-                self = .scmGitReference(scmGitReference)
-            } else if let scmProvider = try? ScmProvider(from: decoder) {
-                self = .scmProvider(scmProvider)
-            } else {
-                throw DecodingError.typeMismatch(
-                    Included.self,
-                    DecodingError.Context(
-                        codingPath: decoder.codingPath,
-                        debugDescription: "Unknown Included"))
+            let container = try decoder.container(keyedBy: AnyCodingKey.self)
+            let discriminatorValue = try container.decode(String.self, forKey: "type")
+            switch discriminatorValue {
+            case "scmGitReferences":
+                self = .scmGitReference(try ScmGitReference(from: decoder))
+            case "scmProviders":
+                self = .scmProvider(try ScmProvider(from: decoder))
+            default:
+                throw DecodingError.dataCorruptedError(
+                    forKey: "type",
+                    in: container,
+                    debugDescription: "Unknown Included type '\(discriminatorValue)'")
             }
         }
 

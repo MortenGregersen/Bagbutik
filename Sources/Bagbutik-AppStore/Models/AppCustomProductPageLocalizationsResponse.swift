@@ -94,20 +94,22 @@ public struct AppCustomProductPageLocalizationsResponse: Codable, Sendable, Page
         case appScreenshotSet(AppScreenshotSet)
 
         public init(from decoder: Decoder) throws {
-            if let appCustomProductPageVersion = try? AppCustomProductPageVersion(from: decoder) {
-                self = .appCustomProductPageVersion(appCustomProductPageVersion)
-            } else if let appKeyword = try? AppKeyword(from: decoder) {
-                self = .appKeyword(appKeyword)
-            } else if let appPreviewSet = try? AppPreviewSet(from: decoder) {
-                self = .appPreviewSet(appPreviewSet)
-            } else if let appScreenshotSet = try? AppScreenshotSet(from: decoder) {
-                self = .appScreenshotSet(appScreenshotSet)
-            } else {
-                throw DecodingError.typeMismatch(
-                    Included.self,
-                    DecodingError.Context(
-                        codingPath: decoder.codingPath,
-                        debugDescription: "Unknown Included"))
+            let container = try decoder.container(keyedBy: AnyCodingKey.self)
+            let discriminatorValue = try container.decode(String.self, forKey: "type")
+            switch discriminatorValue {
+            case "appCustomProductPageVersions":
+                self = .appCustomProductPageVersion(try AppCustomProductPageVersion(from: decoder))
+            case "appKeywords":
+                self = .appKeyword(try AppKeyword(from: decoder))
+            case "appPreviewSets":
+                self = .appPreviewSet(try AppPreviewSet(from: decoder))
+            case "appScreenshotSets":
+                self = .appScreenshotSet(try AppScreenshotSet(from: decoder))
+            default:
+                throw DecodingError.dataCorruptedError(
+                    forKey: "type",
+                    in: container,
+                    debugDescription: "Unknown Included type '\(discriminatorValue)'")
             }
         }
 

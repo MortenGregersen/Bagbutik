@@ -74,18 +74,20 @@ public struct AppEventLocalizationsResponse: Codable, Sendable, PagedResponse {
         case appEventVideoClip(AppEventVideoClip)
 
         public init(from decoder: Decoder) throws {
-            if let appEvent = try? AppEvent(from: decoder) {
-                self = .appEvent(appEvent)
-            } else if let appEventScreenshot = try? AppEventScreenshot(from: decoder) {
-                self = .appEventScreenshot(appEventScreenshot)
-            } else if let appEventVideoClip = try? AppEventVideoClip(from: decoder) {
-                self = .appEventVideoClip(appEventVideoClip)
-            } else {
-                throw DecodingError.typeMismatch(
-                    Included.self,
-                    DecodingError.Context(
-                        codingPath: decoder.codingPath,
-                        debugDescription: "Unknown Included"))
+            let container = try decoder.container(keyedBy: AnyCodingKey.self)
+            let discriminatorValue = try container.decode(String.self, forKey: "type")
+            switch discriminatorValue {
+            case "appEvents":
+                self = .appEvent(try AppEvent(from: decoder))
+            case "appEventScreenshots":
+                self = .appEventScreenshot(try AppEventScreenshot(from: decoder))
+            case "appEventVideoClips":
+                self = .appEventVideoClip(try AppEventVideoClip(from: decoder))
+            default:
+                throw DecodingError.dataCorruptedError(
+                    forKey: "type",
+                    in: container,
+                    debugDescription: "Unknown Included type '\(discriminatorValue)'")
             }
         }
 

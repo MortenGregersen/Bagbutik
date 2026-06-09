@@ -91,20 +91,22 @@ public struct ReviewSubmissionsResponse: Codable, Sendable, PagedResponse {
         case reviewSubmissionItem(ReviewSubmissionItem)
 
         public init(from decoder: Decoder) throws {
-            if let actor = try? Actor(from: decoder) {
-                self = .actor(actor)
-            } else if let app = try? App(from: decoder) {
-                self = .app(app)
-            } else if let appStoreVersion = try? AppStoreVersion(from: decoder) {
-                self = .appStoreVersion(appStoreVersion)
-            } else if let reviewSubmissionItem = try? ReviewSubmissionItem(from: decoder) {
-                self = .reviewSubmissionItem(reviewSubmissionItem)
-            } else {
-                throw DecodingError.typeMismatch(
-                    Included.self,
-                    DecodingError.Context(
-                        codingPath: decoder.codingPath,
-                        debugDescription: "Unknown Included"))
+            let container = try decoder.container(keyedBy: AnyCodingKey.self)
+            let discriminatorValue = try container.decode(String.self, forKey: "type")
+            switch discriminatorValue {
+            case "actors":
+                self = .actor(try Actor(from: decoder))
+            case "apps":
+                self = .app(try App(from: decoder))
+            case "appStoreVersions":
+                self = .appStoreVersion(try AppStoreVersion(from: decoder))
+            case "reviewSubmissionItems":
+                self = .reviewSubmissionItem(try ReviewSubmissionItem(from: decoder))
+            default:
+                throw DecodingError.dataCorruptedError(
+                    forKey: "type",
+                    in: container,
+                    debugDescription: "Unknown Included type '\(discriminatorValue)'")
             }
         }
 
