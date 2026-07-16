@@ -15,7 +15,6 @@ public extension Request {
      - Parameter limit: Maximum number of related appScreenshots returned (when they are included) - maximum 50
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
-    @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
     static func getAppScreenshotSetV1(id: String,
                                       fields: [GetAppScreenshotSetV1.Field]? = nil,
                                       includes: [GetAppScreenshotSetV1.Include]? = nil,
@@ -40,7 +39,6 @@ public enum GetAppScreenshotSetV1 {
         /// The fields to include for returned resources of type appScreenshotSets
         case appScreenshotSets([AppScreenshotSets])
         /// The fields to include for returned resources of type appScreenshots
-        @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
         case appScreenshots([AppScreenshots])
         /// The fields to include for returned resources of type appStoreVersionExperimentTreatmentLocalizations
         case appStoreVersionExperimentTreatmentLocalizations([AppStoreVersionExperimentTreatmentLocalizations])

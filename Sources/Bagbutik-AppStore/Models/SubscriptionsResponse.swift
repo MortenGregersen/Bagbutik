@@ -157,6 +157,18 @@ public struct SubscriptionsResponse: Codable, Sendable, PagedResponse {
         return subscriptionLocalizations
     }
 
+    public func getVersions(for subscription: Subscription) -> [SubscriptionVersion] {
+        guard let versionIds = subscription.relationships?.versions?.data?.map(\.id),
+              let versions = included?.compactMap({ relationship -> SubscriptionVersion? in
+                  guard case let .subscriptionVersion(version) = relationship else { return nil }
+                  return versionIds.contains(version.id) ? version : nil
+              })
+        else {
+            return []
+        }
+        return versions
+    }
+
     public func getWinBackOffers(for subscription: Subscription) -> [WinBackOffer] {
         guard let winBackOfferIds = subscription.relationships?.winBackOffers?.data?.map(\.id),
               let winBackOffers = included?.compactMap({ relationship -> WinBackOffer? in
@@ -181,6 +193,7 @@ public struct SubscriptionsResponse: Codable, Sendable, PagedResponse {
         case subscriptionPlanAvailability(SubscriptionPlanAvailability)
         case subscriptionPrice(SubscriptionPrice)
         case subscriptionPromotionalOffer(SubscriptionPromotionalOffer)
+        case subscriptionVersion(SubscriptionVersion)
         case winBackOffer(WinBackOffer)
 
         public init(from decoder: Decoder) throws {
@@ -209,6 +222,8 @@ public struct SubscriptionsResponse: Codable, Sendable, PagedResponse {
                 self = .subscriptionPrice(try SubscriptionPrice(from: decoder))
             case "subscriptionPromotionalOffers":
                 self = .subscriptionPromotionalOffer(try SubscriptionPromotionalOffer(from: decoder))
+            case "subscriptionVersions":
+                self = .subscriptionVersion(try SubscriptionVersion(from: decoder))
             case "winBackOffers":
                 self = .winBackOffer(try WinBackOffer(from: decoder))
             default:
@@ -242,6 +257,8 @@ public struct SubscriptionsResponse: Codable, Sendable, PagedResponse {
             case let .subscriptionPrice(value):
                 try value.encode(to: encoder)
             case let .subscriptionPromotionalOffer(value):
+                try value.encode(to: encoder)
+            case let .subscriptionVersion(value):
                 try value.encode(to: encoder)
             case let .winBackOffer(value):
                 try value.encode(to: encoder)

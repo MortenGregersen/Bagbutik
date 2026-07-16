@@ -4,7 +4,7 @@ import Bagbutik_Models
 public extension Request {
     /**
      # List plan availability IDs for a subscription
-     List the resource IDs of related subscription plan availabilities for a subscription.
+     Get a list of plan availability resource IDs for a specific auto-renewable subscription.
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-subscriptions-_id_-relationships-planAvailabilities>

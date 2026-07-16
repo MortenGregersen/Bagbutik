@@ -80,6 +80,7 @@ public enum GetAppStoreReviewScreenshotForInAppPurchasesV2 {
             case promotedPurchase
             case reviewNote
             case state
+            case versions
 
             public init(from decoder: Decoder) throws {
                 let container = try decoder.singleValueContainer()

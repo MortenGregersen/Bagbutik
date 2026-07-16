@@ -82,12 +82,9 @@ public struct AppEventLocalization: Codable, Sendable, Identifiable {
 
     public struct Relationships: Codable, Sendable {
         public var appEvent: AppEvent?
-        @available(*, deprecated, message: "Apple has marked this property deprecated and it will be removed sometime in the future.")
-        public var appEventScreenshots: AppEventScreenshots? = nil
-        @available(*, deprecated, message: "Apple has marked this property deprecated and it will be removed sometime in the future.")
-        public var appEventVideoClips: AppEventVideoClips? = nil
+        public var appEventScreenshots: AppEventScreenshots?
+        public var appEventVideoClips: AppEventVideoClips?
 
-        @available(*, deprecated, message: "This uses a property Apple has marked as deprecated.")
         public init(appEvent: AppEvent? = nil,
                     appEventScreenshots: AppEventScreenshots? = nil,
                     appEventVideoClips: AppEventVideoClips? = nil)
@@ -95,10 +92,6 @@ public struct AppEventLocalization: Codable, Sendable, Identifiable {
             self.appEvent = appEvent
             self.appEventScreenshots = appEventScreenshots
             self.appEventVideoClips = appEventVideoClips
-        }
-
-        public init(appEvent: AppEvent? = nil) {
-            self.appEvent = appEvent
         }
 
         public init(from decoder: Decoder) throws {

@@ -79,6 +79,8 @@ public struct AgeRatingDeclarationUpdateRequest: Codable, Sendable, RequestBody 
             public var profanityOrCrudeHumor: AgeRatingDeclaration.Attributes.ProfanityOrCrudeHumor?
             public var sexualContentGraphicAndNudity: AgeRatingDeclaration.Attributes.SexualContentGraphicAndNudity?
             public var sexualContentOrNudity: AgeRatingDeclaration.Attributes.SexualContentOrNudity?
+            public var socialMedia: Bool?
+            public var socialMediaAgeRestricted: Bool?
             public var unrestrictedWebAccess: Bool?
             public var userGeneratedContent: Bool?
             public var violenceCartoonOrFantasy: AgeRatingDeclaration.Attributes.ViolenceCartoonOrFantasy?
@@ -108,6 +110,8 @@ public struct AgeRatingDeclarationUpdateRequest: Codable, Sendable, RequestBody 
                         profanityOrCrudeHumor: AgeRatingDeclaration.Attributes.ProfanityOrCrudeHumor? = nil,
                         sexualContentGraphicAndNudity: AgeRatingDeclaration.Attributes.SexualContentGraphicAndNudity? = nil,
                         sexualContentOrNudity: AgeRatingDeclaration.Attributes.SexualContentOrNudity? = nil,
+                        socialMedia: Bool? = nil,
+                        socialMediaAgeRestricted: Bool? = nil,
                         unrestrictedWebAccess: Bool? = nil,
                         userGeneratedContent: Bool? = nil,
                         violenceCartoonOrFantasy: AgeRatingDeclaration.Attributes.ViolenceCartoonOrFantasy? = nil,
@@ -136,6 +140,8 @@ public struct AgeRatingDeclarationUpdateRequest: Codable, Sendable, RequestBody 
                 self.profanityOrCrudeHumor = profanityOrCrudeHumor
                 self.sexualContentGraphicAndNudity = sexualContentGraphicAndNudity
                 self.sexualContentOrNudity = sexualContentOrNudity
+                self.socialMedia = socialMedia
+                self.socialMediaAgeRestricted = socialMediaAgeRestricted
                 self.unrestrictedWebAccess = unrestrictedWebAccess
                 self.userGeneratedContent = userGeneratedContent
                 self.violenceCartoonOrFantasy = violenceCartoonOrFantasy
@@ -164,6 +170,8 @@ public struct AgeRatingDeclarationUpdateRequest: Codable, Sendable, RequestBody 
                         profanityOrCrudeHumor: AgeRatingDeclaration.Attributes.ProfanityOrCrudeHumor? = nil,
                         sexualContentGraphicAndNudity: AgeRatingDeclaration.Attributes.SexualContentGraphicAndNudity? = nil,
                         sexualContentOrNudity: AgeRatingDeclaration.Attributes.SexualContentOrNudity? = nil,
+                        socialMedia: Bool? = nil,
+                        socialMediaAgeRestricted: Bool? = nil,
                         unrestrictedWebAccess: Bool? = nil,
                         userGeneratedContent: Bool? = nil,
                         violenceCartoonOrFantasy: AgeRatingDeclaration.Attributes.ViolenceCartoonOrFantasy? = nil,
@@ -191,6 +199,8 @@ public struct AgeRatingDeclarationUpdateRequest: Codable, Sendable, RequestBody 
                 self.profanityOrCrudeHumor = profanityOrCrudeHumor
                 self.sexualContentGraphicAndNudity = sexualContentGraphicAndNudity
                 self.sexualContentOrNudity = sexualContentOrNudity
+                self.socialMedia = socialMedia
+                self.socialMediaAgeRestricted = socialMediaAgeRestricted
                 self.unrestrictedWebAccess = unrestrictedWebAccess
                 self.userGeneratedContent = userGeneratedContent
                 self.violenceCartoonOrFantasy = violenceCartoonOrFantasy
@@ -222,6 +232,8 @@ public struct AgeRatingDeclarationUpdateRequest: Codable, Sendable, RequestBody 
                 profanityOrCrudeHumor = try container.decodeIfPresent(AgeRatingDeclaration.Attributes.ProfanityOrCrudeHumor.self, forKey: "profanityOrCrudeHumor")
                 sexualContentGraphicAndNudity = try container.decodeIfPresent(AgeRatingDeclaration.Attributes.SexualContentGraphicAndNudity.self, forKey: "sexualContentGraphicAndNudity")
                 sexualContentOrNudity = try container.decodeIfPresent(AgeRatingDeclaration.Attributes.SexualContentOrNudity.self, forKey: "sexualContentOrNudity")
+                socialMedia = try container.decodeIfPresent(Bool.self, forKey: "socialMedia")
+                socialMediaAgeRestricted = try container.decodeIfPresent(Bool.self, forKey: "socialMediaAgeRestricted")
                 unrestrictedWebAccess = try container.decodeIfPresent(Bool.self, forKey: "unrestrictedWebAccess")
                 userGeneratedContent = try container.decodeIfPresent(Bool.self, forKey: "userGeneratedContent")
                 violenceCartoonOrFantasy = try container.decodeIfPresent(AgeRatingDeclaration.Attributes.ViolenceCartoonOrFantasy.self, forKey: "violenceCartoonOrFantasy")
@@ -253,6 +265,8 @@ public struct AgeRatingDeclarationUpdateRequest: Codable, Sendable, RequestBody 
                 try container.encodeIfPresent(profanityOrCrudeHumor, forKey: "profanityOrCrudeHumor")
                 try container.encodeIfPresent(sexualContentGraphicAndNudity, forKey: "sexualContentGraphicAndNudity")
                 try container.encodeIfPresent(sexualContentOrNudity, forKey: "sexualContentOrNudity")
+                try container.encodeIfPresent(socialMedia, forKey: "socialMedia")
+                try container.encodeIfPresent(socialMediaAgeRestricted, forKey: "socialMediaAgeRestricted")
                 try container.encodeIfPresent(unrestrictedWebAccess, forKey: "unrestrictedWebAccess")
                 try container.encodeIfPresent(userGeneratedContent, forKey: "userGeneratedContent")
                 try container.encodeIfPresent(violenceCartoonOrFantasy, forKey: "violenceCartoonOrFantasy")

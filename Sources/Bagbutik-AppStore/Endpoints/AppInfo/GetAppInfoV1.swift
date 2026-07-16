@@ -70,6 +70,8 @@ public enum GetAppInfoV1 {
             case profanityOrCrudeHumor
             case sexualContentGraphicAndNudity
             case sexualContentOrNudity
+            case socialMedia
+            case socialMediaAgeRestricted
             case unrestrictedWebAccess
             case userGeneratedContent
             case violenceCartoonOrFantasy
@@ -148,6 +150,7 @@ public enum GetAppInfoV1 {
             case brazilAgeRating
             case brazilAgeRatingV2
             case franceAgeRating
+            case kidsAgeBand
             case koreaAgeRating
             case primaryCategory
             case primarySubcategoryOne

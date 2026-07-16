@@ -161,6 +161,7 @@ public struct Subscription: Codable, Sendable, Identifiable {
         @available(*, deprecated, message: "Apple has marked this property deprecated and it will be removed sometime in the future.")
         public var subscriptionAvailability: SubscriptionAvailability? = nil
         public var subscriptionLocalizations: SubscriptionLocalizations?
+        public var versions: Versions?
         public var winBackOffers: WinBackOffers?
 
         @available(*, deprecated, message: "This uses a property Apple has marked as deprecated.")
@@ -176,6 +177,7 @@ public struct Subscription: Codable, Sendable, Identifiable {
                     promotionalOffers: PromotionalOffers? = nil,
                     subscriptionAvailability: SubscriptionAvailability? = nil,
                     subscriptionLocalizations: SubscriptionLocalizations? = nil,
+                    versions: Versions? = nil,
                     winBackOffers: WinBackOffers? = nil)
         {
             self.appStoreReviewScreenshot = appStoreReviewScreenshot
@@ -190,6 +192,7 @@ public struct Subscription: Codable, Sendable, Identifiable {
             self.promotionalOffers = promotionalOffers
             self.subscriptionAvailability = subscriptionAvailability
             self.subscriptionLocalizations = subscriptionLocalizations
+            self.versions = versions
             self.winBackOffers = winBackOffers
         }
 
@@ -204,6 +207,7 @@ public struct Subscription: Codable, Sendable, Identifiable {
                     promotedPurchase: PromotedPurchase? = nil,
                     promotionalOffers: PromotionalOffers? = nil,
                     subscriptionLocalizations: SubscriptionLocalizations? = nil,
+                    versions: Versions? = nil,
                     winBackOffers: WinBackOffers? = nil)
         {
             self.appStoreReviewScreenshot = appStoreReviewScreenshot
@@ -217,6 +221,7 @@ public struct Subscription: Codable, Sendable, Identifiable {
             self.promotedPurchase = promotedPurchase
             self.promotionalOffers = promotionalOffers
             self.subscriptionLocalizations = subscriptionLocalizations
+            self.versions = versions
             self.winBackOffers = winBackOffers
         }
 
@@ -234,6 +239,7 @@ public struct Subscription: Codable, Sendable, Identifiable {
             promotionalOffers = try container.decodeIfPresent(PromotionalOffers.self, forKey: "promotionalOffers")
             subscriptionAvailability = try container.decodeIfPresent(SubscriptionAvailability.self, forKey: "subscriptionAvailability")
             subscriptionLocalizations = try container.decodeIfPresent(SubscriptionLocalizations.self, forKey: "subscriptionLocalizations")
+            versions = try container.decodeIfPresent(Versions.self, forKey: "versions")
             winBackOffers = try container.decodeIfPresent(WinBackOffers.self, forKey: "winBackOffers")
         }
 
@@ -251,6 +257,7 @@ public struct Subscription: Codable, Sendable, Identifiable {
             try container.encodeIfPresent(promotionalOffers, forKey: "promotionalOffers")
             try container.encodeIfPresent(subscriptionAvailability, forKey: "subscriptionAvailability")
             try container.encodeIfPresent(subscriptionLocalizations, forKey: "subscriptionLocalizations")
+            try container.encodeIfPresent(versions, forKey: "versions")
             try container.encodeIfPresent(winBackOffers, forKey: "winBackOffers")
         }
 
@@ -797,6 +804,58 @@ public struct Subscription: Codable, Sendable, Identifiable {
             public struct Data: Codable, Sendable, Identifiable {
                 public let id: String
                 public var type: String { "subscriptionLocalizations" }
+
+                public init(id: String) {
+                    self.id = id
+                }
+
+                public init(from decoder: Decoder) throws {
+                    let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                    id = try container.decode(String.self, forKey: "id")
+                    if try container.decode(String.self, forKey: "type") != type {
+                        throw DecodingError.dataCorruptedError(forKey: "type", in: container, debugDescription: "Not matching \(type)")
+                    }
+                }
+
+                public func encode(to encoder: Encoder) throws {
+                    var container = encoder.container(keyedBy: AnyCodingKey.self)
+                    try container.encode(id, forKey: "id")
+                    try container.encode(type, forKey: "type")
+                }
+            }
+        }
+
+        public struct Versions: Codable, Sendable {
+            @NullCodable public var data: [Data]?
+            public var links: RelationshipLinks?
+            public var meta: PagingInformation?
+
+            public init(data: [Data]? = nil,
+                        links: RelationshipLinks? = nil,
+                        meta: PagingInformation? = nil)
+            {
+                self.data = data
+                self.links = links
+                self.meta = meta
+            }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                data = try container.decodeIfPresent([Data].self, forKey: "data")
+                links = try container.decodeIfPresent(RelationshipLinks.self, forKey: "links")
+                meta = try container.decodeIfPresent(PagingInformation.self, forKey: "meta")
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: AnyCodingKey.self)
+                try container.encode(data, forKey: "data")
+                try container.encodeIfPresent(links, forKey: "links")
+                try container.encodeIfPresent(meta, forKey: "meta")
+            }
+
+            public struct Data: Codable, Sendable, Identifiable {
+                public let id: String
+                public var type: String { "subscriptionVersions" }
 
                 public init(id: String) {
                     self.id = id

@@ -65,6 +65,8 @@ public struct AppInfo: Codable, Sendable, Identifiable {
         @available(*, deprecated, message: "Apple has marked this property deprecated and it will be removed sometime in the future.")
         public var franceAgeRating: FranceAgeRating? = nil
         @available(*, deprecated, message: "Apple has marked this property deprecated and it will be removed sometime in the future.")
+        public var kidsAgeBand: KidsAgeBand? = nil
+        @available(*, deprecated, message: "Apple has marked this property deprecated and it will be removed sometime in the future.")
         public var koreaAgeRating: KoreaAgeRating? = nil
         public var state: State?
 
@@ -75,6 +77,7 @@ public struct AppInfo: Codable, Sendable, Identifiable {
                     brazilAgeRating: BrazilAgeRating? = nil,
                     brazilAgeRatingV2: BrazilAgeRatingV2? = nil,
                     franceAgeRating: FranceAgeRating? = nil,
+                    kidsAgeBand: KidsAgeBand? = nil,
                     koreaAgeRating: KoreaAgeRating? = nil,
                     state: State? = nil)
         {
@@ -84,6 +87,7 @@ public struct AppInfo: Codable, Sendable, Identifiable {
             self.brazilAgeRating = brazilAgeRating
             self.brazilAgeRatingV2 = brazilAgeRatingV2
             self.franceAgeRating = franceAgeRating
+            self.kidsAgeBand = kidsAgeBand
             self.koreaAgeRating = koreaAgeRating
             self.state = state
         }
@@ -100,6 +104,7 @@ public struct AppInfo: Codable, Sendable, Identifiable {
             brazilAgeRating = try container.decodeIfPresent(BrazilAgeRating.self, forKey: "brazilAgeRating")
             brazilAgeRatingV2 = try container.decodeIfPresent(BrazilAgeRatingV2.self, forKey: "brazilAgeRatingV2")
             franceAgeRating = try container.decodeIfPresent(FranceAgeRating.self, forKey: "franceAgeRating")
+            kidsAgeBand = try container.decodeIfPresent(KidsAgeBand.self, forKey: "kidsAgeBand")
             koreaAgeRating = try container.decodeIfPresent(KoreaAgeRating.self, forKey: "koreaAgeRating")
             state = try container.decodeIfPresent(State.self, forKey: "state")
         }
@@ -112,6 +117,7 @@ public struct AppInfo: Codable, Sendable, Identifiable {
             try container.encodeIfPresent(brazilAgeRating, forKey: "brazilAgeRating")
             try container.encodeIfPresent(brazilAgeRatingV2, forKey: "brazilAgeRatingV2")
             try container.encodeIfPresent(franceAgeRating, forKey: "franceAgeRating")
+            try container.encodeIfPresent(kidsAgeBand, forKey: "kidsAgeBand")
             try container.encodeIfPresent(koreaAgeRating, forKey: "koreaAgeRating")
             try container.encodeIfPresent(state, forKey: "state")
         }

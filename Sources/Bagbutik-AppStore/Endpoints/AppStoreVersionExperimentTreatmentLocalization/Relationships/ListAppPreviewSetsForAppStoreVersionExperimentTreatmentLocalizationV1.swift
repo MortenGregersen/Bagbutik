@@ -16,7 +16,6 @@ public extension Request {
      - Parameter limits: Number of resources to return
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
-    @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
     static func listAppPreviewSetsForAppStoreVersionExperimentTreatmentLocalizationV1(id: String,
                                                                                       fields: [ListAppPreviewSetsForAppStoreVersionExperimentTreatmentLocalizationV1.Field]? = nil,
                                                                                       filters: [ListAppPreviewSetsForAppStoreVersionExperimentTreatmentLocalizationV1.Filter]? = nil,

@@ -44,7 +44,6 @@ public struct AppEventLocalizationResponse: Codable, Sendable {
         }.first { $0.id == data.relationships?.appEvent?.data?.id }
     }
 
-    @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
     public func getAppEventScreenshots() -> [AppEventScreenshot] {
         guard let appEventScreenshotIds = data.relationships?.appEventScreenshots?.data?.map(\.id),
               let appEventScreenshots = included?.compactMap({ relationship -> AppEventScreenshot? in
@@ -57,7 +56,6 @@ public struct AppEventLocalizationResponse: Codable, Sendable {
         return appEventScreenshots
     }
 
-    @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
     public func getAppEventVideoClips() -> [AppEventVideoClip] {
         guard let appEventVideoClipIds = data.relationships?.appEventVideoClips?.data?.map(\.id),
               let appEventVideoClips = included?.compactMap({ relationship -> AppEventVideoClip? in

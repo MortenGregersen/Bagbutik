@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read Subscription Image Information
+     # Read subscription image information (v1)
      Read details about a specific subscription image.
 
      Full documentation:
@@ -82,6 +82,7 @@ public enum GetSubscriptionImageV1 {
             case subscriptionAvailability
             case subscriptionLocalizations
             case subscriptionPeriod
+            case versions
             case winBackOffers
 
             public init(from decoder: Decoder) throws {

@@ -196,7 +196,10 @@ public enum ListReviewSubmissionsV1 {
             case gameCenterChallengeVersion
             case gameCenterLeaderboardSetVersion
             case gameCenterLeaderboardVersion
+            case inAppPurchaseVersion
             case state
+            case subscriptionGroupVersion
+            case subscriptionVersion
 
             public init(from decoder: Decoder) throws {
                 let container = try decoder.singleValueContainer()

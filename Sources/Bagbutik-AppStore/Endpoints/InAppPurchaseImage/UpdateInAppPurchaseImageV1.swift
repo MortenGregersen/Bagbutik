@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Commit an image for an in-app purchase
+     # Commit an image for an in-app purchase (v1)
      Commit an uploaded image asset for an in-app purchase.
 
      Full documentation:

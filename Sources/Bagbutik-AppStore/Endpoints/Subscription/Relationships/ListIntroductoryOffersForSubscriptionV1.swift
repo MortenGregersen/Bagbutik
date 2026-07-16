@@ -74,6 +74,7 @@ public enum ListIntroductoryOffersForSubscriptionV1 {
         }
 
         public enum SubscriptionPricePoints: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case adjustedEqualizations
             case customerPrice
             case equalizations
             case proceeds
@@ -116,6 +117,7 @@ public enum ListIntroductoryOffersForSubscriptionV1 {
             case subscriptionAvailability
             case subscriptionLocalizations
             case subscriptionPeriod
+            case versions
             case winBackOffers
 
             public init(from decoder: Decoder) throws {

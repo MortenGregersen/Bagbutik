@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read subscription group localization information
+     # Read subscription group localization information (v1)
      Get the specific localized subscription group display name and optional custom app name for a subscription group.
 
      Full documentation:
@@ -63,6 +63,7 @@ public enum GetSubscriptionGroupLocalizationV1 {
             case referenceName
             case subscriptionGroupLocalizations
             case subscriptions
+            case versions
 
             public init(from decoder: Decoder) throws {
                 let container = try decoder.singleValueContainer()

@@ -127,6 +127,18 @@ public struct InAppPurchasesV2Response: Codable, Sendable, PagedResponse {
         }.first { $0.id == inAppPurchaseV2.relationships?.promotedPurchase?.data?.id }
     }
 
+    public func getVersions(for inAppPurchaseV2: InAppPurchaseV2) -> [InAppPurchaseVersion] {
+        guard let versionIds = inAppPurchaseV2.relationships?.versions?.data?.map(\.id),
+              let versions = included?.compactMap({ relationship -> InAppPurchaseVersion? in
+                  guard case let .inAppPurchaseVersion(version) = relationship else { return nil }
+                  return versionIds.contains(version.id) ? version : nil
+              })
+        else {
+            return []
+        }
+        return versions
+    }
+
     public enum Included: Codable, Sendable {
         case inAppPurchaseAppStoreReviewScreenshot(InAppPurchaseAppStoreReviewScreenshot)
         case inAppPurchaseAvailability(InAppPurchaseAvailability)
@@ -136,6 +148,7 @@ public struct InAppPurchasesV2Response: Codable, Sendable, PagedResponse {
         case inAppPurchaseOfferCode(InAppPurchaseOfferCode)
         case inAppPurchasePricePoint(InAppPurchasePricePoint)
         case inAppPurchasePriceSchedule(InAppPurchasePriceSchedule)
+        case inAppPurchaseVersion(InAppPurchaseVersion)
         case promotedPurchase(PromotedPurchase)
 
         public init(from decoder: Decoder) throws {
@@ -158,6 +171,8 @@ public struct InAppPurchasesV2Response: Codable, Sendable, PagedResponse {
                 self = .inAppPurchasePricePoint(try InAppPurchasePricePoint(from: decoder))
             case "inAppPurchasePriceSchedules":
                 self = .inAppPurchasePriceSchedule(try InAppPurchasePriceSchedule(from: decoder))
+            case "inAppPurchaseVersions":
+                self = .inAppPurchaseVersion(try InAppPurchaseVersion(from: decoder))
             case "promotedPurchases":
                 self = .promotedPurchase(try PromotedPurchase(from: decoder))
             default:
@@ -185,6 +200,8 @@ public struct InAppPurchasesV2Response: Codable, Sendable, PagedResponse {
             case let .inAppPurchasePricePoint(value):
                 try value.encode(to: encoder)
             case let .inAppPurchasePriceSchedule(value):
+                try value.encode(to: encoder)
+            case let .inAppPurchaseVersion(value):
                 try value.encode(to: encoder)
             case let .promotedPurchase(value):
                 try value.encode(to: encoder)

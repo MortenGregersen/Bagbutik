@@ -105,6 +105,7 @@ public struct InAppPurchaseV2: Codable, Sendable, Identifiable {
         public var offerCodes: OfferCodes?
         public var pricePoints: PricePoints?
         public var promotedPurchase: PromotedPurchase?
+        public var versions: Versions?
 
         public init(appStoreReviewScreenshot: AppStoreReviewScreenshot? = nil,
                     content: Content? = nil,
@@ -114,7 +115,8 @@ public struct InAppPurchaseV2: Codable, Sendable, Identifiable {
                     inAppPurchaseLocalizations: InAppPurchaseLocalizations? = nil,
                     offerCodes: OfferCodes? = nil,
                     pricePoints: PricePoints? = nil,
-                    promotedPurchase: PromotedPurchase? = nil)
+                    promotedPurchase: PromotedPurchase? = nil,
+                    versions: Versions? = nil)
         {
             self.appStoreReviewScreenshot = appStoreReviewScreenshot
             self.content = content
@@ -125,6 +127,7 @@ public struct InAppPurchaseV2: Codable, Sendable, Identifiable {
             self.offerCodes = offerCodes
             self.pricePoints = pricePoints
             self.promotedPurchase = promotedPurchase
+            self.versions = versions
         }
 
         public init(from decoder: Decoder) throws {
@@ -138,6 +141,7 @@ public struct InAppPurchaseV2: Codable, Sendable, Identifiable {
             offerCodes = try container.decodeIfPresent(OfferCodes.self, forKey: "offerCodes")
             pricePoints = try container.decodeIfPresent(PricePoints.self, forKey: "pricePoints")
             promotedPurchase = try container.decodeIfPresent(PromotedPurchase.self, forKey: "promotedPurchase")
+            versions = try container.decodeIfPresent(Versions.self, forKey: "versions")
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -151,6 +155,7 @@ public struct InAppPurchaseV2: Codable, Sendable, Identifiable {
             try container.encodeIfPresent(offerCodes, forKey: "offerCodes")
             try container.encodeIfPresent(pricePoints, forKey: "pricePoints")
             try container.encodeIfPresent(promotedPurchase, forKey: "promotedPurchase")
+            try container.encodeIfPresent(versions, forKey: "versions")
         }
 
         public struct AppStoreReviewScreenshot: Codable, Sendable {
@@ -575,6 +580,58 @@ public struct InAppPurchaseV2: Codable, Sendable, Identifiable {
             public struct Data: Codable, Sendable, Identifiable {
                 public let id: String
                 public var type: String { "promotedPurchases" }
+
+                public init(id: String) {
+                    self.id = id
+                }
+
+                public init(from decoder: Decoder) throws {
+                    let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                    id = try container.decode(String.self, forKey: "id")
+                    if try container.decode(String.self, forKey: "type") != type {
+                        throw DecodingError.dataCorruptedError(forKey: "type", in: container, debugDescription: "Not matching \(type)")
+                    }
+                }
+
+                public func encode(to encoder: Encoder) throws {
+                    var container = encoder.container(keyedBy: AnyCodingKey.self)
+                    try container.encode(id, forKey: "id")
+                    try container.encode(type, forKey: "type")
+                }
+            }
+        }
+
+        public struct Versions: Codable, Sendable {
+            @NullCodable public var data: [Data]?
+            public var links: RelationshipLinks?
+            public var meta: PagingInformation?
+
+            public init(data: [Data]? = nil,
+                        links: RelationshipLinks? = nil,
+                        meta: PagingInformation? = nil)
+            {
+                self.data = data
+                self.links = links
+                self.meta = meta
+            }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                data = try container.decodeIfPresent([Data].self, forKey: "data")
+                links = try container.decodeIfPresent(RelationshipLinks.self, forKey: "links")
+                meta = try container.decodeIfPresent(PagingInformation.self, forKey: "meta")
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: AnyCodingKey.self)
+                try container.encode(data, forKey: "data")
+                try container.encodeIfPresent(links, forKey: "links")
+                try container.encodeIfPresent(meta, forKey: "meta")
+            }
+
+            public struct Data: Codable, Sendable, Identifiable {
+                public let id: String
+                public var type: String { "inAppPurchaseVersions" }
 
                 public init(id: String) {
                     self.id = id

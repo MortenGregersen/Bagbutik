@@ -43,6 +43,7 @@ public enum ListPricePointsForSubscriptionV1 {
         case territories([Territories])
 
         public enum SubscriptionPricePoints: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case adjustedEqualizations
             case customerPrice
             case equalizations
             case proceeds
@@ -89,8 +90,12 @@ public enum ListPricePointsForSubscriptionV1 {
      Attributes, relationships, and IDs by which to filter.
      */
     public enum Filter: FilterParameter {
+        /// Filter by planType
+        case planType([String])
         /// Filter by id(s) of related 'territory'
         case territory([String])
+        /// Filter by upfrontPricePointId
+        case upfrontPricePointId([String])
     }
 
     /**

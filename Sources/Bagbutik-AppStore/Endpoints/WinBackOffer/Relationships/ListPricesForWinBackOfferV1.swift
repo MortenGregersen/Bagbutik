@@ -47,6 +47,7 @@ public enum ListPricesForWinBackOfferV1 {
         case winBackOfferPrices([WinBackOfferPrices])
 
         public enum SubscriptionPricePoints: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case adjustedEqualizations
             case customerPrice
             case equalizations
             case proceeds

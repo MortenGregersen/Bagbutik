@@ -99,6 +99,9 @@ public struct ReviewSubmissionItem: Codable, Sendable, Identifiable {
         public var gameCenterChallengeVersion: GameCenterChallengeVersion?
         public var gameCenterLeaderboardSetVersion: GameCenterLeaderboardSetVersion?
         public var gameCenterLeaderboardVersion: GameCenterLeaderboardVersion?
+        public var inAppPurchaseVersion: InAppPurchaseVersion?
+        public var subscriptionGroupVersion: SubscriptionGroupVersion?
+        public var subscriptionVersion: SubscriptionVersion?
 
         public init(appCustomProductPageVersion: AppCustomProductPageVersion? = nil,
                     appEvent: AppEvent? = nil,
@@ -110,7 +113,10 @@ public struct ReviewSubmissionItem: Codable, Sendable, Identifiable {
                     gameCenterActivityVersion: GameCenterActivityVersion? = nil,
                     gameCenterChallengeVersion: GameCenterChallengeVersion? = nil,
                     gameCenterLeaderboardSetVersion: GameCenterLeaderboardSetVersion? = nil,
-                    gameCenterLeaderboardVersion: GameCenterLeaderboardVersion? = nil)
+                    gameCenterLeaderboardVersion: GameCenterLeaderboardVersion? = nil,
+                    inAppPurchaseVersion: InAppPurchaseVersion? = nil,
+                    subscriptionGroupVersion: SubscriptionGroupVersion? = nil,
+                    subscriptionVersion: SubscriptionVersion? = nil)
         {
             self.appCustomProductPageVersion = appCustomProductPageVersion
             self.appEvent = appEvent
@@ -123,6 +129,9 @@ public struct ReviewSubmissionItem: Codable, Sendable, Identifiable {
             self.gameCenterChallengeVersion = gameCenterChallengeVersion
             self.gameCenterLeaderboardSetVersion = gameCenterLeaderboardSetVersion
             self.gameCenterLeaderboardVersion = gameCenterLeaderboardVersion
+            self.inAppPurchaseVersion = inAppPurchaseVersion
+            self.subscriptionGroupVersion = subscriptionGroupVersion
+            self.subscriptionVersion = subscriptionVersion
         }
 
         public init(from decoder: Decoder) throws {
@@ -138,6 +147,9 @@ public struct ReviewSubmissionItem: Codable, Sendable, Identifiable {
             gameCenterChallengeVersion = try container.decodeIfPresent(GameCenterChallengeVersion.self, forKey: "gameCenterChallengeVersion")
             gameCenterLeaderboardSetVersion = try container.decodeIfPresent(GameCenterLeaderboardSetVersion.self, forKey: "gameCenterLeaderboardSetVersion")
             gameCenterLeaderboardVersion = try container.decodeIfPresent(GameCenterLeaderboardVersion.self, forKey: "gameCenterLeaderboardVersion")
+            inAppPurchaseVersion = try container.decodeIfPresent(InAppPurchaseVersion.self, forKey: "inAppPurchaseVersion")
+            subscriptionGroupVersion = try container.decodeIfPresent(SubscriptionGroupVersion.self, forKey: "subscriptionGroupVersion")
+            subscriptionVersion = try container.decodeIfPresent(SubscriptionVersion.self, forKey: "subscriptionVersion")
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -153,6 +165,9 @@ public struct ReviewSubmissionItem: Codable, Sendable, Identifiable {
             try container.encodeIfPresent(gameCenterChallengeVersion, forKey: "gameCenterChallengeVersion")
             try container.encodeIfPresent(gameCenterLeaderboardSetVersion, forKey: "gameCenterLeaderboardSetVersion")
             try container.encodeIfPresent(gameCenterLeaderboardVersion, forKey: "gameCenterLeaderboardVersion")
+            try container.encodeIfPresent(inAppPurchaseVersion, forKey: "inAppPurchaseVersion")
+            try container.encodeIfPresent(subscriptionGroupVersion, forKey: "subscriptionGroupVersion")
+            try container.encodeIfPresent(subscriptionVersion, forKey: "subscriptionVersion")
         }
 
         public struct AppCustomProductPageVersion: Codable, Sendable {
@@ -585,6 +600,129 @@ public struct ReviewSubmissionItem: Codable, Sendable, Identifiable {
             public struct Data: Codable, Sendable, Identifiable {
                 public let id: String
                 public var type: String { "gameCenterLeaderboardVersions" }
+
+                public init(id: String) {
+                    self.id = id
+                }
+
+                public init(from decoder: Decoder) throws {
+                    let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                    id = try container.decode(String.self, forKey: "id")
+                    if try container.decode(String.self, forKey: "type") != type {
+                        throw DecodingError.dataCorruptedError(forKey: "type", in: container, debugDescription: "Not matching \(type)")
+                    }
+                }
+
+                public func encode(to encoder: Encoder) throws {
+                    var container = encoder.container(keyedBy: AnyCodingKey.self)
+                    try container.encode(id, forKey: "id")
+                    try container.encode(type, forKey: "type")
+                }
+            }
+        }
+
+        public struct InAppPurchaseVersion: Codable, Sendable {
+            @NullCodable public var data: Data?
+
+            public init(data: Data? = nil) {
+                self.data = data
+            }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                data = try container.decodeIfPresent(Data.self, forKey: "data")
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: AnyCodingKey.self)
+                try container.encode(data, forKey: "data")
+            }
+
+            public struct Data: Codable, Sendable, Identifiable {
+                public let id: String
+                public var type: String { "inAppPurchaseVersions" }
+
+                public init(id: String) {
+                    self.id = id
+                }
+
+                public init(from decoder: Decoder) throws {
+                    let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                    id = try container.decode(String.self, forKey: "id")
+                    if try container.decode(String.self, forKey: "type") != type {
+                        throw DecodingError.dataCorruptedError(forKey: "type", in: container, debugDescription: "Not matching \(type)")
+                    }
+                }
+
+                public func encode(to encoder: Encoder) throws {
+                    var container = encoder.container(keyedBy: AnyCodingKey.self)
+                    try container.encode(id, forKey: "id")
+                    try container.encode(type, forKey: "type")
+                }
+            }
+        }
+
+        public struct SubscriptionGroupVersion: Codable, Sendable {
+            @NullCodable public var data: Data?
+
+            public init(data: Data? = nil) {
+                self.data = data
+            }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                data = try container.decodeIfPresent(Data.self, forKey: "data")
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: AnyCodingKey.self)
+                try container.encode(data, forKey: "data")
+            }
+
+            public struct Data: Codable, Sendable, Identifiable {
+                public let id: String
+                public var type: String { "subscriptionGroupVersions" }
+
+                public init(id: String) {
+                    self.id = id
+                }
+
+                public init(from decoder: Decoder) throws {
+                    let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                    id = try container.decode(String.self, forKey: "id")
+                    if try container.decode(String.self, forKey: "type") != type {
+                        throw DecodingError.dataCorruptedError(forKey: "type", in: container, debugDescription: "Not matching \(type)")
+                    }
+                }
+
+                public func encode(to encoder: Encoder) throws {
+                    var container = encoder.container(keyedBy: AnyCodingKey.self)
+                    try container.encode(id, forKey: "id")
+                    try container.encode(type, forKey: "type")
+                }
+            }
+        }
+
+        public struct SubscriptionVersion: Codable, Sendable {
+            @NullCodable public var data: Data?
+
+            public init(data: Data? = nil) {
+                self.data = data
+            }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                data = try container.decodeIfPresent(Data.self, forKey: "data")
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: AnyCodingKey.self)
+                try container.encode(data, forKey: "data")
+            }
+
+            public struct Data: Codable, Sendable, Identifiable {
+                public let id: String
+                public var type: String { "subscriptionVersions" }
 
                 public init(id: String) {
                     self.id = id
