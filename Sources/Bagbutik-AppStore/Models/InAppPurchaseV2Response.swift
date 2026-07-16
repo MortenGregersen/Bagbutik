@@ -120,6 +120,18 @@ public struct InAppPurchaseV2Response: Codable, Sendable {
         }.first { $0.id == data.relationships?.promotedPurchase?.data?.id }
     }
 
+    public func getVersions() -> [InAppPurchaseVersion] {
+        guard let versionIds = data.relationships?.versions?.data?.map(\.id),
+              let versions = included?.compactMap({ relationship -> InAppPurchaseVersion? in
+                  guard case let .inAppPurchaseVersion(version) = relationship else { return nil }
+                  return versionIds.contains(version.id) ? version : nil
+              })
+        else {
+            return []
+        }
+        return versions
+    }
+
     public enum Included: Codable, Sendable {
         case inAppPurchaseAppStoreReviewScreenshot(InAppPurchaseAppStoreReviewScreenshot)
         case inAppPurchaseAvailability(InAppPurchaseAvailability)
@@ -129,6 +141,7 @@ public struct InAppPurchaseV2Response: Codable, Sendable {
         case inAppPurchaseOfferCode(InAppPurchaseOfferCode)
         case inAppPurchasePricePoint(InAppPurchasePricePoint)
         case inAppPurchasePriceSchedule(InAppPurchasePriceSchedule)
+        case inAppPurchaseVersion(InAppPurchaseVersion)
         case promotedPurchase(PromotedPurchase)
 
         public init(from decoder: Decoder) throws {
@@ -151,6 +164,8 @@ public struct InAppPurchaseV2Response: Codable, Sendable {
                 self = .inAppPurchasePricePoint(try InAppPurchasePricePoint(from: decoder))
             case "inAppPurchasePriceSchedules":
                 self = .inAppPurchasePriceSchedule(try InAppPurchasePriceSchedule(from: decoder))
+            case "inAppPurchaseVersions":
+                self = .inAppPurchaseVersion(try InAppPurchaseVersion(from: decoder))
             case "promotedPurchases":
                 self = .promotedPurchase(try PromotedPurchase(from: decoder))
             default:
@@ -178,6 +193,8 @@ public struct InAppPurchaseV2Response: Codable, Sendable {
             case let .inAppPurchasePricePoint(value):
                 try value.encode(to: encoder)
             case let .inAppPurchasePriceSchedule(value):
+                try value.encode(to: encoder)
+            case let .inAppPurchaseVersion(value):
                 try value.encode(to: encoder)
             case let .promotedPurchase(value):
                 try value.encode(to: encoder)

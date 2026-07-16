@@ -3,7 +3,8 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # List one-time-use code IDs for a subscription offer code
+     # List one-time use code IDs for a subscription offer code
+     Get a list of one-time use code resource IDs for a specific subscription offer code.
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-subscriptionOfferCodes-_id_-relationships-oneTimeUseCodes>

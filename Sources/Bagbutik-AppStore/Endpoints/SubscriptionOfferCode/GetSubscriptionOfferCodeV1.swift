@@ -168,6 +168,7 @@ public enum GetSubscriptionOfferCodeV1 {
             case subscriptionAvailability
             case subscriptionLocalizations
             case subscriptionPeriod
+            case versions
             case winBackOffers
 
             public init(from decoder: Decoder) throws {

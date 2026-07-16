@@ -54,6 +54,8 @@ public enum ListInAppPurchasesV2ForAppV1 {
         case inAppPurchaseOfferCodes([InAppPurchaseOfferCodes])
         /// The fields to include for returned resources of type inAppPurchasePriceSchedules
         case inAppPurchasePriceSchedules([InAppPurchasePriceSchedules])
+        /// The fields to include for returned resources of type inAppPurchaseVersions
+        case inAppPurchaseVersions([InAppPurchaseVersions])
         /// The fields to include for returned resources of type inAppPurchases
         case inAppPurchases([InAppPurchases])
         /// The fields to include for returned resources of type promotedPurchases
@@ -225,6 +227,30 @@ public enum ListInAppPurchasesV2ForAppV1 {
             }
         }
 
+        public enum InAppPurchaseVersions: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case image
+            case images
+            case inAppPurchase
+            case localizations
+            case state
+            case version
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = InAppPurchaseVersions(rawValue: string) {
+                    self = value
+                } else if let value = InAppPurchaseVersions(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid InAppPurchaseVersions value: \(string)"
+                    )
+                }
+            }
+        }
+
         public enum InAppPurchases: String, Sendable, ParameterValue, Codable, CaseIterable {
             case appStoreReviewScreenshot
             case content
@@ -242,6 +268,7 @@ public enum ListInAppPurchasesV2ForAppV1 {
             case promotedPurchase
             case reviewNote
             case state
+            case versions
 
             public init(from decoder: Decoder) throws {
                 let container = try decoder.singleValueContainer()
@@ -309,6 +336,7 @@ public enum ListInAppPurchasesV2ForAppV1 {
         case inAppPurchaseLocalizations
         case offerCodes
         case promotedPurchase
+        case versions
     }
 
     /**
@@ -333,5 +361,7 @@ public enum ListInAppPurchasesV2ForAppV1 {
         case limit(Int)
         /// Maximum number of related offerCodes returned (when they are included) - maximum 50
         case offerCodes(Int)
+        /// Maximum number of related versions returned (when they are included) - maximum 50
+        case versions(Int)
     }
 }

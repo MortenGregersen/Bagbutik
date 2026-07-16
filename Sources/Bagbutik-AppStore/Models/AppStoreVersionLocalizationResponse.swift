@@ -37,7 +37,6 @@ public struct AppStoreVersionLocalizationResponse: Codable, Sendable {
         try container.encode(links, forKey: "links")
     }
 
-    @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
     public func getAppPreviewSets() -> [AppPreviewSet] {
         guard let appPreviewSetIds = data.relationships?.appPreviewSets?.data?.map(\.id),
               let appPreviewSets = included?.compactMap({ relationship -> AppPreviewSet? in
@@ -50,7 +49,6 @@ public struct AppStoreVersionLocalizationResponse: Codable, Sendable {
         return appPreviewSets
     }
 
-    @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
     public func getAppScreenshotSets() -> [AppScreenshotSet] {
         guard let appScreenshotSetIds = data.relationships?.appScreenshotSets?.data?.map(\.id),
               let appScreenshotSets = included?.compactMap({ relationship -> AppScreenshotSet? in

@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read in-app purchase localization information
+     # Read in-app purchase localization information (v1)
      Get the display name and description for a specific locale for an in-app purchase.
 
      Full documentation:
@@ -76,6 +76,7 @@ public enum GetInAppPurchaseLocalizationV1 {
             case promotedPurchase
             case reviewNote
             case state
+            case versions
 
             public init(from decoder: Decoder) throws {
                 let container = try decoder.singleValueContainer()

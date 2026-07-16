@@ -35,10 +35,8 @@ public enum GetAppStoreVersionExperimentTreatmentLocalizationV1 {
      */
     public enum Field: FieldParameter {
         /// The fields to include for returned resources of type appPreviewSets
-        @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
         case appPreviewSets([AppPreviewSets])
         /// The fields to include for returned resources of type appScreenshotSets
-        @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
         case appScreenshotSets([AppScreenshotSets])
         /// The fields to include for returned resources of type appStoreVersionExperimentTreatmentLocalizations
         case appStoreVersionExperimentTreatmentLocalizations([AppStoreVersionExperimentTreatmentLocalizations])

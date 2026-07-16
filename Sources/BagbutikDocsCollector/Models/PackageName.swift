@@ -70,6 +70,7 @@ public enum PackageName: CaseIterable, Codable, Equatable {
             || resource.hasSuffix("Builds")
             || (resource.hasPrefix("app") && !resource.lowercased().contains("beta"))
             || resource.hasPrefix("automaticPrices")
+            || resource.hasPrefix("adjustedEqualizations")
             || resource.hasPrefix("baseTerritory")
             || resource.hasPrefix("brazil")
             || resource.hasPrefix("custom")
@@ -110,6 +111,9 @@ public enum PackageName: CaseIterable, Codable, Equatable {
                 && !identifier.lowercased().contains("gamecenterappversion"))
             || resource.hasPrefix("subcategories")
             || resource.hasPrefix("subscription")
+            || (resource.hasPrefix("version")
+                && (identifier.lowercased().contains("subscription")
+                    || identifier.lowercased().contains("inapppurchase")))
             || resource.lowercased().contains("territor")
             || resource.hasPrefix("value")
             || (resource.hasPrefix("version")
@@ -149,7 +153,9 @@ public enum PackageName: CaseIterable, Codable, Equatable {
             || resource.hasPrefix("marketplace")
             || (resource.hasPrefix("version")
                 && !identifier.lowercased().contains("prerelease")
-                && !identifier.contains("XcodeVersion"))
+                && !identifier.contains("XcodeVersion")
+                && !identifier.lowercased().contains("subscription")
+                && !identifier.lowercased().contains("inapppurchase"))
             || resource.hasPrefix("delta")
             || resource.hasPrefix("variant") {
             return .marketplaces

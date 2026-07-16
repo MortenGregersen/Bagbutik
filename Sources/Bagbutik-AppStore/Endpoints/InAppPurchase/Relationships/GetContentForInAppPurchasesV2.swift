@@ -76,6 +76,7 @@ public enum GetContentForInAppPurchasesV2 {
             case promotedPurchase
             case reviewNote
             case state
+            case versions
 
             public init(from decoder: Decoder) throws {
                 let container = try decoder.singleValueContainer()

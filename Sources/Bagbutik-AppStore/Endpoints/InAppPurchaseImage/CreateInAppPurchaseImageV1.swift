@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Create an Image for an In-App Purchase
+     # Create an image for an in-app purchase (v1)
      Reserve an image asset to appear in the App Store, representing an in-app purchase.
 
      Full documentation:

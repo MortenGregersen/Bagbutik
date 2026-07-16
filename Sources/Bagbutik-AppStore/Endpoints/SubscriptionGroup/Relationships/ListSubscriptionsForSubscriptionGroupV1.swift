@@ -62,6 +62,8 @@ public enum ListSubscriptionsForSubscriptionGroupV1 {
         case subscriptionPrices([SubscriptionPrices])
         /// The fields to include for returned resources of type subscriptionPromotionalOffers
         case subscriptionPromotionalOffers([SubscriptionPromotionalOffers])
+        /// The fields to include for returned resources of type subscriptionVersions
+        case subscriptionVersions([SubscriptionVersions])
         /// The fields to include for returned resources of type subscriptions
         case subscriptions([Subscriptions])
         /// The fields to include for returned resources of type winBackOffers
@@ -141,6 +143,7 @@ public enum ListSubscriptionsForSubscriptionGroupV1 {
             case referenceName
             case subscriptionGroupLocalizations
             case subscriptions
+            case versions
 
             public init(from decoder: Decoder) throws {
                 let container = try decoder.singleValueContainer()
@@ -338,6 +341,30 @@ public enum ListSubscriptionsForSubscriptionGroupV1 {
             }
         }
 
+        public enum SubscriptionVersions: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case image
+            case images
+            case localizations
+            case state
+            case subscription
+            case version
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = SubscriptionVersions(rawValue: string) {
+                    self = value
+                } else if let value = SubscriptionVersions(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid SubscriptionVersions value: \(string)"
+                    )
+                }
+            }
+        }
+
         public enum Subscriptions: String, Sendable, ParameterValue, Codable, CaseIterable {
             case appStoreReviewScreenshot
             case familySharable
@@ -358,6 +385,7 @@ public enum ListSubscriptionsForSubscriptionGroupV1 {
             case subscriptionAvailability
             case subscriptionLocalizations
             case subscriptionPeriod
+            case versions
             case winBackOffers
 
             public init(from decoder: Decoder) throws {
@@ -464,6 +492,7 @@ public enum ListSubscriptionsForSubscriptionGroupV1 {
         case promotionalOffers
         case subscriptionAvailability
         case subscriptionLocalizations
+        case versions
         case winBackOffers
     }
 
@@ -495,6 +524,8 @@ public enum ListSubscriptionsForSubscriptionGroupV1 {
         case promotionalOffers(Int)
         /// Maximum number of related subscriptionLocalizations returned (when they are included) - maximum 50
         case subscriptionLocalizations(Int)
+        /// Maximum number of related versions returned (when they are included) - maximum 50
+        case versions(Int)
         /// Maximum number of related winBackOffers returned (when they are included) - maximum 50
         case winBackOffers(Int)
     }

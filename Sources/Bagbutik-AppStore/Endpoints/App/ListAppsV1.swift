@@ -232,6 +232,7 @@ public enum ListAppsV1 {
             case brazilAgeRating
             case brazilAgeRatingV2
             case franceAgeRating
+            case kidsAgeBand
             case koreaAgeRating
             case primaryCategory
             case primarySubcategoryOne
@@ -706,6 +707,7 @@ public enum ListAppsV1 {
             case referenceName
             case reviewNote
             case state
+            case versions
 
             public init(from decoder: Decoder) throws {
                 let container = try decoder.singleValueContainer()
@@ -820,6 +822,7 @@ public enum ListAppsV1 {
             case referenceName
             case subscriptionGroupLocalizations
             case subscriptions
+            case versions
 
             public init(from decoder: Decoder) throws {
                 let container = try decoder.singleValueContainer()

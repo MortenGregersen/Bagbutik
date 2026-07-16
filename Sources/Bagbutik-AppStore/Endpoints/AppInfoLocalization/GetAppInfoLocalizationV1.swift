@@ -71,6 +71,7 @@ public enum GetAppInfoLocalizationV1 {
             case brazilAgeRating
             case brazilAgeRatingV2
             case franceAgeRating
+            case kidsAgeBand
             case koreaAgeRating
             case primaryCategory
             case primarySubcategoryOne

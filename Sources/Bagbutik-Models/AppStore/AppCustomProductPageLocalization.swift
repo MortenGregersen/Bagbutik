@@ -72,13 +72,10 @@ public struct AppCustomProductPageLocalization: Codable, Sendable, Identifiable 
 
     public struct Relationships: Codable, Sendable {
         public var appCustomProductPageVersion: AppCustomProductPageVersion?
-        @available(*, deprecated, message: "Apple has marked this property deprecated and it will be removed sometime in the future.")
-        public var appPreviewSets: AppPreviewSets? = nil
-        @available(*, deprecated, message: "Apple has marked this property deprecated and it will be removed sometime in the future.")
-        public var appScreenshotSets: AppScreenshotSets? = nil
+        public var appPreviewSets: AppPreviewSets?
+        public var appScreenshotSets: AppScreenshotSets?
         public var searchKeywords: SearchKeywords?
 
-        @available(*, deprecated, message: "This uses a property Apple has marked as deprecated.")
         public init(appCustomProductPageVersion: AppCustomProductPageVersion? = nil,
                     appPreviewSets: AppPreviewSets? = nil,
                     appScreenshotSets: AppScreenshotSets? = nil,
@@ -87,13 +84,6 @@ public struct AppCustomProductPageLocalization: Codable, Sendable, Identifiable 
             self.appCustomProductPageVersion = appCustomProductPageVersion
             self.appPreviewSets = appPreviewSets
             self.appScreenshotSets = appScreenshotSets
-            self.searchKeywords = searchKeywords
-        }
-
-        public init(appCustomProductPageVersion: AppCustomProductPageVersion? = nil,
-                    searchKeywords: SearchKeywords? = nil)
-        {
-            self.appCustomProductPageVersion = appCustomProductPageVersion
             self.searchKeywords = searchKeywords
         }
 

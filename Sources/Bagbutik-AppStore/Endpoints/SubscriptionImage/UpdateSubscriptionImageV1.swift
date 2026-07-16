@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Commit a subscription image
+     # Commit a subscription image (v1)
      Commit an uploaded subscription image.
 
      Full documentation:

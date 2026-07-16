@@ -55,6 +55,8 @@ public enum GetAgeRatingDeclarationForAppInfoV1 {
             case profanityOrCrudeHumor
             case sexualContentGraphicAndNudity
             case sexualContentOrNudity
+            case socialMedia
+            case socialMediaAgeRestricted
             case unrestrictedWebAccess
             case userGeneratedContent
             case violenceCartoonOrFantasy

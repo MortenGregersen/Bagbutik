@@ -58,6 +58,7 @@ public enum ListPromotedPurchasesForAppV1 {
             case promotedPurchase
             case reviewNote
             case state
+            case versions
 
             public init(from decoder: Decoder) throws {
                 let container = try decoder.singleValueContainer()
@@ -118,6 +119,7 @@ public enum ListPromotedPurchasesForAppV1 {
             case subscriptionAvailability
             case subscriptionLocalizations
             case subscriptionPeriod
+            case versions
             case winBackOffers
 
             public init(from decoder: Decoder) throws {

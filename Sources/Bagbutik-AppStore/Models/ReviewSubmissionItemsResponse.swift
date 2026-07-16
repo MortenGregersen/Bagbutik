@@ -121,6 +121,27 @@ public struct ReviewSubmissionItemsResponse: Codable, Sendable, PagedResponse {
         }.first { $0.id == reviewSubmissionItem.relationships?.gameCenterLeaderboardVersion?.data?.id }
     }
 
+    public func getInAppPurchaseVersion(for reviewSubmissionItem: ReviewSubmissionItem) -> InAppPurchaseVersion? {
+        included?.compactMap { relationship -> InAppPurchaseVersion? in
+            guard case let .inAppPurchaseVersion(inAppPurchaseVersion) = relationship else { return nil }
+            return inAppPurchaseVersion
+        }.first { $0.id == reviewSubmissionItem.relationships?.inAppPurchaseVersion?.data?.id }
+    }
+
+    public func getSubscriptionGroupVersion(for reviewSubmissionItem: ReviewSubmissionItem) -> SubscriptionGroupVersion? {
+        included?.compactMap { relationship -> SubscriptionGroupVersion? in
+            guard case let .subscriptionGroupVersion(subscriptionGroupVersion) = relationship else { return nil }
+            return subscriptionGroupVersion
+        }.first { $0.id == reviewSubmissionItem.relationships?.subscriptionGroupVersion?.data?.id }
+    }
+
+    public func getSubscriptionVersion(for reviewSubmissionItem: ReviewSubmissionItem) -> SubscriptionVersion? {
+        included?.compactMap { relationship -> SubscriptionVersion? in
+            guard case let .subscriptionVersion(subscriptionVersion) = relationship else { return nil }
+            return subscriptionVersion
+        }.first { $0.id == reviewSubmissionItem.relationships?.subscriptionVersion?.data?.id }
+    }
+
     public enum Included: Codable, Sendable {
         case appCustomProductPageVersion(AppCustomProductPageVersion)
         case appEvent(AppEvent)
@@ -132,6 +153,9 @@ public struct ReviewSubmissionItemsResponse: Codable, Sendable, PagedResponse {
         case gameCenterChallengeVersion(GameCenterChallengeVersion)
         case gameCenterLeaderboardSetVersionV2(GameCenterLeaderboardSetVersionV2)
         case gameCenterLeaderboardVersionV2(GameCenterLeaderboardVersionV2)
+        case inAppPurchaseVersion(InAppPurchaseVersion)
+        case subscriptionGroupVersion(SubscriptionGroupVersion)
+        case subscriptionVersion(SubscriptionVersion)
 
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: AnyCodingKey.self)
@@ -157,6 +181,12 @@ public struct ReviewSubmissionItemsResponse: Codable, Sendable, PagedResponse {
                 self = .gameCenterLeaderboardSetVersionV2(try GameCenterLeaderboardSetVersionV2(from: decoder))
             case "gameCenterLeaderboardVersions":
                 self = .gameCenterLeaderboardVersionV2(try GameCenterLeaderboardVersionV2(from: decoder))
+            case "inAppPurchaseVersions":
+                self = .inAppPurchaseVersion(try InAppPurchaseVersion(from: decoder))
+            case "subscriptionGroupVersions":
+                self = .subscriptionGroupVersion(try SubscriptionGroupVersion(from: decoder))
+            case "subscriptionVersions":
+                self = .subscriptionVersion(try SubscriptionVersion(from: decoder))
             default:
                 throw DecodingError.dataCorruptedError(
                     forKey: "type",
@@ -186,6 +216,12 @@ public struct ReviewSubmissionItemsResponse: Codable, Sendable, PagedResponse {
             case let .gameCenterLeaderboardSetVersionV2(value):
                 try value.encode(to: encoder)
             case let .gameCenterLeaderboardVersionV2(value):
+                try value.encode(to: encoder)
+            case let .inAppPurchaseVersion(value):
+                try value.encode(to: encoder)
+            case let .subscriptionGroupVersion(value):
+                try value.encode(to: encoder)
+            case let .subscriptionVersion(value):
                 try value.encode(to: encoder)
             }
         }

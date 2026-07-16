@@ -4,7 +4,7 @@ import Bagbutik_Models
 public extension Request {
     /**
      # List plan availabilities for a subscription
-     List the subscription plan availabilities related to a subscription.
+     List all plan availabilities for a specific auto-renewable subscription.
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-subscriptions-_id_-planAvailabilities>

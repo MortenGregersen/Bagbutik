@@ -42,6 +42,8 @@ public enum ListSubscriptionGroupsForAppV1 {
     public enum Field: FieldParameter {
         /// The fields to include for returned resources of type subscriptionGroupLocalizations
         case subscriptionGroupLocalizations([SubscriptionGroupLocalizations])
+        /// The fields to include for returned resources of type subscriptionGroupVersions
+        case subscriptionGroupVersions([SubscriptionGroupVersions])
         /// The fields to include for returned resources of type subscriptionGroups
         case subscriptionGroups([SubscriptionGroups])
         /// The fields to include for returned resources of type subscriptions
@@ -70,10 +72,33 @@ public enum ListSubscriptionGroupsForAppV1 {
             }
         }
 
+        public enum SubscriptionGroupVersions: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case localizations
+            case state
+            case subscriptionGroup
+            case version
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = SubscriptionGroupVersions(rawValue: string) {
+                    self = value
+                } else if let value = SubscriptionGroupVersions(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid SubscriptionGroupVersions value: \(string)"
+                    )
+                }
+            }
+        }
+
         public enum SubscriptionGroups: String, Sendable, ParameterValue, Codable, CaseIterable {
             case referenceName
             case subscriptionGroupLocalizations
             case subscriptions
+            case versions
 
             public init(from decoder: Decoder) throws {
                 let container = try decoder.singleValueContainer()
@@ -111,6 +136,7 @@ public enum ListSubscriptionGroupsForAppV1 {
             case subscriptionAvailability
             case subscriptionLocalizations
             case subscriptionPeriod
+            case versions
             case winBackOffers
 
             public init(from decoder: Decoder) throws {
@@ -174,6 +200,7 @@ public enum ListSubscriptionGroupsForAppV1 {
     public enum Include: String, IncludeParameter, CaseIterable {
         case subscriptionGroupLocalizations
         case subscriptions
+        case versions
     }
 
     /**
@@ -194,5 +221,7 @@ public enum ListSubscriptionGroupsForAppV1 {
         case subscriptionGroupLocalizations(Int)
         /// Maximum number of related subscriptions returned (when they are included) - maximum 50
         case subscriptions(Int)
+        /// Maximum number of related versions returned (when they are included) - maximum 50
+        case versions(Int)
     }
 }

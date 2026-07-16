@@ -54,8 +54,14 @@ public enum ListItemsForReviewSubmissionV1 {
         case gameCenterLeaderboardSetVersions([GameCenterLeaderboardSetVersions])
         /// The fields to include for returned resources of type gameCenterLeaderboardVersions
         case gameCenterLeaderboardVersions([GameCenterLeaderboardVersions])
+        /// The fields to include for returned resources of type inAppPurchaseVersions
+        case inAppPurchaseVersions([InAppPurchaseVersions])
         /// The fields to include for returned resources of type reviewSubmissionItems
         case reviewSubmissionItems([ReviewSubmissionItems])
+        /// The fields to include for returned resources of type subscriptionGroupVersions
+        case subscriptionGroupVersions([SubscriptionGroupVersions])
+        /// The fields to include for returned resources of type subscriptionVersions
+        case subscriptionVersions([SubscriptionVersions])
 
         public enum AppCustomProductPageVersions: String, Sendable, ParameterValue, Codable, CaseIterable {
             case appCustomProductPage
@@ -327,6 +333,30 @@ public enum ListItemsForReviewSubmissionV1 {
             }
         }
 
+        public enum InAppPurchaseVersions: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case image
+            case images
+            case inAppPurchase
+            case localizations
+            case state
+            case version
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = InAppPurchaseVersions(rawValue: string) {
+                    self = value
+                } else if let value = InAppPurchaseVersions(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid InAppPurchaseVersions value: \(string)"
+                    )
+                }
+            }
+        }
+
         public enum ReviewSubmissionItems: String, Sendable, ParameterValue, Codable, CaseIterable {
             case appCustomProductPageVersion
             case appEvent
@@ -339,7 +369,10 @@ public enum ListItemsForReviewSubmissionV1 {
             case gameCenterChallengeVersion
             case gameCenterLeaderboardSetVersion
             case gameCenterLeaderboardVersion
+            case inAppPurchaseVersion
             case state
+            case subscriptionGroupVersion
+            case subscriptionVersion
 
             public init(from decoder: Decoder) throws {
                 let container = try decoder.singleValueContainer()
@@ -352,6 +385,52 @@ public enum ListItemsForReviewSubmissionV1 {
                     throw DecodingError.dataCorruptedError(
                         in: container,
                         debugDescription: "Invalid ReviewSubmissionItems value: \(string)"
+                    )
+                }
+            }
+        }
+
+        public enum SubscriptionGroupVersions: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case localizations
+            case state
+            case subscriptionGroup
+            case version
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = SubscriptionGroupVersions(rawValue: string) {
+                    self = value
+                } else if let value = SubscriptionGroupVersions(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid SubscriptionGroupVersions value: \(string)"
+                    )
+                }
+            }
+        }
+
+        public enum SubscriptionVersions: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case image
+            case images
+            case localizations
+            case state
+            case subscription
+            case version
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = SubscriptionVersions(rawValue: string) {
+                    self = value
+                } else if let value = SubscriptionVersions(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid SubscriptionVersions value: \(string)"
                     )
                 }
             }
@@ -373,5 +452,8 @@ public enum ListItemsForReviewSubmissionV1 {
         case gameCenterChallengeVersion
         case gameCenterLeaderboardSetVersion
         case gameCenterLeaderboardVersion
+        case inAppPurchaseVersion
+        case subscriptionGroupVersion
+        case subscriptionVersion
     }
 }

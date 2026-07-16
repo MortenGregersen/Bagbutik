@@ -65,6 +65,7 @@ public enum ListPricesForSubscriptionOfferCodeV1 {
         }
 
         public enum SubscriptionPricePoints: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case adjustedEqualizations
             case customerPrice
             case equalizations
             case proceeds

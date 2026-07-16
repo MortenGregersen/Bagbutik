@@ -37,6 +37,7 @@ public enum GetSubscriptionPricePointV1 {
         case territories([Territories])
 
         public enum SubscriptionPricePoints: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case adjustedEqualizations
             case customerPrice
             case equalizations
             case proceeds

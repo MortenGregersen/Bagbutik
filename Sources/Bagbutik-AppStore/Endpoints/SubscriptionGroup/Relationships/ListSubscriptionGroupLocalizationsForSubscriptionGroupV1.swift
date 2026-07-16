@@ -66,6 +66,7 @@ public enum ListSubscriptionGroupLocalizationsForSubscriptionGroupV1 {
             case referenceName
             case subscriptionGroupLocalizations
             case subscriptions
+            case versions
 
             public init(from decoder: Decoder) throws {
                 let container = try decoder.singleValueContainer()

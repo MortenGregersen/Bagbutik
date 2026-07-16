@@ -61,9 +61,22 @@ public struct SubscriptionGroupResponse: Codable, Sendable {
         return subscriptions
     }
 
+    public func getVersions() -> [SubscriptionGroupVersion] {
+        guard let versionIds = data.relationships?.versions?.data?.map(\.id),
+              let versions = included?.compactMap({ relationship -> SubscriptionGroupVersion? in
+                  guard case let .subscriptionGroupVersion(version) = relationship else { return nil }
+                  return versionIds.contains(version.id) ? version : nil
+              })
+        else {
+            return []
+        }
+        return versions
+    }
+
     public enum Included: Codable, Sendable {
         case subscription(Subscription)
         case subscriptionGroupLocalization(SubscriptionGroupLocalization)
+        case subscriptionGroupVersion(SubscriptionGroupVersion)
 
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: AnyCodingKey.self)
@@ -73,6 +86,8 @@ public struct SubscriptionGroupResponse: Codable, Sendable {
                 self = .subscription(try Subscription(from: decoder))
             case "subscriptionGroupLocalizations":
                 self = .subscriptionGroupLocalization(try SubscriptionGroupLocalization(from: decoder))
+            case "subscriptionGroupVersions":
+                self = .subscriptionGroupVersion(try SubscriptionGroupVersion(from: decoder))
             default:
                 throw DecodingError.dataCorruptedError(
                     forKey: "type",
@@ -86,6 +101,8 @@ public struct SubscriptionGroupResponse: Codable, Sendable {
             case let .subscription(value):
                 try value.encode(to: encoder)
             case let .subscriptionGroupLocalization(value):
+                try value.encode(to: encoder)
+            case let .subscriptionGroupVersion(value):
                 try value.encode(to: encoder)
             }
         }

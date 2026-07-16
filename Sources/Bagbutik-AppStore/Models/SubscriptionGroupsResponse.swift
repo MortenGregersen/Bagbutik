@@ -68,9 +68,22 @@ public struct SubscriptionGroupsResponse: Codable, Sendable, PagedResponse {
         return subscriptions
     }
 
+    public func getVersions(for subscriptionGroup: SubscriptionGroup) -> [SubscriptionGroupVersion] {
+        guard let versionIds = subscriptionGroup.relationships?.versions?.data?.map(\.id),
+              let versions = included?.compactMap({ relationship -> SubscriptionGroupVersion? in
+                  guard case let .subscriptionGroupVersion(version) = relationship else { return nil }
+                  return versionIds.contains(version.id) ? version : nil
+              })
+        else {
+            return []
+        }
+        return versions
+    }
+
     public enum Included: Codable, Sendable {
         case subscription(Subscription)
         case subscriptionGroupLocalization(SubscriptionGroupLocalization)
+        case subscriptionGroupVersion(SubscriptionGroupVersion)
 
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: AnyCodingKey.self)
@@ -80,6 +93,8 @@ public struct SubscriptionGroupsResponse: Codable, Sendable, PagedResponse {
                 self = .subscription(try Subscription(from: decoder))
             case "subscriptionGroupLocalizations":
                 self = .subscriptionGroupLocalization(try SubscriptionGroupLocalization(from: decoder))
+            case "subscriptionGroupVersions":
+                self = .subscriptionGroupVersion(try SubscriptionGroupVersion(from: decoder))
             default:
                 throw DecodingError.dataCorruptedError(
                     forKey: "type",
@@ -93,6 +108,8 @@ public struct SubscriptionGroupsResponse: Codable, Sendable, PagedResponse {
             case let .subscription(value):
                 try value.encode(to: encoder)
             case let .subscriptionGroupLocalization(value):
+                try value.encode(to: encoder)
+            case let .subscriptionGroupVersion(value):
                 try value.encode(to: encoder)
             }
         }

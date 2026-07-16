@@ -3,9 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # List In-App Purchase Images
-     The data structure that represents a get-v2-in-app purchases-{id}-images resource.
-
+     # List in-app purchase images
      List all images for a specific in-app purchase.
 
      Full documentation:
@@ -84,6 +82,7 @@ public enum ListImagesForInAppPurchasesV2 {
             case promotedPurchase
             case reviewNote
             case state
+            case versions
 
             public init(from decoder: Decoder) throws {
                 let container = try decoder.singleValueContainer()

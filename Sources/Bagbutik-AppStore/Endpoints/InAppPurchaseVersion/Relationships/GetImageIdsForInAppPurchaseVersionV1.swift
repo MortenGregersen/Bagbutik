@@ -1,0 +1,20 @@
+import Bagbutik_Core
+import Bagbutik_Models
+
+public extension Request {
+    /**
+     # Read the image ID for an in-app purchase version
+     Get the related resource ID for the review image attached to a draft version of an in-app purchase.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-inAppPurchaseVersions-_id_-relationships-image>
+
+     - Parameter id: The id of the requested resource
+     - Returns: A ``Request`` to send to an instance of ``BagbutikService``
+     */
+    static func getImageIdsForInAppPurchaseVersionV1(id: String) -> Request<InAppPurchaseVersionImageLinkageResponse, ErrorResponse> {
+        .init(
+            path: "/v1/inAppPurchaseVersions/\(id)/relationships/image",
+            method: .get)
+    }
+}
