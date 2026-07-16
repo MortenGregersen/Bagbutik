@@ -70,6 +70,7 @@ public enum PackageName: CaseIterable, Codable, Equatable {
             || resource.hasSuffix("Builds")
             || (resource.hasPrefix("app") && !resource.lowercased().contains("beta"))
             || resource.hasPrefix("automaticPrices")
+            || resource.hasPrefix("adjustedEqualizations")
             || resource.hasPrefix("baseTerritory")
             || resource.hasPrefix("brazil")
             || resource.hasPrefix("custom")

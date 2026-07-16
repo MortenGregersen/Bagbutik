@@ -57,6 +57,10 @@ class PackageNameTests: XCTestCase {
         XCTAssertEqual(PackageName.resolvePackageName(from: "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-subscriptions-_id_-relationships-planAvailabilities"), .appStore)
     }
 
+    func testResolvePackageNameFromAdjustedEqualizationsOperationIdentifiers() {
+        XCTAssertEqual(PackageName.resolvePackageName(from: "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-subscriptionPricePoints-_id_-adjustedEqualizations"), .appStore)
+    }
+
     func testResolvePackageNameFromSubscriptionVersionOperationIdentifiers() {
         XCTAssertEqual(PackageName.resolvePackageName(from: "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-subscriptions-_id_-versions"), .appStore)
         XCTAssertEqual(PackageName.resolvePackageName(from: "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-subscriptions-_id_-relationships-versions"), .appStore)
