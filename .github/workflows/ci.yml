@@ -25,6 +25,8 @@ jobs:
         swift --version
     - name: Build & Test
       run: swift test -v --enable-code-coverage --xunit-output .build/test-results.xml
+    - name: Test Maintainer Tools
+      run: swift test -v --package-path Tools
     - name: Generate LCOV coverage report
       id: coverage
       run: |
@@ -59,6 +61,23 @@ jobs:
         token: ${{ secrets.CODECOV_TOKEN }}
         files: ${{ steps.test_results.outputs.path }}
         report_type: test_results
+  build-apple-minimum:
+    name: Build and Test (Xcode 16)
+    runs-on: macos-15
+    permissions:
+      contents: read
+    env:
+      DEVELOPER_DIR: /Applications/Xcode_16.app/Contents/Developer
+    steps:
+    - uses: actions/checkout@v4
+    - name: Print Xcode & Swift Version
+      run: |
+        xcodebuild -version
+        swift --version
+    - name: Test Runtime Package
+      run: swift test -v
+    - name: Test Maintainer Tools
+      run: swift test -v --package-path Tools
   build-linux:
     name: Build and Test (Linux) - Swift ${{ matrix.swift }}
     runs-on: ubuntu-latest
@@ -66,7 +85,7 @@ jobs:
       contents: read
     strategy:
       matrix:
-        swift: ["5.10", "6.0", "6.1", "6.2", "6.3"]
+        swift: ["6.0", "6.1", "6.2", "6.3"]
     steps:
     - uses: vapor/swiftly-action@v0.2
       with:
@@ -74,6 +93,8 @@ jobs:
     - uses: actions/checkout@v4
     - name: Test
       run: swift test -v
+    - name: Test Maintainer Tools
+      run: swift test -v --package-path Tools
   build-android:
     name: Build and Test (Android) - Swift 6.3
     runs-on: ubuntu-latest
