@@ -93,7 +93,7 @@ prepare_monolithic_package() {
   mkdir -p "$MONOLITHIC_PACKAGE_DIR/Sources/$LIBRARY"
 
   cat > "$MONOLITHIC_PACKAGE_DIR/Package.swift" <<PACKAGE_EOF
-// swift-tools-version:5.10
+// swift-tools-version:6.0
 
 import PackageDescription
 
@@ -103,7 +103,8 @@ let package = Package(
         .macOS(.v12),
         .iOS(.v15),
         .tvOS(.v15),
-        .watchOS(.v8)
+        .watchOS(.v9),
+        .visionOS(.v1)
     ],
     products: [
         .library(
@@ -115,7 +116,7 @@ let package = Package(
     targets: [
         .target(name: "$LIBRARY")
     ],
-    swiftLanguageVersions: [.v5, .version("6")]
+    swiftLanguageModes: [.v5, .v6]
 )
 PACKAGE_EOF
 
@@ -145,7 +146,6 @@ build_framework() {
   local -a build_settings=(
     "SKIP_INSTALL=NO"
     "BUILD_LIBRARY_FOR_DISTRIBUTION=YES"
-    "OTHER_SWIFT_FLAGS=-no-verify-emitted-module-interface"
   )
 
   if [ "$sdk" = "$IOS_DEVICE_SDK" ]; then
@@ -160,7 +160,6 @@ build_framework() {
     dest="generic/platform=tvOS Simulator"
   elif [ "$sdk" = "$WATCHOS_DEVICE_SDK" ]; then
     dest="generic/platform=watchOS"
-    build_settings+=("EXCLUDED_ARCHS=armv7k")
   elif [ "$sdk" = "$WATCHOS_SIMULATOR_SDK" ]; then
     dest="generic/platform=watchOS Simulator"
   elif [ "$sdk" = "$VISIONOS_DEVICE_SDK" ]; then
@@ -177,9 +176,6 @@ build_framework() {
   echo "Configuration: $CONFIGURATION"
   echo "SDK: $sdk"
   echo "Destination: $dest"
-  if [ "$sdk" = "$WATCHOS_DEVICE_SDK" ]; then
-    echo "Excluded architectures: armv7k"
-  fi
   echo
 
   (

@@ -65,19 +65,19 @@ The repository is split into a small manually maintained core and a large genera
 * `Bagbutik-Core` contains the request service, JWT support, shared response protocols, and the common models used across all API areas.
 * `Bagbutik-Models` contains generated shared models that are referenced by more than one API area.
 * `Bagbutik-AppStore`, `Bagbutik-TestFlight`, `Bagbutik-Reporting`, and the other product modules contain generated endpoint builders grouped by App Store Connect domain.
-* `BagbutikSpecDecoder` decodes Apple's OpenAPI document into an intermediate Swift representation.
-* `BagbutikDocsCollector` downloads and normalizes Apple documentation so generated code gets useful Xcode documentation comments.
-* `BagbutikGenerator` combines the decoded spec and collected docs to render the Swift source in `Sources/`.
+* `Tools/Sources/BagbutikSpecDecoder` decodes Apple's OpenAPI document into an intermediate Swift representation.
+* `Tools/Sources/BagbutikDocsCollector` downloads and normalizes Apple documentation so generated code gets useful Xcode documentation comments.
+* `Tools/Sources/BagbutikGenerator` combines the decoded spec and collected docs to render the Swift source in `Sources/`.
 
-This split matters when navigating the codebase. If you want to understand runtime behavior, start in `Bagbutik-Core`. If you want to understand how generated endpoints and models are produced, start with `BagbutikSpecDecoder`, `BagbutikDocsCollector`, and `BagbutikGenerator`.
+This split matters when navigating the codebase. If you want to understand runtime behavior, start in `Bagbutik-Core`. If you want to understand how generated endpoints and models are produced, start with the nested `Tools` package.
 
 ## How to get Bagbutik into a project
 
-Bagbutik is primarily distributed as a **source-based Swift package** using
+Bagbutik is primarily distributed as a **source based Swift package** using
 [Swift Package Manager](https://www.swift.org/package-manager).
 
 For advanced use cases, a prebuilt **XCFramework** is also provided.
-Using the XCFramework is **optional** and does not replace the source-based package.
+Using the XCFramework is **optional** and does not replace the source based package.
 
 ### Using Bagbutik as a source package
 
@@ -231,7 +231,15 @@ Most files under `Sources/Bagbutik-*` are generated from Apple's OpenAPI documen
 3. Normalize the documentation into local lookup files in `Documentation/`.
 4. Render endpoints and models into the package sources.
 
-The manually maintained comments and types in `Bagbutik-Core`, `BagbutikSpecDecoder`, `BagbutikDocsCollector`, and `BagbutikGenerator` are the best places to look when you need to change generation behavior or understand why a generated file looks the way it does.
+The manually maintained comments and types in `Bagbutik-Core` and the nested `Tools` package are the best places to look when you need to change generation behavior or understand why a generated file looks the way it does.
+
+Run the maintainer CLI from the repository root with:
+
+```sh
+swift run --package-path Tools bagbutik-cli
+```
+
+The CLI and generator are not part of the runtime package consumed by applications.
 
 ## Manual patches applied to OpenAPI Spec
 

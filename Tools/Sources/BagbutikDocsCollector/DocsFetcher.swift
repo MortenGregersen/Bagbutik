@@ -2,7 +2,6 @@ import BagbutikSpecDecoder
 import Foundation
 #if canImport(FoundationNetworking)
 // Non-Apple platform support
-import BagbutikPolyfill
 import FoundationNetworking
 #endif
 

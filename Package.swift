@@ -1,4 +1,4 @@
-// swift-tools-version:5.10
+// swift-tools-version:6.0
 
 import PackageDescription
 
@@ -8,7 +8,8 @@ let package = Package(
         .macOS(.v12),
         .iOS(.v15),
         .tvOS(.v15),
-        .watchOS(.v8)
+        .watchOS(.v9),
+        .visionOS(.v1)
     ],
     products: [
         .library(
@@ -73,21 +74,15 @@ let package = Package(
         .library(
             name: "Bagbutik-XcodeCloud",
             targets: ["Bagbutik-XcodeCloud"]
-        ),
-        .executable(
-            name: "bagbutik-cli",
-            targets: ["BagbutikCLI"]
         )
     ],
     dependencies: [
-        .package(url: "https://github.com/apple/swift-argument-parser", from: "1.5.1"),
         .package(url: "https://github.com/apple/swift-crypto", from: "3.12.3"),
     ],
     targets: [
         .target(name: "Bagbutik-Core", dependencies: [
             .product(name: "Crypto", package: "swift-crypto", condition: .when(platforms: [.linux, .android])),
-            .target(name: "system-zlib", condition: .when(platforms: [.linux, .android])),
-            .target(name: "BagbutikPolyfill", condition: .when(platforms: [.linux, .android]))
+            .target(name: "system-zlib", condition: .when(platforms: [.linux, .android]))
         ]),
         .target(name: "Bagbutik-Models", dependencies: ["Bagbutik-Core"]),
         .target(name: "Bagbutik-AppStore", dependencies: ["Bagbutik-Core", "Bagbutik-Models"]),
@@ -99,31 +94,6 @@ let package = Package(
         .target(name: "Bagbutik-Users", dependencies: ["Bagbutik-Core", "Bagbutik-Models"]),
         .target(name: "Bagbutik-Webhooks", dependencies: ["Bagbutik-Core", "Bagbutik-Models"]),
         .target(name: "Bagbutik-XcodeCloud", dependencies: ["Bagbutik-Core", "Bagbutik-Models"]),
-        .executableTarget(
-            name: "BagbutikCLI",
-            dependencies: [
-                "BagbutikGenerator",
-                "BagbutikDocsCollector",
-                .target(name: "BagbutikPolyfill", condition: .when(platforms: [.linux, .android])),
-                .product(name: "ArgumentParser", package: "swift-argument-parser")
-            ]
-        ),
-        // Internal targets
-        .target(
-            name: "BagbutikGenerator",
-            dependencies: [
-                "BagbutikDocsCollector",
-                "BagbutikSpecDecoder",
-                "BagbutikStringExtensions"
-            ]
-        ),
-        .target(name: "BagbutikDocsCollector", dependencies: [
-            "BagbutikSpecDecoder",
-            .target(name: "BagbutikPolyfill", condition: .when(platforms: [.linux, .android]))
-        ]),
-        .target(name: "BagbutikSpecDecoder", dependencies: ["BagbutikStringExtensions"]),
-        .target(name: "BagbutikStringExtensions"),
-        .target(name: "BagbutikPolyfill"),
         .target(name: "system-zlib"),
         // Test targets
         .testTarget(
@@ -136,11 +106,6 @@ let package = Package(
             resources: [.copy("test-private-key.p8")]
         ),
         .testTarget(name: "Bagbutik-ModelsTests", dependencies: ["Bagbutik-Models"]),
-        .testTarget(name: "BagbutikGeneratorTests", dependencies: ["BagbutikGenerator"]),
-        .testTarget(name: "BagbutikDocsCollectorTests", dependencies: ["BagbutikDocsCollector"]),
-        .testTarget(name: "BagbutikSpecDecoderTests", dependencies: ["BagbutikSpecDecoder"]),
-        .testTarget(name: "BagbutikStringExtensionsTests", dependencies: ["BagbutikStringExtensions"]),
     ],
-    swiftLanguageVersions: [.v5, .version("6")]
+    swiftLanguageModes: [.v5, .v6]
 )
-

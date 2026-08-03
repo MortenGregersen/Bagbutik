@@ -7,7 +7,7 @@ CI_DISPATCH_RETRY_DELAY_SECONDS=5
 EXIT_CODE_NO_SPEC_FILE_PATH_FOUND=42
 EXIT_CODE_CI_DISPATCH_FAILED=43
 
-download_newest_spec_output=$(swift run bagbutik-cli download-newest-spec)
+download_newest_spec_output=$(swift run --package-path Tools bagbutik-cli download-newest-spec)
 echo "$download_newest_spec_output"
 
 if [[ $download_newest_spec_output =~ Spec\ file\ downloaded\ to\ (.+) ]]; then
@@ -40,10 +40,10 @@ fi
 docs_output_file="$(mktemp)"
 trap 'rm -f "$docs_output_file"' EXIT
 
-swift run bagbutik-cli download-newest-docs --spec-path "$spec_file_path" 2>&1 | tee "$docs_output_file"
+swift run --package-path Tools bagbutik-cli download-newest-docs --spec-path "$spec_file_path" 2>&1 | tee "$docs_output_file"
 warnings="$(grep -a "⚠️" "$docs_output_file" || true)"
 
-swift run bagbutik-cli generate --spec-path "$spec_file_path"
+swift run --package-path Tools bagbutik-cli generate --spec-path "$spec_file_path"
 
 rm "$spec_file_path"
 echo "$downloaded_version" > spec-version
