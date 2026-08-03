@@ -82,8 +82,7 @@ let package = Package(
     targets: [
         .target(name: "Bagbutik-Core", dependencies: [
             .product(name: "Crypto", package: "swift-crypto", condition: .when(platforms: [.linux, .android])),
-            .target(name: "system-zlib", condition: .when(platforms: [.linux, .android])),
-            .target(name: "BagbutikPolyfill", condition: .when(platforms: [.linux, .android]))
+            .target(name: "system-zlib", condition: .when(platforms: [.linux, .android]))
         ]),
         .target(name: "Bagbutik-Models", dependencies: ["Bagbutik-Core"]),
         .target(name: "Bagbutik-AppStore", dependencies: ["Bagbutik-Core", "Bagbutik-Models"]),
@@ -95,7 +94,6 @@ let package = Package(
         .target(name: "Bagbutik-Users", dependencies: ["Bagbutik-Core", "Bagbutik-Models"]),
         .target(name: "Bagbutik-Webhooks", dependencies: ["Bagbutik-Core", "Bagbutik-Models"]),
         .target(name: "Bagbutik-XcodeCloud", dependencies: ["Bagbutik-Core", "Bagbutik-Models"]),
-        .target(name: "BagbutikPolyfill"),
         .target(name: "system-zlib"),
         // Test targets
         .testTarget(
