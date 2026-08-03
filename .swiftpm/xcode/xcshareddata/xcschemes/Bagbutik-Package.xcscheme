@@ -210,9 +210,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "system-zlib"
-               BuildableName = "system-zlib"
-               BlueprintName = "system-zlib"
+               BlueprintIdentifier = "Bagbutik-Core"
+               BuildableName = "Bagbutik-Core"
+               BlueprintName = "Bagbutik-Core"
                ReferencedContainer = "container:">
             </BuildableReference>
          </BuildActionEntry>
@@ -224,9 +224,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "Bagbutik-Core"
-               BuildableName = "Bagbutik-Core"
-               BlueprintName = "Bagbutik-Core"
+               BlueprintIdentifier = "system-zlib"
+               BuildableName = "system-zlib"
+               BlueprintName = "system-zlib"
                ReferencedContainer = "container:">
             </BuildableReference>
          </BuildActionEntry>
@@ -283,20 +283,6 @@
                BlueprintIdentifier = "Bagbutik-XcodeCloud"
                BuildableName = "Bagbutik-XcodeCloud"
                BlueprintName = "Bagbutik-XcodeCloud"
-               ReferencedContainer = "container:">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "NO"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "Bagbutik-Users"
-               BuildableName = "Bagbutik-Users"
-               BlueprintName = "Bagbutik-Users"
                ReferencedContainer = "container:">
             </BuildableReference>
          </BuildActionEntry>
@@ -367,6 +353,34 @@
                BlueprintIdentifier = "Bagbutik-Webhooks"
                BuildableName = "Bagbutik-Webhooks"
                BlueprintName = "Bagbutik-Webhooks"
+               ReferencedContainer = "container:">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "BagbutikCore"
+               BuildableName = "BagbutikCore"
+               BlueprintName = "BagbutikCore"
+               ReferencedContainer = "container:">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "BagbutikUsers"
+               BuildableName = "BagbutikUsers"
+               BlueprintName = "BagbutikUsers"
                ReferencedContainer = "container:">
             </BuildableReference>
          </BuildActionEntry>
@@ -451,6 +465,16 @@
                ReferencedContainer = "container:">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "BagbutikUsersIntegrationTests"
+               BuildableName = "BagbutikUsersIntegrationTests"
+               BlueprintName = "BagbutikUsersIntegrationTests"
+               ReferencedContainer = "container:">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction
@@ -490,6 +514,15 @@
             ReferencedContainer = "container:">
          </BuildableReference>
       </BuildableProductRunnable>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "bagbutik-cli"
+            BuildableName = "bagbutik-cli"
+            BlueprintName = "bagbutik-cli"
+            ReferencedContainer = "container:">
+         </BuildableReference>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

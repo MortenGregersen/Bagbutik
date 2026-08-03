@@ -2,304 +2,530 @@
 
 set -euo pipefail
 
-IOS_DEVICE_SDK="iphoneos"
-IOS_SIMULATOR_SDK="iphonesimulator"
-MACOS_SDK="macosx"
-TVOS_DEVICE_SDK="appletvos"
-TVOS_SIMULATOR_SDK="appletvsimulator"
-WATCHOS_DEVICE_SDK="watchos"
-WATCHOS_SIMULATOR_SDK="watchsimulator"
-VISIONOS_DEVICE_SDK="xros"
-VISIONOS_SIMULATOR_SDK="xrsimulator"
+ROOT_DIR="$(cd "$(dirname "$0")/.." && pwd)"
+BUILD_DIR="$ROOT_DIR/build/xcframework"
+DIST_DIR="$ROOT_DIR/output"
+INTEGRATION_DIR="$BUILD_DIR/integration"
+CONFIGURATION="release"
+BUILD_TARGET="BagbutikUsers"
 
-LIBRARY="Bagbutik"
+MODULES=(
+  "BagbutikCore"
+  "BagbutikModelsShared"
+  "BagbutikUsersModels"
+  "BagbutikUsers"
+)
 
 SDKS=(
-  "$IOS_DEVICE_SDK"
-  "$IOS_SIMULATOR_SDK"
-  "$MACOS_SDK"
-  "$TVOS_DEVICE_SDK"
-  "$TVOS_SIMULATOR_SDK"
-  "$WATCHOS_DEVICE_SDK"
-  "$WATCHOS_SIMULATOR_SDK"
-  "$VISIONOS_DEVICE_SDK"
-  "$VISIONOS_SIMULATOR_SDK"
+  "iphoneos"
+  "iphonesimulator"
+  "macosx"
+  "appletvos"
+  "appletvsimulator"
+  "watchos"
+  "watchsimulator"
+  "xros"
+  "xrsimulator"
 )
 
 if [ -n "${BAGBUTIK_SDKS:-}" ]; then
   IFS=',' read -r -a SDKS <<< "$BAGBUTIK_SDKS"
 fi
-CONFIGURATION="Release"
 
-codesign_framework() {
-  local framework_path=$1
-
-  echo "Codesigning framework: $framework_path"
-  codesign --force --sign "-" --timestamp=none "$framework_path" || exit 22
-  codesign --verify --strict "$framework_path" || exit 23
+sdk_triples() {
+  case "$1" in
+    iphoneos)
+      echo "arm64-apple-ios15.0"
+      ;;
+    iphonesimulator)
+      echo "arm64-apple-ios15.0-simulator"
+      echo "x86_64-apple-ios15.0-simulator"
+      ;;
+    macosx)
+      echo "arm64-apple-macosx12.0"
+      echo "x86_64-apple-macosx12.0"
+      ;;
+    appletvos)
+      echo "arm64-apple-tvos15.0"
+      ;;
+    appletvsimulator)
+      echo "arm64-apple-tvos15.0-simulator"
+      echo "x86_64-apple-tvos15.0-simulator"
+      ;;
+    watchos)
+      echo "arm64_32-apple-watchos9.0"
+      echo "arm64-apple-watchos9.0"
+      ;;
+    watchsimulator)
+      echo "arm64-apple-watchos9.0-simulator"
+      echo "x86_64-apple-watchos9.0-simulator"
+      ;;
+    xros)
+      echo "arm64-apple-xros1.0"
+      ;;
+    xrsimulator)
+      echo "arm64-apple-xros1.0-simulator"
+      ;;
+    *)
+      echo "Unknown SDK: $1" >&2
+      exit 11
+      ;;
+  esac
 }
 
-ROOT_DIR="$(pwd)"
-BUILD_DIR="$ROOT_DIR/build"
-DIST_DIR="$ROOT_DIR/output"
-MONOLITHIC_PACKAGE_DIR="$BUILD_DIR/MonolithicPackage"
-
-discover_libraries() {
-  LIBRARIES=()
-  while IFS= read -r library; do
-    LIBRARIES+=("$library")
-  done < <(
-    find "$ROOT_DIR/Sources" -mindepth 1 -maxdepth 1 -type d -name 'Bagbutik-*' -print \
-      | sed 's#.*/##' \
-      | sort
-  )
-
-  if [ ${#LIBRARIES[@]} -eq 0 ]; then
-    echo "No source libraries found in $ROOT_DIR/Sources matching Bagbutik-*"
-    exit 17
+swiftpm_triple_directory() {
+  if [[ "$1" == *-apple-xros* ]]; then
+    echo "$1"
+    return
   fi
 
-  echo "Discovered libraries:"
-  for library in "${LIBRARIES[@]}"; do
-    echo "- $library"
-  done
+  echo "$1" | sed -E 's/(macosx|ios|tvos|watchos|xros)[0-9]+(\.[0-9]+)*/\1/'
 }
 
-sdk_is_available() {
-  local sdk=$1
-  xcrun --sdk "$sdk" --show-sdk-path >/dev/null 2>&1
+swift_module_triple() {
+  echo "$1" \
+    | sed -E 's/(macosx|ios|tvos|watchos|xros)[0-9]+(\.[0-9]+)*/\1/' \
+    | sed 's/apple-macosx/apple-macos/'
 }
 
-require_all_sdks() {
-  missing_sdks=()
+sdk_path() {
+  xcrun --sdk "$1" --show-sdk-path
+}
 
-  for sdk in "${SDKS[@]}"; do
-    if ! sdk_is_available "$sdk"; then
-      missing_sdks+=("$sdk (SDK not installed)")
+require_tools_and_sdks() {
+  local tool
+  local sdk
+  local missing=()
+
+  for tool in swift xcodebuild xcrun zip; do
+    if ! command -v "$tool" >/dev/null 2>&1; then
+      missing+=("$tool")
     fi
   done
 
-  if [ ${#missing_sdks[@]} -gt 0 ]; then
-    echo "Missing required SDKs: ${missing_sdks[*]}"
-    echo "Install the missing platforms in Xcode before building release artifacts."
-    exit 16
+  for sdk in "${SDKS[@]}"; do
+    if ! xcrun --sdk "$sdk" --show-sdk-path >/dev/null 2>&1; then
+      missing+=("$sdk SDK")
+    fi
+  done
+
+  if [ ${#missing[@]} -gt 0 ]; then
+    echo "Missing required build tools or SDKs: ${missing[*]}" >&2
+    exit 12
   fi
 }
 
-prepare_monolithic_package() {
-  echo "*** Prepare release package ***"
+prepare_directories() {
+  if [ "$BUILD_DIR" != "$ROOT_DIR/build/xcframework" ] || [ "$DIST_DIR" != "$ROOT_DIR/output" ]; then
+    echo "Refusing to clean unexpected build paths." >&2
+    exit 13
+  fi
 
-  rm -rf "$MONOLITHIC_PACKAGE_DIR"
-  mkdir -p "$MONOLITHIC_PACKAGE_DIR/Sources/$LIBRARY"
+  if [ "${BAGBUTIK_KEEP_BUILD:-false}" != "true" ]; then
+    rm -rf "$BUILD_DIR"
+  else
+    rm -rf "$BUILD_DIR/thin"
+    rm -rf "$BUILD_DIR/libraries"
+    rm -rf "$INTEGRATION_DIR"
+  fi
+  rm -rf "$DIST_DIR"
+  mkdir -p "$BUILD_DIR" "$DIST_DIR"
+}
 
-  cat > "$MONOLITHIC_PACKAGE_DIR/Package.swift" <<PACKAGE_EOF
+build_triple() {
+  local sdk=$1
+  local triple=$2
+  local sdk_root
+  local scratch_path="$BUILD_DIR/swiftpm/$triple"
+
+  sdk_root="$(sdk_path "$sdk")"
+
+  if [ "$sdk" = "xros" ] || [ "$sdk" = "xrsimulator" ]; then
+    build_visionos_triple "$triple" "$sdk_root"
+    return
+  fi
+
+  echo "Building $BUILD_TARGET for $triple"
+  swift build \
+    --package-path "$ROOT_DIR" \
+    --scratch-path "$scratch_path" \
+    --triple "$triple" \
+    --sdk "$sdk_root" \
+    --target "$BUILD_TARGET" \
+    --configuration "$CONFIGURATION" \
+    -Xswiftc -enable-library-evolution \
+    -Xswiftc -emit-module-interface
+}
+
+module_source_directory() {
+  case "$1" in
+    BagbutikCore)
+      echo "$ROOT_DIR/Sources/Bagbutik-Core"
+      ;;
+    BagbutikModelsShared)
+      echo "$ROOT_DIR/Sources/BagbutikModelsShared"
+      ;;
+    BagbutikUsersModels)
+      echo "$ROOT_DIR/Sources/BagbutikUsersModels"
+      ;;
+    BagbutikUsers)
+      echo "$ROOT_DIR/Sources/Bagbutik-Users"
+      ;;
+    *)
+      echo "No source directory mapping for $1" >&2
+      exit 18
+      ;;
+  esac
+}
+
+build_visionos_triple() {
+  local triple=$1
+  local sdk_root=$2
+  local product_directory="$BUILD_DIR/direct/$triple"
+  local modules_directory="$product_directory/Modules"
+  local module
+  local source_directory
+  local module_build_directory
+  local sources=()
+
+  echo "Building $BUILD_TARGET directly for $triple"
+  mkdir -p "$modules_directory" "$product_directory/ModuleCache"
+
+  for module in "${MODULES[@]}"; do
+    source_directory="$(module_source_directory "$module")"
+    module_build_directory="$product_directory/$module.build"
+    sources=()
+
+    while IFS= read -r source; do
+      sources+=("$source")
+    done < <(find "$source_directory" -type f -name '*.swift' -print | sort)
+
+    if [ ${#sources[@]} -eq 0 ]; then
+      echo "No Swift sources found for $module at $source_directory" >&2
+      exit 19
+    fi
+
+    mkdir -p "$module_build_directory"
+    swiftc "${sources[@]}" \
+      -parse-as-library \
+      -O \
+      -whole-module-optimization \
+      -swift-version 6 \
+      -target "$triple" \
+      -sdk "$sdk_root" \
+      -module-cache-path "$product_directory/ModuleCache" \
+      -I "$modules_directory" \
+      -module-name "$module" \
+      -enable-library-evolution \
+      -emit-module \
+      -emit-module-path "$modules_directory/$module.swiftmodule" \
+      -emit-module-interface-path "$module_build_directory/$module.swiftinterface" \
+      -emit-object \
+      -o "$module_build_directory/$module.o"
+  done
+}
+
+archive_thin_module() {
+  local sdk=$1
+  local triple=$2
+  local module=$3
+  local triple_directory
+  local product_directory
+  local module_build_directory
+  local thin_directory="$BUILD_DIR/thin/$triple"
+  local objects=()
+
+  if [ "$sdk" = "xros" ] || [ "$sdk" = "xrsimulator" ]; then
+    product_directory="$BUILD_DIR/direct/$triple"
+  else
+    triple_directory="$(swiftpm_triple_directory "$triple")"
+    product_directory="$BUILD_DIR/swiftpm/$triple/$triple_directory/$CONFIGURATION"
+  fi
+  module_build_directory="$product_directory/$module.build"
+
+  if [ ! -f "$module_build_directory/$module.swiftinterface" ]; then
+    echo "Missing public module interface for $module at $module_build_directory" >&2
+    exit 14
+  fi
+
+  while IFS= read -r object; do
+    objects+=("$object")
+  done < <(find "$module_build_directory" -maxdepth 1 -type f -name '*.o' -print | sort)
+
+  if [ ${#objects[@]} -eq 0 ]; then
+    echo "No object files found for $module at $module_build_directory" >&2
+    exit 15
+  fi
+
+  mkdir -p "$thin_directory"
+  xcrun libtool -static -o "$thin_directory/lib$module.a" "${objects[@]}"
+
+  local interface_directory="$BUILD_DIR/libraries/$sdk/$module/Headers/$module.swiftmodule"
+  mkdir -p "$interface_directory"
+  cp "$module_build_directory/$module.swiftinterface" "$interface_directory/$(swift_module_triple "$triple").swiftinterface"
+}
+
+combine_sdk_module() {
+  local sdk=$1
+  local module=$2
+  local libraries=()
+  local triple
+  local output_directory="$BUILD_DIR/libraries/$sdk/$module"
+
+  while IFS= read -r triple; do
+    libraries+=("$BUILD_DIR/thin/$triple/lib$module.a")
+  done < <(sdk_triples "$sdk")
+
+  mkdir -p "$output_directory"
+  xcrun lipo -create "${libraries[@]}" -output "$output_directory/lib$module.a"
+  xcrun strip -S "$output_directory/lib$module.a"
+}
+
+create_module_xcframework() {
+  local module=$1
+  local args=()
+  local sdk
+
+  for sdk in "${SDKS[@]}"; do
+    args+=(
+      -library "$BUILD_DIR/libraries/$sdk/$module/lib$module.a"
+      -headers "$BUILD_DIR/libraries/$sdk/$module/Headers"
+    )
+  done
+
+  echo "Creating $module.xcframework"
+  xcodebuild -create-xcframework "${args[@]}" -output "$DIST_DIR/$module.xcframework"
+
+  if find "$DIST_DIR/$module.xcframework" -type f -name '*.swiftinterface' -print -quit | grep -q .; then
+    return
+  fi
+
+  echo "No public Swift module interfaces found in $module.xcframework" >&2
+  exit 16
+}
+
+zip_module_xcframework() {
+  local module=$1
+
+  if [ "${BAGBUTIK_SKIP_ZIP:-false}" = "true" ]; then
+    return
+  fi
+
+  (
+    cd "$DIST_DIR"
+    zip -qry "$module.xcframework.zip" "$module.xcframework"
+  )
+}
+
+prepare_binary_integration_fixture() {
+  mkdir -p "$INTEGRATION_DIR/BagbutikBinaryPackage/Artifacts"
+  mkdir -p "$INTEGRATION_DIR/BagbutikUsersBinaryClient/Sources/BagbutikUsersBinaryClient"
+
+  cat > "$INTEGRATION_DIR/BagbutikBinaryPackage/Package.swift" <<'PACKAGE_EOF'
 // swift-tools-version:6.0
 
 import PackageDescription
 
 let package = Package(
-    name: "$LIBRARY",
+    name: "Bagbutik",
     platforms: [
         .macOS(.v12),
         .iOS(.v15),
         .tvOS(.v15),
         .watchOS(.v9),
-        .visionOS(.v1)
+        .visionOS(.v1),
     ],
     products: [
         .library(
-            name: "$LIBRARY",
-            type: .dynamic,
-            targets: ["$LIBRARY"]
-        )
+            name: "BagbutikUsers",
+            targets: [
+                "BagbutikCore",
+                "BagbutikModelsShared",
+                "BagbutikUsersModels",
+                "BagbutikUsers",
+            ]
+        ),
     ],
     targets: [
-        .target(name: "$LIBRARY")
-    ],
-    swiftLanguageModes: [.v5, .v6]
+        .binaryTarget(name: "BagbutikCore", path: "Artifacts/BagbutikCore.xcframework"),
+        .binaryTarget(name: "BagbutikModelsShared", path: "Artifacts/BagbutikModelsShared.xcframework"),
+        .binaryTarget(name: "BagbutikUsersModels", path: "Artifacts/BagbutikUsersModels.xcframework"),
+        .binaryTarget(name: "BagbutikUsers", path: "Artifacts/BagbutikUsers.xcframework"),
+    ]
 )
 PACKAGE_EOF
 
-  for library in "${LIBRARIES[@]}"; do
-    source_path="$ROOT_DIR/Sources/$library"
-    if [ ! -d "$source_path" ]; then
-      echo "Missing source directory: $source_path"
-      exit 18
-    fi
+  cat > "$INTEGRATION_DIR/BagbutikUsersBinaryClient/Package.swift" <<'PACKAGE_EOF'
+// swift-tools-version:6.0
 
-    target_path="$MONOLITHIC_PACKAGE_DIR/Sources/$LIBRARY/$library"
-    mkdir -p "$target_path"
-    cp -R "$source_path"/. "$target_path"
+import PackageDescription
+
+let package = Package(
+    name: "BagbutikUsersBinaryClient",
+    platforms: [
+        .macOS(.v12),
+        .iOS(.v15),
+        .tvOS(.v15),
+        .watchOS(.v9),
+        .visionOS(.v1),
+    ],
+    dependencies: [
+        .package(name: "Bagbutik", path: "../BagbutikBinaryPackage"),
+    ],
+    targets: [
+        .executableTarget(
+            name: "BagbutikUsersBinaryClient",
+            dependencies: [
+                .product(name: "BagbutikUsers", package: "Bagbutik"),
+            ]
+        ),
+    ]
+)
+PACKAGE_EOF
+
+  cat > "$INTEGRATION_DIR/BagbutikUsersBinaryClient/Sources/BagbutikUsersBinaryClient/main.swift" <<'SOURCE_EOF'
+import BagbutikCore
+import BagbutikModelsShared
+import BagbutikUsers
+import BagbutikUsersModels
+
+let request = Request<UsersResponse, ErrorResponse>.listUsersV1(
+    filters: [.roles([.admin])],
+    includes: [.visibleApps],
+    limits: [.limit(20)]
+)
+
+print(request.path)
+SOURCE_EOF
+
+  local module
+  for module in "${MODULES[@]}"; do
+    cp -R "$DIST_DIR/$module.xcframework" "$INTEGRATION_DIR/BagbutikBinaryPackage/Artifacts/"
   done
-
-  # In the monolithic release target all Bagbutik types live in the same module,
-  # so inter-module imports must be removed.
-  while IFS= read -r -d '' file; do
-    perl -0pi -e 's/^import Bagbutik_[A-Za-z0-9_]+\n//mg' "$file"
-  done < <(find "$MONOLITHIC_PACKAGE_DIR/Sources/$LIBRARY" -name '*.swift' -type f -print0)
 }
 
-build_framework() {
-  local scheme=$1
-  local sdk=$2
-  local dest=""
-  local -a build_settings=(
-    "SKIP_INSTALL=NO"
-    "BUILD_LIBRARY_FOR_DISTRIBUTION=YES"
+verify_binary_integration() {
+  local sdk
+  local triple
+  local sdk_root
+
+  if [ "${BAGBUTIK_SKIP_VERIFY:-false}" = "true" ]; then
+    return
+  fi
+
+  prepare_binary_integration_fixture
+
+  for sdk in "${SDKS[@]}"; do
+    sdk_root="$(sdk_path "$sdk")"
+    while IFS= read -r triple; do
+      if [ "$sdk" = "xros" ] || [ "$sdk" = "xrsimulator" ]; then
+        verify_visionos_binary_integration "$sdk" "$triple" "$sdk_root"
+        continue
+      fi
+
+      echo "Verifying binary package consumer for $triple"
+      swift build \
+        --package-path "$INTEGRATION_DIR/BagbutikUsersBinaryClient" \
+        --scratch-path "$INTEGRATION_DIR/build/$triple" \
+        --triple "$triple" \
+        --sdk "$sdk_root" \
+        --configuration "$CONFIGURATION"
+    done < <(sdk_triples "$sdk")
+  done
+}
+
+verify_visionos_binary_integration() {
+  local sdk=$1
+  local triple=$2
+  local sdk_root=$3
+  local library_identifier
+  local module
+  local import_arguments=()
+  local libraries=()
+  local output_directory="$INTEGRATION_DIR/build/$triple"
+
+  if [ "$sdk" = "xros" ]; then
+    library_identifier="xros-arm64"
+  else
+    library_identifier="xros-arm64-simulator"
+  fi
+
+  for module in "${MODULES[@]}"; do
+    import_arguments+=(
+      -I "$DIST_DIR/$module.xcframework/$library_identifier/Headers"
+    )
+  done
+
+  libraries+=(
+    "$DIST_DIR/BagbutikUsers.xcframework/$library_identifier/libBagbutikUsers.a"
+    "$DIST_DIR/BagbutikUsersModels.xcframework/$library_identifier/libBagbutikUsersModels.a"
+    "$DIST_DIR/BagbutikModelsShared.xcframework/$library_identifier/libBagbutikModelsShared.a"
+    "$DIST_DIR/BagbutikCore.xcframework/$library_identifier/libBagbutikCore.a"
   )
 
-  if [ "$sdk" = "$IOS_DEVICE_SDK" ]; then
-    dest="generic/platform=iOS"
-  elif [ "$sdk" = "$IOS_SIMULATOR_SDK" ]; then
-    dest="generic/platform=iOS Simulator"
-  elif [ "$sdk" = "$MACOS_SDK" ]; then
-    dest="generic/platform=macOS"
-  elif [ "$sdk" = "$TVOS_DEVICE_SDK" ]; then
-    dest="generic/platform=tvOS"
-  elif [ "$sdk" = "$TVOS_SIMULATOR_SDK" ]; then
-    dest="generic/platform=tvOS Simulator"
-  elif [ "$sdk" = "$WATCHOS_DEVICE_SDK" ]; then
-    dest="generic/platform=watchOS"
-  elif [ "$sdk" = "$WATCHOS_SIMULATOR_SDK" ]; then
-    dest="generic/platform=watchOS Simulator"
-  elif [ "$sdk" = "$VISIONOS_DEVICE_SDK" ]; then
-    dest="generic/platform=visionOS"
-  elif [ "$sdk" = "$VISIONOS_SIMULATOR_SDK" ]; then
-    dest="generic/platform=visionOS Simulator"
-  else
-    echo "Unknown SDK $sdk"
-    exit 11
-  fi
-
-  echo "*** Build framework ***"
-  echo "Scheme: $scheme"
-  echo "Configuration: $CONFIGURATION"
-  echo "SDK: $sdk"
-  echo "Destination: $dest"
-  echo
-
-  (
-    cd "$MONOLITHIC_PACKAGE_DIR"
-    xcodebuild \
-      -scheme "$scheme" \
-      -configuration "$CONFIGURATION" \
-      -destination "$dest" \
-      -sdk "$sdk" \
-      -derivedDataPath "$BUILD_DIR" \
-      "${build_settings[@]}"
-  ) || exit 12
-
-  local configuration_folder=""
-  if [ "$sdk" = "$MACOS_SDK" ]; then
-    configuration_folder=$CONFIGURATION
-  else
-    configuration_folder="$CONFIGURATION-$sdk"
-  fi
-
-  local product_path="$BUILD_DIR/Build/Products/$configuration_folder"
-  local framework_path="$product_path/PackageFrameworks/$scheme.framework"
-  local modules_path="$framework_path/Modules"
-
-  if [ ! -d "$framework_path" ]; then
-    echo "Missing framework output at $framework_path"
-    exit 13
-  fi
-
-  if [ -d "$framework_path/Versions/Current" ]; then
-    # Versioned frameworks (macOS) store module metadata under Versions/Current.
-    modules_path="$framework_path/Versions/Current/Modules"
-    if [ ! -e "$framework_path/Modules" ] && [ ! -L "$framework_path/Modules" ]; then
-      ln -s "Versions/Current/Modules" "$framework_path/Modules"
-    fi
-  fi
-
-  mkdir -p "$modules_path"
-
-  local modulemap_source="$BUILD_DIR/Build/Intermediates.noindex/$scheme.build/$configuration_folder/$scheme.build/$scheme.modulemap"
-  if [ ! -f "$modulemap_source" ]; then
-    echo "Missing module map output at $modulemap_source"
-    exit 14
-  fi
-  cp -pv "$modulemap_source" "$modules_path" || exit 15
-
-  local header_source=""
-  header_source="$(find "$BUILD_DIR/Build/Intermediates.noindex/$scheme.build/$configuration_folder/$scheme.build/Objects-normal" -name "$scheme-Swift.h" -type f | head -n 1)"
-  if [ -z "$header_source" ]; then
-    echo "Missing generated Swift header for module $scheme"
-    exit 16
-  fi
-  cp -pv "$header_source" "$modules_path" || exit 17
-
-  local swiftmodule_source="$product_path/$scheme.swiftmodule"
-  if [ ! -d "$swiftmodule_source" ]; then
-    echo "Missing swiftmodule output at $swiftmodule_source"
-    exit 18
-  fi
-
-  mkdir -p "$modules_path/$scheme.swiftmodule"
-  cp -pv "$swiftmodule_source"/*.* "$modules_path/$scheme.swiftmodule/" || exit 19
-
-  codesign_framework "$framework_path"
+  echo "Verifying binary package modules directly for $triple"
+  mkdir -p "$output_directory/ModuleCache"
+  swiftc \
+    -O \
+    -target "$triple" \
+    -sdk "$sdk_root" \
+    -module-cache-path "$output_directory/ModuleCache" \
+    "${import_arguments[@]}" \
+    "$INTEGRATION_DIR/BagbutikUsersBinaryClient/Sources/BagbutikUsersBinaryClient/main.swift" \
+    "${libraries[@]}" \
+    -lz \
+    -Xlinker -dead_strip \
+    -o "$output_directory/BagbutikUsersBinaryClient"
 }
 
-create_xcframework() {
-  local scheme=$1
-  shift 1
+report_watch_sample_size() {
+  local arm64_32_binary="$INTEGRATION_DIR/build/arm64_32-apple-watchos9.0/arm64_32-apple-watchos/$CONFIGURATION/BagbutikUsersBinaryClient"
+  local arm64_binary="$INTEGRATION_DIR/build/arm64-apple-watchos9.0/arm64-apple-watchos/$CONFIGURATION/BagbutikUsersBinaryClient"
+  local universal_binary="$DIST_DIR/BagbutikUsersWatchSample"
 
-  echo "*** Create $scheme.xcframework ***"
-  echo "Scheme: $scheme"
-  echo "SDKs: $*"
-  echo
+  if [ ! -f "$arm64_32_binary" ] || [ ! -f "$arm64_binary" ]; then
+    return
+  fi
 
-  args=()
-  for sdk in "$@"; do
-    local configuration_folder=""
-    if [ "$sdk" = "$MACOS_SDK" ]; then
-      configuration_folder=$CONFIGURATION
-    else
-      configuration_folder="$CONFIGURATION-$sdk"
-    fi
+  xcrun lipo -create "$arm64_32_binary" "$arm64_binary" -output "$universal_binary"
+  xcrun strip -x "$universal_binary"
 
-    args+=(-framework "$BUILD_DIR/Build/Products/$configuration_folder/PackageFrameworks/$scheme.framework")
+  local size
+  size="$(stat -f '%z' "$universal_binary")"
+  echo "Stripped two architecture watch sample executable: $size bytes"
 
-    local symbol_path="$BUILD_DIR/Build/Products/$configuration_folder/$scheme.framework.dSYM"
-    if [ -d "$symbol_path" ]; then
-      args+=(-debug-symbols "$symbol_path")
-    fi
-  done
-
-  xcodebuild -create-xcframework "${args[@]}" -output "$DIST_DIR/$scheme.xcframework" || exit 21
+  if [ "$size" -gt 50000000 ]; then
+    echo "Watch sample executable exceeds the 50 MB release gate." >&2
+    exit 17
+  fi
 }
 
-echo
-echo "****** Build XCFramework ******"
-echo
+echo "Building static Bagbutik XCFrameworks"
+echo "Modules: ${MODULES[*]}"
+echo "SDKs: ${SDKS[*]}"
 
-rm -rf "$BUILD_DIR"
-rm -rf "$DIST_DIR"
-mkdir -p "$DIST_DIR"
-
-require_all_sdks
-discover_libraries
-prepare_monolithic_package
+require_tools_and_sdks
+prepare_directories
 
 for sdk in "${SDKS[@]}"; do
-  build_framework "$LIBRARY" "$sdk"
-  echo
+  while IFS= read -r triple; do
+    build_triple "$sdk" "$triple"
+    for module in "${MODULES[@]}"; do
+      archive_thin_module "$sdk" "$triple" "$module"
+    done
+  done < <(sdk_triples "$sdk")
+
+  for module in "${MODULES[@]}"; do
+    combine_sdk_module "$sdk" "$module"
+  done
 done
 
-create_xcframework "$LIBRARY" "${SDKS[@]}"
+for module in "${MODULES[@]}"; do
+  create_module_xcframework "$module"
+  zip_module_xcframework "$module"
+done
 
-while IFS= read -r -d '' framework_path; do
-  codesign_framework "$framework_path"
-done < <(find "$DIST_DIR/$LIBRARY.xcframework" -type d -name '*.framework' -print0)
+verify_binary_integration
+report_watch_sample_size
 
-pushd "$DIST_DIR" >/dev/null
-if [ "${BAGBUTIK_SKIP_ZIP:-false}" = "true" ]; then
-  echo "Skipping zip step because BAGBUTIK_SKIP_ZIP=true"
-else
-  zip -yr "$LIBRARY.xcframework.zip" "$LIBRARY.xcframework"
-fi
-popd >/dev/null
-
-echo "Finished building XCFramework archive in $DIST_DIR"
+echo "Finished building static XCFramework archives in $DIST_DIR"

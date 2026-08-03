@@ -62,14 +62,15 @@ print(response)
 
 The repository is split into a small manually maintained core and a large generated API surface.
 
-* `Bagbutik-Core` contains the request service, JWT support, shared response protocols, and the common models used across all API areas.
-* `Bagbutik-Models` contains generated shared models that are referenced by more than one API area.
+* `BagbutikCore` contains the request service, JWT support, shared response protocols, and the common models used across all API areas.
+* `BagbutikModelsShared` contains the small generated model groups shared by public API products.
+* `BagbutikUsersModels` and similar model modules are generated from actual schema references for their public API product.
 * `Bagbutik-AppStore`, `Bagbutik-TestFlight`, `Bagbutik-Reporting`, and the other product modules contain generated endpoint builders grouped by App Store Connect domain.
 * `Tools/Sources/BagbutikSpecDecoder` decodes Apple's OpenAPI document into an intermediate Swift representation.
 * `Tools/Sources/BagbutikDocsCollector` downloads and normalizes Apple documentation so generated code gets useful Xcode documentation comments.
 * `Tools/Sources/BagbutikGenerator` combines the decoded spec and collected docs to render the Swift source in `Sources/`.
 
-This split matters when navigating the codebase. If you want to understand runtime behavior, start in `Bagbutik-Core`. If you want to understand how generated endpoints and models are produced, start with the nested `Tools` package.
+This split matters when navigating the codebase. If you want to understand runtime behavior, start in the `Sources/Bagbutik-Core` folder. If you want to understand how generated endpoints and models are produced, start with the nested `Tools` package.
 
 ## How to get Bagbutik into a project
 
@@ -98,22 +99,12 @@ Then add the required products to your target:
 .target(
     name: "Awesome",
     dependencies: [
-        .product(name: "Bagbutik-AppStore", package: "Bagbutik"),
-        .product(name: "Bagbutik-TestFlight", package: "Bagbutik"),
+        .product(name: "BagbutikUsers", package: "Bagbutik"),
     ]
 )
 ```
 
-If you need access to all APIs, you can depend on the umbrella library:
-
-```swift
-.target(
-    name: "Awesome",
-    dependencies: [
-        .product(name: "Bagbutik", package: "Bagbutik"),
-    ]
-)
-```
+Select each public product your application uses. Bagbutik intentionally has no umbrella product because selecting it would compile every API area.
 
 #### Available modules
 
@@ -125,11 +116,11 @@ Each module corresponds to a specific area of the App Store Connect API:
 * `Bagbutik-Provisioning`: Manage the [bundle IDs](https://developer.apple.com/documentation/appstoreconnectapi/bundle_ids), [certificates](https://developer.apple.com/documentation/appstoreconnectapi/certificates), [devices](https://developer.apple.com/documentation/appstoreconnectapi/devices) and [provisioning profiles](https://developer.apple.com/documentation/appstoreconnectapi/profiles) for your app.
 * `Bagbutik-Reporting`: Download your [sales and financial reports](https://developer.apple.com/documentation/appstoreconnectapi/sales_and_finance_reports) and [get power and performance metrics, logs, and signatures](https://developer.apple.com/documentation/appstoreconnectapi/power_and_performance_metrics_and_logs). 
 * `Bagbutik-TestFlight`: Manage your [beta testing program, including beta testers and groups, apps, App Clips, and builds](https://developer.apple.com/documentation/appstoreconnectapi/prerelease_versions_and_beta_testers).
-* `Bagbutik-Users`: Manage [users](https://developer.apple.com/documentation/appstoreconnectapi/users) and [email invitations to join](https://developer.apple.com/documentation/appstoreconnectapi/user_invitations) your App Store Connect team.
+* `BagbutikUsers`: Manage [users](https://developer.apple.com/documentation/appstoreconnectapi/users) and [email invitations to join](https://developer.apple.com/documentation/appstoreconnectapi/user_invitations) your App Store Connect team.
 * `Bagbutik-Webhooks`: Manage [notifications](https://developer.apple.com/documentation/appstoreconnectapi/webhook-notifications) from App Store about your apps and their statuses.
 * `Bagbutik-XcodeCloud`: Automate [reading Xcode Cloud data, managing workflows, and starting builds](https://developer.apple.com/documentation/appstoreconnectapi/xcode_cloud_workflows_and_builds).
 
-Remember to replace hyphens with underscores when importing modules.
+For the remaining products with hyphens, replace hyphens with underscores when importing modules.
 For example, when importing `Bagbutik-TestFlight`:
 
 `import Bagbutik_TestFlight`
@@ -138,7 +129,7 @@ For example, when importing `Bagbutik-TestFlight`:
 
 Generated endpoints follow the same pattern throughout the package:
 
-1. Import `Bagbutik_Core` and the product module for the API area you need.
+1. Import the Core module and the product module for the API area you need. Migrated products use `BagbutikCore`; remaining legacy products use `Bagbutik_Core`.
 2. Build a `Request` by calling a generated static helper such as `.listBundleIdsV1(...)`.
 3. Send the request through `BagbutikService`.
 4. If the response type supports pagination, use `requestNextPage(for:)` or `requestAllPages(_:)`.

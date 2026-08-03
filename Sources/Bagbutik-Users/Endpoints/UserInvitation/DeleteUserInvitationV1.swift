@@ -1,5 +1,5 @@
-import Bagbutik_Core
-import Bagbutik_Models
+import BagbutikCore
+import BagbutikUsersModels
 
 public extension Request {
     /**

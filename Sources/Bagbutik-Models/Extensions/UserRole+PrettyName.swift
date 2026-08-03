@@ -1,3 +1,5 @@
+import BagbutikUsersModels
+
 public extension UserRole {
     /// A pretty name for the case. The names are added as best effort, and a better name could exist.
     var prettyName: String {

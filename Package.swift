@@ -13,24 +13,11 @@ let package = Package(
     ],
     products: [
         .library(
-            // Includes all targets. Each target still needs to be imported in code.
-            name: "Bagbutik",
-            targets: [
-                "Bagbutik-Core",
-                "Bagbutik-Models",
-                "Bagbutik-AppStore",
-                "Bagbutik-GameCenter",
-                "Bagbutik-Marketplaces",
-                "Bagbutik-Provisioning",
-                "Bagbutik-Reporting",
-                "Bagbutik-TestFlight",
-                "Bagbutik-Users",
-                "Bagbutik-Webhooks",
-                "Bagbutik-XcodeCloud",
-            ]
+            name: "BagbutikCore",
+            targets: ["BagbutikCore"]
         ),
         .library(
-            // Has the core features like the service, JWT and general models.
+            // Preserves the legacy module import while API products migrate.
             name: "Bagbutik-Core",
             targets: ["Bagbutik-Core"]
         ),
@@ -64,8 +51,13 @@ let package = Package(
             targets: ["Bagbutik-TestFlight"]
         ),
         .library(
-            name: "Bagbutik-Users",
-            targets: ["Bagbutik-Users"]
+            name: "BagbutikUsers",
+            targets: [
+                "BagbutikCore",
+                "BagbutikModelsShared",
+                "BagbutikUsersModels",
+                "BagbutikUsers",
+            ]
         ),
         .library(
             name: "Bagbutik-Webhooks",
@@ -80,18 +72,33 @@ let package = Package(
         .package(url: "https://github.com/apple/swift-crypto", from: "3.12.3"),
     ],
     targets: [
-        .target(name: "Bagbutik-Core", dependencies: [
-            .product(name: "Crypto", package: "swift-crypto", condition: .when(platforms: [.linux, .android])),
-            .target(name: "system-zlib", condition: .when(platforms: [.linux, .android]))
-        ]),
-        .target(name: "Bagbutik-Models", dependencies: ["Bagbutik-Core"]),
+        .target(
+            name: "BagbutikCore",
+            dependencies: [
+                .product(name: "Crypto", package: "swift-crypto", condition: .when(platforms: [.linux, .android])),
+                .target(name: "system-zlib", condition: .when(platforms: [.linux, .android]))
+            ],
+            path: "Sources/Bagbutik-Core"
+        ),
+        .target(
+            name: "Bagbutik-Core",
+            dependencies: ["BagbutikCore"],
+            path: "Sources/Bagbutik-CoreCompatibility"
+        ),
+        .target(name: "BagbutikModelsShared", dependencies: ["BagbutikCore"]),
+        .target(name: "BagbutikUsersModels", dependencies: ["BagbutikCore", "BagbutikModelsShared"]),
+        .target(
+            name: "BagbutikUsers",
+            dependencies: ["BagbutikCore", "BagbutikModelsShared", "BagbutikUsersModels"],
+            path: "Sources/Bagbutik-Users"
+        ),
+        .target(name: "Bagbutik-Models", dependencies: ["Bagbutik-Core", "BagbutikModelsShared", "BagbutikUsersModels"]),
         .target(name: "Bagbutik-AppStore", dependencies: ["Bagbutik-Core", "Bagbutik-Models"]),
         .target(name: "Bagbutik-GameCenter", dependencies: ["Bagbutik-Core", "Bagbutik-Models"]),
         .target(name: "Bagbutik-Marketplaces", dependencies: ["Bagbutik-Core", "Bagbutik-Models"]),
         .target(name: "Bagbutik-Provisioning", dependencies: ["Bagbutik-Core", "Bagbutik-Models"]),
         .target(name: "Bagbutik-Reporting", dependencies: ["Bagbutik-Core", "Bagbutik-Models"]),
         .target(name: "Bagbutik-TestFlight", dependencies: ["Bagbutik-Core", "Bagbutik-Models"]),
-        .target(name: "Bagbutik-Users", dependencies: ["Bagbutik-Core", "Bagbutik-Models"]),
         .target(name: "Bagbutik-Webhooks", dependencies: ["Bagbutik-Core", "Bagbutik-Models"]),
         .target(name: "Bagbutik-XcodeCloud", dependencies: ["Bagbutik-Core", "Bagbutik-Models"]),
         .target(name: "system-zlib"),
@@ -106,6 +113,10 @@ let package = Package(
             resources: [.copy("test-private-key.p8")]
         ),
         .testTarget(name: "Bagbutik-ModelsTests", dependencies: ["Bagbutik-Models"]),
+        .testTarget(
+            name: "BagbutikUsersIntegrationTests",
+            dependencies: ["BagbutikCore", "BagbutikModelsShared", "BagbutikUsersModels", "BagbutikUsers"]
+        ),
     ],
     swiftLanguageModes: [.v5, .v6]
 )

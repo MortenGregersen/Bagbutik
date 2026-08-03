@@ -82,6 +82,16 @@ public class Generator {
         try await docsLoader.loadDocs(documentationDirURL: documentationDirURL)
         try await docsLoader.applyManualDocumentation()
 
+        let schemas = spec.components.schemas
+        var packageBySchema = [String: PackageName]()
+        for schema in schemas.values {
+            packageBySchema[schema.name] = try await Self.resolvePackageName(for: schema, docsLoader: docsLoader)
+        }
+        let modulePlan = RuntimeModulePlan(
+            usersSliceFrom: SchemaReferenceGraph(schemas: schemas),
+            packageBySchema: packageBySchema
+        )
+
         let generalModelsDirURL = outputDirURL.appendingPathComponent("Bagbutik-Models")
         for packageName in PackageName.allCases {
             let packageDirURL = outputDirURL.appendingPathComponent(packageName.name)
@@ -100,6 +110,11 @@ public class Generator {
             try removeChildren(at: generalModelsDirURL.appendingPathComponent(packageName.docsSectionName))
             try fileManager.createDirectory(at: generalModelsDirURL, withIntermediateDirectories: true, attributes: nil)
         }
+        for generatedModelsDirectory in ["BagbutikModelsShared", "BagbutikUsersModels"] {
+            let directoryURL = outputDirURL.appendingPathComponent(generatedModelsDirectory)
+            try removeChildren(at: directoryURL)
+            try fileManager.createDirectory(at: directoryURL, withIntermediateDirectories: true, attributes: nil)
+        }
 
         try await withThrowingTaskGroup(of: [RenderResult].self) { taskGroup in
             for path in spec.paths.values {
@@ -117,7 +132,12 @@ public class Generator {
                         } else {
                             throw GeneratorError.noDocumentationForOperation(operation.id)
                         }
-                        let renderedOperation = try await operationRenderer.render(operation: operation, in: path) + "\n"
+                        var renderedOperation = try await operationRenderer.render(operation: operation, in: path) + "\n"
+                        if packageName == .users {
+                            renderedOperation = renderedOperation
+                                .replacingOccurrences(of: "import Bagbutik_Core", with: "import BagbutikCore")
+                                .replacingOccurrences(of: "import Bagbutik_Models", with: "import BagbutikUsersModels")
+                        }
                         let packageDirURL = outputDirURL.appendingPathComponent(packageName.name).appendingPathComponent("Endpoints")
                         let operationDirURL = Self.getOperationsDirURL(for: path, in: packageDirURL)
                         renderResults.append(.init(dirURL: operationDirURL, name: name, fileName: fileName, contents: renderedOperation))
@@ -138,21 +158,24 @@ public class Generator {
         }
 
         try await withThrowingTaskGroup(of: RenderResult.self) { taskGroup in
-            let schemas = spec.components.schemas
             for schema in schemas.values {
-                taskGroup.addTask { [docsLoader, schemas] in
-                    let packageName: PackageName
-                    if let documentation = try await docsLoader.resolveDocumentationForSchema(named: schema.name) {
-                        packageName = try DocsLoader.resolvePackageName(for: documentation)
-                    } else if let inferredPackageName = DocsLoader.resolvePackageName(from: schema.name) {
-                        packageName = inferredPackageName
-                    } else {
-                        throw GeneratorError.noDocumentationForSchema(schema.name)
-                    }
-                    let model = try await Generator.generateModel(for: schema, packageName: packageName, otherSchemas: schemas, docsLoader: docsLoader)
+                taskGroup.addTask { [docsLoader, schemas, packageBySchema, modulePlan] in
+                    let packageName = packageBySchema[schema.name]!
+                    let modelModule = modulePlan[schema.name]
+                    let model = try await Generator.generateModel(
+                        for: schema,
+                        packageName: packageName,
+                        modelModule: modelModule,
+                        otherSchemas: schemas,
+                        docsLoader: docsLoader
+                    )
                     let fileName = model.name + ".swift"
 
-                    let modelsDirURL: URL = if schema.name.hasSuffix("LinkagesRequest") || schema.name.hasSuffix("LinkageRequest") {
+                    let modelsDirURL: URL = if modelModule == .modelsShared {
+                        outputDirURL.appendingPathComponent("BagbutikModelsShared")
+                    } else if modelModule == .usersModels {
+                        outputDirURL.appendingPathComponent("BagbutikUsersModels")
+                    } else if schema.name.hasSuffix("LinkagesRequest") || schema.name.hasSuffix("LinkageRequest") {
                         outputDirURL
                             .appendingPathComponent("Bagbutik-Models")
                             .appendingPathComponent("LinkageRequests")
@@ -206,6 +229,16 @@ public class Generator {
         return operationsDirURL.appendingPathComponent("Relationships")
     }
 
+    private static func resolvePackageName(for schema: Schema, docsLoader: DocsLoader) async throws -> PackageName {
+        if let documentation = try await docsLoader.resolveDocumentationForSchema(named: schema.name) {
+            return try DocsLoader.resolvePackageName(for: documentation)
+        }
+        if let inferredPackageName = DocsLoader.resolvePackageName(from: schema.name) {
+            return inferredPackageName
+        }
+        throw GeneratorError.noDocumentationForSchema(schema.name)
+    }
+
     /**
      Renders one schema into the generated Swift source for the appropriate package.
 
@@ -216,7 +249,13 @@ public class Generator {
         - docsLoader: The documentation loader used to resolve symbol comments.
      - Returns: The rendered model name, its full file contents, and the original schema documentation URL.
      */
-    static func generateModel(for schema: Schema, packageName: PackageName, otherSchemas: [String: Schema], docsLoader: DocsLoader)
+    static func generateModel(
+        for schema: Schema,
+        packageName: PackageName,
+        modelModule: RuntimeModulePlan.ModelModule? = nil,
+        otherSchemas: [String: Schema],
+        docsLoader: DocsLoader
+    )
         async throws -> (name: String, contents: String, url: String?) {
         let renderedSchema: String = switch schema {
         case .enum(let enumSchema):
@@ -233,14 +272,24 @@ public class Generator {
                 .render(plainTextSchema: plainTextSchema)
         }
         var imports = ["import Foundation"]
-        if packageName != .core {
-            imports.append("import Bagbutik_Core")
-            if schema.name.hasSuffix("Request") || schema.name.hasSuffix("Response") {
-                imports.append("import Bagbutik_Models")
+        switch modelModule {
+        case .modelsShared:
+            imports.append("import BagbutikCore")
+        case .usersModels:
+            imports.append("import BagbutikCore")
+            imports.append("import BagbutikModelsShared")
+        case .core:
+            break
+        case .legacyModels, nil:
+            if packageName != .core {
+                imports.append("import Bagbutik_Core")
+                if schema.name.hasSuffix("Request") || schema.name.hasSuffix("Response") {
+                    imports.append("import Bagbutik_Models")
+                }
+            } else if schema.name.hasSuffix("LinkagesRequest") || schema.name.hasSuffix("LinkageRequest")
+                || schema.name.hasSuffix("LinkagesResponse") || schema.name.hasSuffix("LinkageResponse") {
+                imports.append("import Bagbutik_Core")
             }
-        } else if schema.name.hasSuffix("LinkagesRequest") || schema.name.hasSuffix("LinkageRequest")
-            || schema.name.hasSuffix("LinkagesResponse") || schema.name.hasSuffix("LinkageResponse") {
-            imports.append("import Bagbutik_Core")
         }
         let contents = """
         \(imports.sorted().joined(separator: "\n"))

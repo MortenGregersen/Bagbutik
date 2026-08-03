@@ -1,4 +1,4 @@
-@testable import Bagbutik_Core
+@testable import BagbutikCore
 import XCTest
 #if os(Linux) || os(Android) || os(Windows)
 import zlibLinux

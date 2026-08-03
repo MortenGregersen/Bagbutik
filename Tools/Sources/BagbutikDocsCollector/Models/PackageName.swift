@@ -1,6 +1,6 @@
 import Foundation
 
-public enum PackageName: CaseIterable, Codable, Equatable {
+public enum PackageName: CaseIterable, Codable, Equatable, Sendable {
     case appStore
     case core
     case gameCenter
