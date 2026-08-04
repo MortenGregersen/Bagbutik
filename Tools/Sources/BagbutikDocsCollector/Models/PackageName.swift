@@ -54,6 +54,9 @@ public enum PackageName: CaseIterable, Codable, Hashable, Sendable {
     }
 
     private static func resolvePackageName(from resource: String, identifier: String) -> PackageName? {
+        if resource.hasPrefix("ci") {
+            return .xcodeCloud
+        }
         if resource.hasPrefix("accessibilityDeclaration")
             || resource.hasPrefix("actor")
             || resource.lowercased().contains("agerating")
@@ -188,7 +191,6 @@ public enum PackageName: CaseIterable, Codable, Hashable, Sendable {
             || resource.hasPrefix("additionalRepositor")
             || resource.hasPrefix("artifact")
             || resource.hasPrefix("buildRun")
-            || resource.hasPrefix("ci")
             || resource.hasPrefix("git")
             || resource.hasPrefix("issues")
             || resource.hasPrefix("macOsVersions")

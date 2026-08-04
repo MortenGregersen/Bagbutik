@@ -90,4 +90,35 @@ final class RuntimeModulePlanTests: XCTestCase {
         XCTAssertEqual(plan["WebhookDeliveriesLinkagesResponse"], .domainModels(.webhooks))
         XCTAssertEqual(plan.dependencies(for: .domainModels(.webhooks)), [.core, .modelsShared])
     }
+
+    func testSharedModelKeepsItsPublicTypeDependenciesInTheSharedLayer() {
+        let schemas: [String: Schema] = [
+            "CiWorkflow": .object(.init(name: "CiWorkflow", url: "", properties: [
+                "rule": .init(type: .schemaRef("SharedRule")),
+            ])),
+            "User": .object(.init(name: "User", url: "", properties: [
+                "rule": .init(type: .schemaRef("SharedRule")),
+            ])),
+            "SharedRule": .object(.init(name: "SharedRule", url: "", properties: [
+                "nestedTypes": .init(type: .arrayOfSchemaRef("NestedType")),
+            ])),
+            "NestedType": .object(.init(name: "NestedType", url: "")),
+        ]
+        let packages: [String: PackageName] = [
+            "CiWorkflow": .xcodeCloud,
+            "User": .users,
+            "SharedRule": .gameCenter,
+            "NestedType": .xcodeCloud,
+        ]
+
+        let plan = RuntimeModulePlan(
+            graph: .init(schemas: schemas),
+            packageBySchema: packages,
+            migratedPackages: [.users, .xcodeCloud]
+        )
+
+        XCTAssertEqual(plan["SharedRule"], .modelsShared)
+        XCTAssertEqual(plan["NestedType"], .modelsShared)
+        XCTAssertEqual(plan.dependencies(for: .modelsShared), [.core])
+    }
 }

@@ -69,6 +69,17 @@ public struct RuntimeModulePlan: Sendable {
             }
         }
 
+        var pendingSharedSchemas = assignments.compactMap { schema, module in
+            module == .modelsShared ? schema : nil
+        }
+        while let schema = pendingSharedSchemas.popLast() {
+            for dependency in graph.references[schema, default: []] {
+                guard case .domainModels = assignments[dependency] else { continue }
+                assignments[dependency] = .modelsShared
+                pendingSharedSchemas.append(dependency)
+            }
+        }
+
         moduleBySchema = assignments
 
         var dependencies: [ModelModule: Set<ModelModule>] = [
