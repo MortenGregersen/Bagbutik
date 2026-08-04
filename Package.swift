@@ -84,8 +84,14 @@ let package = Package(
             ]
         ),
         .library(
-            name: "Bagbutik-XcodeCloud",
-            targets: ["Bagbutik-XcodeCloud"]
+            name: "BagbutikXcodeCloud",
+            targets: [
+                "BagbutikCore",
+                "BagbutikModelsShared",
+                "BagbutikProvisioningModels",
+                "BagbutikXcodeCloudModels",
+                "BagbutikXcodeCloud",
+            ]
         )
     ],
     dependencies: [
@@ -111,6 +117,10 @@ let package = Package(
         .target(name: "BagbutikReportingModels", dependencies: ["BagbutikCore", "BagbutikModelsShared"]),
         .target(name: "BagbutikUsersModels", dependencies: ["BagbutikCore", "BagbutikModelsShared"]),
         .target(name: "BagbutikWebhooksModels", dependencies: ["BagbutikCore", "BagbutikModelsShared"]),
+        .target(
+            name: "BagbutikXcodeCloudModels",
+            dependencies: ["BagbutikCore", "BagbutikModelsShared", "BagbutikProvisioningModels"]
+        ),
         .target(
             name: "BagbutikMarketplaces",
             dependencies: ["BagbutikCore", "BagbutikModelsShared", "BagbutikMarketplacesModels"],
@@ -141,6 +151,7 @@ let package = Package(
                 "BagbutikReportingModels",
                 "BagbutikUsersModels",
                 "BagbutikWebhooksModels",
+                "BagbutikXcodeCloudModels",
             ]
         ),
         .target(name: "Bagbutik-AppStore", dependencies: ["Bagbutik-Core", "Bagbutik-Models"]),
@@ -151,7 +162,16 @@ let package = Package(
             dependencies: ["BagbutikCore", "BagbutikModelsShared", "BagbutikWebhooksModels"],
             path: "Sources/Bagbutik-Webhooks"
         ),
-        .target(name: "Bagbutik-XcodeCloud", dependencies: ["Bagbutik-Core", "Bagbutik-Models"]),
+        .target(
+            name: "BagbutikXcodeCloud",
+            dependencies: [
+                "BagbutikCore",
+                "BagbutikModelsShared",
+                "BagbutikProvisioningModels",
+                "BagbutikXcodeCloudModels",
+            ],
+            path: "Sources/Bagbutik-XcodeCloud"
+        ),
         .target(name: "system-zlib"),
         // Test targets
         .testTarget(
@@ -183,6 +203,16 @@ let package = Package(
         .testTarget(
             name: "BagbutikWebhooksIntegrationTests",
             dependencies: ["BagbutikCore", "BagbutikModelsShared", "BagbutikWebhooksModels", "BagbutikWebhooks"]
+        ),
+        .testTarget(
+            name: "BagbutikXcodeCloudIntegrationTests",
+            dependencies: [
+                "BagbutikCore",
+                "BagbutikModelsShared",
+                "BagbutikProvisioningModels",
+                "BagbutikXcodeCloudModels",
+                "BagbutikXcodeCloud",
+            ]
         ),
     ],
     swiftLanguageModes: [.v5, .v6]

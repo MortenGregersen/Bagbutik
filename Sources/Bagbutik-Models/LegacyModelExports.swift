@@ -4,3 +4,4 @@
 @_exported import BagbutikReportingModels
 @_exported import BagbutikUsersModels
 @_exported import BagbutikWebhooksModels
+@_exported import BagbutikXcodeCloudModels

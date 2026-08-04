@@ -13,6 +13,7 @@ BUILD_TARGETS=(
   "BagbutikReporting"
   "BagbutikUsers"
   "BagbutikWebhooks"
+  "BagbutikXcodeCloud"
 )
 
 MODULES=(
@@ -28,6 +29,8 @@ MODULES=(
   "BagbutikUsers"
   "BagbutikWebhooksModels"
   "BagbutikWebhooks"
+  "BagbutikXcodeCloudModels"
+  "BagbutikXcodeCloud"
 )
 
 SDKS=(
@@ -212,6 +215,12 @@ module_source_directory() {
     BagbutikWebhooks)
       echo "$ROOT_DIR/Sources/Bagbutik-Webhooks"
       ;;
+    BagbutikXcodeCloudModels)
+      echo "$ROOT_DIR/Sources/BagbutikXcodeCloudModels"
+      ;;
+    BagbutikXcodeCloud)
+      echo "$ROOT_DIR/Sources/Bagbutik-XcodeCloud"
+      ;;
     *)
       echo "No source directory mapping for $1" >&2
       exit 18
@@ -365,6 +374,7 @@ prepare_binary_integration_fixture() {
   mkdir -p "$INTEGRATION_DIR/BagbutikReportingBinaryClient/Sources/BagbutikReportingBinaryClient"
   mkdir -p "$INTEGRATION_DIR/BagbutikUsersBinaryClient/Sources/BagbutikUsersBinaryClient"
   mkdir -p "$INTEGRATION_DIR/BagbutikWebhooksBinaryClient/Sources/BagbutikWebhooksBinaryClient"
+  mkdir -p "$INTEGRATION_DIR/BagbutikXcodeCloudBinaryClient/Sources/BagbutikXcodeCloudBinaryClient"
 
   cat > "$INTEGRATION_DIR/BagbutikBinaryPackage/Package.swift" <<'PACKAGE_EOF'
 // swift-tools-version:6.0
@@ -426,6 +436,16 @@ let package = Package(
                 "BagbutikWebhooks",
             ]
         ),
+        .library(
+            name: "BagbutikXcodeCloud",
+            targets: [
+                "BagbutikCore",
+                "BagbutikModelsShared",
+                "BagbutikProvisioningModels",
+                "BagbutikXcodeCloudModels",
+                "BagbutikXcodeCloud",
+            ]
+        ),
     ],
     targets: [
         .binaryTarget(name: "BagbutikCore", path: "Artifacts/BagbutikCore.xcframework"),
@@ -440,6 +460,8 @@ let package = Package(
         .binaryTarget(name: "BagbutikUsers", path: "Artifacts/BagbutikUsers.xcframework"),
         .binaryTarget(name: "BagbutikWebhooksModels", path: "Artifacts/BagbutikWebhooksModels.xcframework"),
         .binaryTarget(name: "BagbutikWebhooks", path: "Artifacts/BagbutikWebhooks.xcframework"),
+        .binaryTarget(name: "BagbutikXcodeCloudModels", path: "Artifacts/BagbutikXcodeCloudModels.xcframework"),
+        .binaryTarget(name: "BagbutikXcodeCloud", path: "Artifacts/BagbutikXcodeCloud.xcframework"),
     ]
 )
 PACKAGE_EOF
@@ -658,6 +680,50 @@ let request = Request<WebhookResponse, ErrorResponse>.getWebhookV1(
 print(request.path)
 SOURCE_EOF
 
+  cat > "$INTEGRATION_DIR/BagbutikXcodeCloudBinaryClient/Package.swift" <<'PACKAGE_EOF'
+// swift-tools-version:6.0
+
+import PackageDescription
+
+let package = Package(
+    name: "BagbutikXcodeCloudBinaryClient",
+    platforms: [
+        .macOS(.v12),
+        .iOS(.v15),
+        .tvOS(.v15),
+        .watchOS(.v9),
+        .visionOS(.v1),
+    ],
+    dependencies: [
+        .package(name: "Bagbutik", path: "../BagbutikBinaryPackage"),
+    ],
+    targets: [
+        .executableTarget(
+            name: "BagbutikXcodeCloudBinaryClient",
+            dependencies: [
+                .product(name: "BagbutikXcodeCloud", package: "Bagbutik"),
+            ]
+        ),
+    ]
+)
+PACKAGE_EOF
+
+  cat > "$INTEGRATION_DIR/BagbutikXcodeCloudBinaryClient/Sources/BagbutikXcodeCloudBinaryClient/main.swift" <<'SOURCE_EOF'
+import BagbutikCore
+import BagbutikModelsShared
+import BagbutikProvisioningModels
+import BagbutikXcodeCloud
+import BagbutikXcodeCloudModels
+
+let request = Request<CiProductsResponse, ErrorResponse>.listCiProductsV1(
+    filters: [.productType([.app])],
+    includes: [.bundleId, .primaryRepositories],
+    limits: [.limit(20)]
+)
+
+print(request.path)
+SOURCE_EOF
+
   local module
   for module in "${MODULES[@]}"; do
     cp -R "$DIST_DIR/$module.xcframework" "$INTEGRATION_DIR/BagbutikBinaryPackage/Artifacts/"
@@ -718,6 +784,11 @@ client_link_modules() {
     BagbutikWebhooks)
       echo "BagbutikWebhooks"
       echo "BagbutikWebhooksModels"
+      ;;
+    BagbutikXcodeCloud)
+      echo "BagbutikXcodeCloud"
+      echo "BagbutikXcodeCloudModels"
+      echo "BagbutikProvisioningModels"
       ;;
     *)
       echo "Unknown binary integration client: $1" >&2

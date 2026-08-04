@@ -90,4 +90,35 @@ final class RuntimeModulePlanTests: XCTestCase {
         XCTAssertEqual(plan["WebhookDeliveriesLinkagesResponse"], .domainModels(.webhooks))
         XCTAssertEqual(plan.dependencies(for: .domainModels(.webhooks)), [.core, .modelsShared])
     }
+
+    func testSharedModelKeepsItsPublicTypeDependenciesInTheSharedLayer() {
+        let schemas: [String: Schema] = [
+            "CiWorkflow": .object(.init(name: "CiWorkflow", url: "", properties: [
+                "rule": .init(type: .schemaRef("CiFilesAndFoldersRule")),
+            ])),
+            "User": .object(.init(name: "User", url: "", properties: [
+                "rule": .init(type: .schemaRef("CiFilesAndFoldersRule")),
+            ])),
+            "CiFilesAndFoldersRule": .object(.init(name: "CiFilesAndFoldersRule", url: "", properties: [
+                "matchers": .init(type: .arrayOfSchemaRef("CiStartConditionFileMatcher")),
+            ])),
+            "CiStartConditionFileMatcher": .object(.init(name: "CiStartConditionFileMatcher", url: "")),
+        ]
+        let packages: [String: PackageName] = [
+            "CiWorkflow": .xcodeCloud,
+            "User": .users,
+            "CiFilesAndFoldersRule": .gameCenter,
+            "CiStartConditionFileMatcher": .xcodeCloud,
+        ]
+
+        let plan = RuntimeModulePlan(
+            graph: .init(schemas: schemas),
+            packageBySchema: packages,
+            migratedPackages: [.users, .xcodeCloud]
+        )
+
+        XCTAssertEqual(plan["CiFilesAndFoldersRule"], .modelsShared)
+        XCTAssertEqual(plan["CiStartConditionFileMatcher"], .modelsShared)
+        XCTAssertEqual(plan.dependencies(for: .modelsShared), [.core])
+    }
 }
