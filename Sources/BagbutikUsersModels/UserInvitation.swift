@@ -1,20 +1,21 @@
-import Bagbutik_Core
+import BagbutikCore
+import BagbutikModelsShared
 import Foundation
 
 /**
- # User
- A member of your App Store Connect team, with assigned roles and access to specific apps.
+ # UserInvitation
+ A pending invitation for a person to join your App Store Connect team with a specified role and app access.
 
  Full documentation:
- <https://developer.apple.com/documentation/appstoreconnectapi/user>
+ <https://developer.apple.com/documentation/appstoreconnectapi/userinvitation>
  */
-public struct User: Codable, Sendable, Identifiable {
+public struct UserInvitation: Codable, Sendable, Identifiable {
     /// The opaque resource ID that uniquely identifies the resource.
     public let id: String
     /// Navigational links that include the self-link.
     public var links: ResourceLinks?
     /// The resource type.
-    public var type: String { "users" }
+    public var type: String { "userInvitations" }
     /// The resource’s attributes.
     public var attributes: Attributes?
     /// Navigational links to related data and included resource types and IDs.
@@ -53,45 +54,50 @@ public struct User: Codable, Sendable, Identifiable {
 
     public struct Attributes: Codable, Sendable {
         public var allAppsVisible: Bool?
+        public var email: String?
+        public var expirationDate: Date?
         public var firstName: String?
         public var lastName: String?
         public var provisioningAllowed: Bool?
         public var roles: [UserRole]?
-        public var username: String?
 
         public init(allAppsVisible: Bool? = nil,
+                    email: String? = nil,
+                    expirationDate: Date? = nil,
                     firstName: String? = nil,
                     lastName: String? = nil,
                     provisioningAllowed: Bool? = nil,
-                    roles: [UserRole]? = nil,
-                    username: String? = nil)
+                    roles: [UserRole]? = nil)
         {
             self.allAppsVisible = allAppsVisible
+            self.email = email
+            self.expirationDate = expirationDate
             self.firstName = firstName
             self.lastName = lastName
             self.provisioningAllowed = provisioningAllowed
             self.roles = roles
-            self.username = username
         }
 
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: AnyCodingKey.self)
             allAppsVisible = try container.decodeIfPresent(Bool.self, forKey: "allAppsVisible")
+            email = try container.decodeIfPresent(String.self, forKey: "email")
+            expirationDate = try container.decodeIfPresent(Date.self, forKey: "expirationDate")
             firstName = try container.decodeIfPresent(String.self, forKey: "firstName")
             lastName = try container.decodeIfPresent(String.self, forKey: "lastName")
             provisioningAllowed = try container.decodeIfPresent(Bool.self, forKey: "provisioningAllowed")
             roles = try container.decodeIfPresent([UserRole].self, forKey: "roles")
-            username = try container.decodeIfPresent(String.self, forKey: "username")
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: AnyCodingKey.self)
             try container.encodeIfPresent(allAppsVisible, forKey: "allAppsVisible")
+            try container.encodeIfPresent(email, forKey: "email")
+            try container.encodeIfPresent(expirationDate, forKey: "expirationDate")
             try container.encodeIfPresent(firstName, forKey: "firstName")
             try container.encodeIfPresent(lastName, forKey: "lastName")
             try container.encodeIfPresent(provisioningAllowed, forKey: "provisioningAllowed")
             try container.encodeIfPresent(roles, forKey: "roles")
-            try container.encodeIfPresent(username, forKey: "username")
         }
     }
 

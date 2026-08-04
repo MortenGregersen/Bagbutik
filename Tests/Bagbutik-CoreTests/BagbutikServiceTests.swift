@@ -1,5 +1,5 @@
 import Bagbutik_AppStore
-@testable import Bagbutik_Core
+@testable import BagbutikCore
 import Bagbutik_Models
 import XCTest
 #if canImport(FoundationNetworking)

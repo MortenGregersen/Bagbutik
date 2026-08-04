@@ -67,7 +67,9 @@ final class GeneratorTests: XCTestCase {
             "/Users/steve/output/Bagbutik-Webhooks",
             "/Users/steve/output/Bagbutik-Models/Webhooks",
             "/Users/steve/output/Bagbutik-XcodeCloud",
-            "/Users/steve/output/Bagbutik-Models/XcodeCloud"
+            "/Users/steve/output/Bagbutik-Models/XcodeCloud",
+            "/Users/steve/output/BagbutikModelsShared",
+            "/Users/steve/output/BagbutikUsersModels"
         ])
         XCTAssertEqual(Set(fileManager.directoriesCreated).sorted(), [
             "/Users/steve/output/Bagbutik-AppStore",
@@ -83,9 +85,10 @@ final class GeneratorTests: XCTestCase {
             "/Users/steve/output/Bagbutik-Users",
             "/Users/steve/output/Bagbutik-Users/Endpoints/Users",
             "/Users/steve/output/Bagbutik-Users/Endpoints/Users/Relationships",
-            "/Users/steve/output/Bagbutik-Users/Models",
             "/Users/steve/output/Bagbutik-Webhooks",
-            "/Users/steve/output/Bagbutik-XcodeCloud"
+            "/Users/steve/output/Bagbutik-XcodeCloud",
+            "/Users/steve/output/BagbutikModelsShared",
+            "/Users/steve/output/BagbutikUsersModels"
         ])
         XCTAssertEqual(fileManager.filesCreated.map(\.name).sorted(), [
             "BuildAppLinkageResponse.swift",
@@ -114,6 +117,20 @@ final class GeneratorTests: XCTestCase {
             "⚡️ Generating model UsersResponse...",
         ])
         XCTAssertEqual(lastLogLine, "🎉 Finished generating 2 endpoints and 6 models! 🎉")
+        let usersResponse = String(
+            decoding: fileManager.filesCreated.first { $0.name == "UsersResponse.swift" }!.data,
+            as: UTF8.self
+        )
+        XCTAssertTrue(usersResponse.contains("import BagbutikCore"))
+        XCTAssertTrue(usersResponse.contains("import BagbutikModelsShared"))
+        XCTAssertFalse(usersResponse.contains("import Bagbutik_Models"))
+        let listUsers = String(
+            decoding: fileManager.filesCreated.first { $0.name == "ListUsersV1.swift" }!.data,
+            as: UTF8.self
+        )
+        XCTAssertTrue(listUsers.contains("import BagbutikCore"))
+        XCTAssertFalse(listUsers.contains("import Bagbutik_Core"))
+        XCTAssertTrue(listUsers.contains("import BagbutikUsersModels"))
     }
 
     func testInvalidSpecFileURL() async throws {
@@ -209,7 +226,7 @@ final class GeneratorTests: XCTestCase {
         // When
         await XCTAssertAsyncThrowsError(try await generator.generateAll(specFileURL: validSpecFileURL, outputDirURL: validOutputDirURL, documentationDirURL: validDocumentationDirURL)) {
             // Then
-            XCTAssertEqual($0 as? GeneratorError, .couldNotCreateFile("/Users/steve/output/Bagbutik-Users/Models/UsersResponse.swift"))
+            XCTAssertEqual($0 as? GeneratorError, .couldNotCreateFile("/Users/steve/output/BagbutikUsersModels/UsersResponse.swift"))
         }
     }
     
@@ -261,7 +278,7 @@ final class GeneratorTests: XCTestCase {
         try await generator.generateAll(specFileURL: validSpecFileURL, outputDirURL: validOutputDirURL, documentationDirURL: validDocumentationDirURL)
         // Then
         XCTAssertEqual(fileManager.filesCreated.map(\.name), ["UsersResponse.swift"])
-        XCTAssertEqual(fileManager.directoriesCreated.filter { $0.hasSuffix("/Bagbutik-Users/Models") }.count, 1)
+        XCTAssertTrue(fileManager.directoriesCreated.contains("/Users/steve/output/BagbutikUsersModels"))
     }
 
     func testInferPackageNameForOperationWithoutDocumentation() async throws {
@@ -310,7 +327,7 @@ final class GeneratorTests: XCTestCase {
         try await generator.generateAll(specFileURL: validSpecFileURL, outputDirURL: validOutputDirURL, documentationDirURL: validDocumentationDirURL)
 
         XCTAssertEqual(fileManager.filesCreated.map(\.name), ["User.swift"])
-        XCTAssertEqual(fileManager.directoriesCreated.filter { $0.hasSuffix("/Bagbutik-Models/Users") }.count, 1)
+        XCTAssertTrue(fileManager.directoriesCreated.contains("/Users/steve/output/BagbutikUsersModels"))
     }
 
     func testGenerateAllDoesNotRemoveMissingChildren() async throws {
