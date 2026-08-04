@@ -43,8 +43,13 @@ let package = Package(
             targets: ["Bagbutik-Provisioning"]
         ),
         .library(
-            name: "Bagbutik-Reporting",
-            targets: ["Bagbutik-Reporting"]
+            name: "BagbutikReporting",
+            targets: [
+                "BagbutikCore",
+                "BagbutikModelsShared",
+                "BagbutikReportingModels",
+                "BagbutikReporting",
+            ]
         ),
         .library(
             name: "Bagbutik-TestFlight",
@@ -91,8 +96,14 @@ let package = Package(
             path: "Sources/Bagbutik-CoreCompatibility"
         ),
         .target(name: "BagbutikModelsShared", dependencies: ["BagbutikCore"]),
+        .target(name: "BagbutikReportingModels", dependencies: ["BagbutikCore", "BagbutikModelsShared"]),
         .target(name: "BagbutikUsersModels", dependencies: ["BagbutikCore", "BagbutikModelsShared"]),
         .target(name: "BagbutikWebhooksModels", dependencies: ["BagbutikCore", "BagbutikModelsShared"]),
+        .target(
+            name: "BagbutikReporting",
+            dependencies: ["BagbutikCore", "BagbutikModelsShared", "BagbutikReportingModels"],
+            path: "Sources/Bagbutik-Reporting"
+        ),
         .target(
             name: "BagbutikUsers",
             dependencies: ["BagbutikCore", "BagbutikModelsShared", "BagbutikUsersModels"],
@@ -100,13 +111,18 @@ let package = Package(
         ),
         .target(
             name: "Bagbutik-Models",
-            dependencies: ["Bagbutik-Core", "BagbutikModelsShared", "BagbutikUsersModels", "BagbutikWebhooksModels"]
+            dependencies: [
+                "Bagbutik-Core",
+                "BagbutikModelsShared",
+                "BagbutikReportingModels",
+                "BagbutikUsersModels",
+                "BagbutikWebhooksModels",
+            ]
         ),
         .target(name: "Bagbutik-AppStore", dependencies: ["Bagbutik-Core", "Bagbutik-Models"]),
         .target(name: "Bagbutik-GameCenter", dependencies: ["Bagbutik-Core", "Bagbutik-Models"]),
         .target(name: "Bagbutik-Marketplaces", dependencies: ["Bagbutik-Core", "Bagbutik-Models"]),
         .target(name: "Bagbutik-Provisioning", dependencies: ["Bagbutik-Core", "Bagbutik-Models"]),
-        .target(name: "Bagbutik-Reporting", dependencies: ["Bagbutik-Core", "Bagbutik-Models"]),
         .target(name: "Bagbutik-TestFlight", dependencies: ["Bagbutik-Core", "Bagbutik-Models"]),
         .target(
             name: "BagbutikWebhooks",
@@ -126,6 +142,10 @@ let package = Package(
             resources: [.copy("test-private-key.p8")]
         ),
         .testTarget(name: "Bagbutik-ModelsTests", dependencies: ["Bagbutik-Models"]),
+        .testTarget(
+            name: "BagbutikReportingIntegrationTests",
+            dependencies: ["BagbutikCore", "BagbutikModelsShared", "BagbutikReportingModels", "BagbutikReporting"]
+        ),
         .testTarget(
             name: "BagbutikUsersIntegrationTests",
             dependencies: ["BagbutikCore", "BagbutikModelsShared", "BagbutikUsersModels", "BagbutikUsers"]

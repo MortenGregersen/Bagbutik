@@ -44,6 +44,19 @@ final class SchemaReferenceGraphTests: XCTestCase {
         XCTAssertEqual(closure, ["Known"])
     }
 
+    func testClosureUsesGeneratedNamesWhenComponentKeysDiffer() {
+        let schemas: [String: Schema] = [
+            "rootSchema": .object(.init(name: "RootSchema", url: "", properties: [
+                "leaf": .init(type: .schemaRef("leafSchema")),
+            ])),
+            "leafSchema": .object(.init(name: "LeafSchema", url: "")),
+        ]
+
+        let closure = SchemaReferenceGraph(schemas: schemas).closure(startingAt: ["RootSchema"])
+
+        XCTAssertEqual(closure, ["RootSchema", "LeafSchema"])
+    }
+
     func testCyclesBecomeOneComponentAndCollapsedGraphIsDependencyFirst() {
         let schemas: [String: Schema] = [
             "EndpointResponse": .object(.init(name: "EndpointResponse", url: "", properties: [
