@@ -73,6 +73,7 @@ final class GeneratorTests: XCTestCase {
             "/Users/steve/output/Bagbutik-Models/XcodeCloud",
             "/Users/steve/output/BagbutikModelsShared",
             "/Users/steve/output/BagbutikMarketplacesModels",
+            "/Users/steve/output/BagbutikProvisioningModels",
             "/Users/steve/output/BagbutikReportingModels",
             "/Users/steve/output/BagbutikUsersModels",
             "/Users/steve/output/BagbutikWebhooksModels"
@@ -95,6 +96,7 @@ final class GeneratorTests: XCTestCase {
             "/Users/steve/output/Bagbutik-XcodeCloud",
             "/Users/steve/output/BagbutikMarketplacesModels",
             "/Users/steve/output/BagbutikModelsShared",
+            "/Users/steve/output/BagbutikProvisioningModels",
             "/Users/steve/output/BagbutikReportingModels",
             "/Users/steve/output/BagbutikUsersModels",
             "/Users/steve/output/BagbutikWebhooksModels"

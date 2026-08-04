@@ -65,7 +65,7 @@ The repository is split into a small manually maintained core and a large genera
 * `BagbutikCore` contains the request service, JWT support, shared response protocols, and the common models used across all API areas.
 * `BagbutikModelsShared` contains the small generated model groups shared by public API products.
 * `BagbutikUsersModels` and similar model modules are generated from actual schema references for their public API product.
-* `Bagbutik-AppStore`, `Bagbutik-TestFlight`, `BagbutikMarketplaces`, `BagbutikReporting`, and the other product modules contain generated endpoint builders grouped by App Store Connect domain.
+* `Bagbutik-AppStore`, `Bagbutik-TestFlight`, `BagbutikMarketplaces`, `BagbutikProvisioning`, `BagbutikReporting`, and the other product modules contain generated endpoint builders grouped by App Store Connect domain.
 * `Tools/Sources/BagbutikSpecDecoder` decodes Apple's OpenAPI document into an intermediate Swift representation.
 * `Tools/Sources/BagbutikDocsCollector` downloads and normalizes Apple documentation so generated code gets useful Xcode documentation comments.
 * `Tools/Sources/BagbutikGenerator` combines the decoded spec and collected docs to render the Swift source in `Sources/`.
@@ -113,7 +113,7 @@ Each module corresponds to a specific area of the App Store Connect API:
 * `Bagbutik-AppStore`: Manage all [aspects of your app, App Clips, in-app purchases, and customer reviews in the App Store](https://developer.apple.com/documentation/appstoreconnectapi/app_store).
 * `Bagbutik-GameCenter`: Manage [Game Center data and configurations for your apps](https://developer.apple.com/documentation/appstoreconnectapi/game_center).
 * `BagbutikMarketplaces`: Manage [keys, packages, and search for the marketplace distribution of your app](https://developer.apple.com/documentation/appstoreconnectapi/alternative_distribution).
-* `Bagbutik-Provisioning`: Manage the [bundle IDs](https://developer.apple.com/documentation/appstoreconnectapi/bundle_ids), [certificates](https://developer.apple.com/documentation/appstoreconnectapi/certificates), [devices](https://developer.apple.com/documentation/appstoreconnectapi/devices) and [provisioning profiles](https://developer.apple.com/documentation/appstoreconnectapi/profiles) for your app.
+* `BagbutikProvisioning`: Manage the [bundle IDs](https://developer.apple.com/documentation/appstoreconnectapi/bundle_ids), [certificates](https://developer.apple.com/documentation/appstoreconnectapi/certificates), [devices](https://developer.apple.com/documentation/appstoreconnectapi/devices) and [provisioning profiles](https://developer.apple.com/documentation/appstoreconnectapi/profiles) for your app.
 * `BagbutikReporting`: Download your [sales and financial reports](https://developer.apple.com/documentation/appstoreconnectapi/sales_and_finance_reports) and [get power and performance metrics, logs, and signatures](https://developer.apple.com/documentation/appstoreconnectapi/power_and_performance_metrics_and_logs).
 * `Bagbutik-TestFlight`: Manage your [beta testing program, including beta testers and groups, apps, App Clips, and builds](https://developer.apple.com/documentation/appstoreconnectapi/prerelease_versions_and_beta_testers).
 * `BagbutikUsers`: Manage [users](https://developer.apple.com/documentation/appstoreconnectapi/users) and [email invitations to join](https://developer.apple.com/documentation/appstoreconnectapi/user_invitations) your App Store Connect team.
