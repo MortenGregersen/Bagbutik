@@ -9,6 +9,7 @@ INTEGRATION_DIR="$BUILD_DIR/integration"
 CONFIGURATION="release"
 BUILD_TARGETS=(
   "BagbutikMarketplaces"
+  "BagbutikProvisioning"
   "BagbutikReporting"
   "BagbutikUsers"
   "BagbutikWebhooks"
@@ -19,6 +20,8 @@ MODULES=(
   "BagbutikModelsShared"
   "BagbutikMarketplacesModels"
   "BagbutikMarketplaces"
+  "BagbutikProvisioningModels"
+  "BagbutikProvisioning"
   "BagbutikReportingModels"
   "BagbutikReporting"
   "BagbutikUsersModels"
@@ -184,6 +187,12 @@ module_source_directory() {
       ;;
     BagbutikMarketplaces)
       echo "$ROOT_DIR/Sources/Bagbutik-Marketplaces"
+      ;;
+    BagbutikProvisioningModels)
+      echo "$ROOT_DIR/Sources/BagbutikProvisioningModels"
+      ;;
+    BagbutikProvisioning)
+      echo "$ROOT_DIR/Sources/Bagbutik-Provisioning"
       ;;
     BagbutikReportingModels)
       echo "$ROOT_DIR/Sources/BagbutikReportingModels"
@@ -352,6 +361,7 @@ zip_module_xcframework() {
 prepare_binary_integration_fixture() {
   mkdir -p "$INTEGRATION_DIR/BagbutikBinaryPackage/Artifacts"
   mkdir -p "$INTEGRATION_DIR/BagbutikMarketplacesBinaryClient/Sources/BagbutikMarketplacesBinaryClient"
+  mkdir -p "$INTEGRATION_DIR/BagbutikProvisioningBinaryClient/Sources/BagbutikProvisioningBinaryClient"
   mkdir -p "$INTEGRATION_DIR/BagbutikReportingBinaryClient/Sources/BagbutikReportingBinaryClient"
   mkdir -p "$INTEGRATION_DIR/BagbutikUsersBinaryClient/Sources/BagbutikUsersBinaryClient"
   mkdir -p "$INTEGRATION_DIR/BagbutikWebhooksBinaryClient/Sources/BagbutikWebhooksBinaryClient"
@@ -378,6 +388,15 @@ let package = Package(
                 "BagbutikModelsShared",
                 "BagbutikMarketplacesModels",
                 "BagbutikMarketplaces",
+            ]
+        ),
+        .library(
+            name: "BagbutikProvisioning",
+            targets: [
+                "BagbutikCore",
+                "BagbutikModelsShared",
+                "BagbutikProvisioningModels",
+                "BagbutikProvisioning",
             ]
         ),
         .library(
@@ -413,6 +432,8 @@ let package = Package(
         .binaryTarget(name: "BagbutikModelsShared", path: "Artifacts/BagbutikModelsShared.xcframework"),
         .binaryTarget(name: "BagbutikMarketplacesModels", path: "Artifacts/BagbutikMarketplacesModels.xcframework"),
         .binaryTarget(name: "BagbutikMarketplaces", path: "Artifacts/BagbutikMarketplaces.xcframework"),
+        .binaryTarget(name: "BagbutikProvisioningModels", path: "Artifacts/BagbutikProvisioningModels.xcframework"),
+        .binaryTarget(name: "BagbutikProvisioning", path: "Artifacts/BagbutikProvisioning.xcframework"),
         .binaryTarget(name: "BagbutikReportingModels", path: "Artifacts/BagbutikReportingModels.xcframework"),
         .binaryTarget(name: "BagbutikReporting", path: "Artifacts/BagbutikReporting.xcframework"),
         .binaryTarget(name: "BagbutikUsersModels", path: "Artifacts/BagbutikUsersModels.xcframework"),
@@ -460,6 +481,49 @@ import BagbutikModelsShared
 let request = Request<AlternativeDistributionDomainsResponse, ErrorResponse>.listAlternativeDistributionDomainsV1(
     fields: [.alternativeDistributionDomains([.domain, .referenceName])],
     limit: 20
+)
+
+print(request.path)
+SOURCE_EOF
+
+  cat > "$INTEGRATION_DIR/BagbutikProvisioningBinaryClient/Package.swift" <<'PACKAGE_EOF'
+// swift-tools-version:6.0
+
+import PackageDescription
+
+let package = Package(
+    name: "BagbutikProvisioningBinaryClient",
+    platforms: [
+        .macOS(.v12),
+        .iOS(.v15),
+        .tvOS(.v15),
+        .watchOS(.v9),
+        .visionOS(.v1),
+    ],
+    dependencies: [
+        .package(name: "Bagbutik", path: "../BagbutikBinaryPackage"),
+    ],
+    targets: [
+        .executableTarget(
+            name: "BagbutikProvisioningBinaryClient",
+            dependencies: [
+                .product(name: "BagbutikProvisioning", package: "Bagbutik"),
+            ]
+        ),
+    ]
+)
+PACKAGE_EOF
+
+  cat > "$INTEGRATION_DIR/BagbutikProvisioningBinaryClient/Sources/BagbutikProvisioningBinaryClient/main.swift" <<'SOURCE_EOF'
+import BagbutikCore
+import BagbutikModelsShared
+import BagbutikProvisioning
+import BagbutikProvisioningModels
+
+let request = Request<BundleIdsResponse, ErrorResponse>.listBundleIdsV1(
+    filters: [.identifier(["com.example.app"])],
+    includes: [.profiles],
+    limits: [.limit(20)]
 )
 
 print(request.path)
@@ -638,6 +702,10 @@ client_link_modules() {
     BagbutikMarketplaces)
       echo "BagbutikMarketplaces"
       echo "BagbutikMarketplacesModels"
+      ;;
+    BagbutikProvisioning)
+      echo "BagbutikProvisioning"
+      echo "BagbutikProvisioningModels"
       ;;
     BagbutikReporting)
       echo "BagbutikReporting"
