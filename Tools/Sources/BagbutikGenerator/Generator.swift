@@ -36,7 +36,7 @@ typealias LoadSpec = (_ fileUrl: URL) throws -> Spec
 
 /// Generates endpoint and model source files from the decoded spec and normalized documentation.
 public class Generator {
-    private static let migratedPackages: Set<PackageName> = [.reporting, .users, .webhooks]
+    private static let migratedPackages: Set<PackageName> = [.marketplaces, .reporting, .users, .webhooks]
 
     private let loadSpec: LoadSpec
     private let fileManager: TestableFileManager

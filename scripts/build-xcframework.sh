@@ -8,6 +8,7 @@ DIST_DIR="$ROOT_DIR/output"
 INTEGRATION_DIR="$BUILD_DIR/integration"
 CONFIGURATION="release"
 BUILD_TARGETS=(
+  "BagbutikMarketplaces"
   "BagbutikReporting"
   "BagbutikUsers"
   "BagbutikWebhooks"
@@ -16,6 +17,8 @@ BUILD_TARGETS=(
 MODULES=(
   "BagbutikCore"
   "BagbutikModelsShared"
+  "BagbutikMarketplacesModels"
+  "BagbutikMarketplaces"
   "BagbutikReportingModels"
   "BagbutikReporting"
   "BagbutikUsersModels"
@@ -175,6 +178,12 @@ module_source_directory() {
       ;;
     BagbutikModelsShared)
       echo "$ROOT_DIR/Sources/BagbutikModelsShared"
+      ;;
+    BagbutikMarketplacesModels)
+      echo "$ROOT_DIR/Sources/BagbutikMarketplacesModels"
+      ;;
+    BagbutikMarketplaces)
+      echo "$ROOT_DIR/Sources/Bagbutik-Marketplaces"
       ;;
     BagbutikReportingModels)
       echo "$ROOT_DIR/Sources/BagbutikReportingModels"
@@ -342,6 +351,7 @@ zip_module_xcframework() {
 
 prepare_binary_integration_fixture() {
   mkdir -p "$INTEGRATION_DIR/BagbutikBinaryPackage/Artifacts"
+  mkdir -p "$INTEGRATION_DIR/BagbutikMarketplacesBinaryClient/Sources/BagbutikMarketplacesBinaryClient"
   mkdir -p "$INTEGRATION_DIR/BagbutikReportingBinaryClient/Sources/BagbutikReportingBinaryClient"
   mkdir -p "$INTEGRATION_DIR/BagbutikUsersBinaryClient/Sources/BagbutikUsersBinaryClient"
   mkdir -p "$INTEGRATION_DIR/BagbutikWebhooksBinaryClient/Sources/BagbutikWebhooksBinaryClient"
@@ -361,6 +371,15 @@ let package = Package(
         .visionOS(.v1),
     ],
     products: [
+        .library(
+            name: "BagbutikMarketplaces",
+            targets: [
+                "BagbutikCore",
+                "BagbutikModelsShared",
+                "BagbutikMarketplacesModels",
+                "BagbutikMarketplaces",
+            ]
+        ),
         .library(
             name: "BagbutikReporting",
             targets: [
@@ -392,6 +411,8 @@ let package = Package(
     targets: [
         .binaryTarget(name: "BagbutikCore", path: "Artifacts/BagbutikCore.xcframework"),
         .binaryTarget(name: "BagbutikModelsShared", path: "Artifacts/BagbutikModelsShared.xcframework"),
+        .binaryTarget(name: "BagbutikMarketplacesModels", path: "Artifacts/BagbutikMarketplacesModels.xcframework"),
+        .binaryTarget(name: "BagbutikMarketplaces", path: "Artifacts/BagbutikMarketplaces.xcframework"),
         .binaryTarget(name: "BagbutikReportingModels", path: "Artifacts/BagbutikReportingModels.xcframework"),
         .binaryTarget(name: "BagbutikReporting", path: "Artifacts/BagbutikReporting.xcframework"),
         .binaryTarget(name: "BagbutikUsersModels", path: "Artifacts/BagbutikUsersModels.xcframework"),
@@ -401,6 +422,48 @@ let package = Package(
     ]
 )
 PACKAGE_EOF
+
+  cat > "$INTEGRATION_DIR/BagbutikMarketplacesBinaryClient/Package.swift" <<'PACKAGE_EOF'
+// swift-tools-version:6.0
+
+import PackageDescription
+
+let package = Package(
+    name: "BagbutikMarketplacesBinaryClient",
+    platforms: [
+        .macOS(.v12),
+        .iOS(.v15),
+        .tvOS(.v15),
+        .watchOS(.v9),
+        .visionOS(.v1),
+    ],
+    dependencies: [
+        .package(name: "Bagbutik", path: "../BagbutikBinaryPackage"),
+    ],
+    targets: [
+        .executableTarget(
+            name: "BagbutikMarketplacesBinaryClient",
+            dependencies: [
+                .product(name: "BagbutikMarketplaces", package: "Bagbutik"),
+            ]
+        ),
+    ]
+)
+PACKAGE_EOF
+
+  cat > "$INTEGRATION_DIR/BagbutikMarketplacesBinaryClient/Sources/BagbutikMarketplacesBinaryClient/main.swift" <<'SOURCE_EOF'
+import BagbutikCore
+import BagbutikMarketplaces
+import BagbutikMarketplacesModels
+import BagbutikModelsShared
+
+let request = Request<AlternativeDistributionDomainsResponse, ErrorResponse>.listAlternativeDistributionDomainsV1(
+    fields: [.alternativeDistributionDomains([.domain, .referenceName])],
+    limit: 20
+)
+
+print(request.path)
+SOURCE_EOF
 
   cat > "$INTEGRATION_DIR/BagbutikReportingBinaryClient/Package.swift" <<'PACKAGE_EOF'
 // swift-tools-version:6.0
@@ -572,6 +635,10 @@ verify_binary_integration() {
 
 client_link_modules() {
   case "$1" in
+    BagbutikMarketplaces)
+      echo "BagbutikMarketplaces"
+      echo "BagbutikMarketplacesModels"
+      ;;
     BagbutikReporting)
       echo "BagbutikReporting"
       echo "BagbutikReportingModels"
