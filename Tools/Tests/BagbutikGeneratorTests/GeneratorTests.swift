@@ -12,6 +12,14 @@ final class GeneratorTests: XCTestCase {
             .init(id: "users_getCollection",
                   name: "listUsers",
                   method: .get,
+                  parameters: [
+                    .filter(
+                        name: "buildAudienceType",
+                        type: .simple(type: .init(type: "BuildAudienceType")),
+                        required: false,
+                        documentation: "Filter by build audience type"
+                    )
+                  ],
                   successResponseType: "UsersResponse",
                   errorResponseType: "ErrorResponse"),
         ]),
@@ -28,6 +36,7 @@ final class GeneratorTests: XCTestCase {
         "UserVisibleAppsLinkagesResponse": .object(.init(name: "UserVisibleAppsLinkagesResponse", url: "some://url")),
         "ReplaceUsersResponse": .enum(.init(name: "ReplaceUsersResponse", type: "String", caseValues: ["none", "some"])),
         "BuildAppLinkageResponse": .enum(.init(name: "BuildAppLinkageResponse", type: "String", caseValues: ["none", "some"])),
+        "BuildAudienceType": .enum(.init(name: "BuildAudienceType", type: "String", caseValues: ["internalOnly", "appStoreEligible"])),
         "Gzip": .binary(.init(name: "Gzip", url: "other://url")),
         "Csv": .plainText(.init(name: "Csv", url: "other://url")),
         "ErrorResponse": .object(.init(name: "ErrorResponse", url: "some://url"))
@@ -75,6 +84,7 @@ final class GeneratorTests: XCTestCase {
             "/Users/steve/output/BagbutikMarketplacesModels",
             "/Users/steve/output/BagbutikProvisioningModels",
             "/Users/steve/output/BagbutikReportingModels",
+            "/Users/steve/output/BagbutikTestFlightModels",
             "/Users/steve/output/BagbutikUsersModels",
             "/Users/steve/output/BagbutikWebhooksModels",
             "/Users/steve/output/BagbutikXcodeCloudModels"
@@ -99,12 +109,14 @@ final class GeneratorTests: XCTestCase {
             "/Users/steve/output/BagbutikModelsShared",
             "/Users/steve/output/BagbutikProvisioningModels",
             "/Users/steve/output/BagbutikReportingModels",
+            "/Users/steve/output/BagbutikTestFlightModels",
             "/Users/steve/output/BagbutikUsersModels",
             "/Users/steve/output/BagbutikWebhooksModels",
             "/Users/steve/output/BagbutikXcodeCloudModels"
         ])
         XCTAssertEqual(fileManager.filesCreated.map(\.name).sorted(), [
             "BuildAppLinkageResponse.swift",
+            "BuildAudienceType.swift",
             "Csv.swift",
             "ErrorResponse.swift",
             "Gzip.swift",
@@ -116,14 +128,15 @@ final class GeneratorTests: XCTestCase {
         ])
         let firstLogLine = await printer.printedLogs[0]
         let secondLogLine = await printer.printedLogs[1]
-        let nextLogLines = await printer.printedLogs[2 ... 10]
-        let lastLogLine = await printer.printedLogs[11]
+        let nextLogLines = await printer.printedLogs[2 ... 11]
+        let lastLogLine = await printer.printedLogs[12]
         XCTAssertEqual(firstLogLine, "🔍 Loading spec /Users/steve/spec.json...")
         XCTAssertEqual(secondLogLine, "🔍 Loading docs /Users/steve/documentation...")
         XCTAssertEqual(nextLogLines.sorted(), [
             "⚡️ Generating endpoint ListUsersV1...",
             "⚡️ Generating endpoint ListVisibleAppIdsForUserV2...",
             "⚡️ Generating model BuildAppLinkageResponse...",
+            "⚡️ Generating model BuildAudienceType...",
             "⚡️ Generating model Csv...",
             "⚡️ Generating model ErrorResponse...",
             "⚡️ Generating model Gzip...",
@@ -131,7 +144,7 @@ final class GeneratorTests: XCTestCase {
             "⚡️ Generating model UserVisibleAppsLinkagesResponse...",
             "⚡️ Generating model UsersResponse...",
         ])
-        XCTAssertEqual(lastLogLine, "🎉 Finished generating 2 endpoints and 7 models! 🎉")
+        XCTAssertEqual(lastLogLine, "🎉 Finished generating 2 endpoints and 8 models! 🎉")
         let usersResponse = String(
             decoding: fileManager.filesCreated.first { $0.name == "UsersResponse.swift" }!.data,
             as: UTF8.self
@@ -145,6 +158,7 @@ final class GeneratorTests: XCTestCase {
         )
         XCTAssertTrue(listUsers.contains("import BagbutikCore"))
         XCTAssertFalse(listUsers.contains("import Bagbutik_Core"))
+        XCTAssertTrue(listUsers.contains("import BagbutikModelsShared"), listUsers)
         XCTAssertTrue(listUsers.contains("import BagbutikUsersModels"))
         let linkageResponse = String(
             decoding: fileManager.filesCreated.first { $0.name == "UserVisibleAppsLinkagesResponse.swift" }!.data,
@@ -523,6 +537,15 @@ final class GeneratorTests: XCTestCase {
         ]]),
         title: "BuildAppLinkageResponse"
     )
+
+    static let buildAudienceTypeDocumentation = ObjectDocumentation(
+        id: "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/buildaudiencetype",
+        hierarchy: .init(paths: [[
+            "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI",
+            "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store"
+        ]]),
+        title: "BuildAudienceType"
+    )
     
     static let csvSchemaDocumentation = ObjectDocumentation(
         id: "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/csv",
@@ -564,6 +587,7 @@ final class GeneratorTests: XCTestCase {
                 "UserVisibleAppsLinkagesResponse": userVisibleAppsLinkagesResponseSchemaDocumentation.id,
                 "ReplaceUsersResponse": replaceUsersResponseSchemaDocumentation.id,
                 "BuildAppLinkageResponse": buildAppLinkageResponseDocumentation.id,
+                "BuildAudienceType": buildAudienceTypeDocumentation.id,
                 "Csv": csvSchemaDocumentation.id,
                 "Gzip": gzipSchemaDocumentation.id,
                 "ErrorResponse": errorResponseSchemaDocumentation.id
@@ -575,6 +599,7 @@ final class GeneratorTests: XCTestCase {
                 userVisibleAppsLinkagesResponseSchemaDocumentation.id: Documentation.object(userVisibleAppsLinkagesResponseSchemaDocumentation),
                 replaceUsersResponseSchemaDocumentation.id: Documentation.object(replaceUsersResponseSchemaDocumentation),
                 buildAppLinkageResponseDocumentation.id: Documentation.object(buildAppLinkageResponseDocumentation),
+                buildAudienceTypeDocumentation.id: Documentation.object(buildAudienceTypeDocumentation),
                 csvSchemaDocumentation.id: Documentation.object(csvSchemaDocumentation),
                 gzipSchemaDocumentation.id: Documentation.object(gzipSchemaDocumentation),
                 errorResponseSchemaDocumentation.id: Documentation.object(errorResponseSchemaDocumentation)

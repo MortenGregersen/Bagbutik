@@ -2,6 +2,7 @@
 @_exported import BagbutikModelsShared
 @_exported import BagbutikProvisioningModels
 @_exported import BagbutikReportingModels
+@_exported import BagbutikTestFlightModels
 @_exported import BagbutikUsersModels
 @_exported import BagbutikWebhooksModels
 @_exported import BagbutikXcodeCloudModels

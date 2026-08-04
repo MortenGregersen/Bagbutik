@@ -36,7 +36,7 @@ typealias LoadSpec = (_ fileUrl: URL) throws -> Spec
 
 /// Generates endpoint and model source files from the decoded spec and normalized documentation.
 public class Generator {
-    private static let migratedPackages: Set<PackageName> = [.marketplaces, .provisioning, .reporting, .users, .webhooks, .xcodeCloud]
+    private static let migratedPackages: Set<PackageName> = [.marketplaces, .provisioning, .reporting, .testFlight, .users, .webhooks, .xcodeCloud]
 
     private let loadSpec: LoadSpec
     private let fileManager: TestableFileManager
@@ -93,13 +93,8 @@ public class Generator {
         for path in spec.paths.values {
             for operation in path.operations {
                 let packageName = try await Self.resolvePackageName(for: operation, docsLoader: docsLoader)
-                endpointRootsByPackage[packageName, default: []].formUnion([
-                    operation.successResponseType,
-                    operation.errorResponseType,
-                ])
-                if let requestBody = operation.requestBody {
-                    endpointRootsByPackage[packageName, default: []].insert(requestBody.name)
-                }
+                endpointRootsByPackage[packageName, default: []]
+                    .formUnion(Self.endpointSchemaNames(for: operation))
             }
         }
         let modulePlan = RuntimeModulePlan(
@@ -142,7 +137,7 @@ public class Generator {
 
         try await withThrowingTaskGroup(of: [RenderResult].self) { taskGroup in
             for path in spec.paths.values {
-                taskGroup.addTask { [docsLoader] in
+                taskGroup.addTask { [docsLoader, modulePlan] in
                     var renderResults = [RenderResult]()
                     let operationRenderer = OperationRenderer(docsLoader: docsLoader, shouldFormat: true)
                     for operation in path.operations {
@@ -151,11 +146,16 @@ public class Generator {
                         let packageName = try await Self.resolvePackageName(for: operation, docsLoader: docsLoader)
                         var renderedOperation = try await operationRenderer.render(operation: operation, in: path) + "\n"
                         if Self.migratedPackages.contains(packageName) {
+                            let domainModelModule = RuntimeModulePlan.ModelModule.domainModels(packageName)
                             renderedOperation = renderedOperation
                                 .replacingOccurrences(of: "import Bagbutik_Core", with: "import BagbutikCore")
                                 .replacingOccurrences(
                                     of: "import Bagbutik_Models",
-                                    with: "import \(RuntimeModulePlan.ModelModule.domainModels(packageName).targetName)"
+                                    with: Self.endpointModelImports(
+                                        for: operation,
+                                        domainModelModule: domainModelModule,
+                                        modulePlan: modulePlan
+                                    )
                                 )
                         }
                         let packageDirURL = outputDirURL.appendingPathComponent(packageName.name).appendingPathComponent("Endpoints")
@@ -271,6 +271,55 @@ public class Generator {
             return inferredPackageName
         }
         throw GeneratorError.noDocumentationForOperation(operation.id)
+    }
+
+    private static func endpointSchemaNames(
+        for operation: BagbutikSpecDecoder.Operation
+    ) -> Set<String> {
+        var schemaNames: Set<String> = [
+            operation.successResponseType,
+            operation.errorResponseType,
+        ]
+        if let requestBody = operation.requestBody {
+            schemaNames.insert(requestBody.name)
+        }
+        for parameter in operation.parameters ?? [] {
+            let parameterType: BagbutikSpecDecoder.Operation.Parameter.ParameterValueType?
+            switch parameter {
+            case .filter(_, let type, _, _):
+                parameterType = type
+            case .exists(_, let type, _):
+                parameterType = type
+            case .fields(_, let type, _, _):
+                parameterType = type
+            case .sort(let type, _):
+                parameterType = type
+            case .include(let type):
+                parameterType = type
+            case .custom(_, let type, _):
+                parameterType = type
+            case .limit:
+                parameterType = nil
+            }
+            guard let parameterType, case .simple(let type) = parameterType else { continue }
+            schemaNames.insert(type.description)
+        }
+        return schemaNames
+    }
+
+    private static func endpointModelImports(
+        for operation: BagbutikSpecDecoder.Operation,
+        domainModelModule: RuntimeModulePlan.ModelModule,
+        modulePlan: RuntimeModulePlan
+    ) -> String {
+        var directlyReferencedModules = Set(endpointSchemaNames(for: operation).map { modulePlan[$0] })
+            .subtracting([.core, .legacyModels, domainModelModule])
+        directlyReferencedModules.insert(domainModelModule)
+        return directlyReferencedModules
+            .map(\.targetName)
+            .sorted()
+            .map { "import \($0)" }
+            .joined(separator: "\n")
     }
 
     /**

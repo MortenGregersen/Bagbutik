@@ -11,6 +11,7 @@ BUILD_TARGETS=(
   "BagbutikMarketplaces"
   "BagbutikProvisioning"
   "BagbutikReporting"
+  "BagbutikTestFlight"
   "BagbutikUsers"
   "BagbutikWebhooks"
   "BagbutikXcodeCloud"
@@ -25,6 +26,8 @@ MODULES=(
   "BagbutikProvisioning"
   "BagbutikReportingModels"
   "BagbutikReporting"
+  "BagbutikTestFlightModels"
+  "BagbutikTestFlight"
   "BagbutikUsersModels"
   "BagbutikUsers"
   "BagbutikWebhooksModels"
@@ -203,6 +206,12 @@ module_source_directory() {
     BagbutikReporting)
       echo "$ROOT_DIR/Sources/Bagbutik-Reporting"
       ;;
+    BagbutikTestFlightModels)
+      echo "$ROOT_DIR/Sources/BagbutikTestFlightModels"
+      ;;
+    BagbutikTestFlight)
+      echo "$ROOT_DIR/Sources/Bagbutik-TestFlight"
+      ;;
     BagbutikUsersModels)
       echo "$ROOT_DIR/Sources/BagbutikUsersModels"
       ;;
@@ -372,6 +381,7 @@ prepare_binary_integration_fixture() {
   mkdir -p "$INTEGRATION_DIR/BagbutikMarketplacesBinaryClient/Sources/BagbutikMarketplacesBinaryClient"
   mkdir -p "$INTEGRATION_DIR/BagbutikProvisioningBinaryClient/Sources/BagbutikProvisioningBinaryClient"
   mkdir -p "$INTEGRATION_DIR/BagbutikReportingBinaryClient/Sources/BagbutikReportingBinaryClient"
+  mkdir -p "$INTEGRATION_DIR/BagbutikTestFlightBinaryClient/Sources/BagbutikTestFlightBinaryClient"
   mkdir -p "$INTEGRATION_DIR/BagbutikUsersBinaryClient/Sources/BagbutikUsersBinaryClient"
   mkdir -p "$INTEGRATION_DIR/BagbutikWebhooksBinaryClient/Sources/BagbutikWebhooksBinaryClient"
   mkdir -p "$INTEGRATION_DIR/BagbutikXcodeCloudBinaryClient/Sources/BagbutikXcodeCloudBinaryClient"
@@ -419,6 +429,16 @@ let package = Package(
             ]
         ),
         .library(
+            name: "BagbutikTestFlight",
+            targets: [
+                "BagbutikCore",
+                "BagbutikModelsShared",
+                "BagbutikProvisioningModels",
+                "BagbutikTestFlightModels",
+                "BagbutikTestFlight",
+            ]
+        ),
+        .library(
             name: "BagbutikUsers",
             targets: [
                 "BagbutikCore",
@@ -456,6 +476,8 @@ let package = Package(
         .binaryTarget(name: "BagbutikProvisioning", path: "Artifacts/BagbutikProvisioning.xcframework"),
         .binaryTarget(name: "BagbutikReportingModels", path: "Artifacts/BagbutikReportingModels.xcframework"),
         .binaryTarget(name: "BagbutikReporting", path: "Artifacts/BagbutikReporting.xcframework"),
+        .binaryTarget(name: "BagbutikTestFlightModels", path: "Artifacts/BagbutikTestFlightModels.xcframework"),
+        .binaryTarget(name: "BagbutikTestFlight", path: "Artifacts/BagbutikTestFlight.xcframework"),
         .binaryTarget(name: "BagbutikUsersModels", path: "Artifacts/BagbutikUsersModels.xcframework"),
         .binaryTarget(name: "BagbutikUsers", path: "Artifacts/BagbutikUsers.xcframework"),
         .binaryTarget(name: "BagbutikWebhooksModels", path: "Artifacts/BagbutikWebhooksModels.xcframework"),
@@ -591,6 +613,49 @@ let request = Request<Gzip, ErrorResponse>.getSalesReportsV1(filters: [
     .reportSubType([.summary]),
     .frequency([.daily]),
 ])
+
+print(request.path)
+SOURCE_EOF
+
+  cat > "$INTEGRATION_DIR/BagbutikTestFlightBinaryClient/Package.swift" <<'PACKAGE_EOF'
+// swift-tools-version:6.0
+
+import PackageDescription
+
+let package = Package(
+    name: "BagbutikTestFlightBinaryClient",
+    platforms: [
+        .macOS(.v12),
+        .iOS(.v15),
+        .tvOS(.v15),
+        .watchOS(.v9),
+        .visionOS(.v1),
+    ],
+    dependencies: [
+        .package(name: "Bagbutik", path: "../BagbutikBinaryPackage"),
+    ],
+    targets: [
+        .executableTarget(
+            name: "BagbutikTestFlightBinaryClient",
+            dependencies: [
+                .product(name: "BagbutikTestFlight", package: "Bagbutik"),
+            ]
+        ),
+    ]
+)
+PACKAGE_EOF
+
+  cat > "$INTEGRATION_DIR/BagbutikTestFlightBinaryClient/Sources/BagbutikTestFlightBinaryClient/main.swift" <<'SOURCE_EOF'
+import BagbutikCore
+import BagbutikModelsShared
+import BagbutikProvisioningModels
+import BagbutikTestFlight
+import BagbutikTestFlightModels
+
+let request = Request<BetaFeedbackCrashSubmissionResponse, ErrorResponse>.getBetaFeedbackCrashSubmissionV1(
+    id: "submission-1",
+    includes: [.build, .tester]
+)
 
 print(request.path)
 SOURCE_EOF
@@ -776,6 +841,11 @@ client_link_modules() {
     BagbutikReporting)
       echo "BagbutikReporting"
       echo "BagbutikReportingModels"
+      ;;
+    BagbutikTestFlight)
+      echo "BagbutikTestFlight"
+      echo "BagbutikTestFlightModels"
+      echo "BagbutikProvisioningModels"
       ;;
     BagbutikUsers)
       echo "BagbutikUsers"
