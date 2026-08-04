@@ -94,21 +94,21 @@ final class RuntimeModulePlanTests: XCTestCase {
     func testSharedModelKeepsItsPublicTypeDependenciesInTheSharedLayer() {
         let schemas: [String: Schema] = [
             "CiWorkflow": .object(.init(name: "CiWorkflow", url: "", properties: [
-                "rule": .init(type: .schemaRef("CiFilesAndFoldersRule")),
+                "rule": .init(type: .schemaRef("SharedRule")),
             ])),
             "User": .object(.init(name: "User", url: "", properties: [
-                "rule": .init(type: .schemaRef("CiFilesAndFoldersRule")),
+                "rule": .init(type: .schemaRef("SharedRule")),
             ])),
-            "CiFilesAndFoldersRule": .object(.init(name: "CiFilesAndFoldersRule", url: "", properties: [
-                "matchers": .init(type: .arrayOfSchemaRef("CiStartConditionFileMatcher")),
+            "SharedRule": .object(.init(name: "SharedRule", url: "", properties: [
+                "nestedTypes": .init(type: .arrayOfSchemaRef("NestedType")),
             ])),
-            "CiStartConditionFileMatcher": .object(.init(name: "CiStartConditionFileMatcher", url: "")),
+            "NestedType": .object(.init(name: "NestedType", url: "")),
         ]
         let packages: [String: PackageName] = [
             "CiWorkflow": .xcodeCloud,
             "User": .users,
-            "CiFilesAndFoldersRule": .gameCenter,
-            "CiStartConditionFileMatcher": .xcodeCloud,
+            "SharedRule": .gameCenter,
+            "NestedType": .xcodeCloud,
         ]
 
         let plan = RuntimeModulePlan(
@@ -117,8 +117,8 @@ final class RuntimeModulePlanTests: XCTestCase {
             migratedPackages: [.users, .xcodeCloud]
         )
 
-        XCTAssertEqual(plan["CiFilesAndFoldersRule"], .modelsShared)
-        XCTAssertEqual(plan["CiStartConditionFileMatcher"], .modelsShared)
+        XCTAssertEqual(plan["SharedRule"], .modelsShared)
+        XCTAssertEqual(plan["NestedType"], .modelsShared)
         XCTAssertEqual(plan.dependencies(for: .modelsShared), [.core])
     }
 }

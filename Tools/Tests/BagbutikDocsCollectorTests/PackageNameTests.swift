@@ -48,6 +48,10 @@ class PackageNameTests: XCTestCase {
         XCTAssertEqual(PackageName.resolvePackageName(from: "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/CiFun"), .xcodeCloud)
     }
 
+    func testResolvePackageNameXcodeCloudRule() {
+        XCTAssertEqual(PackageName.resolvePackageName(from: "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/CiFilesAndFoldersRule"), .xcodeCloud)
+    }
+
     func testResolvePackageNameFromOperationIdentifier() {
         XCTAssertEqual(PackageName.resolvePackageName(from: "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-users"), .users)
     }
