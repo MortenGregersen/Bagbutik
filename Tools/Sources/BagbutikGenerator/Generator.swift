@@ -36,6 +36,8 @@ typealias LoadSpec = (_ fileUrl: URL) throws -> Spec
 
 /// Generates endpoint and model source files from the decoded spec and normalized documentation.
 public class Generator {
+    private static let migratedPackages: Set<PackageName> = [.users, .webhooks]
+
     private let loadSpec: LoadSpec
     private let fileManager: TestableFileManager
     private let docsLoader: DocsLoader
@@ -87,12 +89,30 @@ public class Generator {
         for schema in schemas.values {
             packageBySchema[schema.name] = try await Self.resolvePackageName(for: schema, docsLoader: docsLoader)
         }
+        var endpointRootsByPackage = [PackageName: Set<String>]()
+        for path in spec.paths.values {
+            for operation in path.operations {
+                let packageName = try await Self.resolvePackageName(for: operation, docsLoader: docsLoader)
+                endpointRootsByPackage[packageName, default: []].formUnion([
+                    operation.successResponseType,
+                    operation.errorResponseType,
+                ])
+                if let requestBody = operation.requestBody {
+                    endpointRootsByPackage[packageName, default: []].insert(requestBody.name)
+                }
+            }
+        }
         let modulePlan = RuntimeModulePlan(
-            usersSliceFrom: SchemaReferenceGraph(schemas: schemas),
-            packageBySchema: packageBySchema
+            graph: SchemaReferenceGraph(schemas: schemas),
+            packageBySchema: packageBySchema,
+            migratedPackages: Self.migratedPackages,
+            additionalRootsByPackage: endpointRootsByPackage
         )
 
         let generalModelsDirURL = outputDirURL.appendingPathComponent("Bagbutik-Models")
+        for linkageModelsDirectory in ["LinkageRequests", "LinkageResponses"] {
+            try removeChildren(at: generalModelsDirURL.appendingPathComponent(linkageModelsDirectory))
+        }
         for packageName in PackageName.allCases {
             let packageDirURL = outputDirURL.appendingPathComponent(packageName.name)
             if packageName != .core {
@@ -110,7 +130,11 @@ public class Generator {
             try removeChildren(at: generalModelsDirURL.appendingPathComponent(packageName.docsSectionName))
             try fileManager.createDirectory(at: generalModelsDirURL, withIntermediateDirectories: true, attributes: nil)
         }
-        for generatedModelsDirectory in ["BagbutikModelsShared", "BagbutikUsersModels"] {
+        let generatedModelsDirectories = [RuntimeModulePlan.ModelModule.modelsShared.targetName]
+            + Self.migratedPackages
+                .map { RuntimeModulePlan.ModelModule.domainModels($0).targetName }
+                .sorted()
+        for generatedModelsDirectory in generatedModelsDirectories {
             let directoryURL = outputDirURL.appendingPathComponent(generatedModelsDirectory)
             try removeChildren(at: directoryURL)
             try fileManager.createDirectory(at: directoryURL, withIntermediateDirectories: true, attributes: nil)
@@ -124,19 +148,15 @@ public class Generator {
                     for operation in path.operations {
                         let name = operation.getVersionedName(path: path)
                         let fileName = "\(name).swift"
-                        let packageName: PackageName
-                        if let documentation = try await docsLoader.resolveDocumentationForOperation(withId: operation.id) {
-                            packageName = try DocsLoader.resolvePackageName(for: Documentation.operation(documentation))
-                        } else if let inferredPackageName = DocsLoader.resolvePackageName(from: operation.id) {
-                            packageName = inferredPackageName
-                        } else {
-                            throw GeneratorError.noDocumentationForOperation(operation.id)
-                        }
+                        let packageName = try await Self.resolvePackageName(for: operation, docsLoader: docsLoader)
                         var renderedOperation = try await operationRenderer.render(operation: operation, in: path) + "\n"
-                        if packageName == .users {
+                        if Self.migratedPackages.contains(packageName) {
                             renderedOperation = renderedOperation
                                 .replacingOccurrences(of: "import Bagbutik_Core", with: "import BagbutikCore")
-                                .replacingOccurrences(of: "import Bagbutik_Models", with: "import BagbutikUsersModels")
+                                .replacingOccurrences(
+                                    of: "import Bagbutik_Models",
+                                    with: "import \(RuntimeModulePlan.ModelModule.domainModels(packageName).targetName)"
+                                )
                         }
                         let packageDirURL = outputDirURL.appendingPathComponent(packageName.name).appendingPathComponent("Endpoints")
                         let operationDirURL = Self.getOperationsDirURL(for: path, in: packageDirURL)
@@ -166,15 +186,16 @@ public class Generator {
                         for: schema,
                         packageName: packageName,
                         modelModule: modelModule,
+                        moduleDependencies: modulePlan.dependencies(for: modelModule),
                         otherSchemas: schemas,
                         docsLoader: docsLoader
                     )
                     let fileName = model.name + ".swift"
 
                     let modelsDirURL: URL = if modelModule == .modelsShared {
-                        outputDirURL.appendingPathComponent("BagbutikModelsShared")
-                    } else if modelModule == .usersModels {
-                        outputDirURL.appendingPathComponent("BagbutikUsersModels")
+                        outputDirURL.appendingPathComponent(modelModule.targetName)
+                    } else if case .domainModels = modelModule {
+                        outputDirURL.appendingPathComponent(modelModule.targetName)
                     } else if schema.name.hasSuffix("LinkagesRequest") || schema.name.hasSuffix("LinkageRequest") {
                         outputDirURL
                             .appendingPathComponent("Bagbutik-Models")
@@ -239,6 +260,19 @@ public class Generator {
         throw GeneratorError.noDocumentationForSchema(schema.name)
     }
 
+    private static func resolvePackageName(
+        for operation: BagbutikSpecDecoder.Operation,
+        docsLoader: DocsLoader
+    ) async throws -> PackageName {
+        if let documentation = try await docsLoader.resolveDocumentationForOperation(withId: operation.id) {
+            return try DocsLoader.resolvePackageName(for: Documentation.operation(documentation))
+        }
+        if let inferredPackageName = DocsLoader.resolvePackageName(from: operation.id) {
+            return inferredPackageName
+        }
+        throw GeneratorError.noDocumentationForOperation(operation.id)
+    }
+
     /**
      Renders one schema into the generated Swift source for the appropriate package.
 
@@ -253,6 +287,7 @@ public class Generator {
         for schema: Schema,
         packageName: PackageName,
         modelModule: RuntimeModulePlan.ModelModule? = nil,
+        moduleDependencies: Set<RuntimeModulePlan.ModelModule>? = nil,
         otherSchemas: [String: Schema],
         docsLoader: DocsLoader
     )
@@ -274,10 +309,15 @@ public class Generator {
         var imports = ["import Foundation"]
         switch modelModule {
         case .modelsShared:
-            imports.append("import BagbutikCore")
-        case .usersModels:
-            imports.append("import BagbutikCore")
-            imports.append("import BagbutikModelsShared")
+            let dependencies = moduleDependencies ?? [.core]
+            imports.append(contentsOf: dependencies
+                .sorted { $0.targetName < $1.targetName }
+                .map { "import \($0.targetName)" })
+        case .domainModels:
+            let dependencies = moduleDependencies ?? [.core, .modelsShared]
+            imports.append(contentsOf: dependencies
+                .sorted { $0.targetName < $1.targetName }
+                .map { "import \($0.targetName)" })
         case .core:
             break
         case .legacyModels, nil:

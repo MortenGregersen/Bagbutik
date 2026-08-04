@@ -1,4 +1,5 @@
-import Bagbutik_Core
+import BagbutikCore
+import BagbutikModelsShared
 import Foundation
 
 /**
