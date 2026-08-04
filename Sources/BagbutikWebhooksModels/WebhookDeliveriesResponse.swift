@@ -1,24 +1,24 @@
-import Bagbutik_Core
-import Bagbutik_Models
+import BagbutikCore
+import BagbutikModelsShared
 import Foundation
 
 /**
- # WebhooksResponse
- The response body for endpoints that list webhooks.
+ # WebhookDeliveriesResponse
+ A response containing a list of webhook delivery records, each showing the outcome of a notification attempt.
 
  Full documentation:
- <https://developer.apple.com/documentation/appstoreconnectapi/webhooksresponse>
+ <https://developer.apple.com/documentation/appstoreconnectapi/webhookdeliveriesresponse>
  */
-public struct WebhooksResponse: Codable, Sendable, PagedResponse {
-    public typealias Data = Webhook
+public struct WebhookDeliveriesResponse: Codable, Sendable, PagedResponse {
+    public typealias Data = WebhookDelivery
 
-    public let data: [Webhook]
-    public var included: [App]?
+    public let data: [WebhookDelivery]
+    public var included: [WebhookEvent]?
     public let links: PagedDocumentLinks
     public var meta: PagingInformation?
 
-    public init(data: [Webhook],
-                included: [App]? = nil,
+    public init(data: [WebhookDelivery],
+                included: [WebhookEvent]? = nil,
                 links: PagedDocumentLinks,
                 meta: PagingInformation? = nil)
     {
@@ -30,8 +30,8 @@ public struct WebhooksResponse: Codable, Sendable, PagedResponse {
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: AnyCodingKey.self)
-        data = try container.decode([Webhook].self, forKey: "data")
-        included = try container.decodeIfPresent([App].self, forKey: "included")
+        data = try container.decode([WebhookDelivery].self, forKey: "data")
+        included = try container.decodeIfPresent([WebhookEvent].self, forKey: "included")
         links = try container.decode(PagedDocumentLinks.self, forKey: "links")
         meta = try container.decodeIfPresent(PagingInformation.self, forKey: "meta")
     }
@@ -44,7 +44,7 @@ public struct WebhooksResponse: Codable, Sendable, PagedResponse {
         try container.encodeIfPresent(meta, forKey: "meta")
     }
 
-    public func getApp(for webhook: Webhook) -> App? {
-        included?.first { $0.id == webhook.relationships?.app?.data?.id }
+    public func getEvent(for webhookDelivery: WebhookDelivery) -> WebhookEvent? {
+        included?.first { $0.id == webhookDelivery.relationships?.event?.data?.id }
     }
 }

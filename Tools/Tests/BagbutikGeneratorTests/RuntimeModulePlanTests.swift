@@ -29,13 +29,17 @@ final class RuntimeModulePlanTests: XCTestCase {
             "Build": .appStore,
         ]
 
-        let plan = RuntimeModulePlan(usersSliceFrom: .init(schemas: schemas), packageBySchema: packages)
+        let plan = RuntimeModulePlan(
+            graph: .init(schemas: schemas),
+            packageBySchema: packages,
+            migratedPackages: [.users]
+        )
 
         XCTAssertEqual(plan["CoreLinks"], .core)
         XCTAssertEqual(plan["App"], .modelsShared)
         XCTAssertEqual(plan["SubscriptionStatusUrlVersion"], .modelsShared)
-        XCTAssertEqual(plan["User"], .usersModels)
-        XCTAssertEqual(plan["UsersResponse"], .usersModels)
+        XCTAssertEqual(plan["User"], .domainModels(.users))
+        XCTAssertEqual(plan["UsersResponse"], .domainModels(.users))
         XCTAssertEqual(plan["Build"], .legacyModels)
     }
 
@@ -50,9 +54,40 @@ final class RuntimeModulePlanTests: XCTestCase {
         ]
         let packages: [String: PackageName] = ["User": .users, "App": .appStore]
 
-        let plan = RuntimeModulePlan(usersSliceFrom: .init(schemas: schemas), packageBySchema: packages)
+        let plan = RuntimeModulePlan(
+            graph: .init(schemas: schemas),
+            packageBySchema: packages,
+            migratedPackages: [.users]
+        )
 
         XCTAssertEqual(plan["User"], .modelsShared)
         XCTAssertEqual(plan["App"], .modelsShared)
+    }
+
+    func testLinkageSchemaUsedByOneMigratedDomainStaysWithThatDomain() {
+        let schemas: [String: Schema] = [
+            "Webhook": .object(.init(name: "Webhook", url: "")),
+            "WebhookDeliveriesLinkagesResponse": .object(.init(name: "WebhookDeliveriesLinkagesResponse", url: "")),
+            "WebhookResponse": .object(.init(name: "WebhookResponse", url: "", properties: [
+                "data": .init(type: .schemaRef("Webhook")),
+            ])),
+        ]
+        let packages: [String: PackageName] = [
+            "Webhook": .webhooks,
+            "WebhookDeliveriesLinkagesResponse": .core,
+            "WebhookResponse": .webhooks,
+        ]
+
+        let plan = RuntimeModulePlan(
+            graph: .init(schemas: schemas),
+            packageBySchema: packages,
+            migratedPackages: [.users, .webhooks],
+            additionalRootsByPackage: [.webhooks: ["WebhookDeliveriesLinkagesResponse"]]
+        )
+
+        XCTAssertEqual(plan["Webhook"], .domainModels(.webhooks))
+        XCTAssertEqual(plan["WebhookResponse"], .domainModels(.webhooks))
+        XCTAssertEqual(plan["WebhookDeliveriesLinkagesResponse"], .domainModels(.webhooks))
+        XCTAssertEqual(plan.dependencies(for: .domainModels(.webhooks)), [.core, .modelsShared])
     }
 }

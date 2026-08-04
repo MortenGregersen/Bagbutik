@@ -25,6 +25,7 @@ final class GeneratorTests: XCTestCase {
     ],
     components: .init(schemas: [
         "UsersResponse": .object(.init(name: "UsersResponse", url: "some://url", properties: ["users": .init(type: .arrayOfSchemaRef("User"))])),
+        "UserVisibleAppsLinkagesResponse": .object(.init(name: "UserVisibleAppsLinkagesResponse", url: "some://url")),
         "ReplaceUsersResponse": .enum(.init(name: "ReplaceUsersResponse", type: "String", caseValues: ["none", "some"])),
         "BuildAppLinkageResponse": .enum(.init(name: "BuildAppLinkageResponse", type: "String", caseValues: ["none", "some"])),
         "Gzip": .binary(.init(name: "Gzip", url: "other://url")),
@@ -47,6 +48,8 @@ final class GeneratorTests: XCTestCase {
         // Then
         continueAfterFailure = false
         XCTAssertEqual(fileManager.itemsRemoved, [
+            "/Users/steve/output/Bagbutik-Models/LinkageRequests",
+            "/Users/steve/output/Bagbutik-Models/LinkageResponses",
             "/Users/steve/output/Bagbutik-AppStore",
             "/Users/steve/output/Bagbutik-Models/AppStore",
             "/Users/steve/output/Bagbutik-Core/Endpoints",
@@ -69,7 +72,8 @@ final class GeneratorTests: XCTestCase {
             "/Users/steve/output/Bagbutik-XcodeCloud",
             "/Users/steve/output/Bagbutik-Models/XcodeCloud",
             "/Users/steve/output/BagbutikModelsShared",
-            "/Users/steve/output/BagbutikUsersModels"
+            "/Users/steve/output/BagbutikUsersModels",
+            "/Users/steve/output/BagbutikWebhooksModels"
         ])
         XCTAssertEqual(Set(fileManager.directoriesCreated).sorted(), [
             "/Users/steve/output/Bagbutik-AppStore",
@@ -88,7 +92,8 @@ final class GeneratorTests: XCTestCase {
             "/Users/steve/output/Bagbutik-Webhooks",
             "/Users/steve/output/Bagbutik-XcodeCloud",
             "/Users/steve/output/BagbutikModelsShared",
-            "/Users/steve/output/BagbutikUsersModels"
+            "/Users/steve/output/BagbutikUsersModels",
+            "/Users/steve/output/BagbutikWebhooksModels"
         ])
         XCTAssertEqual(fileManager.filesCreated.map(\.name).sorted(), [
             "BuildAppLinkageResponse.swift",
@@ -98,12 +103,13 @@ final class GeneratorTests: XCTestCase {
             "ListUsersV1.swift",
             "ListVisibleAppIdsForUserV2.swift",
             "ReplaceUsersResponse.swift",
+            "UserVisibleAppsLinkagesResponse.swift",
             "UsersResponse.swift",
         ])
         let firstLogLine = await printer.printedLogs[0]
         let secondLogLine = await printer.printedLogs[1]
-        let nextLogLines = await printer.printedLogs[2 ... 9]
-        let lastLogLine = await printer.printedLogs[10]
+        let nextLogLines = await printer.printedLogs[2 ... 10]
+        let lastLogLine = await printer.printedLogs[11]
         XCTAssertEqual(firstLogLine, "🔍 Loading spec /Users/steve/spec.json...")
         XCTAssertEqual(secondLogLine, "🔍 Loading docs /Users/steve/documentation...")
         XCTAssertEqual(nextLogLines.sorted(), [
@@ -114,9 +120,10 @@ final class GeneratorTests: XCTestCase {
             "⚡️ Generating model ErrorResponse...",
             "⚡️ Generating model Gzip...",
             "⚡️ Generating model ReplaceUsersResponse...",
+            "⚡️ Generating model UserVisibleAppsLinkagesResponse...",
             "⚡️ Generating model UsersResponse...",
         ])
-        XCTAssertEqual(lastLogLine, "🎉 Finished generating 2 endpoints and 6 models! 🎉")
+        XCTAssertEqual(lastLogLine, "🎉 Finished generating 2 endpoints and 7 models! 🎉")
         let usersResponse = String(
             decoding: fileManager.filesCreated.first { $0.name == "UsersResponse.swift" }!.data,
             as: UTF8.self
@@ -131,6 +138,14 @@ final class GeneratorTests: XCTestCase {
         XCTAssertTrue(listUsers.contains("import BagbutikCore"))
         XCTAssertFalse(listUsers.contains("import Bagbutik_Core"))
         XCTAssertTrue(listUsers.contains("import BagbutikUsersModels"))
+        let linkageResponse = String(
+            decoding: fileManager.filesCreated.first { $0.name == "UserVisibleAppsLinkagesResponse.swift" }!.data,
+            as: UTF8.self
+        )
+        XCTAssertFalse(linkageResponse.contains("import BagbutikUsersModels"))
+        XCTAssertTrue(linkageResponse.contains("import BagbutikCore"))
+        XCTAssertTrue(linkageResponse.contains("import BagbutikModelsShared"))
+        XCTAssertFalse(linkageResponse.contains("import Bagbutik_Core"))
     }
 
     func testInvalidSpecFileURL() async throws {

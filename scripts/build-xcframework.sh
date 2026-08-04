@@ -7,13 +7,18 @@ BUILD_DIR="$ROOT_DIR/build/xcframework"
 DIST_DIR="$ROOT_DIR/output"
 INTEGRATION_DIR="$BUILD_DIR/integration"
 CONFIGURATION="release"
-BUILD_TARGET="BagbutikUsers"
+BUILD_TARGETS=(
+  "BagbutikUsers"
+  "BagbutikWebhooks"
+)
 
 MODULES=(
   "BagbutikCore"
   "BagbutikModelsShared"
   "BagbutikUsersModels"
   "BagbutikUsers"
+  "BagbutikWebhooksModels"
+  "BagbutikWebhooks"
 )
 
 SDKS=(
@@ -145,16 +150,19 @@ build_triple() {
     return
   fi
 
-  echo "Building $BUILD_TARGET for $triple"
-  swift build \
-    --package-path "$ROOT_DIR" \
-    --scratch-path "$scratch_path" \
-    --triple "$triple" \
-    --sdk "$sdk_root" \
-    --target "$BUILD_TARGET" \
-    --configuration "$CONFIGURATION" \
-    -Xswiftc -enable-library-evolution \
-    -Xswiftc -emit-module-interface
+  local build_target
+  for build_target in "${BUILD_TARGETS[@]}"; do
+    echo "Building $build_target for $triple"
+    swift build \
+      --package-path "$ROOT_DIR" \
+      --scratch-path "$scratch_path" \
+      --triple "$triple" \
+      --sdk "$sdk_root" \
+      --target "$build_target" \
+      --configuration "$CONFIGURATION" \
+      -Xswiftc -enable-library-evolution \
+      -Xswiftc -emit-module-interface
+  done
 }
 
 module_source_directory() {
@@ -170,6 +178,12 @@ module_source_directory() {
       ;;
     BagbutikUsers)
       echo "$ROOT_DIR/Sources/Bagbutik-Users"
+      ;;
+    BagbutikWebhooksModels)
+      echo "$ROOT_DIR/Sources/BagbutikWebhooksModels"
+      ;;
+    BagbutikWebhooks)
+      echo "$ROOT_DIR/Sources/Bagbutik-Webhooks"
       ;;
     *)
       echo "No source directory mapping for $1" >&2
@@ -188,7 +202,7 @@ build_visionos_triple() {
   local module_build_directory
   local sources=()
 
-  echo "Building $BUILD_TARGET directly for $triple"
+  echo "Building runtime modules directly for $triple"
   mkdir -p "$modules_directory" "$product_directory/ModuleCache"
 
   for module in "${MODULES[@]}"; do
@@ -320,6 +334,7 @@ zip_module_xcframework() {
 prepare_binary_integration_fixture() {
   mkdir -p "$INTEGRATION_DIR/BagbutikBinaryPackage/Artifacts"
   mkdir -p "$INTEGRATION_DIR/BagbutikUsersBinaryClient/Sources/BagbutikUsersBinaryClient"
+  mkdir -p "$INTEGRATION_DIR/BagbutikWebhooksBinaryClient/Sources/BagbutikWebhooksBinaryClient"
 
   cat > "$INTEGRATION_DIR/BagbutikBinaryPackage/Package.swift" <<'PACKAGE_EOF'
 // swift-tools-version:6.0
@@ -345,12 +360,23 @@ let package = Package(
                 "BagbutikUsers",
             ]
         ),
+        .library(
+            name: "BagbutikWebhooks",
+            targets: [
+                "BagbutikCore",
+                "BagbutikModelsShared",
+                "BagbutikWebhooksModels",
+                "BagbutikWebhooks",
+            ]
+        ),
     ],
     targets: [
         .binaryTarget(name: "BagbutikCore", path: "Artifacts/BagbutikCore.xcframework"),
         .binaryTarget(name: "BagbutikModelsShared", path: "Artifacts/BagbutikModelsShared.xcframework"),
         .binaryTarget(name: "BagbutikUsersModels", path: "Artifacts/BagbutikUsersModels.xcframework"),
         .binaryTarget(name: "BagbutikUsers", path: "Artifacts/BagbutikUsers.xcframework"),
+        .binaryTarget(name: "BagbutikWebhooksModels", path: "Artifacts/BagbutikWebhooksModels.xcframework"),
+        .binaryTarget(name: "BagbutikWebhooks", path: "Artifacts/BagbutikWebhooks.xcframework"),
     ]
 )
 PACKAGE_EOF
@@ -398,6 +424,48 @@ let request = Request<UsersResponse, ErrorResponse>.listUsersV1(
 print(request.path)
 SOURCE_EOF
 
+  cat > "$INTEGRATION_DIR/BagbutikWebhooksBinaryClient/Package.swift" <<'PACKAGE_EOF'
+// swift-tools-version:6.0
+
+import PackageDescription
+
+let package = Package(
+    name: "BagbutikWebhooksBinaryClient",
+    platforms: [
+        .macOS(.v12),
+        .iOS(.v15),
+        .tvOS(.v15),
+        .watchOS(.v9),
+        .visionOS(.v1),
+    ],
+    dependencies: [
+        .package(name: "Bagbutik", path: "../BagbutikBinaryPackage"),
+    ],
+    targets: [
+        .executableTarget(
+            name: "BagbutikWebhooksBinaryClient",
+            dependencies: [
+                .product(name: "BagbutikWebhooks", package: "Bagbutik"),
+            ]
+        ),
+    ]
+)
+PACKAGE_EOF
+
+  cat > "$INTEGRATION_DIR/BagbutikWebhooksBinaryClient/Sources/BagbutikWebhooksBinaryClient/main.swift" <<'SOURCE_EOF'
+import BagbutikCore
+import BagbutikModelsShared
+import BagbutikWebhooks
+import BagbutikWebhooksModels
+
+let request = Request<WebhookResponse, ErrorResponse>.getWebhookV1(
+    id: "webhook-1",
+    includes: [.app]
+)
+
+print(request.path)
+SOURCE_EOF
+
   local module
   for module in "${MODULES[@]}"; do
     cp -R "$DIST_DIR/$module.xcframework" "$INTEGRATION_DIR/BagbutikBinaryPackage/Artifacts/"
@@ -405,6 +473,7 @@ SOURCE_EOF
 }
 
 verify_binary_integration() {
+  local client
   local sdk
   local triple
   local sdk_root
@@ -418,31 +487,54 @@ verify_binary_integration() {
   for sdk in "${SDKS[@]}"; do
     sdk_root="$(sdk_path "$sdk")"
     while IFS= read -r triple; do
-      if [ "$sdk" = "xros" ] || [ "$sdk" = "xrsimulator" ]; then
-        verify_visionos_binary_integration "$sdk" "$triple" "$sdk_root"
-        continue
-      fi
+      for client in "${BUILD_TARGETS[@]}"; do
+        if [ "$sdk" = "xros" ] || [ "$sdk" = "xrsimulator" ]; then
+          verify_visionos_binary_integration "$sdk" "$triple" "$sdk_root" "$client"
+          continue
+        fi
 
-      echo "Verifying binary package consumer for $triple"
-      swift build \
-        --package-path "$INTEGRATION_DIR/BagbutikUsersBinaryClient" \
-        --scratch-path "$INTEGRATION_DIR/build/$triple" \
-        --triple "$triple" \
-        --sdk "$sdk_root" \
-        --configuration "$CONFIGURATION"
+        echo "Verifying $client binary package consumer for $triple"
+        swift build \
+          --package-path "$INTEGRATION_DIR/${client}BinaryClient" \
+          --scratch-path "$INTEGRATION_DIR/build/$client/$triple" \
+          --triple "$triple" \
+          --sdk "$sdk_root" \
+          --configuration "$CONFIGURATION"
+      done
     done < <(sdk_triples "$sdk")
   done
+}
+
+client_link_modules() {
+  case "$1" in
+    BagbutikUsers)
+      echo "BagbutikUsers"
+      echo "BagbutikUsersModels"
+      ;;
+    BagbutikWebhooks)
+      echo "BagbutikWebhooks"
+      echo "BagbutikWebhooksModels"
+      ;;
+    *)
+      echo "Unknown binary integration client: $1" >&2
+      exit 20
+      ;;
+  esac
+
+  echo "BagbutikModelsShared"
+  echo "BagbutikCore"
 }
 
 verify_visionos_binary_integration() {
   local sdk=$1
   local triple=$2
   local sdk_root=$3
+  local client=$4
   local library_identifier
   local module
   local import_arguments=()
   local libraries=()
-  local output_directory="$INTEGRATION_DIR/build/$triple"
+  local output_directory="$INTEGRATION_DIR/build/$client/$triple"
 
   if [ "$sdk" = "xros" ]; then
     library_identifier="xros-arm64"
@@ -450,20 +542,16 @@ verify_visionos_binary_integration() {
     library_identifier="xros-arm64-simulator"
   fi
 
-  for module in "${MODULES[@]}"; do
+  while IFS= read -r module; do
     import_arguments+=(
       -I "$DIST_DIR/$module.xcframework/$library_identifier/Headers"
     )
-  done
+    libraries+=(
+      "$DIST_DIR/$module.xcframework/$library_identifier/lib$module.a"
+    )
+  done < <(client_link_modules "$client")
 
-  libraries+=(
-    "$DIST_DIR/BagbutikUsers.xcframework/$library_identifier/libBagbutikUsers.a"
-    "$DIST_DIR/BagbutikUsersModels.xcframework/$library_identifier/libBagbutikUsersModels.a"
-    "$DIST_DIR/BagbutikModelsShared.xcframework/$library_identifier/libBagbutikModelsShared.a"
-    "$DIST_DIR/BagbutikCore.xcframework/$library_identifier/libBagbutikCore.a"
-  )
-
-  echo "Verifying binary package modules directly for $triple"
+  echo "Verifying $client binary package modules directly for $triple"
   mkdir -p "$output_directory/ModuleCache"
   swiftc \
     -O \
@@ -471,33 +559,42 @@ verify_visionos_binary_integration() {
     -sdk "$sdk_root" \
     -module-cache-path "$output_directory/ModuleCache" \
     "${import_arguments[@]}" \
-    "$INTEGRATION_DIR/BagbutikUsersBinaryClient/Sources/BagbutikUsersBinaryClient/main.swift" \
+    "$INTEGRATION_DIR/${client}BinaryClient/Sources/${client}BinaryClient/main.swift" \
     "${libraries[@]}" \
     -lz \
     -Xlinker -dead_strip \
-    -o "$output_directory/BagbutikUsersBinaryClient"
+    -o "$output_directory/${client}BinaryClient"
 }
 
 report_watch_sample_size() {
-  local arm64_32_binary="$INTEGRATION_DIR/build/arm64_32-apple-watchos9.0/arm64_32-apple-watchos/$CONFIGURATION/BagbutikUsersBinaryClient"
-  local arm64_binary="$INTEGRATION_DIR/build/arm64-apple-watchos9.0/arm64-apple-watchos/$CONFIGURATION/BagbutikUsersBinaryClient"
-  local universal_binary="$DIST_DIR/BagbutikUsersWatchSample"
-
-  if [ ! -f "$arm64_32_binary" ] || [ ! -f "$arm64_binary" ]; then
-    return
-  fi
-
-  xcrun lipo -create "$arm64_32_binary" "$arm64_binary" -output "$universal_binary"
-  xcrun strip -x "$universal_binary"
-
+  local arm64_32_binary
+  local arm64_binary
+  local client
   local size
-  size="$(stat -f '%z' "$universal_binary")"
-  echo "Stripped two architecture watch sample executable: $size bytes"
+  local universal_binary
 
-  if [ "$size" -gt 50000000 ]; then
-    echo "Watch sample executable exceeds the 50 MB release gate." >&2
-    exit 17
-  fi
+  for client in "${BUILD_TARGETS[@]}"; do
+    arm64_32_binary="$INTEGRATION_DIR/build/$client/arm64_32-apple-watchos9.0/arm64_32-apple-watchos/$CONFIGURATION/${client}BinaryClient"
+    arm64_binary="$INTEGRATION_DIR/build/$client/arm64-apple-watchos9.0/arm64-apple-watchos/$CONFIGURATION/${client}BinaryClient"
+    universal_binary="$DIST_DIR/${client}WatchSample"
+
+    if [ ! -f "$arm64_32_binary" ] || [ ! -f "$arm64_binary" ]; then
+      continue
+    fi
+
+    xcrun lipo -create "$arm64_32_binary" "$arm64_binary" -output "$universal_binary"
+    xcrun strip -x "$universal_binary"
+
+    size="$(stat -f '%z' "$universal_binary")"
+    echo "Stripped two architecture $client watch sample executable: $size bytes"
+
+    if [ "$size" -gt 50000000 ]; then
+      echo "$client watch sample executable exceeds the 50 MB release gate." >&2
+      exit 17
+    elif [ "$size" -gt 45000000 ]; then
+      echo "$client watch sample executable exceeds the 45 MB warning threshold." >&2
+    fi
+  done
 }
 
 echo "Building static Bagbutik XCFrameworks"
