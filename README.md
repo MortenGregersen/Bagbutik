@@ -135,6 +135,10 @@ This keeps each endpoint builder lightweight while centralizing authentication, 
 
 Bagbutik also provides a prebuilt static XCFramework distribution for projects that prefer not to compile Bagbutik sources. It uses the same public products and imports as the source package. Select the products your app uses, such as `BagbutikProvisioning` or `BagbutikAppStore`. The source only `Bagbutik` umbrella product is not part of the binary distribution.
 
+Publishing a source release dispatches the matching binary release workflow in
+the companion repository. Maintainers can also dispatch that workflow manually
+when a release needs to be rebuilt.
+
 Use either the source package or the binary package in one target. Do not add both because they intentionally expose the same Swift module names. The binary package and its release assets are published separately from the source repository.
 
 For version 24 breaking changes, see the [migration guide](Documentation/Bagbutik%2024.0%20Migration%20Guide.md).
