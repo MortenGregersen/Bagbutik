@@ -121,4 +121,35 @@ final class RuntimeModulePlanTests: XCTestCase {
         XCTAssertEqual(plan["NestedType"], .modelsShared)
         XCTAssertEqual(plan.dependencies(for: .modelsShared), [.core])
     }
+
+    func testExplicitSharedSchemaDoesNotCreateACrossDomainDependency() {
+        let schemas: [String: Schema] = [
+            "DeviceFamily": .enum(.init(
+                name: "DeviceFamily",
+                type: "String",
+                caseValues: ["IPHONE"]
+            )),
+            "BetaFeedback": .object(.init(name: "BetaFeedback", url: "", properties: [
+                "deviceFamily": .init(type: .schemaRef("DeviceFamily")),
+            ])),
+        ]
+        let packages: [String: PackageName] = [
+            "DeviceFamily": .provisioning,
+            "BetaFeedback": .testFlight,
+        ]
+
+        let plan = RuntimeModulePlan(
+            graph: .init(schemas: schemas),
+            packageBySchema: packages,
+            migratedPackages: [.provisioning, .testFlight],
+            sharedSchemas: ["DeviceFamily"]
+        )
+
+        XCTAssertEqual(plan["DeviceFamily"], .modelsShared)
+        XCTAssertEqual(plan["BetaFeedback"], .domainModels(.testFlight))
+        XCTAssertEqual(
+            plan.dependencies(for: .domainModels(.testFlight)),
+            [.core, .modelsShared]
+        )
+    }
 }

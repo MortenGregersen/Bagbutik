@@ -147,6 +147,8 @@ public enum PackageName: CaseIterable, Codable, Hashable, Sendable {
                 && !identifier.lowercased().contains("buildaction")
                 && !identifier.lowercased().contains("buildrun"))
             || resource.hasPrefix("crashLog")
+            || resource == "deviceConnectionType"
+            || resource == "deviceFamilyOsVersionFilter"
             || resource.hasPrefix("individualTester")
             || resource.lowercased().hasPrefix("prerelease")
             || resource.lowercased().hasPrefix("publiclink")
