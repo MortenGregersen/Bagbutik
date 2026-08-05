@@ -184,4 +184,43 @@ final class RuntimeModulePlanTests: XCTestCase {
             [.core, .modelsShared]
         )
     }
+
+    func testSharedGameCenterResourceBreaksTheCrossDomainModelCycle() {
+        let schemas: [String: Schema] = [
+            "AppStoreVersion": .object(.init(name: "AppStoreVersion", url: "")),
+            "AppStoreResponse": .object(.init(name: "AppStoreResponse", url: "", properties: [
+                "includedGameCenterVersion": .init(type: .schemaRef("GameCenterVersion")),
+            ])),
+            "GameCenterVersion": .object(.init(name: "GameCenterVersion", url: "")),
+            "GameCenterResponse": .object(.init(name: "GameCenterResponse", url: "", properties: [
+                "includedAppStoreVersion": .init(type: .schemaRef("AppStoreVersion")),
+            ])),
+        ]
+        let packages: [String: PackageName] = [
+            "AppStoreVersion": .appStore,
+            "AppStoreResponse": .appStore,
+            "GameCenterVersion": .gameCenter,
+            "GameCenterResponse": .gameCenter,
+        ]
+
+        let plan = RuntimeModulePlan(
+            graph: .init(schemas: schemas),
+            packageBySchema: packages,
+            migratedPackages: [.appStore, .gameCenter],
+            sharedSchemas: ["GameCenterVersion"]
+        )
+
+        XCTAssertEqual(plan["GameCenterVersion"], .modelsShared)
+        XCTAssertEqual(plan["AppStoreVersion"], .domainModels(.appStore))
+        XCTAssertEqual(plan["AppStoreResponse"], .domainModels(.appStore))
+        XCTAssertEqual(plan["GameCenterResponse"], .domainModels(.gameCenter))
+        XCTAssertEqual(
+            plan.dependencies(for: .domainModels(.appStore)),
+            [.core, .modelsShared]
+        )
+        XCTAssertEqual(
+            plan.dependencies(for: .domainModels(.gameCenter)),
+            [.core, .modelsShared, .domainModels(.appStore)]
+        )
+    }
 }

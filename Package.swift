@@ -40,8 +40,18 @@ let package = Package(
             ]
         ),
         .library(
-            name: "Bagbutik-GameCenter",
-            targets: ["Bagbutik-GameCenter"]
+            name: "BagbutikGameCenter",
+            targets: [
+                "BagbutikCore",
+                "BagbutikModelsShared",
+                "BagbutikAppStoreModels",
+                "BagbutikGameCenterModels",
+                "BagbutikGameCenter",
+                "BagbutikMarketplacesModels",
+                "BagbutikProvisioningModels",
+                "BagbutikTestFlightModels",
+                "BagbutikXcodeCloudModels",
+            ]
         ),
         .library(
             name: "BagbutikMarketplaces",
@@ -136,6 +146,14 @@ let package = Package(
                 "BagbutikXcodeCloudModels",
             ]
         ),
+        .target(
+            name: "BagbutikGameCenterModels",
+            dependencies: [
+                "BagbutikCore",
+                "BagbutikModelsShared",
+                "BagbutikAppStoreModels",
+            ]
+        ),
         .target(name: "BagbutikMarketplacesModels", dependencies: ["BagbutikCore", "BagbutikModelsShared"]),
         .target(name: "BagbutikProvisioningModels", dependencies: ["BagbutikCore", "BagbutikModelsShared"]),
         .target(name: "BagbutikReportingModels", dependencies: ["BagbutikCore", "BagbutikModelsShared"]),
@@ -175,6 +193,7 @@ let package = Package(
                 "Bagbutik-Core",
                 "BagbutikModelsShared",
                 "BagbutikAppStoreModels",
+                "BagbutikGameCenterModels",
                 "BagbutikMarketplacesModels",
                 "BagbutikProvisioningModels",
                 "BagbutikReportingModels",
@@ -184,7 +203,6 @@ let package = Package(
                 "BagbutikXcodeCloudModels",
             ]
         ),
-        .target(name: "Bagbutik-GameCenter", dependencies: ["Bagbutik-Core", "Bagbutik-Models"]),
         .target(
             name: "BagbutikAppStore",
             dependencies: [
@@ -193,6 +211,15 @@ let package = Package(
                 "BagbutikAppStoreModels",
             ],
             path: "Sources/Bagbutik-AppStore"
+        ),
+        .target(
+            name: "BagbutikGameCenter",
+            dependencies: [
+                "BagbutikCore",
+                "BagbutikModelsShared",
+                "BagbutikGameCenterModels",
+            ],
+            path: "Sources/Bagbutik-GameCenter"
         ),
         .target(
             name: "BagbutikTestFlight",
@@ -237,6 +264,16 @@ let package = Package(
                 "BagbutikModelsShared",
                 "BagbutikAppStoreModels",
                 "BagbutikAppStore",
+            ]
+        ),
+        .testTarget(
+            name: "BagbutikGameCenterIntegrationTests",
+            dependencies: [
+                "BagbutikCore",
+                "BagbutikModelsShared",
+                "BagbutikAppStoreModels",
+                "BagbutikGameCenterModels",
+                "BagbutikGameCenter",
             ]
         ),
         .testTarget(

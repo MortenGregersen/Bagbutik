@@ -36,12 +36,21 @@ typealias LoadSpec = (_ fileUrl: URL) throws -> Spec
 
 /// Generates endpoint and model source files from the decoded spec and normalized documentation.
 public class Generator {
-    private static let migratedPackages: Set<PackageName> = [.appStore, .marketplaces, .provisioning, .reporting, .testFlight, .users, .webhooks, .xcodeCloud]
+    private static let migratedPackages: Set<PackageName> = [.appStore, .gameCenter, .marketplaces, .provisioning, .reporting, .testFlight, .users, .webhooks, .xcodeCloud]
     private static let sharedSchemas: Set<String> = [
         "App",
         "Build",
         "BuildAudienceType",
         "DeviceFamily",
+        "GameCenterAchievementVersionV2",
+        "GameCenterActivityVersion",
+        "GameCenterAppVersion",
+        "GameCenterChallengeVersion",
+        "GameCenterDetail",
+        "GameCenterEnabledVersion",
+        "GameCenterLeaderboardSetVersionV2",
+        "GameCenterLeaderboardVersionV2",
+        "GameCenterVersionState",
         "ImageAsset",
         "SubscriptionStatusUrlVersion",
         "TerritoryCode",

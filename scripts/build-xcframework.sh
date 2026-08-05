@@ -9,6 +9,7 @@ INTEGRATION_DIR="$BUILD_DIR/integration"
 CONFIGURATION="release"
 BUILD_TARGETS=(
   "BagbutikAppStore"
+  "BagbutikGameCenter"
   "BagbutikMarketplaces"
   "BagbutikProvisioning"
   "BagbutikReporting"
@@ -23,6 +24,8 @@ MODULES=(
   "BagbutikModelsShared"
   "BagbutikAppStoreModels"
   "BagbutikAppStore"
+  "BagbutikGameCenterModels"
+  "BagbutikGameCenter"
   "BagbutikMarketplacesModels"
   "BagbutikMarketplaces"
   "BagbutikProvisioningModels"
@@ -196,6 +199,12 @@ module_source_directory() {
       ;;
     BagbutikAppStore)
       echo "$ROOT_DIR/Sources/Bagbutik-AppStore"
+      ;;
+    BagbutikGameCenterModels)
+      echo "$ROOT_DIR/Sources/BagbutikGameCenterModels"
+      ;;
+    BagbutikGameCenter)
+      echo "$ROOT_DIR/Sources/Bagbutik-GameCenter"
       ;;
     BagbutikMarketplacesModels)
       echo "$ROOT_DIR/Sources/BagbutikMarketplacesModels"
@@ -388,6 +397,7 @@ zip_module_xcframework() {
 prepare_binary_integration_fixture() {
   mkdir -p "$INTEGRATION_DIR/BagbutikBinaryPackage/Artifacts"
   mkdir -p "$INTEGRATION_DIR/BagbutikAppStoreBinaryClient/Sources/BagbutikAppStoreBinaryClient"
+  mkdir -p "$INTEGRATION_DIR/BagbutikGameCenterBinaryClient/Sources/BagbutikGameCenterBinaryClient"
   mkdir -p "$INTEGRATION_DIR/BagbutikMarketplacesBinaryClient/Sources/BagbutikMarketplacesBinaryClient"
   mkdir -p "$INTEGRATION_DIR/BagbutikProvisioningBinaryClient/Sources/BagbutikProvisioningBinaryClient"
   mkdir -p "$INTEGRATION_DIR/BagbutikReportingBinaryClient/Sources/BagbutikReportingBinaryClient"
@@ -418,6 +428,20 @@ let package = Package(
                 "BagbutikModelsShared",
                 "BagbutikAppStoreModels",
                 "BagbutikAppStore",
+                "BagbutikMarketplacesModels",
+                "BagbutikProvisioningModels",
+                "BagbutikTestFlightModels",
+                "BagbutikXcodeCloudModels",
+            ]
+        ),
+        .library(
+            name: "BagbutikGameCenter",
+            targets: [
+                "BagbutikCore",
+                "BagbutikModelsShared",
+                "BagbutikAppStoreModels",
+                "BagbutikGameCenterModels",
+                "BagbutikGameCenter",
                 "BagbutikMarketplacesModels",
                 "BagbutikProvisioningModels",
                 "BagbutikTestFlightModels",
@@ -494,6 +518,8 @@ let package = Package(
         .binaryTarget(name: "BagbutikModelsShared", path: "Artifacts/BagbutikModelsShared.xcframework"),
         .binaryTarget(name: "BagbutikAppStoreModels", path: "Artifacts/BagbutikAppStoreModels.xcframework"),
         .binaryTarget(name: "BagbutikAppStore", path: "Artifacts/BagbutikAppStore.xcframework"),
+        .binaryTarget(name: "BagbutikGameCenterModels", path: "Artifacts/BagbutikGameCenterModels.xcframework"),
+        .binaryTarget(name: "BagbutikGameCenter", path: "Artifacts/BagbutikGameCenter.xcframework"),
         .binaryTarget(name: "BagbutikMarketplacesModels", path: "Artifacts/BagbutikMarketplacesModels.xcframework"),
         .binaryTarget(name: "BagbutikMarketplaces", path: "Artifacts/BagbutikMarketplaces.xcframework"),
         .binaryTarget(name: "BagbutikProvisioningModels", path: "Artifacts/BagbutikProvisioningModels.xcframework"),
@@ -558,6 +584,45 @@ let subscriptions = Request<SubscriptionsResponse, ErrorResponse>.listSubscripti
 )
 
 print(customerReviews.path, subscriptions.path)
+SOURCE_EOF
+
+  cat > "$INTEGRATION_DIR/BagbutikGameCenterBinaryClient/Package.swift" <<'PACKAGE_EOF'
+// swift-tools-version:6.0
+
+import PackageDescription
+
+let package = Package(
+    name: "BagbutikGameCenterBinaryClient",
+    platforms: [
+        .macOS(.v12),
+        .iOS(.v15),
+        .tvOS(.v15),
+        .watchOS(.v9),
+        .visionOS(.v1),
+    ],
+    dependencies: [
+        .package(name: "Bagbutik", path: "../BagbutikBinaryPackage"),
+    ],
+    targets: [
+        .executableTarget(
+            name: "BagbutikGameCenterBinaryClient",
+            dependencies: [
+                .product(name: "BagbutikGameCenter", package: "Bagbutik"),
+            ]
+        ),
+    ]
+)
+PACKAGE_EOF
+
+  cat > "$INTEGRATION_DIR/BagbutikGameCenterBinaryClient/Sources/BagbutikGameCenterBinaryClient/main.swift" <<'SOURCE_EOF'
+import BagbutikCore
+import BagbutikGameCenter
+import BagbutikGameCenterModels
+
+let details = Request<GameCenterDetailResponse, ErrorResponse>.getGameCenterDetailV1(id: "detail-1")
+let matchmaking = Request<GameCenterMatchmakingQueuesResponse, ErrorResponse>.listGameCenterMatchmakingQueuesV1()
+
+print(details.path, matchmaking.path)
 SOURCE_EOF
 
   cat > "$INTEGRATION_DIR/BagbutikMarketplacesBinaryClient/Package.swift" <<'PACKAGE_EOF'
@@ -903,6 +968,15 @@ client_link_modules() {
   case "$1" in
     BagbutikAppStore)
       echo "BagbutikAppStore"
+      echo "BagbutikAppStoreModels"
+      echo "BagbutikMarketplacesModels"
+      echo "BagbutikProvisioningModels"
+      echo "BagbutikTestFlightModels"
+      echo "BagbutikXcodeCloudModels"
+      ;;
+    BagbutikGameCenter)
+      echo "BagbutikGameCenter"
+      echo "BagbutikGameCenterModels"
       echo "BagbutikAppStoreModels"
       echo "BagbutikMarketplacesModels"
       echo "BagbutikProvisioningModels"

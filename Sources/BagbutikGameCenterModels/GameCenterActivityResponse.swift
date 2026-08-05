@@ -1,0 +1,161 @@
+import BagbutikAppStoreModels
+import BagbutikCore
+import BagbutikModelsShared
+import Foundation
+
+/**
+ # GameCenterActivityResponse
+ A response containing a single Game Center activity with its configuration.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/gamecenteractivityresponse>
+ */
+public struct GameCenterActivityResponse: Codable, Sendable {
+    public let data: GameCenterActivity
+    public var included: [Included]?
+    public let links: DocumentLinks
+
+    public init(data: GameCenterActivity,
+                included: [Included]? = nil,
+                links: DocumentLinks)
+    {
+        self.data = data
+        self.included = included
+        self.links = links
+    }
+
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: AnyCodingKey.self)
+        data = try container.decode(GameCenterActivity.self, forKey: "data")
+        included = try container.decodeIfPresent([Included].self, forKey: "included")
+        links = try container.decode(DocumentLinks.self, forKey: "links")
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: AnyCodingKey.self)
+        try container.encode(data, forKey: "data")
+        try container.encodeIfPresent(included, forKey: "included")
+        try container.encode(links, forKey: "links")
+    }
+
+    @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
+    public func getAchievements() -> [GameCenterAchievement] {
+        guard let achievementIds = data.relationships?.achievements?.data?.map(\.id),
+              let achievements = included?.compactMap({ relationship -> GameCenterAchievement? in
+                  guard case let .gameCenterAchievement(achievement) = relationship else { return nil }
+                  return achievementIds.contains(achievement.id) ? achievement : nil
+              })
+        else {
+            return []
+        }
+        return achievements
+    }
+
+    public func getAchievementsV2() -> [GameCenterAchievement] {
+        guard let achievementsV2Ids = data.relationships?.achievementsV2?.data?.map(\.id),
+              let achievementsV2 = included?.compactMap({ relationship -> GameCenterAchievement? in
+                  guard case let .gameCenterAchievement(achievementsV2) = relationship else { return nil }
+                  return achievementsV2Ids.contains(achievementsV2.id) ? achievementsV2 : nil
+              })
+        else {
+            return []
+        }
+        return achievementsV2
+    }
+
+    public func getGameCenterDetail() -> GameCenterDetail? {
+        included?.compactMap { relationship -> GameCenterDetail? in
+            guard case let .gameCenterDetail(gameCenterDetail) = relationship else { return nil }
+            return gameCenterDetail
+        }.first { $0.id == data.relationships?.gameCenterDetail?.data?.id }
+    }
+
+    public func getGameCenterGroup() -> GameCenterGroup? {
+        included?.compactMap { relationship -> GameCenterGroup? in
+            guard case let .gameCenterGroup(gameCenterGroup) = relationship else { return nil }
+            return gameCenterGroup
+        }.first { $0.id == data.relationships?.gameCenterGroup?.data?.id }
+    }
+
+    @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
+    public func getLeaderboards() -> [GameCenterLeaderboard] {
+        guard let leaderboardIds = data.relationships?.leaderboards?.data?.map(\.id),
+              let leaderboards = included?.compactMap({ relationship -> GameCenterLeaderboard? in
+                  guard case let .gameCenterLeaderboard(leaderboard) = relationship else { return nil }
+                  return leaderboardIds.contains(leaderboard.id) ? leaderboard : nil
+              })
+        else {
+            return []
+        }
+        return leaderboards
+    }
+
+    public func getLeaderboardsV2() -> [GameCenterLeaderboard] {
+        guard let leaderboardsV2Ids = data.relationships?.leaderboardsV2?.data?.map(\.id),
+              let leaderboardsV2 = included?.compactMap({ relationship -> GameCenterLeaderboard? in
+                  guard case let .gameCenterLeaderboard(leaderboardsV2) = relationship else { return nil }
+                  return leaderboardsV2Ids.contains(leaderboardsV2.id) ? leaderboardsV2 : nil
+              })
+        else {
+            return []
+        }
+        return leaderboardsV2
+    }
+
+    public func getVersions() -> [GameCenterActivityVersion] {
+        guard let versionIds = data.relationships?.versions?.data?.map(\.id),
+              let versions = included?.compactMap({ relationship -> GameCenterActivityVersion? in
+                  guard case let .gameCenterActivityVersion(version) = relationship else { return nil }
+                  return versionIds.contains(version.id) ? version : nil
+              })
+        else {
+            return []
+        }
+        return versions
+    }
+
+    public enum Included: Codable, Sendable {
+        case gameCenterAchievement(GameCenterAchievement)
+        case gameCenterActivityVersion(GameCenterActivityVersion)
+        case gameCenterDetail(GameCenterDetail)
+        case gameCenterGroup(GameCenterGroup)
+        case gameCenterLeaderboard(GameCenterLeaderboard)
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: AnyCodingKey.self)
+            let discriminatorValue = try container.decode(String.self, forKey: "type")
+            switch discriminatorValue {
+            case "gameCenterAchievements":
+                self = .gameCenterAchievement(try GameCenterAchievement(from: decoder))
+            case "gameCenterActivityVersions":
+                self = .gameCenterActivityVersion(try GameCenterActivityVersion(from: decoder))
+            case "gameCenterDetails":
+                self = .gameCenterDetail(try GameCenterDetail(from: decoder))
+            case "gameCenterGroups":
+                self = .gameCenterGroup(try GameCenterGroup(from: decoder))
+            case "gameCenterLeaderboards":
+                self = .gameCenterLeaderboard(try GameCenterLeaderboard(from: decoder))
+            default:
+                throw DecodingError.dataCorruptedError(
+                    forKey: "type",
+                    in: container,
+                    debugDescription: "Unknown Included type '\(discriminatorValue)'")
+            }
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            switch self {
+            case let .gameCenterAchievement(value):
+                try value.encode(to: encoder)
+            case let .gameCenterActivityVersion(value):
+                try value.encode(to: encoder)
+            case let .gameCenterDetail(value):
+                try value.encode(to: encoder)
+            case let .gameCenterGroup(value):
+                try value.encode(to: encoder)
+            case let .gameCenterLeaderboard(value):
+                try value.encode(to: encoder)
+            }
+        }
+    }
+}
