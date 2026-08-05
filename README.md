@@ -137,7 +137,7 @@ Bagbutik also provides a prebuilt static XCFramework distribution for projects t
 
 Use either the source package or the binary package in one target. Do not add both because they intentionally expose the same Swift module names. The binary package and its release assets are published separately from the source repository.
 
-For version 24 breaking changes, see the [migration guide](Documentation/MigratingToVersion24.md).
+For version 24 breaking changes, see the [migration guide](Documentation/Bagbutik%2024.0%20Migration%20Guide.md).
 
 ## Maintaining generated code
 
