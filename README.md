@@ -104,7 +104,7 @@ Then add the required products to your target:
 )
 ```
 
-Select each public product your application uses. Bagbutik intentionally has no umbrella product because selecting it would compile every API area.
+Select each public product your application uses for the smallest source build. The source package also provides an optional `Bagbutik` umbrella product that imports every API area.
 
 #### Available modules
 
@@ -133,7 +133,7 @@ This keeps each endpoint builder lightweight while centralizing authentication, 
 
 ### Using a prebuilt binary package
 
-Bagbutik also provides a prebuilt static XCFramework distribution for projects that prefer not to compile Bagbutik sources. It uses the same public products and imports as the source package. Select the products your app uses, such as `BagbutikProvisioning` or `BagbutikAppStore`.
+Bagbutik also provides a prebuilt static XCFramework distribution for projects that prefer not to compile Bagbutik sources. It uses the same public products and imports as the source package. Select the products your app uses, such as `BagbutikProvisioning` or `BagbutikAppStore`. The source only `Bagbutik` umbrella product is not part of the binary distribution.
 
 Use either the source package or the binary package in one target. Do not add both because they intentionally expose the same Swift module names. The binary package and its release assets are published separately from the source repository.
 

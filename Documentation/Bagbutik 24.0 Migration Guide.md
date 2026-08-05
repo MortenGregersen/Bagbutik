@@ -4,7 +4,7 @@ Bagbutik 24 introduces modular products and clean Swift module names. This is an
 
 ## Select the products your target uses
 
-The `Bagbutik` umbrella product no longer exists. Add `BagbutikCore` and each product needed by the target. For example, an app that manages bundle IDs selects `BagbutikCore` and `BagbutikProvisioning`.
+For the smallest source build, add `BagbutikCore` and each product needed by the target. For example, an app that manages bundle IDs selects `BagbutikCore` and `BagbutikProvisioning`.
 
 ```swift
 .target(
@@ -43,4 +43,6 @@ import BagbutikProvisioningModels
 
 ## Source and binary distributions
 
-The source and binary distributions expose the same public product and module names. Choose one distribution for a target. Adding both would create duplicate Swift module names.
+The source and binary distributions expose the same modular product and module names. The source distribution also provides the optional `Bagbutik` umbrella product for consumers who prefer one import over a selective build. The binary distribution does not provide that umbrella product.
+
+Choose one distribution for a target. Adding both would create duplicate Swift module names.
