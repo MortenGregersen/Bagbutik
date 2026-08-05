@@ -1,5 +1,4 @@
 import BagbutikCore
-import BagbutikModelsShared
 import Foundation
 
 public struct BundleIdProfilesLinkagesResponse: Codable, Sendable, PagedResponse {

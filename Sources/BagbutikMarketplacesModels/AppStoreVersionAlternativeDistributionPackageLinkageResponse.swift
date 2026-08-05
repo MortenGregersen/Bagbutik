@@ -1,5 +1,4 @@
 import BagbutikCore
-import BagbutikModelsShared
 import Foundation
 
 public struct AppStoreVersionAlternativeDistributionPackageLinkageResponse: Codable, Sendable {

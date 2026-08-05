@@ -1,5 +1,4 @@
 import BagbutikCore
-import BagbutikModelsShared
 import Foundation
 
 public enum BetaReviewState: String, Sendable, ParameterValue, Codable, CaseIterable {

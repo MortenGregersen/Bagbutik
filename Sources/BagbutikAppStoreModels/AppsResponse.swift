@@ -1,5 +1,4 @@
 import BagbutikCore
-import BagbutikMarketplacesModels
 import BagbutikModelsShared
 import BagbutikTestFlightModels
 import BagbutikXcodeCloudModels

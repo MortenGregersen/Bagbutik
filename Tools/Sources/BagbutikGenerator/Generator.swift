@@ -115,8 +115,9 @@ public class Generator {
                     .formUnion(Self.endpointSchemaNames(for: operation))
             }
         }
+        let schemaReferenceGraph = SchemaReferenceGraph(schemas: schemas)
         let modulePlan = RuntimeModulePlan(
-            graph: SchemaReferenceGraph(schemas: schemas),
+            graph: schemaReferenceGraph,
             packageBySchema: packageBySchema,
             migratedPackages: Self.migratedPackages,
             sharedSchemas: Self.sharedSchemas,
@@ -198,14 +199,16 @@ public class Generator {
 
         try await withThrowingTaskGroup(of: RenderResult.self) { taskGroup in
             for schema in schemas.values {
-                taskGroup.addTask { [docsLoader, schemas, packageBySchema, modulePlan] in
+                taskGroup.addTask { [docsLoader, schemas, packageBySchema, schemaReferenceGraph, modulePlan] in
                     let packageName = packageBySchema[schema.name]!
                     let modelModule = modulePlan[schema.name]
+                    let referencedModelModules = Set(schemaReferenceGraph.references[schema.name, default: []]
+                        .map { modulePlan[$0] })
                     let model = try await Generator.generateModel(
                         for: schema,
                         packageName: packageName,
                         modelModule: modelModule,
-                        moduleDependencies: modulePlan.dependencies(for: modelModule),
+                        referencedModelModules: referencedModelModules,
                         otherSchemas: schemas,
                         docsLoader: docsLoader
                     )
@@ -353,7 +356,7 @@ public class Generator {
         for schema: Schema,
         packageName: PackageName,
         modelModule: RuntimeModulePlan.ModelModule? = nil,
-        moduleDependencies: Set<RuntimeModulePlan.ModelModule>? = nil,
+        referencedModelModules: Set<RuntimeModulePlan.ModelModule>? = nil,
         otherSchemas: [String: Schema],
         docsLoader: DocsLoader
     )
@@ -375,12 +378,16 @@ public class Generator {
         var imports = ["import Foundation"]
         switch modelModule {
         case .modelsShared:
-            let dependencies = moduleDependencies ?? [.core]
+            let dependencies = (referencedModelModules ?? [])
+                .union([.core])
+                .subtracting([.modelsShared, .legacyModels])
             imports.append(contentsOf: dependencies
                 .sorted { $0.targetName < $1.targetName }
                 .map { "import \($0.targetName)" })
-        case .domainModels:
-            let dependencies = moduleDependencies ?? [.core, .modelsShared]
+        case let .domainModels(package):
+            let dependencies = (referencedModelModules ?? [])
+                .union([.core])
+                .subtracting([.domainModels(package), .legacyModels])
             imports.append(contentsOf: dependencies
                 .sorted { $0.targetName < $1.targetName }
                 .map { "import \($0.targetName)" })

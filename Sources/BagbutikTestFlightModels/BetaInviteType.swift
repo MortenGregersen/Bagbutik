@@ -1,5 +1,4 @@
 import BagbutikCore
-import BagbutikModelsShared
 import Foundation
 
 public enum BetaInviteType: String, Sendable, ParameterValue, Codable, CaseIterable {

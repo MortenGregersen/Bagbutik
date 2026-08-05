@@ -1,6 +1,4 @@
 import BagbutikCore
-import BagbutikModelsShared
-import BagbutikProvisioningModels
 import Foundation
 
 public struct CiBuildActionTestResultsLinkagesResponse: Codable, Sendable, PagedResponse {

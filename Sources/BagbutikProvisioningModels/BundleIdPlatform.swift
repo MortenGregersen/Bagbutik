@@ -1,5 +1,4 @@
 import BagbutikCore
-import BagbutikModelsShared
 import Foundation
 
 public enum BundleIdPlatform: String, Sendable, ParameterValue, Codable, CaseIterable {

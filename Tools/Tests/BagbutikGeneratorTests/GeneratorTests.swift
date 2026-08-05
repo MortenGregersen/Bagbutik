@@ -153,7 +153,7 @@ final class GeneratorTests: XCTestCase {
             as: UTF8.self
         )
         XCTAssertTrue(usersResponse.contains("import BagbutikCore"))
-        XCTAssertTrue(usersResponse.contains("import BagbutikModelsShared"))
+        XCTAssertFalse(usersResponse.contains("import BagbutikModelsShared"))
         XCTAssertFalse(usersResponse.contains("import Bagbutik_Models"))
         let listUsers = String(
             decoding: fileManager.filesCreated.first { $0.name == "ListUsersV1.swift" }!.data,
@@ -169,7 +169,7 @@ final class GeneratorTests: XCTestCase {
         )
         XCTAssertFalse(linkageResponse.contains("import BagbutikUsersModels"))
         XCTAssertTrue(linkageResponse.contains("import BagbutikCore"))
-        XCTAssertTrue(linkageResponse.contains("import BagbutikModelsShared"))
+        XCTAssertFalse(linkageResponse.contains("import BagbutikModelsShared"))
         XCTAssertFalse(linkageResponse.contains("import Bagbutik_Core"))
     }
 
@@ -401,6 +401,24 @@ final class GeneratorTests: XCTestCase {
         XCTAssertTrue(requestModel.contents.contains("import Bagbutik_Core"))
         XCTAssertTrue(requestModel.contents.contains("import Bagbutik_Models"))
         XCTAssertTrue(linkageModel.contents.contains("import Bagbutik_Core"))
+    }
+
+    func testGenerateModelImportsOnlyItsReferencedModelModules() async throws {
+        let docsLoader = DocsLoader(schemaDocumentationById: [:])
+        let schema = Schema.object(.init(name: "GameCenterDetail", url: "some://url"))
+
+        let model = try await Generator.generateModel(
+            for: schema,
+            packageName: .gameCenter,
+            modelModule: .domainModels(.gameCenter),
+            referencedModelModules: [.domainModels(.appStore)],
+            otherSchemas: [:],
+            docsLoader: docsLoader
+        )
+
+        XCTAssertTrue(model.contents.contains("import BagbutikAppStoreModels"))
+        XCTAssertTrue(model.contents.contains("import BagbutikCore"))
+        XCTAssertFalse(model.contents.contains("import BagbutikModelsShared"))
     }
 
     func testConvenienceInitWithEmptySpecOnDisk() async throws {

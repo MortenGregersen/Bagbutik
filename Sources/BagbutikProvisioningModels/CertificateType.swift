@@ -1,5 +1,4 @@
 import BagbutikCore
-import BagbutikModelsShared
 import Foundation
 
 public enum CertificateType: String, Sendable, ParameterValue, Codable, CaseIterable {
