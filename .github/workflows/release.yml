@@ -1,55 +1,40 @@
-name: Release
+name: Dispatch binary release
 
 on:
   release:
     types: [published]
   workflow_dispatch:
     inputs:
-      tag:
-        description: "Git tag to build and upload XCFramework assets for"
+      source_ref:
+        description: Source ref to build in the binary repository
+        required: true
+        type: string
+      release_tag:
+        description: Binary release tag
         required: true
         type: string
 
 jobs:
-  build-xcframeworks:
-    name: Build and Attach XCFramework Asset
-    runs-on: macos-26
+  dispatch-binary-release:
+    name: Dispatch binary release build
+    runs-on: ubuntu-latest
     permissions:
-      contents: write
+      contents: read
     env:
-      DEVELOPER_DIR: /Applications/Xcode_26.4.app/Contents/Developer
-      RELEASE_TAG: ${{ github.event_name == 'workflow_dispatch' && inputs.tag || github.event.release.tag_name }}
+      SOURCE_REF: ${{ github.event_name == 'workflow_dispatch' && inputs.source_ref || github.event.release.tag_name }}
+      RELEASE_TAG: ${{ github.event_name == 'workflow_dispatch' && inputs.release_tag || github.event.release.tag_name }}
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-        with:
-          ref: ${{ env.RELEASE_TAG }}
+      - name: Verify binary repository token
+        env:
+          GH_TOKEN: ${{ secrets.BAGBUTIK_BINARY_TOKEN }}
+        run: test -n "$GH_TOKEN"
 
-      - name: Print Xcode & Swift Version
+      - name: Dispatch binary workflow
+        env:
+          GH_TOKEN: ${{ secrets.BAGBUTIK_BINARY_TOKEN }}
         run: |
-          xcodebuild -version
-          swift --version
-
-      - name: Build XCFramework
-        run: |
-          ./scripts/build-xcframework.sh
-
-      - name: Verify framework signatures
-        run: |
-          find output/Bagbutik.xcframework -type d -name '*.framework' -print0 | while IFS= read -r -d '' framework; do
-            echo "Verifying $framework"
-            codesign --verify --strict "$framework"
-          done
-
-      - name: Compute checksum and write release body
-        run: |
-          ./scripts/generate-release-body.sh output/release-body.md
-
-      - name: Upload release assets
-        uses: softprops/action-gh-release@v2
-        with:
-          tag_name: ${{ env.RELEASE_TAG }}
-          append_body: true
-          body_path: output/release-body.md
-          files: |
-            output/Bagbutik.xcframework.zip
+          gh workflow run release.yml \
+            --repo MortenGregersen/Bagbutik-Binary \
+            --ref main \
+            --field source_ref="$SOURCE_REF" \
+            --field release_tag="$RELEASE_TAG"
