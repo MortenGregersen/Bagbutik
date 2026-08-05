@@ -37,6 +37,7 @@ typealias LoadSpec = (_ fileUrl: URL) throws -> Spec
 /// Generates endpoint and model source files from the decoded spec and normalized documentation.
 public class Generator {
     private static let migratedPackages: Set<PackageName> = [.marketplaces, .provisioning, .reporting, .testFlight, .users, .webhooks, .xcodeCloud]
+    private static let sharedSchemas: Set<String> = ["DeviceFamily"]
 
     private let loadSpec: LoadSpec
     private let fileManager: TestableFileManager
@@ -101,6 +102,7 @@ public class Generator {
             graph: SchemaReferenceGraph(schemas: schemas),
             packageBySchema: packageBySchema,
             migratedPackages: Self.migratedPackages,
+            sharedSchemas: Self.sharedSchemas,
             additionalRootsByPackage: endpointRootsByPackage
         )
 

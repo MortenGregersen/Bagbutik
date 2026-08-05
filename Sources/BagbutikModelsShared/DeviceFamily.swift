@@ -1,5 +1,4 @@
 import BagbutikCore
-import BagbutikModelsShared
 import Foundation
 
 public enum DeviceFamily: String, Sendable, ParameterValue, Codable, CaseIterable {

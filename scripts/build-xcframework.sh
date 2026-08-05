@@ -433,7 +433,6 @@ let package = Package(
             targets: [
                 "BagbutikCore",
                 "BagbutikModelsShared",
-                "BagbutikProvisioningModels",
                 "BagbutikTestFlightModels",
                 "BagbutikTestFlight",
             ]
@@ -648,7 +647,6 @@ PACKAGE_EOF
   cat > "$INTEGRATION_DIR/BagbutikTestFlightBinaryClient/Sources/BagbutikTestFlightBinaryClient/main.swift" <<'SOURCE_EOF'
 import BagbutikCore
 import BagbutikModelsShared
-import BagbutikProvisioningModels
 import BagbutikTestFlight
 import BagbutikTestFlightModels
 
@@ -845,7 +843,6 @@ client_link_modules() {
     BagbutikTestFlight)
       echo "BagbutikTestFlight"
       echo "BagbutikTestFlightModels"
-      echo "BagbutikProvisioningModels"
       ;;
     BagbutikUsers)
       echo "BagbutikUsers"

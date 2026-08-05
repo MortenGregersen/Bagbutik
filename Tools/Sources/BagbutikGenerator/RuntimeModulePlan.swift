@@ -28,6 +28,7 @@ public struct RuntimeModulePlan: Sendable {
         graph: SchemaReferenceGraph,
         packageBySchema: [String: PackageName],
         migratedPackages: Set<PackageName>,
+        sharedSchemas: Set<String> = [],
         additionalRootsByPackage: [PackageName: Set<String>] = [:]
     ) {
         let coreSchemas = Set(packageBySchema.compactMap { entry -> String? in
@@ -47,7 +48,9 @@ public struct RuntimeModulePlan: Sendable {
                 result[schema] = .core
             } else if migratedClosure.contains(schema) {
                 let usingPackages = migratedPackages.filter { closureByPackage[$0, default: []].contains(schema) }
-                if let owner = packageBySchema[schema], migratedPackages.contains(owner) {
+                if sharedSchemas.contains(schema) {
+                    result[schema] = .modelsShared
+                } else if let owner = packageBySchema[schema], migratedPackages.contains(owner) {
                     result[schema] = .domainModels(owner)
                 } else if Self.isLinkageSchema(schema), usingPackages.count == 1, let package = usingPackages.first {
                     result[schema] = .domainModels(package)

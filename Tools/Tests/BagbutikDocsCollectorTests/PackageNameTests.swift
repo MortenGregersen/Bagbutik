@@ -36,6 +36,19 @@ class PackageNameTests: XCTestCase {
         XCTAssertEqual(PackageName.resolvePackageName(from: "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/BlaBetaBla"), .testFlight)
     }
 
+    func testResolvePackageNameTestFlightDeviceSchemas() {
+        let schemaNames = ["DeviceConnectionType", "DeviceFamilyOsVersionFilter"]
+
+        for schemaName in schemaNames {
+            XCTAssertEqual(
+                PackageName.resolvePackageName(
+                    from: "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/\(schemaName)"
+                ),
+                .testFlight
+            )
+        }
+    }
+
     func testResolvePackageNameUsers() {
         XCTAssertEqual(PackageName.resolvePackageName(from: "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/UserMambo"), .users)
     }

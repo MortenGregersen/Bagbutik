@@ -66,7 +66,6 @@ let package = Package(
             targets: [
                 "BagbutikCore",
                 "BagbutikModelsShared",
-                "BagbutikProvisioningModels",
                 "BagbutikTestFlightModels",
                 "BagbutikTestFlight",
             ]
@@ -123,7 +122,7 @@ let package = Package(
         .target(name: "BagbutikReportingModels", dependencies: ["BagbutikCore", "BagbutikModelsShared"]),
         .target(
             name: "BagbutikTestFlightModels",
-            dependencies: ["BagbutikCore", "BagbutikModelsShared", "BagbutikProvisioningModels"]
+            dependencies: ["BagbutikCore", "BagbutikModelsShared"]
         ),
         .target(name: "BagbutikUsersModels", dependencies: ["BagbutikCore", "BagbutikModelsShared"]),
         .target(name: "BagbutikWebhooksModels", dependencies: ["BagbutikCore", "BagbutikModelsShared"]),
@@ -172,7 +171,6 @@ let package = Package(
             dependencies: [
                 "BagbutikCore",
                 "BagbutikModelsShared",
-                "BagbutikProvisioningModels",
                 "BagbutikTestFlightModels",
             ],
             path: "Sources/Bagbutik-TestFlight"
@@ -221,7 +219,6 @@ let package = Package(
             dependencies: [
                 "BagbutikCore",
                 "BagbutikModelsShared",
-                "BagbutikProvisioningModels",
                 "BagbutikTestFlightModels",
                 "BagbutikTestFlight",
             ]

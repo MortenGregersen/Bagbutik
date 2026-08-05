@@ -1,6 +1,5 @@
 import BagbutikCore
 import BagbutikModelsShared
-import BagbutikProvisioningModels
 import BagbutikTestFlight
 import BagbutikTestFlightModels
 import Foundation
@@ -18,7 +17,7 @@ final class BagbutikTestFlightIntegrationTests: XCTestCase {
         XCTAssertEqual(request.method, .get)
     }
 
-    func testCrashSubmissionResponseDecodesProvisioningDeviceMetadata() throws {
+    func testCrashSubmissionResponseDecodesDeviceMetadata() throws {
         let json = #"""
         {
           "data": {
