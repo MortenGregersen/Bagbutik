@@ -10,6 +10,41 @@ class PackageNameTests: XCTestCase {
 
     func testResolvePackageNameAppStore() {
         XCTAssertEqual(PackageName.resolvePackageName(from: "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/AppSomething"), .appStore)
+        XCTAssertEqual(
+            PackageName.resolvePackageName(
+                from: "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/ReviewSubmissionItemCreateRequest"
+            ),
+            .appStore
+        )
+        XCTAssertEqual(
+            PackageName.resolvePackageName(
+                from: "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-reviewSubmissions-_id_-items"
+            ),
+            .appStore
+        )
+    }
+
+    func testResolvePackageNameCustomerReviewsAsAppStore() {
+        let identifiers = [
+            "CustomerReviewResponseV1",
+            "GET-v1-apps-_id_-customerReviews",
+            "GET-v1-customerReviews-_id_-response",
+        ]
+
+        for identifier in identifiers {
+            XCTAssertEqual(
+                PackageName.resolvePackageName(
+                    from: "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/\(identifier)"
+                ),
+                .appStore
+            )
+        }
+        XCTAssertEqual(
+            PackageName.resolvePackageName(
+                from: "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/AppStoreReviewDetail"
+            ),
+            .appStore
+        )
     }
 
     func testResolvePackageNameCore() {

@@ -1,5 +1,7 @@
-import Bagbutik_Core
-import Bagbutik_Models
+import BagbutikCore
+import BagbutikAppStoreModels
+import BagbutikModelsShared
+import BagbutikTestFlightModels
 
 public extension Request {
     /**

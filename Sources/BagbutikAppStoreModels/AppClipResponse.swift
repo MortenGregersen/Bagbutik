@@ -1,0 +1,94 @@
+import BagbutikCore
+import BagbutikMarketplacesModels
+import BagbutikModelsShared
+import BagbutikTestFlightModels
+import BagbutikXcodeCloudModels
+import Foundation
+
+/**
+ # AppClipResponse
+ The response body for endpoints that read an App Clip associated with an app.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appclipresponse>
+ */
+public struct AppClipResponse: Codable, Sendable {
+    /// The resource data.
+    public let data: AppClip
+    /// The requested relationship data.
+    public var included: [Included]?
+    /// Navigational links that include the self-link.
+    public let links: DocumentLinks
+
+    public init(data: AppClip,
+                included: [Included]? = nil,
+                links: DocumentLinks)
+    {
+        self.data = data
+        self.included = included
+        self.links = links
+    }
+
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: AnyCodingKey.self)
+        data = try container.decode(AppClip.self, forKey: "data")
+        included = try container.decodeIfPresent([Included].self, forKey: "included")
+        links = try container.decode(DocumentLinks.self, forKey: "links")
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: AnyCodingKey.self)
+        try container.encode(data, forKey: "data")
+        try container.encodeIfPresent(included, forKey: "included")
+        try container.encode(links, forKey: "links")
+    }
+
+    public func getApp() -> App? {
+        included?.compactMap { relationship -> App? in
+            guard case let .app(app) = relationship else { return nil }
+            return app
+        }.first { $0.id == data.relationships?.app?.data?.id }
+    }
+
+    public func getAppClipDefaultExperiences() -> [AppClipDefaultExperience] {
+        guard let appClipDefaultExperienceIds = data.relationships?.appClipDefaultExperiences?.data?.map(\.id),
+              let appClipDefaultExperiences = included?.compactMap({ relationship -> AppClipDefaultExperience? in
+                  guard case let .appClipDefaultExperience(appClipDefaultExperience) = relationship else { return nil }
+                  return appClipDefaultExperienceIds.contains(appClipDefaultExperience.id) ? appClipDefaultExperience : nil
+              })
+        else {
+            return []
+        }
+        return appClipDefaultExperiences
+    }
+
+    public enum Included: Codable, Sendable {
+        case app(App)
+        case appClipDefaultExperience(AppClipDefaultExperience)
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: AnyCodingKey.self)
+            let discriminatorValue = try container.decode(String.self, forKey: "type")
+            switch discriminatorValue {
+            case "apps":
+                self = .app(try App(from: decoder))
+            case "appClipDefaultExperiences":
+                self = .appClipDefaultExperience(try AppClipDefaultExperience(from: decoder))
+            default:
+                throw DecodingError.dataCorruptedError(
+                    forKey: "type",
+                    in: container,
+                    debugDescription: "Unknown Included type '\(discriminatorValue)'")
+            }
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            switch self {
+            case let .app(value):
+                try value.encode(to: encoder)
+            case let .appClipDefaultExperience(value):
+                try value.encode(to: encoder)
+            }
+        }
+    }
+}

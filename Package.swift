@@ -27,8 +27,17 @@ let package = Package(
             targets: ["Bagbutik-Models"]
         ),
         .library(
-            name: "Bagbutik-AppStore",
-            targets: ["Bagbutik-AppStore"]
+            name: "BagbutikAppStore",
+            targets: [
+                "BagbutikCore",
+                "BagbutikModelsShared",
+                "BagbutikAppStoreModels",
+                "BagbutikAppStore",
+                "BagbutikMarketplacesModels",
+                "BagbutikProvisioningModels",
+                "BagbutikTestFlightModels",
+                "BagbutikXcodeCloudModels",
+            ]
         ),
         .library(
             name: "Bagbutik-GameCenter",
@@ -117,6 +126,16 @@ let package = Package(
             path: "Sources/Bagbutik-CoreCompatibility"
         ),
         .target(name: "BagbutikModelsShared", dependencies: ["BagbutikCore"]),
+        .target(
+            name: "BagbutikAppStoreModels",
+            dependencies: [
+                "BagbutikCore",
+                "BagbutikModelsShared",
+                "BagbutikMarketplacesModels",
+                "BagbutikTestFlightModels",
+                "BagbutikXcodeCloudModels",
+            ]
+        ),
         .target(name: "BagbutikMarketplacesModels", dependencies: ["BagbutikCore", "BagbutikModelsShared"]),
         .target(name: "BagbutikProvisioningModels", dependencies: ["BagbutikCore", "BagbutikModelsShared"]),
         .target(name: "BagbutikReportingModels", dependencies: ["BagbutikCore", "BagbutikModelsShared"]),
@@ -155,6 +174,7 @@ let package = Package(
             dependencies: [
                 "Bagbutik-Core",
                 "BagbutikModelsShared",
+                "BagbutikAppStoreModels",
                 "BagbutikMarketplacesModels",
                 "BagbutikProvisioningModels",
                 "BagbutikReportingModels",
@@ -164,8 +184,16 @@ let package = Package(
                 "BagbutikXcodeCloudModels",
             ]
         ),
-        .target(name: "Bagbutik-AppStore", dependencies: ["Bagbutik-Core", "Bagbutik-Models"]),
         .target(name: "Bagbutik-GameCenter", dependencies: ["Bagbutik-Core", "Bagbutik-Models"]),
+        .target(
+            name: "BagbutikAppStore",
+            dependencies: [
+                "BagbutikCore",
+                "BagbutikModelsShared",
+                "BagbutikAppStoreModels",
+            ],
+            path: "Sources/Bagbutik-AppStore"
+        ),
         .target(
             name: "BagbutikTestFlight",
             dependencies: [
@@ -196,12 +224,21 @@ let package = Package(
             name: "Bagbutik-CoreTests",
             dependencies: [
                 "Bagbutik-Core",
-                "Bagbutik-AppStore",
+                "BagbutikAppStore",
                 .product(name: "Crypto", package: "swift-crypto", condition: .when(platforms: [.linux, .android]))
             ],
             resources: [.copy("test-private-key.p8")]
         ),
         .testTarget(name: "Bagbutik-ModelsTests", dependencies: ["Bagbutik-Models"]),
+        .testTarget(
+            name: "BagbutikAppStoreIntegrationTests",
+            dependencies: [
+                "BagbutikCore",
+                "BagbutikModelsShared",
+                "BagbutikAppStoreModels",
+                "BagbutikAppStore",
+            ]
+        ),
         .testTarget(
             name: "BagbutikMarketplacesIntegrationTests",
             dependencies: ["BagbutikCore", "BagbutikModelsShared", "BagbutikMarketplacesModels", "BagbutikMarketplaces"]
