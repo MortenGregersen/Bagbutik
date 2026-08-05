@@ -1,6 +1,4 @@
-import BagbutikAppStoreModels
 import BagbutikCore
-import BagbutikModelsShared
 import Foundation
 
 public struct GameCenterLeaderboardLocalizationsLinkagesResponse: Codable, Sendable, PagedResponse {

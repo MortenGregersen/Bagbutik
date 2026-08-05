@@ -1,5 +1,4 @@
 import BagbutikCore
-import BagbutikModelsShared
 import Foundation
 
 public struct BetaGroupBetaRecruitmentCriteriaLinkageResponse: Codable, Sendable {

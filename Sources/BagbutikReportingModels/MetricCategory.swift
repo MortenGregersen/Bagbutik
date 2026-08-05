@@ -1,5 +1,4 @@
 import BagbutikCore
-import BagbutikModelsShared
 import Foundation
 
 public enum MetricCategory: String, Sendable, Codable, CaseIterable {

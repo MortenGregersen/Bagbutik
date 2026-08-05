@@ -1,6 +1,4 @@
 import BagbutikCore
-import BagbutikModelsShared
-import BagbutikProvisioningModels
 import Foundation
 
 public struct CiMacOsVersionXcodeVersionsLinkagesResponse: Codable, Sendable, PagedResponse {
