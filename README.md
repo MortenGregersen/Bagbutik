@@ -36,8 +36,8 @@ Bagbutik uses JSON Web Tokens (JWT) for authorization. You obtain the required k
 Here is a basic example for fetching all bundle IDs for iOS apps including related profiles sorted by seed ID and the bundle ID itself descending.
 
 ```swift
-import Bagbutik_Core
-import Bagbutik_Provisioning
+import BagbutikCore
+import BagbutikProvisioning
 
 let service = BagbutikService(jwt: try .init(
     keyId: "P9M252746H",
@@ -65,7 +65,7 @@ The repository is split into a small manually maintained core and a large genera
 * `BagbutikCore` contains the request service, JWT support, shared response protocols, and the common models used across all API areas.
 * `BagbutikModelsShared` contains the small generated model groups shared by public API products.
 * `BagbutikUsersModels` and similar model modules are generated from actual schema references for their public API product.
-* `Bagbutik-AppStore`, `BagbutikTestFlight`, `BagbutikMarketplaces`, `BagbutikProvisioning`, `BagbutikReporting`, and the other product modules contain generated endpoint builders grouped by App Store Connect domain.
+* `BagbutikAppStore`, `BagbutikGameCenter`, `BagbutikTestFlight`, `BagbutikMarketplaces`, `BagbutikProvisioning`, `BagbutikReporting`, and the other product modules contain generated endpoint builders grouped by App Store Connect domain.
 * `Tools/Sources/BagbutikSpecDecoder` decodes Apple's OpenAPI document into an intermediate Swift representation.
 * `Tools/Sources/BagbutikDocsCollector` downloads and normalizes Apple documentation so generated code gets useful Xcode documentation comments.
 * `Tools/Sources/BagbutikGenerator` combines the decoded spec and collected docs to render the Swift source in `Sources/`.
@@ -89,7 +89,7 @@ Add Bagbutik as a dependency in your `Package.swift`:
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/MortenGregersen/Bagbutik", from: "19.0.0"),
+    .package(url: "https://github.com/MortenGregersen/Bagbutik", from: "24.0.0"),
 ]
 ```
 
@@ -110,8 +110,8 @@ Select each public product your application uses. Bagbutik intentionally has no 
 
 Each module corresponds to a specific area of the App Store Connect API:
 
-* `Bagbutik-AppStore`: Manage all [aspects of your app, App Clips, in-app purchases, and customer reviews in the App Store](https://developer.apple.com/documentation/appstoreconnectapi/app_store).
-* `Bagbutik-GameCenter`: Manage [Game Center data and configurations for your apps](https://developer.apple.com/documentation/appstoreconnectapi/game_center).
+* `BagbutikAppStore`: Manage all [aspects of your app, App Clips, in app purchases, and customer reviews in the App Store](https://developer.apple.com/documentation/appstoreconnectapi/app_store).
+* `BagbutikGameCenter`: Manage [Game Center data and configurations for your apps](https://developer.apple.com/documentation/appstoreconnectapi/game_center).
 * `BagbutikMarketplaces`: Manage [keys, packages, and search for the marketplace distribution of your app](https://developer.apple.com/documentation/appstoreconnectapi/alternative_distribution).
 * `BagbutikProvisioning`: Manage the [bundle IDs](https://developer.apple.com/documentation/appstoreconnectapi/bundle_ids), [certificates](https://developer.apple.com/documentation/appstoreconnectapi/certificates), [devices](https://developer.apple.com/documentation/appstoreconnectapi/devices) and [provisioning profiles](https://developer.apple.com/documentation/appstoreconnectapi/profiles) for your app.
 * `BagbutikReporting`: Download your [sales and financial reports](https://developer.apple.com/documentation/appstoreconnectapi/sales_and_finance_reports) and [get power and performance metrics, logs, and signatures](https://developer.apple.com/documentation/appstoreconnectapi/power_and_performance_metrics_and_logs).
@@ -120,98 +120,41 @@ Each module corresponds to a specific area of the App Store Connect API:
 * `BagbutikWebhooks`: Manage [notifications](https://developer.apple.com/documentation/appstoreconnectapi/webhook-notifications) from App Store about your apps and their statuses.
 * `BagbutikXcodeCloud`: Automate [reading Xcode Cloud data, managing workflows, and starting builds](https://developer.apple.com/documentation/appstoreconnectapi/xcode_cloud_workflows_and_builds).
 
-For the remaining products with hyphens, replace hyphens with underscores when importing modules.
-For example, when importing `Bagbutik-AppStore`:
-
-`import Bagbutik_AppStore`
-
 ### Endpoint pattern
 
 Generated endpoints follow the same pattern throughout the package:
 
-1. Import the Core module and the product module for the API area you need. Migrated products use `BagbutikCore`; remaining legacy products use `Bagbutik_Core`.
+1. Import `BagbutikCore` and the product module for the API area you need.
 2. Build a `Request` by calling a generated static helper such as `.listBundleIdsV1(...)`.
 3. Send the request through `BagbutikService`.
 4. If the response type supports pagination, use `requestNextPage(for:)` or `requestAllPages(_:)`.
 
 This keeps each endpoint builder lightweight while centralizing authentication, decoding, and error handling in `BagbutikService`.
 
-### Using the XCFramework
+### Using a prebuilt binary package
 
-Bagbutik releases also include a prebuilt **XCFramework** for cases where you prefer a binary dependency, such as:
+Bagbutik also provides a prebuilt static XCFramework distribution for projects that prefer not to compile Bagbutik sources. It uses the same public products and imports as the source package. Select the products your app uses, such as `BagbutikProvisioning` or `BagbutikAppStore`.
 
-- Faster CI builds
-- Tooling or plugin projects
-- Avoiding recompilation of all Bagbutik modules
+Use either the source package or the binary package in one target. Do not add both because they intentionally expose the same Swift module names. The binary package and its release assets are published separately from the source repository.
 
-The XCFramework contains the umbrella Bagbutik module.
+## Migrating to version 24
 
-#### Option 1: Use the XCFramework via URL and checksum (recommended)
+Version 24 intentionally replaces the old hyphenated product and module names with clean Swift names. Select the product for each App Store Connect area your target uses. There is no `Bagbutik` umbrella product.
 
-Add a binary target in your `Package.swift`:
+| Earlier product and import | Version 24 product and import |
+| --- | --- |
+| `Bagbutik-Core`, `import Bagbutik_Core` | `BagbutikCore`, `import BagbutikCore` |
+| `Bagbutik-AppStore`, `import Bagbutik_AppStore` | `BagbutikAppStore`, `import BagbutikAppStore` |
+| `Bagbutik-GameCenter`, `import Bagbutik_GameCenter` | `BagbutikGameCenter`, `import BagbutikGameCenter` |
+| `Bagbutik-Marketplaces`, `import Bagbutik_Marketplaces` | `BagbutikMarketplaces`, `import BagbutikMarketplaces` |
+| `Bagbutik-Provisioning`, `import Bagbutik_Provisioning` | `BagbutikProvisioning`, `import BagbutikProvisioning` |
+| `Bagbutik-Reporting`, `import Bagbutik_Reporting` | `BagbutikReporting`, `import BagbutikReporting` |
+| `Bagbutik-TestFlight`, `import Bagbutik_TestFlight` | `BagbutikTestFlight`, `import BagbutikTestFlight` |
+| `Bagbutik-Users`, `import Bagbutik_Users` | `BagbutikUsers`, `import BagbutikUsers` |
+| `Bagbutik-Webhooks`, `import Bagbutik_Webhooks` | `BagbutikWebhooks`, `import BagbutikWebhooks` |
+| `Bagbutik-XcodeCloud`, `import Bagbutik_XcodeCloud` | `BagbutikXcodeCloud`, `import BagbutikXcodeCloud` |
 
-```swift
-.binaryTarget(
-    name: "Bagbutik",
-    url: "https://github.com/MortenGregersen/Bagbutik/releases/download/<VERSION>/Bagbutik.xcframework.zip",
-    checksum: "<CHECKSUM>"
-)
-```
-
-The exact checksum for each version is listed in the corresponding GitHub Release.
-
-Then add Bagbutik as a dependency:
-
-```swift
-.target(
-    name: "Awesome",
-    dependencies: [
-        "Bagbutik"
-    ]
-)
-```
-
-Import Bagbutik in your source files:
-
-`import Bagbutik`
-
-#### Option 2: Use a downloaded XCFramework (local path)
-
-Alternatively, you can download `Bagbutik.xcframework.zip` from the GitHub Release,
-unzip it, and commit `Bagbutik.xcframework` into your repository
-(for example in a Vendor/ directory).
-
-Declare a local binary target:
-
-```swift
-.binaryTarget(
-    name: "Bagbutik",
-    path: "Vendor/Bagbutik.xcframework"
-)
-```
-
-Add Bagbutik as a dependency:
-
-```swift
-.target(
-    name: "Awesome",
-    dependencies: [
-        "Bagbutik"
-    ]
-)
-```
-
-Import Bagbutik in your source files:
-
-`import Bagbutik`
-
-#### Swift and Xcode compatibility
-
-The XCFramework is built with a specific **Xcode / Swift version**, which is documented in the corresponding GitHub Release.
-
-Binary Swift frameworks are only guaranteed to be compatible with the **same or newer
-Swift compiler versions**. If you need maximum compatibility or want to use a different
-Swift version, prefer using Bagbutik as a source package.
+The former `Bagbutik-Models` product is replaced by model modules selected with each public product. Most applications should import `BagbutikCore` and the endpoint product only. When application code directly uses a generated model type that is not exposed through an endpoint, import the corresponding `Bagbutik<Domain>Models` module.
 
 ## Maintaining generated code
 
