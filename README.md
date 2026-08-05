@@ -137,24 +137,7 @@ Bagbutik also provides a prebuilt static XCFramework distribution for projects t
 
 Use either the source package or the binary package in one target. Do not add both because they intentionally expose the same Swift module names. The binary package and its release assets are published separately from the source repository.
 
-## Migrating to version 24
-
-Version 24 intentionally replaces the old hyphenated product and module names with clean Swift names. Select the product for each App Store Connect area your target uses. There is no `Bagbutik` umbrella product.
-
-| Earlier product and import | Version 24 product and import |
-| --- | --- |
-| `Bagbutik-Core`, `import Bagbutik_Core` | `BagbutikCore`, `import BagbutikCore` |
-| `Bagbutik-AppStore`, `import Bagbutik_AppStore` | `BagbutikAppStore`, `import BagbutikAppStore` |
-| `Bagbutik-GameCenter`, `import Bagbutik_GameCenter` | `BagbutikGameCenter`, `import BagbutikGameCenter` |
-| `Bagbutik-Marketplaces`, `import Bagbutik_Marketplaces` | `BagbutikMarketplaces`, `import BagbutikMarketplaces` |
-| `Bagbutik-Provisioning`, `import Bagbutik_Provisioning` | `BagbutikProvisioning`, `import BagbutikProvisioning` |
-| `Bagbutik-Reporting`, `import Bagbutik_Reporting` | `BagbutikReporting`, `import BagbutikReporting` |
-| `Bagbutik-TestFlight`, `import Bagbutik_TestFlight` | `BagbutikTestFlight`, `import BagbutikTestFlight` |
-| `Bagbutik-Users`, `import Bagbutik_Users` | `BagbutikUsers`, `import BagbutikUsers` |
-| `Bagbutik-Webhooks`, `import Bagbutik_Webhooks` | `BagbutikWebhooks`, `import BagbutikWebhooks` |
-| `Bagbutik-XcodeCloud`, `import Bagbutik_XcodeCloud` | `BagbutikXcodeCloud`, `import BagbutikXcodeCloud` |
-
-The former `Bagbutik-Models` product is replaced by model modules selected with each public product. Most applications should import `BagbutikCore` and the endpoint product only. When application code directly uses a generated model type that is not exposed through an endpoint, import the corresponding `Bagbutik<Domain>Models` module.
+For version 24 breaking changes, see the [migration guide](Documentation/MigratingToVersion24.md).
 
 ## Maintaining generated code
 
