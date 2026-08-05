@@ -1,0 +1,129 @@
+import BagbutikCore
+import BagbutikMarketplacesModels
+import BagbutikModelsShared
+import BagbutikTestFlightModels
+import BagbutikXcodeCloudModels
+import Foundation
+
+/**
+ # ReviewSubmissionsResponse
+ The response body for endpoints that list review submissions for an app.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/reviewsubmissionsresponse>
+ */
+public struct ReviewSubmissionsResponse: Codable, Sendable, PagedResponse {
+    public typealias Data = ReviewSubmission
+
+    public let data: [ReviewSubmission]
+    public var included: [Included]?
+    public let links: PagedDocumentLinks
+    public var meta: PagingInformation?
+
+    public init(data: [ReviewSubmission],
+                included: [Included]? = nil,
+                links: PagedDocumentLinks,
+                meta: PagingInformation? = nil)
+    {
+        self.data = data
+        self.included = included
+        self.links = links
+        self.meta = meta
+    }
+
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: AnyCodingKey.self)
+        data = try container.decode([ReviewSubmission].self, forKey: "data")
+        included = try container.decodeIfPresent([Included].self, forKey: "included")
+        links = try container.decode(PagedDocumentLinks.self, forKey: "links")
+        meta = try container.decodeIfPresent(PagingInformation.self, forKey: "meta")
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: AnyCodingKey.self)
+        try container.encode(data, forKey: "data")
+        try container.encodeIfPresent(included, forKey: "included")
+        try container.encode(links, forKey: "links")
+        try container.encodeIfPresent(meta, forKey: "meta")
+    }
+
+    public func getApp(for reviewSubmission: ReviewSubmission) -> App? {
+        included?.compactMap { relationship -> App? in
+            guard case let .app(app) = relationship else { return nil }
+            return app
+        }.first { $0.id == reviewSubmission.relationships?.app?.data?.id }
+    }
+
+    public func getAppStoreVersionForReview(for reviewSubmission: ReviewSubmission) -> AppStoreVersion? {
+        included?.compactMap { relationship -> AppStoreVersion? in
+            guard case let .appStoreVersion(appStoreVersionForReview) = relationship else { return nil }
+            return appStoreVersionForReview
+        }.first { $0.id == reviewSubmission.relationships?.appStoreVersionForReview?.data?.id }
+    }
+
+    public func getItems(for reviewSubmission: ReviewSubmission) -> [ReviewSubmissionItem] {
+        guard let itemIds = reviewSubmission.relationships?.items?.data?.map(\.id),
+              let items = included?.compactMap({ relationship -> ReviewSubmissionItem? in
+                  guard case let .reviewSubmissionItem(item) = relationship else { return nil }
+                  return itemIds.contains(item.id) ? item : nil
+              })
+        else {
+            return []
+        }
+        return items
+    }
+
+    public func getLastUpdatedByActor(for reviewSubmission: ReviewSubmission) -> Actor? {
+        included?.compactMap { relationship -> Actor? in
+            guard case let .actor(lastUpdatedByActor) = relationship else { return nil }
+            return lastUpdatedByActor
+        }.first { $0.id == reviewSubmission.relationships?.lastUpdatedByActor?.data?.id }
+    }
+
+    public func getSubmittedByActor(for reviewSubmission: ReviewSubmission) -> Actor? {
+        included?.compactMap { relationship -> Actor? in
+            guard case let .actor(submittedByActor) = relationship else { return nil }
+            return submittedByActor
+        }.first { $0.id == reviewSubmission.relationships?.submittedByActor?.data?.id }
+    }
+
+    public enum Included: Codable, Sendable {
+        case actor(Actor)
+        case app(App)
+        case appStoreVersion(AppStoreVersion)
+        case reviewSubmissionItem(ReviewSubmissionItem)
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: AnyCodingKey.self)
+            let discriminatorValue = try container.decode(String.self, forKey: "type")
+            switch discriminatorValue {
+            case "actors":
+                self = .actor(try Actor(from: decoder))
+            case "apps":
+                self = .app(try App(from: decoder))
+            case "appStoreVersions":
+                self = .appStoreVersion(try AppStoreVersion(from: decoder))
+            case "reviewSubmissionItems":
+                self = .reviewSubmissionItem(try ReviewSubmissionItem(from: decoder))
+            default:
+                throw DecodingError.dataCorruptedError(
+                    forKey: "type",
+                    in: container,
+                    debugDescription: "Unknown Included type '\(discriminatorValue)'")
+            }
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            switch self {
+            case let .actor(value):
+                try value.encode(to: encoder)
+            case let .app(value):
+                try value.encode(to: encoder)
+            case let .appStoreVersion(value):
+                try value.encode(to: encoder)
+            case let .reviewSubmissionItem(value):
+                try value.encode(to: encoder)
+            }
+        }
+    }
+}

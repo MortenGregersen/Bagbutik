@@ -8,6 +8,7 @@ DIST_DIR="$ROOT_DIR/output"
 INTEGRATION_DIR="$BUILD_DIR/integration"
 CONFIGURATION="release"
 BUILD_TARGETS=(
+  "BagbutikAppStore"
   "BagbutikMarketplaces"
   "BagbutikProvisioning"
   "BagbutikReporting"
@@ -20,6 +21,8 @@ BUILD_TARGETS=(
 MODULES=(
   "BagbutikCore"
   "BagbutikModelsShared"
+  "BagbutikAppStoreModels"
+  "BagbutikAppStore"
   "BagbutikMarketplacesModels"
   "BagbutikMarketplaces"
   "BagbutikProvisioningModels"
@@ -187,6 +190,12 @@ module_source_directory() {
       ;;
     BagbutikModelsShared)
       echo "$ROOT_DIR/Sources/BagbutikModelsShared"
+      ;;
+    BagbutikAppStoreModels)
+      echo "$ROOT_DIR/Sources/BagbutikAppStoreModels"
+      ;;
+    BagbutikAppStore)
+      echo "$ROOT_DIR/Sources/Bagbutik-AppStore"
       ;;
     BagbutikMarketplacesModels)
       echo "$ROOT_DIR/Sources/BagbutikMarketplacesModels"
@@ -378,6 +387,7 @@ zip_module_xcframework() {
 
 prepare_binary_integration_fixture() {
   mkdir -p "$INTEGRATION_DIR/BagbutikBinaryPackage/Artifacts"
+  mkdir -p "$INTEGRATION_DIR/BagbutikAppStoreBinaryClient/Sources/BagbutikAppStoreBinaryClient"
   mkdir -p "$INTEGRATION_DIR/BagbutikMarketplacesBinaryClient/Sources/BagbutikMarketplacesBinaryClient"
   mkdir -p "$INTEGRATION_DIR/BagbutikProvisioningBinaryClient/Sources/BagbutikProvisioningBinaryClient"
   mkdir -p "$INTEGRATION_DIR/BagbutikReportingBinaryClient/Sources/BagbutikReportingBinaryClient"
@@ -401,6 +411,19 @@ let package = Package(
         .visionOS(.v1),
     ],
     products: [
+        .library(
+            name: "BagbutikAppStore",
+            targets: [
+                "BagbutikCore",
+                "BagbutikModelsShared",
+                "BagbutikAppStoreModels",
+                "BagbutikAppStore",
+                "BagbutikMarketplacesModels",
+                "BagbutikProvisioningModels",
+                "BagbutikTestFlightModels",
+                "BagbutikXcodeCloudModels",
+            ]
+        ),
         .library(
             name: "BagbutikMarketplaces",
             targets: [
@@ -469,6 +492,8 @@ let package = Package(
     targets: [
         .binaryTarget(name: "BagbutikCore", path: "Artifacts/BagbutikCore.xcframework"),
         .binaryTarget(name: "BagbutikModelsShared", path: "Artifacts/BagbutikModelsShared.xcframework"),
+        .binaryTarget(name: "BagbutikAppStoreModels", path: "Artifacts/BagbutikAppStoreModels.xcframework"),
+        .binaryTarget(name: "BagbutikAppStore", path: "Artifacts/BagbutikAppStore.xcframework"),
         .binaryTarget(name: "BagbutikMarketplacesModels", path: "Artifacts/BagbutikMarketplacesModels.xcframework"),
         .binaryTarget(name: "BagbutikMarketplaces", path: "Artifacts/BagbutikMarketplaces.xcframework"),
         .binaryTarget(name: "BagbutikProvisioningModels", path: "Artifacts/BagbutikProvisioningModels.xcframework"),
@@ -486,6 +511,54 @@ let package = Package(
     ]
 )
 PACKAGE_EOF
+
+  cat > "$INTEGRATION_DIR/BagbutikAppStoreBinaryClient/Package.swift" <<'PACKAGE_EOF'
+// swift-tools-version:6.0
+
+import PackageDescription
+
+let package = Package(
+    name: "BagbutikAppStoreBinaryClient",
+    platforms: [
+        .macOS(.v12),
+        .iOS(.v15),
+        .tvOS(.v15),
+        .watchOS(.v9),
+        .visionOS(.v1),
+    ],
+    dependencies: [
+        .package(name: "Bagbutik", path: "../BagbutikBinaryPackage"),
+    ],
+    targets: [
+        .executableTarget(
+            name: "BagbutikAppStoreBinaryClient",
+            dependencies: [
+                .product(name: "BagbutikAppStore", package: "Bagbutik"),
+            ]
+        ),
+    ]
+)
+PACKAGE_EOF
+
+  cat > "$INTEGRATION_DIR/BagbutikAppStoreBinaryClient/Sources/BagbutikAppStoreBinaryClient/main.swift" <<'SOURCE_EOF'
+import BagbutikAppStore
+import BagbutikAppStoreModels
+import BagbutikCore
+import BagbutikModelsShared
+
+let customerReviews = Request<CustomerReviewsResponse, ErrorResponse>.listCustomerReviewsForAppV1(
+    id: "app-1",
+    fields: [.customerReviews([.body, .rating, .response, .reviewTerritory])],
+    filters: [.territory([.usa])],
+    includes: [.response, .reviewTerritory],
+    limit: 10
+)
+let subscriptions = Request<SubscriptionsResponse, ErrorResponse>.listSubscriptionsForSubscriptionGroupV1(
+    id: "subscription-group-1"
+)
+
+print(customerReviews.path, subscriptions.path)
+SOURCE_EOF
 
   cat > "$INTEGRATION_DIR/BagbutikMarketplacesBinaryClient/Package.swift" <<'PACKAGE_EOF'
 // swift-tools-version:6.0
@@ -828,6 +901,14 @@ verify_binary_integration() {
 
 client_link_modules() {
   case "$1" in
+    BagbutikAppStore)
+      echo "BagbutikAppStore"
+      echo "BagbutikAppStoreModels"
+      echo "BagbutikMarketplacesModels"
+      echo "BagbutikProvisioningModels"
+      echo "BagbutikTestFlightModels"
+      echo "BagbutikXcodeCloudModels"
+      ;;
     BagbutikMarketplaces)
       echo "BagbutikMarketplaces"
       echo "BagbutikMarketplacesModels"

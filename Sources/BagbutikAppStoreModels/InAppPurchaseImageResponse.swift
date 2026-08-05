@@ -1,0 +1,42 @@
+import BagbutikCore
+import BagbutikMarketplacesModels
+import BagbutikModelsShared
+import BagbutikTestFlightModels
+import BagbutikXcodeCloudModels
+import Foundation
+
+/**
+ # InAppPurchaseImageResponse
+ A response containing a single image for an in-app purchase.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/inapppurchaseimageresponse>
+ */
+public struct InAppPurchaseImageResponse: Codable, Sendable {
+    public let data: InAppPurchaseImage
+    public var included: [InAppPurchaseV2]?
+    public let links: DocumentLinks
+
+    public init(data: InAppPurchaseImage,
+                included: [InAppPurchaseV2]? = nil,
+                links: DocumentLinks)
+    {
+        self.data = data
+        self.included = included
+        self.links = links
+    }
+
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: AnyCodingKey.self)
+        data = try container.decode(InAppPurchaseImage.self, forKey: "data")
+        included = try container.decodeIfPresent([InAppPurchaseV2].self, forKey: "included")
+        links = try container.decode(DocumentLinks.self, forKey: "links")
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: AnyCodingKey.self)
+        try container.encode(data, forKey: "data")
+        try container.encodeIfPresent(included, forKey: "included")
+        try container.encode(links, forKey: "links")
+    }
+}

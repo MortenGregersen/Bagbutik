@@ -1,5 +1,6 @@
 @_exported import BagbutikMarketplacesModels
 @_exported import BagbutikModelsShared
+@_exported import BagbutikAppStoreModels
 @_exported import BagbutikProvisioningModels
 @_exported import BagbutikReportingModels
 @_exported import BagbutikTestFlightModels

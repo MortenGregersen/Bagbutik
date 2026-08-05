@@ -81,13 +81,14 @@ final class GeneratorTests: XCTestCase {
             "/Users/steve/output/Bagbutik-XcodeCloud",
             "/Users/steve/output/Bagbutik-Models/XcodeCloud",
             "/Users/steve/output/BagbutikModelsShared",
+            "/Users/steve/output/BagbutikAppStoreModels",
             "/Users/steve/output/BagbutikMarketplacesModels",
             "/Users/steve/output/BagbutikProvisioningModels",
             "/Users/steve/output/BagbutikReportingModels",
             "/Users/steve/output/BagbutikTestFlightModels",
             "/Users/steve/output/BagbutikUsersModels",
             "/Users/steve/output/BagbutikWebhooksModels",
-            "/Users/steve/output/BagbutikXcodeCloudModels"
+            "/Users/steve/output/BagbutikXcodeCloudModels",
         ])
         XCTAssertEqual(Set(fileManager.directoriesCreated).sorted(), [
             "/Users/steve/output/Bagbutik-AppStore",
@@ -96,7 +97,6 @@ final class GeneratorTests: XCTestCase {
             "/Users/steve/output/Bagbutik-GameCenter",
             "/Users/steve/output/Bagbutik-Marketplaces",
             "/Users/steve/output/Bagbutik-Models",
-            "/Users/steve/output/Bagbutik-Models/LinkageResponses",
             "/Users/steve/output/Bagbutik-Provisioning",
             "/Users/steve/output/Bagbutik-Reporting",
             "/Users/steve/output/Bagbutik-TestFlight",
@@ -105,6 +105,7 @@ final class GeneratorTests: XCTestCase {
             "/Users/steve/output/Bagbutik-Users/Endpoints/Users/Relationships",
             "/Users/steve/output/Bagbutik-Webhooks",
             "/Users/steve/output/Bagbutik-XcodeCloud",
+            "/Users/steve/output/BagbutikAppStoreModels",
             "/Users/steve/output/BagbutikMarketplacesModels",
             "/Users/steve/output/BagbutikModelsShared",
             "/Users/steve/output/BagbutikProvisioningModels",
@@ -112,7 +113,7 @@ final class GeneratorTests: XCTestCase {
             "/Users/steve/output/BagbutikTestFlightModels",
             "/Users/steve/output/BagbutikUsersModels",
             "/Users/steve/output/BagbutikWebhooksModels",
-            "/Users/steve/output/BagbutikXcodeCloudModels"
+            "/Users/steve/output/BagbutikXcodeCloudModels",
         ])
         XCTAssertEqual(fileManager.filesCreated.map(\.name).sorted(), [
             "BuildAppLinkageResponse.swift",

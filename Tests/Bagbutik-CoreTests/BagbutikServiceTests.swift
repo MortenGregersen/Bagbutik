@@ -1,4 +1,4 @@
-import Bagbutik_AppStore
+import BagbutikAppStore
 @testable import BagbutikCore
 import Bagbutik_Models
 import XCTest

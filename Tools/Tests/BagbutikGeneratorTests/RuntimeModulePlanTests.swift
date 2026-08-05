@@ -152,4 +152,36 @@ final class RuntimeModulePlanTests: XCTestCase {
             [.core, .modelsShared]
         )
     }
+
+    func testAppStoreClosureUsesOneDomainModelModule() {
+        let schemas: [String: Schema] = [
+            "CustomerReview": .object(.init(name: "CustomerReview", url: "", properties: [
+                "territory": .init(type: .schemaRef("Territory")),
+            ])),
+            "Territory": .object(.init(name: "Territory", url: "")),
+            "UnrelatedAppClip": .object(.init(name: "UnrelatedAppClip", url: "")),
+            "UnrelatedGameCenterActivity": .object(.init(name: "UnrelatedGameCenterActivity", url: "")),
+        ]
+        let packages: [String: PackageName] = [
+            "CustomerReview": .appStore,
+            "Territory": .appStore,
+            "UnrelatedAppClip": .appStore,
+            "UnrelatedGameCenterActivity": .gameCenter,
+        ]
+
+        let plan = RuntimeModulePlan(
+            graph: .init(schemas: schemas),
+            packageBySchema: packages,
+            migratedPackages: [.appStore]
+        )
+
+        XCTAssertEqual(plan["CustomerReview"], .domainModels(.appStore))
+        XCTAssertEqual(plan["Territory"], .domainModels(.appStore))
+        XCTAssertEqual(plan["UnrelatedAppClip"], .domainModels(.appStore))
+        XCTAssertEqual(plan["UnrelatedGameCenterActivity"], .legacyModels)
+        XCTAssertEqual(
+            plan.dependencies(for: .domainModels(.appStore)),
+            [.core, .modelsShared]
+        )
+    }
 }

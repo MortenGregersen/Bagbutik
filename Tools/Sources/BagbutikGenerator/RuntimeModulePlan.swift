@@ -18,6 +18,13 @@ public struct RuntimeModulePlan: Sendable {
             case .legacyModels: "Bagbutik-Models"
             }
         }
+
+        public var isGeneratedModelModule: Bool {
+            switch self {
+            case .modelsShared, .domainModels: true
+            case .core, .legacyModels: false
+            }
+        }
     }
 
     public let moduleBySchema: [String: ModelModule]
