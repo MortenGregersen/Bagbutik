@@ -1,6 +1,7 @@
 import BagbutikAppStore
 @testable import BagbutikCore
-import Bagbutik_Models
+import BagbutikAppStoreModels
+import BagbutikModelsShared
 import XCTest
 #if canImport(FoundationNetworking)
 // Non-Apple platform support
