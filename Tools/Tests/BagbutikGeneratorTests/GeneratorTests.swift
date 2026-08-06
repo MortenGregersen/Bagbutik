@@ -80,16 +80,6 @@ final class GeneratorTests: XCTestCase {
             "/Users/steve/output/Bagbutik-Models/Webhooks",
             "/Users/steve/output/Bagbutik-XcodeCloud",
             "/Users/steve/output/Bagbutik-Models/XcodeCloud",
-            "/Users/steve/output/BagbutikModelsShared",
-            "/Users/steve/output/BagbutikAppStoreModels",
-            "/Users/steve/output/BagbutikGameCenterModels",
-            "/Users/steve/output/BagbutikMarketplacesModels",
-            "/Users/steve/output/BagbutikProvisioningModels",
-            "/Users/steve/output/BagbutikReportingModels",
-            "/Users/steve/output/BagbutikTestFlightModels",
-            "/Users/steve/output/BagbutikUsersModels",
-            "/Users/steve/output/BagbutikWebhooksModels",
-            "/Users/steve/output/BagbutikXcodeCloudModels",
         ])
         XCTAssertEqual(Set(fileManager.directoriesCreated).sorted(), [
             "/Users/steve/output/Bagbutik-AppStore",
