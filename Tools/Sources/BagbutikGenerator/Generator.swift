@@ -124,10 +124,6 @@ public class Generator {
             additionalRootsByPackage: endpointRootsByPackage
         )
 
-        let generalModelsDirURL = outputDirURL.appendingPathComponent("Bagbutik-Models")
-        for linkageModelsDirectory in ["LinkageRequests", "LinkageResponses"] {
-            try removeChildren(at: generalModelsDirURL.appendingPathComponent(linkageModelsDirectory))
-        }
         for packageName in PackageName.allCases {
             let packageDirURL = outputDirURL.appendingPathComponent(packageName.name)
             if packageName != .core {
@@ -141,9 +137,6 @@ public class Generator {
                 try removeChildren(at: modelsDirURL)
                 try fileManager.createDirectory(at: modelsDirURL, withIntermediateDirectories: true, attributes: nil)
             }
-
-            try removeChildren(at: generalModelsDirURL.appendingPathComponent(packageName.docsSectionName))
-            try fileManager.createDirectory(at: generalModelsDirURL, withIntermediateDirectories: true, attributes: nil)
         }
         let generatedModelsDirectories = [RuntimeModulePlan.ModelModule.modelsShared.targetName]
             + Self.migratedPackages
@@ -168,10 +161,9 @@ public class Generator {
                         if Self.migratedPackages.contains(packageName) {
                             let domainModelModule = RuntimeModulePlan.ModelModule.domainModels(packageName)
                             renderedOperation = renderedOperation
-                                .replacingOccurrences(of: "import Bagbutik_Core", with: "import BagbutikCore")
                                 .replacingOccurrences(
-                                    of: "import Bagbutik_Models",
-                                    with: Self.endpointModelImports(
+                                    of: "import BagbutikCore",
+                                    with: "import BagbutikCore\n" + Self.endpointModelImports(
                                         for: operation,
                                         domainModelModule: domainModelModule,
                                         modulePlan: modulePlan
@@ -202,12 +194,11 @@ public class Generator {
                 taskGroup.addTask { [docsLoader, schemas, packageBySchema, schemaReferenceGraph, modulePlan] in
                     let packageName = packageBySchema[schema.name]!
                     let modelModule = modulePlan[schema.name]
-                    guard modelModule != .legacyModels else { return nil }
+                    guard modelModule != .unassigned else { return nil }
                     let referencedModelModules = Set(schemaReferenceGraph.references[schema.name, default: []]
                         .map { modulePlan[$0] })
                     let model = try await Generator.generateModel(
                         for: schema,
-                        packageName: packageName,
                         modelModule: modelModule,
                         referencedModelModules: referencedModelModules,
                         otherSchemas: schemas,
@@ -215,24 +206,13 @@ public class Generator {
                     )
                     let fileName = model.name + ".swift"
 
-                    let modelsDirURL: URL = if modelModule.isGeneratedModelModule {
+                    let modelsDirURL: URL = switch modelModule {
+                    case .modelsShared, .domainModels:
                         outputDirURL.appendingPathComponent(modelModule.targetName)
-                    } else if schema.name.hasSuffix("LinkagesRequest") || schema.name.hasSuffix("LinkageRequest") {
-                        outputDirURL
-                            .appendingPathComponent("Bagbutik-Models")
-                            .appendingPathComponent("LinkageRequests")
-                    } else if schema.name.hasSuffix("LinkagesResponse") || schema.name.hasSuffix("LinkageResponse") {
-                        outputDirURL
-                            .appendingPathComponent("Bagbutik-Models")
-                            .appendingPathComponent("LinkageResponses")
-                    } else if packageName == .core || schema.name.hasSuffix("Request") || schema.name.hasSuffix("Response") {
-                        outputDirURL
-                            .appendingPathComponent(packageName.name)
-                            .appendingPathComponent("Models")
-                    } else {
-                        outputDirURL
-                            .appendingPathComponent("Bagbutik-Models")
-                            .appendingPathComponent(packageName.docsSectionName)
+                    case .core:
+                        outputDirURL.appendingPathComponent("Bagbutik-Core").appendingPathComponent("Models")
+                    case .unassigned:
+                        fatalError("Unassigned models are not rendered")
                     }
                     return .init(dirURL: modelsDirURL, name: model.name, fileName: fileName, contents: model.contents)
                 }
@@ -343,7 +323,7 @@ public class Generator {
         modulePlan: RuntimeModulePlan
     ) -> String {
         var directlyReferencedModules = Set(endpointSchemaNames(for: operation).map { modulePlan[$0] })
-            .subtracting([.core, .legacyModels, domainModelModule])
+            .subtracting([.core, .unassigned, domainModelModule])
         directlyReferencedModules.insert(domainModelModule)
         return directlyReferencedModules
             .map(\.targetName)
@@ -364,8 +344,7 @@ public class Generator {
      */
     static func generateModel(
         for schema: Schema,
-        packageName: PackageName,
-        modelModule: RuntimeModulePlan.ModelModule? = nil,
+        modelModule: RuntimeModulePlan.ModelModule,
         referencedModelModules: Set<RuntimeModulePlan.ModelModule>? = nil,
         otherSchemas: [String: Schema],
         docsLoader: DocsLoader
@@ -390,29 +369,21 @@ public class Generator {
         case .modelsShared:
             let dependencies = (referencedModelModules ?? [])
                 .union([.core])
-                .subtracting([.modelsShared, .legacyModels])
+                .subtracting([.modelsShared, .unassigned])
             imports.append(contentsOf: dependencies
                 .sorted { $0.targetName < $1.targetName }
                 .map { "import \($0.targetName)" })
         case let .domainModels(package):
             let dependencies = (referencedModelModules ?? [])
                 .union([.core])
-                .subtracting([.domainModels(package), .legacyModels])
+                .subtracting([.domainModels(package), .unassigned])
             imports.append(contentsOf: dependencies
                 .sorted { $0.targetName < $1.targetName }
                 .map { "import \($0.targetName)" })
         case .core:
             break
-        case .legacyModels, nil:
-            if packageName != .core {
-                imports.append("import Bagbutik_Core")
-                if schema.name.hasSuffix("Request") || schema.name.hasSuffix("Response") {
-                    imports.append("import Bagbutik_Models")
-                }
-            } else if schema.name.hasSuffix("LinkagesRequest") || schema.name.hasSuffix("LinkageRequest")
-                || schema.name.hasSuffix("LinkagesResponse") || schema.name.hasSuffix("LinkageResponse") {
-                imports.append("import Bagbutik_Core")
-            }
+        case .unassigned:
+            break
         }
         let contents = """
         \(imports.sorted().joined(separator: "\n"))

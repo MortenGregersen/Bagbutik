@@ -40,7 +40,7 @@ final class RuntimeModulePlanTests: XCTestCase {
         XCTAssertEqual(plan["SubscriptionStatusUrlVersion"], .modelsShared)
         XCTAssertEqual(plan["User"], .domainModels(.users))
         XCTAssertEqual(plan["UsersResponse"], .domainModels(.users))
-        XCTAssertEqual(plan["Build"], .legacyModels)
+        XCTAssertEqual(plan["Build"], .unassigned)
     }
 
     func testCrossDomainCycleIsKeptInOneSharedModule() {
@@ -178,7 +178,7 @@ final class RuntimeModulePlanTests: XCTestCase {
         XCTAssertEqual(plan["CustomerReview"], .domainModels(.appStore))
         XCTAssertEqual(plan["Territory"], .domainModels(.appStore))
         XCTAssertEqual(plan["UnrelatedAppClip"], .domainModels(.appStore))
-        XCTAssertEqual(plan["UnrelatedGameCenterActivity"], .legacyModels)
+        XCTAssertEqual(plan["UnrelatedGameCenterActivity"], .unassigned)
         XCTAssertEqual(
             plan.dependencies(for: .domainModels(.appStore)),
             [.core, .modelsShared]

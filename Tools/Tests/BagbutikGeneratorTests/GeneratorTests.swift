@@ -57,39 +57,17 @@ final class GeneratorTests: XCTestCase {
         // Then
         continueAfterFailure = false
         XCTAssertEqual(fileManager.itemsRemoved, [
-            "/Users/steve/output/Bagbutik-Models/LinkageRequests",
-            "/Users/steve/output/Bagbutik-Models/LinkageResponses",
             "/Users/steve/output/Bagbutik-AppStore",
-            "/Users/steve/output/Bagbutik-Models/AppStore",
             "/Users/steve/output/Bagbutik-Core/Endpoints",
             "/Users/steve/output/Bagbutik-Core/Models",
-            "/Users/steve/output/Bagbutik-Models/Core",
             "/Users/steve/output/Bagbutik-GameCenter",
-            "/Users/steve/output/Bagbutik-Models/GameCenter",
             "/Users/steve/output/Bagbutik-Marketplaces",
-            "/Users/steve/output/Bagbutik-Models/Marketplaces",
             "/Users/steve/output/Bagbutik-Provisioning",
-            "/Users/steve/output/Bagbutik-Models/Provisioning",
             "/Users/steve/output/Bagbutik-Reporting",
-            "/Users/steve/output/Bagbutik-Models/Reporting",
             "/Users/steve/output/Bagbutik-TestFlight",
-            "/Users/steve/output/Bagbutik-Models/TestFlight",
             "/Users/steve/output/Bagbutik-Users",
-            "/Users/steve/output/Bagbutik-Models/Users",
             "/Users/steve/output/Bagbutik-Webhooks",
-            "/Users/steve/output/Bagbutik-Models/Webhooks",
             "/Users/steve/output/Bagbutik-XcodeCloud",
-            "/Users/steve/output/Bagbutik-Models/XcodeCloud",
-            "/Users/steve/output/BagbutikModelsShared",
-            "/Users/steve/output/BagbutikAppStoreModels",
-            "/Users/steve/output/BagbutikGameCenterModels",
-            "/Users/steve/output/BagbutikMarketplacesModels",
-            "/Users/steve/output/BagbutikProvisioningModels",
-            "/Users/steve/output/BagbutikReportingModels",
-            "/Users/steve/output/BagbutikTestFlightModels",
-            "/Users/steve/output/BagbutikUsersModels",
-            "/Users/steve/output/BagbutikWebhooksModels",
-            "/Users/steve/output/BagbutikXcodeCloudModels",
         ])
         XCTAssertEqual(Set(fileManager.directoriesCreated).sorted(), [
             "/Users/steve/output/Bagbutik-AppStore",
@@ -97,7 +75,6 @@ final class GeneratorTests: XCTestCase {
             "/Users/steve/output/Bagbutik-Core/Models",
             "/Users/steve/output/Bagbutik-GameCenter",
             "/Users/steve/output/Bagbutik-Marketplaces",
-            "/Users/steve/output/Bagbutik-Models",
             "/Users/steve/output/Bagbutik-Provisioning",
             "/Users/steve/output/Bagbutik-Reporting",
             "/Users/steve/output/Bagbutik-TestFlight",
@@ -395,12 +372,21 @@ final class GeneratorTests: XCTestCase {
         let requestSchema = Schema.object(.init(name: "UserUpdateRequest", url: "some://url"))
         let linkageSchema = Schema.object(.init(name: "UserVisibleAppsLinkageResponse", url: "some://url"))
 
-        let requestModel = try await Generator.generateModel(for: requestSchema, packageName: .users, otherSchemas: [:], docsLoader: docsLoader)
-        let linkageModel = try await Generator.generateModel(for: linkageSchema, packageName: .core, otherSchemas: [:], docsLoader: docsLoader)
+        let requestModel = try await Generator.generateModel(
+            for: requestSchema,
+            modelModule: .domainModels(.users),
+            otherSchemas: [:],
+            docsLoader: docsLoader
+        )
+        let linkageModel = try await Generator.generateModel(
+            for: linkageSchema,
+            modelModule: .core,
+            otherSchemas: [:],
+            docsLoader: docsLoader
+        )
 
-        XCTAssertTrue(requestModel.contents.contains("import Bagbutik_Core"))
-        XCTAssertTrue(requestModel.contents.contains("import Bagbutik_Models"))
-        XCTAssertTrue(linkageModel.contents.contains("import Bagbutik_Core"))
+        XCTAssertTrue(requestModel.contents.contains("import BagbutikCore"))
+        XCTAssertFalse(linkageModel.contents.contains("import Bagbutik_"))
     }
 
     func testGenerateModelImportsOnlyItsReferencedModelModules() async throws {
@@ -409,7 +395,6 @@ final class GeneratorTests: XCTestCase {
 
         let model = try await Generator.generateModel(
             for: schema,
-            packageName: .gameCenter,
             modelModule: .domainModels(.gameCenter),
             referencedModelModules: [.domainModels(.appStore)],
             otherSchemas: [:],

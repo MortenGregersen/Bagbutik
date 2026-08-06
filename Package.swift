@@ -246,7 +246,7 @@ let package = Package(
         .target(name: "system-zlib"),
         // Test targets
         .testTarget(
-            name: "Bagbutik-CoreTests",
+            name: "BagbutikCoreTests",
             dependencies: [
                 "BagbutikCore",
                 "BagbutikAppStore",
@@ -254,6 +254,7 @@ let package = Package(
                 "BagbutikModelsShared",
                 .product(name: "Crypto", package: "swift-crypto", condition: .when(platforms: [.linux, .android]))
             ],
+            path: "Tests/Bagbutik-CoreTests",
             resources: [.copy("test-private-key.p8")]
         ),
         .testTarget(name: "BagbutikUmbrellaIntegrationTests", dependencies: ["Bagbutik"]),
