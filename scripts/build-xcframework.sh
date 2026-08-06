@@ -1074,10 +1074,10 @@ verify_visionos_binary_integration() {
 
   while IFS= read -r module; do
     import_arguments+=(
-      -I "$DIST_DIR/$module.xcframework/$library_identifier/Headers"
+      -I "$DIST_DIR/$module.xcframework/$library_identifier/$module.framework/Modules"
     )
     libraries+=(
-      "$DIST_DIR/$module.xcframework/$library_identifier/lib$module.a"
+      "$DIST_DIR/$module.xcframework/$library_identifier/$module.framework/$module"
     )
   done < <(client_link_modules "$client")
 
@@ -1097,26 +1097,24 @@ verify_visionos_binary_integration() {
 }
 
 report_watch_sample_size() {
-  local arm64_32_binary
   local arm64_binary
   local client
   local size
-  local universal_binary
+  local stripped_binary
 
   for client in "${BUILD_TARGETS[@]}"; do
-    arm64_32_binary="$INTEGRATION_DIR/build/$client/arm64_32-apple-watchos9.0/arm64_32-apple-watchos/$CONFIGURATION/${client}BinaryClient"
     arm64_binary="$INTEGRATION_DIR/build/$client/arm64-apple-watchos9.0/arm64-apple-watchos/$CONFIGURATION/${client}BinaryClient"
-    universal_binary="$DIST_DIR/${client}WatchSample"
+    stripped_binary="$DIST_DIR/${client}WatchSample"
 
-    if [ ! -f "$arm64_32_binary" ] || [ ! -f "$arm64_binary" ]; then
+    if [ ! -f "$arm64_binary" ]; then
       continue
     fi
 
-    xcrun lipo -create "$arm64_32_binary" "$arm64_binary" -output "$universal_binary"
-    xcrun strip -x "$universal_binary"
+    cp "$arm64_binary" "$stripped_binary"
+    xcrun strip -x "$stripped_binary"
 
-    size="$(stat -f '%z' "$universal_binary")"
-    echo "Stripped two architecture $client watch sample executable: $size bytes"
+    size="$(stat -f '%z' "$stripped_binary")"
+    echo "Stripped arm64 $client watch sample executable: $size bytes"
 
     if [ "$size" -gt 50000000 ]; then
       echo "$client watch sample executable exceeds the 50 MB release gate." >&2
