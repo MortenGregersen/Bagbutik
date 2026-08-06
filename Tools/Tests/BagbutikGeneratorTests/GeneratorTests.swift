@@ -461,6 +461,10 @@ final class GeneratorTests: XCTestCase {
         func fileExists(atPath path: String) -> Bool {
             true
         }
+
+        func contentsOfDirectory(at url: URL) throws -> [URL] {
+            []
+        }
         
         func removeItem(at url: URL) throws {
             itemsRemoved.append(url.path)

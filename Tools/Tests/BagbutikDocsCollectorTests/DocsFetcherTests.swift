@@ -363,6 +363,10 @@ final class DocsFetcherTests: XCTestCase {
         func fileExists(atPath path: String) -> Bool {
             true
         }
+
+        func contentsOfDirectory(at url: URL) throws -> [URL] {
+            []
+        }
         
         func removeItem(at URL: URL) throws {
             itemsRemoved.append(URL.lastPathComponent)

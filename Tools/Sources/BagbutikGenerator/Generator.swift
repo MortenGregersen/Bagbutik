@@ -151,7 +151,7 @@ public class Generator {
                 .sorted()
         for generatedModelsDirectory in generatedModelsDirectories {
             let directoryURL = outputDirURL.appendingPathComponent(generatedModelsDirectory)
-            try removeChildren(at: directoryURL)
+            try removeGeneratedChildren(at: directoryURL)
             try fileManager.createDirectory(at: directoryURL, withIntermediateDirectories: true, attributes: nil)
         }
 
@@ -197,11 +197,12 @@ public class Generator {
             }
         }
 
-        try await withThrowingTaskGroup(of: RenderResult.self) { taskGroup in
+        try await withThrowingTaskGroup(of: RenderResult?.self) { taskGroup in
             for schema in schemas.values {
                 taskGroup.addTask { [docsLoader, schemas, packageBySchema, schemaReferenceGraph, modulePlan] in
                     let packageName = packageBySchema[schema.name]!
                     let modelModule = modulePlan[schema.name]
+                    guard modelModule != .legacyModels else { return nil }
                     let referencedModelModules = Set(schemaReferenceGraph.references[schema.name, default: []]
                         .map { modulePlan[$0] })
                     let model = try await Generator.generateModel(
@@ -237,6 +238,7 @@ public class Generator {
                 }
             }
             for try await renderResult in taskGroup {
+                guard let renderResult else { continue }
                 await print("⚡️ Generating model \(renderResult.name)...")
                 try self.fileManager.createDirectory(at: renderResult.dirURL, withIntermediateDirectories: true, attributes: nil)
                 let fileURL = renderResult.dirURL.appendingPathComponent(renderResult.fileName)
@@ -261,6 +263,14 @@ public class Generator {
     private func removeChildren(at url: URL) throws {
         if fileManager.fileExists(atPath: url.path) {
             try fileManager.removeItem(at: url)
+        }
+    }
+
+    private func removeGeneratedChildren(at url: URL) throws {
+        guard fileManager.fileExists(atPath: url.path) else { return }
+        for childURL in try fileManager.contentsOfDirectory(at: url)
+            where childURL.lastPathComponent != "Extensions" {
+            try fileManager.removeItem(at: childURL)
         }
     }
 
