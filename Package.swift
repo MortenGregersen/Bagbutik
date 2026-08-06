@@ -21,16 +21,6 @@ let package = Package(
             targets: ["BagbutikCore"]
         ),
         .library(
-            // Preserves the legacy module import while API products migrate.
-            name: "Bagbutik-Core",
-            targets: ["Bagbutik-Core"]
-        ),
-        .library(
-            // All models used by the endpoints.
-            name: "Bagbutik-Models",
-            targets: ["Bagbutik-Models"]
-        ),
-        .library(
             name: "BagbutikAppStore",
             targets: [
                 "BagbutikCore",
@@ -135,11 +125,6 @@ let package = Package(
             path: "Sources/Bagbutik-Core"
         ),
         .target(
-            name: "Bagbutik-Core",
-            dependencies: ["BagbutikCore"],
-            path: "Sources/Bagbutik-CoreCompatibility"
-        ),
-        .target(
             name: "Bagbutik",
             dependencies: [
                 "BagbutikCore",
@@ -217,22 +202,6 @@ let package = Package(
             path: "Sources/Bagbutik-Users"
         ),
         .target(
-            name: "Bagbutik-Models",
-            dependencies: [
-                "Bagbutik-Core",
-                "BagbutikModelsShared",
-                "BagbutikAppStoreModels",
-                "BagbutikGameCenterModels",
-                "BagbutikMarketplacesModels",
-                "BagbutikProvisioningModels",
-                "BagbutikReportingModels",
-                "BagbutikTestFlightModels",
-                "BagbutikUsersModels",
-                "BagbutikWebhooksModels",
-                "BagbutikXcodeCloudModels",
-            ]
-        ),
-        .target(
             name: "BagbutikAppStore",
             dependencies: [
                 "BagbutikCore",
@@ -279,13 +248,14 @@ let package = Package(
         .testTarget(
             name: "Bagbutik-CoreTests",
             dependencies: [
-                "Bagbutik-Core",
+                "BagbutikCore",
                 "BagbutikAppStore",
+                "BagbutikAppStoreModels",
+                "BagbutikModelsShared",
                 .product(name: "Crypto", package: "swift-crypto", condition: .when(platforms: [.linux, .android]))
             ],
             resources: [.copy("test-private-key.p8")]
         ),
-        .testTarget(name: "Bagbutik-ModelsTests", dependencies: ["Bagbutik-Models"]),
         .testTarget(name: "BagbutikUmbrellaIntegrationTests", dependencies: ["Bagbutik"]),
         .testTarget(
             name: "BagbutikAppStoreIntegrationTests",

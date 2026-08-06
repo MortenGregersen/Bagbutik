@@ -1,4 +1,4 @@
-import Bagbutik_Models
+import BagbutikAppStoreModels
 import XCTest
 
 final class AppMediaStateErrorMoreInfoTests: XCTestCase {

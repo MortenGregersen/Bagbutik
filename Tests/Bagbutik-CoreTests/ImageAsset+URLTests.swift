@@ -1,4 +1,4 @@
-import Bagbutik_Models
+import BagbutikModelsShared
 import XCTest
 
 final class ImageAssetURLTests: XCTestCase {

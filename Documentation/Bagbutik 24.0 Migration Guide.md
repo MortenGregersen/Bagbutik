@@ -33,7 +33,9 @@ For the smallest source build, add `BagbutikCore` and each product needed by the
 
 ## Generated model imports
 
-`Bagbutik-Models` is replaced by model modules selected with each public product. Most applications should import `BagbutikCore` and the endpoint product only. When application code directly uses a generated model type that is not exposed through an endpoint, import the matching `Bagbutik<Domain>Models` module.
+`Bagbutik-Models` is removed. Model modules are selected with each public product. Most applications should import `BagbutikCore` and the endpoint product only. When application code directly uses a generated model type that is not exposed through an endpoint, import the matching `Bagbutik<Domain>Models` module.
+
+The source package no longer provides compatibility products for `Bagbutik-Core` or `Bagbutik-Models`. Update all imports and product dependencies before adopting version 24.
 
 For example, direct use of a provisioning model requires:
 
