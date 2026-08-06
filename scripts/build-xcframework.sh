@@ -79,7 +79,6 @@ sdk_triples() {
       echo "x86_64-apple-tvos15.0-simulator"
       ;;
     watchos)
-      echo "arm64_32-apple-watchos9.0"
       echo "arm64-apple-watchos9.0"
       ;;
     watchsimulator)
@@ -356,6 +355,41 @@ combine_sdk_module() {
   mkdir -p "$output_directory"
   xcrun lipo -create "${libraries[@]}" -output "$output_directory/lib$module.a"
   xcrun strip -S "$output_directory/lib$module.a"
+
+  local framework_directory="$output_directory/$module.framework"
+  local framework_version_directory="$framework_directory/Versions/A"
+  mkdir -p "$framework_version_directory/Modules/$module.swiftmodule" "$framework_version_directory/Resources"
+  mv "$output_directory/lib$module.a" "$framework_version_directory/$module"
+  cp "$output_directory/Headers/$module.swiftmodule"/*.swiftinterface \
+    "$framework_version_directory/Modules/$module.swiftmodule/"
+  cat > "$framework_version_directory/Resources/Info.plist" <<EOF
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>en</string>
+	<key>CFBundleExecutable</key>
+	<string>$module</string>
+	<key>CFBundleIdentifier</key>
+	<string>org.bagbutik.$module</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleName</key>
+	<string>$module</string>
+	<key>CFBundlePackageType</key>
+	<string>FMWK</string>
+	<key>CFBundleShortVersionString</key>
+	<string>24.0.0</string>
+	<key>CFBundleVersion</key>
+	<string>1</string>
+</dict>
+</plist>
+EOF
+  ln -s A "$framework_directory/Versions/Current"
+  ln -s Versions/Current/$module "$framework_directory/$module"
+  ln -s Versions/Current/Modules "$framework_directory/Modules"
+  ln -s Versions/Current/Resources "$framework_directory/Resources"
 }
 
 create_module_xcframework() {
@@ -365,8 +399,7 @@ create_module_xcframework() {
 
   for sdk in "${SDKS[@]}"; do
     args+=(
-      -library "$BUILD_DIR/libraries/$sdk/$module/lib$module.a"
-      -headers "$BUILD_DIR/libraries/$sdk/$module/Headers"
+      -framework "$BUILD_DIR/libraries/$sdk/$module/$module.framework"
     )
   done
 
