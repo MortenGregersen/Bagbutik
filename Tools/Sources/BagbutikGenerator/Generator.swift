@@ -210,7 +210,7 @@ public class Generator {
                     case .modelsShared, .domainModels:
                         outputDirURL.appendingPathComponent(modelModule.targetName)
                     case .core:
-                        outputDirURL.appendingPathComponent("Bagbutik-Core").appendingPathComponent("Models")
+                        outputDirURL.appendingPathComponent("BagbutikCore").appendingPathComponent("Models")
                     case .unassigned:
                         fatalError("Unassigned models are not rendered")
                     }

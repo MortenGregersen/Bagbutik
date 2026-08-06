@@ -57,41 +57,41 @@ final class GeneratorTests: XCTestCase {
         // Then
         continueAfterFailure = false
         XCTAssertEqual(fileManager.itemsRemoved, [
-            "/Users/steve/output/Bagbutik-AppStore",
-            "/Users/steve/output/Bagbutik-Core/Endpoints",
-            "/Users/steve/output/Bagbutik-Core/Models",
-            "/Users/steve/output/Bagbutik-GameCenter",
-            "/Users/steve/output/Bagbutik-Marketplaces",
-            "/Users/steve/output/Bagbutik-Provisioning",
-            "/Users/steve/output/Bagbutik-Reporting",
-            "/Users/steve/output/Bagbutik-TestFlight",
-            "/Users/steve/output/Bagbutik-Users",
-            "/Users/steve/output/Bagbutik-Webhooks",
-            "/Users/steve/output/Bagbutik-XcodeCloud",
+            "/Users/steve/output/BagbutikAppStore",
+            "/Users/steve/output/BagbutikCore/Endpoints",
+            "/Users/steve/output/BagbutikCore/Models",
+            "/Users/steve/output/BagbutikGameCenter",
+            "/Users/steve/output/BagbutikMarketplaces",
+            "/Users/steve/output/BagbutikProvisioning",
+            "/Users/steve/output/BagbutikReporting",
+            "/Users/steve/output/BagbutikTestFlight",
+            "/Users/steve/output/BagbutikUsers",
+            "/Users/steve/output/BagbutikWebhooks",
+            "/Users/steve/output/BagbutikXcodeCloud",
         ])
         XCTAssertEqual(Set(fileManager.directoriesCreated).sorted(), [
-            "/Users/steve/output/Bagbutik-AppStore",
-            "/Users/steve/output/Bagbutik-Core/Endpoints",
-            "/Users/steve/output/Bagbutik-Core/Models",
-            "/Users/steve/output/Bagbutik-GameCenter",
-            "/Users/steve/output/Bagbutik-Marketplaces",
-            "/Users/steve/output/Bagbutik-Provisioning",
-            "/Users/steve/output/Bagbutik-Reporting",
-            "/Users/steve/output/Bagbutik-TestFlight",
-            "/Users/steve/output/Bagbutik-Users",
-            "/Users/steve/output/Bagbutik-Users/Endpoints/Users",
-            "/Users/steve/output/Bagbutik-Users/Endpoints/Users/Relationships",
-            "/Users/steve/output/Bagbutik-Webhooks",
-            "/Users/steve/output/Bagbutik-XcodeCloud",
+            "/Users/steve/output/BagbutikAppStore",
             "/Users/steve/output/BagbutikAppStoreModels",
+            "/Users/steve/output/BagbutikCore/Endpoints",
+            "/Users/steve/output/BagbutikCore/Models",
+            "/Users/steve/output/BagbutikGameCenter",
             "/Users/steve/output/BagbutikGameCenterModels",
+            "/Users/steve/output/BagbutikMarketplaces",
             "/Users/steve/output/BagbutikMarketplacesModels",
             "/Users/steve/output/BagbutikModelsShared",
+            "/Users/steve/output/BagbutikProvisioning",
             "/Users/steve/output/BagbutikProvisioningModels",
+            "/Users/steve/output/BagbutikReporting",
             "/Users/steve/output/BagbutikReportingModels",
+            "/Users/steve/output/BagbutikTestFlight",
             "/Users/steve/output/BagbutikTestFlightModels",
+            "/Users/steve/output/BagbutikUsers",
+            "/Users/steve/output/BagbutikUsers/Endpoints/Users",
+            "/Users/steve/output/BagbutikUsers/Endpoints/Users/Relationships",
             "/Users/steve/output/BagbutikUsersModels",
+            "/Users/steve/output/BagbutikWebhooks",
             "/Users/steve/output/BagbutikWebhooksModels",
+            "/Users/steve/output/BagbutikXcodeCloud",
             "/Users/steve/output/BagbutikXcodeCloudModels",
         ])
         XCTAssertEqual(fileManager.filesCreated.map(\.name).sorted(), [
@@ -222,7 +222,7 @@ final class GeneratorTests: XCTestCase {
         // When
         await XCTAssertAsyncThrowsError(try await generator.generateAll(specFileURL: validSpecFileURL, outputDirURL: validOutputDirURL, documentationDirURL: validDocumentationDirURL)) {
             // Then
-            XCTAssertEqual($0 as? GeneratorError, .couldNotCreateFile("/Users/steve/output/Bagbutik-Users/Endpoints/Users/ListUsersV1.swift"))
+            XCTAssertEqual($0 as? GeneratorError, .couldNotCreateFile("/Users/steve/output/BagbutikUsers/Endpoints/Users/ListUsersV1.swift"))
         }
     }
     
@@ -321,7 +321,7 @@ final class GeneratorTests: XCTestCase {
         try await generator.generateAll(specFileURL: validSpecFileURL, outputDirURL: validOutputDirURL, documentationDirURL: validDocumentationDirURL)
 
         XCTAssertEqual(fileManager.filesCreated.map(\.name), ["ListUsersV1.swift"])
-        XCTAssertEqual(fileManager.directoriesCreated.filter { $0.hasSuffix("/Bagbutik-Users/Endpoints/Users") }.count, 1)
+        XCTAssertEqual(fileManager.directoriesCreated.filter { $0.hasSuffix("/BagbutikUsers/Endpoints/Users") }.count, 1)
     }
 
     func testInferPackageNameForNonRequestSchemaUsesGeneralModelsDirectory() async throws {
@@ -423,7 +423,7 @@ final class GeneratorTests: XCTestCase {
 
         try await Generator().generateAll(specFileURL: specFileURL, outputDirURL: outputDirURL, documentationDirURL: documentationDirURL)
 
-        XCTAssertTrue(FileManager.default.fileExists(atPath: outputDirURL.appendingPathComponent("Bagbutik-Core").path))
+        XCTAssertTrue(FileManager.default.fileExists(atPath: outputDirURL.appendingPathComponent("BagbutikCore").path))
     }
     
     private class MockFileManager: TestableFileManager {

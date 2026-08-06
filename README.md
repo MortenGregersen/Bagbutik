@@ -70,7 +70,7 @@ The repository is split into a small manually maintained core and a large genera
 * `Tools/Sources/BagbutikDocsCollector` downloads and normalizes Apple documentation so generated code gets useful Xcode documentation comments.
 * `Tools/Sources/BagbutikGenerator` combines the decoded spec and collected docs to render the Swift source in `Sources/`.
 
-This split matters when navigating the codebase. If you want to understand runtime behavior, start in the `Sources/Bagbutik-Core` folder. If you want to understand how generated endpoints and models are produced, start with the nested `Tools` package.
+This split matters when navigating the codebase. If you want to understand runtime behavior, start in the `Sources/BagbutikCore` folder. If you want to understand how generated endpoints and models are produced, start with the nested `Tools` package.
 
 ## How to get Bagbutik into a project
 
@@ -148,7 +148,7 @@ Most files under `Sources/Bagbutik-*` are generated from Apple's OpenAPI documen
 3. Normalize the documentation into local lookup files in `Documentation/`.
 4. Render endpoints and models into the package sources.
 
-The manually maintained comments and types in `Bagbutik-Core` and the nested `Tools` package are the best places to look when you need to change generation behavior or understand why a generated file looks the way it does.
+The manually maintained comments and types in `BagbutikCore` and the nested `Tools` package are the best places to look when you need to change generation behavior or understand why a generated file looks the way it does.
 
 Run the maintainer CLI from the repository root with:
 
