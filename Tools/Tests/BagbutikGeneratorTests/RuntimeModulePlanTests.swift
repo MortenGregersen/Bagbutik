@@ -32,15 +32,14 @@ final class RuntimeModulePlanTests: XCTestCase {
         let plan = RuntimeModulePlan(
             graph: .init(schemas: schemas),
             packageBySchema: packages,
-            migratedPackages: [.users]
         )
 
         XCTAssertEqual(plan["CoreLinks"], .core)
-        XCTAssertEqual(plan["App"], .modelsShared)
-        XCTAssertEqual(plan["SubscriptionStatusUrlVersion"], .modelsShared)
+        XCTAssertEqual(plan["App"], .domainModels(.appStore))
+        XCTAssertEqual(plan["SubscriptionStatusUrlVersion"], .domainModels(.appStore))
         XCTAssertEqual(plan["User"], .domainModels(.users))
         XCTAssertEqual(plan["UsersResponse"], .domainModels(.users))
-        XCTAssertEqual(plan["Build"], .unassigned)
+        XCTAssertEqual(plan["Build"], .domainModels(.appStore))
     }
 
     func testCrossDomainCycleIsKeptInOneSharedModule() {
@@ -57,7 +56,6 @@ final class RuntimeModulePlanTests: XCTestCase {
         let plan = RuntimeModulePlan(
             graph: .init(schemas: schemas),
             packageBySchema: packages,
-            migratedPackages: [.users]
         )
 
         XCTAssertEqual(plan["User"], .modelsShared)
@@ -81,7 +79,6 @@ final class RuntimeModulePlanTests: XCTestCase {
         let plan = RuntimeModulePlan(
             graph: .init(schemas: schemas),
             packageBySchema: packages,
-            migratedPackages: [.users, .webhooks],
             additionalRootsByPackage: [.webhooks: ["WebhookDeliveriesLinkagesResponse"]]
         )
 
@@ -114,7 +111,7 @@ final class RuntimeModulePlanTests: XCTestCase {
         let plan = RuntimeModulePlan(
             graph: .init(schemas: schemas),
             packageBySchema: packages,
-            migratedPackages: [.users, .xcodeCloud]
+            sharedSchemas: ["SharedRule"]
         )
 
         XCTAssertEqual(plan["SharedRule"], .modelsShared)
@@ -141,7 +138,6 @@ final class RuntimeModulePlanTests: XCTestCase {
         let plan = RuntimeModulePlan(
             graph: .init(schemas: schemas),
             packageBySchema: packages,
-            migratedPackages: [.provisioning, .testFlight],
             sharedSchemas: ["DeviceFamily"]
         )
 
@@ -172,13 +168,12 @@ final class RuntimeModulePlanTests: XCTestCase {
         let plan = RuntimeModulePlan(
             graph: .init(schemas: schemas),
             packageBySchema: packages,
-            migratedPackages: [.appStore]
         )
 
         XCTAssertEqual(plan["CustomerReview"], .domainModels(.appStore))
         XCTAssertEqual(plan["Territory"], .domainModels(.appStore))
         XCTAssertEqual(plan["UnrelatedAppClip"], .domainModels(.appStore))
-        XCTAssertEqual(plan["UnrelatedGameCenterActivity"], .unassigned)
+        XCTAssertEqual(plan["UnrelatedGameCenterActivity"], .domainModels(.gameCenter))
         XCTAssertEqual(
             plan.dependencies(for: .domainModels(.appStore)),
             [.core, .modelsShared]
@@ -206,7 +201,6 @@ final class RuntimeModulePlanTests: XCTestCase {
         let plan = RuntimeModulePlan(
             graph: .init(schemas: schemas),
             packageBySchema: packages,
-            migratedPackages: [.appStore, .gameCenter],
             sharedSchemas: ["GameCenterVersion"]
         )
 

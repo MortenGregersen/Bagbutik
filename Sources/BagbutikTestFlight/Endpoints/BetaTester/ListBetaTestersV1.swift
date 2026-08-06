@@ -1,4 +1,5 @@
 import BagbutikCore
+import BagbutikModelsShared
 import BagbutikTestFlightModels
 
 public extension Request {

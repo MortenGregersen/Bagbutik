@@ -36,7 +36,7 @@ typealias LoadSpec = (_ fileUrl: URL) throws -> Spec
 
 /// Generates endpoint and model source files from the decoded spec and normalized documentation.
 public class Generator {
-    private static let migratedPackages: Set<PackageName> = [.appStore, .gameCenter, .marketplaces, .provisioning, .reporting, .testFlight, .users, .webhooks, .xcodeCloud]
+    private static let domainPackages: Set<PackageName> = Set(PackageName.allCases).subtracting([.core])
     private static let sharedSchemas: Set<String> = [
         "App",
         "Build",
@@ -119,7 +119,6 @@ public class Generator {
         let modulePlan = RuntimeModulePlan(
             graph: schemaReferenceGraph,
             packageBySchema: packageBySchema,
-            migratedPackages: Self.migratedPackages,
             sharedSchemas: Self.sharedSchemas,
             additionalRootsByPackage: endpointRootsByPackage
         )
@@ -139,7 +138,7 @@ public class Generator {
             }
         }
         let generatedModelsDirectories = [RuntimeModulePlan.ModelModule.modelsShared.targetName]
-            + Self.migratedPackages
+            + Self.domainPackages
                 .map { RuntimeModulePlan.ModelModule.domainModels($0).targetName }
                 .sorted()
         for generatedModelsDirectory in generatedModelsDirectories {
@@ -158,7 +157,7 @@ public class Generator {
                         let fileName = "\(name).swift"
                         let packageName = try await Self.resolvePackageName(for: operation, docsLoader: docsLoader)
                         var renderedOperation = try await operationRenderer.render(operation: operation, in: path) + "\n"
-                        if Self.migratedPackages.contains(packageName) {
+                        if Self.domainPackages.contains(packageName) {
                             let domainModelModule = RuntimeModulePlan.ModelModule.domainModels(packageName)
                             renderedOperation = renderedOperation
                                 .replacingOccurrences(
@@ -194,7 +193,6 @@ public class Generator {
                 taskGroup.addTask { [docsLoader, schemas, packageBySchema, schemaReferenceGraph, modulePlan] in
                     let packageName = packageBySchema[schema.name]!
                     let modelModule = modulePlan[schema.name]
-                    guard modelModule != .unassigned else { return nil }
                     let referencedModelModules = Set(schemaReferenceGraph.references[schema.name, default: []]
                         .map { modulePlan[$0] })
                     let model = try await Generator.generateModel(
@@ -211,8 +209,6 @@ public class Generator {
                         outputDirURL.appendingPathComponent(modelModule.targetName)
                     case .core:
                         outputDirURL.appendingPathComponent("BagbutikCore").appendingPathComponent("Models")
-                    case .unassigned:
-                        fatalError("Unassigned models are not rendered")
                     }
                     return .init(dirURL: modelsDirURL, name: model.name, fileName: fileName, contents: model.contents)
                 }
@@ -323,7 +319,7 @@ public class Generator {
         modulePlan: RuntimeModulePlan
     ) -> String {
         var directlyReferencedModules = Set(endpointSchemaNames(for: operation).map { modulePlan[$0] })
-            .subtracting([.core, .unassigned, domainModelModule])
+            .subtracting([.core, domainModelModule])
         directlyReferencedModules.insert(domainModelModule)
         return directlyReferencedModules
             .map(\.targetName)
@@ -369,20 +365,18 @@ public class Generator {
         case .modelsShared:
             let dependencies = (referencedModelModules ?? [])
                 .union([.core])
-                .subtracting([.modelsShared, .unassigned])
+                .subtracting([.modelsShared])
             imports.append(contentsOf: dependencies
                 .sorted { $0.targetName < $1.targetName }
                 .map { "import \($0.targetName)" })
         case let .domainModels(package):
             let dependencies = (referencedModelModules ?? [])
                 .union([.core])
-                .subtracting([.domainModels(package), .unassigned])
+                .subtracting([.domainModels(package)])
             imports.append(contentsOf: dependencies
                 .sorted { $0.targetName < $1.targetName }
                 .map { "import \($0.targetName)" })
         case .core:
-            break
-        case .unassigned:
             break
         }
         let contents = """

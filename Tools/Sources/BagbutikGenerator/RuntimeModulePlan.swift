@@ -2,39 +2,30 @@ import BagbutikDocsCollector
 import BagbutikSpecDecoder
 import Foundation
 
-/// The model module assignment used while the version 24 graph is migrated one product at a time.
+/// Assigns every generated schema to its final version 24 model module.
 public struct RuntimeModulePlan: Sendable {
     public enum ModelModule: Hashable, Sendable {
         case core
         case modelsShared
         case domainModels(PackageName)
-        case unassigned
 
         public var targetName: String {
             switch self {
             case .core: "BagbutikCore"
             case .modelsShared: "BagbutikModelsShared"
             case .domainModels(let package): "Bagbutik\(package.docsSectionName)Models"
-            case .unassigned: ""
             }
         }
 
-        public var isGeneratedModelModule: Bool {
-            switch self {
-            case .modelsShared, .domainModels: true
-            case .core, .unassigned: false
-            }
-        }
     }
 
     public let moduleBySchema: [String: ModelModule]
     public let dependenciesByModule: [ModelModule: Set<ModelModule>]
 
-    /// Creates version 24 vertical slices from schema ownership and actual references.
+    /// Creates version 24 model assignments from schema ownership and endpoint references.
     public init(
         graph: SchemaReferenceGraph,
         packageBySchema: [String: PackageName],
-        migratedPackages: Set<PackageName>,
         sharedSchemas: Set<String> = [],
         additionalRootsByPackage: [PackageName: Set<String>] = [:]
     ) {
@@ -43,40 +34,32 @@ public struct RuntimeModulePlan: Sendable {
                   !Self.isLinkageSchema(entry.key) else { return nil }
             return entry.key
         })
-        let schemasByPackage = migratedPackages.reduce(into: [PackageName: Set<String>]()) { result, package in
-            result[package] = Set(packageBySchema.compactMap { $0.value == package ? $0.key : nil })
-                .union(additionalRootsByPackage[package, default: []])
-        }
-        let closureByPackage = schemasByPackage.mapValues { graph.closure(startingAt: $0) }
-        let migratedClosure = closureByPackage.values.reduce(into: Set<String>()) { $0.formUnion($1) }
+        let closureByPackage = additionalRootsByPackage.mapValues { graph.closure(startingAt: $0) }
 
         var assignments = graph.references.keys.reduce(into: [String: ModelModule]()) { result, schema in
             if coreSchemas.contains(schema) {
                 result[schema] = .core
-            } else if migratedClosure.contains(schema) {
-                let usingPackages = migratedPackages.filter { closureByPackage[$0, default: []].contains(schema) }
-                if sharedSchemas.contains(schema) {
-                    result[schema] = .modelsShared
-                } else if let owner = packageBySchema[schema], migratedPackages.contains(owner) {
-                    result[schema] = .domainModels(owner)
-                } else if Self.isLinkageSchema(schema), usingPackages.count == 1, let package = usingPackages.first {
-                    result[schema] = .domainModels(package)
-                } else {
-                    result[schema] = .modelsShared
+            } else if sharedSchemas.contains(schema) {
+                result[schema] = .modelsShared
+            } else if let owner = packageBySchema[schema], owner != .core {
+                result[schema] = .domainModels(owner)
+            } else if Self.isLinkageSchema(schema) {
+                let usingPackages = closureByPackage.compactMap { package, closure in
+                    closure.contains(schema) ? package : nil
                 }
+                result[schema] = usingPackages.count == 1
+                    ? .domainModels(usingPackages[0])
+                    : .modelsShared
             } else {
-                result[schema] = .unassigned
+                result[schema] = .core
             }
         }
 
         for component in graph.stronglyConnectedComponents() {
             let modules = Set(component.schemas.compactMap { assignments[$0] })
-                .subtracting([.unassigned])
             guard modules.count > 1 else { continue }
             let collapsedModule: ModelModule = modules.contains(.core) ? .core : .modelsShared
-            for schema in component.schemas where assignments[schema] != .unassigned {
-                assignments[schema] = collapsedModule
-            }
+            for schema in component.schemas { assignments[schema] = collapsedModule }
         }
 
         var pendingSharedSchemas = assignments.compactMap { schema, module in
@@ -95,15 +78,14 @@ public struct RuntimeModulePlan: Sendable {
         var dependencies: [ModelModule: Set<ModelModule>] = [
             .modelsShared: [.core],
         ]
-        for package in migratedPackages {
+        for package in PackageName.allCases where package != .core {
             dependencies[.domainModels(package), default: []].formUnion([.core, .modelsShared])
         }
         for (schema, references) in graph.references {
-            guard let sourceModule = assignments[schema], sourceModule != .unassigned else { continue }
+            guard let sourceModule = assignments[schema] else { continue }
             for reference in references {
                 guard let dependencyModule = assignments[reference],
-                      dependencyModule != sourceModule,
-                      dependencyModule != .unassigned else { continue }
+                      dependencyModule != sourceModule else { continue }
                 dependencies[sourceModule, default: []].insert(dependencyModule)
             }
         }
@@ -111,7 +93,7 @@ public struct RuntimeModulePlan: Sendable {
     }
 
     public subscript(schemaName: String) -> ModelModule {
-        moduleBySchema[schemaName, default: .unassigned]
+        moduleBySchema[schemaName, default: .modelsShared]
     }
 
     public func dependencies(for module: ModelModule) -> Set<ModelModule> {
