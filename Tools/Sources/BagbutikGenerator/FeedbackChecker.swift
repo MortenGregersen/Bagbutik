@@ -85,8 +85,21 @@ public class FeedbackChecker {
                 print("⚠️ Could not locate unpatched schema '\(patchedSchema.displayName)' from path metadata. Skipping direct comparison.")
                 continue
             }
-            let unpatchedModel = try await Generator.generateModel(for: unpatchedSchema, packageName: packageName, otherSchemas: originalSpec.components.schemas, docsLoader: self.docsLoader)
-            let patchedModel = try await Generator.generateModel(for: schema, packageName: packageName, otherSchemas: patchedSpec.components.schemas, docsLoader: self.docsLoader)
+            let modelModule: RuntimeModulePlan.ModelModule = packageName == .core
+                ? .core
+                : .domainModels(packageName)
+            let unpatchedModel = try await Generator.generateModel(
+                for: unpatchedSchema,
+                modelModule: modelModule,
+                otherSchemas: originalSpec.components.schemas,
+                docsLoader: self.docsLoader
+            )
+            let patchedModel = try await Generator.generateModel(
+                for: schema,
+                modelModule: modelModule,
+                otherSchemas: patchedSpec.components.schemas,
+                docsLoader: self.docsLoader
+            )
             if unpatchedModel == patchedModel {
                 schemasNotNeedingPatching.append(patchedSchema.displayName)
             } else {

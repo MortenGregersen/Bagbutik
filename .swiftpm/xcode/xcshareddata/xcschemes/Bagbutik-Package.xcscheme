@@ -42,9 +42,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "Bagbutik-CoreTests"
-               BuildableName = "Bagbutik-CoreTests"
-               BlueprintName = "Bagbutik-CoreTests"
+               BlueprintIdentifier = "BagbutikCoreTests"
+               BuildableName = "BagbutikCoreTests"
+               BlueprintName = "BagbutikCoreTests"
                ReferencedContainer = "container:">
             </BuildableReference>
          </BuildActionEntry>
@@ -447,9 +447,9 @@
             testExecutionOrdering = "random">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "Bagbutik-CoreTests"
-               BuildableName = "Bagbutik-CoreTests"
-               BlueprintName = "Bagbutik-CoreTests"
+               BlueprintIdentifier = "BagbutikCoreTests"
+               BuildableName = "BagbutikCoreTests"
+               BlueprintName = "BagbutikCoreTests"
                ReferencedContainer = "container:">
             </BuildableReference>
          </TestableReference>

@@ -8,21 +8,21 @@ public struct RuntimeModulePlan: Sendable {
         case core
         case modelsShared
         case domainModels(PackageName)
-        case legacyModels
+        case unassigned
 
         public var targetName: String {
             switch self {
             case .core: "BagbutikCore"
             case .modelsShared: "BagbutikModelsShared"
             case .domainModels(let package): "Bagbutik\(package.docsSectionName)Models"
-            case .legacyModels: "Bagbutik-Models"
+            case .unassigned: ""
             }
         }
 
         public var isGeneratedModelModule: Bool {
             switch self {
             case .modelsShared, .domainModels: true
-            case .core, .legacyModels: false
+            case .core, .unassigned: false
             }
         }
     }
@@ -65,16 +65,16 @@ public struct RuntimeModulePlan: Sendable {
                     result[schema] = .modelsShared
                 }
             } else {
-                result[schema] = .legacyModels
+                result[schema] = .unassigned
             }
         }
 
         for component in graph.stronglyConnectedComponents() {
             let modules = Set(component.schemas.compactMap { assignments[$0] })
-                .subtracting([.legacyModels])
+                .subtracting([.unassigned])
             guard modules.count > 1 else { continue }
             let collapsedModule: ModelModule = modules.contains(.core) ? .core : .modelsShared
-            for schema in component.schemas where assignments[schema] != .legacyModels {
+            for schema in component.schemas where assignments[schema] != .unassigned {
                 assignments[schema] = collapsedModule
             }
         }
@@ -99,11 +99,11 @@ public struct RuntimeModulePlan: Sendable {
             dependencies[.domainModels(package), default: []].formUnion([.core, .modelsShared])
         }
         for (schema, references) in graph.references {
-            guard let sourceModule = assignments[schema], sourceModule != .legacyModels else { continue }
+            guard let sourceModule = assignments[schema], sourceModule != .unassigned else { continue }
             for reference in references {
                 guard let dependencyModule = assignments[reference],
                       dependencyModule != sourceModule,
-                      dependencyModule != .legacyModels else { continue }
+                      dependencyModule != .unassigned else { continue }
                 dependencies[sourceModule, default: []].insert(dependencyModule)
             }
         }
@@ -111,7 +111,7 @@ public struct RuntimeModulePlan: Sendable {
     }
 
     public subscript(schemaName: String) -> ModelModule {
-        moduleBySchema[schemaName, default: .legacyModels]
+        moduleBySchema[schemaName, default: .unassigned]
     }
 
     public func dependencies(for module: ModelModule) -> Set<ModelModule> {

@@ -40,7 +40,7 @@ public class OperationRenderer: Renderer {
             withTemplate: #"\\($1)"#)
         let parametersInfo = try await OperationParametersInfo(for: operation, in: path, docsLoader: docsLoader)
         let operationName = operation.getVersionedName(path: path)
-        var rendered = await "import Bagbutik_Core\nimport Bagbutik_Models\n\n" + renderExtension(on: "Request") {
+        var rendered = await "import BagbutikCore\n\n" + renderExtension(on: "Request") {
             let title = documentation?.title ?? "No overview available"
             var parameters = parametersInfo.pathParameters
             if let requestBody = parametersInfo.requestBody {
