@@ -1,5 +1,6 @@
 import BagbutikCore
 import BagbutikMarketplacesModels
+import BagbutikModelsShared
 
 public extension Request {
     /**
