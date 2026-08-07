@@ -22,7 +22,7 @@ public struct RuntimeModulePlan: Sendable {
     public let moduleBySchema: [String: ModelModule]
     public let dependenciesByModule: [ModelModule: Set<ModelModule>]
 
-    /// Creates version 24 model assignments from schema ownership and endpoint references.
+    /// Creates model assignments from schema ownership and endpoint references.
     public init(
         graph: SchemaReferenceGraph,
         packageBySchema: [String: PackageName],
