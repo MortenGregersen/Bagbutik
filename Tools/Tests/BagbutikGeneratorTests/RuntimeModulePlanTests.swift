@@ -31,7 +31,7 @@ final class RuntimeModulePlanTests: XCTestCase {
 
         let plan = RuntimeModulePlan(
             graph: .init(schemas: schemas),
-            packageBySchema: packages,
+            packageBySchema: packages
         )
 
         XCTAssertEqual(plan["CoreLinks"], .core)
@@ -55,7 +55,7 @@ final class RuntimeModulePlanTests: XCTestCase {
 
         let plan = RuntimeModulePlan(
             graph: .init(schemas: schemas),
-            packageBySchema: packages,
+            packageBySchema: packages
         )
 
         XCTAssertEqual(plan["User"], .modelsShared)
@@ -167,7 +167,7 @@ final class RuntimeModulePlanTests: XCTestCase {
 
         let plan = RuntimeModulePlan(
             graph: .init(schemas: schemas),
-            packageBySchema: packages,
+            packageBySchema: packages
         )
 
         XCTAssertEqual(plan["CustomerReview"], .domainModels(.appStore))
