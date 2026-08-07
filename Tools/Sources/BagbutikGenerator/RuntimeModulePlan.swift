@@ -2,7 +2,7 @@ import BagbutikDocsCollector
 import BagbutikSpecDecoder
 import Foundation
 
-/// Assigns every generated schema to its final version 24 model module.
+/// Assigns every generated schema to its final model module.
 public struct RuntimeModulePlan: Sendable {
     public enum ModelModule: Hashable, Sendable {
         case core
