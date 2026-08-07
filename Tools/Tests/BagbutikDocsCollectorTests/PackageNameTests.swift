@@ -3,8 +3,8 @@ import XCTest
 
 class PackageNameTests: XCTestCase {
     func testPackageNamesAndDocsSectionNames() {
-        XCTAssertEqual(PackageName.appStore.name, "Bagbutik-AppStore")
-        XCTAssertEqual(PackageName.core.name, "Bagbutik-Core")
+        XCTAssertEqual(PackageName.appStore.name, "BagbutikAppStore")
+        XCTAssertEqual(PackageName.core.name, "BagbutikCore")
         XCTAssertEqual(PackageName.xcodeCloud.docsSectionName, "XcodeCloud")
     }
 

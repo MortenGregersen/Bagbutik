@@ -13,7 +13,7 @@ public enum PackageName: CaseIterable, Codable, Hashable, Sendable {
     case xcodeCloud
 
     public var name: String {
-        "Bagbutik-\(docsSectionName)"
+        "Bagbutik\(docsSectionName)"
     }
 
     public var docsSectionName: String {

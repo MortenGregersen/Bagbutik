@@ -188,7 +188,7 @@ build_triple() {
 module_source_directory() {
   case "$1" in
     BagbutikCore)
-      echo "$ROOT_DIR/Sources/Bagbutik-Core"
+      echo "$ROOT_DIR/Sources/BagbutikCore"
       ;;
     BagbutikModelsShared)
       echo "$ROOT_DIR/Sources/BagbutikModelsShared"
@@ -197,55 +197,55 @@ module_source_directory() {
       echo "$ROOT_DIR/Sources/BagbutikAppStoreModels"
       ;;
     BagbutikAppStore)
-      echo "$ROOT_DIR/Sources/Bagbutik-AppStore"
+      echo "$ROOT_DIR/Sources/BagbutikAppStore"
       ;;
     BagbutikGameCenterModels)
       echo "$ROOT_DIR/Sources/BagbutikGameCenterModels"
       ;;
     BagbutikGameCenter)
-      echo "$ROOT_DIR/Sources/Bagbutik-GameCenter"
+      echo "$ROOT_DIR/Sources/BagbutikGameCenter"
       ;;
     BagbutikMarketplacesModels)
       echo "$ROOT_DIR/Sources/BagbutikMarketplacesModels"
       ;;
     BagbutikMarketplaces)
-      echo "$ROOT_DIR/Sources/Bagbutik-Marketplaces"
+      echo "$ROOT_DIR/Sources/BagbutikMarketplaces"
       ;;
     BagbutikProvisioningModels)
       echo "$ROOT_DIR/Sources/BagbutikProvisioningModels"
       ;;
     BagbutikProvisioning)
-      echo "$ROOT_DIR/Sources/Bagbutik-Provisioning"
+      echo "$ROOT_DIR/Sources/BagbutikProvisioning"
       ;;
     BagbutikReportingModels)
       echo "$ROOT_DIR/Sources/BagbutikReportingModels"
       ;;
     BagbutikReporting)
-      echo "$ROOT_DIR/Sources/Bagbutik-Reporting"
+      echo "$ROOT_DIR/Sources/BagbutikReporting"
       ;;
     BagbutikTestFlightModels)
       echo "$ROOT_DIR/Sources/BagbutikTestFlightModels"
       ;;
     BagbutikTestFlight)
-      echo "$ROOT_DIR/Sources/Bagbutik-TestFlight"
+      echo "$ROOT_DIR/Sources/BagbutikTestFlight"
       ;;
     BagbutikUsersModels)
       echo "$ROOT_DIR/Sources/BagbutikUsersModels"
       ;;
     BagbutikUsers)
-      echo "$ROOT_DIR/Sources/Bagbutik-Users"
+      echo "$ROOT_DIR/Sources/BagbutikUsers"
       ;;
     BagbutikWebhooksModels)
       echo "$ROOT_DIR/Sources/BagbutikWebhooksModels"
       ;;
     BagbutikWebhooks)
-      echo "$ROOT_DIR/Sources/Bagbutik-Webhooks"
+      echo "$ROOT_DIR/Sources/BagbutikWebhooks"
       ;;
     BagbutikXcodeCloudModels)
       echo "$ROOT_DIR/Sources/BagbutikXcodeCloudModels"
       ;;
     BagbutikXcodeCloud)
-      echo "$ROOT_DIR/Sources/Bagbutik-XcodeCloud"
+      echo "$ROOT_DIR/Sources/BagbutikXcodeCloud"
       ;;
     *)
       echo "No source directory mapping for $1" >&2
