@@ -121,8 +121,7 @@ let package = Package(
             dependencies: [
                 .product(name: "Crypto", package: "swift-crypto", condition: .when(platforms: [.linux, .android])),
                 .target(name: "system-zlib", condition: .when(platforms: [.linux, .android]))
-            ],
-            path: "Sources/BagbutikCore"
+            ]
         ),
         .target(
             name: "Bagbutik",
@@ -183,23 +182,19 @@ let package = Package(
         ),
         .target(
             name: "BagbutikMarketplaces",
-            dependencies: ["BagbutikCore", "BagbutikModelsShared", "BagbutikMarketplacesModels"],
-            path: "Sources/BagbutikMarketplaces"
+            dependencies: ["BagbutikCore", "BagbutikModelsShared", "BagbutikMarketplacesModels"]
         ),
         .target(
             name: "BagbutikProvisioning",
-            dependencies: ["BagbutikCore", "BagbutikModelsShared", "BagbutikProvisioningModels"],
-            path: "Sources/BagbutikProvisioning"
+            dependencies: ["BagbutikCore", "BagbutikModelsShared", "BagbutikProvisioningModels"]
         ),
         .target(
             name: "BagbutikReporting",
-            dependencies: ["BagbutikCore", "BagbutikModelsShared", "BagbutikReportingModels"],
-            path: "Sources/BagbutikReporting"
+            dependencies: ["BagbutikCore", "BagbutikModelsShared", "BagbutikReportingModels"]
         ),
         .target(
             name: "BagbutikUsers",
-            dependencies: ["BagbutikCore", "BagbutikModelsShared", "BagbutikUsersModels"],
-            path: "Sources/BagbutikUsers"
+            dependencies: ["BagbutikCore", "BagbutikModelsShared", "BagbutikUsersModels"]
         ),
         .target(
             name: "BagbutikAppStore",
@@ -207,8 +202,7 @@ let package = Package(
                 "BagbutikCore",
                 "BagbutikModelsShared",
                 "BagbutikAppStoreModels",
-            ],
-            path: "Sources/BagbutikAppStore"
+            ]
         ),
         .target(
             name: "BagbutikGameCenter",
@@ -216,8 +210,7 @@ let package = Package(
                 "BagbutikCore",
                 "BagbutikModelsShared",
                 "BagbutikGameCenterModels",
-            ],
-            path: "Sources/BagbutikGameCenter"
+            ]
         ),
         .target(
             name: "BagbutikTestFlight",
@@ -225,13 +218,11 @@ let package = Package(
                 "BagbutikCore",
                 "BagbutikModelsShared",
                 "BagbutikTestFlightModels",
-            ],
-            path: "Sources/BagbutikTestFlight"
+            ]
         ),
         .target(
             name: "BagbutikWebhooks",
-            dependencies: ["BagbutikCore", "BagbutikModelsShared", "BagbutikWebhooksModels"],
-            path: "Sources/BagbutikWebhooks"
+            dependencies: ["BagbutikCore", "BagbutikModelsShared", "BagbutikWebhooksModels"]
         ),
         .target(
             name: "BagbutikXcodeCloud",
@@ -240,8 +231,7 @@ let package = Package(
                 "BagbutikModelsShared",
                 "BagbutikProvisioningModels",
                 "BagbutikXcodeCloudModels",
-            ],
-            path: "Sources/BagbutikXcodeCloud"
+            ]
         ),
         .target(name: "system-zlib"),
         // Test targets
