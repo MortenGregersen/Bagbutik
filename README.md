@@ -104,7 +104,7 @@ Then add the required products to your target:
 )
 ```
 
-Select each public product your application uses for the smallest source build. The source package also provides an optional `Bagbutik` umbrella product that imports every API area.
+Select each public product your application uses for the smallest source build. Each product includes the core and generated model targets it requires. The source package also provides an optional `Bagbutik` umbrella product that imports every API area.
 
 #### Available modules
 
@@ -133,15 +133,38 @@ This keeps each endpoint builder lightweight while centralizing authentication, 
 
 ### Using a prebuilt binary package
 
-Bagbutik also provides a prebuilt static XCFramework distribution for projects that prefer not to compile Bagbutik sources. It uses the same public products and imports as the source package. Select the products your app uses, such as `BagbutikProvisioning` or `BagbutikAppStore`. The source only `Bagbutik` umbrella product is not part of the binary distribution.
+Bagbutik also provides a prebuilt static XCFramework distribution for projects that prefer not to compile Bagbutik sources. It uses the same public products and imports as the source package. Select the products your app uses, such as `BagbutikProvisioning` or `BagbutikAppStore`. The source package only `Bagbutik` umbrella product is not part of the binary distribution.
 
-Use either the source package or the binary package in one target. Do not add both because they intentionally expose the same Swift module names. The binary package and its release assets are published separately from the source repository.
+Add the binary package to your `Package.swift` with the explicit package name `Bagbutik`:
+
+```swift
+dependencies: [
+    .package(
+        name: "Bagbutik",
+        url: "https://github.com/MortenGregersen/Bagbutik-Binary",
+        from: "24.0.0"
+    ),
+]
+```
+
+Then use the same product declaration as the source package:
+
+```swift
+.target(
+    name: "Awesome",
+    dependencies: [
+        .product(name: "BagbutikProvisioning", package: "Bagbutik"),
+    ]
+)
+```
+
+Use either the source package or the binary package in one target. Do not add both because they intentionally expose the same Swift module names. To change distribution, replace the package URL while keeping the explicit package name and selected products. The binary package and its release assets are published separately from the source repository.
 
 For version 24 breaking changes, see the [migration guide](Documentation/Bagbutik%2024.0%20Migration%20Guide.md).
 
 ## Maintaining generated code
 
-Most files under `Sources/Bagbutik-*` are generated from Apple's OpenAPI document. The generation pipeline is:
+Most files under `Sources/` are generated from Apple's OpenAPI document. The generation pipeline is:
 
 1. Load and patch the OpenAPI spec.
 2. Fetch Apple documentation as JSON.
