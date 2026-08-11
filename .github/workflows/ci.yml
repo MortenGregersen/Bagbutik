@@ -27,6 +27,10 @@ jobs:
       run: swift test -v --enable-code-coverage --xunit-output .build/test-results.xml
     - name: Test Maintainer Tools
       run: swift test -v --package-path Tools --enable-code-coverage
+    - name: Verify generated sources
+      run: |
+        swift run --package-path Tools bagbutik-cli generate --spec-path 'openapi.oas (2).json' --output-path Sources --documentation-path Documentation
+        git diff --exit-code -- Sources
     - name: Generate runtime LCOV coverage report
       id: runtime_coverage
       run: |
