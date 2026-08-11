@@ -186,72 +186,7 @@ build_triple() {
 }
 
 module_source_directory() {
-  case "$1" in
-    BagbutikCore)
-      echo "$ROOT_DIR/Sources/BagbutikCore"
-      ;;
-    BagbutikModelsShared)
-      echo "$ROOT_DIR/Sources/BagbutikModelsShared"
-      ;;
-    BagbutikAppStoreModels)
-      echo "$ROOT_DIR/Sources/BagbutikAppStoreModels"
-      ;;
-    BagbutikAppStore)
-      echo "$ROOT_DIR/Sources/BagbutikAppStore"
-      ;;
-    BagbutikGameCenterModels)
-      echo "$ROOT_DIR/Sources/BagbutikGameCenterModels"
-      ;;
-    BagbutikGameCenter)
-      echo "$ROOT_DIR/Sources/BagbutikGameCenter"
-      ;;
-    BagbutikMarketplacesModels)
-      echo "$ROOT_DIR/Sources/BagbutikMarketplacesModels"
-      ;;
-    BagbutikMarketplaces)
-      echo "$ROOT_DIR/Sources/BagbutikMarketplaces"
-      ;;
-    BagbutikProvisioningModels)
-      echo "$ROOT_DIR/Sources/BagbutikProvisioningModels"
-      ;;
-    BagbutikProvisioning)
-      echo "$ROOT_DIR/Sources/BagbutikProvisioning"
-      ;;
-    BagbutikReportingModels)
-      echo "$ROOT_DIR/Sources/BagbutikReportingModels"
-      ;;
-    BagbutikReporting)
-      echo "$ROOT_DIR/Sources/BagbutikReporting"
-      ;;
-    BagbutikTestFlightModels)
-      echo "$ROOT_DIR/Sources/BagbutikTestFlightModels"
-      ;;
-    BagbutikTestFlight)
-      echo "$ROOT_DIR/Sources/BagbutikTestFlight"
-      ;;
-    BagbutikUsersModels)
-      echo "$ROOT_DIR/Sources/BagbutikUsersModels"
-      ;;
-    BagbutikUsers)
-      echo "$ROOT_DIR/Sources/BagbutikUsers"
-      ;;
-    BagbutikWebhooksModels)
-      echo "$ROOT_DIR/Sources/BagbutikWebhooksModels"
-      ;;
-    BagbutikWebhooks)
-      echo "$ROOT_DIR/Sources/BagbutikWebhooks"
-      ;;
-    BagbutikXcodeCloudModels)
-      echo "$ROOT_DIR/Sources/BagbutikXcodeCloudModels"
-      ;;
-    BagbutikXcodeCloud)
-      echo "$ROOT_DIR/Sources/BagbutikXcodeCloud"
-      ;;
-    *)
-      echo "No source directory mapping for $1" >&2
-      exit 18
-      ;;
-  esac
+  echo "$ROOT_DIR/Sources/$1"
 }
 
 build_visionos_triple() {
@@ -427,17 +362,9 @@ zip_module_xcframework() {
   )
 }
 
-prepare_binary_integration_fixture() {
-  mkdir -p "$INTEGRATION_DIR/BagbutikBinaryPackage/Artifacts"
-  mkdir -p "$INTEGRATION_DIR/BagbutikAppStoreBinaryClient/Sources/BagbutikAppStoreBinaryClient"
-  mkdir -p "$INTEGRATION_DIR/BagbutikGameCenterBinaryClient/Sources/BagbutikGameCenterBinaryClient"
-  mkdir -p "$INTEGRATION_DIR/BagbutikMarketplacesBinaryClient/Sources/BagbutikMarketplacesBinaryClient"
-  mkdir -p "$INTEGRATION_DIR/BagbutikProvisioningBinaryClient/Sources/BagbutikProvisioningBinaryClient"
-  mkdir -p "$INTEGRATION_DIR/BagbutikReportingBinaryClient/Sources/BagbutikReportingBinaryClient"
-  mkdir -p "$INTEGRATION_DIR/BagbutikTestFlightBinaryClient/Sources/BagbutikTestFlightBinaryClient"
-  mkdir -p "$INTEGRATION_DIR/BagbutikUsersBinaryClient/Sources/BagbutikUsersBinaryClient"
-  mkdir -p "$INTEGRATION_DIR/BagbutikWebhooksBinaryClient/Sources/BagbutikWebhooksBinaryClient"
-  mkdir -p "$INTEGRATION_DIR/BagbutikXcodeCloudBinaryClient/Sources/BagbutikXcodeCloudBinaryClient"
+write_binary_package_manifest() {
+  local client
+  local module
 
   cat > "$INTEGRATION_DIR/BagbutikBinaryPackage/Package.swift" <<'PACKAGE_EOF'
 // swift-tools-version:6.0
@@ -454,130 +381,47 @@ let package = Package(
         .visionOS(.v1),
     ],
     products: [
+PACKAGE_EOF
+
+  for client in "${BUILD_TARGETS[@]}"; do
+    cat >> "$INTEGRATION_DIR/BagbutikBinaryPackage/Package.swift" <<EOF
         .library(
-            name: "BagbutikAppStore",
+            name: "$client",
             targets: [
-                "BagbutikCore",
-                "BagbutikModelsShared",
-                "BagbutikAppStoreModels",
-                "BagbutikAppStore",
-                "BagbutikMarketplacesModels",
-                "BagbutikProvisioningModels",
-                "BagbutikTestFlightModels",
-                "BagbutikXcodeCloudModels",
+EOF
+    while IFS= read -r module; do
+      echo "                \"$module\"," >> "$INTEGRATION_DIR/BagbutikBinaryPackage/Package.swift"
+    done < <(client_link_modules "$client")
+    cat >> "$INTEGRATION_DIR/BagbutikBinaryPackage/Package.swift" <<'PRODUCT_EOF'
             ]
         ),
-        .library(
-            name: "BagbutikGameCenter",
-            targets: [
-                "BagbutikCore",
-                "BagbutikModelsShared",
-                "BagbutikAppStoreModels",
-                "BagbutikGameCenterModels",
-                "BagbutikGameCenter",
-                "BagbutikMarketplacesModels",
-                "BagbutikProvisioningModels",
-                "BagbutikTestFlightModels",
-                "BagbutikXcodeCloudModels",
-            ]
-        ),
-        .library(
-            name: "BagbutikMarketplaces",
-            targets: [
-                "BagbutikCore",
-                "BagbutikModelsShared",
-                "BagbutikMarketplacesModels",
-                "BagbutikMarketplaces",
-            ]
-        ),
-        .library(
-            name: "BagbutikProvisioning",
-            targets: [
-                "BagbutikCore",
-                "BagbutikModelsShared",
-                "BagbutikProvisioningModels",
-                "BagbutikProvisioning",
-            ]
-        ),
-        .library(
-            name: "BagbutikReporting",
-            targets: [
-                "BagbutikCore",
-                "BagbutikModelsShared",
-                "BagbutikReportingModels",
-                "BagbutikReporting",
-            ]
-        ),
-        .library(
-            name: "BagbutikTestFlight",
-            targets: [
-                "BagbutikCore",
-                "BagbutikModelsShared",
-                "BagbutikTestFlightModels",
-                "BagbutikTestFlight",
-            ]
-        ),
-        .library(
-            name: "BagbutikUsers",
-            targets: [
-                "BagbutikCore",
-                "BagbutikModelsShared",
-                "BagbutikUsersModels",
-                "BagbutikUsers",
-            ]
-        ),
-        .library(
-            name: "BagbutikWebhooks",
-            targets: [
-                "BagbutikCore",
-                "BagbutikModelsShared",
-                "BagbutikWebhooksModels",
-                "BagbutikWebhooks",
-            ]
-        ),
-        .library(
-            name: "BagbutikXcodeCloud",
-            targets: [
-                "BagbutikCore",
-                "BagbutikModelsShared",
-                "BagbutikProvisioningModels",
-                "BagbutikXcodeCloudModels",
-                "BagbutikXcodeCloud",
-            ]
-        ),
+PRODUCT_EOF
+  done
+
+  cat >> "$INTEGRATION_DIR/BagbutikBinaryPackage/Package.swift" <<'TARGETS_EOF'
     ],
     targets: [
-        .binaryTarget(name: "BagbutikCore", path: "Artifacts/BagbutikCore.xcframework"),
-        .binaryTarget(name: "BagbutikModelsShared", path: "Artifacts/BagbutikModelsShared.xcframework"),
-        .binaryTarget(name: "BagbutikAppStoreModels", path: "Artifacts/BagbutikAppStoreModels.xcframework"),
-        .binaryTarget(name: "BagbutikAppStore", path: "Artifacts/BagbutikAppStore.xcframework"),
-        .binaryTarget(name: "BagbutikGameCenterModels", path: "Artifacts/BagbutikGameCenterModels.xcframework"),
-        .binaryTarget(name: "BagbutikGameCenter", path: "Artifacts/BagbutikGameCenter.xcframework"),
-        .binaryTarget(name: "BagbutikMarketplacesModels", path: "Artifacts/BagbutikMarketplacesModels.xcframework"),
-        .binaryTarget(name: "BagbutikMarketplaces", path: "Artifacts/BagbutikMarketplaces.xcframework"),
-        .binaryTarget(name: "BagbutikProvisioningModels", path: "Artifacts/BagbutikProvisioningModels.xcframework"),
-        .binaryTarget(name: "BagbutikProvisioning", path: "Artifacts/BagbutikProvisioning.xcframework"),
-        .binaryTarget(name: "BagbutikReportingModels", path: "Artifacts/BagbutikReportingModels.xcframework"),
-        .binaryTarget(name: "BagbutikReporting", path: "Artifacts/BagbutikReporting.xcframework"),
-        .binaryTarget(name: "BagbutikTestFlightModels", path: "Artifacts/BagbutikTestFlightModels.xcframework"),
-        .binaryTarget(name: "BagbutikTestFlight", path: "Artifacts/BagbutikTestFlight.xcframework"),
-        .binaryTarget(name: "BagbutikUsersModels", path: "Artifacts/BagbutikUsersModels.xcframework"),
-        .binaryTarget(name: "BagbutikUsers", path: "Artifacts/BagbutikUsers.xcframework"),
-        .binaryTarget(name: "BagbutikWebhooksModels", path: "Artifacts/BagbutikWebhooksModels.xcframework"),
-        .binaryTarget(name: "BagbutikWebhooks", path: "Artifacts/BagbutikWebhooks.xcframework"),
-        .binaryTarget(name: "BagbutikXcodeCloudModels", path: "Artifacts/BagbutikXcodeCloudModels.xcframework"),
-        .binaryTarget(name: "BagbutikXcodeCloud", path: "Artifacts/BagbutikXcodeCloud.xcframework"),
+TARGETS_EOF
+  for module in "${MODULES[@]}"; do
+    echo "        .binaryTarget(name: \"$module\", path: \"Artifacts/$module.xcframework\")," >> "$INTEGRATION_DIR/BagbutikBinaryPackage/Package.swift"
+  done
+  cat >> "$INTEGRATION_DIR/BagbutikBinaryPackage/Package.swift" <<'PACKAGE_EOF'
     ]
 )
 PACKAGE_EOF
+}
 
-  cat > "$INTEGRATION_DIR/BagbutikAppStoreBinaryClient/Package.swift" <<'PACKAGE_EOF'
+prepare_binary_client() {
+  local client=$1
+
+  mkdir -p "$INTEGRATION_DIR/${client}BinaryClient/Sources/${client}BinaryClient"
+  cat > "$INTEGRATION_DIR/${client}BinaryClient/Package.swift" <<EOF
 // swift-tools-version:6.0
 
 import PackageDescription
 
 let package = Package(
-    name: "BagbutikAppStoreBinaryClient",
+    name: "${client}BinaryClient",
     platforms: [
         .macOS(.v12),
         .iOS(.v15),
@@ -590,14 +434,23 @@ let package = Package(
     ],
     targets: [
         .executableTarget(
-            name: "BagbutikAppStoreBinaryClient",
+            name: "${client}BinaryClient",
             dependencies: [
-                .product(name: "BagbutikAppStore", package: "Bagbutik"),
+                .product(name: "$client", package: "Bagbutik"),
             ]
         ),
     ]
 )
-PACKAGE_EOF
+EOF
+}
+
+prepare_binary_integration_fixture() {
+  mkdir -p "$INTEGRATION_DIR/BagbutikBinaryPackage/Artifacts"
+  write_binary_package_manifest
+  local client
+  for client in "${BUILD_TARGETS[@]}"; do
+    prepare_binary_client "$client"
+  done
 
   cat > "$INTEGRATION_DIR/BagbutikAppStoreBinaryClient/Sources/BagbutikAppStoreBinaryClient/main.swift" <<'SOURCE_EOF'
 import BagbutikAppStore
@@ -620,34 +473,6 @@ let build = Request<BuildResponse, ErrorResponse>.getBuildV1(id: "build-1")
 print(customerReviews.path, subscriptions.path, build.path)
 SOURCE_EOF
 
-  cat > "$INTEGRATION_DIR/BagbutikGameCenterBinaryClient/Package.swift" <<'PACKAGE_EOF'
-// swift-tools-version:6.0
-
-import PackageDescription
-
-let package = Package(
-    name: "BagbutikGameCenterBinaryClient",
-    platforms: [
-        .macOS(.v12),
-        .iOS(.v15),
-        .tvOS(.v15),
-        .watchOS(.v9),
-        .visionOS(.v1),
-    ],
-    dependencies: [
-        .package(name: "Bagbutik", path: "../BagbutikBinaryPackage"),
-    ],
-    targets: [
-        .executableTarget(
-            name: "BagbutikGameCenterBinaryClient",
-            dependencies: [
-                .product(name: "BagbutikGameCenter", package: "Bagbutik"),
-            ]
-        ),
-    ]
-)
-PACKAGE_EOF
-
   cat > "$INTEGRATION_DIR/BagbutikGameCenterBinaryClient/Sources/BagbutikGameCenterBinaryClient/main.swift" <<'SOURCE_EOF'
 import BagbutikCore
 import BagbutikGameCenter
@@ -658,34 +483,6 @@ let matchmaking = Request<GameCenterMatchmakingQueuesResponse, ErrorResponse>.li
 
 print(details.path, matchmaking.path)
 SOURCE_EOF
-
-  cat > "$INTEGRATION_DIR/BagbutikMarketplacesBinaryClient/Package.swift" <<'PACKAGE_EOF'
-// swift-tools-version:6.0
-
-import PackageDescription
-
-let package = Package(
-    name: "BagbutikMarketplacesBinaryClient",
-    platforms: [
-        .macOS(.v12),
-        .iOS(.v15),
-        .tvOS(.v15),
-        .watchOS(.v9),
-        .visionOS(.v1),
-    ],
-    dependencies: [
-        .package(name: "Bagbutik", path: "../BagbutikBinaryPackage"),
-    ],
-    targets: [
-        .executableTarget(
-            name: "BagbutikMarketplacesBinaryClient",
-            dependencies: [
-                .product(name: "BagbutikMarketplaces", package: "Bagbutik"),
-            ]
-        ),
-    ]
-)
-PACKAGE_EOF
 
   cat > "$INTEGRATION_DIR/BagbutikMarketplacesBinaryClient/Sources/BagbutikMarketplacesBinaryClient/main.swift" <<'SOURCE_EOF'
 import BagbutikCore
@@ -701,34 +498,6 @@ let request = Request<AlternativeDistributionDomainsResponse, ErrorResponse>.lis
 print(request.path)
 SOURCE_EOF
 
-  cat > "$INTEGRATION_DIR/BagbutikProvisioningBinaryClient/Package.swift" <<'PACKAGE_EOF'
-// swift-tools-version:6.0
-
-import PackageDescription
-
-let package = Package(
-    name: "BagbutikProvisioningBinaryClient",
-    platforms: [
-        .macOS(.v12),
-        .iOS(.v15),
-        .tvOS(.v15),
-        .watchOS(.v9),
-        .visionOS(.v1),
-    ],
-    dependencies: [
-        .package(name: "Bagbutik", path: "../BagbutikBinaryPackage"),
-    ],
-    targets: [
-        .executableTarget(
-            name: "BagbutikProvisioningBinaryClient",
-            dependencies: [
-                .product(name: "BagbutikProvisioning", package: "Bagbutik"),
-            ]
-        ),
-    ]
-)
-PACKAGE_EOF
-
   cat > "$INTEGRATION_DIR/BagbutikProvisioningBinaryClient/Sources/BagbutikProvisioningBinaryClient/main.swift" <<'SOURCE_EOF'
 import BagbutikCore
 import BagbutikModelsShared
@@ -743,34 +512,6 @@ let request = Request<BundleIdsResponse, ErrorResponse>.listBundleIdsV1(
 
 print(request.path)
 SOURCE_EOF
-
-  cat > "$INTEGRATION_DIR/BagbutikReportingBinaryClient/Package.swift" <<'PACKAGE_EOF'
-// swift-tools-version:6.0
-
-import PackageDescription
-
-let package = Package(
-    name: "BagbutikReportingBinaryClient",
-    platforms: [
-        .macOS(.v12),
-        .iOS(.v15),
-        .tvOS(.v15),
-        .watchOS(.v9),
-        .visionOS(.v1),
-    ],
-    dependencies: [
-        .package(name: "Bagbutik", path: "../BagbutikBinaryPackage"),
-    ],
-    targets: [
-        .executableTarget(
-            name: "BagbutikReportingBinaryClient",
-            dependencies: [
-                .product(name: "BagbutikReporting", package: "Bagbutik"),
-            ]
-        ),
-    ]
-)
-PACKAGE_EOF
 
   cat > "$INTEGRATION_DIR/BagbutikReportingBinaryClient/Sources/BagbutikReportingBinaryClient/main.swift" <<'SOURCE_EOF'
 import BagbutikCore
@@ -791,34 +532,6 @@ let diagnosticSignatures = Request<DiagnosticSignaturesResponse, ErrorResponse>.
 print(request.path, diagnosticSignatures.path)
 SOURCE_EOF
 
-  cat > "$INTEGRATION_DIR/BagbutikTestFlightBinaryClient/Package.swift" <<'PACKAGE_EOF'
-// swift-tools-version:6.0
-
-import PackageDescription
-
-let package = Package(
-    name: "BagbutikTestFlightBinaryClient",
-    platforms: [
-        .macOS(.v12),
-        .iOS(.v15),
-        .tvOS(.v15),
-        .watchOS(.v9),
-        .visionOS(.v1),
-    ],
-    dependencies: [
-        .package(name: "Bagbutik", path: "../BagbutikBinaryPackage"),
-    ],
-    targets: [
-        .executableTarget(
-            name: "BagbutikTestFlightBinaryClient",
-            dependencies: [
-                .product(name: "BagbutikTestFlight", package: "Bagbutik"),
-            ]
-        ),
-    ]
-)
-PACKAGE_EOF
-
   cat > "$INTEGRATION_DIR/BagbutikTestFlightBinaryClient/Sources/BagbutikTestFlightBinaryClient/main.swift" <<'SOURCE_EOF'
 import BagbutikCore
 import BagbutikModelsShared
@@ -833,34 +546,6 @@ let buildBetaDetail = Request<BuildBetaDetailResponse, ErrorResponse>.getBuildBe
 
 print(request.path, buildBetaDetail.path)
 SOURCE_EOF
-
-  cat > "$INTEGRATION_DIR/BagbutikUsersBinaryClient/Package.swift" <<'PACKAGE_EOF'
-// swift-tools-version:6.0
-
-import PackageDescription
-
-let package = Package(
-    name: "BagbutikUsersBinaryClient",
-    platforms: [
-        .macOS(.v12),
-        .iOS(.v15),
-        .tvOS(.v15),
-        .watchOS(.v9),
-        .visionOS(.v1),
-    ],
-    dependencies: [
-        .package(name: "Bagbutik", path: "../BagbutikBinaryPackage"),
-    ],
-    targets: [
-        .executableTarget(
-            name: "BagbutikUsersBinaryClient",
-            dependencies: [
-                .product(name: "BagbutikUsers", package: "Bagbutik"),
-            ]
-        ),
-    ]
-)
-PACKAGE_EOF
 
   cat > "$INTEGRATION_DIR/BagbutikUsersBinaryClient/Sources/BagbutikUsersBinaryClient/main.swift" <<'SOURCE_EOF'
 import BagbutikCore
@@ -877,34 +562,6 @@ let request = Request<UsersResponse, ErrorResponse>.listUsersV1(
 print(request.path)
 SOURCE_EOF
 
-  cat > "$INTEGRATION_DIR/BagbutikWebhooksBinaryClient/Package.swift" <<'PACKAGE_EOF'
-// swift-tools-version:6.0
-
-import PackageDescription
-
-let package = Package(
-    name: "BagbutikWebhooksBinaryClient",
-    platforms: [
-        .macOS(.v12),
-        .iOS(.v15),
-        .tvOS(.v15),
-        .watchOS(.v9),
-        .visionOS(.v1),
-    ],
-    dependencies: [
-        .package(name: "Bagbutik", path: "../BagbutikBinaryPackage"),
-    ],
-    targets: [
-        .executableTarget(
-            name: "BagbutikWebhooksBinaryClient",
-            dependencies: [
-                .product(name: "BagbutikWebhooks", package: "Bagbutik"),
-            ]
-        ),
-    ]
-)
-PACKAGE_EOF
-
   cat > "$INTEGRATION_DIR/BagbutikWebhooksBinaryClient/Sources/BagbutikWebhooksBinaryClient/main.swift" <<'SOURCE_EOF'
 import BagbutikCore
 import BagbutikModelsShared
@@ -918,34 +575,6 @@ let request = Request<WebhookResponse, ErrorResponse>.getWebhookV1(
 
 print(request.path)
 SOURCE_EOF
-
-  cat > "$INTEGRATION_DIR/BagbutikXcodeCloudBinaryClient/Package.swift" <<'PACKAGE_EOF'
-// swift-tools-version:6.0
-
-import PackageDescription
-
-let package = Package(
-    name: "BagbutikXcodeCloudBinaryClient",
-    platforms: [
-        .macOS(.v12),
-        .iOS(.v15),
-        .tvOS(.v15),
-        .watchOS(.v9),
-        .visionOS(.v1),
-    ],
-    dependencies: [
-        .package(name: "Bagbutik", path: "../BagbutikBinaryPackage"),
-    ],
-    targets: [
-        .executableTarget(
-            name: "BagbutikXcodeCloudBinaryClient",
-            dependencies: [
-                .product(name: "BagbutikXcodeCloud", package: "Bagbutik"),
-            ]
-        ),
-    ]
-)
-PACKAGE_EOF
 
   cat > "$INTEGRATION_DIR/BagbutikXcodeCloudBinaryClient/Sources/BagbutikXcodeCloudBinaryClient/main.swift" <<'SOURCE_EOF'
 import BagbutikCore
