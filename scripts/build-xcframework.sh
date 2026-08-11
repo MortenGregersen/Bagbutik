@@ -615,8 +615,9 @@ let customerReviews = Request<CustomerReviewsResponse, ErrorResponse>.listCustom
 let subscriptions = Request<SubscriptionsResponse, ErrorResponse>.listSubscriptionsForSubscriptionGroupV1(
     id: "subscription-group-1"
 )
+let build = Request<BuildResponse, ErrorResponse>.getBuildV1(id: "build-1")
 
-print(customerReviews.path, subscriptions.path)
+print(customerReviews.path, subscriptions.path, build.path)
 SOURCE_EOF
 
   cat > "$INTEGRATION_DIR/BagbutikGameCenterBinaryClient/Package.swift" <<'PACKAGE_EOF'
@@ -783,8 +784,11 @@ let request = Request<Gzip, ErrorResponse>.getSalesReportsV1(filters: [
     .reportSubType([.summary]),
     .frequency([.daily]),
 ])
+let diagnosticSignatures = Request<DiagnosticSignaturesResponse, ErrorResponse>.listDiagnosticSignaturesForBuildV1(
+    id: "build-1"
+)
 
-print(request.path)
+print(request.path, diagnosticSignatures.path)
 SOURCE_EOF
 
   cat > "$INTEGRATION_DIR/BagbutikTestFlightBinaryClient/Package.swift" <<'PACKAGE_EOF'
@@ -825,8 +829,9 @@ let request = Request<BetaFeedbackCrashSubmissionResponse, ErrorResponse>.getBet
     id: "submission-1",
     includes: [.build, .tester]
 )
+let buildBetaDetail = Request<BuildBetaDetailResponse, ErrorResponse>.getBuildBetaDetailForBuildV1(id: "build-1")
 
-print(request.path)
+print(request.path, buildBetaDetail.path)
 SOURCE_EOF
 
   cat > "$INTEGRATION_DIR/BagbutikUsersBinaryClient/Package.swift" <<'PACKAGE_EOF'
