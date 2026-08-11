@@ -1,7 +1,7 @@
 xcuserdata
 .DS_Store
 .build
-build
+/build
 output
 coverage.lcov
 docs
