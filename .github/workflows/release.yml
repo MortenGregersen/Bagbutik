@@ -13,6 +13,11 @@ on:
         description: Binary release tag
         required: true
         type: string
+      prerelease:
+        description: Whether to create a binary pre release
+        required: true
+        default: false
+        type: boolean
 
 jobs:
   dispatch-binary-release:
@@ -20,9 +25,6 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: read
-    env:
-      SOURCE_REF: ${{ github.event_name == 'workflow_dispatch' && inputs.source_ref || github.event.release.tag_name }}
-      RELEASE_TAG: ${{ github.event_name == 'workflow_dispatch' && inputs.release_tag || github.event.release.tag_name }}
     steps:
       - name: Verify binary repository token
         env:
@@ -32,9 +34,26 @@ jobs:
       - name: Dispatch binary workflow
         env:
           GH_TOKEN: ${{ secrets.BAGBUTIK_BINARY_TOKEN }}
+          EVENT_NAME: ${{ github.event_name }}
+          RELEASE_EVENT_TAG: ${{ github.event.release.tag_name }}
+          RELEASE_EVENT_PRERELEASE: ${{ github.event.release.prerelease }}
+          INPUT_SOURCE_REF: ${{ inputs.source_ref }}
+          INPUT_RELEASE_TAG: ${{ inputs.release_tag }}
+          INPUT_PRERELEASE: ${{ inputs.prerelease }}
         run: |
+          if [ "$EVENT_NAME" = "workflow_dispatch" ]; then
+            SOURCE_REF="$INPUT_SOURCE_REF"
+            RELEASE_TAG="$INPUT_RELEASE_TAG"
+            PRERELEASE="$INPUT_PRERELEASE"
+          else
+            SOURCE_REF="$RELEASE_EVENT_TAG"
+            RELEASE_TAG="$RELEASE_EVENT_TAG"
+            PRERELEASE="$RELEASE_EVENT_PRERELEASE"
+          fi
+
           gh workflow run release.yml \
             --repo MortenGregersen/Bagbutik-Binary \
             --ref main \
             --field source_ref="$SOURCE_REF" \
-            --field release_tag="$RELEASE_TAG"
+            --field release_tag="$RELEASE_TAG" \
+            --field prerelease="$PRERELEASE"
