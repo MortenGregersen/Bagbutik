@@ -80,6 +80,7 @@ sdk_triples() {
       ;;
     watchos)
       echo "arm64-apple-watchos9.0"
+      echo "arm64_32-apple-watchos9.0"
       ;;
     watchsimulator)
       echo "arm64-apple-watchos9.0-simulator"
@@ -731,24 +732,24 @@ verify_visionos_binary_integration() {
 }
 
 report_watch_sample_size() {
-  local arm64_binary
+  local arm64_32_binary
   local client
   local size
   local stripped_binary
 
   for client in "${BUILD_TARGETS[@]}"; do
-    arm64_binary="$INTEGRATION_DIR/build/$client/arm64-apple-watchos9.0/arm64-apple-watchos/$CONFIGURATION/${client}BinaryClient"
+    arm64_32_binary="$INTEGRATION_DIR/build/$client/arm64_32-apple-watchos9.0/arm64_32-apple-watchos/$CONFIGURATION/${client}BinaryClient"
     stripped_binary="$DIST_DIR/${client}WatchSample"
 
-    if [ ! -f "$arm64_binary" ]; then
+    if [ ! -f "$arm64_32_binary" ]; then
       continue
     fi
 
-    cp "$arm64_binary" "$stripped_binary"
+    cp "$arm64_32_binary" "$stripped_binary"
     xcrun strip -x "$stripped_binary"
 
     size="$(stat -f '%z' "$stripped_binary")"
-    echo "Stripped arm64 $client watch sample executable: $size bytes"
+    echo "Stripped arm64_32 $client watch sample executable: $size bytes"
 
     if [ "$size" -gt 50000000 ]; then
       echo "$client watch sample executable exceeds the 50 MB release gate." >&2
