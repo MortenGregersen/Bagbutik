@@ -293,12 +293,19 @@ combine_sdk_module() {
   xcrun strip -S "$output_directory/lib$module.a"
 
   local framework_directory="$output_directory/$module.framework"
-  local framework_version_directory="$framework_directory/Versions/A"
-  mkdir -p "$framework_version_directory/Modules/$module.swiftmodule" "$framework_version_directory/Resources"
-  mv "$output_directory/lib$module.a" "$framework_version_directory/$module"
+  local framework_contents_directory="$framework_directory"
+  local info_plist_directory="$framework_directory"
+
+  if [ "$sdk" = "macosx" ]; then
+    framework_contents_directory="$framework_directory/Versions/A"
+    info_plist_directory="$framework_contents_directory/Resources"
+  fi
+
+  mkdir -p "$framework_contents_directory/Modules/$module.swiftmodule" "$info_plist_directory"
+  mv "$output_directory/lib$module.a" "$framework_contents_directory/$module"
   cp "$output_directory/Headers/$module.swiftmodule"/*.swiftinterface \
-    "$framework_version_directory/Modules/$module.swiftmodule/"
-  cat > "$framework_version_directory/Resources/Info.plist" <<EOF
+    "$framework_contents_directory/Modules/$module.swiftmodule/"
+  cat > "$info_plist_directory/Info.plist" <<EOF
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
@@ -322,10 +329,13 @@ combine_sdk_module() {
 </dict>
 </plist>
 EOF
-  ln -s A "$framework_directory/Versions/Current"
-  ln -s Versions/Current/$module "$framework_directory/$module"
-  ln -s Versions/Current/Modules "$framework_directory/Modules"
-  ln -s Versions/Current/Resources "$framework_directory/Resources"
+
+  if [ "$sdk" = "macosx" ]; then
+    ln -s A "$framework_directory/Versions/Current"
+    ln -s Versions/Current/$module "$framework_directory/$module"
+    ln -s Versions/Current/Modules "$framework_directory/Modules"
+    ln -s Versions/Current/Resources "$framework_directory/Resources"
+  fi
 }
 
 create_module_xcframework() {
@@ -382,21 +392,19 @@ let package = Package(
         .visionOS(.v1),
     ],
     products: [
+        .library(
+            name: "BagbutikCore",
+            targets: ["BagbutikCore"]
+        ),
 PACKAGE_EOF
 
   for client in "${BUILD_TARGETS[@]}"; do
     cat >> "$INTEGRATION_DIR/BagbutikBinaryPackage/Package.swift" <<EOF
         .library(
             name: "$client",
-            targets: [
-EOF
-    while IFS= read -r module; do
-      echo "                \"$module\"," >> "$INTEGRATION_DIR/BagbutikBinaryPackage/Package.swift"
-    done < <(client_link_modules "$client")
-    cat >> "$INTEGRATION_DIR/BagbutikBinaryPackage/Package.swift" <<'PRODUCT_EOF'
-            ]
+            targets: ["${client}Product"]
         ),
-PRODUCT_EOF
+EOF
   done
 
   cat >> "$INTEGRATION_DIR/BagbutikBinaryPackage/Package.swift" <<'TARGETS_EOF'
@@ -405,6 +413,25 @@ PRODUCT_EOF
 TARGETS_EOF
   for module in "${MODULES[@]}"; do
     echo "        .binaryTarget(name: \"$module\", path: \"Artifacts/$module.xcframework\")," >> "$INTEGRATION_DIR/BagbutikBinaryPackage/Package.swift"
+  done
+  for client in "${BUILD_TARGETS[@]}"; do
+    mkdir -p "$INTEGRATION_DIR/BagbutikBinaryPackage/Sources/${client}Product"
+    : > "$INTEGRATION_DIR/BagbutikBinaryPackage/Sources/${client}Product/Exports.swift"
+
+    cat >> "$INTEGRATION_DIR/BagbutikBinaryPackage/Package.swift" <<EOF
+        .target(
+            name: "${client}Product",
+            dependencies: [
+EOF
+    while IFS= read -r module; do
+      echo "                \"$module\"," >> "$INTEGRATION_DIR/BagbutikBinaryPackage/Package.swift"
+      echo "@_exported import $module" >> "$INTEGRATION_DIR/BagbutikBinaryPackage/Sources/${client}Product/Exports.swift"
+    done < <(client_link_modules "$client")
+    echo "public enum ${client}Product {}" >> "$INTEGRATION_DIR/BagbutikBinaryPackage/Sources/${client}Product/Exports.swift"
+    cat >> "$INTEGRATION_DIR/BagbutikBinaryPackage/Package.swift" <<'TARGET_EOF'
+            ]
+        ),
+TARGET_EOF
   done
   cat >> "$INTEGRATION_DIR/BagbutikBinaryPackage/Package.swift" <<'PACKAGE_EOF'
     ]
