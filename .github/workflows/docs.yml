@@ -13,7 +13,7 @@ jobs:
       DEVELOPER_DIR: /Applications/Xcode_26.4.app/Contents/Developer
     steps:
     - uses: actions/checkout@v4
-    - name: Generate Documentation for Pages
+    - name: Generate DocC documentation for Pages
       run: ./Documentation/generate_docs.sh
     - name: Add CNAME
       run: echo -n bagbutik.dev > docs/CNAME

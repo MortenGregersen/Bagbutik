@@ -10,7 +10,7 @@
     <a href="https://swiftpackageindex.com/MortenGregersen/Bagbutik"><img src="https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2FMortenGregersen%2FBagbutik%2Fbadge%3Ftype%3Dplatforms" alt="Platforms" /></a>
     <br />
     <a href="https://github.com/MortenGregersen/Bagbutik/actions/workflows/ci.yml"><img src="https://github.com/MortenGregersen/Bagbutik/workflows/CI/badge.svg" alt="CI" /></a>
-    <a href="https://bagbutik.dev"><img src="https://raw.githubusercontent.com/MortenGregersen/Bagbutik/gh-pages/badge.svg" alt="Documentation" /></a>
+    <a href="https://bagbutik.dev"><img src="https://img.shields.io/badge/documentation-DocC-00c9a7" alt="Documentation" /></a>
     <a href="https://codecov.io/gh/MortenGregersen/Bagbutik"><img src="https://codecov.io/gh/MortenGregersen/Bagbutik/branch/main/graph/badge.svg?token=oJZWL49t0G"/></a>
     <br />
     <a href="https://x.com/mortengregersen"><img src="https://img.shields.io/badge/%40mortengregersen-black?logo=x" alt="X (Twitter)" /></a>
