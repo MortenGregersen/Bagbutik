@@ -1,0 +1,23 @@
+import BagbutikCore
+import BagbutikAppStoreModels
+
+public extension Request {
+    /**
+     # Modify an app store experiment
+     Update the name, the started state, and the proportion of traffic to send to an App Store experiment.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/patch-v2-appStoreVersionExperiments-_id_>
+
+     - Parameter id: The id of the requested resource
+     - Parameter requestBody: AppStoreVersionExperiment representation
+     - Returns: A ``Request`` to send to an instance of ``BagbutikService``
+     */
+    static func updateAppStoreVersionExperimentsV2(id: String,
+                                                   requestBody: AppStoreVersionExperimentV2UpdateRequest) -> Request<AppStoreVersionExperimentV2Response, ErrorResponse> {
+        .init(
+            path: "/v2/appStoreVersionExperiments/\(id)",
+            method: .patch,
+            requestBody: requestBody)
+    }
+}

@@ -1,0 +1,95 @@
+import BagbutikCore
+import BagbutikGameCenterModels
+
+public extension Request {
+    /**
+     # List All Queues
+     Get information about all queues.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-gameCenterMatchmakingQueues>
+
+     - Parameter fields: Fields to return for included related types
+     - Parameter includes: Relationship data to include in the response
+     - Parameter limit: Maximum resources per page - maximum 200
+     - Returns: A ``Request`` to send to an instance of ``BagbutikService``
+     */
+    static func listGameCenterMatchmakingQueuesV1(fields: [ListGameCenterMatchmakingQueuesV1.Field]? = nil,
+                                                  includes: [ListGameCenterMatchmakingQueuesV1.Include]? = nil,
+                                                  limit: Int? = nil) -> Request<GameCenterMatchmakingQueuesResponse, ErrorResponse> {
+        .init(
+            path: "/v1/gameCenterMatchmakingQueues",
+            method: .get,
+            parameters: .init(
+                fields: fields,
+                includes: includes,
+                limit: limit))
+    }
+}
+
+public enum ListGameCenterMatchmakingQueuesV1 {
+    /**
+     Fields to return for included related types.
+     */
+    public enum Field: FieldParameter {
+        /// The fields to include for returned resources of type gameCenterMatchmakingQueues
+        case gameCenterMatchmakingQueues([GameCenterMatchmakingQueues])
+        /// The fields to include for returned resources of type gameCenterMatchmakingRuleSets
+        case gameCenterMatchmakingRuleSets([GameCenterMatchmakingRuleSets])
+
+        public enum GameCenterMatchmakingQueues: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case classicMatchmakingBundleIds
+            case experimentRuleSet
+            case referenceName
+            case ruleSet
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = GameCenterMatchmakingQueues(rawValue: string) {
+                    self = value
+                } else if let value = GameCenterMatchmakingQueues(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid GameCenterMatchmakingQueues value: \(string)"
+                    )
+                }
+            }
+        }
+
+        public enum GameCenterMatchmakingRuleSets: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case matchmakingQueues
+            case maxPlayers
+            case minPlayers
+            case referenceName
+            case ruleLanguageVersion
+            case rules
+            case teams
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = GameCenterMatchmakingRuleSets(rawValue: string) {
+                    self = value
+                } else if let value = GameCenterMatchmakingRuleSets(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid GameCenterMatchmakingRuleSets value: \(string)"
+                    )
+                }
+            }
+        }
+    }
+
+    /**
+     Relationship data to include in the response.
+     */
+    public enum Include: String, IncludeParameter, CaseIterable {
+        case experimentRuleSet
+        case ruleSet
+    }
+}

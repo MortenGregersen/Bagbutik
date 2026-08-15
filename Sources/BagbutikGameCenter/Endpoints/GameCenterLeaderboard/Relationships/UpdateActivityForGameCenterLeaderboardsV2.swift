@@ -1,0 +1,24 @@
+import BagbutikCore
+import BagbutikGameCenterModels
+import BagbutikModelsShared
+
+public extension Request {
+    /**
+     # Modify the Activity for a Game Center Leaderboard
+     Update the activity relationship for a specific Game Center leaderboard.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/patch-v2-gameCenterLeaderboards-_id_-relationships-activity>
+
+     - Parameter id: The id of the requested resource
+     - Parameter requestBody: Related linkage
+     - Returns: A ``Request`` to send to an instance of ``BagbutikService``
+     */
+    static func updateActivityForGameCenterLeaderboardsV2(id: String,
+                                                          requestBody: GameCenterLeaderboardV2ActivityLinkageRequest) -> Request<EmptyResponse, ErrorResponse> {
+        .init(
+            path: "/v2/gameCenterLeaderboards/\(id)/relationships/activity",
+            method: .patch,
+            requestBody: requestBody)
+    }
+}

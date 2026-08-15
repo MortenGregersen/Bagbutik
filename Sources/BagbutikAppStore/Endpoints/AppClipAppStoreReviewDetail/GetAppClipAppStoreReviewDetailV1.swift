@@ -1,0 +1,89 @@
+import BagbutikCore
+import BagbutikAppStoreModels
+
+public extension Request {
+    /**
+     # Read the app store review details of an app clip
+     Get App Store Review details for an App Clip.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-appClipAppStoreReviewDetails-_id_>
+
+     - Parameter id: The id of the requested resource
+     - Parameter fields: Fields to return for included related types
+     - Parameter includes: Relationship data to include in the response
+     - Returns: A ``Request`` to send to an instance of ``BagbutikService``
+     */
+    static func getAppClipAppStoreReviewDetailV1(id: String,
+                                                 fields: [GetAppClipAppStoreReviewDetailV1.Field]? = nil,
+                                                 includes: [GetAppClipAppStoreReviewDetailV1.Include]? = nil) -> Request<AppClipAppStoreReviewDetailResponse, ErrorResponse> {
+        .init(
+            path: "/v1/appClipAppStoreReviewDetails/\(id)",
+            method: .get,
+            parameters: .init(
+                fields: fields,
+                includes: includes))
+    }
+}
+
+public enum GetAppClipAppStoreReviewDetailV1 {
+    /**
+     Fields to return for included related types.
+     */
+    public enum Field: FieldParameter {
+        /// The fields to include for returned resources of type appClipAppStoreReviewDetails
+        case appClipAppStoreReviewDetails([AppClipAppStoreReviewDetails])
+        /// The fields to include for returned resources of type appClipDefaultExperiences
+        case appClipDefaultExperiences([AppClipDefaultExperiences])
+
+        public enum AppClipAppStoreReviewDetails: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case appClipDefaultExperience
+            case invocationUrls
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = AppClipAppStoreReviewDetails(rawValue: string) {
+                    self = value
+                } else if let value = AppClipAppStoreReviewDetails(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid AppClipAppStoreReviewDetails value: \(string)"
+                    )
+                }
+            }
+        }
+
+        public enum AppClipDefaultExperiences: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case action
+            case appClip
+            case appClipAppStoreReviewDetail
+            case appClipDefaultExperienceLocalizations
+            case releaseWithAppStoreVersion
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = AppClipDefaultExperiences(rawValue: string) {
+                    self = value
+                } else if let value = AppClipDefaultExperiences(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid AppClipDefaultExperiences value: \(string)"
+                    )
+                }
+            }
+        }
+    }
+
+    /**
+     Relationship data to include in the response.
+     */
+    public enum Include: String, IncludeParameter, CaseIterable {
+        case appClipDefaultExperience
+    }
+}

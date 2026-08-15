@@ -1,0 +1,21 @@
+import BagbutikCore
+import BagbutikAppStoreModels
+
+public extension Request {
+    /**
+     # End an app pre-order
+     End the pre-order for your app and release to store immediately.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/post-v1-endAppAvailabilityPreOrders>
+
+     - Parameter requestBody: EndAppAvailabilityPreOrder representation
+     - Returns: A ``Request`` to send to an instance of ``BagbutikService``
+     */
+    static func createEndAppAvailabilityPreOrderV1(requestBody: EndAppAvailabilityPreOrderCreateRequest) -> Request<EndAppAvailabilityPreOrderResponse, ErrorResponse> {
+        .init(
+            path: "/v1/endAppAvailabilityPreOrders",
+            method: .post,
+            requestBody: requestBody)
+    }
+}

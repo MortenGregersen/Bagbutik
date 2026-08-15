@@ -1,0 +1,21 @@
+import BagbutikCore
+import BagbutikAppStoreModels
+
+public extension Request {
+    /**
+     # Create a review submission for an in-app purchase
+     Create an in-app purchase submission for review.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/post-v1-inAppPurchaseSubmissions>
+
+     - Parameter requestBody: InAppPurchaseSubmission representation
+     - Returns: A ``Request`` to send to an instance of ``BagbutikService``
+     */
+    static func createInAppPurchaseSubmissionV1(requestBody: InAppPurchaseSubmissionCreateRequest) -> Request<InAppPurchaseSubmissionResponse, ErrorResponse> {
+        .init(
+            path: "/v1/inAppPurchaseSubmissions",
+            method: .post,
+            requestBody: requestBody)
+    }
+}

@@ -18,9 +18,15 @@ public protocol TestableFileManager {
     /// # Reference:
     /// <https://developer.apple.com/documentation/foundation/filemanager/1415645-fileexists>
     func fileExists(atPath path: String) -> Bool
+    /// <https://developer.apple.com/documentation/foundation/filemanager/contentsOfDirectory(at:)>
+    func contentsOfDirectory(at url: URL) throws -> [URL]
     /// # Reference:
     /// <https://developer.apple.com/documentation/foundation/filemanager/1413590-removeitem>
     func removeItem(at URL: URL) throws
 }
 
-extension FileManager: TestableFileManager {}
+extension FileManager: TestableFileManager {
+    public func contentsOfDirectory(at url: URL) throws -> [URL] {
+        try contentsOfDirectory(at: url, includingPropertiesForKeys: nil, options: [])
+    }
+}

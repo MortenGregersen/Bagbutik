@@ -1,0 +1,191 @@
+import BagbutikCore
+import BagbutikAppStoreModels
+
+public extension Request {
+    /**
+     # Read app screenshot set information
+     Get an app screenshot set including its display target, language, and the screenshot it contains.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-appScreenshotSets-_id_>
+
+     - Parameter id: The id of the requested resource
+     - Parameter fields: Fields to return for included related types
+     - Parameter includes: Relationship data to include in the response
+     - Parameter limit: Maximum number of related appScreenshots returned (when they are included) - maximum 50
+     - Returns: A ``Request`` to send to an instance of ``BagbutikService``
+     */
+    static func getAppScreenshotSetV1(id: String,
+                                      fields: [GetAppScreenshotSetV1.Field]? = nil,
+                                      includes: [GetAppScreenshotSetV1.Include]? = nil,
+                                      limit: GetAppScreenshotSetV1.Limit? = nil) -> Request<AppScreenshotSetResponse, ErrorResponse> {
+        .init(
+            path: "/v1/appScreenshotSets/\(id)",
+            method: .get,
+            parameters: .init(
+                fields: fields,
+                includes: includes,
+                limits: limit.map { [$0] }))
+    }
+}
+
+public enum GetAppScreenshotSetV1 {
+    /**
+     Fields to return for included related types.
+     */
+    public enum Field: FieldParameter {
+        /// The fields to include for returned resources of type appCustomProductPageLocalizations
+        case appCustomProductPageLocalizations([AppCustomProductPageLocalizations])
+        /// The fields to include for returned resources of type appScreenshotSets
+        case appScreenshotSets([AppScreenshotSets])
+        /// The fields to include for returned resources of type appScreenshots
+        case appScreenshots([AppScreenshots])
+        /// The fields to include for returned resources of type appStoreVersionExperimentTreatmentLocalizations
+        case appStoreVersionExperimentTreatmentLocalizations([AppStoreVersionExperimentTreatmentLocalizations])
+        /// The fields to include for returned resources of type appStoreVersionLocalizations
+        case appStoreVersionLocalizations([AppStoreVersionLocalizations])
+
+        public enum AppCustomProductPageLocalizations: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case appCustomProductPageVersion
+            case appPreviewSets
+            case appScreenshotSets
+            case locale
+            case promotionalText
+            case searchKeywords
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = AppCustomProductPageLocalizations(rawValue: string) {
+                    self = value
+                } else if let value = AppCustomProductPageLocalizations(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid AppCustomProductPageLocalizations value: \(string)"
+                    )
+                }
+            }
+        }
+
+        public enum AppScreenshotSets: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case appCustomProductPageLocalization
+            case appScreenshots
+            case appStoreVersionExperimentTreatmentLocalization
+            case appStoreVersionLocalization
+            case screenshotDisplayType
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = AppScreenshotSets(rawValue: string) {
+                    self = value
+                } else if let value = AppScreenshotSets(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid AppScreenshotSets value: \(string)"
+                    )
+                }
+            }
+        }
+
+        public enum AppScreenshots: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case appScreenshotSet
+            case assetDeliveryState
+            case assetToken
+            case assetType
+            case fileName
+            case fileSize
+            case imageAsset
+            case sourceFileChecksum
+            case uploadOperations
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = AppScreenshots(rawValue: string) {
+                    self = value
+                } else if let value = AppScreenshots(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid AppScreenshots value: \(string)"
+                    )
+                }
+            }
+        }
+
+        public enum AppStoreVersionExperimentTreatmentLocalizations: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case appPreviewSets
+            case appScreenshotSets
+            case appStoreVersionExperimentTreatment
+            case locale
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = AppStoreVersionExperimentTreatmentLocalizations(rawValue: string) {
+                    self = value
+                } else if let value = AppStoreVersionExperimentTreatmentLocalizations(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid AppStoreVersionExperimentTreatmentLocalizations value: \(string)"
+                    )
+                }
+            }
+        }
+
+        public enum AppStoreVersionLocalizations: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case appPreviewSets
+            case appScreenshotSets
+            case appStoreVersion
+            case description
+            case keywords
+            case locale
+            case marketingUrl
+            case promotionalText
+            case searchKeywords
+            case supportUrl
+            case whatsNew
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = AppStoreVersionLocalizations(rawValue: string) {
+                    self = value
+                } else if let value = AppStoreVersionLocalizations(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid AppStoreVersionLocalizations value: \(string)"
+                    )
+                }
+            }
+        }
+    }
+
+    /**
+     Relationship data to include in the response.
+     */
+    public enum Include: String, IncludeParameter, CaseIterable {
+        case appCustomProductPageLocalization
+        case appScreenshots
+        case appStoreVersionExperimentTreatmentLocalization
+        case appStoreVersionLocalization
+    }
+
+    /**
+     Number of included related resources to return.
+     */
+    public enum Limit: LimitParameter {
+        /// Maximum number of related appScreenshots returned (when they are included) - maximum 50
+        case appScreenshots(Int)
+    }
+}

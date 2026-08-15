@@ -1,0 +1,33 @@
+import BagbutikCore
+import Foundation
+
+/**
+ # PrereleaseVersionWithoutIncludesResponse
+ A response containing a single pre-release version, without related resources.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/prereleaseversionwithoutincludesresponse>
+ */
+public struct PrereleaseVersionWithoutIncludesResponse: Codable, Sendable {
+    public let data: PrereleaseVersion
+    public let links: DocumentLinks
+
+    public init(data: PrereleaseVersion,
+                links: DocumentLinks)
+    {
+        self.data = data
+        self.links = links
+    }
+
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: AnyCodingKey.self)
+        data = try container.decode(PrereleaseVersion.self, forKey: "data")
+        links = try container.decode(DocumentLinks.self, forKey: "links")
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: AnyCodingKey.self)
+        try container.encode(data, forKey: "data")
+        try container.encode(links, forKey: "links")
+    }
+}

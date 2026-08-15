@@ -1,0 +1,23 @@
+import BagbutikCore
+import BagbutikAppStoreModels
+
+public extension Request {
+    /**
+     # List available territory IDs for a subscription availability
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-subscriptionAvailabilities-_id_-relationships-availableTerritories>
+
+     - Parameter id: The id of the requested resource
+     - Parameter limit: Maximum resources per page - maximum 200
+     - Returns: A ``Request`` to send to an instance of ``BagbutikService``
+     */
+    @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
+    static func listAvailableTerritoryIdsForSubscriptionAvailabilityV1(id: String,
+                                                                       limit: Int? = nil) -> Request<SubscriptionAvailabilityAvailableTerritoriesLinkagesResponse, ErrorResponse> {
+        .init(
+            path: "/v1/subscriptionAvailabilities/\(id)/relationships/availableTerritories",
+            method: .get,
+            parameters: .init(limit: limit))
+    }
+}

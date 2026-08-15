@@ -1,0 +1,104 @@
+import BagbutikCore
+import BagbutikModelsShared
+import Foundation
+
+/**
+ # BackgroundAssetsResponse
+ A response containing a list of background assets for an app.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/backgroundassetsresponse>
+ */
+public struct BackgroundAssetsResponse: Codable, Sendable, PagedResponse {
+    public typealias Data = BackgroundAsset
+
+    public let data: [BackgroundAsset]
+    public var included: [Included]?
+    public let links: PagedDocumentLinks
+    public var meta: PagingInformation?
+
+    public init(data: [BackgroundAsset],
+                included: [Included]? = nil,
+                links: PagedDocumentLinks,
+                meta: PagingInformation? = nil)
+    {
+        self.data = data
+        self.included = included
+        self.links = links
+        self.meta = meta
+    }
+
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: AnyCodingKey.self)
+        data = try container.decode([BackgroundAsset].self, forKey: "data")
+        included = try container.decodeIfPresent([Included].self, forKey: "included")
+        links = try container.decode(PagedDocumentLinks.self, forKey: "links")
+        meta = try container.decodeIfPresent(PagingInformation.self, forKey: "meta")
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: AnyCodingKey.self)
+        try container.encode(data, forKey: "data")
+        try container.encodeIfPresent(included, forKey: "included")
+        try container.encode(links, forKey: "links")
+        try container.encodeIfPresent(meta, forKey: "meta")
+    }
+
+    public func getApp(for backgroundAsset: BackgroundAsset) -> App? {
+        included?.compactMap { relationship -> App? in
+            guard case let .app(app) = relationship else { return nil }
+            return app
+        }.first { $0.id == backgroundAsset.relationships?.app?.data?.id }
+    }
+
+    public func getAppStoreVersion(for backgroundAsset: BackgroundAsset) -> BackgroundAssetVersion? {
+        included?.compactMap { relationship -> BackgroundAssetVersion? in
+            guard case let .backgroundAssetVersion(appStoreVersion) = relationship else { return nil }
+            return appStoreVersion
+        }.first { $0.id == backgroundAsset.relationships?.appStoreVersion?.data?.id }
+    }
+
+    public func getExternalBetaVersion(for backgroundAsset: BackgroundAsset) -> BackgroundAssetVersion? {
+        included?.compactMap { relationship -> BackgroundAssetVersion? in
+            guard case let .backgroundAssetVersion(externalBetaVersion) = relationship else { return nil }
+            return externalBetaVersion
+        }.first { $0.id == backgroundAsset.relationships?.externalBetaVersion?.data?.id }
+    }
+
+    public func getInternalBetaVersion(for backgroundAsset: BackgroundAsset) -> BackgroundAssetVersion? {
+        included?.compactMap { relationship -> BackgroundAssetVersion? in
+            guard case let .backgroundAssetVersion(internalBetaVersion) = relationship else { return nil }
+            return internalBetaVersion
+        }.first { $0.id == backgroundAsset.relationships?.internalBetaVersion?.data?.id }
+    }
+
+    public enum Included: Codable, Sendable {
+        case app(App)
+        case backgroundAssetVersion(BackgroundAssetVersion)
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: AnyCodingKey.self)
+            let discriminatorValue = try container.decode(String.self, forKey: "type")
+            switch discriminatorValue {
+            case "apps":
+                self = .app(try App(from: decoder))
+            case "backgroundAssetVersions":
+                self = .backgroundAssetVersion(try BackgroundAssetVersion(from: decoder))
+            default:
+                throw DecodingError.dataCorruptedError(
+                    forKey: "type",
+                    in: container,
+                    debugDescription: "Unknown Included type '\(discriminatorValue)'")
+            }
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            switch self {
+            case let .app(value):
+                try value.encode(to: encoder)
+            case let .backgroundAssetVersion(value):
+                try value.encode(to: encoder)
+            }
+        }
+    }
+}

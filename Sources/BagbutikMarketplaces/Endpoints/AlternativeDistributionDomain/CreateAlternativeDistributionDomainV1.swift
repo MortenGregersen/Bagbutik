@@ -1,0 +1,21 @@
+import BagbutikCore
+import BagbutikMarketplacesModels
+
+public extension Request {
+    /**
+     # Add an Alternative Distribution Domain
+     Add an alternative distribution domain to your account.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/post-v1-alternativeDistributionDomains>
+
+     - Parameter requestBody: AlternativeDistributionDomain representation
+     - Returns: A ``Request`` to send to an instance of ``BagbutikService``
+     */
+    static func createAlternativeDistributionDomainV1(requestBody: AlternativeDistributionDomainCreateRequest) -> Request<AlternativeDistributionDomainResponse, ErrorResponse> {
+        .init(
+            path: "/v1/alternativeDistributionDomains",
+            method: .post,
+            requestBody: requestBody)
+    }
+}

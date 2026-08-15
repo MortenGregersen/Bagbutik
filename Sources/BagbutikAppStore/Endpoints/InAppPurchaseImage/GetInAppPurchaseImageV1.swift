@@ -1,0 +1,107 @@
+import BagbutikCore
+import BagbutikAppStoreModels
+
+public extension Request {
+    /**
+     # Read in-app purchase image information (v1)
+     Read details about a specific in-app purchase image.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-inAppPurchaseImages-_id_>
+
+     - Parameter id: The id of the requested resource
+     - Parameter fields: Fields to return for included related types
+     - Parameter includes: Relationship data to include in the response
+     - Returns: A ``Request`` to send to an instance of ``BagbutikService``
+     */
+    static func getInAppPurchaseImageV1(id: String,
+                                        fields: [GetInAppPurchaseImageV1.Field]? = nil,
+                                        includes: [GetInAppPurchaseImageV1.Include]? = nil) -> Request<InAppPurchaseImageResponse, ErrorResponse> {
+        .init(
+            path: "/v1/inAppPurchaseImages/\(id)",
+            method: .get,
+            parameters: .init(
+                fields: fields,
+                includes: includes))
+    }
+}
+
+public enum GetInAppPurchaseImageV1 {
+    /**
+     Fields to return for included related types.
+     */
+    public enum Field: FieldParameter {
+        /// The fields to include for returned resources of type inAppPurchaseImages
+        case inAppPurchaseImages([InAppPurchaseImages])
+        /// The fields to include for returned resources of type inAppPurchases
+        case inAppPurchases([InAppPurchases])
+
+        public enum InAppPurchaseImages: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case assetToken
+            case fileName
+            case fileSize
+            case imageAsset
+            case inAppPurchase
+            case sourceFileChecksum
+            case state
+            case uploadOperations
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = InAppPurchaseImages(rawValue: string) {
+                    self = value
+                } else if let value = InAppPurchaseImages(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid InAppPurchaseImages value: \(string)"
+                    )
+                }
+            }
+        }
+
+        public enum InAppPurchases: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case appStoreReviewScreenshot
+            case content
+            case contentHosting
+            case familySharable
+            case iapPriceSchedule
+            case images
+            case inAppPurchaseAvailability
+            case inAppPurchaseLocalizations
+            case inAppPurchaseType
+            case name
+            case offerCodes
+            case pricePoints
+            case productId
+            case promotedPurchase
+            case reviewNote
+            case state
+            case versions
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = InAppPurchases(rawValue: string) {
+                    self = value
+                } else if let value = InAppPurchases(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid InAppPurchases value: \(string)"
+                    )
+                }
+            }
+        }
+    }
+
+    /**
+     Relationship data to include in the response.
+     */
+    public enum Include: String, IncludeParameter, CaseIterable {
+        case inAppPurchase
+    }
+}

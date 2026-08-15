@@ -1,0 +1,21 @@
+import BagbutikCore
+import BagbutikModelsShared
+import BagbutikTestFlightModels
+
+public extension Request {
+    /**
+     # Delete a Beta Feedback Screenshot Submission
+     Delete a beta feedback screenshot submission from your app.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/delete-v1-betaFeedbackScreenshotSubmissions-_id_>
+
+     - Parameter id: The id of the requested resource
+     - Returns: A ``Request`` to send to an instance of ``BagbutikService``
+     */
+    static func deleteBetaFeedbackScreenshotSubmissionV1(id: String) -> Request<EmptyResponse, ErrorResponse> {
+        .init(
+            path: "/v1/betaFeedbackScreenshotSubmissions/\(id)",
+            method: .delete)
+    }
+}

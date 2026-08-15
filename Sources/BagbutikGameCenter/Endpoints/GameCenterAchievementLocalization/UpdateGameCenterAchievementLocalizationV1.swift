@@ -1,0 +1,24 @@
+import BagbutikCore
+import BagbutikGameCenterModels
+
+public extension Request {
+    /**
+     # Edit an Achievement Localization
+     Modify localized Game Center achievement information for a particular language.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/patch-v1-gameCenterAchievementLocalizations-_id_>
+
+     - Parameter id: The id of the requested resource
+     - Parameter requestBody: GameCenterAchievementLocalization representation
+     - Returns: A ``Request`` to send to an instance of ``BagbutikService``
+     */
+    @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
+    static func updateGameCenterAchievementLocalizationV1(id: String,
+                                                          requestBody: GameCenterAchievementLocalizationUpdateRequest) -> Request<GameCenterAchievementLocalizationResponse, ErrorResponse> {
+        .init(
+            path: "/v1/gameCenterAchievementLocalizations/\(id)",
+            method: .patch,
+            requestBody: requestBody)
+    }
+}

@@ -42,23 +42,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "Bagbutik-CoreTests"
-               BuildableName = "Bagbutik-CoreTests"
-               BlueprintName = "Bagbutik-CoreTests"
-               ReferencedContainer = "container:">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "NO"
-            buildForProfiling = "NO"
-            buildForArchiving = "NO"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "Bagbutik-ModelsTests"
-               BuildableName = "Bagbutik-ModelsTests"
-               BlueprintName = "Bagbutik-ModelsTests"
+               BlueprintIdentifier = "BagbutikCoreTests"
+               BuildableName = "BagbutikCoreTests"
+               BlueprintName = "BagbutikCoreTests"
                ReferencedContainer = "container:">
             </BuildableReference>
          </BuildActionEntry>
@@ -196,9 +182,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "BagbutikPolyfill"
-               BuildableName = "BagbutikPolyfill"
-               BlueprintName = "BagbutikPolyfill"
+               BlueprintIdentifier = "BagbutikCore"
+               BuildableName = "BagbutikCore"
+               BlueprintName = "BagbutikCore"
                ReferencedContainer = "container:">
             </BuildableReference>
          </BuildActionEntry>
@@ -224,9 +210,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "Bagbutik-Core"
-               BuildableName = "Bagbutik-Core"
-               BlueprintName = "Bagbutik-Core"
+               BlueprintIdentifier = "BagbutikAppStore"
+               BuildableName = "BagbutikAppStore"
+               BlueprintName = "BagbutikAppStore"
                ReferencedContainer = "container:">
             </BuildableReference>
          </BuildActionEntry>
@@ -238,9 +224,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "Bagbutik-AppStore"
-               BuildableName = "Bagbutik-AppStore"
-               BlueprintName = "Bagbutik-AppStore"
+               BlueprintIdentifier = "BagbutikReporting"
+               BuildableName = "BagbutikReporting"
+               BlueprintName = "BagbutikReporting"
                ReferencedContainer = "container:">
             </BuildableReference>
          </BuildActionEntry>
@@ -252,9 +238,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "Bagbutik-Reporting"
-               BuildableName = "Bagbutik-Reporting"
-               BlueprintName = "Bagbutik-Reporting"
+               BlueprintIdentifier = "BagbutikTestFlight"
+               BuildableName = "BagbutikTestFlight"
+               BlueprintName = "BagbutikTestFlight"
                ReferencedContainer = "container:">
             </BuildableReference>
          </BuildActionEntry>
@@ -266,9 +252,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "Bagbutik-TestFlight"
-               BuildableName = "Bagbutik-TestFlight"
-               BlueprintName = "Bagbutik-TestFlight"
+               BlueprintIdentifier = "BagbutikXcodeCloud"
+               BuildableName = "BagbutikXcodeCloud"
+               BlueprintName = "BagbutikXcodeCloud"
                ReferencedContainer = "container:">
             </BuildableReference>
          </BuildActionEntry>
@@ -280,51 +266,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "Bagbutik-XcodeCloud"
-               BuildableName = "Bagbutik-XcodeCloud"
-               BlueprintName = "Bagbutik-XcodeCloud"
-               ReferencedContainer = "container:">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "NO"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "Bagbutik-Users"
-               BuildableName = "Bagbutik-Users"
-               BlueprintName = "Bagbutik-Users"
-               ReferencedContainer = "container:">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "NO"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "Bagbutik-Provisioning"
-               BuildableName = "Bagbutik-Provisioning"
-               BlueprintName = "Bagbutik-Provisioning"
-               ReferencedContainer = "container:">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "NO"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "Bagbutik-Models"
-               BuildableName = "Bagbutik-Models"
-               BlueprintName = "Bagbutik-Models"
+               BlueprintIdentifier = "BagbutikProvisioning"
+               BuildableName = "BagbutikProvisioning"
+               BlueprintName = "BagbutikProvisioning"
                ReferencedContainer = "container:">
             </BuildableReference>
          </BuildActionEntry>
@@ -336,9 +280,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "Bagbutik-GameCenter"
-               BuildableName = "Bagbutik-GameCenter"
-               BlueprintName = "Bagbutik-GameCenter"
+               BlueprintIdentifier = "BagbutikGameCenter"
+               BuildableName = "BagbutikGameCenter"
+               BlueprintName = "BagbutikGameCenter"
                ReferencedContainer = "container:">
             </BuildableReference>
          </BuildActionEntry>
@@ -350,9 +294,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "Bagbutik-Marketplaces"
-               BuildableName = "Bagbutik-Marketplaces"
-               BlueprintName = "Bagbutik-Marketplaces"
+               BlueprintIdentifier = "BagbutikMarketplaces"
+               BuildableName = "BagbutikMarketplaces"
+               BlueprintName = "BagbutikMarketplaces"
                ReferencedContainer = "container:">
             </BuildableReference>
          </BuildActionEntry>
@@ -364,9 +308,37 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "Bagbutik-Webhooks"
-               BuildableName = "Bagbutik-Webhooks"
-               BlueprintName = "Bagbutik-Webhooks"
+               BlueprintIdentifier = "BagbutikWebhooks"
+               BuildableName = "BagbutikWebhooks"
+               BlueprintName = "BagbutikWebhooks"
+               ReferencedContainer = "container:">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "BagbutikCore"
+               BuildableName = "BagbutikCore"
+               BlueprintName = "BagbutikCore"
+               ReferencedContainer = "container:">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "BagbutikUsers"
+               BuildableName = "BagbutikUsers"
+               BlueprintName = "BagbutikUsers"
                ReferencedContainer = "container:">
             </BuildableReference>
          </BuildActionEntry>
@@ -433,21 +405,19 @@
             testExecutionOrdering = "random">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "Bagbutik-CoreTests"
-               BuildableName = "Bagbutik-CoreTests"
-               BlueprintName = "Bagbutik-CoreTests"
+               BlueprintIdentifier = "BagbutikCoreTests"
+               BuildableName = "BagbutikCoreTests"
+               BlueprintName = "BagbutikCoreTests"
                ReferencedContainer = "container:">
             </BuildableReference>
          </TestableReference>
          <TestableReference
-            skipped = "NO"
-            parallelizable = "YES"
-            testExecutionOrdering = "random">
+            skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "Bagbutik-ModelsTests"
-               BuildableName = "Bagbutik-ModelsTests"
-               BlueprintName = "Bagbutik-ModelsTests"
+               BlueprintIdentifier = "BagbutikUsersIntegrationTests"
+               BuildableName = "BagbutikUsersIntegrationTests"
+               BlueprintName = "BagbutikUsersIntegrationTests"
                ReferencedContainer = "container:">
             </BuildableReference>
          </TestableReference>
@@ -490,6 +460,15 @@
             ReferencedContainer = "container:">
          </BuildableReference>
       </BuildableProductRunnable>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "bagbutik-cli"
+            BuildableName = "bagbutik-cli"
+            BlueprintName = "bagbutik-cli"
+            ReferencedContainer = "container:">
+         </BuildableReference>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

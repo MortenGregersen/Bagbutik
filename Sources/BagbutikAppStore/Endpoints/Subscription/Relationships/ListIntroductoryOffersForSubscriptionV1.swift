@@ -1,0 +1,176 @@
+import BagbutikCore
+import BagbutikAppStoreModels
+import BagbutikModelsShared
+
+public extension Request {
+    /**
+     # List all introductory offers for a subscription
+     Get a list of introductory offers for a specific auto-renewable subscription.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-subscriptions-_id_-introductoryOffers>
+
+     - Parameter id: The id of the requested resource
+     - Parameter fields: Fields to return for included related types
+     - Parameter filters: Attributes, relationships, and IDs by which to filter
+     - Parameter includes: Relationship data to include in the response
+     - Parameter limit: Maximum resources per page - maximum 200
+     - Returns: A ``Request`` to send to an instance of ``BagbutikService``
+     */
+    static func listIntroductoryOffersForSubscriptionV1(id: String,
+                                                        fields: [ListIntroductoryOffersForSubscriptionV1.Field]? = nil,
+                                                        filters: [ListIntroductoryOffersForSubscriptionV1.Filter]? = nil,
+                                                        includes: [ListIntroductoryOffersForSubscriptionV1.Include]? = nil,
+                                                        limit: Int? = nil) -> Request<SubscriptionIntroductoryOffersResponse, ErrorResponse> {
+        .init(
+            path: "/v1/subscriptions/\(id)/introductoryOffers",
+            method: .get,
+            parameters: .init(
+                fields: fields,
+                filters: filters,
+                includes: includes,
+                limit: limit))
+    }
+}
+
+public enum ListIntroductoryOffersForSubscriptionV1 {
+    /**
+     Fields to return for included related types.
+     */
+    public enum Field: FieldParameter {
+        /// The fields to include for returned resources of type subscriptionIntroductoryOffers
+        case subscriptionIntroductoryOffers([SubscriptionIntroductoryOffers])
+        /// The fields to include for returned resources of type subscriptionPricePoints
+        case subscriptionPricePoints([SubscriptionPricePoints])
+        /// The fields to include for returned resources of type subscriptions
+        case subscriptions([Subscriptions])
+        /// The fields to include for returned resources of type territories
+        case territories([Territories])
+
+        public enum SubscriptionIntroductoryOffers: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case duration
+            case endDate
+            case numberOfPeriods
+            case offerMode
+            case startDate
+            case subscription
+            case subscriptionPricePoint
+            case targetSubscriptionPlanType
+            case territory
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = SubscriptionIntroductoryOffers(rawValue: string) {
+                    self = value
+                } else if let value = SubscriptionIntroductoryOffers(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid SubscriptionIntroductoryOffers value: \(string)"
+                    )
+                }
+            }
+        }
+
+        public enum SubscriptionPricePoints: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case adjustedEqualizations
+            case customerPrice
+            case equalizations
+            case proceeds
+            case proceedsYear2
+            case territory
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = SubscriptionPricePoints(rawValue: string) {
+                    self = value
+                } else if let value = SubscriptionPricePoints(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid SubscriptionPricePoints value: \(string)"
+                    )
+                }
+            }
+        }
+
+        public enum Subscriptions: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case appStoreReviewScreenshot
+            case familySharable
+            case group
+            case groupLevel
+            case images
+            case introductoryOffers
+            case name
+            case offerCodes
+            case planAvailabilities
+            case pricePoints
+            case prices
+            case productId
+            case promotedPurchase
+            case promotionalOffers
+            case reviewNote
+            case state
+            case subscriptionAvailability
+            case subscriptionLocalizations
+            case subscriptionPeriod
+            case versions
+            case winBackOffers
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = Subscriptions(rawValue: string) {
+                    self = value
+                } else if let value = Subscriptions(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid Subscriptions value: \(string)"
+                    )
+                }
+            }
+        }
+
+        public enum Territories: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case currency
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = Territories(rawValue: string) {
+                    self = value
+                } else if let value = Territories(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid Territories value: \(string)"
+                    )
+                }
+            }
+        }
+    }
+
+    /**
+     Attributes, relationships, and IDs by which to filter.
+     */
+    public enum Filter: FilterParameter {
+        /// Filter by id(s) of related 'territory'
+        case territory([String])
+    }
+
+    /**
+     Relationship data to include in the response.
+     */
+    public enum Include: String, IncludeParameter, CaseIterable {
+        case subscription
+        case subscriptionPricePoint
+        case territory
+    }
+}

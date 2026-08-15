@@ -1,6 +1,6 @@
 import Foundation
 
-public enum PackageName: CaseIterable, Codable, Equatable {
+public enum PackageName: CaseIterable, Codable, Hashable, Sendable {
     case appStore
     case core
     case gameCenter
@@ -13,7 +13,7 @@ public enum PackageName: CaseIterable, Codable, Equatable {
     case xcodeCloud
 
     public var name: String {
-        "Bagbutik-\(docsSectionName)"
+        "Bagbutik\(docsSectionName)"
     }
 
     public var docsSectionName: String {
@@ -54,6 +54,9 @@ public enum PackageName: CaseIterable, Codable, Equatable {
     }
 
     private static func resolvePackageName(from resource: String, identifier: String) -> PackageName? {
+        if resource.hasPrefix("ci") {
+            return .xcodeCloud
+        }
         if resource.hasPrefix("accessibilityDeclaration")
             || resource.hasPrefix("actor")
             || resource.lowercased().contains("agerating")
@@ -144,6 +147,8 @@ public enum PackageName: CaseIterable, Codable, Equatable {
                 && !identifier.lowercased().contains("buildaction")
                 && !identifier.lowercased().contains("buildrun"))
             || resource.hasPrefix("crashLog")
+            || resource == "deviceConnectionType"
+            || resource == "deviceFamilyOsVersionFilter"
             || resource.hasPrefix("individualTester")
             || resource.lowercased().hasPrefix("prerelease")
             || resource.lowercased().hasPrefix("publiclink")
@@ -188,7 +193,6 @@ public enum PackageName: CaseIterable, Codable, Equatable {
             || resource.hasPrefix("additionalRepositor")
             || resource.hasPrefix("artifact")
             || resource.hasPrefix("buildRun")
-            || resource.hasPrefix("ci")
             || resource.hasPrefix("git")
             || resource.hasPrefix("issues")
             || resource.hasPrefix("macOsVersions")

@@ -1,0 +1,21 @@
+import BagbutikCore
+import BagbutikAppStoreModels
+
+public extension Request {
+    /**
+     # Create a subscription group localization (v1)
+     Create a localized display name and optional custom app name for a subscription group.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/post-v1-subscriptionGroupLocalizations>
+
+     - Parameter requestBody: SubscriptionGroupLocalization representation
+     - Returns: A ``Request`` to send to an instance of ``BagbutikService``
+     */
+    static func createSubscriptionGroupLocalizationV1(requestBody: SubscriptionGroupLocalizationCreateRequest) -> Request<SubscriptionGroupLocalizationResponse, ErrorResponse> {
+        .init(
+            path: "/v1/subscriptionGroupLocalizations",
+            method: .post,
+            requestBody: requestBody)
+    }
+}

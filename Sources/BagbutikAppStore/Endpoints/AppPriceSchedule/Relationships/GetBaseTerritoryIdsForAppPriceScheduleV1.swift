@@ -1,0 +1,19 @@
+import BagbutikCore
+import BagbutikAppStoreModels
+
+public extension Request {
+    /**
+     # Get the base territory ID for an app price schedule
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-appPriceSchedules-_id_-relationships-baseTerritory>
+
+     - Parameter id: The id of the requested resource
+     - Returns: A ``Request`` to send to an instance of ``BagbutikService``
+     */
+    static func getBaseTerritoryIdsForAppPriceScheduleV1(id: String) -> Request<AppPriceScheduleBaseTerritoryLinkageResponse, ErrorResponse> {
+        .init(
+            path: "/v1/appPriceSchedules/\(id)/relationships/baseTerritory",
+            method: .get)
+    }
+}

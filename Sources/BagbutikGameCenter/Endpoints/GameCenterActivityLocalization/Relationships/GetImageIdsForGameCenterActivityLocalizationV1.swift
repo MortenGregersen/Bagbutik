@@ -1,0 +1,19 @@
+import BagbutikCore
+import BagbutikGameCenterModels
+
+public extension Request {
+    /**
+     # Get the image ID for a Game Center activity localization
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-gameCenterActivityLocalizations-_id_-relationships-image>
+
+     - Parameter id: The id of the requested resource
+     - Returns: A ``Request`` to send to an instance of ``BagbutikService``
+     */
+    static func getImageIdsForGameCenterActivityLocalizationV1(id: String) -> Request<GameCenterActivityLocalizationImageLinkageResponse, ErrorResponse> {
+        .init(
+            path: "/v1/gameCenterActivityLocalizations/\(id)/relationships/image",
+            method: .get)
+    }
+}

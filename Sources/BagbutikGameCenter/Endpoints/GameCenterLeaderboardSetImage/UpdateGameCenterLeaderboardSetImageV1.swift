@@ -1,0 +1,24 @@
+import BagbutikCore
+import BagbutikGameCenterModels
+
+public extension Request {
+    /**
+     # Modify a Leaderboard Set Image
+     Commit a leaderboard set image after uploading it.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/patch-v1-gameCenterLeaderboardSetImages-_id_>
+
+     - Parameter id: The id of the requested resource
+     - Parameter requestBody: GameCenterLeaderboardSetImage representation
+     - Returns: A ``Request`` to send to an instance of ``BagbutikService``
+     */
+    @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
+    static func updateGameCenterLeaderboardSetImageV1(id: String,
+                                                      requestBody: GameCenterLeaderboardSetImageUpdateRequest) -> Request<GameCenterLeaderboardSetImageResponse, ErrorResponse> {
+        .init(
+            path: "/v1/gameCenterLeaderboardSetImages/\(id)",
+            method: .patch,
+            requestBody: requestBody)
+    }
+}

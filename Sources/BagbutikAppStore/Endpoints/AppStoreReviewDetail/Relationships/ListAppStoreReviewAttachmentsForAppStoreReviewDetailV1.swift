@@ -1,0 +1,101 @@
+import BagbutikCore
+import BagbutikAppStoreModels
+
+public extension Request {
+    /**
+     # List all review attachments for an app store review detail
+     List all the App Store review attachments you include with a version when you submit it for App Review.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-appStoreReviewDetails-_id_-appStoreReviewAttachments>
+
+     - Parameter id: The id of the requested resource
+     - Parameter fields: Fields to return for included related types
+     - Parameter includes: Relationship data to include in the response
+     - Parameter limit: Maximum resources per page - maximum 200
+     - Returns: A ``Request`` to send to an instance of ``BagbutikService``
+     */
+    static func listAppStoreReviewAttachmentsForAppStoreReviewDetailV1(id: String,
+                                                                       fields: [ListAppStoreReviewAttachmentsForAppStoreReviewDetailV1.Field]? = nil,
+                                                                       includes: [ListAppStoreReviewAttachmentsForAppStoreReviewDetailV1.Include]? = nil,
+                                                                       limit: Int? = nil) -> Request<AppStoreReviewAttachmentsResponse, ErrorResponse> {
+        .init(
+            path: "/v1/appStoreReviewDetails/\(id)/appStoreReviewAttachments",
+            method: .get,
+            parameters: .init(
+                fields: fields,
+                includes: includes,
+                limit: limit))
+    }
+}
+
+public enum ListAppStoreReviewAttachmentsForAppStoreReviewDetailV1 {
+    /**
+     Fields to return for included related types.
+     */
+    public enum Field: FieldParameter {
+        /// The fields to include for returned resources of type appStoreReviewAttachments
+        case appStoreReviewAttachments([AppStoreReviewAttachments])
+        /// The fields to include for returned resources of type appStoreReviewDetails
+        case appStoreReviewDetails([AppStoreReviewDetails])
+
+        public enum AppStoreReviewAttachments: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case appStoreReviewDetail
+            case assetDeliveryState
+            case fileName
+            case fileSize
+            case sourceFileChecksum
+            case uploadOperations
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = AppStoreReviewAttachments(rawValue: string) {
+                    self = value
+                } else if let value = AppStoreReviewAttachments(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid AppStoreReviewAttachments value: \(string)"
+                    )
+                }
+            }
+        }
+
+        public enum AppStoreReviewDetails: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case appStoreReviewAttachments
+            case appStoreVersion
+            case contactEmail
+            case contactFirstName
+            case contactLastName
+            case contactPhone
+            case demoAccountName
+            case demoAccountPassword
+            case demoAccountRequired
+            case notes
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = AppStoreReviewDetails(rawValue: string) {
+                    self = value
+                } else if let value = AppStoreReviewDetails(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid AppStoreReviewDetails value: \(string)"
+                    )
+                }
+            }
+        }
+    }
+
+    /**
+     Relationship data to include in the response.
+     */
+    public enum Include: String, IncludeParameter, CaseIterable {
+        case appStoreReviewDetail
+    }
+}

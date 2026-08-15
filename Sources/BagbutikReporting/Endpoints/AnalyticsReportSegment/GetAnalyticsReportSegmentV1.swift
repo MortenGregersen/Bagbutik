@@ -1,0 +1,56 @@
+import BagbutikCore
+import BagbutikReportingModels
+
+public extension Request {
+    /**
+     # Read the Details for a Report Segment
+     Get details and download information for a specific analytics report segment.
+
+     To learn more about interpreting the data using the glossary of report fields and definitions, see [Analytics Reports](https://developer.apple.com/documentation/analytics-reports).
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-analyticsReportSegments-_id_>
+
+     - Parameter id: The id of the requested resource
+     - Parameter fields: Fields to return for included related types
+     - Returns: A ``Request`` to send to an instance of ``BagbutikService``
+     */
+    static func getAnalyticsReportSegmentV1(id: String,
+                                            fields: [GetAnalyticsReportSegmentV1.Field]? = nil) -> Request<AnalyticsReportSegmentResponse, ErrorResponse> {
+        .init(
+            path: "/v1/analyticsReportSegments/\(id)",
+            method: .get,
+            parameters: .init(fields: fields))
+    }
+}
+
+public enum GetAnalyticsReportSegmentV1 {
+    /**
+     Fields to return for included related types.
+     */
+    public enum Field: FieldParameter {
+        /// The fields to include for returned resources of type analyticsReportSegments
+        case analyticsReportSegments([AnalyticsReportSegments])
+
+        public enum AnalyticsReportSegments: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case checksum
+            case sizeInBytes
+            case url
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = AnalyticsReportSegments(rawValue: string) {
+                    self = value
+                } else if let value = AnalyticsReportSegments(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid AnalyticsReportSegments value: \(string)"
+                    )
+                }
+            }
+        }
+    }
+}

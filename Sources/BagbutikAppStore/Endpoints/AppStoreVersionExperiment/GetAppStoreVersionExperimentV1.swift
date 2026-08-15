@@ -1,0 +1,154 @@
+import BagbutikCore
+import BagbutikAppStoreModels
+
+public extension Request {
+    /**
+     # Read app store experiment information v1
+     Get information for a specific App Store version experiment.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-appStoreVersionExperiments-_id_>
+
+     - Parameter id: The id of the requested resource
+     - Parameter fields: Fields to return for included related types
+     - Parameter includes: Relationship data to include in the response
+     - Parameter limit: Maximum number of related appStoreVersionExperimentTreatments returned (when they are included) - maximum 50
+     - Returns: A ``Request`` to send to an instance of ``BagbutikService``
+     */
+    @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
+    static func getAppStoreVersionExperimentV1(id: String,
+                                               fields: [GetAppStoreVersionExperimentV1.Field]? = nil,
+                                               includes: [GetAppStoreVersionExperimentV1.Include]? = nil,
+                                               limit: GetAppStoreVersionExperimentV1.Limit? = nil) -> Request<AppStoreVersionExperimentResponse, ErrorResponse> {
+        .init(
+            path: "/v1/appStoreVersionExperiments/\(id)",
+            method: .get,
+            parameters: .init(
+                fields: fields,
+                includes: includes,
+                limits: limit.map { [$0] }))
+    }
+}
+
+public enum GetAppStoreVersionExperimentV1 {
+    /**
+     Fields to return for included related types.
+     */
+    public enum Field: FieldParameter {
+        /// The fields to include for returned resources of type appStoreVersionExperimentTreatments
+        case appStoreVersionExperimentTreatments([AppStoreVersionExperimentTreatments])
+        /// The fields to include for returned resources of type appStoreVersionExperiments
+        case appStoreVersionExperiments([AppStoreVersionExperiments])
+        /// The fields to include for returned resources of type appStoreVersions
+        case appStoreVersions([AppStoreVersions])
+
+        public enum AppStoreVersionExperimentTreatments: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case appIcon
+            case appIconName
+            case appStoreVersionExperiment
+            case appStoreVersionExperimentTreatmentLocalizations
+            case appStoreVersionExperimentV2
+            case name
+            case promotedDate
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = AppStoreVersionExperimentTreatments(rawValue: string) {
+                    self = value
+                } else if let value = AppStoreVersionExperimentTreatments(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid AppStoreVersionExperimentTreatments value: \(string)"
+                    )
+                }
+            }
+        }
+
+        public enum AppStoreVersionExperiments: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case appStoreVersion
+            case appStoreVersionExperimentTreatments
+            case endDate
+            case name
+            case reviewRequired
+            case startDate
+            case state
+            case trafficProportion
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = AppStoreVersionExperiments(rawValue: string) {
+                    self = value
+                } else if let value = AppStoreVersionExperiments(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid AppStoreVersionExperiments value: \(string)"
+                    )
+                }
+            }
+        }
+
+        public enum AppStoreVersions: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case alternativeDistributionPackage
+            case app
+            case appClipDefaultExperience
+            case appStoreReviewDetail
+            case appStoreState
+            case appStoreVersionExperiments
+            case appStoreVersionExperimentsV2
+            case appStoreVersionLocalizations
+            case appStoreVersionPhasedRelease
+            case appStoreVersionSubmission
+            case appVersionState
+            case build
+            case copyright
+            case createdDate
+            case customerReviews
+            case downloadable
+            case earliestReleaseDate
+            case gameCenterAppVersion
+            case platform
+            case releaseType
+            case reviewType
+            case routingAppCoverage
+            case usesIdfa
+            case versionString
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = AppStoreVersions(rawValue: string) {
+                    self = value
+                } else if let value = AppStoreVersions(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid AppStoreVersions value: \(string)"
+                    )
+                }
+            }
+        }
+    }
+
+    /**
+     Relationship data to include in the response.
+     */
+    public enum Include: String, IncludeParameter, CaseIterable {
+        case appStoreVersion
+        case appStoreVersionExperimentTreatments
+    }
+
+    /**
+     Number of included related resources to return.
+     */
+    public enum Limit: LimitParameter {
+        /// Maximum number of related appStoreVersionExperimentTreatments returned (when they are included) - maximum 50
+        case appStoreVersionExperimentTreatments(Int)
+    }
+}

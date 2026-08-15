@@ -1,0 +1,23 @@
+import BagbutikCore
+import BagbutikTestFlightModels
+
+public extension Request {
+    /**
+     # Read Usage Metrics for a Beta Build
+     Get usage metrics for a specific build.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-builds-_id_-metrics-betaBuildUsages>
+
+     - Parameter id: The id of the requested resource
+     - Parameter limit: Maximum number of groups to return per page - maximum 200
+     - Returns: A ``Request`` to send to an instance of ``BagbutikService``
+     */
+    static func getMetricsForBetaBuildUsageInBuildV1(id: String,
+                                                     limit: Int? = nil) -> Request<BetaBuildUsagesV1MetricResponse, ErrorResponse> {
+        .init(
+            path: "/v1/builds/\(id)/metrics/betaBuildUsages",
+            method: .get,
+            parameters: .init(limit: limit))
+    }
+}

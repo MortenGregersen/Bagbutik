@@ -1,0 +1,23 @@
+import BagbutikCore
+import BagbutikTestFlightModels
+
+public extension Request {
+    /**
+     # Get all beta tester ids in a beta group
+     Get a list of the beta tester resource IDs in a specific beta group.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-betaGroups-_id_-relationships-betaTesters>
+
+     - Parameter id: The id of the requested resource
+     - Parameter limit: Maximum resources per page - maximum 200
+     - Returns: A ``Request`` to send to an instance of ``BagbutikService``
+     */
+    static func listBetaTesterIdsForBetaGroupV1(id: String,
+                                                limit: Int? = nil) -> Request<BetaGroupBetaTestersLinkagesResponse, ErrorResponse> {
+        .init(
+            path: "/v1/betaGroups/\(id)/relationships/betaTesters",
+            method: .get,
+            parameters: .init(limit: limit))
+    }
+}

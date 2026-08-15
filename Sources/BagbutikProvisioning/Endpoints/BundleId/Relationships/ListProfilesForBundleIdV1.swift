@@ -1,0 +1,66 @@
+import BagbutikCore
+import BagbutikProvisioningModels
+
+public extension Request {
+    /**
+     # List all profiles for a bundle id
+     Get a list of all profiles for a specific bundle ID.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-bundleIds-_id_-profiles>
+
+     - Parameter id: The id of the requested resource
+     - Parameter fields: Fields to return for included related types
+     - Parameter limit: Maximum resources per page - maximum 200
+     - Returns: A ``Request`` to send to an instance of ``BagbutikService``
+     */
+    static func listProfilesForBundleIdV1(id: String,
+                                          fields: [ListProfilesForBundleIdV1.Field]? = nil,
+                                          limit: Int? = nil) -> Request<ProfilesWithoutIncludesResponse, ErrorResponse> {
+        .init(
+            path: "/v1/bundleIds/\(id)/profiles",
+            method: .get,
+            parameters: .init(
+                fields: fields,
+                limit: limit))
+    }
+}
+
+public enum ListProfilesForBundleIdV1 {
+    /**
+     Fields to return for included related types.
+     */
+    public enum Field: FieldParameter {
+        /// The fields to include for returned resources of type profiles
+        case profiles([Profiles])
+
+        public enum Profiles: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case bundleId
+            case certificates
+            case createdDate
+            case devices
+            case expirationDate
+            case name
+            case platform
+            case profileContent
+            case profileState
+            case profileType
+            case uuid
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = Profiles(rawValue: string) {
+                    self = value
+                } else if let value = Profiles(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid Profiles value: \(string)"
+                    )
+                }
+            }
+        }
+    }
+}

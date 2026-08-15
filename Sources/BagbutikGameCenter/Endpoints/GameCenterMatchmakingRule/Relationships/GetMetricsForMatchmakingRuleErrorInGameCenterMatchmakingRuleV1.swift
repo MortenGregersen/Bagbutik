@@ -1,0 +1,103 @@
+import BagbutikCore
+import BagbutikGameCenterModels
+import BagbutikModelsShared
+
+public extension Request {
+    /**
+     # Get Matchmaking Rule Errors
+     Get errors that occur for a specific matchmaking rule.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-gameCenterMatchmakingRules-_id_-metrics-matchmakingRuleErrors>
+
+     - Parameter id: The id of the requested resource
+     - Parameter filters: Attributes, relationships, and IDs by which to filter
+     - Parameter sorts: Attributes by which to sort
+     - Parameter granularity: The granularity of the per-group dataset
+     - Parameter groupBy: The dimension by which to group the results
+     - Parameter limit: Maximum number of groups to return per page - maximum 200
+     - Returns: A ``Request`` to send to an instance of ``BagbutikService``
+     */
+    static func getMetricsForMatchmakingRuleErrorInGameCenterMatchmakingRuleV1(id: String,
+                                                                               filters: [GetMetricsForMatchmakingRuleErrorInGameCenterMatchmakingRuleV1.Filter]? = nil,
+                                                                               sorts: [GetMetricsForMatchmakingRuleErrorInGameCenterMatchmakingRuleV1.Sort]? = nil,
+                                                                               granularity: GetMetricsForMatchmakingRuleErrorInGameCenterMatchmakingRuleV1.Granularity? = nil,
+                                                                               groupBy: GetMetricsForMatchmakingRuleErrorInGameCenterMatchmakingRuleV1.GroupBy? = nil,
+                                                                               limit: Int? = nil) -> Request<GameCenterMatchmakingRuleErrorsV1MetricResponse, ErrorResponse> {
+        var customs = [String: String]()
+        if let granularity { customs["granularity"] = granularity.rawValue }
+        if let groupBy { customs["groupBy"] = groupBy.rawValue }
+        return .init(
+            path: "/v1/gameCenterMatchmakingRules/\(id)/metrics/matchmakingRuleErrors",
+            method: .get,
+            parameters: .init(
+                filters: filters,
+                sorts: sorts,
+                limit: limit,
+                customs: customs))
+    }
+}
+
+public enum GetMetricsForMatchmakingRuleErrorInGameCenterMatchmakingRuleV1 {
+    /**
+     Attributes, relationships, and IDs by which to filter.
+     */
+    public enum Filter: FilterParameter {
+        /// Filter by 'gameCenterMatchmakingQueue' relationship dimension
+        case gameCenterMatchmakingQueue([String])
+    }
+
+    /**
+     Attributes by which to sort.
+     */
+    public enum Sort: String, SortParameter, CaseIterable {
+        case countAscending = "count"
+        case countDescending = "-count"
+    }
+
+    /**
+     The granularity of the per-group dataset
+     */
+    public enum Granularity: String, Sendable, ParameterValue, Codable, CaseIterable {
+        case P1D
+        case PT15M
+        case PT1H
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.singleValueContainer()
+            let string = try container.decode(String.self)
+            if let value = Granularity(rawValue: string) {
+                self = value
+            } else if let value = Granularity(rawValue: string.uppercased()) {
+                self = value
+            } else {
+                throw DecodingError.dataCorruptedError(
+                    in: container,
+                    debugDescription: "Invalid Granularity value: \(string)"
+                )
+            }
+        }
+    }
+
+    /**
+     The dimension by which to group the results
+     */
+    public enum GroupBy: String, Sendable, ParameterValue, Codable, CaseIterable {
+        case gameCenterMatchmakingQueue
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.singleValueContainer()
+            let string = try container.decode(String.self)
+            if let value = GroupBy(rawValue: string) {
+                self = value
+            } else if let value = GroupBy(rawValue: string.uppercased()) {
+                self = value
+            } else {
+                throw DecodingError.dataCorruptedError(
+                    in: container,
+                    debugDescription: "Invalid GroupBy value: \(string)"
+                )
+            }
+        }
+    }
+}

@@ -1,0 +1,51 @@
+import BagbutikCore
+import BagbutikModelsShared
+import Foundation
+
+/**
+ # InAppPurchasesResponse
+ The response body for endpoints that list in-app purchases for an app.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/inapppurchasesresponse>
+ */
+public struct InAppPurchasesResponse: Codable, Sendable, PagedResponse {
+    public typealias Data = InAppPurchase
+
+    public let data: [InAppPurchase]
+    public var included: [App]?
+    public let links: PagedDocumentLinks
+    public var meta: PagingInformation?
+
+    public init(data: [InAppPurchase],
+                included: [App]? = nil,
+                links: PagedDocumentLinks,
+                meta: PagingInformation? = nil)
+    {
+        self.data = data
+        self.included = included
+        self.links = links
+        self.meta = meta
+    }
+
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: AnyCodingKey.self)
+        data = try container.decode([InAppPurchase].self, forKey: "data")
+        included = try container.decodeIfPresent([App].self, forKey: "included")
+        links = try container.decode(PagedDocumentLinks.self, forKey: "links")
+        meta = try container.decodeIfPresent(PagingInformation.self, forKey: "meta")
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: AnyCodingKey.self)
+        try container.encode(data, forKey: "data")
+        try container.encodeIfPresent(included, forKey: "included")
+        try container.encode(links, forKey: "links")
+        try container.encodeIfPresent(meta, forKey: "meta")
+    }
+
+    public func getApps(for inAppPurchase: InAppPurchase) -> [App] {
+        guard let appIds = inAppPurchase.relationships?.apps?.data?.map(\.id) else { return [] }
+        return included?.filter { appIds.contains($0.id) } ?? []
+    }
+}

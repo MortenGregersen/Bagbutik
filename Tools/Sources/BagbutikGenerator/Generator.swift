@@ -36,6 +36,26 @@ typealias LoadSpec = (_ fileUrl: URL) throws -> Spec
 
 /// Generates endpoint and model source files from the decoded spec and normalized documentation.
 public class Generator {
+    private static let domainPackages: Set<PackageName> = Set(PackageName.allCases).subtracting([.core])
+    private static let sharedSchemas: Set<String> = [
+        "App",
+        "Build",
+        "BuildAudienceType",
+        "DeviceFamily",
+        "GameCenterAchievementVersionV2",
+        "GameCenterActivityVersion",
+        "GameCenterAppVersion",
+        "GameCenterChallengeVersion",
+        "GameCenterDetail",
+        "GameCenterEnabledVersion",
+        "GameCenterLeaderboardSetVersionV2",
+        "GameCenterLeaderboardVersionV2",
+        "GameCenterVersionState",
+        "ImageAsset",
+        "SubscriptionStatusUrlVersion",
+        "TerritoryCode",
+    ]
+
     private let loadSpec: LoadSpec
     private let fileManager: TestableFileManager
     private let docsLoader: DocsLoader
@@ -82,7 +102,27 @@ public class Generator {
         try await docsLoader.loadDocs(documentationDirURL: documentationDirURL)
         try await docsLoader.applyManualDocumentation()
 
-        let generalModelsDirURL = outputDirURL.appendingPathComponent("Bagbutik-Models")
+        let schemas = spec.components.schemas
+        var packageBySchema = [String: PackageName]()
+        for schema in schemas.values {
+            packageBySchema[schema.name] = try await Self.resolvePackageName(for: schema, docsLoader: docsLoader)
+        }
+        var endpointRootsByPackage = [PackageName: Set<String>]()
+        for path in spec.paths.values {
+            for operation in path.operations {
+                let packageName = try await Self.resolvePackageName(for: operation, docsLoader: docsLoader)
+                endpointRootsByPackage[packageName, default: []]
+                    .formUnion(Self.endpointSchemaNames(for: operation))
+            }
+        }
+        let schemaReferenceGraph = SchemaReferenceGraph(schemas: schemas)
+        let modulePlan = RuntimeModulePlan(
+            graph: schemaReferenceGraph,
+            packageBySchema: packageBySchema,
+            sharedSchemas: Self.sharedSchemas,
+            additionalRootsByPackage: endpointRootsByPackage
+        )
+
         for packageName in PackageName.allCases {
             let packageDirURL = outputDirURL.appendingPathComponent(packageName.name)
             if packageName != .core {
@@ -96,28 +136,39 @@ public class Generator {
                 try removeChildren(at: modelsDirURL)
                 try fileManager.createDirectory(at: modelsDirURL, withIntermediateDirectories: true, attributes: nil)
             }
-
-            try removeChildren(at: generalModelsDirURL.appendingPathComponent(packageName.docsSectionName))
-            try fileManager.createDirectory(at: generalModelsDirURL, withIntermediateDirectories: true, attributes: nil)
+        }
+        let generatedModelsDirectories = [RuntimeModulePlan.ModelModule.modelsShared.targetName]
+            + Self.domainPackages
+                .map { RuntimeModulePlan.ModelModule.domainModels($0).targetName }
+                .sorted()
+        for generatedModelsDirectory in generatedModelsDirectories {
+            let directoryURL = outputDirURL.appendingPathComponent(generatedModelsDirectory)
+            try removeGeneratedChildren(at: directoryURL)
+            try fileManager.createDirectory(at: directoryURL, withIntermediateDirectories: true, attributes: nil)
         }
 
         try await withThrowingTaskGroup(of: [RenderResult].self) { taskGroup in
             for path in spec.paths.values {
-                taskGroup.addTask { [docsLoader] in
+                taskGroup.addTask { [docsLoader, modulePlan] in
                     var renderResults = [RenderResult]()
                     let operationRenderer = OperationRenderer(docsLoader: docsLoader, shouldFormat: true)
                     for operation in path.operations {
                         let name = operation.getVersionedName(path: path)
                         let fileName = "\(name).swift"
-                        let packageName: PackageName
-                        if let documentation = try await docsLoader.resolveDocumentationForOperation(withId: operation.id) {
-                            packageName = try DocsLoader.resolvePackageName(for: Documentation.operation(documentation))
-                        } else if let inferredPackageName = DocsLoader.resolvePackageName(from: operation.id) {
-                            packageName = inferredPackageName
-                        } else {
-                            throw GeneratorError.noDocumentationForOperation(operation.id)
+                        let packageName = try await Self.resolvePackageName(for: operation, docsLoader: docsLoader)
+                        var renderedOperation = try await operationRenderer.render(operation: operation, in: path) + "\n"
+                        if Self.domainPackages.contains(packageName) {
+                            let domainModelModule = RuntimeModulePlan.ModelModule.domainModels(packageName)
+                            renderedOperation = renderedOperation
+                                .replacingOccurrences(
+                                    of: "import BagbutikCore",
+                                    with: "import BagbutikCore\n" + Self.endpointModelImports(
+                                        for: operation,
+                                        domainModelModule: domainModelModule,
+                                        modulePlan: modulePlan
+                                    )
+                                )
                         }
-                        let renderedOperation = try await operationRenderer.render(operation: operation, in: path) + "\n"
                         let packageDirURL = outputDirURL.appendingPathComponent(packageName.name).appendingPathComponent("Endpoints")
                         let operationDirURL = Self.getOperationsDirURL(for: path, in: packageDirURL)
                         renderResults.append(.init(dirURL: operationDirURL, name: name, fileName: fileName, contents: renderedOperation))
@@ -137,42 +188,33 @@ public class Generator {
             }
         }
 
-        try await withThrowingTaskGroup(of: RenderResult.self) { taskGroup in
-            let schemas = spec.components.schemas
+        try await withThrowingTaskGroup(of: RenderResult?.self) { taskGroup in
             for schema in schemas.values {
-                taskGroup.addTask { [docsLoader, schemas] in
-                    let packageName: PackageName
-                    if let documentation = try await docsLoader.resolveDocumentationForSchema(named: schema.name) {
-                        packageName = try DocsLoader.resolvePackageName(for: documentation)
-                    } else if let inferredPackageName = DocsLoader.resolvePackageName(from: schema.name) {
-                        packageName = inferredPackageName
-                    } else {
-                        throw GeneratorError.noDocumentationForSchema(schema.name)
-                    }
-                    let model = try await Generator.generateModel(for: schema, packageName: packageName, otherSchemas: schemas, docsLoader: docsLoader)
+                taskGroup.addTask { [docsLoader, schemas, packageBySchema, schemaReferenceGraph, modulePlan] in
+                    let packageName = packageBySchema[schema.name]!
+                    let modelModule = modulePlan[schema.name]
+                    let referencedModelModules = Set(schemaReferenceGraph.references[schema.name, default: []]
+                        .map { modulePlan[$0] })
+                    let model = try await Generator.generateModel(
+                        for: schema,
+                        modelModule: modelModule,
+                        referencedModelModules: referencedModelModules,
+                        otherSchemas: schemas,
+                        docsLoader: docsLoader
+                    )
                     let fileName = model.name + ".swift"
 
-                    let modelsDirURL: URL = if schema.name.hasSuffix("LinkagesRequest") || schema.name.hasSuffix("LinkageRequest") {
-                        outputDirURL
-                            .appendingPathComponent("Bagbutik-Models")
-                            .appendingPathComponent("LinkageRequests")
-                    } else if schema.name.hasSuffix("LinkagesResponse") || schema.name.hasSuffix("LinkageResponse") {
-                        outputDirURL
-                            .appendingPathComponent("Bagbutik-Models")
-                            .appendingPathComponent("LinkageResponses")
-                    } else if packageName == .core || schema.name.hasSuffix("Request") || schema.name.hasSuffix("Response") {
-                        outputDirURL
-                            .appendingPathComponent(packageName.name)
-                            .appendingPathComponent("Models")
-                    } else {
-                        outputDirURL
-                            .appendingPathComponent("Bagbutik-Models")
-                            .appendingPathComponent(packageName.docsSectionName)
+                    let modelsDirURL: URL = switch modelModule {
+                    case .modelsShared, .domainModels:
+                        outputDirURL.appendingPathComponent(modelModule.targetName)
+                    case .core:
+                        outputDirURL.appendingPathComponent("BagbutikCore").appendingPathComponent("Models")
                     }
                     return .init(dirURL: modelsDirURL, name: model.name, fileName: fileName, contents: model.contents)
                 }
             }
             for try await renderResult in taskGroup {
+                guard let renderResult else { continue }
                 await print("⚡️ Generating model \(renderResult.name)...")
                 try self.fileManager.createDirectory(at: renderResult.dirURL, withIntermediateDirectories: true, attributes: nil)
                 let fileURL = renderResult.dirURL.appendingPathComponent(renderResult.fileName)
@@ -200,10 +242,90 @@ public class Generator {
         }
     }
 
+    private func removeGeneratedChildren(at url: URL) throws {
+        guard fileManager.fileExists(atPath: url.path) else { return }
+        for childURL in try fileManager.contentsOfDirectory(at: url)
+            where childURL.lastPathComponent != "Extensions" {
+            try fileManager.removeItem(at: childURL)
+        }
+    }
+
     private static func getOperationsDirURL(for path: Path, in endpointsDirURL: URL) -> URL {
         let operationsDirURL = endpointsDirURL.appendingPathComponent(path.info.mainType)
         guard path.info.isRelationship else { return operationsDirURL }
         return operationsDirURL.appendingPathComponent("Relationships")
+    }
+
+    private static func resolvePackageName(for schema: Schema, docsLoader: DocsLoader) async throws -> PackageName {
+        if let documentation = try await docsLoader.resolveDocumentationForSchema(named: schema.name) {
+            return try DocsLoader.resolvePackageName(for: documentation)
+        }
+        if let inferredPackageName = DocsLoader.resolvePackageName(from: schema.name) {
+            return inferredPackageName
+        }
+        throw GeneratorError.noDocumentationForSchema(schema.name)
+    }
+
+    private static func resolvePackageName(
+        for operation: BagbutikSpecDecoder.Operation,
+        docsLoader: DocsLoader
+    ) async throws -> PackageName {
+        if let documentation = try await docsLoader.resolveDocumentationForOperation(withId: operation.id) {
+            return try DocsLoader.resolvePackageName(for: Documentation.operation(documentation))
+        }
+        if let inferredPackageName = DocsLoader.resolvePackageName(from: operation.id) {
+            return inferredPackageName
+        }
+        throw GeneratorError.noDocumentationForOperation(operation.id)
+    }
+
+    private static func endpointSchemaNames(
+        for operation: BagbutikSpecDecoder.Operation
+    ) -> Set<String> {
+        var schemaNames: Set<String> = [
+            operation.successResponseType,
+            operation.errorResponseType,
+        ]
+        if let requestBody = operation.requestBody {
+            schemaNames.insert(requestBody.name)
+        }
+        for parameter in operation.parameters ?? [] {
+            let parameterType: BagbutikSpecDecoder.Operation.Parameter.ParameterValueType?
+            switch parameter {
+            case .filter(_, let type, _, _):
+                parameterType = type
+            case .exists(_, let type, _):
+                parameterType = type
+            case .fields(_, let type, _, _):
+                parameterType = type
+            case .sort(let type, _):
+                parameterType = type
+            case .include(let type):
+                parameterType = type
+            case .custom(_, let type, _):
+                parameterType = type
+            case .limit:
+                parameterType = nil
+            }
+            guard let parameterType, case .simple(let type) = parameterType else { continue }
+            schemaNames.insert(type.description)
+        }
+        return schemaNames
+    }
+
+    private static func endpointModelImports(
+        for operation: BagbutikSpecDecoder.Operation,
+        domainModelModule: RuntimeModulePlan.ModelModule,
+        modulePlan: RuntimeModulePlan
+    ) -> String {
+        var directlyReferencedModules = Set(endpointSchemaNames(for: operation).map { modulePlan[$0] })
+            .subtracting([.core, domainModelModule])
+        directlyReferencedModules.insert(domainModelModule)
+        return directlyReferencedModules
+            .map(\.targetName)
+            .sorted()
+            .map { "import \($0)" }
+            .joined(separator: "\n")
     }
 
     /**
@@ -216,7 +338,13 @@ public class Generator {
         - docsLoader: The documentation loader used to resolve symbol comments.
      - Returns: The rendered model name, its full file contents, and the original schema documentation URL.
      */
-    static func generateModel(for schema: Schema, packageName: PackageName, otherSchemas: [String: Schema], docsLoader: DocsLoader)
+    static func generateModel(
+        for schema: Schema,
+        modelModule: RuntimeModulePlan.ModelModule,
+        referencedModelModules: Set<RuntimeModulePlan.ModelModule>? = nil,
+        otherSchemas: [String: Schema],
+        docsLoader: DocsLoader
+    )
         async throws -> (name: String, contents: String, url: String?) {
         let renderedSchema: String = switch schema {
         case .enum(let enumSchema):
@@ -233,14 +361,23 @@ public class Generator {
                 .render(plainTextSchema: plainTextSchema)
         }
         var imports = ["import Foundation"]
-        if packageName != .core {
-            imports.append("import Bagbutik_Core")
-            if schema.name.hasSuffix("Request") || schema.name.hasSuffix("Response") {
-                imports.append("import Bagbutik_Models")
-            }
-        } else if schema.name.hasSuffix("LinkagesRequest") || schema.name.hasSuffix("LinkageRequest")
-            || schema.name.hasSuffix("LinkagesResponse") || schema.name.hasSuffix("LinkageResponse") {
-            imports.append("import Bagbutik_Core")
+        switch modelModule {
+        case .modelsShared:
+            let dependencies = (referencedModelModules ?? [])
+                .union([.core])
+                .subtracting([.modelsShared])
+            imports.append(contentsOf: dependencies
+                .sorted { $0.targetName < $1.targetName }
+                .map { "import \($0.targetName)" })
+        case let .domainModels(package):
+            let dependencies = (referencedModelModules ?? [])
+                .union([.core])
+                .subtracting([.domainModels(package)])
+            imports.append(contentsOf: dependencies
+                .sorted { $0.targetName < $1.targetName }
+                .map { "import \($0.targetName)" })
+        case .core:
+            break
         }
         let contents = """
         \(imports.sorted().joined(separator: "\n"))

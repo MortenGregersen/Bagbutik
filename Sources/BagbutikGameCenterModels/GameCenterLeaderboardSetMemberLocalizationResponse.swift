@@ -1,0 +1,82 @@
+import BagbutikCore
+import Foundation
+
+/**
+ # GameCenterLeaderboardSetMemberLocalizationResponse
+ A response containing a single localization for a leaderboard’s membership within a leaderboard set.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterleaderboardsetmemberlocalizationresponse>
+ */
+public struct GameCenterLeaderboardSetMemberLocalizationResponse: Codable, Sendable {
+    public let data: GameCenterLeaderboardSetMemberLocalization
+    public var included: [Included]?
+    public let links: DocumentLinks
+
+    public init(data: GameCenterLeaderboardSetMemberLocalization,
+                included: [Included]? = nil,
+                links: DocumentLinks)
+    {
+        self.data = data
+        self.included = included
+        self.links = links
+    }
+
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: AnyCodingKey.self)
+        data = try container.decode(GameCenterLeaderboardSetMemberLocalization.self, forKey: "data")
+        included = try container.decodeIfPresent([Included].self, forKey: "included")
+        links = try container.decode(DocumentLinks.self, forKey: "links")
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: AnyCodingKey.self)
+        try container.encode(data, forKey: "data")
+        try container.encodeIfPresent(included, forKey: "included")
+        try container.encode(links, forKey: "links")
+    }
+
+    public func getGameCenterLeaderboard() -> GameCenterLeaderboard? {
+        included?.compactMap { relationship -> GameCenterLeaderboard? in
+            guard case let .gameCenterLeaderboard(gameCenterLeaderboard) = relationship else { return nil }
+            return gameCenterLeaderboard
+        }.first { $0.id == data.relationships?.gameCenterLeaderboard?.data?.id }
+    }
+
+    public func getGameCenterLeaderboardSet() -> GameCenterLeaderboardSet? {
+        included?.compactMap { relationship -> GameCenterLeaderboardSet? in
+            guard case let .gameCenterLeaderboardSet(gameCenterLeaderboardSet) = relationship else { return nil }
+            return gameCenterLeaderboardSet
+        }.first { $0.id == data.relationships?.gameCenterLeaderboardSet?.data?.id }
+    }
+
+    public enum Included: Codable, Sendable {
+        case gameCenterLeaderboard(GameCenterLeaderboard)
+        case gameCenterLeaderboardSet(GameCenterLeaderboardSet)
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: AnyCodingKey.self)
+            let discriminatorValue = try container.decode(String.self, forKey: "type")
+            switch discriminatorValue {
+            case "gameCenterLeaderboards":
+                self = .gameCenterLeaderboard(try GameCenterLeaderboard(from: decoder))
+            case "gameCenterLeaderboardSets":
+                self = .gameCenterLeaderboardSet(try GameCenterLeaderboardSet(from: decoder))
+            default:
+                throw DecodingError.dataCorruptedError(
+                    forKey: "type",
+                    in: container,
+                    debugDescription: "Unknown Included type '\(discriminatorValue)'")
+            }
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            switch self {
+            case let .gameCenterLeaderboard(value):
+                try value.encode(to: encoder)
+            case let .gameCenterLeaderboardSet(value):
+                try value.encode(to: encoder)
+            }
+        }
+    }
+}

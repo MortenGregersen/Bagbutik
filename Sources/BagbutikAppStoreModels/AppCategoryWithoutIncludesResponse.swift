@@ -1,0 +1,33 @@
+import BagbutikCore
+import Foundation
+
+/**
+ # AppCategoryWithoutIncludesResponse
+ A response containing a single App Store category, without including subcategory resources.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appcategorywithoutincludesresponse>
+ */
+public struct AppCategoryWithoutIncludesResponse: Codable, Sendable {
+    public let data: AppCategory
+    public let links: DocumentLinks
+
+    public init(data: AppCategory,
+                links: DocumentLinks)
+    {
+        self.data = data
+        self.links = links
+    }
+
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: AnyCodingKey.self)
+        data = try container.decode(AppCategory.self, forKey: "data")
+        links = try container.decode(DocumentLinks.self, forKey: "links")
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: AnyCodingKey.self)
+        try container.encode(data, forKey: "data")
+        try container.encode(links, forKey: "links")
+    }
+}

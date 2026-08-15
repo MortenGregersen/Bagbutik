@@ -1,0 +1,35 @@
+import BagbutikCore
+import Foundation
+
+/**
+ # GameCenterMatchmakingTeamAssignment
+ The assignment of a player to a specific team during a Game Center matchmaking session.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingteamassignment>
+ */
+public struct GameCenterMatchmakingTeamAssignment: Codable, Sendable {
+    /// A unique identifier for the player.
+    public var playerId: String?
+    /// The name of the team that Game Center assigned the player to.
+    public var team: String?
+
+    public init(playerId: String? = nil,
+                team: String? = nil)
+    {
+        self.playerId = playerId
+        self.team = team
+    }
+
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: AnyCodingKey.self)
+        playerId = try container.decodeIfPresent(String.self, forKey: "playerId")
+        team = try container.decodeIfPresent(String.self, forKey: "team")
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: AnyCodingKey.self)
+        try container.encodeIfPresent(playerId, forKey: "playerId")
+        try container.encodeIfPresent(team, forKey: "team")
+    }
+}

@@ -26,9 +26,9 @@ jobs:
     - name: Build & Test
       run: swift test -v --enable-code-coverage --xunit-output .build/test-results.xml
     - name: Test Maintainer Tools
-      run: swift test -v --package-path Tools
-    - name: Generate LCOV coverage report
-      id: coverage
+      run: swift test -v --package-path Tools --enable-code-coverage
+    - name: Generate runtime LCOV coverage report
+      id: runtime_coverage
       run: |
         # SwiftPM's exported JSON uploads, but Codecov marks it unusable.
         # Convert the collected profdata to LCOV instead.
@@ -39,9 +39,22 @@ jobs:
         test_binary_path="$build_dir/BagbutikPackageTests.xctest/Contents/MacOS/BagbutikPackageTests"
         test -f "$profdata_path"
         test -f "$test_binary_path"
-        xcrun llvm-cov export -format=lcov -instr-profile "$profdata_path" "$test_binary_path" > .build/codecov.lcov
-        test -s .build/codecov.lcov
-        echo "path=.build/codecov.lcov" >> "$GITHUB_OUTPUT"
+        xcrun llvm-cov export -format=lcov -instr-profile "$profdata_path" "$test_binary_path" > .build/codecov-runtime.lcov
+        test -s .build/codecov-runtime.lcov
+        echo "path=.build/codecov-runtime.lcov" >> "$GITHUB_OUTPUT"
+    - name: Generate tools LCOV coverage report
+      id: tools_coverage
+      run: |
+        coverage_json_path="$(swift test --package-path Tools --skip-build --show-codecov-path --enable-code-coverage | tail -n 1)"
+        codecov_dir="$(dirname "$coverage_json_path")"
+        build_dir="$(dirname "$codecov_dir")"
+        profdata_path="$codecov_dir/default.profdata"
+        test_binary_path="$build_dir/BagbutikToolsPackageTests.xctest/Contents/MacOS/BagbutikToolsPackageTests"
+        test -f "$profdata_path"
+        test -f "$test_binary_path"
+        xcrun llvm-cov export -format=lcov -instr-profile "$profdata_path" "$test_binary_path" > Tools/.build/codecov-tools.lcov
+        test -s Tools/.build/codecov-tools.lcov
+        echo "path=Tools/.build/codecov-tools.lcov" >> "$GITHUB_OUTPUT"
     - name: Resolve test results report path
       id: test_results
       run: |
@@ -53,7 +66,7 @@ jobs:
       uses: codecov/codecov-action@v5
       with:
         token: ${{ secrets.CODECOV_TOKEN }}
-        files: ${{ steps.coverage.outputs.path }}
+        files: ${{ steps.runtime_coverage.outputs.path }},${{ steps.tools_coverage.outputs.path }}
     - name: Upload test results to Codecov
       if: ${{ !cancelled() }}
       uses: codecov/codecov-action@v5

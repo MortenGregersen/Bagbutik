@@ -13,99 +13,299 @@ let package = Package(
     ],
     products: [
         .library(
-            // Includes all targets. Each target still needs to be imported in code.
             name: "Bagbutik",
+            targets: ["Bagbutik"]
+        ),
+        .library(
+            name: "BagbutikCore",
+            targets: ["BagbutikCore"]
+        ),
+        .library(
+            name: "BagbutikAppStore",
             targets: [
-                "Bagbutik-Core",
-                "Bagbutik-Models",
-                "Bagbutik-AppStore",
-                "Bagbutik-GameCenter",
-                "Bagbutik-Marketplaces",
-                "Bagbutik-Provisioning",
-                "Bagbutik-Reporting",
-                "Bagbutik-TestFlight",
-                "Bagbutik-Users",
-                "Bagbutik-Webhooks",
-                "Bagbutik-XcodeCloud",
+                "BagbutikCore",
+                "BagbutikModelsShared",
+                "BagbutikAppStoreModels",
+                "BagbutikAppStore",
+                "BagbutikMarketplacesModels",
+                "BagbutikProvisioningModels",
+                "BagbutikTestFlightModels",
+                "BagbutikXcodeCloudModels",
             ]
         ),
         .library(
-            // Has the core features like the service, JWT and general models.
-            name: "Bagbutik-Core",
-            targets: ["Bagbutik-Core"]
+            name: "BagbutikGameCenter",
+            targets: [
+                "BagbutikCore",
+                "BagbutikModelsShared",
+                "BagbutikAppStoreModels",
+                "BagbutikGameCenterModels",
+                "BagbutikGameCenter",
+                "BagbutikMarketplacesModels",
+                "BagbutikProvisioningModels",
+                "BagbutikTestFlightModels",
+                "BagbutikXcodeCloudModels",
+            ]
         ),
         .library(
-            // All models used by the endpoints.
-            name: "Bagbutik-Models",
-            targets: ["Bagbutik-Models"]
+            name: "BagbutikMarketplaces",
+            targets: [
+                "BagbutikCore",
+                "BagbutikModelsShared",
+                "BagbutikMarketplacesModels",
+                "BagbutikMarketplaces",
+            ]
         ),
         .library(
-            name: "Bagbutik-AppStore",
-            targets: ["Bagbutik-AppStore"]
+            name: "BagbutikProvisioning",
+            targets: [
+                "BagbutikCore",
+                "BagbutikModelsShared",
+                "BagbutikProvisioningModels",
+                "BagbutikProvisioning",
+            ]
         ),
         .library(
-            name: "Bagbutik-GameCenter",
-            targets: ["Bagbutik-GameCenter"]
+            name: "BagbutikReporting",
+            targets: [
+                "BagbutikCore",
+                "BagbutikModelsShared",
+                "BagbutikReportingModels",
+                "BagbutikReporting",
+            ]
         ),
         .library(
-            name: "Bagbutik-Marketplaces",
-            targets: ["Bagbutik-Marketplaces"]
+            name: "BagbutikTestFlight",
+            targets: [
+                "BagbutikCore",
+                "BagbutikModelsShared",
+                "BagbutikTestFlightModels",
+                "BagbutikTestFlight",
+            ]
         ),
         .library(
-            name: "Bagbutik-Provisioning",
-            targets: ["Bagbutik-Provisioning"]
+            name: "BagbutikUsers",
+            targets: [
+                "BagbutikCore",
+                "BagbutikModelsShared",
+                "BagbutikUsersModels",
+                "BagbutikUsers",
+            ]
         ),
         .library(
-            name: "Bagbutik-Reporting",
-            targets: ["Bagbutik-Reporting"]
+            name: "BagbutikWebhooks",
+            targets: [
+                "BagbutikCore",
+                "BagbutikModelsShared",
+                "BagbutikWebhooksModels",
+                "BagbutikWebhooks",
+            ]
         ),
         .library(
-            name: "Bagbutik-TestFlight",
-            targets: ["Bagbutik-TestFlight"]
-        ),
-        .library(
-            name: "Bagbutik-Users",
-            targets: ["Bagbutik-Users"]
-        ),
-        .library(
-            name: "Bagbutik-Webhooks",
-            targets: ["Bagbutik-Webhooks"]
-        ),
-        .library(
-            name: "Bagbutik-XcodeCloud",
-            targets: ["Bagbutik-XcodeCloud"]
+            name: "BagbutikXcodeCloud",
+            targets: [
+                "BagbutikCore",
+                "BagbutikModelsShared",
+                "BagbutikProvisioningModels",
+                "BagbutikXcodeCloudModels",
+                "BagbutikXcodeCloud",
+            ]
         )
     ],
     dependencies: [
         .package(url: "https://github.com/apple/swift-crypto", from: "3.12.3"),
     ],
     targets: [
-        .target(name: "Bagbutik-Core", dependencies: [
-            .product(name: "Crypto", package: "swift-crypto", condition: .when(platforms: [.linux, .android])),
-            .target(name: "system-zlib", condition: .when(platforms: [.linux, .android]))
-        ]),
-        .target(name: "Bagbutik-Models", dependencies: ["Bagbutik-Core"]),
-        .target(name: "Bagbutik-AppStore", dependencies: ["Bagbutik-Core", "Bagbutik-Models"]),
-        .target(name: "Bagbutik-GameCenter", dependencies: ["Bagbutik-Core", "Bagbutik-Models"]),
-        .target(name: "Bagbutik-Marketplaces", dependencies: ["Bagbutik-Core", "Bagbutik-Models"]),
-        .target(name: "Bagbutik-Provisioning", dependencies: ["Bagbutik-Core", "Bagbutik-Models"]),
-        .target(name: "Bagbutik-Reporting", dependencies: ["Bagbutik-Core", "Bagbutik-Models"]),
-        .target(name: "Bagbutik-TestFlight", dependencies: ["Bagbutik-Core", "Bagbutik-Models"]),
-        .target(name: "Bagbutik-Users", dependencies: ["Bagbutik-Core", "Bagbutik-Models"]),
-        .target(name: "Bagbutik-Webhooks", dependencies: ["Bagbutik-Core", "Bagbutik-Models"]),
-        .target(name: "Bagbutik-XcodeCloud", dependencies: ["Bagbutik-Core", "Bagbutik-Models"]),
+        .target(
+            name: "BagbutikCore",
+            dependencies: [
+                .product(name: "Crypto", package: "swift-crypto", condition: .when(platforms: [.linux, .android])),
+                .target(name: "system-zlib", condition: .when(platforms: [.linux, .android]))
+            ]
+        ),
+        .target(
+            name: "Bagbutik",
+            dependencies: [
+                "BagbutikCore",
+                "BagbutikModelsShared",
+                "BagbutikAppStoreModels",
+                "BagbutikAppStore",
+                "BagbutikGameCenterModels",
+                "BagbutikGameCenter",
+                "BagbutikMarketplacesModels",
+                "BagbutikMarketplaces",
+                "BagbutikProvisioningModels",
+                "BagbutikProvisioning",
+                "BagbutikReportingModels",
+                "BagbutikReporting",
+                "BagbutikTestFlightModels",
+                "BagbutikTestFlight",
+                "BagbutikUsersModels",
+                "BagbutikUsers",
+                "BagbutikWebhooksModels",
+                "BagbutikWebhooks",
+                "BagbutikXcodeCloudModels",
+                "BagbutikXcodeCloud",
+            ]
+        ),
+        .target(name: "BagbutikModelsShared", dependencies: ["BagbutikCore"]),
+        .target(
+            name: "BagbutikAppStoreModels",
+            dependencies: [
+                "BagbutikCore",
+                "BagbutikModelsShared",
+                "BagbutikMarketplacesModels",
+                "BagbutikTestFlightModels",
+                "BagbutikXcodeCloudModels",
+            ]
+        ),
+        .target(
+            name: "BagbutikGameCenterModels",
+            dependencies: [
+                "BagbutikCore",
+                "BagbutikModelsShared",
+                "BagbutikAppStoreModels",
+            ]
+        ),
+        .target(name: "BagbutikMarketplacesModels", dependencies: ["BagbutikCore", "BagbutikModelsShared"]),
+        .target(name: "BagbutikProvisioningModels", dependencies: ["BagbutikCore", "BagbutikModelsShared"]),
+        .target(name: "BagbutikReportingModels", dependencies: ["BagbutikCore", "BagbutikModelsShared"]),
+        .target(
+            name: "BagbutikTestFlightModels",
+            dependencies: ["BagbutikCore", "BagbutikModelsShared"]
+        ),
+        .target(name: "BagbutikUsersModels", dependencies: ["BagbutikCore", "BagbutikModelsShared"]),
+        .target(name: "BagbutikWebhooksModels", dependencies: ["BagbutikCore", "BagbutikModelsShared"]),
+        .target(
+            name: "BagbutikXcodeCloudModels",
+            dependencies: ["BagbutikCore", "BagbutikModelsShared", "BagbutikProvisioningModels"]
+        ),
+        .target(
+            name: "BagbutikMarketplaces",
+            dependencies: ["BagbutikCore", "BagbutikModelsShared", "BagbutikMarketplacesModels"]
+        ),
+        .target(
+            name: "BagbutikProvisioning",
+            dependencies: ["BagbutikCore", "BagbutikModelsShared", "BagbutikProvisioningModels"]
+        ),
+        .target(
+            name: "BagbutikReporting",
+            dependencies: ["BagbutikCore", "BagbutikModelsShared", "BagbutikReportingModels"]
+        ),
+        .target(
+            name: "BagbutikUsers",
+            dependencies: ["BagbutikCore", "BagbutikModelsShared", "BagbutikUsersModels"]
+        ),
+        .target(
+            name: "BagbutikAppStore",
+            dependencies: [
+                "BagbutikCore",
+                "BagbutikModelsShared",
+                "BagbutikAppStoreModels",
+            ]
+        ),
+        .target(
+            name: "BagbutikGameCenter",
+            dependencies: [
+                "BagbutikCore",
+                "BagbutikModelsShared",
+                "BagbutikGameCenterModels",
+            ]
+        ),
+        .target(
+            name: "BagbutikTestFlight",
+            dependencies: [
+                "BagbutikCore",
+                "BagbutikModelsShared",
+                "BagbutikTestFlightModels",
+            ]
+        ),
+        .target(
+            name: "BagbutikWebhooks",
+            dependencies: ["BagbutikCore", "BagbutikModelsShared", "BagbutikWebhooksModels"]
+        ),
+        .target(
+            name: "BagbutikXcodeCloud",
+            dependencies: [
+                "BagbutikCore",
+                "BagbutikModelsShared",
+                "BagbutikProvisioningModels",
+                "BagbutikXcodeCloudModels",
+            ]
+        ),
         .target(name: "system-zlib"),
         // Test targets
         .testTarget(
-            name: "Bagbutik-CoreTests",
+            name: "BagbutikCoreTests",
             dependencies: [
-                "Bagbutik-Core",
-                "Bagbutik-AppStore",
+                "BagbutikCore",
+                "BagbutikAppStore",
+                "BagbutikAppStoreModels",
+                "BagbutikModelsShared",
                 .product(name: "Crypto", package: "swift-crypto", condition: .when(platforms: [.linux, .android]))
             ],
+            path: "Tests/Bagbutik-CoreTests",
             resources: [.copy("test-private-key.p8")]
         ),
-        .testTarget(name: "Bagbutik-ModelsTests", dependencies: ["Bagbutik-Models"]),
+        .testTarget(name: "BagbutikUmbrellaIntegrationTests", dependencies: ["Bagbutik"]),
+        .testTarget(
+            name: "BagbutikAppStoreIntegrationTests",
+            dependencies: [
+                "BagbutikCore",
+                "BagbutikModelsShared",
+                "BagbutikAppStoreModels",
+                "BagbutikAppStore",
+            ]
+        ),
+        .testTarget(
+            name: "BagbutikGameCenterIntegrationTests",
+            dependencies: [
+                "BagbutikCore",
+                "BagbutikModelsShared",
+                "BagbutikAppStoreModels",
+                "BagbutikGameCenterModels",
+                "BagbutikGameCenter",
+            ]
+        ),
+        .testTarget(
+            name: "BagbutikMarketplacesIntegrationTests",
+            dependencies: ["BagbutikCore", "BagbutikModelsShared", "BagbutikMarketplacesModels", "BagbutikMarketplaces"]
+        ),
+        .testTarget(
+            name: "BagbutikProvisioningIntegrationTests",
+            dependencies: ["BagbutikCore", "BagbutikModelsShared", "BagbutikProvisioningModels", "BagbutikProvisioning"]
+        ),
+        .testTarget(
+            name: "BagbutikReportingIntegrationTests",
+            dependencies: ["BagbutikCore", "BagbutikModelsShared", "BagbutikReportingModels", "BagbutikReporting"]
+        ),
+        .testTarget(
+            name: "BagbutikTestFlightIntegrationTests",
+            dependencies: [
+                "BagbutikCore",
+                "BagbutikModelsShared",
+                "BagbutikTestFlightModels",
+                "BagbutikTestFlight",
+            ]
+        ),
+        .testTarget(
+            name: "BagbutikUsersIntegrationTests",
+            dependencies: ["BagbutikCore", "BagbutikModelsShared", "BagbutikUsersModels", "BagbutikUsers"]
+        ),
+        .testTarget(
+            name: "BagbutikWebhooksIntegrationTests",
+            dependencies: ["BagbutikCore", "BagbutikModelsShared", "BagbutikWebhooksModels", "BagbutikWebhooks"]
+        ),
+        .testTarget(
+            name: "BagbutikXcodeCloudIntegrationTests",
+            dependencies: [
+                "BagbutikCore",
+                "BagbutikModelsShared",
+                "BagbutikProvisioningModels",
+                "BagbutikXcodeCloudModels",
+                "BagbutikXcodeCloud",
+            ]
+        ),
     ],
     swiftLanguageModes: [.v5, .v6]
 )

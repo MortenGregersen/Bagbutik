@@ -1,0 +1,21 @@
+import BagbutikCore
+import BagbutikAppStoreModels
+
+public extension Request {
+    /**
+     # Create a Review Submission Item
+     Create a new review submission item.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/post-v1-reviewSubmissionItems>
+
+     - Parameter requestBody: ReviewSubmissionItem representation
+     - Returns: A ``Request`` to send to an instance of ``BagbutikService``
+     */
+    static func createReviewSubmissionItemV1(requestBody: ReviewSubmissionItemCreateRequest) -> Request<ReviewSubmissionItemResponse, ErrorResponse> {
+        .init(
+            path: "/v1/reviewSubmissionItems",
+            method: .post,
+            requestBody: requestBody)
+    }
+}

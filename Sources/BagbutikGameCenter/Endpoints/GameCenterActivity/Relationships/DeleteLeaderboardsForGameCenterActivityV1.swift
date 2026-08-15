@@ -1,0 +1,25 @@
+import BagbutikCore
+import BagbutikGameCenterModels
+import BagbutikModelsShared
+
+public extension Request {
+    /**
+     # Remove a Leaderboard From an Activity
+     Remove the relationship between a leaderboard and a Game Center activity.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/delete-v1-gameCenterActivities-_id_-relationships-leaderboards>
+
+     - Parameter id: The id of the requested resource
+     - Parameter requestBody: List of related linkages
+     - Returns: A ``Request`` to send to an instance of ``BagbutikService``
+     */
+    @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
+    static func deleteLeaderboardsForGameCenterActivityV1(id: String,
+                                                          requestBody: GameCenterActivityLeaderboardsLinkagesRequest) -> Request<EmptyResponse, ErrorResponse> {
+        .init(
+            path: "/v1/gameCenterActivities/\(id)/relationships/leaderboards",
+            method: .delete,
+            requestBody: requestBody)
+    }
+}

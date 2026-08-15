@@ -1,0 +1,21 @@
+import BagbutikCore
+import BagbutikAppStoreModels
+
+public extension Request {
+    /**
+     # Create an app pre-order
+     Create an app pre-order and set the expected app release date.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/post-v2-appAvailabilities>
+
+     - Parameter requestBody: AppAvailability representation
+     - Returns: A ``Request`` to send to an instance of ``BagbutikService``
+     */
+    static func createAppAvailabilitiesV2(requestBody: AppAvailabilityV2CreateRequest) -> Request<AppAvailabilityV2Response, ErrorResponse> {
+        .init(
+            path: "/v2/appAvailabilities",
+            method: .post,
+            requestBody: requestBody)
+    }
+}

@@ -1,0 +1,21 @@
+import BagbutikCore
+import BagbutikAppStoreModels
+
+public extension Request {
+    /**
+     # Create an image for a subscription (v1)
+     Reserve an image asset to appear in the App Store, representing a subscription.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/post-v1-subscriptionImages>
+
+     - Parameter requestBody: SubscriptionImage representation
+     - Returns: A ``Request`` to send to an instance of ``BagbutikService``
+     */
+    static func createSubscriptionImageV1(requestBody: SubscriptionImageCreateRequest) -> Request<SubscriptionImageResponse, ErrorResponse> {
+        .init(
+            path: "/v1/subscriptionImages",
+            method: .post,
+            requestBody: requestBody)
+    }
+}

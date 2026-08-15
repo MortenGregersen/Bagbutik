@@ -1,0 +1,24 @@
+import BagbutikCore
+import BagbutikGameCenterModels
+
+public extension Request {
+    /**
+     # Modify an Achievement Image
+     Commit an achievement image after uploading it.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/patch-v1-gameCenterAchievementImages-_id_>
+
+     - Parameter id: The id of the requested resource
+     - Parameter requestBody: GameCenterAchievementImage representation
+     - Returns: A ``Request`` to send to an instance of ``BagbutikService``
+     */
+    @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
+    static func updateGameCenterAchievementImageV1(id: String,
+                                                   requestBody: GameCenterAchievementImageUpdateRequest) -> Request<GameCenterAchievementImageResponse, ErrorResponse> {
+        .init(
+            path: "/v1/gameCenterAchievementImages/\(id)",
+            method: .patch,
+            requestBody: requestBody)
+    }
+}

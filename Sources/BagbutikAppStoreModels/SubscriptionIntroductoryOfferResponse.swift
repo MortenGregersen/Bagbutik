@@ -1,0 +1,94 @@
+import BagbutikCore
+import Foundation
+
+/**
+ # SubscriptionIntroductoryOfferResponse
+ The response body for endpoints that create, read, or modify a single subscription introductory offer.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/subscriptionintroductoryofferresponse>
+ */
+public struct SubscriptionIntroductoryOfferResponse: Codable, Sendable {
+    public let data: SubscriptionIntroductoryOffer
+    public var included: [Included]?
+    public let links: DocumentLinks
+
+    public init(data: SubscriptionIntroductoryOffer,
+                included: [Included]? = nil,
+                links: DocumentLinks)
+    {
+        self.data = data
+        self.included = included
+        self.links = links
+    }
+
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: AnyCodingKey.self)
+        data = try container.decode(SubscriptionIntroductoryOffer.self, forKey: "data")
+        included = try container.decodeIfPresent([Included].self, forKey: "included")
+        links = try container.decode(DocumentLinks.self, forKey: "links")
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: AnyCodingKey.self)
+        try container.encode(data, forKey: "data")
+        try container.encodeIfPresent(included, forKey: "included")
+        try container.encode(links, forKey: "links")
+    }
+
+    public func getSubscription() -> Subscription? {
+        included?.compactMap { relationship -> Subscription? in
+            guard case let .subscription(subscription) = relationship else { return nil }
+            return subscription
+        }.first { $0.id == data.relationships?.subscription?.data?.id }
+    }
+
+    public func getSubscriptionPricePoint() -> SubscriptionPricePoint? {
+        included?.compactMap { relationship -> SubscriptionPricePoint? in
+            guard case let .subscriptionPricePoint(subscriptionPricePoint) = relationship else { return nil }
+            return subscriptionPricePoint
+        }.first { $0.id == data.relationships?.subscriptionPricePoint?.data?.id }
+    }
+
+    public func getTerritory() -> Territory? {
+        included?.compactMap { relationship -> Territory? in
+            guard case let .territory(territory) = relationship else { return nil }
+            return territory
+        }.first { $0.id == data.relationships?.territory?.data?.id }
+    }
+
+    public enum Included: Codable, Sendable {
+        case subscription(Subscription)
+        case subscriptionPricePoint(SubscriptionPricePoint)
+        case territory(Territory)
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: AnyCodingKey.self)
+            let discriminatorValue = try container.decode(String.self, forKey: "type")
+            switch discriminatorValue {
+            case "subscriptions":
+                self = .subscription(try Subscription(from: decoder))
+            case "subscriptionPricePoints":
+                self = .subscriptionPricePoint(try SubscriptionPricePoint(from: decoder))
+            case "territories":
+                self = .territory(try Territory(from: decoder))
+            default:
+                throw DecodingError.dataCorruptedError(
+                    forKey: "type",
+                    in: container,
+                    debugDescription: "Unknown Included type '\(discriminatorValue)'")
+            }
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            switch self {
+            case let .subscription(value):
+                try value.encode(to: encoder)
+            case let .subscriptionPricePoint(value):
+                try value.encode(to: encoder)
+            case let .territory(value):
+                try value.encode(to: encoder)
+            }
+        }
+    }
+}

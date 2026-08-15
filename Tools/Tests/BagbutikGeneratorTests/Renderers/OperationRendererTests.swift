@@ -23,8 +23,7 @@ final class OperationRendererTests: XCTestCase {
         let rendered = try await renderer.render(operation: operation, in: path)
         // Then
         XCTAssertEqual(rendered, #"""
-        import Bagbutik_Core
-        import Bagbutik_Models
+        import BagbutikCore
 
         public extension Request {
             /**
@@ -67,8 +66,7 @@ final class OperationRendererTests: XCTestCase {
         let rendered = try await renderer.render(operation: operation, in: path)
         // Then
         XCTAssertEqual(rendered, #"""
-        import Bagbutik_Core
-        import Bagbutik_Models
+        import BagbutikCore
 
         public extension Request {
             /**
@@ -130,8 +128,7 @@ final class OperationRendererTests: XCTestCase {
         let rendered = try await renderer.render(operation: operation, in: path)
         // Then
         XCTAssertEqual(rendered, #"""
-        import Bagbutik_Core
-        import Bagbutik_Models
+        import BagbutikCore
 
         public extension Request {
             /**
@@ -202,8 +199,7 @@ final class OperationRendererTests: XCTestCase {
         let rendered = try await renderer.render(operation: operation, in: path)
         // Then
         XCTAssertEqual(rendered, #"""
-        import Bagbutik_Core
-        import Bagbutik_Models
+        import BagbutikCore
 
         public extension Request {
             /**
@@ -238,8 +234,7 @@ final class OperationRendererTests: XCTestCase {
         let rendered = try await renderer.render(operation: operation, in: path)
         // Then
         XCTAssertEqual(rendered, #"""
-        import Bagbutik_Core
-        import Bagbutik_Models
+        import BagbutikCore
 
         public extension Request {
             /**
@@ -288,8 +283,7 @@ final class OperationRendererTests: XCTestCase {
         let rendered = try await renderer.render(operation: operation, in: path)
         // Then
         XCTAssertEqual(rendered, #"""
-        import Bagbutik_Core
-        import Bagbutik_Models
+        import BagbutikCore
 
         public extension Request {
             /**
@@ -491,8 +485,7 @@ final class OperationRendererTests: XCTestCase {
         let rendered = try await renderer.render(operation: operation, in: path)
         // Then
         XCTAssertEqual(rendered, #"""
-        import Bagbutik_Core
-        import Bagbutik_Models
+        import BagbutikCore
 
         public extension Request {
             /**
@@ -588,8 +581,7 @@ final class OperationRendererTests: XCTestCase {
         let rendered = try await renderer.render(operation: operation, in: path)
         // Then
         XCTAssertEqual(rendered, #"""
-        import Bagbutik_Core
-        import Bagbutik_Models
+        import BagbutikCore
 
         public extension Request {
             /**

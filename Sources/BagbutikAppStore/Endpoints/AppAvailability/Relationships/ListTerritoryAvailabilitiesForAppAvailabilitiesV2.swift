@@ -1,0 +1,92 @@
+import BagbutikCore
+import BagbutikAppStoreModels
+
+public extension Request {
+    /**
+     # Read app availablity territories
+     Read the territory availablity for a specific app.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v2-appAvailabilities-_id_-territoryAvailabilities>
+
+     - Parameter id: The id of the requested resource
+     - Parameter fields: Fields to return for included related types
+     - Parameter includes: Relationship data to include in the response
+     - Parameter limit: Maximum resources per page - maximum 200
+     - Returns: A ``Request`` to send to an instance of ``BagbutikService``
+     */
+    static func listTerritoryAvailabilitiesForAppAvailabilitiesV2(id: String,
+                                                                  fields: [ListTerritoryAvailabilitiesForAppAvailabilitiesV2.Field]? = nil,
+                                                                  includes: [ListTerritoryAvailabilitiesForAppAvailabilitiesV2.Include]? = nil,
+                                                                  limit: Int? = nil) -> Request<TerritoryAvailabilitiesResponse, ErrorResponse> {
+        .init(
+            path: "/v2/appAvailabilities/\(id)/territoryAvailabilities",
+            method: .get,
+            parameters: .init(
+                fields: fields,
+                includes: includes,
+                limit: limit))
+    }
+}
+
+public enum ListTerritoryAvailabilitiesForAppAvailabilitiesV2 {
+    /**
+     Fields to return for included related types.
+     */
+    public enum Field: FieldParameter {
+        /// The fields to include for returned resources of type territories
+        case territories([Territories])
+        /// The fields to include for returned resources of type territoryAvailabilities
+        case territoryAvailabilities([TerritoryAvailabilities])
+
+        public enum Territories: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case currency
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = Territories(rawValue: string) {
+                    self = value
+                } else if let value = Territories(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid Territories value: \(string)"
+                    )
+                }
+            }
+        }
+
+        public enum TerritoryAvailabilities: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case available
+            case contentStatuses
+            case preOrderEnabled
+            case preOrderPublishDate
+            case releaseDate
+            case territory
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = TerritoryAvailabilities(rawValue: string) {
+                    self = value
+                } else if let value = TerritoryAvailabilities(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid TerritoryAvailabilities value: \(string)"
+                    )
+                }
+            }
+        }
+    }
+
+    /**
+     Relationship data to include in the response.
+     */
+    public enum Include: String, IncludeParameter, CaseIterable {
+        case territory
+    }
+}

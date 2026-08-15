@@ -1,0 +1,100 @@
+import BagbutikCore
+import BagbutikAppStoreModels
+
+public extension Request {
+    /**
+     # List all screenshots for an app event localization
+     Get a list of screenshots for a specific app event localization.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-appEventLocalizations-_id_-appEventScreenshots>
+
+     - Parameter id: The id of the requested resource
+     - Parameter fields: Fields to return for included related types
+     - Parameter includes: Relationship data to include in the response
+     - Parameter limit: Maximum resources per page - maximum 200
+     - Returns: A ``Request`` to send to an instance of ``BagbutikService``
+     */
+    static func listAppEventScreenshotsForAppEventLocalizationV1(id: String,
+                                                                 fields: [ListAppEventScreenshotsForAppEventLocalizationV1.Field]? = nil,
+                                                                 includes: [ListAppEventScreenshotsForAppEventLocalizationV1.Include]? = nil,
+                                                                 limit: Int? = nil) -> Request<AppEventScreenshotsResponse, ErrorResponse> {
+        .init(
+            path: "/v1/appEventLocalizations/\(id)/appEventScreenshots",
+            method: .get,
+            parameters: .init(
+                fields: fields,
+                includes: includes,
+                limit: limit))
+    }
+}
+
+public enum ListAppEventScreenshotsForAppEventLocalizationV1 {
+    /**
+     Fields to return for included related types.
+     */
+    public enum Field: FieldParameter {
+        /// The fields to include for returned resources of type appEventLocalizations
+        case appEventLocalizations([AppEventLocalizations])
+        /// The fields to include for returned resources of type appEventScreenshots
+        case appEventScreenshots([AppEventScreenshots])
+
+        public enum AppEventLocalizations: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case appEvent
+            case appEventScreenshots
+            case appEventVideoClips
+            case locale
+            case longDescription
+            case name
+            case shortDescription
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = AppEventLocalizations(rawValue: string) {
+                    self = value
+                } else if let value = AppEventLocalizations(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid AppEventLocalizations value: \(string)"
+                    )
+                }
+            }
+        }
+
+        public enum AppEventScreenshots: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case appEventAssetType
+            case appEventLocalization
+            case assetDeliveryState
+            case assetToken
+            case fileName
+            case fileSize
+            case imageAsset
+            case uploadOperations
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = AppEventScreenshots(rawValue: string) {
+                    self = value
+                } else if let value = AppEventScreenshots(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid AppEventScreenshots value: \(string)"
+                    )
+                }
+            }
+        }
+    }
+
+    /**
+     Relationship data to include in the response.
+     */
+    public enum Include: String, IncludeParameter, CaseIterable {
+        case appEventLocalization
+    }
+}

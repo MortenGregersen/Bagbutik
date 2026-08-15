@@ -1,0 +1,38 @@
+import BagbutikCore
+import Foundation
+
+/**
+ # AppEventResponse
+ The response body for endpoints that create, read, or modify an in-app event.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appeventresponse>
+ */
+public struct AppEventResponse: Codable, Sendable {
+    public let data: AppEvent
+    public var included: [AppEventLocalization]?
+    public let links: DocumentLinks
+
+    public init(data: AppEvent,
+                included: [AppEventLocalization]? = nil,
+                links: DocumentLinks)
+    {
+        self.data = data
+        self.included = included
+        self.links = links
+    }
+
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: AnyCodingKey.self)
+        data = try container.decode(AppEvent.self, forKey: "data")
+        included = try container.decodeIfPresent([AppEventLocalization].self, forKey: "included")
+        links = try container.decode(DocumentLinks.self, forKey: "links")
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: AnyCodingKey.self)
+        try container.encode(data, forKey: "data")
+        try container.encodeIfPresent(included, forKey: "included")
+        try container.encode(links, forKey: "links")
+    }
+}

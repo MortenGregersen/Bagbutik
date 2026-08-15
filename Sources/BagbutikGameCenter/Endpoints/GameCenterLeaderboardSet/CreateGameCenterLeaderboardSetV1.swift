@@ -1,0 +1,22 @@
+import BagbutikCore
+import BagbutikGameCenterModels
+
+public extension Request {
+    /**
+     # Create a Leaderboard Set
+     Add a new leaderboard set to your app.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/post-v1-gameCenterLeaderboardSets>
+
+     - Parameter requestBody: GameCenterLeaderboardSet representation
+     - Returns: A ``Request`` to send to an instance of ``BagbutikService``
+     */
+    @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
+    static func createGameCenterLeaderboardSetV1(requestBody: GameCenterLeaderboardSetCreateRequest) -> Request<GameCenterLeaderboardSetResponse, ErrorResponse> {
+        .init(
+            path: "/v1/gameCenterLeaderboardSets",
+            method: .post,
+            requestBody: requestBody)
+    }
+}
