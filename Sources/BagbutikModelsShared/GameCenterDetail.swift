@@ -63,12 +63,18 @@ public struct GameCenterDetail: Codable, Sendable, Identifiable {
             self.arcadeEnabled = arcadeEnabled
         }
 
+        #if compiler(>=6.4)
+        @diagnose(DeprecatedDeclaration, as: ignored, reason: "Generated code must access deprecated properties when encoding and decoding API data.")
+        #endif
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: AnyCodingKey.self)
             arcadeEnabled = try container.decodeIfPresent(Bool.self, forKey: "arcadeEnabled")
             challengeEnabled = try container.decodeIfPresent(Bool.self, forKey: "challengeEnabled")
         }
 
+        #if compiler(>=6.4)
+        @diagnose(DeprecatedDeclaration, as: ignored, reason: "Generated code must access deprecated properties when encoding and decoding API data.")
+        #endif
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: AnyCodingKey.self)
             try container.encodeIfPresent(arcadeEnabled, forKey: "arcadeEnabled")
@@ -180,6 +186,9 @@ public struct GameCenterDetail: Codable, Sendable, Identifiable {
             self.gameCenterLeaderboardsV2 = gameCenterLeaderboardsV2
         }
 
+        #if compiler(>=6.4)
+        @diagnose(DeprecatedDeclaration, as: ignored, reason: "Generated code must access deprecated properties when encoding and decoding API data.")
+        #endif
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: AnyCodingKey.self)
             achievementReleases = try container.decodeIfPresent(AchievementReleases.self, forKey: "achievementReleases")
@@ -205,6 +214,9 @@ public struct GameCenterDetail: Codable, Sendable, Identifiable {
             leaderboardSetReleases = try container.decodeIfPresent(LeaderboardSetReleases.self, forKey: "leaderboardSetReleases")
         }
 
+        #if compiler(>=6.4)
+        @diagnose(DeprecatedDeclaration, as: ignored, reason: "Generated code must access deprecated properties when encoding and decoding API data.")
+        #endif
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: AnyCodingKey.self)
             try container.encodeIfPresent(achievementReleases, forKey: "achievementReleases")

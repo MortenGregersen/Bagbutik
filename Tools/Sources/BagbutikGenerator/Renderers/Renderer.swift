@@ -108,8 +108,11 @@ public class Renderer {
         "- Parameter \(name): \(description.capitalizingFirstLetter())"
     }
     
-    func renderInitializer(parameters: [FunctionParameter], throwing: Bool = false, deprecated: Bool = false, content: () throws -> String) rethrows -> String {
+    func renderInitializer(parameters: [FunctionParameter], throwing: Bool = false, deprecated: Bool = false, suppressDeprecatedDeclarationWarnings: Bool = false, content: () throws -> String) rethrows -> String {
         var rendered = ""
+        if suppressDeprecatedDeclarationWarnings {
+            rendered += renderDeprecatedDeclarationWarningSuppression()
+        }
         if deprecated {
             rendered += #"@available(*, deprecated, message: "This uses a property Apple has marked as deprecated.")"#
             rendered += "\n"
@@ -132,8 +135,11 @@ public class Renderer {
         return rendered
     }
     
-    func renderFunction(named name: String, parameters: [FunctionParameter], returnType: String? = nil, static isStatic: Bool = false, addAccessibilityModifier: Bool = true, throwing: Bool = false, deprecated: Bool = false, content: () throws -> String) rethrows -> String {
+    func renderFunction(named name: String, parameters: [FunctionParameter], returnType: String? = nil, static isStatic: Bool = false, addAccessibilityModifier: Bool = true, throwing: Bool = false, deprecated: Bool = false, suppressDeprecatedDeclarationWarnings: Bool = false, content: () throws -> String) rethrows -> String {
         var rendered = ""
+        if suppressDeprecatedDeclarationWarnings {
+            rendered += renderDeprecatedDeclarationWarningSuppression()
+        }
         if deprecated {
             rendered += #"@available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")"#
             rendered += "\n"
@@ -162,6 +168,15 @@ public class Renderer {
         } else {
             return rendered + "\n\(content.indentedLines)\n}"
         }
+    }
+
+    private func renderDeprecatedDeclarationWarningSuppression() -> String {
+        """
+        #if compiler(>=6.4)
+        @diagnose(DeprecatedDeclaration, as: ignored, reason: "Generated code must access deprecated properties when encoding and decoding API data.")
+        #endif
+
+        """
     }
     
     struct FunctionParameter: Equatable {

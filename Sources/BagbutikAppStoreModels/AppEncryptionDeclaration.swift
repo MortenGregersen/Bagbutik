@@ -124,6 +124,9 @@ public struct AppEncryptionDeclaration: Codable, Sendable, Identifiable {
             self.exempt = exempt
         }
 
+        #if compiler(>=6.4)
+        @diagnose(DeprecatedDeclaration, as: ignored, reason: "Generated code must access deprecated properties when encoding and decoding API data.")
+        #endif
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: AnyCodingKey.self)
             appDescription = try container.decodeIfPresent(String.self, forKey: "appDescription")
@@ -142,6 +145,9 @@ public struct AppEncryptionDeclaration: Codable, Sendable, Identifiable {
             usesEncryption = try container.decodeIfPresent(Bool.self, forKey: "usesEncryption")
         }
 
+        #if compiler(>=6.4)
+        @diagnose(DeprecatedDeclaration, as: ignored, reason: "Generated code must access deprecated properties when encoding and decoding API data.")
+        #endif
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: AnyCodingKey.self)
             try container.encodeIfPresent(appDescription, forKey: "appDescription")
@@ -182,6 +188,9 @@ public struct AppEncryptionDeclaration: Codable, Sendable, Identifiable {
             self.appEncryptionDeclarationDocument = appEncryptionDeclarationDocument
         }
 
+        #if compiler(>=6.4)
+        @diagnose(DeprecatedDeclaration, as: ignored, reason: "Generated code must access deprecated properties when encoding and decoding API data.")
+        #endif
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: AnyCodingKey.self)
             app = try container.decodeIfPresent(App.self, forKey: "app")
@@ -189,6 +198,9 @@ public struct AppEncryptionDeclaration: Codable, Sendable, Identifiable {
             builds = try container.decodeIfPresent(Builds.self, forKey: "builds")
         }
 
+        #if compiler(>=6.4)
+        @diagnose(DeprecatedDeclaration, as: ignored, reason: "Generated code must access deprecated properties when encoding and decoding API data.")
+        #endif
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: AnyCodingKey.self)
             try container.encodeIfPresent(app, forKey: "app")

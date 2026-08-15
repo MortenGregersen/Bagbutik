@@ -123,12 +123,18 @@ final class ObjectSchemaRendererTests: XCTestCase {
                 self.age = age
             }
 
+            #if compiler(>=6.4)
+            @diagnose(DeprecatedDeclaration, as: ignored, reason: "Generated code must access deprecated properties when encoding and decoding API data.")
+            #endif
             public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: AnyCodingKey.self)
                 age = try container.decodeIfPresent(Int.self, forKey: "age")
                 name = try container.decodeIfPresent(String.self, forKey: "name")
             }
 
+            #if compiler(>=6.4)
+            @diagnose(DeprecatedDeclaration, as: ignored, reason: "Generated code must access deprecated properties when encoding and decoding API data.")
+            #endif
             public func encode(to encoder: Encoder) throws {
                 var container = encoder.container(keyedBy: AnyCodingKey.self)
                 try container.encodeIfPresent(age, forKey: "age")
@@ -1633,11 +1639,17 @@ final class ObjectSchemaRendererTests: XCTestCase {
                 self.app = app
             }
 
+            #if compiler(>=6.4)
+            @diagnose(DeprecatedDeclaration, as: ignored, reason: "Generated code must access deprecated properties when encoding and decoding API data.")
+            #endif
             public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: AnyCodingKey.self)
                 app = try container.decode(App.self, forKey: "app")
             }
 
+            #if compiler(>=6.4)
+            @diagnose(DeprecatedDeclaration, as: ignored, reason: "Generated code must access deprecated properties when encoding and decoding API data.")
+            #endif
             public func encode(to encoder: Encoder) throws {
                 var container = encoder.container(keyedBy: AnyCodingKey.self)
                 try container.encode(app, forKey: "app")
@@ -1760,12 +1772,18 @@ final class ObjectSchemaRendererTests: XCTestCase {
                 self.user = user
             }
 
+            #if compiler(>=6.4)
+            @diagnose(DeprecatedDeclaration, as: ignored, reason: "Generated code must access deprecated properties when encoding and decoding API data.")
+            #endif
             public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: AnyCodingKey.self)
                 app = try container.decode(App.self, forKey: "app")
                 user = try container.decode(User.self, forKey: "user")
             }
 
+            #if compiler(>=6.4)
+            @diagnose(DeprecatedDeclaration, as: ignored, reason: "Generated code must access deprecated properties when encoding and decoding API data.")
+            #endif
             public func encode(to encoder: Encoder) throws {
                 var container = encoder.container(keyedBy: AnyCodingKey.self)
                 try container.encode(app, forKey: "app")
@@ -1934,12 +1952,18 @@ final class ObjectSchemaRendererTests: XCTestCase {
                 self.user = user
             }
 
+            #if compiler(>=6.4)
+            @diagnose(DeprecatedDeclaration, as: ignored, reason: "Generated code must access deprecated properties when encoding and decoding API data.")
+            #endif
             public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: AnyCodingKey.self)
                 app = try container.decodeIfPresent(App.self, forKey: "app")
                 user = try container.decode(User.self, forKey: "user")
             }
 
+            #if compiler(>=6.4)
+            @diagnose(DeprecatedDeclaration, as: ignored, reason: "Generated code must access deprecated properties when encoding and decoding API data.")
+            #endif
             public func encode(to encoder: Encoder) throws {
                 var container = encoder.container(keyedBy: AnyCodingKey.self)
                 try container.encodeIfPresent(app, forKey: "app")

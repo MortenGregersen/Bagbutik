@@ -115,6 +115,9 @@ public struct GameCenterGroup: Codable, Sendable, Identifiable {
             self.gameCenterLeaderboardsV2 = gameCenterLeaderboardsV2
         }
 
+        #if compiler(>=6.4)
+        @diagnose(DeprecatedDeclaration, as: ignored, reason: "Generated code must access deprecated properties when encoding and decoding API data.")
+        #endif
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: AnyCodingKey.self)
             gameCenterAchievements = try container.decodeIfPresent(GameCenterAchievements.self, forKey: "gameCenterAchievements")
@@ -128,6 +131,9 @@ public struct GameCenterGroup: Codable, Sendable, Identifiable {
             gameCenterLeaderboardsV2 = try container.decodeIfPresent(GameCenterLeaderboardsV2.self, forKey: "gameCenterLeaderboardsV2")
         }
 
+        #if compiler(>=6.4)
+        @diagnose(DeprecatedDeclaration, as: ignored, reason: "Generated code must access deprecated properties when encoding and decoding API data.")
+        #endif
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: AnyCodingKey.self)
             try container.encodeIfPresent(gameCenterAchievements, forKey: "gameCenterAchievements")

@@ -69,11 +69,17 @@ public struct GameCenterDetailUpdateRequest: Codable, Sendable, RequestBody {
 
             public init() {}
 
+            #if compiler(>=6.4)
+            @diagnose(DeprecatedDeclaration, as: ignored, reason: "Generated code must access deprecated properties when encoding and decoding API data.")
+            #endif
             public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: AnyCodingKey.self)
                 challengeEnabled = try container.decodeIfPresent(Bool.self, forKey: "challengeEnabled")
             }
 
+            #if compiler(>=6.4)
+            @diagnose(DeprecatedDeclaration, as: ignored, reason: "Generated code must access deprecated properties when encoding and decoding API data.")
+            #endif
             public func encode(to encoder: Encoder) throws {
                 var container = encoder.container(keyedBy: AnyCodingKey.self)
                 try container.encodeIfPresent(challengeEnabled, forKey: "challengeEnabled")
@@ -112,6 +118,9 @@ public struct GameCenterDetailUpdateRequest: Codable, Sendable, RequestBody {
                 self.gameCenterGroup = gameCenterGroup
             }
 
+            #if compiler(>=6.4)
+            @diagnose(DeprecatedDeclaration, as: ignored, reason: "Generated code must access deprecated properties when encoding and decoding API data.")
+            #endif
             public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: AnyCodingKey.self)
                 defaultGroupLeaderboard = try container.decodeIfPresent(DefaultGroupLeaderboard.self, forKey: "defaultGroupLeaderboard")
@@ -121,6 +130,9 @@ public struct GameCenterDetailUpdateRequest: Codable, Sendable, RequestBody {
                 gameCenterGroup = try container.decodeIfPresent(GameCenterGroup.self, forKey: "gameCenterGroup")
             }
 
+            #if compiler(>=6.4)
+            @diagnose(DeprecatedDeclaration, as: ignored, reason: "Generated code must access deprecated properties when encoding and decoding API data.")
+            #endif
             public func encode(to encoder: Encoder) throws {
                 var container = encoder.container(keyedBy: AnyCodingKey.self)
                 try container.encodeIfPresent(defaultGroupLeaderboard, forKey: "defaultGroupLeaderboard")
