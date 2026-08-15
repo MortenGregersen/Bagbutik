@@ -26,7 +26,7 @@ internal extension Data {
             stream.avail_out = uInt(gzipBufferLength)
             decompressed.count += gzipBufferLength
             
-            try decompressed.withUnsafeMutableBytes { (bytes: UnsafeMutableRawBufferPointer) in
+            decompressed.withUnsafeMutableBytes { (bytes: UnsafeMutableRawBufferPointer) in
                 stream.next_out = bytes
                     .bindMemory(to: Bytef.self)
                     .baseAddress?
