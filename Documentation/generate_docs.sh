@@ -1,12 +1,20 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-# exit when any command fails
-set -e
+# Generate a static DocC site for the handwritten runtime API. The generated API
+# modules and the nested Tools package are intentionally not included.
+set -euo pipefail
 
-rm -rf .build
 rm -rf docs
-bundle install
-bundle exec jazzy
-sed -i'' -e 's/Bagbutik_Core Reference/Bagbutik Reference/' docs/index.html
-sed -i'' -e 's/Bagbutik_Core  Reference/Bagbutik  Reference/' docs/index.html
-open docs/index.html
+swift package --allow-writing-to-directory docs generate-documentation \
+    --target BagbutikCore \
+    --output-path docs \
+    --transform-for-static-hosting \
+    --hosting-base-path / \
+    --symbol-graph-minimum-access-level private \
+    --source-service github \
+    --source-service-base-url https://github.com/MortenGregersen/Bagbutik/blob/main \
+    --checkout-path "$(pwd)"
+
+cp Documentation/index.html docs/index.html
+mkdir -p docs/assets
+cp Assets/Bagbutik-logo.png docs/assets/Bagbutik-logo.png
