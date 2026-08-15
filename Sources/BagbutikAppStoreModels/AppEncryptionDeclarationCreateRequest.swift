@@ -96,11 +96,17 @@ public struct AppEncryptionDeclarationCreateRequest: Codable, Sendable, RequestB
                 self.app = app
             }
 
+            #if compiler(>=6.4)
+            @diagnose(DeprecatedDeclaration, as: ignored, reason: "Generated code must access deprecated properties when encoding and decoding API data.")
+            #endif
             public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: AnyCodingKey.self)
                 app = try container.decode(App.self, forKey: "app")
             }
 
+            #if compiler(>=6.4)
+            @diagnose(DeprecatedDeclaration, as: ignored, reason: "Generated code must access deprecated properties when encoding and decoding API data.")
+            #endif
             public func encode(to encoder: Encoder) throws {
                 var container = encoder.container(keyedBy: AnyCodingKey.self)
                 try container.encode(app, forKey: "app")

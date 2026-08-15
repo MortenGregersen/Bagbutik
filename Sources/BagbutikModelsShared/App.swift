@@ -368,6 +368,9 @@ public struct App: Codable, Sendable, Identifiable {
             self.webhooks = webhooks
         }
 
+        #if compiler(>=6.4)
+        @diagnose(DeprecatedDeclaration, as: ignored, reason: "Generated code must access deprecated properties when encoding and decoding API data.")
+        #endif
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: AnyCodingKey.self)
             accessibilityDeclarations = try container.decodeIfPresent(AccessibilityDeclarations.self, forKey: "accessibilityDeclarations")
@@ -415,6 +418,9 @@ public struct App: Codable, Sendable, Identifiable {
             webhooks = try container.decodeIfPresent(Webhooks.self, forKey: "webhooks")
         }
 
+        #if compiler(>=6.4)
+        @diagnose(DeprecatedDeclaration, as: ignored, reason: "Generated code must access deprecated properties when encoding and decoding API data.")
+        #endif
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: AnyCodingKey.self)
             try container.encodeIfPresent(accessibilityDeclarations, forKey: "accessibilityDeclarations")

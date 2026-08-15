@@ -68,7 +68,7 @@ public class ObjectSchemaRenderer: Renderer {
             if propertiesInfo.deprecatedPublicInitParameters != propertiesInfo.publicInitParameters {
                 structContent.append(renderInitializer(parameters: propertiesInfo.publicInitParameters, content: { createInitContent(propertiesInfo.publicInitPropertyNames) }))
             }
-            structContent.append(renderInitializer(parameters: [.init(prefix: "from", name: "decoder", type: "Decoder")], throwing: true, content: {
+            structContent.append(renderInitializer(parameters: [.init(prefix: "from", name: "decoder", type: "Decoder")], throwing: true, suppressDeprecatedDeclarationWarnings: propertiesInfo.hasDeprecatedProperties, content: {
                 var functionContent = ""
                 if propertiesInfo.properties.count > 0 {
                     functionContent += "let container = try decoder.container(keyedBy: AnyCodingKey.self)\n"
@@ -92,7 +92,7 @@ public class ObjectSchemaRenderer: Renderer {
                 }
                 return functionContent
             }))
-            structContent.append(renderFunction(named: "encode", parameters: [.init(prefix: "to", name: "encoder", type: "Encoder")], throwing: true, content: {
+            structContent.append(renderFunction(named: "encode", parameters: [.init(prefix: "to", name: "encoder", type: "Encoder")], throwing: true, suppressDeprecatedDeclarationWarnings: propertiesInfo.hasDeprecatedProperties, content: {
                 var functionContent = ""
                 if propertiesInfo.properties.count > 0 {
                     functionContent += "var container = encoder.container(keyedBy: AnyCodingKey.self)\n"
@@ -131,6 +131,7 @@ public class ObjectSchemaRenderer: Renderer {
         let publicInitPropertyNames: [PropertyName]
         let encodableProperties: [CodableProperty]
         let decodableProperties: [CodableProperty]
+        let hasDeprecatedProperties: Bool
         let hasTypeConstant: Bool
 
         init(for objectSchema: ObjectSchema, documentation: ObjectDocumentation?, docsLoader: DocsLoader) {
@@ -180,6 +181,7 @@ public class ObjectSchemaRenderer: Renderer {
             deprecatedPublicInitPropertyNames = initParameters.map { PropertyName(idealName: $0.key) }
             publicInitParameters = Self.createFunctionParameters(from: initParameters.filter { !$0.value.deprecated || objectSchema.requiredProperties.contains($0.key) }, requiredProperties: objectSchema.requiredProperties)
             publicInitPropertyNames = initParameters.filter { !$0.value.deprecated }.map { PropertyName(idealName: $0.key) }
+            hasDeprecatedProperties = properties.contains(where: \.deprecated)
             let hasTypeConstant = sortedProperties.contains { $0.key == "type" && $0.value.type.isConstant }
             self.hasTypeConstant = hasTypeConstant
             encodableProperties = sortedProperties.map {

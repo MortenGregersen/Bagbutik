@@ -137,6 +137,9 @@ public struct GameCenterChallenge: Codable, Sendable, Identifiable {
             self.versions = versions
         }
 
+        #if compiler(>=6.4)
+        @diagnose(DeprecatedDeclaration, as: ignored, reason: "Generated code must access deprecated properties when encoding and decoding API data.")
+        #endif
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: AnyCodingKey.self)
             gameCenterDetail = try container.decodeIfPresent(GameCenterDetail.self, forKey: "gameCenterDetail")
@@ -146,6 +149,9 @@ public struct GameCenterChallenge: Codable, Sendable, Identifiable {
             versions = try container.decodeIfPresent(Versions.self, forKey: "versions")
         }
 
+        #if compiler(>=6.4)
+        @diagnose(DeprecatedDeclaration, as: ignored, reason: "Generated code must access deprecated properties when encoding and decoding API data.")
+        #endif
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: AnyCodingKey.self)
             try container.encodeIfPresent(gameCenterDetail, forKey: "gameCenterDetail")

@@ -207,6 +207,9 @@ public struct AgeRatingDeclarationUpdateRequest: Codable, Sendable, RequestBody 
                 self.violenceRealisticProlongedGraphicOrSadistic = violenceRealisticProlongedGraphicOrSadistic
             }
 
+            #if compiler(>=6.4)
+            @diagnose(DeprecatedDeclaration, as: ignored, reason: "Generated code must access deprecated properties when encoding and decoding API data.")
+            #endif
             public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: AnyCodingKey.self)
                 advertising = try container.decodeIfPresent(Bool.self, forKey: "advertising")
@@ -240,6 +243,9 @@ public struct AgeRatingDeclarationUpdateRequest: Codable, Sendable, RequestBody 
                 violenceRealisticProlongedGraphicOrSadistic = try container.decodeIfPresent(AgeRatingDeclaration.Attributes.ViolenceRealisticProlongedGraphicOrSadistic.self, forKey: "violenceRealisticProlongedGraphicOrSadistic")
             }
 
+            #if compiler(>=6.4)
+            @diagnose(DeprecatedDeclaration, as: ignored, reason: "Generated code must access deprecated properties when encoding and decoding API data.")
+            #endif
             public func encode(to encoder: Encoder) throws {
                 var container = encoder.container(keyedBy: AnyCodingKey.self)
                 try container.encodeIfPresent(advertising, forKey: "advertising")

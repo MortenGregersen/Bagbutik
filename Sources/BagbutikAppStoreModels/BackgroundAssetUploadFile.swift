@@ -89,6 +89,9 @@ public struct BackgroundAssetUploadFile: Codable, Sendable, Identifiable {
             self.uploadOperations = uploadOperations
         }
 
+        #if compiler(>=6.4)
+        @diagnose(DeprecatedDeclaration, as: ignored, reason: "Generated code must access deprecated properties when encoding and decoding API data.")
+        #endif
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: AnyCodingKey.self)
             assetDeliveryState = try container.decodeIfPresent(AppMediaAssetState.self, forKey: "assetDeliveryState")
@@ -101,6 +104,9 @@ public struct BackgroundAssetUploadFile: Codable, Sendable, Identifiable {
             uploadOperations = try container.decodeIfPresent([DeliveryFileUploadOperation].self, forKey: "uploadOperations")
         }
 
+        #if compiler(>=6.4)
+        @diagnose(DeprecatedDeclaration, as: ignored, reason: "Generated code must access deprecated properties when encoding and decoding API data.")
+        #endif
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: AnyCodingKey.self)
             try container.encodeIfPresent(assetDeliveryState, forKey: "assetDeliveryState")
