@@ -118,6 +118,27 @@ sdk_path() {
   xcrun --sdk "$1" --show-sdk-path
 }
 
+minimum_os_version() {
+  case "$1" in
+    iphoneos | iphonesimulator | appletvos | appletvsimulator)
+      echo "15.0"
+      ;;
+    watchos | watchsimulator)
+      echo "9.0"
+      ;;
+    macosx)
+      echo "12.0"
+      ;;
+    xros | xrsimulator)
+      echo "1.0"
+      ;;
+    *)
+      echo "Unknown SDK: $1" >&2
+      exit 11
+      ;;
+  esac
+}
+
 require_tools_and_sdks() {
   local tool
   local sdk
@@ -322,6 +343,8 @@ combine_sdk_module() {
 	<string>$module</string>
 	<key>CFBundlePackageType</key>
 	<string>FMWK</string>
+	<key>MinimumOSVersion</key>
+	<string>$(minimum_os_version "$sdk")</string>
 	<key>CFBundleShortVersionString</key>
 	<string>24.0.0</string>
 	<key>CFBundleVersion</key>
@@ -352,12 +375,38 @@ create_module_xcframework() {
   echo "Creating $module.xcframework"
   xcodebuild -create-xcframework "${args[@]}" -output "$DIST_DIR/$module.xcframework"
 
+  validate_module_framework_metadata "$module"
+
   if find "$DIST_DIR/$module.xcframework" -type f -name '*.swiftinterface' -print -quit | grep -q .; then
     return
   fi
 
   echo "No public Swift module interfaces found in $module.xcframework" >&2
   exit 16
+}
+
+validate_module_framework_metadata() {
+  local module=$1
+  local plist
+  local minimum_os_version
+  local plists=()
+
+  while IFS= read -r -d '' plist; do
+    plists+=("$plist")
+  done < <(find "$DIST_DIR/$module.xcframework" -type f -name Info.plist -print0)
+
+  if [ ${#plists[@]} -eq 0 ]; then
+    echo "No framework Info.plist files found in $module.xcframework" >&2
+    exit 17
+  fi
+
+  for plist in "${plists[@]}"; do
+    if ! minimum_os_version="$(plutil -extract MinimumOSVersion raw -expect string -n "$plist" 2>/dev/null)" \
+      || [ -z "$minimum_os_version" ]; then
+      echo "Missing MinimumOSVersion in $plist" >&2
+      exit 18
+    fi
+  done
 }
 
 zip_module_xcframework() {
