@@ -393,7 +393,7 @@ validate_module_framework_metadata() {
 
   while IFS= read -r -d '' plist; do
     plists+=("$plist")
-  done < <(find "$DIST_DIR/$module.xcframework" -type f -name Info.plist -print0)
+  done < <(find "$DIST_DIR/$module.xcframework" -type f -name Info.plist -path '*.framework/*' -print0)
 
   if [ ${#plists[@]} -eq 0 ]; then
     echo "No framework Info.plist files found in $module.xcframework" >&2
