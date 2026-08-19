@@ -118,27 +118,6 @@ sdk_path() {
   xcrun --sdk "$1" --show-sdk-path
 }
 
-minimum_os_version() {
-  case "$1" in
-    iphoneos | iphonesimulator | appletvos | appletvsimulator)
-      echo "15.0"
-      ;;
-    watchos | watchsimulator)
-      echo "9.0"
-      ;;
-    macosx)
-      echo "12.0"
-      ;;
-    xros | xrsimulator)
-      echo "1.0"
-      ;;
-    *)
-      echo "Unknown SDK: $1" >&2
-      exit 11
-      ;;
-  esac
-}
-
 require_tools_and_sdks() {
   local tool
   local sdk
@@ -313,52 +292,10 @@ combine_sdk_module() {
   xcrun lipo -create "${libraries[@]}" -output "$output_directory/lib$module.a"
   xcrun strip -S "$output_directory/lib$module.a"
 
-  local framework_directory="$output_directory/$module.framework"
-  local framework_contents_directory="$framework_directory"
-  local info_plist_directory="$framework_directory"
-
-  if [ "$sdk" = "macosx" ]; then
-    framework_contents_directory="$framework_directory/Versions/A"
-    info_plist_directory="$framework_contents_directory/Resources"
-  fi
-
-  mkdir -p "$framework_contents_directory/Modules/$module.swiftmodule" "$info_plist_directory"
-  mv "$output_directory/lib$module.a" "$framework_contents_directory/$module"
-  cp "$output_directory/Headers/$module.swiftmodule"/*.swiftinterface \
-    "$framework_contents_directory/Modules/$module.swiftmodule/"
-  cat > "$info_plist_directory/Info.plist" <<EOF
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<plist version="1.0">
-<dict>
-	<key>CFBundleDevelopmentRegion</key>
-	<string>en</string>
-	<key>CFBundleExecutable</key>
-	<string>$module</string>
-	<key>CFBundleIdentifier</key>
-	<string>org.bagbutik.$module</string>
-	<key>CFBundleInfoDictionaryVersion</key>
-	<string>6.0</string>
-	<key>CFBundleName</key>
-	<string>$module</string>
-	<key>CFBundlePackageType</key>
-	<string>FMWK</string>
-	<key>MinimumOSVersion</key>
-	<string>$(minimum_os_version "$sdk")</string>
-	<key>CFBundleShortVersionString</key>
-	<string>24.0.0</string>
-	<key>CFBundleVersion</key>
-	<string>1</string>
-</dict>
-</plist>
-EOF
-
-  if [ "$sdk" = "macosx" ]; then
-    ln -s A "$framework_directory/Versions/Current"
-    ln -s Versions/Current/$module "$framework_directory/$module"
-    ln -s Versions/Current/Modules "$framework_directory/Modules"
-    ln -s Versions/Current/Resources "$framework_directory/Resources"
-  fi
+  # A static archive must be packaged as a library XCFramework. Wrapping it in
+  # a framework makes Xcode embed the archive in apps, and App Store Connect
+  # then rejects it as an invalid executable framework.
+  mkdir -p "$output_directory/Headers/$module.swiftmodule"
 }
 
 create_module_xcframework() {
@@ -368,14 +305,15 @@ create_module_xcframework() {
 
   for sdk in "${SDKS[@]}"; do
     args+=(
-      -framework "$BUILD_DIR/libraries/$sdk/$module/$module.framework"
+      -library "$BUILD_DIR/libraries/$sdk/$module/lib$module.a"
+      -headers "$BUILD_DIR/libraries/$sdk/$module/Headers"
     )
   done
 
   echo "Creating $module.xcframework"
   xcodebuild -create-xcframework "${args[@]}" -output "$DIST_DIR/$module.xcframework"
 
-  validate_module_framework_metadata "$module"
+  validate_module_library_metadata "$module"
 
   if find "$DIST_DIR/$module.xcframework" -type f -name '*.swiftinterface' -print -quit | grep -q .; then
     return
@@ -385,28 +323,27 @@ create_module_xcframework() {
   exit 16
 }
 
-validate_module_framework_metadata() {
+validate_module_library_metadata() {
   local module=$1
-  local plist
-  local minimum_os_version
-  local plists=()
+  local library
+  local interface
 
-  while IFS= read -r -d '' plist; do
-    plists+=("$plist")
-  done < <(find "$DIST_DIR/$module.xcframework" -type f -name Info.plist -path '*.framework/*' -print0)
-
-  if [ ${#plists[@]} -eq 0 ]; then
-    echo "No framework Info.plist files found in $module.xcframework" >&2
+  if find "$DIST_DIR/$module.xcframework" -type d -name '*.framework' -print -quit | grep -q .; then
+    echo "Static $module.xcframework contains framework bundles." >&2
     exit 17
   fi
 
-  for plist in "${plists[@]}"; do
-    if ! minimum_os_version="$(plutil -extract MinimumOSVersion raw -expect string -n "$plist" 2>/dev/null)" \
-      || [ -z "$minimum_os_version" ]; then
-      echo "Missing MinimumOSVersion in $plist" >&2
-      exit 18
-    fi
-  done
+  library="$DIST_DIR/$module.xcframework"
+  if ! find "$library" -type f -name "lib$module.a" -print -quit | grep -q .; then
+    echo "No static library found in $module.xcframework" >&2
+    exit 18
+  fi
+
+  interface="$DIST_DIR/$module.xcframework"
+  if ! find "$interface" -type f -name '*.swiftinterface' -print -quit | grep -q .; then
+    echo "No public Swift module interfaces found in $module.xcframework" >&2
+    exit 19
+  fi
 }
 
 zip_module_xcframework() {
@@ -785,10 +722,10 @@ verify_visionos_binary_integration() {
 
   while IFS= read -r module; do
     import_arguments+=(
-      -I "$DIST_DIR/$module.xcframework/$library_identifier/$module.framework/Modules"
+      -I "$DIST_DIR/$module.xcframework/$library_identifier/Headers"
     )
     libraries+=(
-      "$DIST_DIR/$module.xcframework/$library_identifier/$module.framework/$module"
+      "$DIST_DIR/$module.xcframework/$library_identifier/lib$module.a"
     )
   done < <(client_link_modules "$client")
 
