@@ -388,9 +388,15 @@ PACKAGE_EOF
     cat >> "$INTEGRATION_DIR/BagbutikBinaryPackage/Package.swift" <<EOF
         .library(
             name: "$client",
-            targets: ["${client}Product"]
-        ),
+            targets: [
 EOF
+    while IFS= read -r module; do
+      echo "                \"$module\"," >> "$INTEGRATION_DIR/BagbutikBinaryPackage/Package.swift"
+    done < <(client_link_modules "$client")
+    cat >> "$INTEGRATION_DIR/BagbutikBinaryPackage/Package.swift" <<'PRODUCT_EOF'
+            ]
+        ),
+PRODUCT_EOF
   done
 
   cat >> "$INTEGRATION_DIR/BagbutikBinaryPackage/Package.swift" <<'TARGETS_EOF'
@@ -399,25 +405,6 @@ EOF
 TARGETS_EOF
   for module in "${MODULES[@]}"; do
     echo "        .binaryTarget(name: \"$module\", path: \"Artifacts/$module.xcframework\")," >> "$INTEGRATION_DIR/BagbutikBinaryPackage/Package.swift"
-  done
-  for client in "${BUILD_TARGETS[@]}"; do
-    mkdir -p "$INTEGRATION_DIR/BagbutikBinaryPackage/Sources/${client}Product"
-    : > "$INTEGRATION_DIR/BagbutikBinaryPackage/Sources/${client}Product/Exports.swift"
-
-    cat >> "$INTEGRATION_DIR/BagbutikBinaryPackage/Package.swift" <<EOF
-        .target(
-            name: "${client}Product",
-            dependencies: [
-EOF
-    while IFS= read -r module; do
-      echo "                \"$module\"," >> "$INTEGRATION_DIR/BagbutikBinaryPackage/Package.swift"
-      echo "@_exported import $module" >> "$INTEGRATION_DIR/BagbutikBinaryPackage/Sources/${client}Product/Exports.swift"
-    done < <(client_link_modules "$client")
-    echo "public enum ${client}Product {}" >> "$INTEGRATION_DIR/BagbutikBinaryPackage/Sources/${client}Product/Exports.swift"
-    cat >> "$INTEGRATION_DIR/BagbutikBinaryPackage/Package.swift" <<'TARGET_EOF'
-            ]
-        ),
-TARGET_EOF
   done
   cat >> "$INTEGRATION_DIR/BagbutikBinaryPackage/Package.swift" <<'PACKAGE_EOF'
     ]
