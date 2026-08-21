@@ -292,9 +292,6 @@ combine_sdk_module() {
   xcrun lipo -create "${libraries[@]}" -output "$output_directory/lib$module.a"
   xcrun strip -S "$output_directory/lib$module.a"
 
-  # A static archive must be packaged as a library XCFramework. Wrapping it in
-  # a framework makes Xcode embed the archive in apps, and App Store Connect
-  # then rejects it as an invalid executable framework.
   mkdir -p "$output_directory/Headers/$module.swiftmodule"
 }
 
