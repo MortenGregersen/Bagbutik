@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Swift code for Apple's App Store Connect API.">
+    <title>Bagbutik</title>
+    <style>
+        :root {
+            color-scheme: light dark;
+            --accent: #00c9a7;
+            --accent-dark: #008e79;
+            --background: #f7f9fa;
+            --card: #ffffff;
+            --ink: #182122;
+            --muted: #526164;
+            --border: #dbe4e3;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            background: radial-gradient(circle at top, #e5fbf5 0, var(--background) 30rem);
+            color: var(--ink);
+            font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            line-height: 1.55;
+            margin: 0;
+        }
+
+        a { color: inherit; }
+
+        .container { margin: 0 auto; max-width: 70rem; padding: 0 1.5rem; }
+
+        header {
+            align-items: center;
+            display: flex;
+            justify-content: space-between;
+            padding: 1.25rem 0;
+        }
+
+        .wordmark {
+            align-items: center;
+            display: flex;
+            font-size: 1.1rem;
+            font-weight: 800;
+            gap: .6rem;
+            text-decoration: none;
+        }
+
+        .wordmark img { height: 2rem; width: auto; }
+
+        nav { display: flex; gap: 1.25rem; }
+        nav a { color: var(--muted); font-weight: 650; text-decoration: none; }
+        nav a:hover { color: var(--ink); }
+
+        .hero {
+            align-items: center;
+            display: grid;
+            gap: 2.5rem;
+            grid-template-columns: minmax(0, 1fr) 15rem;
+            padding: 4rem 0 5rem;
+        }
+
+        .hero h1 {
+            font-family: ui-rounded, "SF Pro Rounded", ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            font-size: clamp(3rem, 8vw, 5.5rem);
+            letter-spacing: -.025em;
+            line-height: .95;
+            margin: 0;
+        }
+        .hero p { color: var(--muted); font-size: 1.25rem; margin: 1.5rem 0; max-width: 38rem; }
+        .hero-logo { justify-self: center; max-height: 17rem; max-width: 100%; }
+
+        .badges { display: grid; gap: .5rem; margin: 1.5rem 0 2rem; }
+        .badge-row { align-items: center; display: flex; flex-wrap: nowrap; gap: .5rem; }
+        .badges img { display: block; height: 1.3rem; }
+
+        .actions { display: flex; flex-wrap: wrap; gap: .75rem; }
+        .button {
+            background: var(--accent);
+            border: 1px solid var(--accent);
+            border-radius: .6rem;
+            color: #062b25;
+            display: inline-block;
+            font-weight: 750;
+            padding: .7rem 1rem;
+            text-decoration: none;
+        }
+        .button:hover { background: #23dfbd; }
+        .button.secondary { background: transparent; border-color: var(--border); color: var(--ink); }
+
+        main { padding-bottom: 4rem; }
+        .grid { display: grid; gap: 1rem; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+        .card { background: var(--card); border: 1px solid var(--border); border-radius: 1rem; padding: 1.25rem; }
+        .card h3 { font-size: 1rem; margin: 0 0 .4rem; }
+        .card p { color: var(--muted); font-size: .95rem; margin: 0; }
+
+        section { margin-top: 4.5rem; }
+        section h2 { font-size: 2rem; letter-spacing: -.04em; margin: 0 0 .75rem; }
+        section > p { color: var(--muted); max-width: 46rem; }
+
+        pre {
+            background: #13201e;
+            border-radius: 1rem;
+            color: #e5fffa;
+            font: .86rem/1.55 ui-monospace, SFMono-Regular, Menlo, monospace;
+            margin: 1.5rem 0 0;
+            overflow: auto;
+            padding: 1.25rem;
+        }
+
+        footer { border-top: 1px solid var(--border); color: var(--muted); font-size: .9rem; padding: 2rem 0; }
+
+        @media (prefers-color-scheme: dark) {
+            :root { --background: #111817; --card: #172120; --ink: #ecf5f3; --muted: #b2c1be; --border: #32403e; }
+            body { background: radial-gradient(circle at top, #0d4f43 0, var(--background) 30rem); }
+            .button { color: #04251f; }
+        }
+
+        @media (max-width: 44rem) {
+            .hero { grid-template-columns: 1fr; padding: 2.5rem 0 3rem; }
+            .hero-logo { max-height: 11rem; order: -1; }
+            .grid { grid-template-columns: 1fr; }
+            nav { gap: .75rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <a class="wordmark" href="/" aria-label="Bagbutik home">
+                <img src="/assets/Bagbutik-logo.png" alt="">
+                Bagbutik
+            </a>
+            <nav>
+                <a href="/documentation/bagbutikcore/">API reference</a>
+                <a href="https://github.com/MortenGregersen/Bagbutik">GitHub</a>
+            </nav>
+        </header>
+
+        <main>
+            <section class="hero" aria-labelledby="hero-title">
+                <div>
+                    <h1 id="hero-title">Bagbutik</h1>
+                    <p>Generated Swift code for the App Store Connect API, with a small handwritten core for authenticated requests and responses.</p>
+                    <div class="badges" aria-label="Project status">
+                        <div class="badge-row">
+                            <a href="https://swiftpackageindex.com/MortenGregersen/Bagbutik"><img src="https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2FMortenGregersen%2FBagbutik%2Fbadge%3Ftype%3Dswift-versions" alt="Swift versions"></a>
+                            <a href="https://swiftpackageindex.com/MortenGregersen/Bagbutik"><img src="https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2FMortenGregersen%2FBagbutik%2Fbadge%3Ftype%3Dplatforms" alt="Supported platforms"></a>
+                        </div>
+                        <div class="badge-row">
+                            <a href="https://github.com/MortenGregersen/Bagbutik/actions/workflows/ci.yml"><img src="https://github.com/MortenGregersen/Bagbutik/workflows/CI/badge.svg" alt="Continuous integration status"></a>
+                            <a href="https://codecov.io/gh/MortenGregersen/Bagbutik"><img src="https://codecov.io/gh/MortenGregersen/Bagbutik/branch/main/graph/badge.svg?token=oJZWL49t0G" alt="Code coverage"></a>
+                        </div>
+                    </div>
+                    <div class="actions">
+                        <a class="button" href="/documentation/bagbutikcore/">Browse API reference</a>
+                        <a class="button secondary" href="https://github.com/MortenGregersen/Bagbutik#readme">Read the full README</a>
+                    </div>
+                </div>
+                <img class="hero-logo" src="/assets/Bagbutik-logo.png" alt="Bagbutik logo">
+            </section>
+
+            <section aria-labelledby="start-title">
+                <h2 id="start-title">Get started</h2>
+                <p>Add Bagbutik to your Swift Package Manager dependencies, then select only the API product your app needs.</p>
+                <pre><code>dependencies: [
+    .package(url: "https://github.com/MortenGregersen/Bagbutik", from: "24.0.0"),
+]
+
+.target(
+    name: "Awesome",
+    dependencies: [
+        .product(name: "BagbutikProvisioning", package: "Bagbutik"),
+    ]
+)</code></pre>
+            </section>
+
+            <section aria-labelledby="modules-title">
+                <h2 id="modules-title">Choose the API areas you need</h2>
+                <p>The source package is split into focused products. Each one brings the core and generated models it needs.</p>
+                <div class="grid">
+                    <article class="card"><h3>App Store</h3><p>Apps, versions, screenshots, pricing, App Clips, and events.</p></article>
+                    <article class="card"><h3>Game Center</h3><p>Leaderboards, achievements, challenges, and players.</p></article>
+                    <article class="card"><h3>Marketplaces</h3><p>Alternative marketplace keys, packages, and search.</p></article>
+                    <article class="card"><h3>Provisioning</h3><p>Bundle IDs, certificates, devices, and provisioning profiles.</p></article>
+                    <article class="card"><h3>TestFlight</h3><p>Beta testers, groups, builds, and feedback.</p></article>
+                    <article class="card"><h3>Reporting</h3><p>Sales, finance, performance, logs, and signatures.</p></article>
+                    <article class="card"><h3>Users</h3><p>Team members and invitations to App Store Connect.</p></article>
+                    <article class="card"><h3>Webhooks</h3><p>Notifications and delivery management for your apps.</p></article>
+                    <article class="card"><h3>Xcode Cloud</h3><p>Workflows, builds, and continuous delivery data.</p></article>
+                </div>
+            </section>
+
+            <section aria-labelledby="about-title">
+                <h2 id="about-title">Built from Apple's OpenAPI specification</h2>
+                <p>Bagbutik decodes Apple’s App Store Connect specification and applies the official API documentation to the generated Swift source, so endpoint documentation remains available in Xcode.</p>
+                <div class="actions">
+                    <a class="button secondary" href="/documentation/bagbutikcore/">Explore BagbutikCore</a>
+                    <a class="button secondary" href="https://developer.apple.com/documentation/appstoreconnectapi">Apple API documentation</a>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <span>© 2022–2026 under the </span><a href="https://github.com/MortenGregersen/Bagbutik/blob/main/LICENSE">open source license</a><span>.</span>
+        </footer>
+    </div>
+</body>
+</html>
