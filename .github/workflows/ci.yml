@@ -18,7 +18,7 @@ jobs:
     env:
       DEVELOPER_DIR: /Applications/Xcode_26.4.app/Contents/Developer
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v7.0.1
     - name: Print Xcode & Swift Version
       run: |
         xcodebuild -version
@@ -63,13 +63,13 @@ jobs:
         test -f "$test_results_path"
         echo "path=$test_results_path" >> "$GITHUB_OUTPUT"
     - name: Upload coverage reports to Codecov
-      uses: codecov/codecov-action@v5
+      uses: codecov/codecov-action@v7.0.0
       with:
         token: ${{ secrets.CODECOV_TOKEN }}
         files: ${{ steps.runtime_coverage.outputs.path }},${{ steps.tools_coverage.outputs.path }}
     - name: Upload test results to Codecov
       if: ${{ !cancelled() }}
-      uses: codecov/codecov-action@v5
+      uses: codecov/codecov-action@v7.0.0
       with:
         token: ${{ secrets.CODECOV_TOKEN }}
         files: ${{ steps.test_results.outputs.path }}
@@ -82,7 +82,7 @@ jobs:
     env:
       DEVELOPER_DIR: /Applications/Xcode_16.app/Contents/Developer
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v7.0.1
     - name: Print Xcode & Swift Version
       run: |
         xcodebuild -version
@@ -100,10 +100,10 @@ jobs:
       matrix:
         swift: ["6.0", "6.1", "6.2", "6.3"]
     steps:
-    - uses: vapor/swiftly-action@v0.2
+    - uses: vapor/swiftly-action@v0.2.1
       with:
         toolchain: ${{ matrix.swift }}
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v7.0.1
     - name: Test
       run: swift test -v
     - name: Test Maintainer Tools
@@ -114,9 +114,9 @@ jobs:
     permissions:
       contents: read
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v7.0.1
     - name: Free disk space
-      uses: jlumbroso/free-disk-space@main
+      uses: jlumbroso/free-disk-space@v1.3.1
       with:
         tool-cache: false
         android: false
@@ -125,6 +125,6 @@ jobs:
         large-packages: true
         docker-images: true
         swap-storage: true
-    - uses: skiptools/swift-android-action@v2
+    - uses: skiptools/swift-android-action@v2.9.5
       with:
         swift-version: 6.3
