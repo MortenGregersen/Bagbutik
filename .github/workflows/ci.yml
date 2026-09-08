@@ -103,6 +103,12 @@ jobs:
     - uses: vapor/swiftly-action@v0.2.1
       with:
         toolchain: ${{ matrix.swift }}
+        continue-on-error: true
+    - name: Retry Swift toolchain installation
+      if: failure()
+      uses: vapor/swiftly-action@v0.2.1
+      with:
+        toolchain: ${{ matrix.swift }}
     - uses: actions/checkout@v7.0.1
     - name: Test
       run: swift test -v
