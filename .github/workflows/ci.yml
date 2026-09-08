@@ -100,7 +100,13 @@ jobs:
       matrix:
         swift: ["6.0", "6.1", "6.2", "6.3"]
     steps:
-    - uses: vapor/swiftly-action@v0.2
+    - uses: vapor/swiftly-action@v0.2.1
+      with:
+        toolchain: ${{ matrix.swift }}
+        continue-on-error: true
+    - name: Retry Swift toolchain installation
+      if: failure()
+      uses: vapor/swiftly-action@v0.2.1
       with:
         toolchain: ${{ matrix.swift }}
     - uses: actions/checkout@v4
