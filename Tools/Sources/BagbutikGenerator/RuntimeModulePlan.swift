@@ -37,10 +37,10 @@ public struct RuntimeModulePlan: Sendable {
         let closureByPackage = additionalRootsByPackage.mapValues { graph.closure(startingAt: $0) }
 
         var assignments = graph.references.keys.reduce(into: [String: ModelModule]()) { result, schema in
-            if coreSchemas.contains(schema) {
-                result[schema] = .core
-            } else if sharedSchemas.contains(schema) {
+            if sharedSchemas.contains(schema) {
                 result[schema] = .modelsShared
+            } else if coreSchemas.contains(schema) {
+                result[schema] = .core
             } else if let owner = packageBySchema[schema], owner != .core {
                 result[schema] = .domainModels(owner)
             } else if Self.isLinkageSchema(schema) {
