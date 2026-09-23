@@ -28,12 +28,7 @@ final class FeedbackCheckerTests: XCTestCase {
     func testConvenienceInitWithEmptySpecOnDisk() async throws {
         let temporaryDirectoryURL = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString)
         let specFileURL = temporaryDirectoryURL.appendingPathComponent("spec.json")
-        let documentationDirURL = try createDocumentationDirectory(
-            in: temporaryDirectoryURL,
-            operationDocumentationById: [:],
-            schemaMapping: [:],
-            schemaDocumentationById: [:]
-        )
+        let documentationDirURL = try createDocumentationDirectory(in: temporaryDirectoryURL)
         try FileManager.default.createDirectory(at: temporaryDirectoryURL, withIntermediateDirectories: true)
         defer {
             try? FileManager.default.removeItem(at: temporaryDirectoryURL)
@@ -49,19 +44,7 @@ final class FeedbackCheckerTests: XCTestCase {
         var patchedSpec = originalSpec
         try patchedSpec.applyManualPatches()
         let temporaryDirectoryURL = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString)
-        let documentationDirURL = try createDocumentationDirectory(
-            in: temporaryDirectoryURL,
-            operationDocumentationById: [:],
-            schemaMapping: ["BundleIdPlatform": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/bundleidplatform"],
-            schemaDocumentationById: [
-                "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/bundleidplatform": .enum(.init(
-                    id: "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/bundleidplatform",
-                    hierarchy: .init(paths: []),
-                    title: "BundleIdPlatform",
-                    cases: ["IOS": "iOS"]
-                ))
-            ]
-        )
+        let documentationDirURL = try createDocumentationDirectory(in: temporaryDirectoryURL)
         defer {
             try? FileManager.default.removeItem(at: temporaryDirectoryURL)
         }
@@ -85,12 +68,7 @@ final class FeedbackCheckerTests: XCTestCase {
         var patchedSpec = originalSpec
         try patchedSpec.applyManualPatches()
         let temporaryDirectoryURL = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString)
-        let documentationDirURL = try createDocumentationDirectory(
-            in: temporaryDirectoryURL,
-            operationDocumentationById: [:],
-            schemaMapping: [:],
-            schemaDocumentationById: [:]
-        )
+        let documentationDirURL = try createDocumentationDirectory(in: temporaryDirectoryURL)
         defer {
             try? FileManager.default.removeItem(at: temporaryDirectoryURL)
         }
@@ -114,12 +92,7 @@ final class FeedbackCheckerTests: XCTestCase {
         var patchedSpec = originalSpec
         try patchedSpec.applyManualPatches()
         let temporaryDirectoryURL = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString)
-        let documentationDirURL = try createDocumentationDirectory(
-            in: temporaryDirectoryURL,
-            operationDocumentationById: [:],
-            schemaMapping: [:],
-            schemaDocumentationById: [:]
-        )
+        let documentationDirURL = try createDocumentationDirectory(in: temporaryDirectoryURL)
         defer {
             try? FileManager.default.removeItem(at: temporaryDirectoryURL)
         }
@@ -142,17 +115,7 @@ final class FeedbackCheckerTests: XCTestCase {
         var patchedSpec = try makeErrorResponseSpec(includeErrorsProperty: true)
         try patchedSpec.applyManualPatches()
         let temporaryDirectoryURL = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString)
-        let documentationDirURL = try createDocumentationDirectory(
-            in: temporaryDirectoryURL,
-            operationDocumentationById: [:],
-            schemaMapping: ["ErrorResponse": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/errorresponse"],
-            schemaDocumentationById: [
-                "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/errorresponse": .object(.init(
-                    id: "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/errorresponse",
-                    title: "ErrorResponse"
-                ))
-            ]
-        )
+        let documentationDirURL = try createDocumentationDirectory(in: temporaryDirectoryURL)
         defer {
             try? FileManager.default.removeItem(at: temporaryDirectoryURL)
         }
@@ -179,19 +142,10 @@ final class FeedbackCheckerTests: XCTestCase {
         )
     }
 
-    private func createDocumentationDirectory(
-        in parentDirectoryURL: URL,
-        operationDocumentationById: [String: Documentation],
-        schemaMapping: [String: String],
-        schemaDocumentationById: [String: Documentation]
-    ) throws -> URL {
+    private func createDocumentationDirectory(in parentDirectoryURL: URL) throws -> URL {
         let documentationDirURL = parentDirectoryURL.appendingPathComponent("Documentation")
         try FileManager.default.createDirectory(at: documentationDirURL, withIntermediateDirectories: true)
 
-        let jsonEncoder = JSONEncoder()
-        try jsonEncoder.encode(operationDocumentationById).write(to: documentationDirURL.appendingPathComponent(DocsFilename.operationDocumentation.filename))
-        try jsonEncoder.encode(schemaMapping).write(to: documentationDirURL.appendingPathComponent(DocsFilename.schemaMapping.filename))
-        try jsonEncoder.encode(schemaDocumentationById).write(to: documentationDirURL.appendingPathComponent(DocsFilename.schemaDocumentation.filename))
         return documentationDirURL
     }
 

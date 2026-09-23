@@ -32,7 +32,7 @@ public class OperationRenderer: Renderer {
      - Returns: The rendered operation
      */
     public func render(operation: BagbutikSpecDecoder.Operation, in path: Path) async throws -> String {
-        let documentation = try await docsLoader.resolveDocumentationForOperation(withId: operation.id)
+        let documentation = try await docsLoader.resolveDocumentationForOperation(operation, in: path)
         let interpolatablePath = Self.pathParameterRegex.stringByReplacingMatches(
             in: path.path,
             options: [],

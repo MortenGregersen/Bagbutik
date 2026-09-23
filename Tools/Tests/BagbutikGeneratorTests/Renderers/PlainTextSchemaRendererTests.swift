@@ -8,7 +8,7 @@ final class PlainTextSchemaRendererTests: XCTestCase {
         // Given
         let docsLoader = DocsLoader(schemaDocumentationById: [
             "some://url": .object(
-                .init(id: "/csv", title: "Csv", abstract: "Some summary", discussion: nil, properties: [:], subDocumentationIds: []))
+                .init(id: "/csv", title: "Csv", abstract: "Some summary", discussion: nil))
         ])
         let renderer = PlainTextSchemaRenderer(docsLoader: docsLoader, shouldFormat: true)
         let schema = PlainTextSchema(name: "Csv", url: "some://url")

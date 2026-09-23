@@ -14,10 +14,8 @@ public class ObjectSchemaRenderer: Renderer {
      */
     public func render(objectSchema: ObjectSchema, otherSchemas: [String: Schema]) async throws -> String {
         var rendered = ""
-        var documentation: ObjectDocumentation?
-        if case .object(let objectDocumentation) = try await docsLoader.resolveDocumentationForSchema(withDocsUrl: objectSchema.url),
+        if case .object(let objectDocumentation) = try await docsLoader.resolveDocumentationForSchema(withDocsUrl: objectSchema.url, as: .object),
            let abstract = objectDocumentation.abstract {
-            documentation = objectDocumentation
             rendered += await renderDocumentationBlock(title: objectDocumentation.title) {
                 var documentationContent = [abstract]
                 if let discussion = objectDocumentation.discussion, !discussion.isEmpty {
@@ -42,18 +40,12 @@ public class ObjectSchemaRenderer: Renderer {
         }
         protocols.append(contentsOf: objectSchema.additionalProtocols)
         rendered += try await renderStruct(named: objectSchema.name, protocols: protocols) {
-            let propertiesInfo = PropertiesInfo(for: objectSchema, documentation: documentation, docsLoader: docsLoader)
+            let propertiesInfo = PropertiesInfo(for: objectSchema, docsLoader: docsLoader)
             var structContent = [String]()
             if case .arrayOfSchemaRef(let schemaRef) = objectSchema.properties["data"]?.type {
                 structContent.append("public typealias Data = \(schemaRef)")
             }
-            let renderedProperties = propertiesInfo.properties.map { property in
-                guard let description = property.documentation?.description, description.lengthOfBytes(using: .utf8) > 0 else { return property.rendered }
-                return """
-                /// \(description)
-                \(property.rendered)
-                """
-            }.joined(separator: "\n")
+            let renderedProperties = propertiesInfo.properties.map(\.rendered).joined(separator: "\n")
             if !renderedProperties.isEmpty {
                 structContent.append(renderedProperties)
             }
@@ -134,7 +126,7 @@ public class ObjectSchemaRenderer: Renderer {
         let hasDeprecatedProperties: Bool
         let hasTypeConstant: Bool
 
-        init(for objectSchema: ObjectSchema, documentation: ObjectDocumentation?, docsLoader: DocsLoader) {
+        init(for objectSchema: ObjectSchema, docsLoader: DocsLoader) {
             var objectSchema = objectSchema
             let sortedProperties = objectSchema.properties.sorted {
                 // To avoid breaking the public initializer parameter order from version 2.0,
@@ -173,8 +165,7 @@ public class ObjectSchemaRenderer: Renderer {
                                         deprecated: property.value.deprecated,
                                         clearable: property.value.clearable)
                 }
-                let propertyDocumentation = documentation?.properties[property.key]
-                return RenderProperty(rendered: rendered, documentation: propertyDocumentation, deprecated: property.value.deprecated)
+                return RenderProperty(rendered: rendered, deprecated: property.value.deprecated)
             }
             deprecatedPublicInitParameters = initParameters.contains(where: \.value.deprecated)
                 ? Self.createFunctionParameters(from: initParameters, requiredProperties: objectSchema.requiredProperties) : nil
@@ -323,7 +314,6 @@ public class ObjectSchemaRenderer: Renderer {
 
     private struct RenderProperty {
         let rendered: String
-        let documentation: PropertyDocumentation?
         let deprecated: Bool
     }
 

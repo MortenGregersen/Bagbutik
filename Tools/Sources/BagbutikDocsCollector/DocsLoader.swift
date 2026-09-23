@@ -1,136 +1,103 @@
 import BagbutikSpecDecoder
 import Foundation
 
-/// Errors that can occur while reading normalized documentation from disk.
+/// Errors that can occur while loading the local Markdown mirror.
 public enum DocsLoaderError: Error, Equatable {
-    /// The documentation hasn't been loaded yet
+    /// Documentation has not been configured with ``loadDocs(documentationDirURL:)``.
     case documentationNotLoaded
-    /// The type of the documentation is wrong
-    case wrongTypeOfDocumentation
 }
 
-/// Loads normalized documentation files and resolves them for schemas and operations.
+/// Loads documentation directly from the local Apple Markdown mirror.
 public actor DocsLoader {
     private let loadFile: @MainActor (URL) throws -> Data
-    var operationDocumentationById: [String: OperationDocumentation]?
-    var identifierBySchemaName: [String: String]?
-    var schemaDocumentationById: [String: Documentation]?
+    private var documentationDirURL: URL?
+    private var documentationByKey = [String: Documentation]()
+    private var injectedDocumentationById = [String: Documentation]()
+    private var injectedOperationDocumentationById = [String: OperationDocumentation]()
+    private var allowsMissingDocumentationWithoutLoad = false
 
-    /// Creates a loader that reads documentation files from disk.
     public init() {
-        self.init(operationDocumentationById: nil) // A parameter is needed for it to call the internal initializer
+        self.loadFile = { try Data(contentsOf: $0) }
     }
 
-    init(loadFile: @escaping @MainActor (URL) throws -> Data = { url in try Data(contentsOf: url) }, operationDocumentationById: [String: OperationDocumentation]? = nil, identifierBySchemaName: [String: String]? = nil, schemaDocumentationById: [String: Documentation]? = nil) {
+    init(loadFile: @escaping @MainActor (URL) throws -> Data) {
         self.loadFile = loadFile
-        self.operationDocumentationById = operationDocumentationById
-        self.identifierBySchemaName = identifierBySchemaName
-        self.schemaDocumentationById = schemaDocumentationById.map { schemaDocumentationById in
-            Dictionary(uniqueKeysWithValues: schemaDocumentationById.map { key, value in
-                (key.lowercased(), value)
-            })
-        }
+    }
+
+    init(schemaDocumentationById: [String: Documentation]) {
+        self.loadFile = { _ in Data() }
+        self.injectedDocumentationById = schemaDocumentationById
+        self.allowsMissingDocumentationWithoutLoad = true
+    }
+
+    init(operationDocumentationById: [String: OperationDocumentation]) {
+        self.loadFile = { _ in Data() }
+        self.injectedOperationDocumentationById = operationDocumentationById
+        self.allowsMissingDocumentationWithoutLoad = true
     }
 
     /**
-     Loads the normalized documentation files stored in a documentation directory.
+     Configures the directory containing the Apple Markdown mirror.
 
-     - Parameter documentationDirURL: The directory containing the three JSON files written by ``DocsFetcher``.
+     - Parameter documentationDirURL: The directory containing the Markdown files written by ``DocsFetcher``.
      */
     public func loadDocs(documentationDirURL: URL) async throws {
-        let operationDocumentationByIdData = try await loadFile(documentationDirURL.appendingPathComponent(DocsFilename.operationDocumentation.filename))
-        let identifierBySchemaNameData = try await loadFile(documentationDirURL.appendingPathComponent(DocsFilename.schemaMapping.filename))
-        let schemaDocumentationByIdData = try await loadFile(documentationDirURL.appendingPathComponent(DocsFilename.schemaDocumentation.filename))
-        let jsonDecoder = JSONDecoder()
-        operationDocumentationById = try jsonDecoder.decode([String: Documentation].self, from: operationDocumentationByIdData).mapValues { documentation in
-            guard case .operation(let operationDocumentation) = documentation else { throw DocsLoaderError.wrongTypeOfDocumentation }
-            return operationDocumentation
-        }
-        identifierBySchemaName = try jsonDecoder.decode([String: String].self, from: identifierBySchemaNameData)
-        let loadedSchemaDocumentationById = try jsonDecoder.decode([String: Documentation].self, from: schemaDocumentationByIdData)
-        schemaDocumentationById = Dictionary(uniqueKeysWithValues: loadedSchemaDocumentationById.map { key, value in
-            (key.lowercased(), value)
-        })
+        self.documentationDirURL = documentationDirURL
+        documentationByKey = [:]
     }
 
-    /**
-     Applies manual documentation patches for gaps in Apple's published docs.
+    /// Retained for compatibility with the generation workflow.
+    public func applyManualDocumentation() throws {}
 
-     These patches mirror the manual schema patches in ``Spec`` so generated code still gets
-     useful symbol documentation when Apple's source data is incomplete.
-     */
-    public func applyManualDocumentation() throws {
-        guard let identifierBySchemaName,
-              var schemaDocumentationById else {
-            throw DocsLoaderError.documentationNotLoaded
-        }
-        if let identifier = identifierBySchemaName["BundleIdPlatform"]?.lowercased(),
-           case .enum(var bundleIdPlatformDocumentation) = schemaDocumentationById[identifier] {
-            if bundleIdPlatformDocumentation.cases["SERVICES"] == nil || bundleIdPlatformDocumentation.cases["SERVICES"] == "" {
-                bundleIdPlatformDocumentation.cases["SERVICES"] = "A string that represents a service."
-            }
-            if bundleIdPlatformDocumentation.cases["UNIVERSAL"] == nil || bundleIdPlatformDocumentation.cases["UNIVERSAL"] == "" {
-                bundleIdPlatformDocumentation.cases["UNIVERSAL"] = "A string that represents iOS and macOS."
-            }
-            schemaDocumentationById[identifier] = .enum(bundleIdPlatformDocumentation)
-        }
-        if let identifier = identifierBySchemaName["Platform"]?.lowercased(),
-           case .enum(var platformDocumentation) = schemaDocumentationById[identifier] {
-            if platformDocumentation.cases["VISION_OS"] == nil || platformDocumentation.cases["VISION_OS"] == "" {
-                platformDocumentation.cases["VISION_OS"] = "A string that represents visionOS."
-            }
-            schemaDocumentationById[identifier] = .enum(platformDocumentation)
-        }
-        self.schemaDocumentationById = schemaDocumentationById
-    }
-
-    /// Resolves the Bagbutik product module that a documentation entry belongs to.
     public static func resolvePackageName(for documentation: Documentation) throws -> PackageName {
-        let packageName = PackageName.resolvePackageName(from: documentation.id) ?? .core
-        return packageName
+        PackageName.resolvePackageName(from: documentation.id) ?? .core
     }
 
-    /// Resolves the Bagbutik product module from a documentation identifier.
     public static func resolvePackageName(from identifier: String) -> PackageName? {
         PackageName.resolvePackageName(from: identifier)
     }
 
-    /// Resolves documentation by schema name from the loaded schema mapping.
-    public func resolveDocumentationForSchema(named schemaName: String) throws -> Documentation? {
-        guard let identifierBySchemaName,
-              let schemaDocumentationById else {
-            throw DocsLoaderError.documentationNotLoaded
+    /**
+     Resolves a schema documentation page from its Apple URL.
+
+     - Parameters:
+       - docsUrl: The schema URL from the OpenAPI specification.
+       - kind: The normalized documentation kind expected by the caller.
+     */
+    public func resolveDocumentationForSchema(withDocsUrl docsUrl: String?, as kind: DocumentationKind) async throws -> Documentation? {
+        guard let docsUrl else { return nil }
+        return try await resolveDocumentation(at: docsUrl, as: kind)
+    }
+
+    /// Resolves an operation documentation page from its OpenAPI path and operation.
+    public func resolveDocumentationForOperation(_ operation: BagbutikSpecDecoder.Operation, in path: Path) async throws -> OperationDocumentation? {
+        if let documentation = injectedOperationDocumentationById[operation.id] {
+            return documentation
         }
-        guard let identifier = identifierBySchemaName[schemaName]?.lowercased(),
-              let documentation = schemaDocumentationById[identifier] else {
+        let url = DocsFetcher.documentationURL(for: operation, in: path)
+        guard case .operation(let documentation) = try await resolveDocumentation(at: url.absoluteString, as: .operation) else {
             return nil
         }
         return documentation
     }
 
-    /// Resolves schema documentation from the original Apple documentation URL.
-    public func resolveDocumentationForSchema(withDocsUrl docsUrl: String) throws -> Documentation? {
-        guard let schemaDocumentationById else { throw DocsLoaderError.documentationNotLoaded }
-        let identifier = createDocumentationId(fromUrl: docsUrl)
-        guard let documentation = schemaDocumentationById[identifier] else { return nil }
+    private func resolveDocumentation(at sourceURL: String, as kind: DocumentationKind) async throws -> Documentation? {
+        if let documentation = injectedDocumentationById[sourceURL] ?? injectedDocumentationById[sourceURL.lowercased()] {
+            return documentation
+        }
+        guard let documentationDirURL else {
+            if allowsMissingDocumentationWithoutLoad { return nil }
+            throw DocsLoaderError.documentationNotLoaded
+        }
+        guard let documentationURL = DocsFetcher.documentationURL(from: sourceURL) else { return nil }
+        let key = "\(kind)|\(documentationURL.absoluteString)"
+        if let documentation = documentationByKey[key] { return documentation }
+        let localURL = DocsFetcher.localURL(for: documentationURL, in: documentationDirURL)
+        guard (try? localURL.resourceValues(forKeys: [.isRegularFileKey]).isRegularFile) == true else {
+            return nil
+        }
+        let documentation = try MarkdownDocumentation.parse(await loadFile(localURL), as: kind)
+        documentationByKey[key] = documentation
         return documentation
-    }
-
-    /// Resolves schema documentation from a normalized documentation identifier.
-    public func resolveDocumentationForSchema(withId identifier: String) throws -> Documentation? {
-        guard let schemaDocumentationById else { throw DocsLoaderError.documentationNotLoaded }
-        guard let documentation = schemaDocumentationById[identifier] else { return nil }
-        return documentation
-    }
-
-    /// Resolves operation documentation using the generated operation identifier.
-    public func resolveDocumentationForOperation(withId operationId: String) throws -> OperationDocumentation? {
-        guard let operationDocumentationById else { throw DocsLoaderError.documentationNotLoaded }
-        guard let documentation = operationDocumentationById[operationId] else { return nil }
-        return documentation
-    }
-
-    private func createDocumentationId(fromUrl url: String) -> String {
-        url.replacingOccurrences(of: "https://developer.apple.com", with: "doc://com.apple.appstoreconnectapi")
     }
 }

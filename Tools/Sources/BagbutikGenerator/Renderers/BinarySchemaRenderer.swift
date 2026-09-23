@@ -29,7 +29,7 @@ public class BinarySchemaRenderer: Renderer {
         }
         """
         if let url = binarySchema.url,
-           case .object(let objectDocumentation) = try await docsLoader.resolveDocumentationForSchema(withDocsUrl: url),
+           case .object(let objectDocumentation) = try await docsLoader.resolveDocumentationForSchema(withDocsUrl: url, as: .object),
            let abstract = objectDocumentation.abstract {
             rendered = "/// \(abstract)\n" + rendered
         }

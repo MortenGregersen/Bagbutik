@@ -6,11 +6,12 @@ import XCTest
 final class EnumSchemaRendererTests: XCTestCase {
     func testRenderPlain() async throws {
         // Given
-        let docsLoader = DocsLoader(schemaDocumentationById: ["/platform": .enum(.init(id: "/platform", hierarchy: .init(paths: []), title: "Platform", abstract: "Strings that represent Apple operating systems.", discussion: "All platforms are nice...", cases: [
-            "MAC_OS": "A string that represents macOS.",
-            "IOS": "A string that represents iOS.",
-            "TV_OS": "A string that represents tvOS."
-        ]))])
+        let docsLoader = DocsLoader(schemaDocumentationById: ["/platform": .enum(.init(
+            id: "/platform",
+            title: "Platform",
+            abstract: "Strings that represent Apple operating systems.",
+            discussion: "All platforms are nice..."
+        ))])
         let renderer = EnumSchemaRenderer(docsLoader: docsLoader, shouldFormat: true)
         let schema = EnumSchema(name: "Platform", type: "string", url: "/platform", caseValues: ["MAC_OS", "IOS", "TV_OS"])
         // When
@@ -27,11 +28,8 @@ final class EnumSchemaRendererTests: XCTestCase {
          </platform>
          */
         public enum Platform: String, Sendable, Codable, CaseIterable {
-            /// A string that represents iOS.
             case iOS = "IOS"
-            /// A string that represents macOS.
             case macOS = "MAC_OS"
-            /// A string that represents tvOS.
             case tvOS = "TV_OS"
 
             public init(from decoder: Decoder) throws {

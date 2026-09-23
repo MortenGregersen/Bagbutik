@@ -7,7 +7,7 @@ final class OneOfSchemaRendererTests: XCTestCase {
     func testRender() async throws {
         // Given
         let docsLoader = DocsLoader(schemaDocumentationById: ["some://url": .object(
-            .init(id: "/test", title: "Test", abstract: "A test.", discussion: "", properties: ["href": .init(required: false, description: "An URL")], subDocumentationIds: []))]
+            .init(id: "/test", title: "Test", abstract: "A test.", discussion: ""))]
         )
         let renderer = OneOfSchemaRenderer(docsLoader: docsLoader, shouldFormat: true)
         let subSchema = ObjectSchema(name: "Test", url: "some://url", properties: [
@@ -60,7 +60,6 @@ final class OneOfSchemaRendererTests: XCTestCase {
              <some://url>
              */
             public struct Test: Codable, Sendable {
-                /// An URL
                 public var href: String?
                 public var meta: Meta?
 
@@ -108,7 +107,7 @@ final class OneOfSchemaRendererTests: XCTestCase {
     func testRenderWithAdditionalProtocol() async throws {
         // Given
         let docsLoader = DocsLoader(schemaDocumentationById: ["some://url": .object(
-            .init(id: "/test", title: "Test", abstract: "A test.", discussion: "", properties: ["href": .init(required: false, description: "An URL")], subDocumentationIds: []))]
+            .init(id: "/test", title: "Test", abstract: "A test.", discussion: ""))]
         )
         let renderer = OneOfSchemaRenderer(docsLoader: docsLoader, shouldFormat: true)
         let schema = OneOfSchema(options: [.schemaRef("BundleId"), .simple(.string())], additionalProtocols: ["Fooable"])

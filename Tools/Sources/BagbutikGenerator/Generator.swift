@@ -34,7 +34,7 @@ public enum GeneratorError: Error, Equatable {
  */
 typealias LoadSpec = (_ fileUrl: URL) throws -> Spec
 
-/// Generates endpoint and model source files from the decoded spec and normalized documentation.
+/// Generates endpoint and model source files from the decoded spec and mirrored Markdown documentation.
 public class Generator {
     private static let domainPackages: Set<PackageName> = Set(PackageName.allCases).subtracting([.core])
     private static let sharedSchemas: Set<String> = [
@@ -83,8 +83,8 @@ public class Generator {
     /**
      Loads a spec and renders all endpoint and model files into the output directory.
 
-     The generator expects documentation JSON produced by ``DocsFetcher`` and loaded through
-     ``DocsLoader`` so generated symbols can include Apple's documentation in Xcode.
+     The generator reads Markdown mirrored by ``DocsFetcher`` through ``DocsLoader`` so generated
+     symbols can include Apple's documentation in Xcode.
 
      - Parameters:
         - specFileURL: The file URL of the OpenAPI spec.
@@ -110,7 +110,7 @@ public class Generator {
         var endpointRootsByPackage = [PackageName: Set<String>]()
         for path in spec.paths.values {
             for operation in path.operations {
-                let packageName = try await Self.resolvePackageName(for: operation, docsLoader: docsLoader)
+                let packageName = try await Self.resolvePackageName(for: operation, in: path)
                 endpointRootsByPackage[packageName, default: []]
                     .formUnion(Self.endpointSchemaNames(for: operation))
             }
@@ -155,7 +155,7 @@ public class Generator {
                     for operation in path.operations {
                         let name = operation.getVersionedName(path: path)
                         let fileName = "\(name).swift"
-                        let packageName = try await Self.resolvePackageName(for: operation, docsLoader: docsLoader)
+                        let packageName = try await Self.resolvePackageName(for: operation, in: path)
                         var renderedOperation = try await operationRenderer.render(operation: operation, in: path) + "\n"
                         if Self.domainPackages.contains(packageName) {
                             let domainModelModule = RuntimeModulePlan.ModelModule.domainModels(packageName)
@@ -256,21 +256,23 @@ public class Generator {
     }
 
     private static func resolvePackageName(for schema: Schema, docsLoader: DocsLoader) async throws -> PackageName {
-        if let documentation = try await docsLoader.resolveDocumentationForSchema(named: schema.name) {
-            return try DocsLoader.resolvePackageName(for: documentation)
+        if let url = schema.url,
+           let packageName = DocsLoader.resolvePackageName(from: url) {
+            return packageName
         }
         if let inferredPackageName = DocsLoader.resolvePackageName(from: schema.name) {
             return inferredPackageName
         }
-        throw GeneratorError.noDocumentationForSchema(schema.name)
+        return .core
     }
 
     private static func resolvePackageName(
         for operation: BagbutikSpecDecoder.Operation,
-        docsLoader: DocsLoader
+        in path: Path
     ) async throws -> PackageName {
-        if let documentation = try await docsLoader.resolveDocumentationForOperation(withId: operation.id) {
-            return try DocsLoader.resolvePackageName(for: Documentation.operation(documentation))
+        let url = DocsFetcher.documentationURL(for: operation, in: path).absoluteString
+        if let packageName = DocsLoader.resolvePackageName(from: url) {
+            return packageName
         }
         if let inferredPackageName = DocsLoader.resolvePackageName(from: operation.id) {
             return inferredPackageName

@@ -67,7 +67,7 @@ The repository is split into a small manually maintained core and a large genera
 * `BagbutikUsersModels` and similar model modules are generated from actual schema references for their public API product.
 * `BagbutikAppStore`, `BagbutikGameCenter`, `BagbutikTestFlight`, `BagbutikMarketplaces`, `BagbutikProvisioning`, `BagbutikReporting`, and the other product modules contain generated endpoint builders grouped by App Store Connect domain.
 * `Tools/Sources/BagbutikSpecDecoder` decodes Apple's OpenAPI document into an intermediate Swift representation.
-* `Tools/Sources/BagbutikDocsCollector` downloads and normalizes Apple documentation so generated code gets useful Xcode documentation comments.
+* `Tools/Sources/BagbutikDocsCollector` mirrors Apple documentation as Markdown so generated code gets useful Xcode documentation comments.
 * `Tools/Sources/BagbutikGenerator` combines the decoded spec and collected docs to render the Swift source in `Sources/`.
 
 This split matters when navigating the codebase. If you want to understand runtime behavior, start in the `Sources/BagbutikCore` folder. If you want to understand how generated endpoints and models are produced, start with the nested `Tools` package.
@@ -167,8 +167,7 @@ For version 24 breaking changes, see the [migration guide](Documentation/Bagbuti
 Most files under `Sources/` are generated from Apple's OpenAPI document. The generation pipeline is:
 
 1. Load and patch the OpenAPI spec.
-2. Fetch Apple documentation as JSON.
-3. Normalize the documentation into local lookup files in `Documentation/`.
+2. Fetch Apple documentation as a local Markdown mirror in `Documentation/`.
 4. Render endpoints and models into the package sources.
 
 The manually maintained comments and types in `BagbutikCore` and the nested `Tools` package are the best places to look when you need to change generation behavior or understand why a generated file looks the way it does.
