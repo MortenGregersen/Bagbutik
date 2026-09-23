@@ -3,7 +3,26 @@ import Foundation
 
 /**
  # SubscriptionImageCreateRequest
+
  The request body you use to create a subscription purchase image reservation.
+
+ ```
+ object SubscriptionImageCreateRequest
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object SubscriptionImageCreateRequest.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/SubscriptionImageCreateRequest/Data-data.dictionary)
+
+ The request body you use to create a subscription purchase image reservation.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/subscriptionimagecreaterequest>

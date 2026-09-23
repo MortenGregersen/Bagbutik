@@ -3,7 +3,30 @@ import Foundation
 
 /**
  # TerritoryAgeRating
+
  The data structure that represent a territory age-rating resource.
+
+ ```
+ object TerritoryAgeRating
+ ```
+
+ ## Topics
+
+ ### Dictionaries
+
+ [`object TerritoryAgeRating.Attributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/TerritoryAgeRating/Attributes-data.dictionary)
+
+ Attributes that describe a territory age rating resource.
+
+ [`object TerritoryAgeRating.Relationships`](https://developer.apple.com/documentation/AppStoreConnectAPI/TerritoryAgeRating/Relationships-data.dictionary)
+
+ The relationships you include in the request and those on which you can operate.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/territoryagerating>

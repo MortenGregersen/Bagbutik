@@ -5,7 +5,16 @@ import Foundation
 
 /**
  # CiProductsResponse
+
  The response body for endpoints that list Xcode Cloud products.
+
+ ```
+ object CiProductsResponse
+ ```
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/ciproductsresponse>
@@ -13,13 +22,9 @@ import Foundation
 public struct CiProductsResponse: Codable, Sendable, PagedResponse {
     public typealias Data = CiProduct
 
-    /// The resource data.
     public let data: [CiProduct]
-    /// The requested relationship data.
     public var included: [Included]?
-    /// The navigational links that include the self-link.
     public let links: PagedDocumentLinks
-    /// The paging information.
     public var meta: PagingInformation?
 
     public init(data: [CiProduct],

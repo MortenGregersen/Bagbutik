@@ -3,7 +3,26 @@ import Foundation
 
 /**
  # MarketplaceWebhook
+
  A webhook endpoint that receives event notifications from an alternative marketplace, such as app availability changes.
+
+ ```
+ object MarketplaceWebhook
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object MarketplaceWebhook.Attributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/MarketplaceWebhook/Attributes-data.dictionary)
+
+ The attribute that describes the url where you receive notifications.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/marketplacewebhook>

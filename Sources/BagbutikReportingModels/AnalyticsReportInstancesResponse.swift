@@ -3,9 +3,20 @@ import Foundation
 
 /**
  # AnalyticsReportInstancesResponse
+
  The response body for endpoints that list instances of an analytics report.
 
- Use this object with [Read a List of Instances of a Report](https://developer.apple.com/documentation/appstoreconnectapi/get-v1-analyticsreports-_id_-instances).
+ ```
+ object AnalyticsReportInstancesResponse
+ ```
+
+ ## Discussion
+
+ Use this object with [`Read a List of Instances of a Report`](https://developer.apple.com/documentation/AppStoreConnectAPI/GET-v1-analyticsReports-_id_-instances).
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/analyticsreportinstancesresponse>

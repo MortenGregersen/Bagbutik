@@ -3,12 +3,142 @@ import Foundation
 
 /**
  # AlternativeDistributionPackageVersionResponse
+
  The response body for endpoints that read a single alternative distribution package version.
 
- This object is the response that contains a single alternative distribution package version. For more information, see [Read Information for an Alternative Distribution Package Version](https://developer.apple.com/documentation/appstoreconnectapi/get-v1-alternativedistributionpackageversions-_id_). The schema of the response body is below.
  ```
+ object AlternativeDistributionPackageVersionResponse
+ ```
+
+ ## Discussion
+
+ This object is the response that contains a single alternative distribution package version. For more information, see [`Read Information for an Alternative Distribution Package Version`](https://developer.apple.com/documentation/AppStoreConnectAPI/GET-v1-alternativeDistributionPackageVersions-_id_). The schema of the response body is below.
+
+ ```javascript
  {
+   "data": {
+     "type": "alternativeDistributionPackageVersions",
+     "id": "string",
+     "attributes": {
+       "url": "string",
+       "urlExpirationDate": "2025-02-23T06:55:44.288Z",
+       "version": "string",
+       "state": "COMPLETED"
+     },
+     "relationships": {
+       "variants": {
+         "links": {
+           "self": "string",
+           "related": "string"
+         },
+         "meta": {
+           "paging": {
+             "total": 0,
+             "limit": 0
+           }
+         },
+         "data": [
+           {
+             "type": "alternativeDistributionPackageVariants",
+             "id": "string"
+           }
+         ]
+       },
+       "deltas": {
+         "links": {
+           "self": "string",
+           "related": "string"
+         },
+         "meta": {
+           "paging": {
+             "total": 0,
+             "limit": 0
+           }
+         },
+         "data": [
+           {
+             "type": "alternativeDistributionPackageDeltas",
+             "id": "string"
+           }
+         ]
+       },
+       "alternativeDistributionPackage": {
+         "links": {
+           "self": "string",
+           "related": "string"
+         },
+         "data": {
+           "type": "alternativeDistributionPackages",
+           "id": "string"
+         }
+       }
+     },
+     "links": {
+       "self": "string"
+     }
+   },
+   "included": [
+     {
+       "type": "alternativeDistributionPackageVariants",
+       "id": "string",
+       "attributes": {
+         "url": "string",
+         "urlExpirationDate": "2025-02-23T06:55:44.288Z",
+         "alternativeDistributionKeyBlob": "string"
+       },
+       "links": {
+         "self": "string"
+       }
+     },
+     {
+       "type": "alternativeDistributionPackageDeltas",
+       "id": "string",
+       "attributes": {
+         "url": "string",
+         "urlExpirationDate": "2025-02-23T06:55:44.288Z",
+         "alternativeDistributionKeyBlob": "string"
+       },
+       "links": {
+         "self": "string"
+       }
+     },
+     {
+       "type": "alternativeDistributionPackages",
+       "id": "string",
+       "relationships": {
+         "versions": {
+           "links": {
+             "self": "string",
+             "related": "string"
+           },
+           "meta": {
+             "paging": {
+               "total": 0,
+               "limit": 0
+             }
+           },
+           "data": [
+             {
+               "type": "alternativeDistributionPackageVersions",
+               "id": "string"
+             }
+           ]
+         }
+       },
+       "links": {
+         "self": "string"
+       }
+     }
+   ],
+   "links": {
+     "self": "string"
+   }
+ }
  ```
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/alternativedistributionpackageversionresponse>

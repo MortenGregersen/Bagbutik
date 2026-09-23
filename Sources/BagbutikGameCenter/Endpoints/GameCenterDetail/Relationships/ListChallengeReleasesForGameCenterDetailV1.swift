@@ -4,7 +4,12 @@ import BagbutikGameCenterModels
 public extension Request {
     /**
      # Get challenge releases for a game center detail
+
      List all challenge release information for a specific Game Center detail.
+
+     ---
+
+     Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-gameCenterDetails-_id_-challengeReleases>

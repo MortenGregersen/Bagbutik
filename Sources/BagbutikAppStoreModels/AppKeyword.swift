@@ -3,7 +3,16 @@ import Foundation
 
 /**
  # AppKeyword
+
  A search keyword associated with an App Store listing or custom product page for discoverability.
+
+ ```
+ object AppKeyword
+ ```
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appkeyword>

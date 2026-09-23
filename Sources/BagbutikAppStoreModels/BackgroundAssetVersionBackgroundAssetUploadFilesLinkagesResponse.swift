@@ -3,7 +3,24 @@ import Foundation
 
 /**
  # BackgroundAssetVersionBackgroundAssetUploadFilesLinkagesResponse
+
  A response containing the resource identifiers of upload files associated with a background asset version.
+
+ ```
+ object BackgroundAssetVersionBackgroundAssetUploadFilesLinkagesResponse
+ ```
+
+ ## Topics
+
+ ### Dictionaries
+
+ [`object BackgroundAssetVersionBackgroundAssetUploadFilesLinkagesResponse.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/BackgroundAssetVersionBackgroundAssetUploadFilesLinkagesResponse/Data-data.dictionary)
+
+ The type and ID of a background asset upload file resource linked to a specific background asset version.
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/backgroundassetversionbackgroundassetuploadfileslinkagesresponse>

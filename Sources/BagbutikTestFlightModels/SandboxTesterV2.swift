@@ -4,7 +4,26 @@ import Foundation
 
 /**
  # SandboxTesterV2
+
  A sandbox Apple ID you use to test in-app purchases and subscriptions in the Xcode sandbox environment.
+
+ ```
+ object SandboxTesterV2
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object SandboxTesterV2.Attributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/SandboxTesterV2/Attributes-data.dictionary)
+
+ Attributes that describe a sandbox tester v2 resource.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/sandboxtesterv2>

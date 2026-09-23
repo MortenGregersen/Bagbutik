@@ -3,7 +3,24 @@ import Foundation
 
 /**
  # SubscriptionGroupVersionsLinkagesResponse
+
  A response with the related resource identifiers for the versions of a subscription group.
+
+ ```
+ object SubscriptionGroupVersionsLinkagesResponse
+ ```
+
+ ## Topics
+
+ ### Dictionaries
+
+ [`object SubscriptionGroupVersionsLinkagesResponse.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/SubscriptionGroupVersionsLinkagesResponse/Data-data.dictionary)
+
+ The data element of the response body.
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/subscriptiongroupversionslinkagesresponse>

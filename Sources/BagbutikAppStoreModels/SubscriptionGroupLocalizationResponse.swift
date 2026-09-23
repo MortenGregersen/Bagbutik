@@ -3,7 +3,16 @@ import Foundation
 
 /**
  # SubscriptionGroupLocalizationResponse
+
  The response body for endpoints that create, read, or modify a single subscription group localization.
+
+ ```
+ object SubscriptionGroupLocalizationResponse
+ ```
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/subscriptiongrouplocalizationresponse>

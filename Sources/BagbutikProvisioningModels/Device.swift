@@ -3,19 +3,34 @@ import Foundation
 
 /**
  # Device
+
  A physical Apple device registered in your developer account for testing, identified by its UDID and device type.
+
+ ```
+ object Device
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object Device.Attributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/Device/Attributes-data.dictionary)
+
+ Attributes that describe a Devices resource.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/device>
  */
 public struct Device: Codable, Sendable, Identifiable {
-    /// The opaque resource ID that uniquely identifies the resource.
     public let id: String
-    /// Navigational links that include the self-link.
     public var links: ResourceLinks?
-    /// The resource type.
     public var type: String { "devices" }
-    /// The resource’s attributes.
     public var attributes: Attributes?
 
     public init(id: String,

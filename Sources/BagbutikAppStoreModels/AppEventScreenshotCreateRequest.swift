@@ -3,7 +3,26 @@ import Foundation
 
 /**
  # AppEventScreenshotCreateRequest
+
  The request body you use to create an app event screenshot.
+
+ ```
+ object AppEventScreenshotCreateRequest
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object AppEventScreenshotCreateRequest.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/AppEventScreenshotCreateRequest/Data-data.dictionary)
+
+ The request body you use to create an app event screenshot.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appeventscreenshotcreaterequest>

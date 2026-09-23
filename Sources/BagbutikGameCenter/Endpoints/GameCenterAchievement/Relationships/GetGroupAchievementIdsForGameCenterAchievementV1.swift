@@ -4,7 +4,12 @@ import BagbutikGameCenterModels
 public extension Request {
     /**
      # List Group Achievements for an Achievement
+
      List associated group achievements for a specific achievement.
+
+     ---
+
+     Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-gameCenterAchievements-_id_-relationships-groupAchievement>

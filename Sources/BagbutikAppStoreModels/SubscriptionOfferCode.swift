@@ -3,7 +3,46 @@ import Foundation
 
 /**
  # SubscriptionOfferCode
+
  A promotional code that gives customers a discounted or free subscription for a specified duration and eligibility group.
+
+ ```
+ object SubscriptionOfferCode
+ ```
+
+ ## Topics
+
+ ### Objects and types
+
+ [`object SubscriptionOfferCode.Attributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/SubscriptionOfferCode/Attributes-data.dictionary)
+
+ Attributes that describe a subscription offer code resource.
+
+ [`string SubscriptionOfferDuration`](https://developer.apple.com/documentation/AppStoreConnectAPI/SubscriptionOfferDuration)
+
+ A length of time that can be assigned to a subscription.
+
+ [`string SubscriptionOfferEligibility`](https://developer.apple.com/documentation/AppStoreConnectAPI/SubscriptionOfferEligibility)
+
+ A string that represents the eligibility of a subscription offer.
+
+ [`string SubscriptionCustomerEligibility`](https://developer.apple.com/documentation/AppStoreConnectAPI/SubscriptionCustomerEligibility)
+
+ A string that represents a customer’s eligibility for a subscription offer.
+
+ [`string SubscriptionOfferMode`](https://developer.apple.com/documentation/AppStoreConnectAPI/SubscriptionOfferMode)
+
+ A string that indicates the payment mode of a subscription offer.
+
+ [`object SubscriptionOfferCode.Relationships`](https://developer.apple.com/documentation/AppStoreConnectAPI/SubscriptionOfferCode/Relationships-data.dictionary)
+
+ The relationships you include in the request and those on which you can operate.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/subscriptionoffercode>

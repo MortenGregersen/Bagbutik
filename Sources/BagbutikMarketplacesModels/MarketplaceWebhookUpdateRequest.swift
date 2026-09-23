@@ -3,7 +3,26 @@ import Foundation
 
 /**
  # MarketplaceWebhookUpdateRequest
+
  The request body you use to update a marketplace webhook url.
+
+ ```
+ object MarketplaceWebhookUpdateRequest
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object MarketplaceWebhookUpdateRequest.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/MarketplaceWebhookUpdateRequest/Data-data.dictionary)
+
+ The data structure that represent a marketplace webhook resource.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/marketplacewebhookupdaterequest>

@@ -3,15 +3,22 @@ import Foundation
 
 /**
  # CiTestResultResponse
+
  The response body for endpoints that read a single test result from an Xcode Cloud build action.
+
+ ```
+ object CiTestResultResponse
+ ```
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/citestresultresponse>
  */
 public struct CiTestResultResponse: Codable, Sendable {
-    /// The resource data.
     public let data: CiTestResult
-    /// The navigational links that include the self-link.
     public let links: DocumentLinks
 
     public init(data: CiTestResult,

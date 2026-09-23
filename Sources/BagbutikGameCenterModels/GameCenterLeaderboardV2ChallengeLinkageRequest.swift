@@ -3,7 +3,28 @@ import Foundation
 
 /**
  # GameCenterLeaderboardV2ChallengeLinkageRequest
+
  The data structure that represents a Game Center leaderboard v2 challenge linkage request resource.
+
+ ```
+ object GameCenterLeaderboardV2ChallengeLinkageRequest
+ ```
+
+ ## Overview
+
+ - data:
+
+ ## Topics
+
+ ### Dictionaries
+
+ [`object GameCenterLeaderboardV2ChallengeLinkageRequest.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/GameCenterLeaderboardV2ChallengeLinkageRequest/Data-data.dictionary)
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterleaderboardv2challengelinkagerequest>

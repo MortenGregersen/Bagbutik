@@ -3,13 +3,31 @@ import Foundation
 
 /**
  # AppEncryptionDeclarationBuildsLinkagesRequest
+
  A request body you use to add builds to an app encryption declaration.
+
+ ```
+ object AppEncryptionDeclarationBuildsLinkagesRequest
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object AppEncryptionDeclarationBuildsLinkagesRequest.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/AppEncryptionDeclarationBuildsLinkagesRequest/Data-data.dictionary)
+
+ The data element of the request body.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appencryptiondeclarationbuildslinkagesrequest>
  */
 public struct AppEncryptionDeclarationBuildsLinkagesRequest: Codable, Sendable, RequestBody {
-    /// The object types and IDs of the related resources.
     public let data: [Data]
 
     public init(data: [Data]) {

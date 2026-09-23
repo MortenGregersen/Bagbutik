@@ -3,12 +3,38 @@ import Foundation
 
 /**
  # AlternativeDistributionKeyResponse
+
  The response body for endpoints that create or read a single alternative distribution key.
 
+ ```
+ object AlternativeDistributionKeyResponse
+ ```
+
+ ## Discussion
+
  This object is the response from the alternative distribution key endpoints. For more information about alternative distribution keys, see Creating and reading keys.
- ```
+
+ ```javascript
  {
+   "data": {
+      "type": "alternativeDistributionKeys",
+      "id": "string",
+      "attributes": {
+        "publicKey": "string"
+      },
+      "links": {
+        "self": "string"
+      }
+   },
+   "links": {
+     "self": "string"
+   }
+ }
  ```
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/alternativedistributionkeyresponse>

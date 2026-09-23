@@ -3,7 +3,31 @@ import Foundation
 
 /**
  # GameCenterLeaderboardV2CreateRequest
+
  The request body you use to create a Game Center leaderboard v2.
+
+ ```
+ object GameCenterLeaderboardV2CreateRequest
+ ```
+
+ ## Overview
+
+ - data:
+ - included:
+
+ ## Topics
+
+ ### Dictionaries
+
+ [`object GameCenterLeaderboardV2CreateRequest.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/GameCenterLeaderboardV2CreateRequest/Data-data.dictionary)
+
+ The data structure that represents a Game Center leaderboard create request resource.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterleaderboardv2createrequest>

@@ -3,21 +3,39 @@ import Foundation
 
 /**
  # AppClipDefaultExperience
+
  The default App Clip experience that launches when no advanced experience matches, linking to an App Store review detail and localized metadata.
+
+ ```
+ object AppClipDefaultExperience
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object AppClipDefaultExperience.Attributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/AppClipDefaultExperience/Attributes-data.dictionary)
+
+ The attributes that describe a Default App Clip Experiences resource.
+
+ [`object AppClipDefaultExperience.Relationships`](https://developer.apple.com/documentation/AppStoreConnectAPI/AppClipDefaultExperience/Relationships-data.dictionary)
+
+ The relationships of the Default App Clip Experiences resource you included in the request and those on which you can operate.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appclipdefaultexperience>
  */
 public struct AppClipDefaultExperience: Codable, Sendable, Identifiable {
-    /// The opaque resource ID that uniquely identifies a Default App Clip Experiences resource.
     public let id: String
-    /// Navigational links that include the self-link.
     public var links: ResourceLinks?
-    /// The resource type.
     public var type: String { "appClipDefaultExperiences" }
-    /// The attributes that describe the Default App Clip Experiences resource.
     public var attributes: Attributes?
-    /// The navigational links to related data and included resource types and IDs.
     public var relationships: Relationships?
 
     public init(id: String,

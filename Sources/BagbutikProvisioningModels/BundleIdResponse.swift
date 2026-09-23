@@ -4,17 +4,23 @@ import Foundation
 
 /**
  # BundleIdResponse
+
  The response body for endpoints that create, read, or modify a single bundle ID.
+
+ ```
+ object BundleIdResponse
+ ```
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/bundleidresponse>
  */
 public struct BundleIdResponse: Codable, Sendable {
-    /// The resource data.
     public let data: BundleId
-    /// The requested relationship data.
     public var included: [Included]?
-    /// Navigational links that include the self-link.
     public let links: DocumentLinks
 
     public init(data: BundleId,

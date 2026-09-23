@@ -3,7 +3,26 @@ import Foundation
 
 /**
  # AppBackgroundAssetsLinkagesResponse
+
  A response containing the resource identifiers of background asset versions linked to an app.
+
+ ```
+ object AppBackgroundAssetsLinkagesResponse
+ ```
+
+ ## Topics
+
+ ### Dictionaries
+
+ [`object AppBackgroundAssetsLinkagesResponse.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/AppBackgroundAssetsLinkagesResponse/Data-data.dictionary)
+
+ The the type and ID of a background asset resource linked to an app.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appbackgroundassetslinkagesresponse>

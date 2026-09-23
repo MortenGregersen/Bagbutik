@@ -3,7 +3,26 @@ import Foundation
 
 /**
  # AppStoreVersionExperimentTreatmentLocalizationCreateRequest
+
  The request body you use to create an App Store version experiment treatment localization.
+
+ ```
+ object AppStoreVersionExperimentTreatmentLocalizationCreateRequest
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object AppStoreVersionExperimentTreatmentLocalizationCreateRequest.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/AppStoreVersionExperimentTreatmentLocalizationCreateRequest/Data-data.dictionary)
+
+ The request body you use to create an App Store version experiment treatment localization.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionexperimenttreatmentlocalizationcreaterequest>

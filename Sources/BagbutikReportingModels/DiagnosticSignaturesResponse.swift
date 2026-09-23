@@ -3,7 +3,16 @@ import Foundation
 
 /**
  # DiagnosticSignaturesResponse
+
  A response containing a list of unique performance issue signatures identified in your app’s diagnostic data.
+
+ ```
+ object DiagnosticSignaturesResponse
+ ```
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/diagnosticsignaturesresponse>
@@ -11,11 +20,8 @@ import Foundation
 public struct DiagnosticSignaturesResponse: Codable, Sendable, PagedResponse {
     public typealias Data = DiagnosticSignature
 
-    /// An array of diagnostic signatures.
     public let data: [DiagnosticSignature]
-    /// Navigational links that include the self-link.
     public let links: PagedDocumentLinks
-    /// Paging information.
     public var meta: PagingInformation?
 
     public init(data: [DiagnosticSignature],

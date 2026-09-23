@@ -3,7 +3,26 @@ import Foundation
 
 /**
  # GameCenterAppVersionCompatibilityVersionsLinkagesResponse
+
  A response that confirms a relationship between an app version and a compatilibty version.
+
+ ```
+ object GameCenterAppVersionCompatibilityVersionsLinkagesResponse
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object GameCenterAppVersionCompatibilityVersionsLinkagesResponse.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/GameCenterAppVersionCompatibilityVersionsLinkagesResponse/Data-data.dictionary)
+
+ The type and ID of a related Game Center app version resource.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterappversioncompatibilityversionslinkagesresponse>

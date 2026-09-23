@@ -3,21 +3,39 @@ import Foundation
 
 /**
  # App
+
  An app registered in App Store Connect, representing all versions, metadata, and configuration for your iOS, macOS, tvOS, or watchOS application.
+
+ ```
+ object App
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object App.Attributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/App/Attributes-data.dictionary)
+
+ Attributes that describe an Apps resource.
+
+ [`object App.Relationships`](https://developer.apple.com/documentation/AppStoreConnectAPI/App/Relationships-data.dictionary)
+
+ The relationships you include in the request and those on which you can operate.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/app>
  */
 public struct App: Codable, Sendable, Identifiable {
-    /// The opaque resource ID that uniquely identifies the resource.
     public let id: String
-    /// Navigational links that include the self-link.
     public var links: ResourceLinks?
-    /// The resource type.
     public var type: String { "apps" }
-    /// The resource’s attributes.
     public var attributes: Attributes?
-    /// Navigational links to related data and included resource types and IDs.
     public var relationships: Relationships?
 
     public init(id: String,

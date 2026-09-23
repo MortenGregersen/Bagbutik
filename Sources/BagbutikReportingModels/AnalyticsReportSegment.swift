@@ -3,9 +3,30 @@ import Foundation
 
 /**
  # AnalyticsReportSegment
+
  A downloadable segment within an analytics report instance, containing a portion of the report’s CSV data.
 
- To learn more about the response that includes this analytics report segment object, see [AnalyticsReportSegmentResponse](https://developer.apple.com/documentation/appstoreconnectapi/analyticsreportsegmentresponse).
+ ```
+ object AnalyticsReportSegment
+ ```
+
+ ## Discussion
+
+ To learn more about the response that includes this analytics report segment object, see [`AnalyticsReportSegmentResponse`](https://developer.apple.com/documentation/AppStoreConnectAPI/AnalyticsReportSegmentResponse).
+
+ ## Topics
+
+ ### Objects
+
+ [`object AnalyticsReportSegment.Attributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/AnalyticsReportSegment/Attributes-data.dictionary)
+
+ Attributes that describe an analytics report segment resource.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/analyticsreportsegment>

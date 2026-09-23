@@ -3,9 +3,30 @@ import Foundation
 
 /**
  # AlternativeDistributionPackageCreateRequest
+
  The request body you use to create an alternative distribution package.
 
- Use this object to create a new alternative distribution package in App Store Connect. For more information about the request that includes this request body, see [Create an Alternative Distribution Package](https://developer.apple.com/documentation/appstoreconnectapi/post-v1-alternativedistributionpackages).
+ ```
+ object AlternativeDistributionPackageCreateRequest
+ ```
+
+ ## Discussion
+
+ Use this object to create a new alternative distribution package in App Store Connect. For more information about the request that includes this request body, see [`Create an Alternative Distribution Package`](https://developer.apple.com/documentation/AppStoreConnectAPI/POST-v1-alternativeDistributionPackages).
+
+ ## Topics
+
+ ### Objects
+
+ [`object AlternativeDistributionPackageCreateRequest.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/AlternativeDistributionPackageCreateRequest/Data-data.dictionary)
+
+ The request body you use to create an alternative distribution package.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/alternativedistributionpackagecreaterequest>

@@ -3,17 +3,23 @@ import Foundation
 
 /**
  # BetaTesterInvitation
+
  A pending email invitation sent to recruit someone as a TestFlight beta tester for an app.
+
+ ```
+ object BetaTesterInvitation
+ ```
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/betatesterinvitation>
  */
 public struct BetaTesterInvitation: Codable, Sendable, Identifiable {
-    /// The opaque resource ID that uniquely identifies the resource.
     public let id: String
-    /// Navigational links that include the self-link.
     public var links: ResourceLinks?
-    /// The resource type.
     public var type: String { "betaTesterInvitations" }
 
     public init(id: String,

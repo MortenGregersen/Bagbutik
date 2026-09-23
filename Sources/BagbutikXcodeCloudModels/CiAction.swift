@@ -4,27 +4,38 @@ import Foundation
 
 /**
  # CiAction
+
  A step within an Xcode Cloud workflow, such as building, running tests, analyzing, or deploying an app.
+
+ ```
+ object CiAction
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object CiAction.TestConfiguration`](https://developer.apple.com/documentation/AppStoreConnectAPI/CiAction/TestConfiguration-data.dictionary)
+
+ The test configuration for a test action.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/ciaction>
  */
 public struct CiAction: Codable, Sendable {
-    /// The type of the action.
     public var actionType: CiActionType?
-    /// A type that indicates whether a build’s artifact is eligible for release on the App Store.
     public var buildDistributionAudience: BuildAudienceType?
-    /// A string that describes the destination Xcode Cloud uses for an action.
     public var destination: Destination?
-    /// A Boolean value that indicates whether the action must succeed in order for a build to succeed.
     public var isRequiredToPass: Bool?
-    /// The name of the action; for example, archive or test.
     public var name: String?
-    /// The platform Xcode Cloud uses for the action.
     public var platform: Platform?
-    /// The name of the scheme that Xcode Cloud uses to perform the action.
     public var scheme: String?
-    /// An action’s test configuration. Only set this field for test actions.
     public var testConfiguration: TestConfiguration?
 
     public init(actionType: CiActionType? = nil,

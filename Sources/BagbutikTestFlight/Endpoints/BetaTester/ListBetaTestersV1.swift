@@ -5,7 +5,12 @@ import BagbutikTestFlightModels
 public extension Request {
     /**
      # List beta testers
+
      Find and list beta testers for all apps, builds, and beta groups.
+
+     ---
+
+     Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-betaTesters>

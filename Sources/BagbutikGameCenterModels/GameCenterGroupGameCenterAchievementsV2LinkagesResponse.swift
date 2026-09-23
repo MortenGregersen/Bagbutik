@@ -3,7 +3,30 @@ import Foundation
 
 /**
  # GameCenterGroupGameCenterAchievementsV2LinkagesResponse
+
  A response that contains a list of Game Center group Game Center achievement linkage resources.
+
+ ```
+ object GameCenterGroupGameCenterAchievementsV2LinkagesResponse
+ ```
+
+ ## Overview
+
+ - data:
+ - links:
+ - meta:
+
+ ## Topics
+
+ ### Dictionaries
+
+ [`object GameCenterGroupGameCenterAchievementsV2LinkagesResponse.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/GameCenterGroupGameCenterAchievementsV2LinkagesResponse/Data-data.dictionary)
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecentergroupgamecenterachievementsv2linkagesresponse>

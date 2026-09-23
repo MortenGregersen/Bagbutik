@@ -3,7 +3,30 @@ import Foundation
 
 /**
  # GameCenterAchievementImageV2UpdateRequest
+
  The request body you use to update a Game Center achievement image v2.
+
+ ```
+ object GameCenterAchievementImageV2UpdateRequest
+ ```
+
+ ## Overview
+
+ - data:
+
+ ## Topics
+
+ ### Dictionaries
+
+ [`object GameCenterAchievementImageV2UpdateRequest.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/GameCenterAchievementImageV2UpdateRequest/Data-data.dictionary)
+
+ The data element of the request body.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterachievementimagev2updaterequest>

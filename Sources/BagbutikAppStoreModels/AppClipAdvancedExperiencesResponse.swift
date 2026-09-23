@@ -3,7 +3,16 @@ import Foundation
 
 /**
  # AppClipAdvancedExperiencesResponse
+
  A response containing a list of configured App Clip advanced experiences.
+
+ ```
+ object AppClipAdvancedExperiencesResponse
+ ```
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appclipadvancedexperiencesresponse>
@@ -11,13 +20,9 @@ import Foundation
 public struct AppClipAdvancedExperiencesResponse: Codable, Sendable, PagedResponse {
     public typealias Data = AppClipAdvancedExperience
 
-    /// The resource data.
     public let data: [AppClipAdvancedExperience]
-    /// The requested relationship data.
     public var included: [Included]?
-    /// Navigational links that include the self-link.
     public let links: PagedDocumentLinks
-    /// The paging information.
     public var meta: PagingInformation?
 
     public init(data: [AppClipAdvancedExperience],

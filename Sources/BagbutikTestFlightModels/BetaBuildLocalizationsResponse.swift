@@ -4,7 +4,24 @@ import Foundation
 
 /**
  # BetaBuildLocalizationsResponse
+
  The response body for endpoints that list localized TestFlight build metadata entries.
+
+ ```
+ object BetaBuildLocalizationsResponse
+ ```
+
+ ## See Also
+
+ [`List beta build localizations`](https://developer.apple.com/documentation/AppStoreConnectAPI/GET-v1-betaBuildLocalizations)
+
+ Find and list beta build localizations currently associated with apps.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/betabuildlocalizationsresponse>
@@ -12,12 +29,9 @@ import Foundation
 public struct BetaBuildLocalizationsResponse: Codable, Sendable, PagedResponse {
     public typealias Data = BetaBuildLocalization
 
-    /// The resource data.
     public let data: [BetaBuildLocalization]
     public var included: [Build]?
-    /// Navigational links that include the self-link.
     public let links: PagedDocumentLinks
-    /// Paging information.
     public var meta: PagingInformation?
 
     public init(data: [BetaBuildLocalization],

@@ -4,7 +4,24 @@ import Foundation
 
 /**
  # BetaAppReviewSubmissionsResponse
+
  The response body for endpoints that list beta app review submissions.
+
+ ```
+ object BetaAppReviewSubmissionsResponse
+ ```
+
+ ## See Also
+
+ [`List beta app review submissions`](https://developer.apple.com/documentation/AppStoreConnectAPI/GET-v1-betaAppReviewSubmissions)
+
+ Find and list beta app review submissions for all builds.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/betaappreviewsubmissionsresponse>
@@ -12,12 +29,9 @@ import Foundation
 public struct BetaAppReviewSubmissionsResponse: Codable, Sendable, PagedResponse {
     public typealias Data = BetaAppReviewSubmission
 
-    /// The resource data.
     public let data: [BetaAppReviewSubmission]
     public var included: [Build]?
-    /// Navigational links that include the self-link.
     public let links: PagedDocumentLinks
-    /// Paging information.
     public var meta: PagingInformation?
 
     public init(data: [BetaAppReviewSubmission],

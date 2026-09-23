@@ -1,6 +1,26 @@
 import BagbutikCore
 import Foundation
 
+/**
+ # GameCenterMatchmakingRuleSetRulesLinkagesResponse
+
+ ```
+ object GameCenterMatchmakingRuleSetRulesLinkagesResponse
+ ```
+
+ ## Topics
+
+ ### Dictionaries
+
+ [`object GameCenterMatchmakingRuleSetRulesLinkagesResponse.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/GameCenterMatchmakingRuleSetRulesLinkagesResponse/Data-data.dictionary)
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingrulesetruleslinkagesresponse>
+ */
 public struct GameCenterMatchmakingRuleSetRulesLinkagesResponse: Codable, Sendable, PagedResponse {
     public let data: [Data]
     public let links: PagedDocumentLinks

@@ -3,7 +3,30 @@ import Foundation
 
 /**
  # AppAvailabilityV2
+
  The territory availability configuration for an app, specifying which App Store territories it’s available in and the release date settings.
+
+ ```
+ object AppAvailabilityV2
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object AppAvailabilityV2.Relationships`](https://developer.apple.com/documentation/AppStoreConnectAPI/AppAvailabilityV2/Relationships-data.dictionary)
+
+ The relationships you include in the request and those on which you can operate.
+
+ [`object AppAvailabilityV2.Attributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/AppAvailabilityV2/Attributes-data.dictionary)
+
+ Attributes that describe an app availability v2 resource.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appavailabilityv2>

@@ -3,9 +3,20 @@ import Foundation
 
 /**
  # MarketplaceWebhookResponse
+
  A response containing a single marketplace webhook endpoint configuration.
 
- Use this object with [Add a Marketplace Webhook Configuration](https://developer.apple.com/documentation/appstoreconnectapi/post-v1-marketplacewebhooks).
+ ```
+ object MarketplaceWebhookResponse
+ ```
+
+ ## Discussion
+
+ Use this object with [`Add a Marketplace Webhook Configuration`](https://developer.apple.com/documentation/AppStoreConnectAPI/POST-v1-marketplaceWebhooks).
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/marketplacewebhookresponse>

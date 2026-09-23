@@ -4,17 +4,23 @@ import Foundation
 
 /**
  # CiBuildRunResponse
+
  The response body for endpoints that start or read a single Xcode Cloud build run.
+
+ ```
+ object CiBuildRunResponse
+ ```
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/cibuildrunresponse>
  */
 public struct CiBuildRunResponse: Codable, Sendable {
-    /// The resource data.
     public let data: CiBuildRun
-    /// The requested relationship data.
     public var included: [Included]?
-    /// The navigational links that include the self-link.
     public let links: DocumentLinks
 
     public init(data: CiBuildRun,

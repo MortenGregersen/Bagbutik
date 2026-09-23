@@ -3,7 +3,30 @@ import Foundation
 
 /**
  # AppPreviewSet
+
  The data structure that represent an App Preview Sets resource.
+
+ ```
+ object AppPreviewSet
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object AppPreviewSet.Attributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/AppPreviewSet/Attributes-data.dictionary)
+
+ Attributes that describe an App Preview Sets resource.
+
+ [`object AppPreviewSet.Relationships`](https://developer.apple.com/documentation/AppStoreConnectAPI/AppPreviewSet/Relationships-data.dictionary)
+
+ The relationships you include in the request and those on which you can operate.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/apppreviewset>

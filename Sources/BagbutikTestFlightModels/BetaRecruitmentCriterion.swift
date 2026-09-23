@@ -1,9 +1,27 @@
 import BagbutikCore
+import BagbutikProvisioningModels
 import Foundation
 
 /**
  # BetaRecruitmentCriterion
+
  A rule that controls which testers are automatically invited to a beta group based on device family and OS version.
+
+ ```
+ object BetaRecruitmentCriterion
+ ```
+
+ ## Topics
+
+ ### Dictionaries
+
+ [`object BetaRecruitmentCriterion.Attributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/BetaRecruitmentCriterion/Attributes-data.dictionary)
+
+ Attributes that describe a beta recruitment criterion resource.
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/betarecruitmentcriterion>

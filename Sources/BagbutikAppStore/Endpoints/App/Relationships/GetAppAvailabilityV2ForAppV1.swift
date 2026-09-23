@@ -4,9 +4,16 @@ import BagbutikAppStoreModels
 public extension Request {
     /**
      # List Availability for an App
+
      The data structure that represents a get-v1-apps-{id}-app availability v2 resource.
 
+     ## Overview
+
      Get a list of availabilities for a specific app.
+
+     ---
+
+     Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-apps-_id_-appAvailabilityV2>

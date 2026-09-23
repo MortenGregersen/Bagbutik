@@ -1,6 +1,26 @@
 import BagbutikCore
 import Foundation
 
+/**
+ # BuildAppLinkageResponse
+
+ ```
+ object BuildAppLinkageResponse
+ ```
+
+ ## Topics
+
+ ### Dictionaries
+
+ [`object BuildAppLinkageResponse.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/BuildAppLinkageResponse/Data-data.dictionary)
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/buildapplinkageresponse>
+ */
 public struct BuildAppLinkageResponse: Codable, Sendable {
     public let data: Data
     public let links: DocumentLinks

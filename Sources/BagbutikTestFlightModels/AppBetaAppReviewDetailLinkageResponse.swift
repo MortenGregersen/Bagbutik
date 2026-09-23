@@ -1,6 +1,26 @@
 import BagbutikCore
 import Foundation
 
+/**
+ # AppBetaAppReviewDetailLinkageResponse
+
+ ```
+ object AppBetaAppReviewDetailLinkageResponse
+ ```
+
+ ## Topics
+
+ ### Dictionaries
+
+ [`object AppBetaAppReviewDetailLinkageResponse.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/AppBetaAppReviewDetailLinkageResponse/Data-data.dictionary)
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appbetaappreviewdetaillinkageresponse>
+ */
 public struct AppBetaAppReviewDetailLinkageResponse: Codable, Sendable {
     public let data: Data
     public let links: DocumentLinks

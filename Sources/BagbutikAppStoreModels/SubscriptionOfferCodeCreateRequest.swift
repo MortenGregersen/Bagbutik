@@ -3,7 +3,26 @@ import Foundation
 
 /**
  # SubscriptionOfferCodeCreateRequest
+
  The request body you use to create a subscription offer code.
+
+ ```
+ object SubscriptionOfferCodeCreateRequest
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object SubscriptionOfferCodeCreateRequest.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/SubscriptionOfferCodeCreateRequest/Data-data.dictionary)
+
+ The request body you use to create a subscription offer code.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/subscriptionoffercodecreaterequest>

@@ -3,15 +3,38 @@ import Foundation
 
 /**
  # AlternativeDistributionPackageDelta
+
  An incremental update package for an alternative distribution app, containing only the changes between two versions to reduce download size.
 
- For more information about the responses that include alternative distribution package delta objects, see [AlternativeDistributionPackageDeltaResponse](https://developer.apple.com/documentation/appstoreconnectapi/alternativedistributionpackagedeltaresponse) or [AlternativeDistributionPackageDeltasResponse](https://developer.apple.com/documentation/appstoreconnectapi/alternativedistributionpackagedeltasresponse).
+ ```
+ object AlternativeDistributionPackageDelta
+ ```
+
+ ## Discussion
+
+ For more information about the responses that include alternative distribution package delta objects, see [`AlternativeDistributionPackageDeltaResponse`](https://developer.apple.com/documentation/AppStoreConnectAPI/AlternativeDistributionPackageDeltaResponse) or [`AlternativeDistributionPackageDeltasResponse`](https://developer.apple.com/documentation/AppStoreConnectAPI/AlternativeDistributionPackageDeltasResponse).
+
+ > Tip:
+ > Use the `links` fields to navigate the resource object graph while making your requests. For example, from the alternative distribution package delta object above, you can also reach its package metadata, versions, and variants.
+
+ ## Topics
+
+ ### Objects
+
+ [`object AlternativeDistributionPackageDelta.Attributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/AlternativeDistributionPackageDelta/Attributes-data.dictionary)
+
+ Attributes that describe an alternative distribution package delta resource.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/alternativedistributionpackagedelta>
  */
 public struct AlternativeDistributionPackageDelta: Codable, Sendable, Identifiable {
-    /// An opaque resource ID that uniquely identifies the alternative distribution package delta.
     public let id: String
     public var links: ResourceLinks?
     public var type: String { "alternativeDistributionPackageDeltas" }

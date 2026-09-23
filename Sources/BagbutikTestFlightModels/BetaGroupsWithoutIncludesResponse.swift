@@ -3,7 +3,16 @@ import Foundation
 
 /**
  # BetaGroupsWithoutIncludesResponse
+
  A response body that contains a list of beta groups without any includes.
+
+ ```
+ object BetaGroupsWithoutIncludesResponse
+ ```
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/betagroupswithoutincludesresponse>

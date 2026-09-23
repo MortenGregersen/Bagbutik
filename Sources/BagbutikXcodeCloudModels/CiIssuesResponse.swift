@@ -3,7 +3,16 @@ import Foundation
 
 /**
  # CiIssuesResponse
+
  The response body for endpoints that list issues from an Xcode Cloud build action.
+
+ ```
+ object CiIssuesResponse
+ ```
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/ciissuesresponse>
@@ -11,11 +20,8 @@ import Foundation
 public struct CiIssuesResponse: Codable, Sendable, PagedResponse {
     public typealias Data = CiIssue
 
-    /// The resource data.
     public let data: [CiIssue]
-    /// The navigational links that include the self-link.
     public let links: PagedDocumentLinks
-    /// The paging information.
     public var meta: PagingInformation?
 
     public init(data: [CiIssue],

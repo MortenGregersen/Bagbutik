@@ -3,7 +3,26 @@ import Foundation
 
 /**
  # SubscriptionGroupLocalizationV2UpdateRequest
+
  The request body you use to modify a subscription group localization.
+
+ ```
+ object SubscriptionGroupLocalizationV2UpdateRequest
+ ```
+
+ ## Topics
+
+ ### Objects and types
+
+ [`object SubscriptionGroupLocalizationV2UpdateRequest.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/SubscriptionGroupLocalizationV2UpdateRequest/Data-data.dictionary)
+
+ The request body you use to modify a subscription group localization.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/subscriptiongrouplocalizationv2updaterequest>

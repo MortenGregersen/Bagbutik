@@ -3,7 +3,24 @@ import Foundation
 
 /**
  # BuildUploadFileUpdateRequest
+
  The request body you use to commit a build upload file.
+
+ ```
+ object BuildUploadFileUpdateRequest
+ ```
+
+ ## Topics
+
+ ### Dictionaries
+
+ [`object BuildUploadFileUpdateRequest.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/BuildUploadFileUpdateRequest/Data-data.dictionary)
+
+ The data wrapper for updating a build upload file’s processing state.
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/builduploadfileupdaterequest>

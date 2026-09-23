@@ -3,7 +3,26 @@ import Foundation
 
 /**
  # SubscriptionUpdateRequest
+
  The request body you use to update a subscription update request.
+
+ ```
+ object SubscriptionUpdateRequest
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object SubscriptionUpdateRequest.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/SubscriptionUpdateRequest/Data-data.dictionary)
+
+ The request body you use to update a subscription update request.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/subscriptionupdaterequest>

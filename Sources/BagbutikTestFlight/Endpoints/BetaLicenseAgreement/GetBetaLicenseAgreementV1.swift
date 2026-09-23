@@ -4,7 +4,12 @@ import BagbutikTestFlightModels
 public extension Request {
     /**
      # Read beta license agreement information
+
      Get a specific beta license agreement.
+
+     ---
+
+     Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-betaLicenseAgreements-_id_>

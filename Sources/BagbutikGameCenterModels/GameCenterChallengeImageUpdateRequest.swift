@@ -3,7 +3,24 @@ import Foundation
 
 /**
  # GameCenterChallengeImageUpdateRequest
+
  The request body you use to update a challenge.
+
+ ```
+ object GameCenterChallengeImageUpdateRequest
+ ```
+
+ ## Topics
+
+ ### Dictionaries
+
+ [`object GameCenterChallengeImageUpdateRequest.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/GameCenterChallengeImageUpdateRequest/Data-data.dictionary)
+
+ The request body you use to update a challenge.
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterchallengeimageupdaterequest>

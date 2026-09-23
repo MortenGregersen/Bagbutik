@@ -3,21 +3,39 @@ import Foundation
 
 /**
  # Profile
+
  A provisioning profile that authorizes specific devices to run an app during development or distribution.
+
+ ```
+ object Profile
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object Profile.Attributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/Profile/Attributes-data.dictionary)
+
+ Attributes that describe a Profiles resource.
+
+ [`object Profile.Relationships`](https://developer.apple.com/documentation/AppStoreConnectAPI/Profile/Relationships-data.dictionary)
+
+ The relationships you include in the request and those on which you can operate.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/profile>
  */
 public struct Profile: Codable, Sendable, Identifiable {
-    /// The opaque resource ID that uniquely identifies the resource
     public let id: String
-    /// Navigational links that include the self-link.
     public var links: ResourceLinks?
-    /// The resource type.
     public var type: String { "profiles" }
-    /// The resource’s attributes.
     public var attributes: Attributes?
-    /// Navigational links to related data and included resource types and IDs.
     public var relationships: Relationships?
 
     public init(id: String,

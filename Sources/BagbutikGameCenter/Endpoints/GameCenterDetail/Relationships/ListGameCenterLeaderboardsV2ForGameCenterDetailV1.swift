@@ -5,7 +5,36 @@ import BagbutikModelsShared
 public extension Request {
     /**
      # List All Game Center Leaderboards for a Game Center Detail
+
      Get a list of leaderboards for a specific Game Center detail.
+
+     ## Overview
+
+     - id:
+     - fields[gameCenterActivities]:
+     - fields[gameCenterChallenges]:
+     - fields[gameCenterDetails]:
+     - fields[gameCenterGroups]:
+     - fields[gameCenterLeaderboardSets]:
+     - fields[gameCenterLeaderboardVersions]:
+     - fields[gameCenterLeaderboards]:
+     - filter[archived]:
+     - filter[id]:
+     - filter[referenceName]:
+     - include:
+     - limit:
+     - limit[gameCenterLeaderboardSets]:
+     - limit[versions]:
+     - 200:
+     - 400:
+     - 401:
+     - 403:
+     - 404:
+     - 429:
+
+     ---
+
+     Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-gameCenterDetails-_id_-gameCenterLeaderboardsV2>

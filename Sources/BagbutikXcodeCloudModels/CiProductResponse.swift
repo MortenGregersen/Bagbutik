@@ -5,17 +5,23 @@ import Foundation
 
 /**
  # CiProductResponse
+
  The response body for endpoints that read a single Xcode Cloud product.
+
+ ```
+ object CiProductResponse
+ ```
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/ciproductresponse>
  */
 public struct CiProductResponse: Codable, Sendable {
-    /// The resource data.
     public let data: CiProduct
-    /// The requested relationship data.
     public var included: [Included]?
-    /// The navigational links that include the self-link.
     public let links: DocumentLinks
 
     public init(data: CiProduct,

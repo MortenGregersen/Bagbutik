@@ -3,7 +3,16 @@ import Foundation
 
 /**
  # PrereleaseVersionWithoutIncludesResponse
+
  A response containing a single pre-release version, without related resources.
+
+ ```
+ object PrereleaseVersionWithoutIncludesResponse
+ ```
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/prereleaseversionwithoutincludesresponse>

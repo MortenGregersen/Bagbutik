@@ -3,17 +3,34 @@ import Foundation
 
 /**
  # GameCenterMatchmakingRule
+
  A JavaScript expression evaluated during Game Center matchmaking to determine player compatibility.
+
+ ```
+ object GameCenterMatchmakingRule
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object GameCenterMatchmakingRule.Attributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/GameCenterMatchmakingRule/Attributes-data.dictionary)
+
+ The attributes of a matchmaking rule.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingrule>
  */
 public struct GameCenterMatchmakingRule: Codable, Sendable, Identifiable {
-    /// The unique identifier for the rule.
     public let id: String
     public var links: ResourceLinks?
     public var type: String { "gameCenterMatchmakingRules" }
-    /// The attributes of the rule.
     public var attributes: Attributes?
 
     public init(id: String,

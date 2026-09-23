@@ -5,7 +5,24 @@ import Foundation
 
 /**
  # GameCenterActivityImage
+
  An image asset representing a Game Center activity in the player interface.
+
+ ```
+ object GameCenterActivityImage
+ ```
+
+ ## Topics
+
+ ### Dictionaries
+
+ [`object GameCenterActivityImage.Attributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/GameCenterActivityImage/Attributes-data.dictionary)
+
+ Attributes that describe an activity resource.
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecenteractivityimage>

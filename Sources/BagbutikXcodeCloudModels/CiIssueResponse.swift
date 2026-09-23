@@ -3,15 +3,22 @@ import Foundation
 
 /**
  # CiIssueResponse
+
  The response body for endpoints that read a single issue from an Xcode Cloud build action.
+
+ ```
+ object CiIssueResponse
+ ```
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/ciissueresponse>
  */
 public struct CiIssueResponse: Codable, Sendable {
-    /// The resource data.
     public let data: CiIssue
-    /// The navigational links that include the self-link.
     public let links: DocumentLinks
 
     public init(data: CiIssue,

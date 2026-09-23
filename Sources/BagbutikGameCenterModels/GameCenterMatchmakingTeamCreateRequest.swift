@@ -3,7 +3,26 @@ import Foundation
 
 /**
  # GameCenterMatchmakingTeamCreateRequest
+
  The request body you use to create a team.
+
+ ```
+ object GameCenterMatchmakingTeamCreateRequest
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object GameCenterMatchmakingTeamCreateRequest.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/GameCenterMatchmakingTeamCreateRequest/Data-data.dictionary)
+
+ The data structure of the request body you use to create a team.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingteamcreaterequest>

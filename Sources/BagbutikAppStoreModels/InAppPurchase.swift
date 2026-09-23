@@ -3,7 +3,30 @@ import Foundation
 
 /**
  # InAppPurchase
+
  A one-time purchasable item available in an app, such as a consumable, non-consumable, or non-renewing subscription.
+
+ ```
+ object InAppPurchase
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object InAppPurchase.Attributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/InAppPurchase/Attributes-data.dictionary)
+
+ Attributes that describe an In-App Purchases resource.
+
+ [`object InAppPurchase.Relationships`](https://developer.apple.com/documentation/AppStoreConnectAPI/InAppPurchase/Relationships-data.dictionary)
+
+ The relationships you include in the request and those on which you can operate.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/inapppurchase>

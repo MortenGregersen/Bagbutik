@@ -3,7 +3,30 @@ import Foundation
 
 /**
  # GameCenterDetail
+
  The Game Center configuration for an app, linking it to leaderboards, achievement sets, and groups.
+
+ ```
+ object GameCenterDetail
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object GameCenterDetail.Attributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/GameCenterDetail/Attributes-data.dictionary)
+
+ Attributes that describe a detail resource.
+
+ [`object GameCenterDetail.Relationships`](https://developer.apple.com/documentation/AppStoreConnectAPI/GameCenterDetail/Relationships-data.dictionary)
+
+ The relationships you include in the request and those on which you can operate.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterdetail>

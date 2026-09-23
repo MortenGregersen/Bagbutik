@@ -3,7 +3,26 @@ import Foundation
 
 /**
  # MarketplaceWebhookCreateRequest
+
  The request body you use to create a marketplace webhook url.
+
+ ```
+ object MarketplaceWebhookCreateRequest
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object MarketplaceWebhookCreateRequest.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/MarketplaceWebhookCreateRequest/Data-data.dictionary)
+
+ The request body you use to create a marketplace webhook.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/marketplacewebhookcreaterequest>

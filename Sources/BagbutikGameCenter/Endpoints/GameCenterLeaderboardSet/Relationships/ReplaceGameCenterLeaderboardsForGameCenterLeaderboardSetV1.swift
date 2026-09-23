@@ -5,7 +5,12 @@ import BagbutikModelsShared
 public extension Request {
     /**
      # Modify the leaderboards in a leaderboard set
+
      Edit the positions of leaderboards in an existing leaderboard set.
+
+     ---
+
+     Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/patch-v1-gameCenterLeaderboardSets-_id_-relationships-gameCenterLeaderboards>

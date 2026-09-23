@@ -3,7 +3,26 @@ import Foundation
 
 /**
  # AppEventUpdateRequest
+
  The request body you use to update an app event update request.
+
+ ```
+ object AppEventUpdateRequest
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object AppEventUpdateRequest.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/AppEventUpdateRequest/Data-data.dictionary)
+
+ The request body you use to update an app event update request.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appeventupdaterequest>

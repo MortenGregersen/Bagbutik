@@ -4,7 +4,24 @@ import Foundation
 
 /**
  # UserInvitationsResponse
+
  The response body for endpoints that list pending App Store Connect team invitations.
+
+ ```
+ object UserInvitationsResponse
+ ```
+
+ ## See Also
+
+ [`List invited users`](https://developer.apple.com/documentation/AppStoreConnectAPI/GET-v1-userInvitations)
+
+ Get a list of pending invitations to join your team.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/userinvitationsresponse>
@@ -12,12 +29,9 @@ import Foundation
 public struct UserInvitationsResponse: Codable, Sendable, PagedResponse {
     public typealias Data = UserInvitation
 
-    /// The resource data.
     public let data: [UserInvitation]
     public var included: [App]?
-    /// Navigational links that include the self-link.
     public let links: PagedDocumentLinks
-    /// Paging information.
     public var meta: PagingInformation?
 
     public init(data: [UserInvitation],

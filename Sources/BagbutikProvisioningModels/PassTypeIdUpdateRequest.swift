@@ -3,7 +3,24 @@ import Foundation
 
 /**
  # PassTypeIdUpdateRequest
+
  The request body you use to update a pass type id update request.
+
+ ```
+ object PassTypeIdUpdateRequest
+ ```
+
+ ## Topics
+
+ ### Dictionaries
+
+ [`object PassTypeIdUpdateRequest.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/PassTypeIdUpdateRequest/Data-data.dictionary)
+
+ The data wrapper for a pass type ID update request.
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/passtypeidupdaterequest>

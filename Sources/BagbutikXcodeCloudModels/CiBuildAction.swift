@@ -3,21 +3,39 @@ import Foundation
 
 /**
  # CiBuildAction
+
  The execution result of a specific action step within an Xcode Cloud build run, including its status and issues.
+
+ ```
+ object CiBuildAction
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object CiBuildAction.Attributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/CiBuildAction/Attributes-data.dictionary)
+
+ The attributes that describe a Build Actions resource.
+
+ [`object CiBuildAction.Relationships`](https://developer.apple.com/documentation/AppStoreConnectAPI/CiBuildAction/Relationships-data.dictionary)
+
+ The relationships of the Build Actions resource you included in the request and those on which you can operate.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/cibuildaction>
  */
 public struct CiBuildAction: Codable, Sendable, Identifiable {
-    /// The opaque resource ID that uniquely identifies a Build Actions resource.
     public let id: String
-    /// The navigational links that include the self-link.
     public var links: ResourceLinks?
-    /// The resource type.
     public var type: String { "ciBuildActions" }
-    /// The attributes that describe the Build Actions resource.
     public var attributes: Attributes?
-    /// The navigational links to related data and included resource types and IDs.
     public var relationships: Relationships?
 
     public init(id: String,

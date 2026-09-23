@@ -3,17 +3,23 @@ import Foundation
 
 /**
  # ScmPullRequestResponse
+
  The response body for endpoints that read a single SCM pull request linked to Xcode Cloud.
+
+ ```
+ object ScmPullRequestResponse
+ ```
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/scmpullrequestresponse>
  */
 public struct ScmPullRequestResponse: Codable, Sendable {
-    /// The resource data.
     public let data: ScmPullRequest
-    /// The requested relationship data.
     public var included: [ScmRepository]?
-    /// The navigational links that include the self-link.
     public let links: DocumentLinks
 
     public init(data: ScmPullRequest,

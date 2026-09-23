@@ -3,13 +3,31 @@ import Foundation
 
 /**
  # CiWorkflowUpdateRequest
+
  The request body you use to update an Xcode Cloud workflow.
+
+ ```
+ object CiWorkflowUpdateRequest
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object CiWorkflowUpdateRequest.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/CiWorkflowUpdateRequest/Data-data.dictionary)
+
+ The data element of the request you use to update an Xcode Cloud workflow.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/ciworkflowupdaterequest>
  */
 public struct CiWorkflowUpdateRequest: Codable, Sendable, RequestBody {
-    /// The resource data.
     public let data: Data
 
     public init(data: Data) {

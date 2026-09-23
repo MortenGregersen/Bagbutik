@@ -1,6 +1,20 @@
 import BagbutikCore
 import Foundation
 
+/**
+ # AppStoreVersionExperimentResponse
+
+ ```
+ object AppStoreVersionExperimentResponse
+ ```
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionexperimentresponse>
+ */
 public struct AppStoreVersionExperimentResponse: Codable, Sendable {
     public let data: AppStoreVersionExperiment
     public var included: [Included]?

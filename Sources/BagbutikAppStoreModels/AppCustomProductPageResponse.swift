@@ -4,7 +4,16 @@ import Foundation
 
 /**
  # AppCustomProductPageResponse
+
  The response body for endpoints that create, read, or modify a single custom App Store product page.
+
+ ```
+ object AppCustomProductPageResponse
+ ```
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appcustomproductpageresponse>

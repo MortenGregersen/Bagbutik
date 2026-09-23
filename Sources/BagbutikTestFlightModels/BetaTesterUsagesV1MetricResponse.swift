@@ -3,7 +3,26 @@ import Foundation
 
 /**
  # BetaTesterUsagesV1MetricResponse
+
  A response that contains one or more beta tester usage metric resources.
+
+ ```
+ object BetaTesterUsagesV1MetricResponse
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object BetaTesterUsagesV1MetricResponse.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/BetaTesterUsagesV1MetricResponse/Data-data.dictionary)
+
+ The request body you use to update a beta tester usages v1metric response.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/betatesterusagesv1metricresponse>

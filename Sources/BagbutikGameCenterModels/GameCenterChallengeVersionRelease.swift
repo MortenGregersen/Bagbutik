@@ -3,7 +3,24 @@ import Foundation
 
 /**
  # GameCenterChallengeVersionRelease
+
  The data structure that represent a challenge version release.
+
+ ```
+ object GameCenterChallengeVersionRelease
+ ```
+
+ ## Topics
+
+ ### Dictionaries
+
+ [`object GameCenterChallengeVersionRelease.Relationships`](https://developer.apple.com/documentation/AppStoreConnectAPI/GameCenterChallengeVersionRelease/Relationships-data.dictionary)
+
+ The relationships you include in the request and those on which you can operate.
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterchallengeversionrelease>

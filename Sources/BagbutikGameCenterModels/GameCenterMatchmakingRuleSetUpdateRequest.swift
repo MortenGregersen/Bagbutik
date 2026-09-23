@@ -3,13 +3,31 @@ import Foundation
 
 /**
  # GameCenterMatchmakingRuleSetUpdateRequest
+
  The request body you use to modify a rule set.
+
+ ```
+ object GameCenterMatchmakingRuleSetUpdateRequest
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object GameCenterMatchmakingRuleSetUpdateRequest.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/GameCenterMatchmakingRuleSetUpdateRequest/Data-data.dictionary)
+
+ The data structure of the request body you use to modify a rule set.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingrulesetupdaterequest>
  */
 public struct GameCenterMatchmakingRuleSetUpdateRequest: Codable, Sendable, RequestBody {
-    /// The data structure of the request body.
     public let data: Data
 
     public init(data: Data) {

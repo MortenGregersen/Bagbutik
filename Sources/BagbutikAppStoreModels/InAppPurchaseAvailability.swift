@@ -3,7 +3,30 @@ import Foundation
 
 /**
  # InAppPurchaseAvailability
+
  The territory availability configuration for an in-app purchase, specifying which App Store regions it’s offered in.
+
+ ```
+ object InAppPurchaseAvailability
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object InAppPurchaseAvailability.Attributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/InAppPurchaseAvailability/Attributes-data.dictionary)
+
+ Attributes that describe an in-app purchase availability resource.
+
+ [`object InAppPurchaseAvailability.Relationships`](https://developer.apple.com/documentation/AppStoreConnectAPI/InAppPurchaseAvailability/Relationships-data.dictionary)
+
+ The relationships you include in the request and those on which you can operate.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/inapppurchaseavailability>

@@ -1,6 +1,26 @@
 import BagbutikCore
 import Foundation
 
+/**
+ # InAppPurchaseV2ImagesLinkagesResponse
+
+ ```
+ object InAppPurchaseV2ImagesLinkagesResponse
+ ```
+
+ ## Topics
+
+ ### Dictionaries
+
+ [`object InAppPurchaseV2ImagesLinkagesResponse.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/InAppPurchaseV2ImagesLinkagesResponse/Data-data.dictionary)
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/inapppurchasev2imageslinkagesresponse>
+ */
 public struct InAppPurchaseV2ImagesLinkagesResponse: Codable, Sendable, PagedResponse {
     public let data: [Data]
     public let links: PagedDocumentLinks

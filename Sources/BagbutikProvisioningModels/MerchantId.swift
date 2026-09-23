@@ -3,21 +3,37 @@ import Foundation
 
 /**
  # MerchantId
+
  An Apple Pay merchant identifier registered to your account, used to associate payment capabilities with your app’s bundle ID.
+
+ ```
+ object MerchantId
+ ```
+
+ ## Topics
+
+ ### Dictionaries
+
+ [`object MerchantId.Attributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/MerchantId/Attributes-data.dictionary)
+
+ Attributes that describe a merchant ID resource.
+
+ [`object MerchantId.Relationships`](https://developer.apple.com/documentation/AppStoreConnectAPI/MerchantId/Relationships-data.dictionary)
+
+ The relationship you include in the request and those on which you can operate.
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/merchantid>
  */
 public struct MerchantId: Codable, Sendable, Identifiable {
-    /// An opaque resource ID that uniquely identifies the resource. Obtain the merchant ID resource ID from the [List merchant ids](https://developer.apple.com/documentation/appstoreconnectapi/get-v1-merchantids) response.
     public let id: String
-    /// Navigational links that include the self-link.
     public var links: ResourceLinks?
-    /// The resource type.
     public var type: String { "merchantIds" }
-    /// Attributes that describe a merchant ID resource.
     public var attributes: Attributes?
-    /// Navigational links to related data and included resource types and IDs.
     public var relationships: Relationships?
 
     public init(id: String,

@@ -3,17 +3,23 @@ import Foundation
 
 /**
  # ScmProviderType
+
  The source code management provider’s type.
+
+ ```
+ object ScmProviderType
+ ```
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/scmprovidertype>
  */
 public struct ScmProviderType: Codable, Sendable {
-    /// The source code management provider’s display name; for example, `Bitbucket Server`.
     public var displayName: String?
-    /// A Boolean value that indicates whether it’s a self-hosted source code management provider.
     public var isOnPremise: Bool?
-    /// A string that represents the kind of a Providers resource.
     public var kind: Kind?
 
     public init(displayName: String? = nil,

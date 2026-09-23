@@ -3,7 +3,26 @@ import Foundation
 
 /**
  # AppPreviewCreateRequest
+
  The request body you use to create an App Preview.
+
+ ```
+ object AppPreviewCreateRequest
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object AppPreviewCreateRequest.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/AppPreviewCreateRequest/Data-data.dictionary)
+
+ The data element of the request body.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/apppreviewcreaterequest>

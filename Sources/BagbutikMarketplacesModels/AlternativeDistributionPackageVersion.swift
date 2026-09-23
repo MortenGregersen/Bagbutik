@@ -3,15 +3,42 @@ import Foundation
 
 /**
  # AlternativeDistributionPackageVersion
+
  A versioned snapshot of an alternative distribution package, containing its variants and delta updates.
 
- For more information about the responses that includes alternative distribution package version objects, see [AlternativeDistributionPackageVersionResponse](https://developer.apple.com/documentation/appstoreconnectapi/alternativedistributionpackageversionresponse) or [AlternativeDistributionPackageVersionsResponse](https://developer.apple.com/documentation/appstoreconnectapi/alternativedistributionpackageversionsresponse).
+ ```
+ object AlternativeDistributionPackageVersion
+ ```
+
+ ## Discussion
+
+ For more information about the responses that includes alternative distribution package version objects, see [`AlternativeDistributionPackageVersionResponse`](https://developer.apple.com/documentation/AppStoreConnectAPI/AlternativeDistributionPackageVersionResponse) or [`AlternativeDistributionPackageVersionsResponse`](https://developer.apple.com/documentation/AppStoreConnectAPI/AlternativeDistributionPackageVersionsResponse).
+
+ > Tip:
+ > Use the `links` fields to navigate the resource object graph while making your requests. For example, from the alternative distribution package version object above, you can also reach its package metadata, deltas, and variants.
+
+ ## Topics
+
+ ### Objects
+
+ [`object AlternativeDistributionPackageVersion.Attributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/AlternativeDistributionPackageVersion/Attributes-data.dictionary)
+
+ Attributes that describe an alternative distribution package version resource.
+
+ [`object AlternativeDistributionPackageVersion.Relationships`](https://developer.apple.com/documentation/AppStoreConnectAPI/AlternativeDistributionPackageVersion/Relationships-data.dictionary)
+
+ The relationships you include in the request and those on which you can operate.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/alternativedistributionpackageversion>
  */
 public struct AlternativeDistributionPackageVersion: Codable, Sendable, Identifiable {
-    /// An opaque resource ID that uniquely identifies the alternative distribution package version.
     public let id: String
     public var links: ResourceLinks?
     public var type: String { "alternativeDistributionPackageVersions" }

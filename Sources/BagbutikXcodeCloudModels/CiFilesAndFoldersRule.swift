@@ -3,15 +3,32 @@ import Foundation
 
 /**
  # CiFilesAndFoldersRule
+
  Settings Xcode Cloud uses to determine whether a change should start a new build or not.
+
+ ```
+ object CiFilesAndFoldersRule
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object CiStartConditionFileMatcher`](https://developer.apple.com/documentation/AppStoreConnectAPI/CiStartConditionFileMatcher)
+
+ A path pattern filter applied to an Xcode Cloud workflow start condition, restricting triggers to changes in specific files or directories.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/cifilesandfoldersrule>
  */
 public struct CiFilesAndFoldersRule: Codable, Sendable {
-    /// Directory and file information Xcode Cloud uses to determine if a change to a file or directory matches a custom start condition.
     public var matchers: [CiStartConditionFileMatcher]?
-    /// A string that indicates whether a workflow’s start condition’s Files and Folders setting should start a new build or not for a change.
     public var mode: Mode?
 
     public init(matchers: [CiStartConditionFileMatcher]? = nil,

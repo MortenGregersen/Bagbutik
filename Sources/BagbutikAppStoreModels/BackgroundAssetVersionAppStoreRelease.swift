@@ -3,7 +3,92 @@ import Foundation
 
 /**
  # BackgroundAssetVersionAppStoreRelease
+
  A release of a background asset version to App Store customers, making the background content available on their devices.
+
+ ```
+ object BackgroundAssetVersionAppStoreRelease
+ ```
+
+ ## Topics
+
+ ### Dictionaries
+
+ [`object BackgroundAssetVersionAppStoreRelease.Attributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/BackgroundAssetVersionAppStoreRelease/Attributes-data.dictionary)
+
+ Attributes that describe a background asset version App Store release resource.
+
+ [`object BackgroundAssetVersionAppStoreRelease.Relationships`](https://developer.apple.com/documentation/AppStoreConnectAPI/BackgroundAssetVersionAppStoreRelease/Relationships-data.dictionary)
+
+ The relationships you include in the request and those on which you can operate.
+
+ ## See Also
+
+ [`object BackgroundAsset`](https://developer.apple.com/documentation/AppStoreConnectAPI/BackgroundAsset)
+
+ A downloadable content package that your app fetches in the background before or after installation, managed through Apple-hosted background assets.
+
+ [`object BackgroundAssetCreateRequest`](https://developer.apple.com/documentation/AppStoreConnectAPI/BackgroundAssetCreateRequest)
+
+ The request body you use to create a background asset record.
+
+ [`object BackgroundAssetResponse`](https://developer.apple.com/documentation/AppStoreConnectAPI/BackgroundAssetResponse)
+
+ A response containing a single background asset downloadable content package.
+
+ [`object BackgroundAssetVersion`](https://developer.apple.com/documentation/AppStoreConnectAPI/BackgroundAssetVersion)
+
+ A specific version of a background asset, containing the upload files your app downloads after installation.
+
+ [`object BackgroundAssetVersionAppStoreReleaseResponse`](https://developer.apple.com/documentation/AppStoreConnectAPI/BackgroundAssetVersionAppStoreReleaseResponse)
+
+ A response containing a single App Store release record for a background asset version.
+
+ [`object BackgroundAssetVersionBackgroundAssetUploadFilesLinkagesResponse`](https://developer.apple.com/documentation/AppStoreConnectAPI/BackgroundAssetVersionBackgroundAssetUploadFilesLinkagesResponse)
+
+ A response containing the resource identifiers of upload files associated with a background asset version.
+
+ [`object BackgroundAssetVersionCreateRequest`](https://developer.apple.com/documentation/AppStoreConnectAPI/BackgroundAssetVersionCreateRequest)
+
+ The request body you use to create a background asset version.
+
+ [`object BackgroundAssetVersionExternalBetaRelease`](https://developer.apple.com/documentation/AppStoreConnectAPI/BackgroundAssetVersionExternalBetaRelease)
+
+ A release of a background asset version to external TestFlight testers for validation.
+
+ [`object BackgroundAssetVersionExternalBetaReleaseResponse`](https://developer.apple.com/documentation/AppStoreConnectAPI/BackgroundAssetVersionExternalBetaReleaseResponse)
+
+ A response containing a single external beta release record for a background asset version.
+
+ [`object BackgroundAssetVersionInternalBetaRelease`](https://developer.apple.com/documentation/AppStoreConnectAPI/BackgroundAssetVersionInternalBetaRelease)
+
+ A release of a background asset version to internal testers, allowing you to validate asset delivery before public distribution.
+
+ [`object BackgroundAssetVersionInternalBetaReleaseResponse`](https://developer.apple.com/documentation/AppStoreConnectAPI/BackgroundAssetVersionInternalBetaReleaseResponse)
+
+ A response containing a single internal beta release record for a background asset version.
+
+ [`object BackgroundAssetVersionsLinkagesResponse`](https://developer.apple.com/documentation/AppStoreConnectAPI/BackgroundAssetVersionsLinkagesResponse)
+
+ A response containing the resource identifiers of background asset versions linked to an app.
+
+ [`object BackgroundAssetVersionResponse`](https://developer.apple.com/documentation/AppStoreConnectAPI/BackgroundAssetVersionResponse)
+
+ A response containing a single version of a background asset.
+
+ [`object BackgroundAssetVersionsResponse`](https://developer.apple.com/documentation/AppStoreConnectAPI/BackgroundAssetVersionsResponse)
+
+ A response containing a list of versions for a background asset.
+
+ [`object BackgroundAssetsResponse`](https://developer.apple.com/documentation/AppStoreConnectAPI/BackgroundAssetsResponse)
+
+ A response containing a list of background assets for an app.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/backgroundassetversionappstorerelease>

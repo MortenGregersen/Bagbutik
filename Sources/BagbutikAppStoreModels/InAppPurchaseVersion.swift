@@ -3,7 +3,30 @@ import Foundation
 
 /**
  # InAppPurchaseVersion
+
  A draft version of an in-app purchase that captures its localized metadata and review images for App Review submission.
+
+ ```
+ object InAppPurchaseVersion
+ ```
+
+ ## Topics
+
+ ### Objects and types
+
+ [`object InAppPurchaseVersion.Attributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/InAppPurchaseVersion/Attributes-data.dictionary)
+
+ Attributes that describe an in-app purchase version resource.
+
+ [`object InAppPurchaseVersion.Relationships`](https://developer.apple.com/documentation/AppStoreConnectAPI/InAppPurchaseVersion/Relationships-data.dictionary)
+
+ The relationships you include in the request and those on which you can operate.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/inapppurchaseversion>

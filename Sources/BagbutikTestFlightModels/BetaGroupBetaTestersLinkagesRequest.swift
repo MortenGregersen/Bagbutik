@@ -3,13 +3,31 @@ import Foundation
 
 /**
  # BetaGroupBetaTestersLinkagesRequest
+
  A request body you use to add or remove beta testers from a beta group.
+
+ ```
+ object BetaGroupBetaTestersLinkagesRequest
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object BetaGroupBetaTestersLinkagesRequest.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/BetaGroupBetaTestersLinkagesRequest/Data-data.dictionary)
+
+ The data element of the request body.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/betagroupbetatesterslinkagesrequest>
  */
 public struct BetaGroupBetaTestersLinkagesRequest: Codable, Sendable, RequestBody {
-    /// The types and IDs of related resources.
     public let data: [Data]
 
     public init(data: [Data]) {

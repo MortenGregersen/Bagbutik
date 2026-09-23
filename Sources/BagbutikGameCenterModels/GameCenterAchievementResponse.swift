@@ -4,7 +4,16 @@ import Foundation
 
 /**
  # GameCenterAchievementResponse
+
  The response body for endpoints that create, read, or modify a single Game Center achievement.
+
+ ```
+ object GameCenterAchievementResponse
+ ```
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterachievementresponse>

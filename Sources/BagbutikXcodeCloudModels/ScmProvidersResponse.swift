@@ -3,7 +3,16 @@ import Foundation
 
 /**
  # ScmProvidersResponse
+
  The response body for endpoints that list SCM providers connected to Xcode Cloud.
+
+ ```
+ object ScmProvidersResponse
+ ```
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/scmprovidersresponse>
@@ -11,11 +20,8 @@ import Foundation
 public struct ScmProvidersResponse: Codable, Sendable, PagedResponse {
     public typealias Data = ScmProvider
 
-    /// The resource data.
     public let data: [ScmProvider]
-    /// The navigational links that include the self-link.
     public let links: PagedDocumentLinks
-    /// The paging information.
     public var meta: PagingInformation?
 
     public init(data: [ScmProvider],

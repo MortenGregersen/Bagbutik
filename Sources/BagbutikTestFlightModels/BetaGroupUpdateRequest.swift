@@ -3,13 +3,31 @@ import Foundation
 
 /**
  # BetaGroupUpdateRequest
+
  The request body you use to update a Beta Group.
+
+ ```
+ object BetaGroupUpdateRequest
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object BetaGroupUpdateRequest.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/BetaGroupUpdateRequest/Data-data.dictionary)
+
+ The data element of the request body.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/betagroupupdaterequest>
  */
 public struct BetaGroupUpdateRequest: Codable, Sendable, RequestBody {
-    /// The resource data.
     public let data: Data
 
     public init(data: Data) {

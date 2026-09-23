@@ -3,9 +3,30 @@ import Foundation
 
 /**
  # AnalyticsReportRequestCreateRequest
+
  The request body you use to create an analytics report request.
 
- Use this object with [Request Reports](https://developer.apple.com/documentation/appstoreconnectapi/post-v1-analyticsreportrequests).
+ ```
+ object AnalyticsReportRequestCreateRequest
+ ```
+
+ ## Discussion
+
+ Use this object with [`Request Reports`](https://developer.apple.com/documentation/AppStoreConnectAPI/POST-v1-analyticsReportRequests).
+
+ ## Topics
+
+ ### Objects
+
+ [`object AnalyticsReportRequestCreateRequest.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/AnalyticsReportRequestCreateRequest/Data-data.dictionary)
+
+ The data object within an analytics report request create request containing the resource type, attributes, and relationships for the create operation.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/analyticsreportrequestcreaterequest>

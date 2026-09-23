@@ -1,6 +1,22 @@
 import BagbutikCore
 import Foundation
 
+/**
+ # AppClipAdvancedExperienceLanguage
+
+ A string value identifying the language for an App Clip advanced experience localization.
+
+ ```
+ string AppClipAdvancedExperienceLanguage
+ ```
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appclipadvancedexperiencelanguage>
+ */
 public enum AppClipAdvancedExperienceLanguage: String, Sendable, Codable, CaseIterable {
     case ar = "AR"
     case ca = "CA"

@@ -4,7 +4,50 @@ import BagbutikAppStoreModels
 public extension Request {
     /**
      # Read the end user license agreement information of an app
+
      Get the custom end user license agreement (EULA) for a specific app and the territories where the agreement applies.
+
+     ## Discussion
+
+     ### Example Request and Response
+
+     **Request:**
+
+     ```
+     https://api.appstoreconnect.apple.com/v1/apps/1000001234/endUserLicenseAgreement
+     ```
+
+     **Response:**
+
+     ```json
+     {
+       "data": {
+         "type": "endUserLicenseAgreements",
+         "id": "d187a413-70fb-45c7-ae43-12345ea0d40",
+         "attributes": {
+           "agreementText": "This is the agreement. It is vital you read it."
+         },
+         "relationships": {
+           "territories": {
+             "links": {
+               "self": "https://api.appstoreconnect.apple.com/v1/endUserLicenseAgreements/d187a413-70fb-45c7-ae43-12345ea0d40/relationships/territories",
+               "related": "https://api.appstoreconnect.apple.com/v1/endUserLicenseAgreements/d187a413-70fb-45c7-ae43-12345ea0d40/territories"
+             }
+           }
+         },
+         "links": {
+           "self": "https://api.appstoreconnect.apple.com/v1/endUserLicenseAgreements/d187a413-70fb-45c7-ae43-12345ea0d40"
+         }
+       },
+       "links": {
+         "self": "https://api.appstoreconnect.apple.com/v1/apps/1000001234/endUserLicenseAgreement"
+       }
+     }
+     ```
+
+     ---
+
+     Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-apps-_id_-endUserLicenseAgreement>

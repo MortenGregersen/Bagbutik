@@ -3,7 +3,30 @@ import Foundation
 
 /**
  # GameCenterLeaderboardSetRelease
+
  The data structure that represent a leaderboard set release.
+
+ ```
+ object GameCenterLeaderboardSetRelease
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object GameCenterLeaderboardSetRelease.Attributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/GameCenterLeaderboardSetRelease/Attributes-data.dictionary)
+
+ Attributes that describe a leaderboard resource.
+
+ [`object GameCenterLeaderboardSetRelease.Relationships`](https://developer.apple.com/documentation/AppStoreConnectAPI/GameCenterLeaderboardSetRelease/Relationships-data.dictionary)
+
+ The relationships you include in the request and those on which you can operate.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterleaderboardsetrelease>

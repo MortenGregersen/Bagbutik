@@ -3,7 +3,26 @@ import Foundation
 
 /**
  # GameCenterPlayerAchievementSubmission
+
  A batch operation submitting achievement completions for a specific player in Game Center.
+
+ ```
+ object GameCenterPlayerAchievementSubmission
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object GameCenterPlayerAchievementSubmission.Attributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/GameCenterPlayerAchievementSubmission/Attributes-data.dictionary)
+
+ Attributes that describe a player resource.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterplayerachievementsubmission>

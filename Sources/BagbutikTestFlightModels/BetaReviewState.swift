@@ -1,6 +1,22 @@
 import BagbutikCore
 import Foundation
 
+/**
+ # BetaReviewState
+
+ String that indicates the review state of a beta app.
+
+ ```
+ string BetaReviewState
+ ```
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/betareviewstate>
+ */
 public enum BetaReviewState: String, Sendable, ParameterValue, Codable, CaseIterable {
     case approved = "APPROVED"
     case inReview = "IN_REVIEW"

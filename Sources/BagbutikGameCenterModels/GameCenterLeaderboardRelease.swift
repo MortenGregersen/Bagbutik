@@ -3,7 +3,30 @@ import Foundation
 
 /**
  # GameCenterLeaderboardRelease
+
  A record indicating that a Game Center leaderboard has been released to players, making it visible in the game.
+
+ ```
+ object GameCenterLeaderboardRelease
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object GameCenterLeaderboardRelease.Attributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/GameCenterLeaderboardRelease/Attributes-data.dictionary)
+
+ Attributes that describe a leaderboard resource.
+
+ [`object GameCenterLeaderboardRelease.Relationships`](https://developer.apple.com/documentation/AppStoreConnectAPI/GameCenterLeaderboardRelease/Relationships-data.dictionary)
+
+ The relationships you include in the request and those on which you can operate.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterleaderboardrelease>

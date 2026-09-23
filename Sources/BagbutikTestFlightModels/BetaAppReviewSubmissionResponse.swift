@@ -4,16 +4,31 @@ import Foundation
 
 /**
  # BetaAppReviewSubmissionResponse
+
  The response body for endpoints that submit a build for beta app review.
+
+ ```
+ object BetaAppReviewSubmissionResponse
+ ```
+
+ ## See Also
+
+ [`Submit an app for beta review`](https://developer.apple.com/documentation/AppStoreConnectAPI/POST-v1-betaAppReviewSubmissions)
+
+ Submit an app for beta app review to allow external testing.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/betaappreviewsubmissionresponse>
  */
 public struct BetaAppReviewSubmissionResponse: Codable, Sendable {
-    /// The resource data.
     public let data: BetaAppReviewSubmission
     public var included: [Build]?
-    /// Navigational links that include the self-link.
     public let links: DocumentLinks
 
     public init(data: BetaAppReviewSubmission,

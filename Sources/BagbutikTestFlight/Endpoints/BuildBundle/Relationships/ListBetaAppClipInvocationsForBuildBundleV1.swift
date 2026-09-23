@@ -4,7 +4,12 @@ import BagbutikTestFlightModels
 public extension Request {
     /**
      # List all beta app clip invocations for a build bundle
+
      Get all App Clip invocations you configure for testing for a specific build bundle.
+
+     ---
+
+     Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-buildBundles-_id_-betaAppClipInvocations>

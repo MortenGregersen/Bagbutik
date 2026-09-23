@@ -3,7 +3,16 @@ import Foundation
 
 /**
  # SandboxTestersClearPurchaseHistoryRequestV2
+
  A batch request to reset the in-app purchase and subscription history for one or more sandbox Apple IDs.
+
+ ```
+ object SandboxTestersClearPurchaseHistoryRequestV2
+ ```
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/sandboxtestersclearpurchasehistoryrequestv2>

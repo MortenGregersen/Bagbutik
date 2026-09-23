@@ -4,16 +4,31 @@ import Foundation
 
 /**
  # BetaGroupResponse
+
  The response body for endpoints that create, read, or modify a TestFlight beta group.
+
+ ```
+ object BetaGroupResponse
+ ```
+
+ ## See Also
+
+ [`Create a beta group`](https://developer.apple.com/documentation/AppStoreConnectAPI/POST-v1-betaGroups)
+
+ Create a beta group associated with an app, optionally enabling TestFlight public links.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/betagroupresponse>
  */
 public struct BetaGroupResponse: Codable, Sendable {
-    /// The resource data.
     public let data: BetaGroup
     public var included: [Included]?
-    /// Navigational links that include the self-link.
     public let links: DocumentLinks
 
     public init(data: BetaGroup,

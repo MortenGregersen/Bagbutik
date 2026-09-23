@@ -3,13 +3,31 @@ import Foundation
 
 /**
  # CiBuildRunCreateRequest
+
  The request body you use to start a new Xcode Cloud build.
+
+ ```
+ object CiBuildRunCreateRequest
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object CiBuildRunCreateRequest.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/CiBuildRunCreateRequest/Data-data.dictionary)
+
+ The data element of the request you use to start a new Xcode Cloud build.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/cibuildruncreaterequest>
  */
 public struct CiBuildRunCreateRequest: Codable, Sendable, RequestBody {
-    /// The resource data.
     public let data: Data
 
     public init(data: Data) {

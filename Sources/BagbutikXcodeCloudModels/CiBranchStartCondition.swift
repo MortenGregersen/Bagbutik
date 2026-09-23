@@ -3,17 +3,33 @@ import Foundation
 
 /**
  # CiBranchStartCondition
+
  Settings for a start condition that starts a build if a branch changes.
+
+ ```
+ object CiBranchStartCondition
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object CiBranchPatterns`](https://developer.apple.com/documentation/AppStoreConnectAPI/CiBranchPatterns)
+
+ Case-sensitive patterns Xcode Cloud uses to determine if a change meets branch names you configure for a workflow’s start condition.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/cibranchstartcondition>
  */
 public struct CiBranchStartCondition: Codable, Sendable {
-    /// A Boolean value that indicates whether Xcode Cloud automatically cancels or skips builds.
     public var autoCancel: Bool?
-    /// Settings Xcode Cloud uses to determine whether a change to a branch should start a new build or not.
     public var filesAndFoldersRule: CiFilesAndFoldersRule?
-    /// The source branch name and custom patterns you configure for a workflow that starts a new build for changes to a branch.
     public var source: CiBranchPatterns?
 
     public init(autoCancel: Bool? = nil,

@@ -3,7 +3,26 @@ import Foundation
 
 /**
  # InAppPurchaseLocalizationV2UpdateRequest
+
  The request body you use to update an in-app purchase localization with the v2 API.
+
+ ```
+ object InAppPurchaseLocalizationV2UpdateRequest
+ ```
+
+ ## Topics
+
+ ### Objects and types
+
+ [`object InAppPurchaseLocalizationV2UpdateRequest.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/InAppPurchaseLocalizationV2UpdateRequest/Data-data.dictionary)
+
+ The request body you use to modify an in-app purchase localization with the v2 API.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/inapppurchaselocalizationv2updaterequest>

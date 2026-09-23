@@ -3,7 +3,26 @@ import Foundation
 
 /**
  # GameCenterLeaderboardSetLocalizationCreateRequest
+
  The request body you use to create a leaderboard set localization.
+
+ ```
+ object GameCenterLeaderboardSetLocalizationCreateRequest
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object GameCenterLeaderboardSetLocalizationCreateRequest.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/GameCenterLeaderboardSetLocalizationCreateRequest/Data-data.dictionary)
+
+ The request body you use to create a Game Center leaderboard set localization.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterleaderboardsetlocalizationcreaterequest>

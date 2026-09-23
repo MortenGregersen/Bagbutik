@@ -3,7 +3,26 @@ import Foundation
 
 /**
  # GameCenterGroupGameCenterLeaderboardSetsLinkagesRequest
+
  The request body you use to create a relationship between a group and a leaderboard set.
+
+ ```
+ object GameCenterGroupGameCenterLeaderboardSetsLinkagesRequest
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object GameCenterGroupGameCenterLeaderboardSetsLinkagesRequest.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/GameCenterGroupGameCenterLeaderboardSetsLinkagesRequest/Data-data.dictionary)
+
+ The resource linkage data for updating the leaderboard sets associated with a Game Center group.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecentergroupgamecenterleaderboardsetslinkagesrequest>

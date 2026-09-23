@@ -3,15 +3,22 @@ import Foundation
 
 /**
  # CiArtifactResponse
+
  The response body for endpoints that read a single artifact produced by an Xcode Cloud build action.
+
+ ```
+ object CiArtifactResponse
+ ```
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/ciartifactresponse>
  */
 public struct CiArtifactResponse: Codable, Sendable {
-    /// The resource data.
     public let data: CiArtifact
-    /// The navigational links that include the self-link.
     public let links: DocumentLinks
 
     public init(data: CiArtifact,

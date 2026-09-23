@@ -1,9 +1,27 @@
 import BagbutikCore
+import BagbutikProvisioningModels
 import Foundation
 
 /**
  # BetaRecruitmentCriterionCreateRequest
+
  The request body you use to create a beta recruitment criterion.
+
+ ```
+ object BetaRecruitmentCriterionCreateRequest
+ ```
+
+ ## Topics
+
+ ### Dictionaries
+
+ [`object BetaRecruitmentCriterionCreateRequest.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/BetaRecruitmentCriterionCreateRequest/Data-data.dictionary)
+
+ The request body you use to create a beta recruitment criterion.
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/betarecruitmentcriterioncreaterequest>

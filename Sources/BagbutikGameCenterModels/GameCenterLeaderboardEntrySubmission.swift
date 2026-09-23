@@ -3,7 +3,26 @@ import Foundation
 
 /**
  # GameCenterLeaderboardEntrySubmission
+
  A player’s score submission to a Game Center leaderboard, including the score value and context.
+
+ ```
+ object GameCenterLeaderboardEntrySubmission
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object GameCenterLeaderboardEntrySubmission.Attributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/GameCenterLeaderboardEntrySubmission/Attributes-data.dictionary)
+
+ Attributes that describe a leaderboard resource.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterleaderboardentrysubmission>

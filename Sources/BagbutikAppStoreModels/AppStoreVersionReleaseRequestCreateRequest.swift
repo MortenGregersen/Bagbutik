@@ -3,13 +3,31 @@ import Foundation
 
 /**
  # AppStoreVersionReleaseRequestCreateRequest
+
  The request body you use to manually release an App Store approved version of your app.
+
+ ```
+ object AppStoreVersionReleaseRequestCreateRequest
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object AppStoreVersionReleaseRequestCreateRequest.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/AppStoreVersionReleaseRequestCreateRequest/Data-data.dictionary)
+
+ The data element of the request body.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionreleaserequestcreaterequest>
  */
 public struct AppStoreVersionReleaseRequestCreateRequest: Codable, Sendable, RequestBody {
-    /// The data element of the request body.
     public let data: Data
 
     public init(data: Data) {

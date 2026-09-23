@@ -3,19 +3,38 @@ import Foundation
 
 /**
  # BetaAppClipInvocationLocalizationInlineCreate
+
  An inline object for specifying a localized title for a beta App Clip invocation within a parent create or update request.
+
+ ```
+ object BetaAppClipInvocationLocalizationInlineCreate
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object BetaAppClipInvocationLocalizationInlineCreate.Attributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/BetaAppClipInvocationLocalizationInlineCreate/Attributes-data.dictionary)
+
+ The attributes that describe a Beta App Clip Invocation Localization Inline Creates resource.
+
+ [`object BetaAppClipInvocationLocalizationInlineCreate.Relationships`](https://developer.apple.com/documentation/AppStoreConnectAPI/BetaAppClipInvocationLocalizationInlineCreate/Relationships-data.dictionary)
+
+ The relationships to other resources that you can set when you create a new Beta App Clip Invocation Localization Inline Creates resource.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/betaappclipinvocationlocalizationinlinecreate>
  */
 public struct BetaAppClipInvocationLocalizationInlineCreate: Codable, Sendable, Identifiable {
-    /// The opaque resource ID that uniquely identifies a Beta App Clip Invocation Localization Inline Create resource.
     public var id: String?
-    /// The resource type.
     public var type: String { "betaAppClipInvocationLocalizations" }
-    /// The attributes that describe the Beta App Clip Invocation Localization Inline Creates resource.
     public let attributes: Attributes
-    /// The navigational links to related data and included resource types and IDs.
     public var relationships: Relationships?
 
     public init(id: String? = nil,

@@ -3,17 +3,23 @@ import Foundation
 
 /**
  # AppClipDefaultExperienceLocalizationResponse
+
  The response body for endpoints that create, read, or modify a localized App Clip card subtitle.
+
+ ```
+ object AppClipDefaultExperienceLocalizationResponse
+ ```
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appclipdefaultexperiencelocalizationresponse>
  */
 public struct AppClipDefaultExperienceLocalizationResponse: Codable, Sendable {
-    /// The resource data.
     public let data: AppClipDefaultExperienceLocalization
-    /// The requested relationship data.
     public var included: [Included]?
-    /// Navigational links that include the self-link.
     public let links: DocumentLinks
 
     public init(data: AppClipDefaultExperienceLocalization,

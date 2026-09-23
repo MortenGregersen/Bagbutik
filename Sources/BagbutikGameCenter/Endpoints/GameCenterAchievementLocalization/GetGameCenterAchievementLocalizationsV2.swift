@@ -4,7 +4,25 @@ import BagbutikGameCenterModels
 public extension Request {
     /**
      # Read Game Center Achievement Localization Information
+
      Get information about a specific Game Center achievement localization.
+
+     ## Overview
+
+     - id:
+     - fields[gameCenterAchievementImages]:
+     - fields[gameCenterAchievementLocalizations]:
+     - include:
+     - 200:
+     - 400:
+     - 401:
+     - 403:
+     - 404:
+     - 429:
+
+     ---
+
+     Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/get-v2-gameCenterAchievementLocalizations-_id_>

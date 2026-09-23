@@ -4,9 +4,16 @@ import BagbutikAppStoreModels
 public extension Request {
     /**
      # Read app info information
+
      Read App Store information including your App Store state, age ratings, Brazil age rating, and kids’ age band.
 
-     For request and response examples for reading an age rating declaration, see [Read the age-rating declaration](https://developer.apple.com/documentation/appstoreconnectapi/get-v1-appinfos-_id_-ageratingdeclaration).
+     ## Discussion
+
+     For request and response examples for reading an age rating declaration, see [`Read the age-rating declaration`](https://developer.apple.com/documentation/AppStoreConnectAPI/GET-v1-appInfos-_id_-ageRatingDeclaration).
+
+     ---
+
+     Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-appInfos-_id_>

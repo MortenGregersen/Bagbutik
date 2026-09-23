@@ -3,15 +3,32 @@ import Foundation
 
 /**
  # CiBranchPatterns
+
  Case-sensitive patterns Xcode Cloud uses to determine if a change meets branch names you configure for a workflow’s start condition.
+
+ ```
+ object CiBranchPatterns
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object CiBranchPatterns.Patterns`](https://developer.apple.com/documentation/AppStoreConnectAPI/CiBranchPatterns/Patterns-data.dictionary)
+
+ A case-sensitive pattern Xcode Cloud uses to determine if a change meets branch names you configure for a workflow’s start condition.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/cibranchpatterns>
  */
 public struct CiBranchPatterns: Codable, Sendable {
-    /// ​A Boolean value that indicates whether a start condition’s settings apply to all branches. If `true`, the `patterns` attribute isn’t expected. If `false`, the `patterns` attribute is required.
     public var isAllMatch: Bool?
-    /// The list of case-sensitive patterns Xcode Cloud uses to determine if a change meets branch names you configure for a workflow’s start condition.
     public var patterns: [Patterns]?
 
     public init(isAllMatch: Bool? = nil,

@@ -3,7 +3,16 @@ import Foundation
 
 /**
  # SubscriptionPricePointsResponse
+
  The response body for endpoints that list available price points for a subscription.
+
+ ```
+ object SubscriptionPricePointsResponse
+ ```
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/subscriptionpricepointsresponse>

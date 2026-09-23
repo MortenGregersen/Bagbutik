@@ -3,7 +3,26 @@ import Foundation
 
 /**
  # GameCenterLeaderboardGroupLeaderboardLinkageRequest
+
  The request body you use to attach an individual leaderbaord to a group leaderboard.
+
+ ```
+ object GameCenterLeaderboardGroupLeaderboardLinkageRequest
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object GameCenterLeaderboardGroupLeaderboardLinkageRequest.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/GameCenterLeaderboardGroupLeaderboardLinkageRequest/Data-data.dictionary)
+
+ The resource linkage data for setting the group leaderboard associated with a leaderboard.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterleaderboardgroupleaderboardlinkagerequest>

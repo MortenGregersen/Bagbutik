@@ -3,20 +3,39 @@ import Foundation
 
 /**
  # GameCenterMatchmakingRuleSet
+
  A named collection of matchmaking rules and queues that defines the logic for matching players in a Game Center game.
+
+ ```
+ object GameCenterMatchmakingRuleSet
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object GameCenterMatchmakingRuleSet.Attributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/GameCenterMatchmakingRuleSet/Attributes-data.dictionary)
+
+ The attributes of the rule set.
+
+ [`object GameCenterMatchmakingRuleSet.Relationships`](https://developer.apple.com/documentation/AppStoreConnectAPI/GameCenterMatchmakingRuleSet/Relationships-data.dictionary)
+
+ The relationships to other objects belonging to the rule set.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingruleset>
  */
 public struct GameCenterMatchmakingRuleSet: Codable, Sendable, Identifiable {
-    /// The unique identifier for the rule set.
     public let id: String
     public var links: ResourceLinks?
-    /// The type of resource.
     public var type: String { "gameCenterMatchmakingRuleSets" }
-    /// The attributes of the rule set.
     public var attributes: Attributes?
-    /// The relationships to other objects belonging to the rule set.
     public var relationships: Relationships?
 
     public init(id: String,

@@ -4,7 +4,16 @@ import Foundation
 
 /**
  # BuildWithoutIncludesResponse
+
  A response containing a single build, without related resources.
+
+ ```
+ object BuildWithoutIncludesResponse
+ ```
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/buildwithoutincludesresponse>

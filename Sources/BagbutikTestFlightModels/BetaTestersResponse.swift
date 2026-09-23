@@ -4,7 +4,24 @@ import Foundation
 
 /**
  # BetaTestersResponse
+
  The response body for endpoints that list TestFlight beta testers.
+
+ ```
+ object BetaTestersResponse
+ ```
+
+ ## See Also
+
+ [`List all beta testers in a beta group`](https://developer.apple.com/documentation/AppStoreConnectAPI/GET-v1-betaGroups-_id_-betaTesters)
+
+ Get a list of beta testers contained in a specific beta group.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/betatestersresponse>
@@ -12,12 +29,9 @@ import Foundation
 public struct BetaTestersResponse: Codable, Sendable, PagedResponse {
     public typealias Data = BetaTester
 
-    /// The resource data.
     public let data: [BetaTester]
     public var included: [Included]?
-    /// Navigational links that include the self-link.
     public let links: PagedDocumentLinks
-    /// Paging information.
     public var meta: PagingInformation?
 
     public init(data: [BetaTester],

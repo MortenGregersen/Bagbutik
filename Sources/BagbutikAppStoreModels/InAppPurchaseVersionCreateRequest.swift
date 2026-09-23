@@ -3,7 +3,26 @@ import Foundation
 
 /**
  # InAppPurchaseVersionCreateRequest
+
  The request body you use to create a draft version of an in-app purchase.
+
+ ```
+ object InAppPurchaseVersionCreateRequest
+ ```
+
+ ## Topics
+
+ ### Objects and types
+
+ [`object InAppPurchaseVersionCreateRequest.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/InAppPurchaseVersionCreateRequest/Data-data.dictionary)
+
+ The request body you use to create a draft version of an in-app purchase.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/inapppurchaseversioncreaterequest>

@@ -3,15 +3,38 @@ import Foundation
 
 /**
  # AlternativeDistributionPackageVariant
+
  A device-specific file package within an alternative distribution app, targeting a particular device family.
 
- To learn more about the responses that include alternative distribution package variant objects, see [AlternativeDistributionPackageVariantResponse](https://developer.apple.com/documentation/appstoreconnectapi/alternativedistributionpackagevariantresponse) or [AlternativeDistributionPackageVariantsResponse](https://developer.apple.com/documentation/appstoreconnectapi/alternativedistributionpackagevariantsresponse).
+ ```
+ object AlternativeDistributionPackageVariant
+ ```
+
+ ## Discussion
+
+ To learn more about the responses that include alternative distribution package variant objects, see [`AlternativeDistributionPackageVariantResponse`](https://developer.apple.com/documentation/AppStoreConnectAPI/AlternativeDistributionPackageVariantResponse) or [`AlternativeDistributionPackageVariantsResponse`](https://developer.apple.com/documentation/AppStoreConnectAPI/AlternativeDistributionPackageVariantsResponse).
+
+ > Tip:
+ > Use the `links` fields to navigate the resource object graph while making your requests. For example, from the alternative distribution package variant object above, you can also reach its package metadata, deltas, and versions.
+
+ ## Topics
+
+ ### Objects
+
+ [`object AlternativeDistributionPackageVariant.Attributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/AlternativeDistributionPackageVariant/Attributes-data.dictionary)
+
+ Attributes that describe an alternative distribution package variant resource.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/alternativedistributionpackagevariant>
  */
 public struct AlternativeDistributionPackageVariant: Codable, Sendable, Identifiable {
-    /// An opaque resource ID that uniquely identifies the alternative distribution package variant.
     public let id: String
     public var links: ResourceLinks?
     public var type: String { "alternativeDistributionPackageVariants" }

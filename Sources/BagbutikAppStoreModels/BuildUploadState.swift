@@ -1,6 +1,22 @@
 import BagbutikCore
 import Foundation
 
+/**
+ # BuildUploadState
+
+ A string that represents the state of a build upload.
+
+ ```
+ string BuildUploadState
+ ```
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/builduploadstate>
+ */
 public enum BuildUploadState: String, Sendable, Codable, CaseIterable {
     case awaitingUpload = "AWAITING_UPLOAD"
     case complete = "COMPLETE"

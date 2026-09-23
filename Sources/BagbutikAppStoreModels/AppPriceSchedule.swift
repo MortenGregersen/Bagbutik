@@ -3,7 +3,26 @@ import Foundation
 
 /**
  # AppPriceSchedule
+
  The pricing schedule for an app, specifying base territory prices, manual prices for other territories, and scheduled price changes.
+
+ ```
+ object AppPriceSchedule
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object AppPriceSchedule.Relationships`](https://developer.apple.com/documentation/AppStoreConnectAPI/AppPriceSchedule/Relationships-data.dictionary)
+
+ The relationships you include in the request and those on which you can operate.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/apppriceschedule>

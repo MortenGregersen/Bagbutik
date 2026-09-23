@@ -3,21 +3,39 @@ import Foundation
 
 /**
  # CiProduct
+
  An app or framework registered in Xcode Cloud that has one or more workflows and build history.
+
+ ```
+ object CiProduct
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object CiProduct.Attributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/CiProduct/Attributes-data.dictionary)
+
+ The attributes that describe a Products resource.
+
+ [`object CiProduct.Relationships`](https://developer.apple.com/documentation/AppStoreConnectAPI/CiProduct/Relationships-data.dictionary)
+
+ The relationships of the Products resource you included in the request and those on which you can operate.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/ciproduct>
  */
 public struct CiProduct: Codable, Sendable, Identifiable {
-    /// The opaque resource ID that uniquely identifies a Products resource.
     public let id: String
-    /// The navigational links that include the self-link.
     public var links: ResourceLinks?
-    /// The resource type.
     public var type: String { "ciProducts" }
-    /// The attributes that describe the Products resource.
     public var attributes: Attributes?
-    /// The navigational links to related data and included resource types and IDs.
     public var relationships: Relationships?
 
     public init(id: String,

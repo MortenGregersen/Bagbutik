@@ -3,21 +3,39 @@ import Foundation
 
 /**
  # BetaAppClipInvocation
+
  A TestFlight URL scheme invocation that allows beta testers to launch an App Clip during testing.
+
+ ```
+ object BetaAppClipInvocation
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object BetaAppClipInvocation.Attributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/BetaAppClipInvocation/Attributes-data.dictionary)
+
+ The attributes that describe a Beta App Clip Invocations resource.
+
+ [`object BetaAppClipInvocation.Relationships`](https://developer.apple.com/documentation/AppStoreConnectAPI/BetaAppClipInvocation/Relationships-data.dictionary)
+
+ The relationships of the Beta App Clip Invocations resource you included in the request and those on which you can operate.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/betaappclipinvocation>
  */
 public struct BetaAppClipInvocation: Codable, Sendable, Identifiable {
-    /// The opaque resource ID that uniquely identifies a Beta App Clip Invocations resource.
     public let id: String
-    /// Navigational links that include the self-link.
     public var links: ResourceLinks?
-    /// The resource type.
     public var type: String { "betaAppClipInvocations" }
-    /// The attributes that describe the Beta App Clip Invocations resource.
     public var attributes: Attributes?
-    /// The navigational links to related data and included resource types and IDs.
     public var relationships: Relationships?
 
     public init(id: String,

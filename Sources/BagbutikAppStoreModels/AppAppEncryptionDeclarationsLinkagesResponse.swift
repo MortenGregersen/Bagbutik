@@ -1,6 +1,26 @@
 import BagbutikCore
 import Foundation
 
+/**
+ # AppAppEncryptionDeclarationsLinkagesResponse
+
+ ```
+ object AppAppEncryptionDeclarationsLinkagesResponse
+ ```
+
+ ## Topics
+
+ ### Dictionaries
+
+ [`object AppAppEncryptionDeclarationsLinkagesResponse.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/AppAppEncryptionDeclarationsLinkagesResponse/Data-data.dictionary)
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appappencryptiondeclarationslinkagesresponse>
+ */
 public struct AppAppEncryptionDeclarationsLinkagesResponse: Codable, Sendable, PagedResponse {
     public let data: [Data]
     public let links: PagedDocumentLinks

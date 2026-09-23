@@ -3,21 +3,39 @@ import Foundation
 
 /**
  # AppClip
+
  A lightweight version of an app that users can launch instantly without installation, associated with a registered parent app.
+
+ ```
+ object AppClip
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object AppClip.Attributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/AppClip/Attributes-data.dictionary)
+
+ The attributes that describe an App Clips resource.
+
+ [`object AppClip.Relationships`](https://developer.apple.com/documentation/AppStoreConnectAPI/AppClip/Relationships-data.dictionary)
+
+ The relationships of the App Clips resource you included in the request and those on which you can operate.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appclip>
  */
 public struct AppClip: Codable, Sendable, Identifiable {
-    /// The opaque resource ID that uniquely identifies an App Clips resource.
     public let id: String
-    /// Navigational links that include the self-link.
     public var links: ResourceLinks?
-    /// The resource type.
     public var type: String { "appClips" }
-    /// The attributes that describe the App Clips resource.
     public var attributes: Attributes?
-    /// The navigational links to related data and included resource types and IDs.
     public var relationships: Relationships?
 
     public init(id: String,

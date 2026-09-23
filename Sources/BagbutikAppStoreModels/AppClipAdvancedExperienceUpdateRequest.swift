@@ -3,15 +3,32 @@ import Foundation
 
 /**
  # AppClipAdvancedExperienceUpdateRequest
+
  The request body you use to update an advanced App Clip experience.
+
+ ```
+ object AppClipAdvancedExperienceUpdateRequest
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object AppClipAdvancedExperienceUpdateRequest.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/AppClipAdvancedExperienceUpdateRequest/Data-data.dictionary)
+
+ The data element of the request body.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appclipadvancedexperienceupdaterequest>
  */
 public struct AppClipAdvancedExperienceUpdateRequest: Codable, Sendable, RequestBody {
-    /// The resource data.
     public let data: Data
-    /// The relationship data to include in the response.
     public var included: [AppClipAdvancedExperienceLocalizationInlineCreate]?
 
     public init(data: Data,

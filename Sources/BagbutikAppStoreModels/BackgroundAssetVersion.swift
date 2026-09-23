@@ -3,7 +3,28 @@ import Foundation
 
 /**
  # BackgroundAssetVersion
+
  A specific version of a background asset, containing the upload files your app downloads after installation.
+
+ ```
+ object BackgroundAssetVersion
+ ```
+
+ ## Topics
+
+ ### Dictionaries
+
+ [`object BackgroundAssetVersion.Attributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/BackgroundAssetVersion/Attributes-data.dictionary)
+
+ Attributes that describe a background asset version resource.
+
+ [`object BackgroundAssetVersion.Relationships`](https://developer.apple.com/documentation/AppStoreConnectAPI/BackgroundAssetVersion/Relationships-data.dictionary)
+
+ The relationships you include in the request and those on which you can operate.
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/backgroundassetversion>

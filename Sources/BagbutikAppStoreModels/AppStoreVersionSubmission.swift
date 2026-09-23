@@ -3,7 +3,26 @@ import Foundation
 
 /**
  # AppStoreVersionSubmission
+
  A submission of an App Store version to Apple’s review queue, triggering the review process.
+
+ ```
+ object AppStoreVersionSubmission
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object AppStoreVersionSubmission.Relationships`](https://developer.apple.com/documentation/AppStoreConnectAPI/AppStoreVersionSubmission/Relationships-data.dictionary)
+
+ The relationships you include in the request and those on which you can operate.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionsubmission>

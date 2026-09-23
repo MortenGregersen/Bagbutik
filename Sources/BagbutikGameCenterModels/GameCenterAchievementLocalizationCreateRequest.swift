@@ -3,7 +3,26 @@ import Foundation
 
 /**
  # GameCenterAchievementLocalizationCreateRequest
+
  The request body you use to create a Game Center achievement localization.
+
+ ```
+ object GameCenterAchievementLocalizationCreateRequest
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object GameCenterAchievementLocalizationCreateRequest.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/GameCenterAchievementLocalizationCreateRequest/Data-data.dictionary)
+
+ The request body you use to create a Game Center achievement localization.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterachievementlocalizationcreaterequest>

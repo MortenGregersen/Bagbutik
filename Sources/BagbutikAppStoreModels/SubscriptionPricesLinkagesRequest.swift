@@ -3,7 +3,26 @@ import Foundation
 
 /**
  # SubscriptionPricesLinkagesRequest
+
  The request body for updating the list of prices linked to a subscription.
+
+ ```
+ object SubscriptionPricesLinkagesRequest
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object SubscriptionPricesLinkagesRequest.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/SubscriptionPricesLinkagesRequest/Data-data.dictionary)
+
+ The resource linkage data identifying a price linked to a subscription.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/subscriptionpriceslinkagesrequest>

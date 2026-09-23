@@ -5,7 +5,12 @@ import BagbutikProvisioningModels
 public extension Request {
     /**
      # List certificates for a merchant id
+
      Get a list of all certificates for a specific merchant ID.
+
+     ---
+
+     Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-merchantIds-_id_-certificates>

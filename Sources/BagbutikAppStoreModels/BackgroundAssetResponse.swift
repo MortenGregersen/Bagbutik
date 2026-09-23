@@ -4,7 +4,16 @@ import Foundation
 
 /**
  # BackgroundAssetResponse
+
  A response containing a single background asset downloadable content package.
+
+ ```
+ object BackgroundAssetResponse
+ ```
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/backgroundassetresponse>

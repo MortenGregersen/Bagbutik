@@ -3,15 +3,22 @@ import Foundation
 
 /**
  # GameCenterMatchmakingTeamResponse
+
  The response body for endpoints that create or modify a team.
+
+ ```
+ object GameCenterMatchmakingTeamResponse
+ ```
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingteamresponse>
  */
 public struct GameCenterMatchmakingTeamResponse: Codable, Sendable {
-    /// The team that you create or modify.
     public let data: GameCenterMatchmakingTeam
-    /// The link representations of the object.
     public let links: DocumentLinks
 
     public init(data: GameCenterMatchmakingTeam,

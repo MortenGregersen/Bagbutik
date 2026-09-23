@@ -3,7 +3,26 @@ import Foundation
 
 /**
  # AppStoreVersionBuildLinkageResponse
+
  A response body that contains the ID of a single related resource.
+
+ ```
+ object AppStoreVersionBuildLinkageResponse
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object AppStoreVersionBuildLinkageResponse.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/AppStoreVersionBuildLinkageResponse/Data-data.dictionary)
+
+ The data element of the response body.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionbuildlinkageresponse>

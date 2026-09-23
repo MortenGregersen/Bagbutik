@@ -3,7 +3,16 @@ import Foundation
 
 /**
  # AppStoreVersionExperimentTreatmentResponse
+
  The response body for endpoints that create, read, or modify an App Store version experiment treatment.
+
+ ```
+ object AppStoreVersionExperimentTreatmentResponse
+ ```
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionexperimenttreatmentresponse>

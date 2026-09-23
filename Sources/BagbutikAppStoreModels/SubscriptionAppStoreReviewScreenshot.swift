@@ -4,7 +4,30 @@ import Foundation
 
 /**
  # SubscriptionAppStoreReviewScreenshot
+
  A screenshot of the subscription paywall submitted alongside a subscription for App Store review.
+
+ ```
+ object SubscriptionAppStoreReviewScreenshot
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object SubscriptionAppStoreReviewScreenshot.Attributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/SubscriptionAppStoreReviewScreenshot/Attributes-data.dictionary)
+
+ Attributes that describe a subscription app store review screenshot resource.
+
+ [`object SubscriptionAppStoreReviewScreenshot.Relationships`](https://developer.apple.com/documentation/AppStoreConnectAPI/SubscriptionAppStoreReviewScreenshot/Relationships-data.dictionary)
+
+ The relationships you include in the request and those on which you can operate.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/subscriptionappstorereviewscreenshot>

@@ -3,17 +3,37 @@ import Foundation
 
 /**
  # xcodeMetrics
+
  A response that contains power and performance measurements for your app.
+
+ ```
+ object xcodeMetrics
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object xcodeMetrics.Insights`](https://developer.apple.com/documentation/AppStoreConnectAPI/xcodeMetrics/Insights-data.dictionary)
+
+ Analysis of power and performance data collected for your app that includes regressions and trends.
+
+ [`object xcodeMetrics.ProductData`](https://developer.apple.com/documentation/AppStoreConnectAPI/xcodeMetrics/ProductData-data.dictionary)
+
+ The metrics information of an app on a specific platform.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/xcodemetrics>
  */
 public struct XcodeMetrics: Codable, Sendable {
-    /// Analysis of data collected about the power and performance of your app that includes regressions and trends.
     public var insights: Insights?
-    /// An array of metrics data containing power and performance measurements for your app, organized by platform.
     public var productData: [ProductData]?
-    /// The current App Store Connect API version.
     public var version: String?
 
     public init(insights: Insights? = nil,

@@ -3,21 +3,39 @@ import Foundation
 
 /**
  # BetaAppReviewDetail
+
  Contact information and demo credentials provided to App Store reviewers for beta app review.
+
+ ```
+ object BetaAppReviewDetail
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object BetaAppReviewDetail.Attributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/BetaAppReviewDetail/Attributes-data.dictionary)
+
+ Attributes that describe a Beta App Review Details resource.
+
+ [`object BetaAppReviewDetail.Relationships`](https://developer.apple.com/documentation/AppStoreConnectAPI/BetaAppReviewDetail/Relationships-data.dictionary)
+
+ The relationships you include in the request and those on which you can operate.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/betaappreviewdetail>
  */
 public struct BetaAppReviewDetail: Codable, Sendable, Identifiable {
-    /// The opaque resource ID that uniquely identifies the resource.
     public let id: String
-    /// Navigational links that include the self-link.
     public var links: ResourceLinks?
-    /// The resource type.
     public var type: String { "betaAppReviewDetails" }
-    /// The resource’s attributes.
     public var attributes: Attributes?
-    /// Navigational links to related data and included resource types and IDs.
     public var relationships: Relationships?
 
     public init(id: String,

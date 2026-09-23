@@ -3,7 +3,26 @@ import Foundation
 
 /**
  # GameCenterGroupGameCenterAchievementsLinkagesResponse
+
  A response that confirms a relationship between a group and an achievement.
+
+ ```
+ object GameCenterGroupGameCenterAchievementsLinkagesResponse
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object GameCenterGroupGameCenterAchievementsLinkagesResponse.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/GameCenterGroupGameCenterAchievementsLinkagesResponse/Data-data.dictionary)
+
+ The resource linkage data identifying the achievements associated with a Game Center group.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecentergroupgamecenterachievementslinkagesresponse>

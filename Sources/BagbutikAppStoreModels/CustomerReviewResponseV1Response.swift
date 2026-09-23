@@ -3,17 +3,23 @@ import Foundation
 
 /**
  # CustomerReviewResponseV1Response
+
  The response body for endpoints that create, read, or modify a developer’s response to a customer review.
+
+ ```
+ object CustomerReviewResponseV1Response
+ ```
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/customerreviewresponsev1response>
  */
 public struct CustomerReviewResponseV1Response: Codable, Sendable {
-    /// The data structure that represents a `CustomerReviewResponses` resource.
     public let data: CustomerReviewResponseV1
-    /// The requested relationship data.
     public var included: [CustomerReview]?
-    /// Navigational links that include the self-link.
     public let links: DocumentLinks
 
     public init(data: CustomerReviewResponseV1,

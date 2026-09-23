@@ -3,16 +3,29 @@ import Foundation
 
 /**
  # GameCenterMatchmakingTestPlayerProperty
+
  A simulated player attribute used when testing Game Center matchmaking rule sets.
+
+ ```
+ object GameCenterMatchmakingTestPlayerProperty
+ ```
+
+ ## Topics
+
+ ### Objects
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingtestplayerproperty>
  */
 public struct GameCenterMatchmakingTestPlayerProperty: Codable, Sendable, Identifiable {
     public let id: String
-    /// The link representations of the object.
     public var links: ResourceLinks?
-    /// The type of resource object.
     public var type: String { "gameCenterMatchmakingTestPlayerProperties" }
 
     public init(id: String,

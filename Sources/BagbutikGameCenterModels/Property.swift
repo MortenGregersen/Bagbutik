@@ -3,15 +3,22 @@ import Foundation
 
 /**
  # Property
+
  A representation of a game-specific property.
+
+ ```
+ object Property
+ ```
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/property>
  */
 public struct Property: Codable, Sendable {
-    /// The name of the property.
     public var key: String?
-    /// The value for the property.
     public var value: String?
 
     public init(key: String? = nil,

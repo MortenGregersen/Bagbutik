@@ -3,9 +3,20 @@ import Foundation
 
 /**
  # MarketplaceWebhooksResponse
+
  A response containing a list of webhook endpoints for an alternative marketplace.
 
- Use this object with [Read Marketplace Webhook Information](https://developer.apple.com/documentation/appstoreconnectapi/get-v1-marketplacewebhooks).
+ ```
+ object MarketplaceWebhooksResponse
+ ```
+
+ ## Discussion
+
+ Use this object with [`Read Marketplace Webhook Information`](https://developer.apple.com/documentation/AppStoreConnectAPI/GET-v1-marketplaceWebhooks).
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/marketplacewebhooksresponse>

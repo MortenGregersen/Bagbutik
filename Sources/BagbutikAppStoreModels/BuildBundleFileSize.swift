@@ -3,19 +3,34 @@ import Foundation
 
 /**
  # BuildBundleFileSize
+
  The estimated and actual download and install sizes for a build bundle, broken down by device type.
+
+ ```
+ object BuildBundleFileSize
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object BuildBundleFileSize.Attributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/BuildBundleFileSize/Attributes-data.dictionary)
+
+ The attributes that describe a Build Bundle File Sizes resource.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/buildbundlefilesize>
  */
 public struct BuildBundleFileSize: Codable, Sendable, Identifiable {
-    /// The opaque resource ID that uniquely identifies a Build Bundles File Sizes resource.
     public let id: String
-    /// Navigational links that include the self-link.
     public var links: ResourceLinks?
-    /// The resource type.
     public var type: String { "buildBundleFileSizes" }
-    /// The attributes that describe the Build Bundle File Sizes resource.
     public var attributes: Attributes?
 
     public init(id: String,

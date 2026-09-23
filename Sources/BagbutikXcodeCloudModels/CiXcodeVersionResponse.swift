@@ -3,17 +3,23 @@ import Foundation
 
 /**
  # CiXcodeVersionResponse
+
  The response body for endpoints that read a single Xcode version available in Xcode Cloud.
+
+ ```
+ object CiXcodeVersionResponse
+ ```
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/cixcodeversionresponse>
  */
 public struct CiXcodeVersionResponse: Codable, Sendable {
-    /// The resource data.
     public let data: CiXcodeVersion
-    /// The requested relationship data.
     public var included: [CiMacOsVersion]?
-    /// The navigational links that include the self-link.
     public let links: DocumentLinks
 
     public init(data: CiXcodeVersion,

@@ -5,7 +5,12 @@ import BagbutikModelsShared
 public extension Request {
     /**
      # Edit the Relationship Between a Leaderboard and a Group Leaderboard
+
      Modify the group leadboard to which a leaderboard belongs.
+
+     ---
+
+     Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/patch-v1-gameCenterLeaderboards-_id_-relationships-groupLeaderboard>

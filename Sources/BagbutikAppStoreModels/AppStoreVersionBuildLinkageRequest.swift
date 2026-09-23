@@ -3,7 +3,26 @@ import Foundation
 
 /**
  # AppStoreVersionBuildLinkageRequest
+
  The request body you use to attach a build to an App Store version.
+
+ ```
+ object AppStoreVersionBuildLinkageRequest
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object AppStoreVersionBuildLinkageRequest.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/AppStoreVersionBuildLinkageRequest/Data-data.dictionary)
+
+ The data element of the request body.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionbuildlinkagerequest>

@@ -3,19 +3,38 @@ import Foundation
 
 /**
  # GameCenterMatchmakingTestRequestInlineCreate
+
  A data structure that represents a sample match request for testing a rule set.
+
+ ```
+ object GameCenterMatchmakingTestRequestInlineCreate
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object GameCenterMatchmakingTestRequestInlineCreate.Attributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/GameCenterMatchmakingTestRequestInlineCreate/Attributes-data.dictionary)
+
+ The attributes for a sample match request.
+
+ [`object GameCenterMatchmakingTestRequestInlineCreate.Relationships`](https://developer.apple.com/documentation/AppStoreConnectAPI/GameCenterMatchmakingTestRequestInlineCreate/Relationships-data.dictionary)
+
+ The relationships of a match request to other objects.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingtestrequestinlinecreate>
  */
 public struct GameCenterMatchmakingTestRequestInlineCreate: Codable, Sendable, Identifiable {
-    /// A unique identifier for the match request.
     public var id: String?
-    /// The type of resource object.
     public var type: String { "gameCenterMatchmakingTestRequests" }
-    /// The object attributes.
     public var attributes: Attributes?
-    /// The object relationships.
     public var relationships: Relationships?
 
     public init(id: String? = nil,

@@ -5,7 +5,12 @@ import BagbutikModelsShared
 public extension Request {
     /**
      # Delete a treatment for an app store version experiment
+
      Delete metadata that you configured for an App Store Version experiment.
+
+     ---
+
+     Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/delete-v1-appStoreVersionExperimentTreatments-_id_>

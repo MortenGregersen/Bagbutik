@@ -4,7 +4,16 @@ import Foundation
 
 /**
  # AppInfosResponse
+
  The response body for endpoints that list an app’s App Store information entries.
+
+ ```
+ object AppInfosResponse
+ ```
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appinfosresponse>
@@ -12,12 +21,9 @@ import Foundation
 public struct AppInfosResponse: Codable, Sendable, PagedResponse {
     public typealias Data = AppInfo
 
-    /// The resource data.
     public let data: [AppInfo]
     public var included: [Included]?
-    /// Navigational links that include the self-link.
     public let links: PagedDocumentLinks
-    /// Paging information.
     public var meta: PagingInformation?
 
     public init(data: [AppInfo],

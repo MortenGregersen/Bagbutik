@@ -3,7 +3,26 @@ import Foundation
 
 /**
  # InAppPurchaseAppStoreReviewScreenshotUpdateRequest
+
  The request body you use to update an in-app purchase App Store review screenshot update request.
+
+ ```
+ object InAppPurchaseAppStoreReviewScreenshotUpdateRequest
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object InAppPurchaseAppStoreReviewScreenshotUpdateRequest.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/InAppPurchaseAppStoreReviewScreenshotUpdateRequest/Data-data.dictionary)
+
+ The request body you use to update an in-app purchase App Store review screenshot update request.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/inapppurchaseappstorereviewscreenshotupdaterequest>

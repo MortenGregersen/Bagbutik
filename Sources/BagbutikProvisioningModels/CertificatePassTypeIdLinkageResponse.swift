@@ -3,7 +3,24 @@ import Foundation
 
 /**
  # CertificatePassTypeIdLinkageResponse
+
  A response body that contains the ID of a single related resource.
+
+ ```
+ object CertificatePassTypeIdLinkageResponse
+ ```
+
+ ## Topics
+
+ ### Dictionaries
+
+ [`object CertificatePassTypeIdLinkageResponse.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/CertificatePassTypeIdLinkageResponse/Data-data.dictionary)
+
+ The resource linkage data identifying the pass type ID associated with a certificate.
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/certificatepasstypeidlinkageresponse>

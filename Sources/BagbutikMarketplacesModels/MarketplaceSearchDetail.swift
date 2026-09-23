@@ -3,7 +3,26 @@ import Foundation
 
 /**
  # MarketplaceSearchDetail
+
  The search configuration for an alternative marketplace, specifying how apps are indexed and surfaced in search.
+
+ ```
+ object MarketplaceSearchDetail
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object MarketplaceSearchDetail.Attributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/MarketplaceSearchDetail/Attributes-data.dictionary)
+
+ Attributes that describe a marketplace search detail resource.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/marketplacesearchdetail>

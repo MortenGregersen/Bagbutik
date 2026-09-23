@@ -3,7 +3,30 @@ import Foundation
 
 /**
  # InAppPurchaseOfferCode
+
  The data structure that represents an in-app purchase offer code resource.
+
+ ```
+ object InAppPurchaseOfferCode
+ ```
+
+ ## Topics
+
+ ### Dictionaries
+
+ [`object InAppPurchaseOfferCode.Attributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/InAppPurchaseOfferCode/Attributes-data.dictionary)
+
+ Attributes that describe an in-app purchase offer code resource.
+
+ [`object InAppPurchaseOfferCode.Relationships`](https://developer.apple.com/documentation/AppStoreConnectAPI/InAppPurchaseOfferCode/Relationships-data.dictionary)
+
+ The relationships you include in the request and those on which you can operate.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/inapppurchaseoffercode>

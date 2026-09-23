@@ -3,13 +3,31 @@ import Foundation
 
 /**
  # AppClipAppStoreReviewDetailUpdateRequest
+
  The request body you use to update App Clip information that you provide to App Store Review.
+
+ ```
+ object AppClipAppStoreReviewDetailUpdateRequest
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object AppClipAppStoreReviewDetailUpdateRequest.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/AppClipAppStoreReviewDetailUpdateRequest/Data-data.dictionary)
+
+ The data element of the request body.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appclipappstorereviewdetailupdaterequest>
  */
 public struct AppClipAppStoreReviewDetailUpdateRequest: Codable, Sendable, RequestBody {
-    /// The resource data.
     public let data: Data
 
     public init(data: Data) {

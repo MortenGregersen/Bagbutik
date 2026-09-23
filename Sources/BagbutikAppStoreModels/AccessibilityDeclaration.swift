@@ -4,19 +4,32 @@ import Foundation
 
 /**
  # AccessibilityDeclaration
+
  An app’s self-reported accessibility features and conformance information submitted for App Store review.
+
+ ```
+ object AccessibilityDeclaration
+ ```
+
+ ## Topics
+
+ ### Dictionaries
+
+ [`object AccessibilityDeclaration.Attributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/AccessibilityDeclaration/Attributes-data.dictionary)
+
+ The attributes you set that describe the accessibility declaration resource.
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/accessibilitydeclaration>
  */
 public struct AccessibilityDeclaration: Codable, Sendable, Identifiable {
-    /// The opaque resource ID that uniquely identifies the resource.
     public let id: String
-    /// Navigational links that include the self-link.
     public var links: ResourceLinks?
-    /// The resource type.
     public var type: String { "accessibilityDeclarations" }
-    /// Attributes that describe this accessibility declaration resource.
     public var attributes: Attributes?
 
     public init(id: String,

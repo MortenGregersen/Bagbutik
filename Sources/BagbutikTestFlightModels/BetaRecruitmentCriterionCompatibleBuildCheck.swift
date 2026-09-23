@@ -3,7 +3,24 @@ import Foundation
 
 /**
  # BetaRecruitmentCriterionCompatibleBuildCheck
+
  The result of checking whether a specific build meets the device family and OS version requirements of a beta recruitment criterion.
+
+ ```
+ object BetaRecruitmentCriterionCompatibleBuildCheck
+ ```
+
+ ## Topics
+
+ ### Dictionaries
+
+ [`object BetaRecruitmentCriterionCompatibleBuildCheck.Attributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/BetaRecruitmentCriterionCompatibleBuildCheck/Attributes-data.dictionary)
+
+ Attributes that describe a beta recruitment criteria-compatible, build-check resource.
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/betarecruitmentcriterioncompatiblebuildcheck>

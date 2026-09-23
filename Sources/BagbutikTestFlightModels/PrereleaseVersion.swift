@@ -3,21 +3,39 @@ import Foundation
 
 /**
  # PrereleaseVersion
+
  A pre-release version associated with a build, representing a development or beta software version before App Store submission.
+
+ ```
+ object PrereleaseVersion
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object PrereleaseVersion.Attributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/PrereleaseVersion/Attributes-data.dictionary)
+
+ Attributes that describe a Prerelease Versions resource.
+
+ [`object PrereleaseVersion.Relationships`](https://developer.apple.com/documentation/AppStoreConnectAPI/PrereleaseVersion/Relationships-data.dictionary)
+
+ The relationships you include in the request and those on which you can operate.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/prereleaseversion>
  */
 public struct PrereleaseVersion: Codable, Sendable, Identifiable {
-    /// The opaque resource ID that uniquely identifies the resource.
     public let id: String
-    /// Navigational links that include the self-link.
     public var links: ResourceLinks?
-    /// The resource type.
     public var type: String { "preReleaseVersions" }
-    /// The resource’s attributes.
     public var attributes: Attributes?
-    /// Navigational links to related data and included resource types and IDs.
     public var relationships: Relationships?
 
     public init(id: String,

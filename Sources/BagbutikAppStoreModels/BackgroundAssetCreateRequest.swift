@@ -3,7 +3,24 @@ import Foundation
 
 /**
  # BackgroundAssetCreateRequest
+
  The request body you use to create a background asset record.
+
+ ```
+ object BackgroundAssetCreateRequest
+ ```
+
+ ## Topics
+
+ ### Dictionaries
+
+ [`object BackgroundAssetCreateRequest.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/BackgroundAssetCreateRequest/Data-data.dictionary)
+
+ The data object within a background asset create request, containing the resource type and attributes.
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/backgroundassetcreaterequest>

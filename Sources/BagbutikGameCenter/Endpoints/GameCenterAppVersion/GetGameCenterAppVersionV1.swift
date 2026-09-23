@@ -4,7 +4,56 @@ import BagbutikGameCenterModels
 public extension Request {
     /**
      # Read app version information
+
      Read the Game Center enablement state and related app version information.
+
+     ## Discussion
+
+     ### Example Request and Response
+
+     **Other:**
+
+     ```not specified
+     https://api.appstoreconnect.apple.com/v1/gameCenterAppVersions/1d9b87fb-80c4-44eb-a114-a51aeebd82fc
+     ```
+
+     **Other:**
+
+     ```json
+     {
+       “data” : {
+         “type” : “gameCenterAppVersions”,
+         “id” : “1d9b87fb-80c4-44eb-a114-a51aeebd82fc”,
+         “attributes” : {
+           “enabled” : false
+         },
+         “relationships” : {
+           “compatibilityVersions” : {
+             “links” : {
+               “self” : “https://api.appstoreconnect.apple.com/v1/gameCenterAppVersions/1d9b87fb-80c4-44eb-a114-a51aeebd82fc/relationships/compatibilityVersions”,
+               “related” : “https://api.appstoreconnect.apple.com/v1/gameCenterAppVersions/1d9b87fb-80c4-44eb-a114-a51aeebd82fc/compatibilityVersions”
+             }
+           },
+           “appStoreVersion” : {
+             “links” : {
+               “self” : “https://api.appstoreconnect.apple.com/v1/gameCenterAppVersions/1d9b87fb-80c4-44eb-a114-a51aeebd82fc/relationships/appStoreVersion”,
+               “related” : “https://api.appstoreconnect.apple.com/v1/gameCenterAppVersions/1d9b87fb-80c4-44eb-a114-a51aeebd82fc/appStoreVersion”
+             }
+           }
+         },
+         “links” : {
+           “self” : “https://api.appstoreconnect.apple.com/v1/gameCenterAppVersions/1d9b87fb-80c4-44eb-a114-a51aeebd82fc”
+         }
+       },
+       “links” : {
+         “self” : “https://api.appstoreconnect.apple.com/v1/gameCenterAppVersions/1d9b87fb-80c4-44eb-a114-a51aeebd82fc”
+       }
+     }
+     ```
+
+     ---
+
+     Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-gameCenterAppVersions-_id_>

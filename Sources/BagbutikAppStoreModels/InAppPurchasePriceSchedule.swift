@@ -3,7 +3,26 @@ import Foundation
 
 /**
  # InAppPurchasePriceSchedule
+
  A time-based pricing schedule for an in-app purchase, managing base prices and planned price changes.
+
+ ```
+ object InAppPurchasePriceSchedule
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object InAppPurchasePriceSchedule.Relationships`](https://developer.apple.com/documentation/AppStoreConnectAPI/InAppPurchasePriceSchedule/Relationships-data.dictionary)
+
+ The relationships you include in the request and those on which you can operate.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/inapppurchasepriceschedule>

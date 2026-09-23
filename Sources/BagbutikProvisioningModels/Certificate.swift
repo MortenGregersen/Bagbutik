@@ -3,19 +3,36 @@ import Foundation
 
 /**
  # Certificate
+
  A code signing certificate registered in your Apple developer account, used for development, distribution, or provisioning.
+
+ ```
+ object Certificate
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object Certificate.Attributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/Certificate/Attributes-data.dictionary)
+
+ Attributes that describe a Certificates resource.
+
+ ### Dictionaries
+
+ [`object Certificate.Relationships`](https://developer.apple.com/documentation/AppStoreConnectAPI/Certificate/Relationships-data.dictionary)
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/certificate>
  */
 public struct Certificate: Codable, Sendable, Identifiable {
-    /// The opaque resource ID that uniquely identifies the resource.
     public let id: String
-    /// Navigational links that include the self-link.
     public var links: ResourceLinks?
-    /// The resource type.
     public var type: String { "certificates" }
-    /// The resource’s attributes.
     public var attributes: Attributes?
     public var relationships: Relationships?
 

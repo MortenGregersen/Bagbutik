@@ -5,7 +5,12 @@ import BagbutikModelsShared
 public extension Request {
     /**
      # Modify the achievements for a game center activity
+
      Update the relationship between achievements and a specific Game Center activity.
+
+     ---
+
+     Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/post-v1-gameCenterActivities-_id_-relationships-achievements>

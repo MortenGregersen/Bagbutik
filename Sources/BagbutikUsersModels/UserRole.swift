@@ -1,6 +1,26 @@
 import BagbutikCore
 import Foundation
 
+/**
+ # UserRole
+
+ A string that represents user roles and permissions in App Store Connect.
+
+ ```
+ string UserRole
+ ```
+
+ ## Discussion
+
+ For more information about roles and permissions, see [Program Roles](https://developer.apple.com/support/roles/).
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/userrole>
+ */
 public enum UserRole: String, Sendable, ParameterValue, Codable, CaseIterable {
     case accessToReports = "ACCESS_TO_REPORTS"
     case accountHolder = "ACCOUNT_HOLDER"

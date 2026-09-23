@@ -3,17 +3,23 @@ import Foundation
 
 /**
  # CiWorkflowResponse
+
  The response body for endpoints that create, read, or modify an Xcode Cloud workflow.
+
+ ```
+ object CiWorkflowResponse
+ ```
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/ciworkflowresponse>
  */
 public struct CiWorkflowResponse: Codable, Sendable {
-    /// The resource data.
     public let data: CiWorkflow
-    /// The requested relationship data.
     public var included: [Included]?
-    /// The navigational links that include the self-link.
     public let links: DocumentLinks
 
     public init(data: CiWorkflow,

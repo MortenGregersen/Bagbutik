@@ -4,7 +4,59 @@ import BagbutikAppStoreModels
 public extension Request {
     /**
      # Read In-App Purchase Price Schedule Information
+
      Get information about a specific scheduled price change for an in-app purchase.
+
+     ## Discussion
+
+     ### Example Request and Response
+
+     **Request:**
+
+     ```
+     https://api.appstoreconnect.apple.com/v1/inAppPurchasePriceSchedules/6447501593
+     ```
+
+     **Response:**
+
+     ```json
+     {
+       "data" : {
+         "type" : "inAppPurchasePriceSchedules",
+         "id" : "6447501593",
+         "relationships" : {
+           "baseTerritory" : {
+             "links" : {
+               "self" : "https://api.appstoreconnect.apple.com/v1/inAppPurchasePriceSchedules/6447501593/relationships/baseTerritory",
+               "related" : "https://api.appstoreconnect.apple.com/v1/inAppPurchasePriceSchedules/6447501593/baseTerritory"
+             }
+           },
+           "manualPrices" : {
+             "links" : {
+               "self" : "https://api.appstoreconnect.apple.com/v1/inAppPurchasePriceSchedules/6447501593/relationships/manualPrices",
+               "related" : "https://api.appstoreconnect.apple.com/v1/inAppPurchasePriceSchedules/6447501593/manualPrices"
+             }
+           },
+           "automaticPrices" : {
+             "links" : {
+               "self" : "https://api.appstoreconnect.apple.com/v1/inAppPurchasePriceSchedules/6447501593/relationships/automaticPrices",
+               "related" : "https://api.appstoreconnect.apple.com/v1/inAppPurchasePriceSchedules/6447501593/automaticPrices"
+             }
+           }
+         },
+         "links" : {
+           "self" : "https://api.appstoreconnect.apple.com/v1/inAppPurchasePriceSchedules/6447501593"
+         }
+       },
+       "links" : {
+         "self" : "https://api.appstoreconnect.apple.com/v1/inAppPurchasePriceSchedules/6447501593"
+       }
+     }
+     ```
+
+     ---
+
+     Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-inAppPurchasePriceSchedules-_id_>

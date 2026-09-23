@@ -3,13 +3,31 @@ import Foundation
 
 /**
  # BuildBetaNotificationCreateRequest
+
  The request body you use to create a Build Beta Notification.
+
+ ```
+ object BuildBetaNotificationCreateRequest
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object BuildBetaNotificationCreateRequest.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/BuildBetaNotificationCreateRequest/Data-data.dictionary)
+
+ The data element of the request body.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/buildbetanotificationcreaterequest>
  */
 public struct BuildBetaNotificationCreateRequest: Codable, Sendable, RequestBody {
-    /// The resource data.
     public let data: Data
 
     public init(data: Data) {

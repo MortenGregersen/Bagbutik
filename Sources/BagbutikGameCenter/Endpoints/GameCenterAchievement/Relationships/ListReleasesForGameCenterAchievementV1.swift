@@ -5,7 +5,48 @@ import BagbutikModelsShared
 public extension Request {
     /**
      # Read Release Information for an Achievement
+
      Read the state of an achievement release and related information.
+
+     ## Discussion
+
+     ### Example Request and Response
+
+     **Request:**
+
+     ```
+     https://api.appstoreconnect.apple.com/v1/gameCenterAchievements/4a6bcd3d-0325-418b-3bbf-671bd15be8c6/releases
+     ```
+
+     **Response:**
+
+     ```json
+     {
+       “data” : [ {
+         “type” : “gameCenterAchievementReleases”,
+         “id” : “be3bd01f-fd78-9093-63a7-bc25ff890eb2”,
+         “attributes” : {
+           “live” : true
+         },
+         “links” : {
+           “self” : “https://api.appstoreconnect.apple.com/v1/gameCenterAchievementReleases/be3bd01f-fd78-9093-63a7-bc25ff890eb2”
+         }
+       } ],
+       “links” : {
+         “self” : “https://api.appstoreconnect.apple.com/v1/gameCenterAchievements/4a6bcd3d-0325-418b-3bbf-671bd15be8c6/releases”
+       },
+       “meta” : {
+         “paging” : {
+           “total” : 1,
+           “limit” : 50
+         }
+       }
+     }
+     ```
+
+     ---
+
+     Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-gameCenterAchievements-_id_-releases>

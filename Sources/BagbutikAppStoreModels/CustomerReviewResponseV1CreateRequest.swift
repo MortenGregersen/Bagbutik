@@ -3,13 +3,31 @@ import Foundation
 
 /**
  # CustomerReviewResponseV1CreateRequest
+
  The request body to use to create a response to a customer review.
+
+ ```
+ object CustomerReviewResponseV1CreateRequest
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object CustomerReviewResponseV1CreateRequest.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/CustomerReviewResponseV1CreateRequest/Data-data.dictionary)
+
+ The data element of the request body for creating a response to a customer review.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/customerreviewresponsev1createrequest>
  */
 public struct CustomerReviewResponseV1CreateRequest: Codable, Sendable, RequestBody {
-    /// The resource data for your customer review response.
     public let data: Data
 
     public init(data: Data) {

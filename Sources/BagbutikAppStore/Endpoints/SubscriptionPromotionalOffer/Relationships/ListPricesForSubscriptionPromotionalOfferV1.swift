@@ -5,7 +5,12 @@ import BagbutikModelsShared
 public extension Request {
     /**
      # List all promotional offer prices for a subscription
+
      Get a list of prices of a promotional offer for an auto-renewable subscription, for a specified territory.
+
+     ---
+
+     Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-subscriptionPromotionalOffers-_id_-prices>

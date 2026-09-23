@@ -1,6 +1,28 @@
 import BagbutikCore
 import Foundation
 
+/**
+ # GameCenterGroupGameCenterActivitiesLinkagesResponse
+
+ ```
+ object GameCenterGroupGameCenterActivitiesLinkagesResponse
+ ```
+
+ ## Topics
+
+ ### Dictionaries
+
+ [`object GameCenterGroupGameCenterActivitiesLinkagesResponse.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/GameCenterGroupGameCenterActivitiesLinkagesResponse/Data-data.dictionary)
+
+ The resource linkage data identifying a Game Center activity associated with a group.
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/gamecentergroupgamecenteractivitieslinkagesresponse>
+ */
 public struct GameCenterGroupGameCenterActivitiesLinkagesResponse: Codable, Sendable, PagedResponse {
     public let data: [Data]
     public let links: PagedDocumentLinks

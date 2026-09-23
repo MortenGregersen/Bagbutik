@@ -3,7 +3,26 @@ import Foundation
 
 /**
  # SubscriptionVersionImageLinkageResponse
+
  A response with the related resource identifier for a subscription version’s image.
+
+ ```
+ object SubscriptionVersionImageLinkageResponse
+ ```
+
+ ## Topics
+
+ ### Objects and types
+
+ [`object SubscriptionVersionImageLinkageResponse.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/SubscriptionVersionImageLinkageResponse/Data-data.dictionary)
+
+ The resource linkage data identifying the related resource.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/subscriptionversionimagelinkageresponse>

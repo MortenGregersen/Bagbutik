@@ -3,7 +3,26 @@ import Foundation
 
 /**
  # GameCenterLeaderboardSetUpdateRequest
+
  The request body you use to update a leaderboard set.
+
+ ```
+ object GameCenterLeaderboardSetUpdateRequest
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object GameCenterLeaderboardSetUpdateRequest.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/GameCenterLeaderboardSetUpdateRequest/Data-data.dictionary)
+
+ The request body you use to update a leaderboard.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterleaderboardsetupdaterequest>

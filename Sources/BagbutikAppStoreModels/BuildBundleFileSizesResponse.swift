@@ -3,7 +3,16 @@ import Foundation
 
 /**
  # BuildBundleFileSizesResponse
+
  A response containing a list of download and install size estimates for a build’s bundles.
+
+ ```
+ object BuildBundleFileSizesResponse
+ ```
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/buildbundlefilesizesresponse>
@@ -11,11 +20,8 @@ import Foundation
 public struct BuildBundleFileSizesResponse: Codable, Sendable, PagedResponse {
     public typealias Data = BuildBundleFileSize
 
-    /// The resource data.
     public let data: [BuildBundleFileSize]
-    /// Navigational links that include the self-link.
     public let links: PagedDocumentLinks
-    /// The paging information.
     public var meta: PagingInformation?
 
     public init(data: [BuildBundleFileSize],

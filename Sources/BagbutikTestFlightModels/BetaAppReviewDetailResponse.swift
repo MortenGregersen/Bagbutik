@@ -4,16 +4,31 @@ import Foundation
 
 /**
  # BetaAppReviewDetailResponse
+
  The response body for endpoints that read or modify the beta review contact and demo details for an app.
+
+ ```
+ object BetaAppReviewDetailResponse
+ ```
+
+ ## See Also
+
+ [`Read the beta app review details resource of an app`](https://developer.apple.com/documentation/AppStoreConnectAPI/GET-v1-apps-_id_-betaAppReviewDetail)
+
+ Get the beta app review details for a specific app.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/betaappreviewdetailresponse>
  */
 public struct BetaAppReviewDetailResponse: Codable, Sendable {
-    /// The resource data.
     public let data: BetaAppReviewDetail
     public var included: [App]?
-    /// Navigational links that include the self-link.
     public let links: DocumentLinks
 
     public init(data: BetaAppReviewDetail,

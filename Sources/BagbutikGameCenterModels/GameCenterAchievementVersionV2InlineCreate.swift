@@ -3,7 +3,32 @@ import Foundation
 
 /**
  # GameCenterAchievementVersionV2InlineCreate
+
  The data structure that represents a Game Center achievement version v2 inline create resource.
+
+ ```
+ object GameCenterAchievementVersionV2InlineCreate
+ ```
+
+ ## Overview
+
+ - id:
+ - relationships:
+ - type:
+
+ ## Topics
+
+ ### Dictionaries
+
+ [`object GameCenterAchievementVersionV2InlineCreate.Relationships`](https://developer.apple.com/documentation/AppStoreConnectAPI/GameCenterAchievementVersionV2InlineCreate/Relationships-data.dictionary)
+
+ The relationships you include in the request and those you can operate on.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterachievementversionv2inlinecreate>

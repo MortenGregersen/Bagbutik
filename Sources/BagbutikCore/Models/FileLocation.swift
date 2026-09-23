@@ -2,15 +2,22 @@ import Foundation
 
 /**
  # FileLocation
+
  A source code location reference indicating the file path, line number, and column of an issue in an Xcode Cloud build.
+
+ ```
+ object FileLocation
+ ```
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/filelocation>
  */
 public struct FileLocation: Codable, Sendable {
-    /// The line number of a file that contains code.
     public var lineNumber: Int?
-    /// The path to the file that caused an issue.
     public var path: String?
 
     public init(lineNumber: Int? = nil,

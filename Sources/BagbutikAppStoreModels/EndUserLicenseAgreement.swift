@@ -3,7 +3,30 @@ import Foundation
 
 /**
  # EndUserLicenseAgreement
+
  A custom end-user license agreement (EULA) for an app, targeting specific territories where it applies.
+
+ ```
+ object EndUserLicenseAgreement
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object EndUserLicenseAgreement.Attributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/EndUserLicenseAgreement/Attributes-data.dictionary)
+
+ Attributes that describe an End User License Agreements resource.
+
+ [`object EndUserLicenseAgreement.Relationships`](https://developer.apple.com/documentation/AppStoreConnectAPI/EndUserLicenseAgreement/Relationships-data.dictionary)
+
+ The relationships you include in the request and those on which you can operate.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/enduserlicenseagreement>

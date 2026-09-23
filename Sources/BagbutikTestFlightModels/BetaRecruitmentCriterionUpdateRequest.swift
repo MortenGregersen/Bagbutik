@@ -1,9 +1,27 @@
 import BagbutikCore
+import BagbutikProvisioningModels
 import Foundation
 
 /**
  # BetaRecruitmentCriterionUpdateRequest
+
  The request body for updating the device family and OS version requirements of a beta recruitment criterion.
+
+ ```
+ object BetaRecruitmentCriterionUpdateRequest
+ ```
+
+ ## Topics
+
+ ### Dictionaries
+
+ [`object BetaRecruitmentCriterionUpdateRequest.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/BetaRecruitmentCriterionUpdateRequest/Data-data.dictionary)
+
+ The request body you use to update a beta recruitment criterion update request.
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/betarecruitmentcriterionupdaterequest>

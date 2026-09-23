@@ -4,7 +4,24 @@ import Foundation
 
 /**
  # BetaRecruitmentCriterionOption
+
  A specific device family and OS version combination available as a value for a beta recruitment criterion.
+
+ ```
+ object BetaRecruitmentCriterionOption
+ ```
+
+ ## Topics
+
+ ### Dictionaries
+
+ [`object BetaRecruitmentCriterionOption.Attributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/BetaRecruitmentCriterionOption/Attributes-data.dictionary)
+
+ Attributes that describe a beta recruitment criterion option resource.
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/betarecruitmentcriterionoption>

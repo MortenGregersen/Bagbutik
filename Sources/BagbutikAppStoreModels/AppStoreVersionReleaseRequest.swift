@@ -3,17 +3,23 @@ import Foundation
 
 /**
  # AppStoreVersionReleaseRequest
+
  A request to manually release an App Store version that was set to manual release after review approval.
+
+ ```
+ object AppStoreVersionReleaseRequest
+ ```
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionreleaserequest>
  */
 public struct AppStoreVersionReleaseRequest: Codable, Sendable, Identifiable, RequestBody {
-    /// The opaque resource ID that uniquely identifies the resource.
     public let id: String
-    /// Navigational links that include the self-link.
     public var links: ResourceLinks?
-    /// The resource type.
     public var type: String { "appStoreVersionReleaseRequests" }
 
     public init(id: String,

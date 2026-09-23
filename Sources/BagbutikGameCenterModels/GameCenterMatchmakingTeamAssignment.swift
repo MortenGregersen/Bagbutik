@@ -3,15 +3,22 @@ import Foundation
 
 /**
  # GameCenterMatchmakingTeamAssignment
+
  The assignment of a player to a specific team during a Game Center matchmaking session.
+
+ ```
+ object GameCenterMatchmakingTeamAssignment
+ ```
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingteamassignment>
  */
 public struct GameCenterMatchmakingTeamAssignment: Codable, Sendable {
-    /// A unique identifier for the player.
     public var playerId: String?
-    /// The name of the team that Game Center assigned the player to.
     public var team: String?
 
     public init(playerId: String? = nil,

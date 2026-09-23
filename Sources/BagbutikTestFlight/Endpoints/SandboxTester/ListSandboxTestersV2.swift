@@ -4,7 +4,54 @@ import BagbutikTestFlightModels
 public extension Request {
     /**
      # List sandbox testers
+
      Get a list of Sandbox Testers for your team.
+
+     ## Discussion
+
+     ### Example Request and Response
+
+     **Request:**
+
+     ```
+     https://api.appstoreconnect.apple.com/v2/sandboxTesters
+     ```
+
+     **Response:**
+
+     ```json
+     {
+       "data" : [ {
+         "type" : "sandboxTesters",
+         "id" : "47be9e57-1a3f-49c2-8ce7-af27a977ebb0",
+         "attributes" : {
+           "firstName" : "Anne",
+           "lastName" : "Johnson",
+           "acAccountName" : "annejohnson1@icloud.com",
+           "territory" : "USA",
+           "applePayCompatible" : true,
+           "interruptPurchases" : false,
+           "subscriptionRenewalRate" : "MONTHLY_RENEWAL_EVERY_FIVE_MINUTES"
+         },
+         "links" : {
+           "self" : "https://api.appstoreconnect.apple.com/v2/sandboxTesters/47be9e57-1a3f-49c2-8ce7-af27a977ebb0"
+         }
+       } ],
+       "links" : {
+         "self" : "https://api.appstoreconnect.apple.com/v2/sandboxTesters"
+       },
+       "meta" : {
+         "paging" : {
+           "total" : 1,
+           "limit" : 50
+         }
+       }
+     }
+     ```
+
+     ---
+
+     Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/get-v2-sandboxTesters>

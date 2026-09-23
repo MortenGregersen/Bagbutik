@@ -3,7 +3,30 @@ import Foundation
 
 /**
  # AppCustomProductPage
+
  A custom variant of an app’s App Store product page, used for targeted marketing campaigns.
+
+ ```
+ object AppCustomProductPage
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object AppCustomProductPage.Attributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/AppCustomProductPage/Attributes-data.dictionary)
+
+ Attributes that describe an app custom product page resource.
+
+ [`object AppCustomProductPage.Relationships`](https://developer.apple.com/documentation/AppStoreConnectAPI/AppCustomProductPage/Relationships-data.dictionary)
+
+ The relationships you include in the request and those on which you can operate.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appcustomproductpage>

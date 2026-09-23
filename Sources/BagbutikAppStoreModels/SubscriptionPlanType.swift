@@ -1,6 +1,22 @@
 import BagbutikCore
 import Foundation
 
+/**
+ # SubscriptionPlanType
+
+ A string that indicates the billing plan type for an auto-renewable subscription.
+
+ ```
+ string SubscriptionPlanType
+ ```
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/subscriptionplantype>
+ */
 public enum SubscriptionPlanType: String, Sendable, ParameterValue, Codable, CaseIterable {
     case monthly = "MONTHLY"
     case upfront = "UPFRONT"

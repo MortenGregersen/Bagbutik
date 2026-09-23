@@ -4,7 +4,30 @@ import Foundation
 
 /**
  # AppStoreVersionExperimentTreatment
+
  One variant in an App Store product page A/B experiment, containing a set of alternative screenshots, previews, and promotional text.
+
+ ```
+ object AppStoreVersionExperimentTreatment
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object AppStoreVersionExperimentTreatment.Attributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/AppStoreVersionExperimentTreatment/Attributes-data.dictionary)
+
+ Attributes that describe an app store version experiment treatment resource.
+
+ [`object AppStoreVersionExperimentTreatment.Relationships`](https://developer.apple.com/documentation/AppStoreConnectAPI/AppStoreVersionExperimentTreatment/Relationships-data.dictionary)
+
+ The relationships you include in the request and those on which you can operate.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionexperimenttreatment>

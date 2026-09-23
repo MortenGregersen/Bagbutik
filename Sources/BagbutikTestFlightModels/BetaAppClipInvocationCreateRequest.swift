@@ -3,15 +3,36 @@ import Foundation
 
 /**
  # BetaAppClipInvocationCreateRequest
+
  The request body you use to create an App Clip invocation for testers.
+
+ ```
+ object BetaAppClipInvocationCreateRequest
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object BetaAppClipInvocationLocalizationInlineCreate`](https://developer.apple.com/documentation/AppStoreConnectAPI/BetaAppClipInvocationLocalizationInlineCreate)
+
+ An inline object for specifying a localized title for a beta App Clip invocation within a parent create or update request.
+
+ [`object BetaAppClipInvocationCreateRequest.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/BetaAppClipInvocationCreateRequest/Data-data.dictionary)
+
+ The data element of the request body.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/betaappclipinvocationcreaterequest>
  */
 public struct BetaAppClipInvocationCreateRequest: Codable, Sendable, RequestBody {
-    /// The resource data.
     public let data: Data
-    /// The relationship data to include in the response.
     public var included: [BetaAppClipInvocationLocalizationInlineCreate]?
 
     public init(data: Data,

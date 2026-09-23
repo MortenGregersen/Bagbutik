@@ -4,7 +4,85 @@ import BagbutikAppStoreModels
 public extension Request {
     /**
      # List the territory availability of a subscription
+
      List the territory availability and currency of a specific subscription.
+
+     ## Discussion
+
+     ### Example Request and Response
+
+     **Request:**
+
+     ```
+     https://api.appstoreconnect.apple.com/v1/subscriptionAvailabilities/6447589418/availableTerritories?limit=5
+     ```
+
+     **Response:**
+
+     ```json
+     {
+       "data" : [ {
+         "type" : "territories",
+         "id" : "SLV",
+         "attributes" : {
+           "currency" : "USD"
+         },
+         "links" : {
+           "self" : "https://api.appstoreconnect.apple.com/v1/territories/SLV"
+         }
+       }, {
+         "type" : "territories",
+         "id" : "BRB",
+         "attributes" : {
+           "currency" : "USD"
+         },
+         "links" : {
+           "self" : "https://api.appstoreconnect.apple.com/v1/territories/BRB"
+         }
+       }, {
+         "type" : "territories",
+         "id" : "CYM",
+         "attributes" : {
+           "currency" : "USD"
+         },
+         "links" : {
+           "self" : "https://api.appstoreconnect.apple.com/v1/territories/CYM"
+         }
+       }, {
+         "type" : "territories",
+         "id" : "NIC",
+         "attributes" : {
+           "currency" : "USD"
+         },
+         "links" : {
+           "self" : "https://api.appstoreconnect.apple.com/v1/territories/NIC"
+         }
+       }, {
+         "type" : "territories",
+         "id" : "NAM",
+         "attributes" : {
+           "currency" : "USD"
+         },
+         "links" : {
+           "self" : "https://api.appstoreconnect.apple.com/v1/territories/NAM"
+         }
+       } ],
+       "links" : {
+         "self" : "https://api.appstoreconnect.apple.com/v1/subscriptionAvailabilities/6447589418/availableTerritories?limit=5",
+         "next" : "https://api.appstoreconnect.apple.com/v1/subscriptionAvailabilities/6447589418/availableTerritories?cursor=BQ.AO4JFxQ&limit=5"
+       },
+       "meta" : {
+         "paging" : {
+           "total" : 175,
+           "limit" : 5
+         }
+       }
+     }
+     ```
+
+     ---
+
+     Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-subscriptionAvailabilities-_id_-availableTerritories>

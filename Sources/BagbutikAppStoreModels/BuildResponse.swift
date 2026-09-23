@@ -5,16 +5,31 @@ import Foundation
 
 /**
  # BuildResponse
+
  The response body for endpoints that read or modify a single build.
+
+ ```
+ object BuildResponse
+ ```
+
+ ## See Also
+
+ [`Read the build information of a beta build localization`](https://developer.apple.com/documentation/AppStoreConnectAPI/GET-v1-betaBuildLocalizations-_id_-build)
+
+ Get the build information for a specific beta build localization.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/buildresponse>
  */
 public struct BuildResponse: Codable, Sendable {
-    /// The resource data.
     public let data: Build
     public var included: [Included]?
-    /// Navigational links that include the self-link.
     public let links: DocumentLinks
 
     public init(data: Build,

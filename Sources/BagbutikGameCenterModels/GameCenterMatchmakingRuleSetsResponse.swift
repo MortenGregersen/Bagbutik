@@ -3,7 +3,16 @@ import Foundation
 
 /**
  # GameCenterMatchmakingRuleSetsResponse
+
  The response body for endpoints that get multiple rule sets.
+
+ ```
+ object GameCenterMatchmakingRuleSetsResponse
+ ```
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingrulesetsresponse>
@@ -11,9 +20,7 @@ import Foundation
 public struct GameCenterMatchmakingRuleSetsResponse: Codable, Sendable, PagedResponse {
     public typealias Data = GameCenterMatchmakingRuleSet
 
-    /// The rule sets that an endpoint gets.
     public let data: [GameCenterMatchmakingRuleSet]
-    /// The related objects included in the response.
     public var included: [Included]?
     public let links: PagedDocumentLinks
     public var meta: PagingInformation?

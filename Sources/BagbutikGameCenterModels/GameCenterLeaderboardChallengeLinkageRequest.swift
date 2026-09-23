@@ -1,6 +1,26 @@
 import BagbutikCore
 import Foundation
 
+/**
+ # GameCenterLeaderboardChallengeLinkageRequest
+
+ ```
+ object GameCenterLeaderboardChallengeLinkageRequest
+ ```
+
+ ## Topics
+
+ ### Dictionaries
+
+ [`object GameCenterLeaderboardChallengeLinkageRequest.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/GameCenterLeaderboardChallengeLinkageRequest/Data-data.dictionary)
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterleaderboardchallengelinkagerequest>
+ */
 public struct GameCenterLeaderboardChallengeLinkageRequest: Codable, Sendable, RequestBody {
     @NullCodable public var data: Data?
 

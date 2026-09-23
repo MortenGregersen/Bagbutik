@@ -1,6 +1,28 @@
 import BagbutikCore
 import Foundation
 
+/**
+ # AppStoreVersionExperimentUpdateRequest
+
+ ```
+ object AppStoreVersionExperimentUpdateRequest
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object AppStoreVersionExperimentUpdateRequest.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/AppStoreVersionExperimentUpdateRequest/Data-data.dictionary)
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionexperimentupdaterequest>
+ */
 public struct AppStoreVersionExperimentUpdateRequest: Codable, Sendable, RequestBody {
     public let data: Data
 

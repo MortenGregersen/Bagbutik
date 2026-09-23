@@ -3,15 +3,32 @@ import Foundation
 
 /**
  # AppClipDefaultExperienceReleaseWithAppStoreVersionLinkageResponse
+
  A response that contains the ID of a single related App Store Versions resource.
+
+ ```
+ object AppClipDefaultExperienceReleaseWithAppStoreVersionLinkageResponse
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object AppClipDefaultExperienceReleaseWithAppStoreVersionLinkageResponse.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/AppClipDefaultExperienceReleaseWithAppStoreVersionLinkageResponse/Data-data.dictionary)
+
+ The data element of the response body.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appclipdefaultexperiencereleasewithappstoreversionlinkageresponse>
  */
 public struct AppClipDefaultExperienceReleaseWithAppStoreVersionLinkageResponse: Codable, Sendable {
-    /// The object types and IDs of the related resources.
     public let data: Data
-    /// Navigational links that include the self-link.
     public let links: DocumentLinks
 
     public init(data: Data,

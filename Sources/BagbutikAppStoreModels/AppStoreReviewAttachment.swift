@@ -3,7 +3,30 @@ import Foundation
 
 /**
  # AppStoreReviewAttachment
+
  A file attached to an App Store review submission to provide reviewers with additional context, such as demo credentials or notes.
+
+ ```
+ object AppStoreReviewAttachment
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object AppStoreReviewAttachment.Attributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/AppStoreReviewAttachment/Attributes-data.dictionary)
+
+ Attributes that describe an App Store Review Attachments resource.
+
+ [`object AppStoreReviewAttachment.Relationships`](https://developer.apple.com/documentation/AppStoreConnectAPI/AppStoreReviewAttachment/Relationships-data.dictionary)
+
+ The relationships you include in the request and those on which you can operate.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appstorereviewattachment>

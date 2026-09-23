@@ -3,7 +3,29 @@ import Foundation
 
 /**
  # GameCenterLeaderboardSetLocalizationV2ImageLinkageResponse
+
  A response that contains a single Game Center leaderboard set localization v2 image linkage resource.
+
+ ```
+ object GameCenterLeaderboardSetLocalizationV2ImageLinkageResponse
+ ```
+
+ ## Overview
+
+ - data:
+ - links:
+
+ ## Topics
+
+ ### Dictionaries
+
+ [`object GameCenterLeaderboardSetLocalizationV2ImageLinkageResponse.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/GameCenterLeaderboardSetLocalizationV2ImageLinkageResponse/Data-data.dictionary)
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterleaderboardsetlocalizationv2imagelinkageresponse>

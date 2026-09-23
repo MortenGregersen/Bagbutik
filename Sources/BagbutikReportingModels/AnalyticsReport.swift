@@ -3,9 +3,32 @@ import Foundation
 
 /**
  # AnalyticsReport
+
  A generated analytics report containing App Store performance data produced from a report request.
 
- To learn more about the response that includes this analytics report request object, see [AnalyticsReportResponse](https://developer.apple.com/documentation/appstoreconnectapi/analyticsreportresponse).
+ ```
+ object AnalyticsReport
+ ```
+
+ ## Discussion
+
+ To learn more about the response that includes this analytics report request object, see [`AnalyticsReportResponse`](https://developer.apple.com/documentation/AppStoreConnectAPI/AnalyticsReportResponse).
+
+ ## Topics
+
+ ### Objects
+
+ [`object AnalyticsReport.Attributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/AnalyticsReport/Attributes-data.dictionary)
+
+ Attributes that describe an analytics report resource.
+
+ ### Dictionaries
+
+ [`object AnalyticsReport.Relationships`](https://developer.apple.com/documentation/AppStoreConnectAPI/AnalyticsReport/Relationships-data.dictionary)
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/analyticsreport>

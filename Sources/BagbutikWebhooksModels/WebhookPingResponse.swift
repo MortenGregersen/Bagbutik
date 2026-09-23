@@ -3,7 +3,16 @@ import Foundation
 
 /**
  # WebhookPingResponse
+
  A response confirming that a test ping was sent to a webhook endpoint.
+
+ ```
+ object WebhookPingResponse
+ ```
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/webhookpingresponse>

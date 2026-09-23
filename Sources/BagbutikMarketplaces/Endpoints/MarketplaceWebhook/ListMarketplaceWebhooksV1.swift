@@ -4,7 +4,50 @@ import BagbutikMarketplacesModels
 public extension Request {
     /**
      # Read Marketplace Webhook Information
+
      Get the endpoint URL for alternative distribution package notifications.
+
+     ## Discussion
+
+     ### Example Request and Response
+
+     **Request:**
+
+     ```
+     GET https://api.appstoreconnect.apple.com/v1/marketplaceWebhooks
+     ```
+
+     **Response:**
+
+     ```json
+     {
+       "data": [
+         {
+           "type": "marketplaceWebhooks",
+           "id": "c74970b8-6be0-40fa-8f51-8e1532005635",
+           "attributes": {
+             "endpointUrl": "https://example.com/api/ingest/notifications"
+           },
+           "links": {
+             "self": "https://api.appstoreconnect.apple.com/v1/marketplaceWebhooks/c74970b8-6be0-40fa-8f51-8e1532005635"
+           }
+         }
+       ],
+       "links": {
+         "self": "https://api.appstoreconnect.apple.com/v1/marketplaceWebhooks"
+       },
+       "meta": {
+         "paging": {
+           "total": 1,
+           "limit": 50
+         }
+       }
+     }
+     ```
+
+     ---
+
+     Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-marketplaceWebhooks>

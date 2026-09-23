@@ -3,21 +3,39 @@ import Foundation
 
 /**
  # CustomerReviewResponseV1
+
  A developer’s public reply to a customer review on the App Store.
+
+ ```
+ object CustomerReviewResponseV1
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object CustomerReviewResponseV1.Attributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/CustomerReviewResponseV1/Attributes-data.dictionary)
+
+ The attributes of the response to a customer’s review including its content.
+
+ [`object CustomerReviewResponseV1.Relationships`](https://developer.apple.com/documentation/AppStoreConnectAPI/CustomerReviewResponseV1/Relationships-data.dictionary)
+
+ The relationships you include in the request and those on which you can operate.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/customerreviewresponsev1>
  */
 public struct CustomerReviewResponseV1: Codable, Sendable, Identifiable {
-    /// The opaque resource ID that uniquely identifies the `CustomerReviewResponses` resource.
     public let id: String
-    /// Navigational links that include the self-link.
     public var links: ResourceLinks?
-    /// The resource type.
     public var type: String { "customerReviewResponses" }
-    /// The attributes of the response to the customer’s review, including its content.
     public var attributes: Attributes?
-    /// Navigational links to related data and included resource types and IDs.
     public var relationships: Relationships?
 
     public init(id: String,

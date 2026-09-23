@@ -3,19 +3,34 @@ import Foundation
 
 /**
  # BetaAppClipInvocationLocalization
+
  The localized title displayed to beta testers for a specific App Clip invocation.
+
+ ```
+ object BetaAppClipInvocationLocalization
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object BetaAppClipInvocationLocalization.Attributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/BetaAppClipInvocationLocalization/Attributes-data.dictionary)
+
+ The attributes that describe a Beta App Clip Invocation Localizations resource.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/betaappclipinvocationlocalization>
  */
 public struct BetaAppClipInvocationLocalization: Codable, Sendable, Identifiable {
-    /// The opaque resource ID that uniquely identifies a Beta App Clip Invocation Localization.
     public let id: String
-    /// Navigational links that include the self-link.
     public var links: ResourceLinks?
-    /// The resource type.
     public var type: String { "betaAppClipInvocationLocalizations" }
-    /// The attributes that describe the Beta App Clip Invocation Localizations resource.
     public var attributes: Attributes?
 
     public init(id: String,

@@ -5,9 +5,97 @@ import BagbutikReportingModels
 public extension Request {
     /**
      # Get power and performance metrics for a build
+
      Get the performance and power metrics data for a specific build.
 
-     The example below requests iOS animation metrics on all iPads for a specific build. To get the metrics for all of the most-recent app versions instead, use the [Get power and performance metrics for an app](https://developer.apple.com/documentation/appstoreconnectapi/get-v1-apps-_id_-perfpowermetrics) endpoint.
+     ## Discussion
+
+     The example below requests iOS animation metrics on all iPads for a specific build. To get the metrics for all of the most-recent app versions instead, use the [`Get power and performance metrics for an app`](https://developer.apple.com/documentation/AppStoreConnectAPI/GET-v1-apps-_id_-perfPowerMetrics) endpoint.
+
+     ### Example Request and Response
+
+     **Request:**
+
+     ```
+     https://api.appstoreconnect.apple.com/v1/builds/43d3a970-273c-4bc9-88ee-aa5c05610ac1/perfPowerMetrics?filter[deviceType]=all_ipads&filter[metricType]=ANIMATION&filter[platform]=iOS
+     ```
+
+     **Response:**
+
+     ```json
+     {
+       "productData": [
+         {
+           "platform": "iOS",
+           "metricCategories": [
+             {
+               "identifier": "ANIMATION",
+               "metrics": [
+                 {
+                   "identifier": "scrollHitchRate",
+                   "unit": {
+                     "identifier": "scrollHitchRate",
+                     "displayName": "%"
+                   },
+                   "datasets": [
+                     {
+                       "filterCriteria": {
+                         "percentile": "percentile.fifty",
+                         "device": "all_ipads",
+                         "deviceMarketingName": "All iPads"
+                       },
+                       "points": [
+                         {
+                           "version": "10.0",
+                           "value": 6.5,
+                           "goal": "fair"
+                         }
+                       ]
+                     },
+                     {
+                       "filterCriteria": {
+                         "percentile": "percentile.ninety",
+                         "device": "all_ipads",
+                         "deviceMarketingName": "All iPads"
+                       },
+                       "points": [
+                         {
+                           "version": "10.0",
+                           "value": 29.7,
+                           "goal": "poor"
+                         }
+                       ]
+                     }
+                   ],
+                   "goalKeys": [
+                     {
+                       "goalKey": "poor",
+                       "lowerBound": 10
+                     },
+                     {
+                       "upperBound": 10,
+                       "goalKey": "fair",
+                       "lowerBound": 5
+                     },
+                     {
+                       "upperBound": 5,
+                       "goalKey": "good",
+                       "lowerBound": 0
+                     }
+                   ]
+                 }
+               ]
+             }
+           ]
+         }
+       ],
+       "version": "1.0.0"
+     }
+     ```
+
+     ---
+
+     Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-builds-_id_-perfPowerMetrics>

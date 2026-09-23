@@ -1,6 +1,22 @@
 import BagbutikCore
 import Foundation
 
+/**
+ # BrazilAgeRating
+
+ String that represents the app’s age rating as it appears on the App Store in Brazil for all platforms.
+
+ ```
+ string BrazilAgeRating
+ ```
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/brazilagerating>
+ */
 public enum BrazilAgeRating: String, Sendable, Codable, CaseIterable {
     case eighteen = "EIGHTEEN"
     case fourteen = "FOURTEEN"

@@ -1,6 +1,22 @@
 import BagbutikCore
 import Foundation
 
+/**
+ # CiExecutionProgress
+
+ A string that represents the progress of an ongoing Xcode Cloud build.
+
+ ```
+ string CiExecutionProgress
+ ```
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/ciexecutionprogress>
+ */
 public enum CiExecutionProgress: String, Sendable, Codable, CaseIterable {
     case complete = "COMPLETE"
     case pending = "PENDING"

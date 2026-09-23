@@ -5,7 +5,12 @@ import BagbutikXcodeCloudModels
 public extension Request {
     /**
      # List all xcode cloud builds for a workflow
+
      List all builds Xcode Cloud performed for a specific workflow.
+
+     ---
+
+     Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-ciWorkflows-_id_-buildRuns>

@@ -4,7 +4,51 @@ import BagbutikAppStoreModels
 public extension Request {
     /**
      # List plan availabilities for a subscription
+
      List all plan availabilities for a specific auto-renewable subscription.
+
+     ## Overview
+
+     ### Example Request and Response
+
+     **Request:**
+
+     ```
+     GET https://api.appstoreconnect.apple.com/v1/subscriptions/6470878936/planAvailabilities?limit=2
+     ```
+
+     **Response:**
+
+     ```json
+     {
+       "data" : [ {
+         "type" : "subscriptionPlanAvailabilities",
+         "id" : "eyJhIjoiNjQ3MDg3ODkzNiIsInAiOiIwIn0",
+         "attributes" : {
+           "availableInNewTerritories" : true,
+           "planType" : "UPFRONT"
+         },
+         "relationships" : {
+           "availableTerritories" : {
+             "links" : {
+               "self" : "https://api.appstoreconnect.apple.com/v1/subscriptionPlanAvailabilities/eyJhIjoiNjQ3MDg3ODkzNiIsInAiOiIwIn0/relationships/availableTerritories",
+               "related" : "https://api.appstoreconnect.apple.com/v1/subscriptionPlanAvailabilities/eyJhIjoiNjQ3MDg3ODkzNiIsInAiOiIwIn0/availableTerritories"
+             }
+           }
+         },
+         "links" : {
+           "self" : "https://api.appstoreconnect.apple.com/v1/subscriptionPlanAvailabilities/eyJhIjoiNjQ3MDg3ODkzNiIsInAiOiIwIn0"
+         }
+       } ],
+       "meta" : {
+         "paging" : { "total" : 1, "limit" : 2 }
+       }
+     }
+     ```
+
+     ---
+
+     Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-subscriptions-_id_-planAvailabilities>

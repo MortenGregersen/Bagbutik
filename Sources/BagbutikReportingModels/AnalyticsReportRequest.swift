@@ -3,9 +3,34 @@ import Foundation
 
 /**
  # AnalyticsReportRequest
+
  A request to generate ongoing analytics reports for an app, specifying the report type and access frequency.
 
- To learn more about the response that includes this analytics report request object, see [AnalyticsReportRequestCreateRequest](https://developer.apple.com/documentation/appstoreconnectapi/analyticsreportrequestcreaterequest).
+ ```
+ object AnalyticsReportRequest
+ ```
+
+ ## Discussion
+
+ To learn more about the response that includes this analytics report request object, see [`AnalyticsReportRequestCreateRequest`](https://developer.apple.com/documentation/AppStoreConnectAPI/AnalyticsReportRequestCreateRequest).
+
+ ## Topics
+
+ ### Objects
+
+ [`object AnalyticsReportRequest.Attributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/AnalyticsReportRequest/Attributes-data.dictionary)
+
+ Attributes that describe an analytics report request resource.
+
+ [`object AnalyticsReportRequest.Relationships`](https://developer.apple.com/documentation/AppStoreConnectAPI/AnalyticsReportRequest/Relationships-data.dictionary)
+
+ The relationships you include in the request and those on which you can operate.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/analyticsreportrequest>

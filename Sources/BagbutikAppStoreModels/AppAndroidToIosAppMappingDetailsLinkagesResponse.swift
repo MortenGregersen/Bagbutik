@@ -3,7 +3,26 @@ import Foundation
 
 /**
  # AppAndroidToIosAppMappingDetailsLinkagesResponse
+
  A response that contains a list of IDs of related resources.
+
+ ```
+ object AppAndroidToIosAppMappingDetailsLinkagesResponse
+ ```
+
+ ## Topics
+
+ ### Dictionaries
+
+ [`object AppAndroidToIosAppMappingDetailsLinkagesResponse.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/AppAndroidToIosAppMappingDetailsLinkagesResponse/Data-data.dictionary)
+
+ The data structure that represents an Android to iOS app mapping details linkages response resource.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appandroidtoiosappmappingdetailslinkagesresponse>

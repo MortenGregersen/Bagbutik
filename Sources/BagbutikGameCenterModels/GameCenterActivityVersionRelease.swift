@@ -3,7 +3,24 @@ import Foundation
 
 /**
  # GameCenterActivityVersionRelease
+
  A record indicating that a version of a Game Center activity has been released to players.
+
+ ```
+ object GameCenterActivityVersionRelease
+ ```
+
+ ## Topics
+
+ ### Dictionaries
+
+ [`object GameCenterActivityVersionRelease.Relationships`](https://developer.apple.com/documentation/AppStoreConnectAPI/GameCenterActivityVersionRelease/Relationships-data.dictionary)
+
+ The relationships you include in the request and those on which you can operate.
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecenteractivityversionrelease>

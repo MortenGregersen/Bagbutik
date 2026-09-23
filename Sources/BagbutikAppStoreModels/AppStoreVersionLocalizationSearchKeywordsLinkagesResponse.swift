@@ -3,7 +3,24 @@ import Foundation
 
 /**
  # AppStoreVersionLocalizationSearchKeywordsLinkagesResponse
+
  A response containing the resource identifiers of search keywords linked to an App Store version localization.
+
+ ```
+ object AppStoreVersionLocalizationSearchKeywordsLinkagesResponse
+ ```
+
+ ## Topics
+
+ ### Dictionaries
+
+ [`object AppStoreVersionLocalizationSearchKeywordsLinkagesResponse.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/AppStoreVersionLocalizationSearchKeywordsLinkagesResponse/Data-data.dictionary)
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionlocalizationsearchkeywordslinkagesresponse>

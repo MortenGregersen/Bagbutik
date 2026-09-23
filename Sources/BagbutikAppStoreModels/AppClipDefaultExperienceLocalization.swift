@@ -3,21 +3,39 @@ import Foundation
 
 /**
  # AppClipDefaultExperienceLocalization
+
  The localized metadata for a default App Clip experience, including the subtitle displayed on the App Clip card.
+
+ ```
+ object AppClipDefaultExperienceLocalization
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object AppClipDefaultExperienceLocalization.Attributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/AppClipDefaultExperienceLocalization/Attributes-data.dictionary)
+
+ The attributes that describe a Default App Clip Experience Localizations resource.
+
+ [`object AppClipDefaultExperienceLocalization.Relationships`](https://developer.apple.com/documentation/AppStoreConnectAPI/AppClipDefaultExperienceLocalization/Relationships-data.dictionary)
+
+ The relationships of the Default App Clip Experience Localizations resource you included in the request and those on which you can operate.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appclipdefaultexperiencelocalization>
  */
 public struct AppClipDefaultExperienceLocalization: Codable, Sendable, Identifiable {
-    /// The opaque resource ID that uniquely identifies a Default App Clip Experience Localizations resource.
     public let id: String
-    /// Navigational links that include the self-link.
     public var links: ResourceLinks?
-    /// The resource type.
     public var type: String { "appClipDefaultExperienceLocalizations" }
-    /// The attributes that describe the Default App Clip Experience Localizations resource.
     public var attributes: Attributes?
-    /// The navigational links to related data and included resource types and IDs.
     public var relationships: Relationships?
 
     public init(id: String,

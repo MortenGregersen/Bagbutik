@@ -3,15 +3,39 @@ import Foundation
 
 /**
  # AlternativeDistributionPackage
+
  The distributable package for an app on an alternative marketplace or web distribution, containing versioned variants and delta updates.
 
- To learn more about the response that includes this alternative distribution package object, see [AlternativeDistributionPackageResponse](https://developer.apple.com/documentation/appstoreconnectapi/alternativedistributionpackageresponse).
+ ```
+ object AlternativeDistributionPackage
+ ```
+
+ ## Discussion
+
+ To learn more about the response that includes this alternative distribution package object, see [`AlternativeDistributionPackageResponse`](https://developer.apple.com/documentation/AppStoreConnectAPI/AlternativeDistributionPackageResponse).
+
+ ## Topics
+
+ ### Objects
+
+ [`object AlternativeDistributionPackage.Relationships`](https://developer.apple.com/documentation/AppStoreConnectAPI/AlternativeDistributionPackage/Relationships-data.dictionary)
+
+ The relationships for an alternative distribution package, linking it to its versions.
+
+ ### Dictionaries
+
+ [`object AlternativeDistributionPackage.Attributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/AlternativeDistributionPackage/Attributes-data.dictionary)
+
+ Attributes that describe an alternative distribution package resource.
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/alternativedistributionpackage>
  */
 public struct AlternativeDistributionPackage: Codable, Sendable, Identifiable {
-    /// An opaque resource ID that uniquely identifies the alternative distribution package.
     public let id: String
     public var links: ResourceLinks?
     public var type: String { "alternativeDistributionPackages" }

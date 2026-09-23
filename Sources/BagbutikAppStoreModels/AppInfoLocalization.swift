@@ -3,7 +3,30 @@ import Foundation
 
 /**
  # AppInfoLocalization
+
  The data structure that represent an App Info Localizations resource.
+
+ ```
+ object AppInfoLocalization
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object AppInfoLocalization.Attributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/AppInfoLocalization/Attributes-data.dictionary)
+
+ Attributes that describe an App Info Localizations resource.
+
+ [`object AppInfoLocalization.Relationships`](https://developer.apple.com/documentation/AppStoreConnectAPI/AppInfoLocalization/Relationships-data.dictionary)
+
+ The relationships you include in the request and those on which you can operate.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appinfolocalization>

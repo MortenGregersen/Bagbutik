@@ -1,6 +1,22 @@
 import BagbutikCore
 import Foundation
 
+/**
+ # CiTestStatus
+
+ A string that represents test status information.
+
+ ```
+ string CiTestStatus
+ ```
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/citeststatus>
+ */
 public enum CiTestStatus: String, Sendable, Codable, CaseIterable {
     case expectedFailure = "EXPECTED_FAILURE"
     case failure = "FAILURE"

@@ -4,16 +4,31 @@ import Foundation
 
 /**
  # BetaLicenseAgreementResponse
+
  The response body for endpoints that read or modify the TestFlight license agreement for an app.
+
+ ```
+ object BetaLicenseAgreementResponse
+ ```
+
+ ## See Also
+
+ [`Read the beta license agreement of an app`](https://developer.apple.com/documentation/AppStoreConnectAPI/GET-v1-apps-_id_-betaLicenseAgreement)
+
+ Get the beta license agreement for a specific app.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/betalicenseagreementresponse>
  */
 public struct BetaLicenseAgreementResponse: Codable, Sendable {
-    /// The resource data.
     public let data: BetaLicenseAgreement
     public var included: [App]?
-    /// Navigational links that include the self-link.
     public let links: DocumentLinks
 
     public init(data: BetaLicenseAgreement,

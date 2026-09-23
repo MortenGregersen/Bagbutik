@@ -3,7 +3,16 @@ import Foundation
 
 /**
  # DeliveryFileUploadOperation
+
  An upload operation descriptor containing the URL, HTTP method, and required headers for uploading a background asset file to Apple’s servers.
+
+ ```
+ object DeliveryFileUploadOperation
+ ```
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/deliveryfileuploadoperation>

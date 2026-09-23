@@ -3,7 +3,32 @@ import Foundation
 
 /**
  # GameCenterLeaderboardSetVersionV2InlineCreate
+
  The data structure that represents a Game Center leaderboard set version v2 inline create resource.
+
+ ```
+ object GameCenterLeaderboardSetVersionV2InlineCreate
+ ```
+
+ ## Overview
+
+ - id:
+ - relationships:
+ - type:
+
+ ## Topics
+
+ ### Dictionaries
+
+ [`object GameCenterLeaderboardSetVersionV2InlineCreate.Relationships`](https://developer.apple.com/documentation/AppStoreConnectAPI/GameCenterLeaderboardSetVersionV2InlineCreate/Relationships-data.dictionary)
+
+ The relationships you include in the request and those you can operate on.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterleaderboardsetversionv2inlinecreate>

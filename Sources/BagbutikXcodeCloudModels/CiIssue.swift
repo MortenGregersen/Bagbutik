@@ -3,19 +3,34 @@ import Foundation
 
 /**
  # CiIssue
+
  A warning or error produced during an Xcode Cloud build action, associated with a source file location.
+
+ ```
+ object CiIssue
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object CiIssue.Attributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/CiIssue/Attributes-data.dictionary)
+
+ The attributes that describe an Issues resource.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/ciissue>
  */
 public struct CiIssue: Codable, Sendable, Identifiable {
-    /// The opaque resource ID that uniquely identifies an Issues resource.
     public let id: String
-    /// The navigational links that include the self-link.
     public var links: ResourceLinks?
-    /// The resource type.
     public var type: String { "ciIssues" }
-    /// The attributes that describe the Issues resource.
     public var attributes: Attributes?
 
     public init(id: String,

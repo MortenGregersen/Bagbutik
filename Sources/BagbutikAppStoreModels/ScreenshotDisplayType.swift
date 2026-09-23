@@ -1,6 +1,22 @@
 import BagbutikCore
 import Foundation
 
+/**
+ # ScreenshotDisplayType
+
+ A string that represents the display type of an app screenshot.
+
+ ```
+ string ScreenshotDisplayType
+ ```
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/screenshotdisplaytype>
+ */
 public enum ScreenshotDisplayType: String, Sendable, ParameterValue, Codable, CaseIterable {
     case appAppleTV = "APP_APPLE_TV"
     case appAppleVisionPro = "APP_APPLE_VISION_PRO"

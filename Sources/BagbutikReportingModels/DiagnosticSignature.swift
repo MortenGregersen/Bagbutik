@@ -3,19 +3,36 @@ import Foundation
 
 /**
  # DiagnosticSignature
+
  A unique pattern identifying a recurring crash, hang, or disk-write exception in your app’s diagnostic logs.
+
+ ```
+ object DiagnosticSignature
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object DiagnosticSignature.Attributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/DiagnosticSignature/Attributes-data.dictionary)
+
+ Attributes that describe a Diagnostic Signatures resource.
+
+ ### Dictionaries
+
+ [`object DiagnosticSignature.Relationships`](https://developer.apple.com/documentation/AppStoreConnectAPI/DiagnosticSignature/Relationships-data.dictionary)
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/diagnosticsignature>
  */
 public struct DiagnosticSignature: Codable, Sendable, Identifiable {
-    /// The opaque resource ID that uniquely identifies a diagnostic signature.
     public let id: String
-    /// Navigational links that include the self-link.
     public var links: ResourceLinks?
-    /// The resource type.
     public var type: String { "diagnosticSignatures" }
-    /// Attributes that describe the diagnostic signature resource.
     public var attributes: Attributes?
     public var relationships: Relationships?
 

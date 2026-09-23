@@ -3,7 +3,24 @@ import Foundation
 
 /**
  # GameCenterChallengeVersionCreateRequest
+
  The request body you use to create a challenge version.
+
+ ```
+ object GameCenterChallengeVersionCreateRequest
+ ```
+
+ ## Topics
+
+ ### Dictionaries
+
+ [`object GameCenterChallengeVersionCreateRequest.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/GameCenterChallengeVersionCreateRequest/Data-data.dictionary)
+
+ The request body you use to create a Game Center challenge version.
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterchallengeversioncreaterequest>

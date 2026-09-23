@@ -4,7 +4,24 @@ import Foundation
 
 /**
  # PreReleaseVersionsResponse
+
  A response containing a list of pre-release versions for an app.
+
+ ```
+ object PreReleaseVersionsResponse
+ ```
+
+ ## See Also
+
+ [`List prerelease versions`](https://developer.apple.com/documentation/AppStoreConnectAPI/GET-v1-preReleaseVersions)
+
+ Get a list of prerelease versions for all apps.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/prereleaseversionsresponse>
@@ -12,12 +29,9 @@ import Foundation
 public struct PreReleaseVersionsResponse: Codable, Sendable, PagedResponse {
     public typealias Data = PrereleaseVersion
 
-    /// The resource data.
     public let data: [PrereleaseVersion]
     public var included: [Included]?
-    /// Navigational links that include the self-link.
     public let links: PagedDocumentLinks
-    /// Paging information.
     public var meta: PagingInformation?
 
     public init(data: [PrereleaseVersion],

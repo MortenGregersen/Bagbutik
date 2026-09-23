@@ -3,7 +3,26 @@ import Foundation
 
 /**
  # InAppPurchaseOfferPrice
+
  The data structure that represents an in-app purchase offer price resource.
+
+ ```
+ object InAppPurchaseOfferPrice
+ ```
+
+ ## Topics
+
+ ### Dictionaries
+
+ [`object InAppPurchaseOfferPrice.Relationships`](https://developer.apple.com/documentation/AppStoreConnectAPI/InAppPurchaseOfferPrice/Relationships-data.dictionary)
+
+ The relationships you include in the request and those on which you can operate.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/inapppurchaseofferprice>

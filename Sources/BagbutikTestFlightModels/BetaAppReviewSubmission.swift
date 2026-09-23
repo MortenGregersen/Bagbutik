@@ -3,21 +3,39 @@ import Foundation
 
 /**
  # BetaAppReviewSubmission
+
  A submission of a build to Apple’s beta app review process, required before external testing.
+
+ ```
+ object BetaAppReviewSubmission
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object BetaAppReviewSubmission.Attributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/BetaAppReviewSubmission/Attributes-data.dictionary)
+
+ Attributes that describe a Beta App Review Submissions resource.
+
+ [`object BetaAppReviewSubmission.Relationships`](https://developer.apple.com/documentation/AppStoreConnectAPI/BetaAppReviewSubmission/Relationships-data.dictionary)
+
+ The relationships you include in the request and those on which you can operate.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/betaappreviewsubmission>
  */
 public struct BetaAppReviewSubmission: Codable, Sendable, Identifiable {
-    /// The opaque resource ID that uniquely identifies the resource.
     public let id: String
-    /// Navigational links that include the self-link.
     public var links: ResourceLinks?
-    /// The resource type.
     public var type: String { "betaAppReviewSubmissions" }
-    /// The resource’s attributes.
     public var attributes: Attributes?
-    /// Navigational links to related data and included resource types and IDs.
     public var relationships: Relationships?
 
     public init(id: String,

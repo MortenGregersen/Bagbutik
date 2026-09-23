@@ -5,7 +5,12 @@ import BagbutikModelsShared
 public extension Request {
     /**
      # Read localization information for a default app clip experience
+
      Get localized metadata that appears on the App Clip card for a specific default App Clip experience.
+
+     ---
+
+     Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-appClipDefaultExperiences-_id_-appClipDefaultExperienceLocalizations>

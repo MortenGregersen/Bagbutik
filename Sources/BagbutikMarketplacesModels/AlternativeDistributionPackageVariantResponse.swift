@@ -3,12 +3,40 @@ import Foundation
 
 /**
  # AlternativeDistributionPackageVariantResponse
+
  A response containing a single variant of an alternative distribution package.
 
- This object is the response that contains a single alternative distribution package variant. For more information, see [Read variant information for an alternative distribution package](https://developer.apple.com/documentation/appstoreconnectapi/get-v1-alternativedistributionpackagevariants-_id_). The schema of the response body is below.
  ```
+ object AlternativeDistributionPackageVariantResponse
+ ```
+
+ ## Discussion
+
+ This object is the response that contains a single alternative distribution package variant. For more information, see [`Read variant information for an alternative distribution package`](https://developer.apple.com/documentation/AppStoreConnectAPI/GET-v1-alternativeDistributionPackageVariants-_id_). The schema of the response body is below.
+
+ ```javascript
  {
+   "data": {
+     "type": "alternativeDistributionPackageVariants",
+     "id": "string",
+     "attributes": {
+       "url": "string",
+       "urlExpirationDate": "2025-02-23T06:53:07.520Z",
+       "alternativeDistributionKeyBlob": "string"
+     },
+     "links": {
+       "self": "string"
+     }
+   },
+   "links": {
+     "self": "string"
+   }
+ }
  ```
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/alternativedistributionpackagevariantresponse>

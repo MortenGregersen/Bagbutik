@@ -3,13 +3,31 @@ import Foundation
 
 /**
  # GameCenterMatchmakingRuleCreateRequest
+
  The request body you use to create a rule.
+
+ ```
+ object GameCenterMatchmakingRuleCreateRequest
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object GameCenterMatchmakingRuleCreateRequest.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/GameCenterMatchmakingRuleCreateRequest/Data-data.dictionary)
+
+ The data structure of the request body you use to create a rule.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingrulecreaterequest>
  */
 public struct GameCenterMatchmakingRuleCreateRequest: Codable, Sendable, RequestBody {
-    /// The data structure of the request body.
     public let data: Data
 
     public init(data: Data) {

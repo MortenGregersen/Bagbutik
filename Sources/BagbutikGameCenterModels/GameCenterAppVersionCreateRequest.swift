@@ -3,7 +3,26 @@ import Foundation
 
 /**
  # GameCenterAppVersionCreateRequest
+
  The request body you use to create an app version.
+
+ ```
+ object GameCenterAppVersionCreateRequest
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object GameCenterAppVersionCreateRequest.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/GameCenterAppVersionCreateRequest/Data-data.dictionary)
+
+ The request body you use to create a Game Center app version.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterappversioncreaterequest>

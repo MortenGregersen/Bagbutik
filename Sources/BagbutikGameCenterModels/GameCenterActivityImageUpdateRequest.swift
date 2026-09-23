@@ -3,7 +3,24 @@ import Foundation
 
 /**
  # GameCenterActivityImageUpdateRequest
+
  The request body you use to update an activity.
+
+ ```
+ object GameCenterActivityImageUpdateRequest
+ ```
+
+ ## Topics
+
+ ### Dictionaries
+
+ [`object GameCenterActivityImageUpdateRequest.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/GameCenterActivityImageUpdateRequest/Data-data.dictionary)
+
+ The request body you use to update a activity.
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecenteractivityimageupdaterequest>

@@ -3,7 +3,26 @@ import Foundation
 
 /**
  # AppPreviewSetAppPreviewsLinkagesResponse
+
  A response body that contains a list of related resource IDs.
+
+ ```
+ object AppPreviewSetAppPreviewsLinkagesResponse
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object AppPreviewSetAppPreviewsLinkagesResponse.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/AppPreviewSetAppPreviewsLinkagesResponse/Data-data.dictionary)
+
+ The data element of the response body.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/apppreviewsetapppreviewslinkagesresponse>

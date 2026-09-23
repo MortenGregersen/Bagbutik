@@ -4,16 +4,31 @@ import Foundation
 
 /**
  # UserInvitationResponse
+
  The response body for endpoints that read or modify a pending App Store Connect team invitation.
+
+ ```
+ object UserInvitationResponse
+ ```
+
+ ## See Also
+
+ [`Invite a user`](https://developer.apple.com/documentation/AppStoreConnectAPI/POST-v1-userInvitations)
+
+ Invite a user with assigned user roles to join your team.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/userinvitationresponse>
  */
 public struct UserInvitationResponse: Codable, Sendable {
-    /// The resource data.
     public let data: UserInvitation
     public var included: [App]?
-    /// Navigational links that include the self-link.
     public let links: DocumentLinks
 
     public init(data: UserInvitation,

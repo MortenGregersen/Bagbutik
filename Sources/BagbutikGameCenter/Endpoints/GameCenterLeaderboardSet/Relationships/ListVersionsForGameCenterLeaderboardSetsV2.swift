@@ -4,7 +4,28 @@ import BagbutikGameCenterModels
 public extension Request {
     /**
      # List All Versions for a Game Center Leaderboard Set
+
      Get a list of versions for a specific Game Center leaderboard set.
+
+     ## Overview
+
+     - id:
+     - fields[gameCenterLeaderboardSetLocalizations]:
+     - fields[gameCenterLeaderboardSetVersions]:
+     - fields[gameCenterLeaderboardSets]:
+     - include:
+     - limit:
+     - limit[localizations]:
+     - 200:
+     - 400:
+     - 401:
+     - 403:
+     - 404:
+     - 429:
+
+     ---
+
+     Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/get-v2-gameCenterLeaderboardSets-_id_-versions>

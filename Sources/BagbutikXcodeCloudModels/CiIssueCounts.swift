@@ -3,19 +3,24 @@ import Foundation
 
 /**
  # CiIssueCounts
+
  A summary of the warnings, errors, analyzer warnings, and test failures in an Xcode Cloud build run.
+
+ ```
+ object CiIssueCounts
+ ```
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/ciissuecounts>
  */
 public struct CiIssueCounts: Codable, Sendable {
-    /// The number of analyzer warnings.
     public var analyzerWarnings: Int?
-    /// The number of errors.
     public var errors: Int?
-    /// The number of failing tests.
     public var testFailures: Int?
-    /// The number of warnings.
     public var warnings: Int?
 
     public init(analyzerWarnings: Int? = nil,

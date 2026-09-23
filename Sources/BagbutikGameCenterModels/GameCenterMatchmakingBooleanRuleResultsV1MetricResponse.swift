@@ -3,7 +3,26 @@ import Foundation
 
 /**
  # GameCenterMatchmakingBooleanRuleResultsV1MetricResponse
+
  The response body for fetching the results of applying Boolean rules.
+
+ ```
+ object GameCenterMatchmakingBooleanRuleResultsV1MetricResponse
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object GameCenterMatchmakingBooleanRuleResultsV1MetricResponse.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/GameCenterMatchmakingBooleanRuleResultsV1MetricResponse/Data-data.dictionary)
+
+ The data structure in a response body for Boolean match request results.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingbooleanruleresultsv1metricresponse>

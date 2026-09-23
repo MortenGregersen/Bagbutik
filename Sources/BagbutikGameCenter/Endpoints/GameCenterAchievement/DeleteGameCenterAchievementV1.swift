@@ -5,7 +5,28 @@ import BagbutikModelsShared
 public extension Request {
     /**
      # Delete an Achievement
+
      Delete a specific achievement.
+
+     ## Discussion
+
+     ### Example Request and Response
+
+     **Request:**
+
+     ```
+     DELETE https://api.appstoreconnect.apple.com/v1/gameCenterAchievements/082314fb-8b23-49db-b62a-08aad519e5aa
+     ```
+
+     **Response:**
+
+     ```json
+     HTTP/1.1 204 No Content
+     ```
+
+     ---
+
+     Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/delete-v1-gameCenterAchievements-_id_>

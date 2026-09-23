@@ -3,19 +3,34 @@ import Foundation
 
 /**
  # GameCenterMatchmakingTeam
+
  A team configuration within a Game Center matchmaking rule set, defining team size and composition rules.
+
+ ```
+ object GameCenterMatchmakingTeam
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object GameCenterMatchmakingTeam.Attributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/GameCenterMatchmakingTeam/Attributes-data.dictionary)
+
+ The attributes of a game-specific team.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingteam>
  */
 public struct GameCenterMatchmakingTeam: Codable, Sendable, Identifiable {
-    /// The unique identifier for the team.
     public let id: String
-    /// The link representations of the object.
     public var links: ResourceLinks?
-    /// The type of resource object.
     public var type: String { "gameCenterMatchmakingTeams" }
-    /// The attributes of the team.
     public var attributes: Attributes?
 
     public init(id: String,

@@ -3,7 +3,16 @@ import Foundation
 
 /**
  # AppClipDefaultExperiencesResponse
+
  The response body for endpoints that list default App Clip experiences.
+
+ ```
+ object AppClipDefaultExperiencesResponse
+ ```
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appclipdefaultexperiencesresponse>
@@ -11,13 +20,9 @@ import Foundation
 public struct AppClipDefaultExperiencesResponse: Codable, Sendable, PagedResponse {
     public typealias Data = AppClipDefaultExperience
 
-    /// The resource data.
     public let data: [AppClipDefaultExperience]
-    /// The requested relationship data.
     public var included: [Included]?
-    /// Navigational links that include the self-link.
     public let links: PagedDocumentLinks
-    /// The paging information.
     public var meta: PagingInformation?
 
     public init(data: [AppClipDefaultExperience],

@@ -1,6 +1,22 @@
 import BagbutikCore
 import Foundation
 
+/**
+ # SubscriptionGracePeriodDuration
+
+ A string that represents the grace period duration for a subscription.
+
+ ```
+ string SubscriptionGracePeriodDuration
+ ```
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/subscriptiongraceperiodduration>
+ */
 public enum SubscriptionGracePeriodDuration: String, Sendable, Codable, CaseIterable {
     case sixteenDays = "SIXTEEN_DAYS"
     case threeDays = "THREE_DAYS"

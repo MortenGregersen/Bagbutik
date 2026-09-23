@@ -3,7 +3,26 @@ import Foundation
 
 /**
  # GameCenterAppVersionCompatibilityVersionsLinkagesRequest
+
  The request body you use to create a relationship between an app version and a compatibility version.
+
+ ```
+ object GameCenterAppVersionCompatibilityVersionsLinkagesRequest
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object GameCenterAppVersionCompatibilityVersionsLinkagesRequest.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/GameCenterAppVersionCompatibilityVersionsLinkagesRequest/Data-data.dictionary)
+
+ The type and ID of a related Game Center app version resource.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterappversioncompatibilityversionslinkagesrequest>

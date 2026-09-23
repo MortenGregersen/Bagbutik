@@ -3,21 +3,39 @@ import Foundation
 
 /**
  # AppClipAdvancedExperience
+
  A configured trigger for an App Clip experience, associated with a physical location, NFC tag, QR code, or App Store link.
+
+ ```
+ object AppClipAdvancedExperience
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object AppClipAdvancedExperience.Attributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/AppClipAdvancedExperience/Attributes-data.dictionary)
+
+ The attributes that describe an Advanced App Clip Experiences resource.
+
+ [`object AppClipAdvancedExperience.Relationships`](https://developer.apple.com/documentation/AppStoreConnectAPI/AppClipAdvancedExperience/Relationships-data.dictionary)
+
+ The relationships of the Advanced App Clip Experiences resource you included in the request and those on which you can operate.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appclipadvancedexperience>
  */
 public struct AppClipAdvancedExperience: Codable, Sendable, Identifiable {
-    /// The opaque resource ID that uniquely identifies an Advanced App Clip Experiences resource.
     public let id: String
-    /// Navigational links that include the self-link.
     public var links: ResourceLinks?
-    /// The resource type.
     public var type: String { "appClipAdvancedExperiences" }
-    /// The attributes that describe the Advanced App Clip Experiences resource.
     public var attributes: Attributes?
-    /// The navigational links to related data and included resource types and IDs.
     public var relationships: Relationships?
 
     public init(id: String,

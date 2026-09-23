@@ -3,7 +3,16 @@ import Foundation
 
 /**
  # CiArtifactsResponse
+
  The response body for endpoints that list artifacts produced by an Xcode Cloud build action.
+
+ ```
+ object CiArtifactsResponse
+ ```
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/ciartifactsresponse>
@@ -11,11 +20,8 @@ import Foundation
 public struct CiArtifactsResponse: Codable, Sendable, PagedResponse {
     public typealias Data = CiArtifact
 
-    /// The resource data.
     public let data: [CiArtifact]
-    /// The navigational links that include the self-link.
     public let links: PagedDocumentLinks
-    /// The paging information.
     public var meta: PagingInformation?
 
     public init(data: [CiArtifact],

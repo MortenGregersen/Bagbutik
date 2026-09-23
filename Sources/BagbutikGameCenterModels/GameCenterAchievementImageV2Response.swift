@@ -3,7 +3,22 @@ import Foundation
 
 /**
  # GameCenterAchievementImageV2Response
+
  A response that contains a single Game Center achievement image v2 resource.
+
+ ```
+ object GameCenterAchievementImageV2Response
+ ```
+
+ ## Overview
+
+ - data:
+ - included:
+ - links:
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterachievementimagev2response>

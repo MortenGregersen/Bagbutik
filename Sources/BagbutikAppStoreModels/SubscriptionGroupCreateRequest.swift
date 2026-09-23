@@ -3,7 +3,26 @@ import Foundation
 
 /**
  # SubscriptionGroupCreateRequest
+
  The request body you use to create a subscription group.
+
+ ```
+ object SubscriptionGroupCreateRequest
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object SubscriptionGroupCreateRequest.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/SubscriptionGroupCreateRequest/Data-data.dictionary)
+
+ The request body you use to create a subscription group.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/subscriptiongroupcreaterequest>

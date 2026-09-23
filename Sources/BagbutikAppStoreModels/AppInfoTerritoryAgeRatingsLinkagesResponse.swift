@@ -3,7 +3,24 @@ import Foundation
 
 /**
  # AppInfoTerritoryAgeRatingsLinkagesResponse
+
  A response containing the resource identifiers of territory-specific age ratings for an app info record.
+
+ ```
+ object AppInfoTerritoryAgeRatingsLinkagesResponse
+ ```
+
+ ## Topics
+
+ ### Dictionaries
+
+ [`object AppInfoTerritoryAgeRatingsLinkagesResponse.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/AppInfoTerritoryAgeRatingsLinkagesResponse/Data-data.dictionary)
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appinfoterritoryageratingslinkagesresponse>

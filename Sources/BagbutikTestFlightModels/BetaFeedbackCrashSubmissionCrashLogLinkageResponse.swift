@@ -3,7 +3,22 @@ import Foundation
 
 /**
  # BetaFeedbackCrashSubmissionCrashLogLinkageResponse
+
  A response containing the resource identifier of the crash log linked to a crash feedback submission.
+
+ ```
+ object BetaFeedbackCrashSubmissionCrashLogLinkageResponse
+ ```
+
+ ## Topics
+
+ ### Dictionaries
+
+ [`object BetaFeedbackCrashSubmissionCrashLogLinkageResponse.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/BetaFeedbackCrashSubmissionCrashLogLinkageResponse/Data-data.dictionary)
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/betafeedbackcrashsubmissioncrashloglinkageresponse>

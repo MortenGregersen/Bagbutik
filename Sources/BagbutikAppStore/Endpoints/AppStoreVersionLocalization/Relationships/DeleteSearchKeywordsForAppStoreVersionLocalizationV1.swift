@@ -5,7 +5,12 @@ import BagbutikModelsShared
 public extension Request {
     /**
      # Remove search keywords from an app store version localization
+
      Remove search keywords from a specific App Store version localization.
+
+     ---
+
+     Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/delete-v1-appStoreVersionLocalizations-_id_-relationships-searchKeywords>

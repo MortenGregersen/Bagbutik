@@ -1,6 +1,26 @@
 import BagbutikCore
 import Foundation
 
+/**
+ # CiBuildActionBuildRunLinkageResponse
+
+ ```
+ object CiBuildActionBuildRunLinkageResponse
+ ```
+
+ ## Topics
+
+ ### Dictionaries
+
+ [`object CiBuildActionBuildRunLinkageResponse.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/CiBuildActionBuildRunLinkageResponse/Data-data.dictionary)
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/cibuildactionbuildrunlinkageresponse>
+ */
 public struct CiBuildActionBuildRunLinkageResponse: Codable, Sendable {
     public let data: Data
     public let links: DocumentLinks

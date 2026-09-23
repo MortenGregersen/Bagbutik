@@ -4,7 +4,16 @@ import Foundation
 
 /**
  # AppStoreVersionExperimentsV2Response
+
  A response containing a list of A/B product page experiments for an App Store version.
+
+ ```
+ object AppStoreVersionExperimentsV2Response
+ ```
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionexperimentsv2response>
