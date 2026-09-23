@@ -3,7 +3,38 @@ import Foundation
 
 /**
  # InAppPurchaseV2
+
  An in-app purchase item configured via the v2 API, supporting both consumable and non-consumable types.
+
+ ```
+ object InAppPurchaseV2
+ ```
+
+ ## Topics
+
+ ### Objects and types
+
+ [`object InAppPurchaseV2.Attributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/InAppPurchaseV2/Attributes-data.dictionary)
+
+ Attributes that describe an in-app purchase v2 resource.
+
+ [`string InAppPurchaseType`](https://developer.apple.com/documentation/AppStoreConnectAPI/InAppPurchaseType)
+
+ A string that represents the type of an In-App Purchase.
+
+ [`string InAppPurchaseState`](https://developer.apple.com/documentation/AppStoreConnectAPI/InAppPurchaseState)
+
+ A string that represents the review state of an In-App Purchase.
+
+ [`object InAppPurchaseV2.Relationships`](https://developer.apple.com/documentation/AppStoreConnectAPI/InAppPurchaseV2/Relationships-data.dictionary)
+
+ The relationships you include in the request and those on which you can operate.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/inapppurchasev2>

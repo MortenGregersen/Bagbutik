@@ -5,7 +5,28 @@ import BagbutikModelsShared
 public extension Request {
     /**
      # Delete an Achievement Image
+
      Delete an image that’s associated with an achievement.
+
+     ## Discussion
+
+     ### Example Request and Response
+
+     **Request:**
+
+     ```
+     DELETE https://api.appstoreconnect.apple.com/v1/gameCenterAchievementImages/{id}
+     ```
+
+     **Response:**
+
+     ```json
+     HTTP/1.1 204 No Content
+     ```
+
+     ---
+
+     Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/delete-v1-gameCenterAchievementImages-_id_>

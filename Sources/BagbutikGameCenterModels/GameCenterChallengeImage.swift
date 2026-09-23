@@ -5,7 +5,24 @@ import Foundation
 
 /**
  # GameCenterChallengeImage
+
  An image asset used to represent a Game Center challenge in the player interface.
+
+ ```
+ object GameCenterChallengeImage
+ ```
+
+ ## Topics
+
+ ### Dictionaries
+
+ [`object GameCenterChallengeImage.Attributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/GameCenterChallengeImage/Attributes-data.dictionary)
+
+ Attributes that describe a challenge resource.
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterchallengeimage>

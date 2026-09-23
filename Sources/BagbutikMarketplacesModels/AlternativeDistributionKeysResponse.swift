@@ -3,9 +3,20 @@ import Foundation
 
 /**
  # AlternativeDistributionKeysResponse
+
  The response body for endpoints that list alternative distribution keys.
 
- For more information about the response that includes this alternative distribution key object, see [AlternativeDistributionKeyResponse](https://developer.apple.com/documentation/appstoreconnectapi/alternativedistributionkeyresponse).
+ ```
+ object AlternativeDistributionKeysResponse
+ ```
+
+ ## Discussion
+
+ For more information about the response that includes this alternative distribution key object, see [`AlternativeDistributionKeyResponse`](https://developer.apple.com/documentation/AppStoreConnectAPI/AlternativeDistributionKeyResponse).
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/alternativedistributionkeysresponse>

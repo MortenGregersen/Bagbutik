@@ -3,7 +3,16 @@ import Foundation
 
 /**
  # CustomerReviewSummarizationsResponse
+
  A response containing a list of AI-generated review summaries for an app across territories.
+
+ ```
+ object CustomerReviewSummarizationsResponse
+ ```
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/customerreviewsummarizationsresponse>

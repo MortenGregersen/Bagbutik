@@ -4,7 +4,12 @@ import BagbutikAppStoreModels
 public extension Request {
     /**
      # Read app information for an xcode cloud product
+
      Get the app in App Store Connect that’s related to an Xcode Cloud product.
+
+     ---
+
+     Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-ciProducts-_id_-app>

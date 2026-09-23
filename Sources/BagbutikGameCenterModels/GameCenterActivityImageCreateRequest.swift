@@ -3,7 +3,24 @@ import Foundation
 
 /**
  # GameCenterActivityImageCreateRequest
+
  The request body for creating an image asset for a Game Center activity.
+
+ ```
+ object GameCenterActivityImageCreateRequest
+ ```
+
+ ## Topics
+
+ ### Dictionaries
+
+ [`object GameCenterActivityImageCreateRequest.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/GameCenterActivityImageCreateRequest/Data-data.dictionary)
+
+ The request body you use to create a Game Center activity image.
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecenteractivityimagecreaterequest>

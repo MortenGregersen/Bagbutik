@@ -3,7 +3,28 @@ import Foundation
 
 /**
  # BuildUpload
+
  A multi-file upload operation for submitting an app build to App Store Connect.
+
+ ```
+ object BuildUpload
+ ```
+
+ ## Topics
+
+ ### Dictionaries
+
+ [`object BuildUpload.Attributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/BuildUpload/Attributes-data.dictionary)
+
+ Attributes that describe a build upload resource.
+
+ [`object BuildUpload.Relationships`](https://developer.apple.com/documentation/AppStoreConnectAPI/BuildUpload/Relationships-data.dictionary)
+
+ The relationships you include in the request and those on which you can operate.
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/buildupload>

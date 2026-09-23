@@ -3,17 +3,33 @@ import Foundation
 
 /**
  # AppClipAdvancedExperienceLocalizationInlineCreate
+
  An inline object for specifying localized text and action button when creating an App Clip advanced experience.
+
+ ```
+ object AppClipAdvancedExperienceLocalizationInlineCreate
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object AppClipAdvancedExperienceLocalizationInlineCreate.Attributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/AppClipAdvancedExperienceLocalizationInlineCreate/Attributes-data.dictionary)
+
+ The attributes that describe an Advanced App Clip Experience Localization Inline Creates resource.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appclipadvancedexperiencelocalizationinlinecreate>
  */
 public struct AppClipAdvancedExperienceLocalizationInlineCreate: Codable, Sendable, Identifiable {
-    /// The opaque resource ID that uniquely identifies an Advanced App Clip Experience Localization Inline Creates resource.
     public var id: String?
-    /// The resource type.
     public var type: String { "appClipAdvancedExperienceLocalizations" }
-    /// The attributes that describe the Advanced App Clip Experience Localization Inline Creates resource.
     public var attributes: Attributes?
 
     public init(id: String? = nil,

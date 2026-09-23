@@ -3,15 +3,22 @@ import Foundation
 
 /**
  # WinBackOfferPriceInlineCreate
+
  An inline object for specifying territory-specific pricing when creating or updating a win-back offer.
+
+ ```
+ object WinBackOfferPriceInlineCreate
+ ```
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/winbackofferpriceinlinecreate>
  */
 public struct WinBackOfferPriceInlineCreate: Codable, Sendable, Identifiable {
-    /// The opaque resource ID that uniquely identifies the resource.
     public var id: String?
-    /// The resource type.
     public var type: String { "winBackOfferPrices" }
 
     public init(id: String? = nil) {

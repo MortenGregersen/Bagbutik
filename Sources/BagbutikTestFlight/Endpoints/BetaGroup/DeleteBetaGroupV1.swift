@@ -5,7 +5,12 @@ import BagbutikTestFlightModels
 public extension Request {
     /**
      # Delete a beta group
+
      Delete a beta group and remove beta tester access to associated builds.
+
+     ---
+
+     Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/delete-v1-betaGroups-_id_>

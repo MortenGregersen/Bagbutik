@@ -3,7 +3,16 @@ import Foundation
 
 /**
  # BetaAppClipInvocationsResponse
+
  A response containing a list of TestFlight App Clip invocations for a beta build.
+
+ ```
+ object BetaAppClipInvocationsResponse
+ ```
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/betaappclipinvocationsresponse>
@@ -11,13 +20,9 @@ import Foundation
 public struct BetaAppClipInvocationsResponse: Codable, Sendable, PagedResponse {
     public typealias Data = BetaAppClipInvocation
 
-    /// The resource data.
     public let data: [BetaAppClipInvocation]
-    /// The requested relationship data.
     public var included: [BetaAppClipInvocationLocalization]?
-    /// Navigational links that include the self-link.
     public let links: PagedDocumentLinks
-    /// The paging information.
     public var meta: PagingInformation?
 
     public init(data: [BetaAppClipInvocation],

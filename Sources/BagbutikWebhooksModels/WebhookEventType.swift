@@ -1,6 +1,22 @@
 import BagbutikCore
 import Foundation
 
+/**
+ # WebhookEventType
+
+ A string that represents the the event types for a webhook notification.
+
+ ```
+ string WebhookEventType
+ ```
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/webhookeventtype>
+ */
 public enum WebhookEventType: String, Sendable, Codable, CaseIterable {
     case alternativeDistributionPackageAvailableUpdated = "ALTERNATIVE_DISTRIBUTION_PACKAGE_AVAILABLE_UPDATED"
     case alternativeDistributionPackageVersionCreated = "ALTERNATIVE_DISTRIBUTION_PACKAGE_VERSION_CREATED"

@@ -4,7 +4,12 @@ import BagbutikAppStoreModels
 public extension Request {
     /**
      # Promote a purchase
+
      Add an existing in-app purchase or auto-renewable subscription to the promoted in-app purchases on an app listing in the App Store.
+
+     ---
+
+     Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/post-v1-promotedPurchases>

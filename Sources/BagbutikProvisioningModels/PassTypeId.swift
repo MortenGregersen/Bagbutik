@@ -3,7 +3,28 @@ import Foundation
 
 /**
  # PassTypeId
+
  A pass type identifier used to create and manage Wallet passes such as boarding passes, coupons, or loyalty cards.
+
+ ```
+ object PassTypeId
+ ```
+
+ ## Topics
+
+ ### Dictionaries
+
+ [`object PassTypeId.Attributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/PassTypeId/Attributes-data.dictionary)
+
+ The configurable attributes of a pass type identifier, including its identifier string and description.
+
+ [`object PassTypeId.Relationships`](https://developer.apple.com/documentation/AppStoreConnectAPI/PassTypeId/Relationships-data.dictionary)
+
+ The relationships for a pass type identifier, linking it to its associated signing certificates.
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/passtypeid>

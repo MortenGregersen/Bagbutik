@@ -4,7 +4,12 @@ import BagbutikReportingModels
 public extension Request {
     /**
      # Read a list of a report instance ids
+
      Read list of all the instance IDs for a specific type of analytics report.
+
+     ---
+
+     Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-analyticsReports-_id_-relationships-instances>

@@ -1,6 +1,26 @@
 import BagbutikCore
 import Foundation
 
+/**
+ # AppStoreAgeRating
+
+ A string that represents the app’s age rating as it appears on the App Store for all platforms.
+
+ ```
+ string AppStoreAgeRating
+ ```
+
+ ## Discussion
+
+ For more information about app ratings, see [Age ratings](https://developer.apple.com/help/app-store-connect/reference/age-ratings/).
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appstoreagerating>
+ */
 public enum AppStoreAgeRating: String, Sendable, Codable, CaseIterable {
     case all = "ALL"
     case eightPlus = "EIGHT_PLUS"

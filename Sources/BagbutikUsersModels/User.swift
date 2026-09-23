@@ -3,21 +3,45 @@ import Foundation
 
 /**
  # User
+
  A member of your App Store Connect team, with assigned roles and access to specific apps.
+
+ ```
+ object User
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object User.Attributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/User/Attributes-data.dictionary)
+
+ Attributes that describe a Users resource.
+
+ [`object User.Relationships`](https://developer.apple.com/documentation/AppStoreConnectAPI/User/Relationships-data.dictionary)
+
+ The relationships you include in the request and those on which you can operate.
+
+ ## See Also
+
+ [Users](https://developer.apple.com/documentation/AppStoreConnectAPI/users)
+
+ Manage users on your App Store Connect team.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/user>
  */
 public struct User: Codable, Sendable, Identifiable {
-    /// The opaque resource ID that uniquely identifies the resource.
     public let id: String
-    /// Navigational links that include the self-link.
     public var links: ResourceLinks?
-    /// The resource type.
     public var type: String { "users" }
-    /// The resource’s attributes.
     public var attributes: Attributes?
-    /// Navigational links to related data and included resource types and IDs.
     public var relationships: Relationships?
 
     public init(id: String,

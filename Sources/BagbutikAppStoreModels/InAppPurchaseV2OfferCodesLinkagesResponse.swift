@@ -3,7 +3,24 @@ import Foundation
 
 /**
  # InAppPurchaseV2OfferCodesLinkagesResponse
+
  A response that contains a list of in-app purchase offer codes linkage resources.
+
+ ```
+ object InAppPurchaseV2OfferCodesLinkagesResponse
+ ```
+
+ ## Topics
+
+ ### Dictionaries
+
+ [`object InAppPurchaseV2OfferCodesLinkagesResponse.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/InAppPurchaseV2OfferCodesLinkagesResponse/Data-data.dictionary)
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/inapppurchasev2offercodeslinkagesresponse>

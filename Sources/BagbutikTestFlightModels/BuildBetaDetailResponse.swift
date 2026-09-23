@@ -4,16 +4,31 @@ import Foundation
 
 /**
  # BuildBetaDetailResponse
+
  The response body for endpoints that read or modify beta testing details for a build.
+
+ ```
+ object BuildBetaDetailResponse
+ ```
+
+ ## See Also
+
+ [`Read build beta detail information`](https://developer.apple.com/documentation/AppStoreConnectAPI/GET-v1-buildBetaDetails-_id_)
+
+ Get a specific build beta details resource.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/buildbetadetailresponse>
  */
 public struct BuildBetaDetailResponse: Codable, Sendable {
-    /// The resource data.
     public let data: BuildBetaDetail
     public var included: [Build]?
-    /// Navigational links that include the self-link.
     public let links: DocumentLinks
 
     public init(data: BuildBetaDetail,

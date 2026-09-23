@@ -3,7 +3,26 @@ import Foundation
 
 /**
  # SubscriptionGroupLocalizationV2CreateRequest
+
  The request body you use to create a subscription group localization with the v2 API.
+
+ ```
+ object SubscriptionGroupLocalizationV2CreateRequest
+ ```
+
+ ## Topics
+
+ ### Objects and types
+
+ [`object SubscriptionGroupLocalizationV2CreateRequest.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/SubscriptionGroupLocalizationV2CreateRequest/Data-data.dictionary)
+
+ The request body you use to create a subscription group localization.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/subscriptiongrouplocalizationv2createrequest>

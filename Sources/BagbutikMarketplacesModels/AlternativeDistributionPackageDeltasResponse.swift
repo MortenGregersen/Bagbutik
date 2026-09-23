@@ -3,12 +3,50 @@ import Foundation
 
 /**
  # AlternativeDistributionPackageDeltasResponse
+
  A response containing a list of delta updates available for an alternative distribution package.
 
- This object is the response that contains a list of alternative distribution package deltas. For more information about alternative distribution package deltas, see [List Deltas Information](https://developer.apple.com/documentation/appstoreconnectapi/get-v1-alternativedistributionpackageversions-_id_-deltas). The schema of the response body is below.
  ```
+ object AlternativeDistributionPackageDeltasResponse
+ ```
+
+ ## Discussion
+
+ This object is the response that contains a list of alternative distribution package deltas. For more information about alternative distribution package deltas, see [`List Deltas Information`](https://developer.apple.com/documentation/AppStoreConnectAPI/GET-v1-alternativeDistributionPackageVersions-_id_-deltas). The schema of the response body is below.
+
+ ```javascript
  {
+   "data": [
+     {
+       "type": "alternativeDistributionPackageDeltas",
+       "id": "string",
+       "attributes": {
+         "url": "string",
+         "urlExpirationDate": "2024-02-27T00:38:37.222Z",
+         "alternativeDistributionKeyBlob": "string"
+       },
+       "links": {
+         "self": "string"
+       }
+     }
+   ],
+   "links": {
+     "self": "string",
+     "first": "string",
+     "next": "string"
+   },
+   "meta": {
+     "paging": {
+       "total": 0,
+       "limit": 0
+     }
+   }
+ }
  ```
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/alternativedistributionpackagedeltasresponse>

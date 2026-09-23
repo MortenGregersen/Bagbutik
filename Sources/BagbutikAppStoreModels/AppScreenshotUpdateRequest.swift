@@ -3,7 +3,26 @@ import Foundation
 
 /**
  # AppScreenshotUpdateRequest
+
  The request body you use to update an App Screenshot.
+
+ ```
+ object AppScreenshotUpdateRequest
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object AppScreenshotUpdateRequest.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/AppScreenshotUpdateRequest/Data-data.dictionary)
+
+ The data element of the request body.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appscreenshotupdaterequest>

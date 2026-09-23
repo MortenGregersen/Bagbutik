@@ -3,7 +3,24 @@ import Foundation
 
 /**
  # BetaPublicLinkUsagesV1MetricResponse
+
  A metrics response containing usage data for a TestFlight public invite link, showing tester enrollment trends.
+
+ ```
+ object BetaPublicLinkUsagesV1MetricResponse
+ ```
+
+ ## Topics
+
+ ### Dictionaries
+
+ [`object BetaPublicLinkUsagesV1MetricResponse.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/BetaPublicLinkUsagesV1MetricResponse/Data-data.dictionary)
+
+ The request body you use to update a beta public link usages v1metric response.
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/betapubliclinkusagesv1metricresponse>

@@ -4,7 +4,16 @@ import Foundation
 
 /**
  # AppPricePointV3Response
+
  A response containing a single App Store price point with its territory-specific pricing details.
+
+ ```
+ object AppPricePointV3Response
+ ```
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/apppricepointv3response>

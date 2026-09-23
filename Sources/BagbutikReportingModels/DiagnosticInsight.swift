@@ -3,7 +3,26 @@ import Foundation
 
 /**
  # DiagnosticInsight
+
  An AI-generated analysis of a recurring performance issue identified in your app’s diagnostic logs, with suggested fixes.
+
+ ```
+ object DiagnosticInsight
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object DiagnosticInsight.ReferenceVersions`](https://developer.apple.com/documentation/AppStoreConnectAPI/DiagnosticInsight/ReferenceVersions-data.dictionary)
+
+ A collection of app versions referenced in a diagnostic insight, indicating which versions are affected.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/diagnosticinsight>

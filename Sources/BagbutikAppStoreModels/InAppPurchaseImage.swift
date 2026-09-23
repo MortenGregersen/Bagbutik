@@ -4,21 +4,39 @@ import Foundation
 
 /**
  # InAppPurchaseImage
+
  A screenshot or image associated with an in-app purchase or subscription, displayed on the App Store product page.
+
+ ```
+ object InAppPurchaseImage
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object InAppPurchaseImage.Attributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/InAppPurchaseImage/Attributes-data.dictionary)
+
+ Attributes that describe a subscription image resource.
+
+ [`object InAppPurchaseImage.Relationships`](https://developer.apple.com/documentation/AppStoreConnectAPI/InAppPurchaseImage/Relationships-data.dictionary)
+
+ The relationships for an in-app purchase image, linking it to its associated in-app purchase.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/inapppurchaseimage>
  */
 public struct InAppPurchaseImage: Codable, Sendable, Identifiable {
-    /// The opaque resource ID that uniquely identifies the resource.
     public let id: String
-    /// Navigational links that include the self-link.
     public var links: ResourceLinks?
-    /// The resource type.
     public var type: String { "inAppPurchaseImages" }
-    /// The resource’s attributes.
     public var attributes: Attributes?
-    /// Navigational links to related data and included resource types and IDs.
     public var relationships: Relationships?
 
     public init(id: String,

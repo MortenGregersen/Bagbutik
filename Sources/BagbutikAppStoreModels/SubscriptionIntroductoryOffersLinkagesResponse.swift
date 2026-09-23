@@ -3,7 +3,26 @@ import Foundation
 
 /**
  # SubscriptionIntroductoryOffersLinkagesResponse
+
  A response containing the resource identifiers of introductory offers linked to a subscription.
+
+ ```
+ object SubscriptionIntroductoryOffersLinkagesResponse
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object SubscriptionIntroductoryOffersLinkagesResponse.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/SubscriptionIntroductoryOffersLinkagesResponse/Data-data.dictionary)
+
+ The resource linkage data identifying an introductory offer within a linkage response.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/subscriptionintroductoryofferslinkagesresponse>

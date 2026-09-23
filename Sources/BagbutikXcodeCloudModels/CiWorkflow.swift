@@ -3,21 +3,39 @@ import Foundation
 
 /**
  # CiWorkflow
+
  An Xcode Cloud automation configuration specifying when to build, which actions to run, and how to distribute the output.
+
+ ```
+ object CiWorkflow
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object CiWorkflow.Attributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/CiWorkflow/Attributes-data.dictionary)
+
+ The attributes that describe a Workflows resource.
+
+ [`object CiWorkflow.Relationships`](https://developer.apple.com/documentation/AppStoreConnectAPI/CiWorkflow/Relationships-data.dictionary)
+
+ The relationships of the Workflows resource you included in the request and those on which you can operate.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/ciworkflow>
  */
 public struct CiWorkflow: Codable, Sendable, Identifiable {
-    /// The opaque resource ID that uniquely identifies a Workflows resource.
     public let id: String
-    /// The navigational links that include the self-link.
     public var links: ResourceLinks?
-    /// The resource type.
     public var type: String { "ciWorkflows" }
-    /// The attributes that describe the Workflows resource.
     public var attributes: Attributes?
-    /// The navigational links to related data and included resource types and IDs.
     public var relationships: Relationships?
 
     public init(id: String,

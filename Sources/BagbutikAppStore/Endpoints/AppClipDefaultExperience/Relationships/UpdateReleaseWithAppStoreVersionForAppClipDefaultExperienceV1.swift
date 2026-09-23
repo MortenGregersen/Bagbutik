@@ -5,7 +5,12 @@ import BagbutikModelsShared
 public extension Request {
     /**
      # Modify the related app store version for a default app clip experience
+
      Update the relationship between a default App Clip experience and an App Store Version.
+
+     ---
+
+     Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/patch-v1-appClipDefaultExperiences-_id_-relationships-releaseWithAppStoreVersion>

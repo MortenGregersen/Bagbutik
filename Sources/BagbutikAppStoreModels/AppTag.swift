@@ -3,7 +3,30 @@ import Foundation
 
 /**
  # AppTag
+
  A label used to categorize an app for internal organization or to control which App Store territories feature it.
+
+ ```
+ object AppTag
+ ```
+
+ ## Topics
+
+ ### Dictionaries
+
+ [`object AppTag.Attributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/AppTag/Attributes-data.dictionary)
+
+ Attributes that describe an app tag resource.
+
+ [`object AppTag.Relationships`](https://developer.apple.com/documentation/AppStoreConnectAPI/AppTag/Relationships-data.dictionary)
+
+ The relationships you include in the request and those on which you can operate.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/apptag>

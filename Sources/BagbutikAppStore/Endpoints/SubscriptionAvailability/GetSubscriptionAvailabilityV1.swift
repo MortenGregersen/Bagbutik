@@ -4,7 +4,50 @@ import BagbutikAppStoreModels
 public extension Request {
     /**
      # Read the availability of a subscription
+
      Get information about the territory availability for a subscription.
+
+     ## Discussion
+
+     ### Example Request and Response
+
+     **Request:**
+
+     ```
+     https://api.appstoreconnect.apple.com/v1/subscriptionAvailabilities/6447589418
+     ```
+
+     **Response:**
+
+     ```json
+     {
+       "data" : {
+         "type" : "subscriptionAvailabilities",
+         "id" : "6447589418",
+         "attributes" : {
+           "availableInNewTerritories" : false
+         },
+         "relationships" : {
+           "availableTerritories" : {
+             "links" : {
+               "self" : "https://api.appstoreconnect.apple.com/v1/subscriptionAvailabilities/6447589418/relationships/availableTerritories",
+               "related" : "https://api.appstoreconnect.apple.com/v1/subscriptionAvailabilities/6447589418/availableTerritories"
+             }
+           }
+         },
+         "links" : {
+           "self" : "https://api.appstoreconnect.apple.com/v1/subscriptionAvailabilities/6447589418"
+         }
+       },
+       "links" : {
+         "self" : "https://api.appstoreconnect.apple.com/v1/subscriptionAvailabilities/6447589418"
+       }
+     }
+     ```
+
+     ---
+
+     Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-subscriptionAvailabilities-_id_>

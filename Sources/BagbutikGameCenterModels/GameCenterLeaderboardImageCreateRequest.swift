@@ -3,7 +3,26 @@ import Foundation
 
 /**
  # GameCenterLeaderboardImageCreateRequest
+
  The request body you use to create a leaderboard image.
+
+ ```
+ object GameCenterLeaderboardImageCreateRequest
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object GameCenterLeaderboardImageCreateRequest.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/GameCenterLeaderboardImageCreateRequest/Data-data.dictionary)
+
+ The request body you use to create a Game Center leaderboard image.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterleaderboardimagecreaterequest>

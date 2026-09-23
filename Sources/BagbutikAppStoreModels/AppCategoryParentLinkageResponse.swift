@@ -1,6 +1,26 @@
 import BagbutikCore
 import Foundation
 
+/**
+ # AppCategoryParentLinkageResponse
+
+ ```
+ object AppCategoryParentLinkageResponse
+ ```
+
+ ## Topics
+
+ ### Dictionaries
+
+ [`object AppCategoryParentLinkageResponse.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/AppCategoryParentLinkageResponse/Data-data.dictionary)
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appcategoryparentlinkageresponse>
+ */
 public struct AppCategoryParentLinkageResponse: Codable, Sendable {
     public let data: Data
     public let links: DocumentLinks

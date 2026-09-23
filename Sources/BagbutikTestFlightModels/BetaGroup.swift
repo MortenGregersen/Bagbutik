@@ -3,21 +3,39 @@ import Foundation
 
 /**
  # BetaGroup
+
  A group of beta testers and builds that you use to manage TestFlight distribution for an app.
+
+ ```
+ object BetaGroup
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object BetaGroup.Attributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/BetaGroup/Attributes-data.dictionary)
+
+ Attributes with values that describe a beta group update request.
+
+ [`object BetaGroup.Relationships`](https://developer.apple.com/documentation/AppStoreConnectAPI/BetaGroup/Relationships-data.dictionary)
+
+ The relationships you include in the request and those on which you can operate.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/betagroup>
  */
 public struct BetaGroup: Codable, Sendable, Identifiable {
-    /// The opaque resource ID that uniquely identifies the resource.
     public let id: String
-    /// Navigational links that include the self-link.
     public var links: ResourceLinks?
-    /// The resource type.
     public var type: String { "betaGroups" }
-    /// The resource’s attributes.
     public var attributes: Attributes?
-    /// Navigational links to related data and included resource types and IDs.
     public var relationships: Relationships?
 
     public init(id: String,

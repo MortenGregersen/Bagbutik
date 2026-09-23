@@ -4,16 +4,31 @@ import Foundation
 
 /**
  # BetaTesterResponse
+
  The response body for endpoints that create, read, or modify a TestFlight beta tester.
+
+ ```
+ object BetaTesterResponse
+ ```
+
+ ## See Also
+
+ [`Create a beta tester`](https://developer.apple.com/documentation/AppStoreConnectAPI/POST-v1-betaTesters)
+
+ Create a beta tester assigned to a group, a build, or an app.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/betatesterresponse>
  */
 public struct BetaTesterResponse: Codable, Sendable {
-    /// The resource data.
     public let data: BetaTester
     public var included: [Included]?
-    /// Navigational links that include the self-link.
     public let links: DocumentLinks
 
     public init(data: BetaTester,

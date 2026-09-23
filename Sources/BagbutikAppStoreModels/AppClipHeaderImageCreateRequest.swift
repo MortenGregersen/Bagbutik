@@ -3,13 +3,31 @@ import Foundation
 
 /**
  # AppClipHeaderImageCreateRequest
+
  The request body you use to reserve an image asset that appears on the App Clip card of a default App Clip experience.
+
+ ```
+ object AppClipHeaderImageCreateRequest
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object AppClipHeaderImageCreateRequest.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/AppClipHeaderImageCreateRequest/Data-data.dictionary)
+
+ The data element of the request body.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appclipheaderimagecreaterequest>
  */
 public struct AppClipHeaderImageCreateRequest: Codable, Sendable, RequestBody {
-    /// The resource data.
     public let data: Data
 
     public init(data: Data) {

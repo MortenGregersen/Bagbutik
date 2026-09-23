@@ -2,7 +2,26 @@ import Foundation
 
 /**
  # ErrorLinks
+
  Navigation links within an error response, providing references to related resources or documentation.
+
+ ```
+ object ErrorLinks
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object ErrorLinks.Associated`](https://developer.apple.com/documentation/AppStoreConnectAPI/ErrorLinks/Associated-data.dictionary)
+
+ The associated resource links within an error’s navigation links.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/errorlinks>

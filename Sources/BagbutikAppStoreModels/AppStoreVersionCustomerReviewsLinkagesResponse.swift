@@ -1,6 +1,26 @@
 import BagbutikCore
 import Foundation
 
+/**
+ # AppStoreVersionCustomerReviewsLinkagesResponse
+
+ ```
+ object AppStoreVersionCustomerReviewsLinkagesResponse
+ ```
+
+ ## Topics
+
+ ### Dictionaries
+
+ [`object AppStoreVersionCustomerReviewsLinkagesResponse.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/AppStoreVersionCustomerReviewsLinkagesResponse/Data-data.dictionary)
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversioncustomerreviewslinkagesresponse>
+ */
 public struct AppStoreVersionCustomerReviewsLinkagesResponse: Codable, Sendable, PagedResponse {
     public let data: [Data]
     public let links: PagedDocumentLinks

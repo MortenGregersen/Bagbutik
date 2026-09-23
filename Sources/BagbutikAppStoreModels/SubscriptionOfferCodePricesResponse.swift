@@ -3,7 +3,16 @@ import Foundation
 
 /**
  # SubscriptionOfferCodePricesResponse
+
  A response containing a list of territory-specific prices for a subscription offer code.
+
+ ```
+ object SubscriptionOfferCodePricesResponse
+ ```
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/subscriptionoffercodepricesresponse>

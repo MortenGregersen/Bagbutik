@@ -5,7 +5,12 @@ import BagbutikTestFlightModels
 public extension Request {
     /**
      # Add access for beta groups to a build
+
      Add or create a beta group to a build to enable testing.
+
+     ---
+
+     Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/post-v1-builds-_id_-relationships-betaGroups>

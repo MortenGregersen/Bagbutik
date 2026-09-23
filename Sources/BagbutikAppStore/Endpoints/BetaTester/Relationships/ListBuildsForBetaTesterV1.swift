@@ -4,7 +4,12 @@ import BagbutikAppStoreModels
 public extension Request {
     /**
      # List all builds individually assigned to a beta tester
+
      Get a list of builds individually assigned to a specific beta tester.
+
+     ---
+
+     Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-betaTesters-_id_-builds>

@@ -3,12 +3,50 @@ import Foundation
 
 /**
  # AlternativeDistributionPackageVariantsResponse
+
  A response containing a list of device-specific variants within an alternative distribution package.
 
- This object is the response that contains a list of alternative distribution package variants. For more information, see [List Variants Information](https://developer.apple.com/documentation/appstoreconnectapi/get-v1-alternativedistributionpackageversions-_id_-variants). The schema of the response body is below.
  ```
+ object AlternativeDistributionPackageVariantsResponse
+ ```
+
+ ## Discussion
+
+ This object is the response that contains a list of alternative distribution package variants. For more information, see [`List Variants Information`](https://developer.apple.com/documentation/AppStoreConnectAPI/GET-v1-alternativeDistributionPackageVersions-_id_-variants). The schema of the response body is below.
+
+ ```javascript
  {
+   "data": [
+     {
+       "type": "alternativeDistributionPackageVariants",
+       "id": "string",
+       "attributes": {
+         "url": "string",
+         "urlExpirationDate": "2024-02-27T00:58:50.105Z",
+         "alternativeDistributionKeyBlob": "string"
+       },
+       "links": {
+         "self": "string"
+       }
+     }
+   ],
+   "links": {
+     "self": "string",
+     "first": "string",
+     "next": "string"
+   },
+   "meta": {
+     "paging": {
+       "total": 0,
+       "limit": 0
+     }
+   }
+ }
  ```
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/alternativedistributionpackagevariantsresponse>

@@ -4,7 +4,12 @@ import BagbutikAppStoreModels
 public extension Request {
     /**
      # Read the primary subcategory two information of an app info
+
      Get the second App Store subcategory within an app’s primary category.
+
+     ---
+
+     Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-appInfos-_id_-primarySubcategoryTwo>

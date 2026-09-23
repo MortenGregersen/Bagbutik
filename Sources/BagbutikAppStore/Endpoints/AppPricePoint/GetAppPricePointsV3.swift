@@ -4,7 +4,51 @@ import BagbutikAppStoreModels
 public extension Request {
     /**
      # Read App Price Point Information
+
      Get details about a specific app price point.
+
+     ## Discussion
+
+     ### Example Request and Response
+
+     **Request:**
+
+     ```
+     https://api.appstoreconnect.apple.com/v3/appPricePoints/eyJzIjoiNjQ0NzQwMjE5MiIsInQiOiJDQU4iLCJwIjoiMTAwMDEifQ
+     ```
+
+     **Response:**
+
+     ```json
+     {
+       "data" : {
+         "type" : "appPricePoints",
+         "id" : "eyJzIjoiNjQ0NzQwMjE5MiIsInQiOiJDQU4iLCJwIjoiMTAwMDEifQ",
+         "attributes" : {
+           "customerPrice" : "1.39",
+           "proceeds" : "0.97"
+         },
+         "relationships" : {
+           "equalizations" : {
+             "links" : {
+               "self" : "https://api.appstoreconnect.apple.com/v3/appPricePoints/eyJzIjoiNjQ0NzQwMjE5MiIsInQiOiJDQU4iLCJwIjoiMTAwMDEifQ/relationships/equalizations",
+               "related" : "https://api.appstoreconnect.apple.com/v3/appPricePoints/eyJzIjoiNjQ0NzQwMjE5MiIsInQiOiJDQU4iLCJwIjoiMTAwMDEifQ/equalizations"
+             }
+           }
+         },
+         "links" : {
+           "self" : "https://api.appstoreconnect.apple.com/v3/appPricePoints/eyJzIjoiNjQ0NzQwMjE5MiIsInQiOiJDQU4iLCJwIjoiMTAwMDEifQ"
+         }
+       },
+       "links" : {
+         "self" : "https://api.appstoreconnect.apple.com/v3/appPricePoints/eyJzIjoiNjQ0NzQwMjE5MiIsInQiOiJDQU4iLCJwIjoiMTAwMDEifQ"
+       }
+     }
+     ```
+
+     ---
+
+     Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/get-v3-appPricePoints-_id_>

@@ -1,6 +1,26 @@
 import BagbutikCore
 import Foundation
 
+/**
+ # AppStoreVersionLocalizationAppScreenshotSetsLinkagesResponse
+
+ ```
+ object AppStoreVersionLocalizationAppScreenshotSetsLinkagesResponse
+ ```
+
+ ## Topics
+
+ ### Dictionaries
+
+ [`object AppStoreVersionLocalizationAppScreenshotSetsLinkagesResponse.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/AppStoreVersionLocalizationAppScreenshotSetsLinkagesResponse/Data-data.dictionary)
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionlocalizationappscreenshotsetslinkagesresponse>
+ */
 public struct AppStoreVersionLocalizationAppScreenshotSetsLinkagesResponse: Codable, Sendable, PagedResponse {
     public let data: [Data]
     public let links: PagedDocumentLinks

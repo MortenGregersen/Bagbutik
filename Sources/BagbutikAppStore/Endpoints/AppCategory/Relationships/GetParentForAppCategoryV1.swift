@@ -4,7 +4,12 @@ import BagbutikAppStoreModels
 public extension Request {
     /**
      # Read the parent information of an app category
+
      Get the App Store category to which a specific subcategory belongs.
+
+     ---
+
+     Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-appCategories-_id_-parent>

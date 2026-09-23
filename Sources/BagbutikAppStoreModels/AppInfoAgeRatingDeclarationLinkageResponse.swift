@@ -1,6 +1,26 @@
 import BagbutikCore
 import Foundation
 
+/**
+ # AppInfoAgeRatingDeclarationLinkageResponse
+
+ ```
+ object AppInfoAgeRatingDeclarationLinkageResponse
+ ```
+
+ ## Topics
+
+ ### Dictionaries
+
+ [`object AppInfoAgeRatingDeclarationLinkageResponse.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/AppInfoAgeRatingDeclarationLinkageResponse/Data-data.dictionary)
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appinfoageratingdeclarationlinkageresponse>
+ */
 public struct AppInfoAgeRatingDeclarationLinkageResponse: Codable, Sendable {
     public let data: Data
     public let links: DocumentLinks

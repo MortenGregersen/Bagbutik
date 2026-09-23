@@ -1,6 +1,26 @@
 import BagbutikCore
 import Foundation
 
+/**
+ # GameCenterAchievementActivityLinkageRequest
+
+ ```
+ object GameCenterAchievementActivityLinkageRequest
+ ```
+
+ ## Topics
+
+ ### Dictionaries
+
+ [`object GameCenterAchievementActivityLinkageRequest.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/GameCenterAchievementActivityLinkageRequest/Data-data.dictionary)
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterachievementactivitylinkagerequest>
+ */
 public struct GameCenterAchievementActivityLinkageRequest: Codable, Sendable, RequestBody {
     @NullCodable public var data: Data?
 

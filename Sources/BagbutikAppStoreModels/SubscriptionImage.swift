@@ -4,21 +4,39 @@ import Foundation
 
 /**
  # SubscriptionImage
+
  An image used to represent a subscription product on the App Store product page.
+
+ ```
+ object SubscriptionImage
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object SubscriptionImage.Attributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/SubscriptionImage/Attributes-data.dictionary)
+
+ Attributes that describe a subscription image resource.
+
+ [`object SubscriptionImage.Relationships`](https://developer.apple.com/documentation/AppStoreConnectAPI/SubscriptionImage/Relationships-data.dictionary)
+
+ The relationships for a subscription image, linking it to its associated subscription.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/subscriptionimage>
  */
 public struct SubscriptionImage: Codable, Sendable, Identifiable {
-    /// The opaque resource ID that uniquely identifies the resource.
     public let id: String
-    /// Navigational links that include the self-link.
     public var links: ResourceLinks?
-    /// The resource type.
     public var type: String { "subscriptionImages" }
-    /// The resource’s attributes.
     public var attributes: Attributes?
-    /// Navigational links to related data and included resource types and IDs.
     public var relationships: Relationships?
 
     public init(id: String,

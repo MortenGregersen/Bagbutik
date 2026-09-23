@@ -3,7 +3,24 @@ import Foundation
 
 /**
  # BackgroundAssetUploadFile
+
  A file included in a background asset upload operation, with its upload URL and verification checksum.
+
+ ```
+ object BackgroundAssetUploadFile
+ ```
+
+ ## Topics
+
+ ### Dictionaries
+
+ [`object BackgroundAssetUploadFile.Attributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/BackgroundAssetUploadFile/Attributes-data.dictionary)
+
+ Attributes that describe a background asset upload file resource.
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/backgroundassetuploadfile>

@@ -2,15 +2,22 @@ import Foundation
 
 /**
  # Location
+
  A representation of a device location.
+
+ ```
+ object Location
+ ```
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/location>
  */
 public struct Location: Codable, Sendable {
-    /// The latitude of the location.
     public var latitude: Double?
-    /// The longitude of the location.
     public var longitude: Double?
 
     public init(latitude: Double? = nil,

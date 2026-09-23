@@ -3,7 +3,26 @@ import Foundation
 
 /**
  # AppPreviewSetAppPreviewsLinkagesRequest
+
  A request body you use to reorder the app previews in a preview set.
+
+ ```
+ object AppPreviewSetAppPreviewsLinkagesRequest
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object AppPreviewSetAppPreviewsLinkagesRequest.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/AppPreviewSetAppPreviewsLinkagesRequest/Data-data.dictionary)
+
+ The data element of the request body.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/apppreviewsetapppreviewslinkagesrequest>

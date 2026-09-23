@@ -4,7 +4,23 @@ import Foundation
 
 /**
  # GameCenterLeaderboardVersionsV2Response
+
  A response that contains a list of Game Center leaderboard version resources.
+
+ ```
+ object GameCenterLeaderboardVersionsV2Response
+ ```
+
+ ## Overview
+
+ - data:
+ - included:
+ - links:
+ - meta:
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterleaderboardversionsv2response>

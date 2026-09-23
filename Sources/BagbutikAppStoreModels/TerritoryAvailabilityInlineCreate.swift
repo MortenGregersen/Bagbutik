@@ -3,7 +3,24 @@ import Foundation
 
 /**
  # TerritoryAvailabilityInlineCreate
+
  The request body you use to create a territory availability.
+
+ ```
+ object TerritoryAvailabilityInlineCreate
+ ```
+
+ ## Topics
+
+ ### Dictionaries
+
+ [`object TerritoryAvailabilityInlineCreate.Attributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/TerritoryAvailabilityInlineCreate/Attributes-data.dictionary)
+
+ [`object TerritoryAvailabilityInlineCreate.Relationships`](https://developer.apple.com/documentation/AppStoreConnectAPI/TerritoryAvailabilityInlineCreate/Relationships-data.dictionary)
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/territoryavailabilityinlinecreate>

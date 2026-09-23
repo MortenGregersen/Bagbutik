@@ -3,7 +3,16 @@ import Foundation
 
 /**
  # ScmPullRequestsResponse
+
  The response body for endpoints that list SCM pull requests linked to Xcode Cloud.
+
+ ```
+ object ScmPullRequestsResponse
+ ```
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/scmpullrequestsresponse>
@@ -11,13 +20,9 @@ import Foundation
 public struct ScmPullRequestsResponse: Codable, Sendable, PagedResponse {
     public typealias Data = ScmPullRequest
 
-    /// The resource data.
     public let data: [ScmPullRequest]
-    /// The requested relationship data.
     public var included: [ScmRepository]?
-    /// The navigational links that include the self-link.
     public let links: PagedDocumentLinks
-    /// The paging information.
     public var meta: PagingInformation?
 
     public init(data: [ScmPullRequest],

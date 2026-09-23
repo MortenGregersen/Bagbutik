@@ -1,6 +1,26 @@
 import BagbutikCore
 import Foundation
 
+/**
+ # CiMacOsVersionXcodeVersionsLinkagesResponse
+
+ ```
+ object CiMacOsVersionXcodeVersionsLinkagesResponse
+ ```
+
+ ## Topics
+
+ ### Dictionaries
+
+ [`object CiMacOsVersionXcodeVersionsLinkagesResponse.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/CiMacOsVersionXcodeVersionsLinkagesResponse/Data-data.dictionary)
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/cimacosversionxcodeversionslinkagesresponse>
+ */
 public struct CiMacOsVersionXcodeVersionsLinkagesResponse: Codable, Sendable, PagedResponse {
     public let data: [Data]
     public let links: PagedDocumentLinks

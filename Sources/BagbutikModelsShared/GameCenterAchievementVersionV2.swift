@@ -3,7 +3,36 @@ import Foundation
 
 /**
  # GameCenterAchievementVersionV2
+
  The data structure that represents a Game Center achievement version v2 resource.
+
+ ```
+ object GameCenterAchievementVersionV2
+ ```
+
+ ## Overview
+
+ - attributes:
+ - id:
+ - links:
+ - relationships:
+ - type:
+
+ ## Topics
+
+ ### Dictionaries
+
+ [`object GameCenterAchievementVersionV2.Attributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/GameCenterAchievementVersionV2/Attributes-data.dictionary)
+
+ [`object GameCenterAchievementVersionV2.Relationships`](https://developer.apple.com/documentation/AppStoreConnectAPI/GameCenterAchievementVersionV2/Relationships-data.dictionary)
+
+ The relationships you include in the request and those you can operate on.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterachievementversionv2>

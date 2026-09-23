@@ -3,7 +3,30 @@ import Foundation
 
 /**
  # AppStoreVersionLocalization
+
  The data structure that represent an App Store Version Localizations resource.
+
+ ```
+ object AppStoreVersionLocalization
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object AppStoreVersionLocalization.Attributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/AppStoreVersionLocalization/Attributes-data.dictionary)
+
+ Attributes that describe an App Store Version Localizations resource.
+
+ [`object AppStoreVersionLocalization.Relationships`](https://developer.apple.com/documentation/AppStoreConnectAPI/AppStoreVersionLocalization/Relationships-data.dictionary)
+
+ The relationships you include in the request and those on which you can operate.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionlocalization>

@@ -3,7 +3,24 @@ import Foundation
 
 /**
  # AppCustomProductPageVersionUpdateRequest
+
  The request body you use to update an app custom product page version.
+
+ ```
+ object AppCustomProductPageVersionUpdateRequest
+ ```
+
+ ## Topics
+
+ ### Dictionaries
+
+ [`object AppCustomProductPageVersionUpdateRequest.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/AppCustomProductPageVersionUpdateRequest/Data-data.dictionary)
+
+ The request body you use to update an app custom product page version update request.
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appcustomproductpageversionupdaterequest>

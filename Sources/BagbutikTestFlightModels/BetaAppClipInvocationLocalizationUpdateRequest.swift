@@ -3,13 +3,31 @@ import Foundation
 
 /**
  # BetaAppClipInvocationLocalizationUpdateRequest
+
  The request body you use to update localized text that appears on the App Clip card for testers.
+
+ ```
+ object BetaAppClipInvocationLocalizationUpdateRequest
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object BetaAppClipInvocationLocalizationUpdateRequest.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/BetaAppClipInvocationLocalizationUpdateRequest/Data-data.dictionary)
+
+ The data element of the request body.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/betaappclipinvocationlocalizationupdaterequest>
  */
 public struct BetaAppClipInvocationLocalizationUpdateRequest: Codable, Sendable, RequestBody {
-    /// The resource data.
     public let data: Data
 
     public init(data: Data) {

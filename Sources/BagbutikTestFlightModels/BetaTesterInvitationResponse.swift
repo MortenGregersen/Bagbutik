@@ -3,15 +3,30 @@ import Foundation
 
 /**
  # BetaTesterInvitationResponse
+
  The response body for the endpoint that sends a TestFlight invitation to a beta tester.
+
+ ```
+ object BetaTesterInvitationResponse
+ ```
+
+ ## See Also
+
+ [`Send an invitation to a beta tester`](https://developer.apple.com/documentation/AppStoreConnectAPI/POST-v1-betaTesterInvitations)
+
+ Send or resend an invitation to a beta tester to test a specified app.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/betatesterinvitationresponse>
  */
 public struct BetaTesterInvitationResponse: Codable, Sendable {
-    /// The resource data.
     public let data: BetaTesterInvitation
-    /// Navigational links that include the self-link.
     public let links: DocumentLinks
 
     public init(data: BetaTesterInvitation,

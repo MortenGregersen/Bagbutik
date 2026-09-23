@@ -4,9 +4,93 @@ import BagbutikXcodeCloudModels
 public extension Request {
     /**
      # Read the xcode cloud build information for a build action
+
      Get Xcode Cloud build information for a given build action.
 
+     ## Discussion
+
      The example request below retrieves detailed information for a specific action Xcode Cloud performed. Use the data provided in the response to display detailed build information on a dashboard or to access related information.
+
+     ### Example Request and Response
+
+     **Request:**
+
+     ```
+     GET https://api.appstoreconnect.apple.com/v1/ciBuildActions/6034552c-6cc0-4ac3-ad18-c3d24970882d/buildRun
+     ```
+
+     **Response:**
+
+     ```json
+     {
+         "data": {
+             "type": "ciBuildRuns",
+             "id": "56c512e6-111e-4067-8e88-640c28ce91a7",
+             "attributes": {
+                 "number": 1,
+                 "createdDate": "2021-08-17T17:48:11.806Z",
+                 "startedDate": null,
+                 "finishedDate": null,
+                 "sourceCommit": {
+                     "commitSha": "SHA",
+                     "message": "Summary Message.\n\nSome more details about the commit.",
+                     "author": {
+                         "displayName": "Source Author",
+                         "avatarUrl": ""
+                     },
+                     "committer": {
+                         "displayName": "Source Committer",
+                         "avatarUrl": ""
+                     },
+                     "webUrl": "https://example.com/commit/abc123"
+                 },
+                 "destinationCommit": {
+                     "commitSha": "A commit hash.",
+                     "message": "BASE MESSAGE",
+                     "author": {
+                         "displayName": "Base Author",
+                         "avatarUrl": "https://example.com/user/avatar/author.png"
+                     },
+                     "committer": {
+                         "displayName": "Base Committer",
+                         "avatarUrl": "https://example.com/user/avatar/author.png"
+                     },
+                     "webUrl": "https://example.com/commit/xyz987"
+                 },
+                 "isPullRequestBuild": false,
+                 "issueCounts": null,
+                 "executionProgress": "PENDING",
+                 "completionStatus": null,
+                 "startReason": "MANUAL",
+                 "cancelReason": null
+             },
+             "relationships": {
+                 "builds": {
+                     "links": {
+                         "self": "https://api.appstoreconnect.apple.com/v1/ciBuildRuns/56c512e6-111e-4067-8e88-640c28ce91a7/relationships/builds",
+                         "related": "https://api.appstoreconnect.apple.com/v1/ciBuildRuns/56c512e6-111e-4067-8e88-640c28ce91a7/builds"
+                     }
+                 },
+                 "actions": {
+                     "links": {
+                         "self": "https://api.appstoreconnect.apple.com/v1/ciBuildRuns/56c512e6-111e-4067-8e88-640c28ce91a7/relationships/actions",
+                         "related": "https://api.appstoreconnect.apple.com/v1/ciBuildRuns/56c512e6-111e-4067-8e88-640c28ce91a7/actions"
+                     }
+                 }
+             },
+             "links": {
+                 "self": "https://api.appstoreconnect.apple.com/v1/ciBuildRuns/56c512e6-111e-4067-8e88-640c28ce91a7"
+             }
+         },
+         "links": {
+             "self": "https://api.appstoreconnect.apple.com/v1/ciBuildRuns/56c512e6-111e-4067-8e88-640c28ce91a7"
+         }
+     }
+     ```
+
+     ---
+
+     Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-ciBuildActions-_id_-buildRun>

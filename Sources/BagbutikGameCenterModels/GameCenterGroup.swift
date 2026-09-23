@@ -3,7 +3,30 @@ import Foundation
 
 /**
  # GameCenterGroup
+
  A named group that shares leaderboards and achievements across multiple apps in Game Center.
+
+ ```
+ object GameCenterGroup
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object GameCenterGroup.Attributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/GameCenterGroup/Attributes-data.dictionary)
+
+ Attributes that describe a group resource.
+
+ [`object GameCenterGroup.Relationships`](https://developer.apple.com/documentation/AppStoreConnectAPI/GameCenterGroup/Relationships-data.dictionary)
+
+ The relationships you include in the request and those on which you can operate.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecentergroup>

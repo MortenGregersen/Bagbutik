@@ -5,7 +5,12 @@ import BagbutikModelsShared
 public extension Request {
     /**
      # Read the challenges for a game center group
+
      Get challenge information for a specific Game Center group.
+
+     ---
+
+     Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-gameCenterGroups-_id_-gameCenterChallenges>

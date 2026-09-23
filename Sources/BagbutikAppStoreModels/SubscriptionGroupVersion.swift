@@ -3,7 +3,30 @@ import Foundation
 
 /**
  # SubscriptionGroupVersion
+
  A draft version of a subscription group that captures its localized metadata for App Review submission.
+
+ ```
+ object SubscriptionGroupVersion
+ ```
+
+ ## Topics
+
+ ### Objects and types
+
+ [`object SubscriptionGroupVersion.Attributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/SubscriptionGroupVersion/Attributes-data.dictionary)
+
+ Attributes that describe a subscription group version resource.
+
+ [`object SubscriptionGroupVersion.Relationships`](https://developer.apple.com/documentation/AppStoreConnectAPI/SubscriptionGroupVersion/Relationships-data.dictionary)
+
+ The relationships you include in the request and those on which you can operate.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/subscriptiongroupversion>

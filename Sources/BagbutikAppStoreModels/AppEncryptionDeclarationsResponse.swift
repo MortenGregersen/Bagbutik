@@ -4,7 +4,24 @@ import Foundation
 
 /**
  # AppEncryptionDeclarationsResponse
+
  A response containing a list of encryption declarations for an app.
+
+ ```
+ object AppEncryptionDeclarationsResponse
+ ```
+
+ ## See Also
+
+ [`List app encryption declarations`](https://developer.apple.com/documentation/AppStoreConnectAPI/GET-v1-appEncryptionDeclarations)
+
+ Find and list all available app encryption declarations.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appencryptiondeclarationsresponse>
@@ -12,12 +29,9 @@ import Foundation
 public struct AppEncryptionDeclarationsResponse: Codable, Sendable, PagedResponse {
     public typealias Data = AppEncryptionDeclaration
 
-    /// The resource data.
     public let data: [AppEncryptionDeclaration]
     public var included: [Included]?
-    /// Navigational links that include the self-link.
     public let links: PagedDocumentLinks
-    /// Paging information.
     public var meta: PagingInformation?
 
     public init(data: [AppEncryptionDeclaration],

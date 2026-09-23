@@ -4,7 +4,24 @@ import Foundation
 
 /**
  # BetaLicenseAgreementsResponse
+
  The response body for endpoints that list TestFlight license agreements.
+
+ ```
+ object BetaLicenseAgreementsResponse
+ ```
+
+ ## See Also
+
+ [`List beta license agreements`](https://developer.apple.com/documentation/AppStoreConnectAPI/GET-v1-betaLicenseAgreements)
+
+ Find and list beta license agreements for all apps.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/betalicenseagreementsresponse>
@@ -12,12 +29,9 @@ import Foundation
 public struct BetaLicenseAgreementsResponse: Codable, Sendable, PagedResponse {
     public typealias Data = BetaLicenseAgreement
 
-    /// The resource data.
     public let data: [BetaLicenseAgreement]
     public var included: [App]?
-    /// Navigational links that include the self-link.
     public let links: PagedDocumentLinks
-    /// Paging information.
     public var meta: PagingInformation?
 
     public init(data: [BetaLicenseAgreement],

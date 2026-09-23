@@ -4,7 +4,26 @@ import Foundation
 
 /**
  # SubscriptionImageV2
+
  A promotion image attached to an auto-renewable subscription configured with the v2 API.
+
+ ```
+ object SubscriptionImageV2
+ ```
+
+ ## Topics
+
+ ### Objects and types
+
+ [`object SubscriptionImageV2.Attributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/SubscriptionImageV2/Attributes-data.dictionary)
+
+ Attributes that describe a SubscriptionImageV2 resource.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/subscriptionimagev2>

@@ -3,21 +3,39 @@ import Foundation
 
 /**
  # CiMacOsVersion
+
  A macOS version available in Xcode Cloud infrastructure for running workflow builds.
+
+ ```
+ object CiMacOsVersion
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object CiMacOsVersion.Attributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/CiMacOsVersion/Attributes-data.dictionary)
+
+ The attributes that describe a macOS Versions resource.
+
+ [`object CiMacOsVersion.Relationships`](https://developer.apple.com/documentation/AppStoreConnectAPI/CiMacOsVersion/Relationships-data.dictionary)
+
+ The relationships of the macOS Versions resource you included in the request and those on which you can operate.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/cimacosversion>
  */
 public struct CiMacOsVersion: Codable, Sendable, Identifiable {
-    /// The opaque resource ID that uniquely identifies a macOS Versions resource.
     public let id: String
-    /// The navigational links that include the self-link.
     public var links: ResourceLinks?
-    /// The resource type.
     public var type: String { "ciMacOsVersions" }
-    /// The attributes that describe the macOS Versions resource.
     public var attributes: Attributes?
-    /// The navigational links to related data and included resource types and IDs.
     public var relationships: Relationships?
 
     public init(id: String,

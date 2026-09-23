@@ -3,21 +3,39 @@ import Foundation
 
 /**
  # CiBuildRun
+
  A single execution of an Xcode Cloud workflow, capturing the trigger, commit, status, and artifacts produced.
+
+ ```
+ object CiBuildRun
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object CiBuildRun.Attributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/CiBuildRun/Attributes-data.dictionary)
+
+ The attributes that describe a Build Runs resource.
+
+ [`object CiBuildRun.Relationships`](https://developer.apple.com/documentation/AppStoreConnectAPI/CiBuildRun/Relationships-data.dictionary)
+
+ The relationships of the Build Runs resource you included in the request and those on which you can operate.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/cibuildrun>
  */
 public struct CiBuildRun: Codable, Sendable, Identifiable {
-    /// The opaque resource ID that uniquely identifies a Build Runs resource.
     public let id: String
-    /// The navigational links that include the self-link.
     public var links: ResourceLinks?
-    /// The resource type.
     public var type: String { "ciBuildRuns" }
-    /// The attributes that describe the Build Runs resource.
     public var attributes: Attributes?
-    /// The navigational links to related data and included resource types and IDs.
     public var relationships: Relationships?
 
     public init(id: String,

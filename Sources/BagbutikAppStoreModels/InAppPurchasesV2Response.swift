@@ -3,7 +3,16 @@ import Foundation
 
 /**
  # InAppPurchasesV2Response
+
  A response containing a list of in-app purchases configured via the v2 API.
+
+ ```
+ object InAppPurchasesV2Response
+ ```
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/inapppurchasesv2response>

@@ -5,7 +5,12 @@ import BagbutikModelsShared
 public extension Request {
     /**
      # Replace all app previews for an app preview set
+
      Change the order of the app previews in a preview set.
+
+     ---
+
+     Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/patch-v1-appPreviewSets-_id_-relationships-appPreviews>

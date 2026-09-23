@@ -3,7 +3,16 @@ import Foundation
 
 /**
  # CiWorkflowsResponse
+
  The response body for endpoints that list Xcode Cloud workflows for a product.
+
+ ```
+ object CiWorkflowsResponse
+ ```
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/ciworkflowsresponse>
@@ -11,13 +20,9 @@ import Foundation
 public struct CiWorkflowsResponse: Codable, Sendable, PagedResponse {
     public typealias Data = CiWorkflow
 
-    /// The resource data.
     public let data: [CiWorkflow]
-    /// The requested relationship data.
     public var included: [Included]?
-    /// The navigational links that include the self-link.
     public let links: PagedDocumentLinks
-    /// The paging information.
     public var meta: PagingInformation?
 
     public init(data: [CiWorkflow],

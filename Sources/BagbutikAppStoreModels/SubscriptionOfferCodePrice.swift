@@ -3,7 +3,26 @@ import Foundation
 
 /**
  # SubscriptionOfferCodePrice
+
  The territory-specific customer price and duration for a subscription promotional offer code.
+
+ ```
+ object SubscriptionOfferCodePrice
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object SubscriptionOfferCodePrice.Relationships`](https://developer.apple.com/documentation/AppStoreConnectAPI/SubscriptionOfferCodePrice/Relationships-data.dictionary)
+
+ The relationships you include in the request and those on which you can operate.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/subscriptionoffercodeprice>

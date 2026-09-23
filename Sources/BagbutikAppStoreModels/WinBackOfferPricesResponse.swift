@@ -3,7 +3,16 @@ import Foundation
 
 /**
  # WinBackOfferPricesResponse
+
  The response body for endpoints that list prices for a win-back offer.
+
+ ```
+ object WinBackOfferPricesResponse
+ ```
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/winbackofferpricesresponse>

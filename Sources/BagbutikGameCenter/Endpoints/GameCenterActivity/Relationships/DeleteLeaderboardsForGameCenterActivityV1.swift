@@ -5,7 +5,12 @@ import BagbutikModelsShared
 public extension Request {
     /**
      # Remove a Leaderboard From an Activity
+
      Remove the relationship between a leaderboard and a Game Center activity.
+
+     ---
+
+     Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/delete-v1-gameCenterActivities-_id_-relationships-leaderboards>

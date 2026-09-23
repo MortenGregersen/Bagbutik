@@ -5,6 +5,10 @@ public extension Request {
     /**
      # Get the second secondary subcategory ID for an app info
 
+     ---
+
+     Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
+
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-appInfos-_id_-relationships-secondarySubcategoryTwo>
 

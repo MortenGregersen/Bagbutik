@@ -3,7 +3,26 @@ import Foundation
 
 /**
  # SubscriptionLocalizationV2UpdateRequest
+
  The request body you use to update a subscription localization with the v2 API.
+
+ ```
+ object SubscriptionLocalizationV2UpdateRequest
+ ```
+
+ ## Topics
+
+ ### Objects and types
+
+ [`object SubscriptionLocalizationV2UpdateRequest.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/SubscriptionLocalizationV2UpdateRequest/Data-data.dictionary)
+
+ The request body you use to update a SubscriptionLocalizationV2.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/subscriptionlocalizationv2updaterequest>

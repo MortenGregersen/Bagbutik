@@ -2,13 +2,31 @@ import Foundation
 
 /**
  # PagingInformation
+
  Paging information for data responses.
+
+ ```
+ object PagingInformation
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object PagingInformation.Paging`](https://developer.apple.com/documentation/AppStoreConnectAPI/PagingInformation/Paging-data.dictionary)
+
+ Paging details such as the total number of resources and the per-page limit.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/paginginformation>
  */
 public struct PagingInformation: Codable, Sendable {
-    /// The paging information details.
     public let paging: Paging
 
     public init(paging: Paging) {

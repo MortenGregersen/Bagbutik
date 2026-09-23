@@ -3,7 +3,26 @@ import Foundation
 
 /**
  # GameCenterLeaderboardSetGroupLeaderboardSetLinkageResponse
+
  A response that confirms a relationship between a leaderboard set and a group leaderboard set.
+
+ ```
+ object GameCenterLeaderboardSetGroupLeaderboardSetLinkageResponse
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object GameCenterLeaderboardSetGroupLeaderboardSetLinkageResponse.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/GameCenterLeaderboardSetGroupLeaderboardSetLinkageResponse/Data-data.dictionary)
+
+ The resource linkage data identifying the group leaderboard set associated with a leaderboard set.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterleaderboardsetgroupleaderboardsetlinkageresponse>

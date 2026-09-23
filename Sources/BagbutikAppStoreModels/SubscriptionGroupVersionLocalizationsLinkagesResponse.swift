@@ -3,7 +3,24 @@ import Foundation
 
 /**
  # SubscriptionGroupVersionLocalizationsLinkagesResponse
+
  A response with the related resource identifiers for a subscription group version’s localizations.
+
+ ```
+ object SubscriptionGroupVersionLocalizationsLinkagesResponse
+ ```
+
+ ## Topics
+
+ ### Dictionaries
+
+ [`object SubscriptionGroupVersionLocalizationsLinkagesResponse.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/SubscriptionGroupVersionLocalizationsLinkagesResponse/Data-data.dictionary)
+
+ The data element of the response body.
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/subscriptiongroupversionlocalizationslinkagesresponse>

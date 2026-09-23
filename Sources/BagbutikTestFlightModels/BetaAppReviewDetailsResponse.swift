@@ -4,7 +4,24 @@ import Foundation
 
 /**
  # BetaAppReviewDetailsResponse
+
  A response containing a list of beta app review detail records.
+
+ ```
+ object BetaAppReviewDetailsResponse
+ ```
+
+ ## See Also
+
+ [`List beta app review details`](https://developer.apple.com/documentation/AppStoreConnectAPI/GET-v1-betaAppReviewDetails)
+
+ Find and list beta app review details for all apps.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/betaappreviewdetailsresponse>
@@ -12,12 +29,9 @@ import Foundation
 public struct BetaAppReviewDetailsResponse: Codable, Sendable, PagedResponse {
     public typealias Data = BetaAppReviewDetail
 
-    /// The resource data.
     public let data: [BetaAppReviewDetail]
     public var included: [App]?
-    /// Navigational links that include the self-link.
     public let links: PagedDocumentLinks
-    /// Paging information.
     public var meta: PagingInformation?
 
     public init(data: [BetaAppReviewDetail],

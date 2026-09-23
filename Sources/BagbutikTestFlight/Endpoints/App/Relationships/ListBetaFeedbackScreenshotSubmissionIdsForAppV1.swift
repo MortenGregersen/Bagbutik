@@ -4,9 +4,16 @@ import BagbutikTestFlightModels
 public extension Request {
     /**
      # List all beta feedback screenshot submission ids for an app
+
      Get a list of beta feedback screenshot submissions for a specific app.
 
+     ## Overview
+
      List All Introductory Offer Resource IDs for an Auto-Renewable Subscription,Get a list of resource IDs representing introductory offers for an auto-renewable subscription.
+
+     ---
+
+     Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-apps-_id_-relationships-betaFeedbackScreenshotSubmissions>

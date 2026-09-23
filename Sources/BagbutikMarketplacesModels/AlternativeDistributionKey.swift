@@ -3,15 +3,35 @@ import Foundation
 
 /**
  # AlternativeDistributionKey
+
  A public key used to authorize an alternative marketplace or web distribution to offer your app outside the App Store.
 
- For more information about the response that includes this alternative distribution key object, see [AlternativeDistributionKeyResponse](https://developer.apple.com/documentation/appstoreconnectapi/alternativedistributionkeyresponse).
+ ```
+ object AlternativeDistributionKey
+ ```
+
+ ## Discussion
+
+ For more information about the response that includes this alternative distribution key object, see [`AlternativeDistributionKeyResponse`](https://developer.apple.com/documentation/AppStoreConnectAPI/AlternativeDistributionKeyResponse).
+
+ ## Topics
+
+ ### Objects
+
+ [`object AlternativeDistributionKey.Attributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/AlternativeDistributionKey/Attributes-data.dictionary)
+
+ Attributes that describe an alternative distribution key resource.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/alternativedistributionkey>
  */
 public struct AlternativeDistributionKey: Codable, Sendable, Identifiable {
-    /// An opaque resource ID that uniquely identifies the alternative distribution key.
     public let id: String
     public var links: ResourceLinks?
     public var type: String { "alternativeDistributionKeys" }

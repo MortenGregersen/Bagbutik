@@ -5,7 +5,12 @@ import BagbutikModelsShared
 public extension Request {
     /**
      # Replace the available territories for a subscription plan availability
+
      Replace the list of available territories for a specific subscription plan availability.
+
+     ---
+
+     Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/patch-v1-subscriptionPlanAvailabilities-_id_-relationships-availableTerritories>

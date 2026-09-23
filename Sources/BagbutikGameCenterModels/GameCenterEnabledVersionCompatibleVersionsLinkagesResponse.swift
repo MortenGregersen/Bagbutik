@@ -3,7 +3,26 @@ import Foundation
 
 /**
  # GameCenterEnabledVersionCompatibleVersionsLinkagesResponse
+
  A response body that contains a list of related resource IDs.
+
+ ```
+ object GameCenterEnabledVersionCompatibleVersionsLinkagesResponse
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object GameCenterEnabledVersionCompatibleVersionsLinkagesResponse.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/GameCenterEnabledVersionCompatibleVersionsLinkagesResponse/Data-data.dictionary)
+
+ The data element of the response body.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterenabledversioncompatibleversionslinkagesresponse>

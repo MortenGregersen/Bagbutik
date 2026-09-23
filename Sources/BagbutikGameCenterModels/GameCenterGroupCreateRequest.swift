@@ -3,7 +3,26 @@ import Foundation
 
 /**
  # GameCenterGroupCreateRequest
+
  The request body you use to create a group.
+
+ ```
+ object GameCenterGroupCreateRequest
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object GameCenterGroupCreateRequest.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/GameCenterGroupCreateRequest/Data-data.dictionary)
+
+ The request body you use to create a Game Center group.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecentergroupcreaterequest>

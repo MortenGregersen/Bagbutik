@@ -3,19 +3,34 @@ import Foundation
 
 /**
  # CiArtifact
+
  A file output produced by an Xcode Cloud build action, such as an app archive, test result bundle, or build log.
+
+ ```
+ object CiArtifact
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object CiArtifact.Attributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/CiArtifact/Attributes-data.dictionary)
+
+ The attributes that describe the output of an artifact resource.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/ciartifact>
  */
 public struct CiArtifact: Codable, Sendable, Identifiable {
-    /// The opaque resource ID that uniquely identifies an Artifacts resource.
     public let id: String
-    /// The navigational links that include the self-link.
     public var links: ResourceLinks?
-    /// The resource type.
     public var type: String { "ciArtifacts" }
-    /// The attributes that describe the Artifacts resource.
     public var attributes: Attributes?
 
     public init(id: String,

@@ -3,17 +3,23 @@ import Foundation
 
 /**
  # AppClipAdvancedExperienceResponse
+
  A response containing a single App Clip advanced experience configuration.
+
+ ```
+ object AppClipAdvancedExperienceResponse
+ ```
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appclipadvancedexperienceresponse>
  */
 public struct AppClipAdvancedExperienceResponse: Codable, Sendable {
-    /// The resource data.
     public let data: AppClipAdvancedExperience
-    /// The requested relationship data.
     public var included: [Included]?
-    /// Navigational links that include the self-link.
     public let links: DocumentLinks
 
     public init(data: AppClipAdvancedExperience,

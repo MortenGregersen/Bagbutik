@@ -3,21 +3,25 @@ import Foundation
 
 /**
  # CiTestDestination
+
  The test destination of a test action that Xcode Cloud performs.
+
+ ```
+ object CiTestDestination
+ ```
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/citestdestination>
  */
 public struct CiTestDestination: Codable, Sendable {
-    /// A string that uniquely identifies the simulated device Xcode Cloud uses for a test action, for example, `com.apple.CoreSimulator.SimDeviceType.iPhone-12`.
     public var deviceTypeIdentifier: String?
-    /// The display name of the simulated device that Xcode Cloud uses for a test action, for example, iPhone 12.
     public var deviceTypeName: String?
-    /// A string that indicates whether a test destination is a simulated device or a Mac.
     public var kind: CiTestDestinationKind?
-    /// A string that identifies the simulated environment that Xcode Cloud uses for a test action.
     public var runtimeIdentifier: String?
-    /// The name of the operating system of the simulated environment that Xcode Cloud uses for a test action.
     public var runtimeName: String?
 
     public init(deviceTypeIdentifier: String? = nil,

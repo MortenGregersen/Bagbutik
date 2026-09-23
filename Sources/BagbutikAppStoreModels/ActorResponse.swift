@@ -3,7 +3,16 @@ import Foundation
 
 /**
  # ActorResponse
+
  A response containing a single audit log actor who performed a tracked action in App Store Connect.
+
+ ```
+ object ActorResponse
+ ```
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/actorresponse>

@@ -3,7 +3,24 @@ import Foundation
 
 /**
  # AppPriceV2InlineCreate
+
  An inline object for specifying a territory-specific price when creating or updating an app price schedule.
+
+ ```
+ object AppPriceV2InlineCreate
+ ```
+
+ ## Topics
+
+ ### Dictionaries
+
+ [`object AppPriceV2InlineCreate.Attributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/AppPriceV2InlineCreate/Attributes-data.dictionary)
+
+ [`object AppPriceV2InlineCreate.Relationships`](https://developer.apple.com/documentation/AppStoreConnectAPI/AppPriceV2InlineCreate/Relationships-data.dictionary)
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/apppricev2inlinecreate>

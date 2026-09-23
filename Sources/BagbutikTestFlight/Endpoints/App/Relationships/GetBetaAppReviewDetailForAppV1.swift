@@ -4,7 +4,57 @@ import BagbutikTestFlightModels
 public extension Request {
     /**
      # Read the beta app review details resource of an app
+
      Get the beta app review details for a specific app.
+
+     ## Discussion
+
+     ### Example Request and Response
+
+     **Request:**
+
+     ```
+     https://api.appstoreconnect.apple.com/v1/apps/6446998023/betaAppReviewDetail
+     ```
+
+     **Response:**
+
+     ```json
+     {
+         "data": {
+             "type": "betaAppReviewDetails",
+             "id": "6446998023",
+             "attributes": {
+                 "contactFirstName": "Johnny",
+                 "contactLastName": "Appleseed",
+                 "contactPhone": "8001234567",
+                 "contactEmail": "example@apple.com",
+                 "demoAccountName": null,
+                 "demoAccountPassword": null,
+                 "demoAccountRequired": false,
+                 "notes": null
+             },
+             "relationships": {
+                 "app": {
+                     "links": {
+                         "self": "https://api.appstoreconnect.apple.com/v1/betaAppReviewDetails/6446998023/relationships/app",
+                         "related": "https://api.appstoreconnect.apple.com/v1/betaAppReviewDetails/6446998023/app"
+                     }
+                 }
+             },
+             "links": {
+                 "self": "https://api.appstoreconnect.apple.com/v1/betaAppReviewDetails/6446998023"
+             }
+         },
+         "links": {
+             "self": "https://api.appstoreconnect.apple.com/v1/apps/6446998023/betaAppReviewDetail"
+         }
+     }
+     ```
+
+     ---
+
+     Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-apps-_id_-betaAppReviewDetail>

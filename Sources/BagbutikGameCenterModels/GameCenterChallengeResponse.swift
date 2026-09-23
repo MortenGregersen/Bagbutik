@@ -4,7 +4,16 @@ import Foundation
 
 /**
  # GameCenterChallengeResponse
+
  A response containing a single Game Center challenge configuration.
+
+ ```
+ object GameCenterChallengeResponse
+ ```
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterchallengeresponse>

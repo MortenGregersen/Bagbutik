@@ -3,15 +3,36 @@ import Foundation
 
 /**
  # AppClipAdvancedExperienceCreateRequest
+
  The request body you use to create an advanced App Clip experience.
+
+ ```
+ object AppClipAdvancedExperienceCreateRequest
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object AppClipAdvancedExperienceLocalizationInlineCreate`](https://developer.apple.com/documentation/AppStoreConnectAPI/AppClipAdvancedExperienceLocalizationInlineCreate)
+
+ An inline object for specifying localized text and action button when creating an App Clip advanced experience.
+
+ [`object AppClipAdvancedExperienceCreateRequest.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/AppClipAdvancedExperienceCreateRequest/Data-data.dictionary)
+
+ The data element of the request body.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appclipadvancedexperiencecreaterequest>
  */
 public struct AppClipAdvancedExperienceCreateRequest: Codable, Sendable, RequestBody {
-    /// The resource data.
     public let data: Data
-    /// The relationship data to include in the response.
     public var included: [AppClipAdvancedExperienceLocalizationInlineCreate]?
 
     public init(data: Data,

@@ -3,7 +3,26 @@ import Foundation
 
 /**
  # GameCenterAchievementGroupAchievementLinkageResponse
+
  A response body that contains the ID of a single related resource.
+
+ ```
+ object GameCenterAchievementGroupAchievementLinkageResponse
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object GameCenterAchievementGroupAchievementLinkageResponse.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/GameCenterAchievementGroupAchievementLinkageResponse/Data-data.dictionary)
+
+ The resource linkage data identifying the group achievement associated with a Game Center achievement.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterachievementgroupachievementlinkageresponse>

@@ -2,7 +2,30 @@ import Foundation
 
 /**
  # Checksums
+
  A collection of integrity checksums for a background asset upload file, used to verify successful delivery.
+
+ ```
+ object Checksums
+ ```
+
+ ## Topics
+
+ ### Dictionaries
+
+ [`object Checksums.Composite`](https://developer.apple.com/documentation/AppStoreConnectAPI/Checksums/Composite-data.dictionary)
+
+ A composite checksum covering the entirety of a background asset upload file.
+
+ [`object Checksums.File`](https://developer.apple.com/documentation/AppStoreConnectAPI/Checksums/File-data.dictionary)
+
+ A per-file checksum used to verify the integrity of an individual background asset upload file.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/checksums>

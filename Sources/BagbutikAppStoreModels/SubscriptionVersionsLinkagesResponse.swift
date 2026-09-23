@@ -3,7 +3,24 @@ import Foundation
 
 /**
  # SubscriptionVersionsLinkagesResponse
+
  A response with the related resource identifiers for the versions of an auto-renewable subscription.
+
+ ```
+ object SubscriptionVersionsLinkagesResponse
+ ```
+
+ ## Topics
+
+ ### Dictionaries
+
+ [`object SubscriptionVersionsLinkagesResponse.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/SubscriptionVersionsLinkagesResponse/Data-data.dictionary)
+
+ The resource linkage data identifying the related resource.
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/subscriptionversionslinkagesresponse>

@@ -3,7 +3,26 @@ import Foundation
 
 /**
  # AppPromotedPurchasesLinkagesRequest
+
  The request body for updating the ordered list of in-app purchases and subscriptions promoted on an app’s product page.
+
+ ```
+ object AppPromotedPurchasesLinkagesRequest
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object AppPromotedPurchasesLinkagesRequest.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/AppPromotedPurchasesLinkagesRequest/Data-data.dictionary)
+
+ The resource linkage identifying a promoted purchase associated with the app promoted purchases linkages request.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/apppromotedpurchaseslinkagesrequest>

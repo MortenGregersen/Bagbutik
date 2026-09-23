@@ -3,15 +3,32 @@ import Foundation
 
 /**
  # CiScheduledStartCondition
+
  Settings for a start condition that starts a build based on a schedule.
+
+ ```
+ object CiScheduledStartCondition
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object CiScheduledStartCondition.Schedule`](https://developer.apple.com/documentation/AppStoreConnectAPI/CiScheduledStartCondition/Schedule-data.dictionary)
+
+ The schedule of an Xcode Cloud workflow that starts a new build based on a schedule.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/cischeduledstartcondition>
  */
 public struct CiScheduledStartCondition: Codable, Sendable {
-    /// The schedule information you configure for a workflow that starts a new build based on a schedule.
     public var schedule: Schedule?
-    /// The source branch name and custom patterns you configure for a workflow that starts a new build on a schedule.
     public var source: CiBranchPatterns?
 
     public init(schedule: Schedule? = nil,

@@ -5,7 +5,12 @@ import BagbutikTestFlightModels
 public extension Request {
     /**
      # Delete a beta app clip invocation localization
+
      Delete localized metadata you configured for an App Clip that testers launch using the TestFlight app.
+
+     ---
+
+     Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/delete-v1-betaAppClipInvocationLocalizations-_id_>

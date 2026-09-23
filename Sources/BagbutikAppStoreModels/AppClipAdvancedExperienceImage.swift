@@ -4,19 +4,34 @@ import Foundation
 
 /**
  # AppClipAdvancedExperienceImage
+
  The image displayed on the App Clip card for an advanced App Clip experience, shown when a user scans an NFC tag, QR code, or location-based trigger.
+
+ ```
+ object AppClipAdvancedExperienceImage
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object AppClipAdvancedExperienceImage.Attributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/AppClipAdvancedExperienceImage/Attributes-data.dictionary)
+
+ The attributes that describe an Advanced App Clip Experience Images resource.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appclipadvancedexperienceimage>
  */
 public struct AppClipAdvancedExperienceImage: Codable, Sendable, Identifiable {
-    /// The opaque resource ID that uniquely identifies an Advanced App Clip Experience Images resource.
     public let id: String
-    /// Navigational links that include the self-link.
     public var links: ResourceLinks?
-    /// The resource type.
     public var type: String { "appClipAdvancedExperienceImages" }
-    /// The attributes that describe the Advanced App Clip Experience Images resource.
     public var attributes: Attributes?
 
     public init(id: String,

@@ -1,6 +1,26 @@
 import BagbutikCore
 import Foundation
 
+/**
+ # AppStoreVersionAppStoreVersionExperimentsLinkagesResponse
+
+ ```
+ object AppStoreVersionAppStoreVersionExperimentsLinkagesResponse
+ ```
+
+ ## Topics
+
+ ### Dictionaries
+
+ [`object AppStoreVersionAppStoreVersionExperimentsLinkagesResponse.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/AppStoreVersionAppStoreVersionExperimentsLinkagesResponse/Data-data.dictionary)
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionappstoreversionexperimentslinkagesresponse>
+ */
 public struct AppStoreVersionAppStoreVersionExperimentsLinkagesResponse: Codable, Sendable, PagedResponse {
     public let data: [Data]
     public let links: PagedDocumentLinks

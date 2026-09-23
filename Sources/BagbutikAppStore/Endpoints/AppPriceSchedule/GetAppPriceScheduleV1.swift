@@ -4,7 +4,59 @@ import BagbutikAppStoreModels
 public extension Request {
     /**
      # Read an App's Price Schedule Information
+
      List the price schedule details for a specific app.
+
+     ## Discussion
+
+     ### Example Request and Response
+
+     **Request:**
+
+     ```
+     https://api.appstoreconnect.apple.com/v1/appPriceSchedules/6447402192
+     ```
+
+     **Response:**
+
+     ```json
+     {
+       "data" : {
+         "type" : "appPriceSchedules",
+         "id" : "6447402192",
+         "relationships" : {
+           "baseTerritory" : {
+             "links" : {
+               "self" : "https://api.appstoreconnect.apple.com/v1/appPriceSchedules/6447402192/relationships/baseTerritory",
+               "related" : "https://api.appstoreconnect.apple.com/v1/appPriceSchedules/6447402192/baseTerritory"
+             }
+           },
+           "manualPrices" : {
+             "links" : {
+               "self" : "https://api.appstoreconnect.apple.com/v1/appPriceSchedules/6447402192/relationships/manualPrices",
+               "related" : "https://api.appstoreconnect.apple.com/v1/appPriceSchedules/6447402192/manualPrices"
+             }
+           },
+           "automaticPrices" : {
+             "links" : {
+               "self" : "https://api.appstoreconnect.apple.com/v1/appPriceSchedules/6447402192/relationships/automaticPrices",
+               "related" : "https://api.appstoreconnect.apple.com/v1/appPriceSchedules/6447402192/automaticPrices"
+             }
+           }
+         },
+         "links" : {
+           "self" : "https://api.appstoreconnect.apple.com/v1/appPriceSchedules/6447402192"
+         }
+       },
+       "links" : {
+         "self" : "https://api.appstoreconnect.apple.com/v1/appPriceSchedules/6447402192"
+       }
+     }
+     ```
+
+     ---
+
+     Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-appPriceSchedules-_id_>

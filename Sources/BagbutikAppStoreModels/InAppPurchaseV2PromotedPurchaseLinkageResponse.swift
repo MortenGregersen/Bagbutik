@@ -1,6 +1,26 @@
 import BagbutikCore
 import Foundation
 
+/**
+ # InAppPurchaseV2PromotedPurchaseLinkageResponse
+
+ ```
+ object InAppPurchaseV2PromotedPurchaseLinkageResponse
+ ```
+
+ ## Topics
+
+ ### Dictionaries
+
+ [`object InAppPurchaseV2PromotedPurchaseLinkageResponse.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/InAppPurchaseV2PromotedPurchaseLinkageResponse/Data-data.dictionary)
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/inapppurchasev2promotedpurchaselinkageresponse>
+ */
 public struct InAppPurchaseV2PromotedPurchaseLinkageResponse: Codable, Sendable {
     public let data: Data
     public let links: DocumentLinks

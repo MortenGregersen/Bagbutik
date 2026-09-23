@@ -3,7 +3,26 @@ import Foundation
 
 /**
  # AppEncryptionDeclarationDocument
+
  An uploaded export compliance document supporting an app encryption declaration.
+
+ ```
+ object AppEncryptionDeclarationDocument
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object AppEncryptionDeclarationDocument.Attributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/AppEncryptionDeclarationDocument/Attributes-data.dictionary)
+
+ Attributes that describe an app encryption declaration document resource.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appencryptiondeclarationdocument>

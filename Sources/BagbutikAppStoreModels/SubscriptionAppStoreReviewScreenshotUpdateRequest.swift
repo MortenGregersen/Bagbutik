@@ -3,7 +3,26 @@ import Foundation
 
 /**
  # SubscriptionAppStoreReviewScreenshotUpdateRequest
+
  The request body you use to update a subscription app store review screenshot update request.
+
+ ```
+ object SubscriptionAppStoreReviewScreenshotUpdateRequest
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object SubscriptionAppStoreReviewScreenshotUpdateRequest.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/SubscriptionAppStoreReviewScreenshotUpdateRequest/Data-data.dictionary)
+
+ The request body you use to update a subscription app store review screenshot update request.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/subscriptionappstorereviewscreenshotupdaterequest>

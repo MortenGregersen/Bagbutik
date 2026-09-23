@@ -3,7 +3,30 @@ import Foundation
 
 /**
  # SubscriptionPromotionalOffer
+
  A discounted or free trial offer for an auto-renewable subscription, available to eligible existing or former subscribers.
+
+ ```
+ object SubscriptionPromotionalOffer
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object SubscriptionPromotionalOffer.Attributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/SubscriptionPromotionalOffer/Attributes-data.dictionary)
+
+ Attributes that describe a subscription promotional offer resource.
+
+ [`object SubscriptionPromotionalOffer.Relationships`](https://developer.apple.com/documentation/AppStoreConnectAPI/SubscriptionPromotionalOffer/Relationships-data.dictionary)
+
+ The relationships you include in the request and those on which you can operate.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/subscriptionpromotionaloffer>

@@ -6,7 +6,24 @@ import Foundation
 
 /**
  # AppsResponse
+
  A response containing a list of apps registered in your App Store Connect team.
+
+ ```
+ object AppsResponse
+ ```
+
+ ## See Also
+
+ [`List apps`](https://developer.apple.com/documentation/AppStoreConnectAPI/GET-v1-apps)
+
+ Find and list apps in App Store Connect.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appsresponse>
@@ -14,12 +31,9 @@ import Foundation
 public struct AppsResponse: Codable, Sendable, PagedResponse {
     public typealias Data = App
 
-    /// The resource data.
     public let data: [App]
     public var included: [Included]?
-    /// Navigational links that include the self-link.
     public let links: PagedDocumentLinks
-    /// Paging information.
     public var meta: PagingInformation?
 
     public init(data: [App],

@@ -3,13 +3,31 @@ import Foundation
 
 /**
  # BuildAppEncryptionDeclarationLinkageRequest
+
  The request body you use to attach an app encryption declaration to a build.
+
+ ```
+ object BuildAppEncryptionDeclarationLinkageRequest
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object BuildAppEncryptionDeclarationLinkageRequest.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/BuildAppEncryptionDeclarationLinkageRequest/Data-data.dictionary)
+
+ The data element of the request body.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/buildappencryptiondeclarationlinkagerequest>
  */
 public struct BuildAppEncryptionDeclarationLinkageRequest: Codable, Sendable, RequestBody {
-    /// The types and IDs of related resources.
     @NullCodable public var data: Data?
 
     public init(data: Data? = nil) {

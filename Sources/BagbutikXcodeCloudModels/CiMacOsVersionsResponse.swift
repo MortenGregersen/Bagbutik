@@ -3,7 +3,16 @@ import Foundation
 
 /**
  # CiMacOsVersionsResponse
+
  A response containing a list of macOS versions supported by Xcode Cloud.
+
+ ```
+ object CiMacOsVersionsResponse
+ ```
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/cimacosversionsresponse>
@@ -11,13 +20,9 @@ import Foundation
 public struct CiMacOsVersionsResponse: Codable, Sendable, PagedResponse {
     public typealias Data = CiMacOsVersion
 
-    /// The resource data.
     public let data: [CiMacOsVersion]
-    /// The requested relationship data.
     public var included: [CiXcodeVersion]?
-    /// The navigational links that include the self-link.
     public let links: PagedDocumentLinks
-    /// The paging information.
     public var meta: PagingInformation?
 
     public init(data: [CiMacOsVersion],

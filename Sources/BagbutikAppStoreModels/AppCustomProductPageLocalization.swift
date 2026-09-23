@@ -3,7 +3,28 @@ import Foundation
 
 /**
  # AppCustomProductPageLocalization
+
  The localized promotional text, keywords, and screenshots for a custom App Store product page in a specific language.
+
+ ```
+ object AppCustomProductPageLocalization
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object AppCustomProductPageLocalization.Attributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/AppCustomProductPageLocalization/Attributes-data.dictionary)
+
+ [`object AppCustomProductPageLocalization.Relationships`](https://developer.apple.com/documentation/AppStoreConnectAPI/AppCustomProductPageLocalization/Relationships-data.dictionary)
+
+ The relationships you include in the request and those on which you can operate.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appcustomproductpagelocalization>

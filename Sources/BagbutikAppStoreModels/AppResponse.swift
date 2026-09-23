@@ -6,16 +6,31 @@ import Foundation
 
 /**
  # AppResponse
+
  The response body for endpoints that read or modify a single app in your team.
+
+ ```
+ object AppResponse
+ ```
+
+ ## See Also
+
+ [`Read the app information of an app encryption declaration`](https://developer.apple.com/documentation/AppStoreConnectAPI/GET-v1-appEncryptionDeclarations-_id_-app)
+
+ Get the app information from a specific app encryption declaration.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appresponse>
  */
 public struct AppResponse: Codable, Sendable {
-    /// The resource data.
     public let data: App
     public var included: [Included]?
-    /// Navigational links that include the self-link.
     public let links: DocumentLinks
 
     public init(data: App,

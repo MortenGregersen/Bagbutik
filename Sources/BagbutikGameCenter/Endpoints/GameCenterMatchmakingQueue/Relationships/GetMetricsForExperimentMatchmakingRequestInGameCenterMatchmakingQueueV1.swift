@@ -5,7 +5,12 @@ import BagbutikModelsShared
 public extension Request {
     /**
      # Get Experimental Match Request Time in Queue
+
      Get the match requests that a specific queue processes using its experimental rule set.
+
+     ---
+
+     Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-gameCenterMatchmakingQueues-_id_-metrics-experimentMatchmakingRequests>

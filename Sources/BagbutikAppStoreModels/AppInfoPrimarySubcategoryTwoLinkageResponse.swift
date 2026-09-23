@@ -1,6 +1,26 @@
 import BagbutikCore
 import Foundation
 
+/**
+ # AppInfoPrimarySubcategoryTwoLinkageResponse
+
+ ```
+ object AppInfoPrimarySubcategoryTwoLinkageResponse
+ ```
+
+ ## Topics
+
+ ### Dictionaries
+
+ [`object AppInfoPrimarySubcategoryTwoLinkageResponse.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/AppInfoPrimarySubcategoryTwoLinkageResponse/Data-data.dictionary)
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appinfoprimarysubcategorytwolinkageresponse>
+ */
 public struct AppInfoPrimarySubcategoryTwoLinkageResponse: Codable, Sendable {
     public let data: Data
     public let links: DocumentLinks

@@ -3,7 +3,16 @@ import Foundation
 
 /**
  # BetaBuildLocalizationsWithoutIncludesResponse
+
  A response containing a list of TestFlight build localizations, without related resources.
+
+ ```
+ object BetaBuildLocalizationsWithoutIncludesResponse
+ ```
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/betabuildlocalizationswithoutincludesresponse>

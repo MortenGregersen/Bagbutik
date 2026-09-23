@@ -3,7 +3,28 @@ import Foundation
 
 /**
  # BackgroundAsset
+
  A downloadable content package that your app fetches in the background before or after installation, managed through Apple-hosted background assets.
+
+ ```
+ object BackgroundAsset
+ ```
+
+ ## Topics
+
+ ### Dictionaries
+
+ [`object BackgroundAsset.Attributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/BackgroundAsset/Attributes-data.dictionary)
+
+ Attributes that describe a background asset resource.
+
+ [`object BackgroundAsset.Relationships`](https://developer.apple.com/documentation/AppStoreConnectAPI/BackgroundAsset/Relationships-data.dictionary)
+
+ The relationships you include in the request and those on which you can operate.
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/backgroundasset>

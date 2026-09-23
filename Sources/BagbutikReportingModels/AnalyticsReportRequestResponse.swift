@@ -3,9 +3,20 @@ import Foundation
 
 /**
  # AnalyticsReportRequestResponse
+
  The response body for endpoints that create or read an analytics report request.
 
- Use this object with [Read Report Request Information](https://developer.apple.com/documentation/appstoreconnectapi/get-v1-analyticsreportrequests-_id_).
+ ```
+ object AnalyticsReportRequestResponse
+ ```
+
+ ## Discussion
+
+ Use this object with [`Read Report Request Information`](https://developer.apple.com/documentation/AppStoreConnectAPI/GET-v1-analyticsReportRequests-_id_).
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/analyticsreportrequestresponse>

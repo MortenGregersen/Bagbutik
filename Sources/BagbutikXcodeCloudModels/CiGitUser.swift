@@ -3,15 +3,22 @@ import Foundation
 
 /**
  # CiGitUser
+
  The Git identity (name and email) of the person who authored or committed the code change that triggered an Xcode Cloud build.
+
+ ```
+ object CiGitUser
+ ```
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/cigituser>
  */
 public struct CiGitUser: Codable, Sendable {
-    /// The URL to the Git user’s avatar image.
     public var avatarUrl: String?
-    /// The name of the Git user.
     public var displayName: String?
 
     public init(avatarUrl: String? = nil,

@@ -4,7 +4,26 @@ import Foundation
 
 /**
  # SandboxTesterV2UpdateRequest
+
  The request body you use to update a sandbox tester v2update request.
+
+ ```
+ object SandboxTesterV2UpdateRequest
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object SandboxTesterV2UpdateRequest.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/SandboxTesterV2UpdateRequest/Data-data.dictionary)
+
+ The request body you use to update a sandbox tester v2update request.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/sandboxtesterv2updaterequest>

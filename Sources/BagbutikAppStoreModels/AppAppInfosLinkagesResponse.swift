@@ -1,6 +1,26 @@
 import BagbutikCore
 import Foundation
 
+/**
+ # AppAppInfosLinkagesResponse
+
+ ```
+ object AppAppInfosLinkagesResponse
+ ```
+
+ ## Topics
+
+ ### Dictionaries
+
+ [`object AppAppInfosLinkagesResponse.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/AppAppInfosLinkagesResponse/Data-data.dictionary)
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appappinfoslinkagesresponse>
+ */
 public struct AppAppInfosLinkagesResponse: Codable, Sendable, PagedResponse {
     public let data: [Data]
     public let links: PagedDocumentLinks

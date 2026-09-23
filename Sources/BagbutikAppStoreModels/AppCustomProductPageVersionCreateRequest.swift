@@ -3,7 +3,26 @@ import Foundation
 
 /**
  # AppCustomProductPageVersionCreateRequest
+
  The request body you use to create an app custom product page version.
+
+ ```
+ object AppCustomProductPageVersionCreateRequest
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object AppCustomProductPageVersionCreateRequest.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/AppCustomProductPageVersionCreateRequest/Data-data.dictionary)
+
+ The request body you use to create an app custom product page version.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appcustomproductpageversioncreaterequest>

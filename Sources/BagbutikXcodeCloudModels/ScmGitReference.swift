@@ -3,21 +3,43 @@ import Foundation
 
 /**
  # ScmGitReference
+
  A Git branch, tag, or commit reference in a source code repository connected to Xcode Cloud.
+
+ ```
+ object ScmGitReference
+ ```
+
+ ## Topics
+
+ ### Objects and types
+
+ [`object ScmGitReference.Attributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/ScmGitReference/Attributes-data.dictionary)
+
+ The attributes that describe a Git Reference resource.
+
+ [`object ScmGitReference.Relationships`](https://developer.apple.com/documentation/AppStoreConnectAPI/ScmGitReference/Relationships-data.dictionary)
+
+ The relationships of the Git References resource you included in the request and those on which you can operate.
+
+ [`string CiGitRefKind`](https://developer.apple.com/documentation/AppStoreConnectAPI/CiGitRefKind)
+
+ A string that represents the kind of a Git References resource.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/scmgitreference>
  */
 public struct ScmGitReference: Codable, Sendable, Identifiable {
-    /// The opaque resource ID that uniquely identifies a Git References resource.
     public let id: String
-    /// The navigational links that include the self-link.
     public var links: ResourceLinks?
-    /// The resource type.
     public var type: String { "scmGitReferences" }
-    /// The attributes that describe the Git References resource.
     public var attributes: Attributes?
-    /// The navigational links to related data and included resource types and IDs.
     public var relationships: Relationships?
 
     public init(id: String,

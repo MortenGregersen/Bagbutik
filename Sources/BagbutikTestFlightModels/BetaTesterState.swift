@@ -1,6 +1,22 @@
 import BagbutikCore
 import Foundation
 
+/**
+ # BetaTesterState
+
+ String that describes the state of a beta tester.
+
+ ```
+ string BetaTesterState
+ ```
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/betatesterstate>
+ */
 public enum BetaTesterState: String, Sendable, Codable, CaseIterable {
     case accepted = "ACCEPTED"
     case installed = "INSTALLED"

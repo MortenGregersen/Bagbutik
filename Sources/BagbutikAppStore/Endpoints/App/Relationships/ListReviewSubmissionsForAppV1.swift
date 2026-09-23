@@ -4,7 +4,60 @@ import BagbutikAppStoreModels
 public extension Request {
     /**
      # Get Review Submissions for an App
+
      Get a list of review submissions associated with a specific app.
+
+     ## Discussion
+
+     ### Example Request and Response
+
+     **Request:**
+
+     ```
+     https://api.appstoreconnect.apple.com/v1/apps/6446998023/reviewSubmissions
+     ```
+
+     **Response:**
+
+     ```json
+     {
+         "data": [
+             {
+                 "type": "reviewSubmissions",
+                 "id": "fda9bd85-170b-4a1c-8d78-c2b445527542",
+                 "attributes": {
+                     "platform": "IOS",
+                     "submittedDate": null,
+                     "state": "READY_FOR_REVIEW"
+                 },
+                 "relationships": {
+                     "items": {
+                         "links": {
+                             "self": "https://api.appstoreconnect.apple.com/v1/reviewSubmissions/fda9bd85-170b-4a1c-8d78-c2b445527542/relationships/items",
+                             "related": "https://api.appstoreconnect.apple.com/v1/reviewSubmissions/fda9bd85-170b-4a1c-8d78-c2b445527542/items"
+                         }
+                     }
+                 },
+                 "links": {
+                     "self": "https://api.appstoreconnect.apple.com/v1/reviewSubmissions/fda9bd85-170b-4a1c-8d78-c2b445527542"
+                 }
+             }
+         ],
+         "links": {
+             "self": "https://api.appstoreconnect.apple.com/v1/apps/6446998023/reviewSubmissions"
+         },
+         "meta": {
+             "paging": {
+                 "total": 1,
+                 "limit": 50
+             }
+         }
+     }
+     ```
+
+     ---
+
+     Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-apps-_id_-reviewSubmissions>

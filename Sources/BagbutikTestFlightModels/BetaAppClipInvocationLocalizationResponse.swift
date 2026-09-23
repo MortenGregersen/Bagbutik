@@ -3,15 +3,22 @@ import Foundation
 
 /**
  # BetaAppClipInvocationLocalizationResponse
+
  A response containing a single localized title for a beta App Clip invocation.
+
+ ```
+ object BetaAppClipInvocationLocalizationResponse
+ ```
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/betaappclipinvocationlocalizationresponse>
  */
 public struct BetaAppClipInvocationLocalizationResponse: Codable, Sendable {
-    /// The resource data.
     public let data: BetaAppClipInvocationLocalization
-    /// Navigational links that include the self-link.
     public let links: DocumentLinks
 
     public init(data: BetaAppClipInvocationLocalization,

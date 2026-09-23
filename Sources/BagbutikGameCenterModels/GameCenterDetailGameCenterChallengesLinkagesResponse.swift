@@ -1,6 +1,26 @@
 import BagbutikCore
 import Foundation
 
+/**
+ # GameCenterDetailGameCenterChallengesLinkagesResponse
+
+ ```
+ object GameCenterDetailGameCenterChallengesLinkagesResponse
+ ```
+
+ ## Topics
+
+ ### Dictionaries
+
+ [`object GameCenterDetailGameCenterChallengesLinkagesResponse.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/GameCenterDetailGameCenterChallengesLinkagesResponse/Data-data.dictionary)
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterdetailgamecenterchallengeslinkagesresponse>
+ */
 public struct GameCenterDetailGameCenterChallengesLinkagesResponse: Codable, Sendable, PagedResponse {
     public let data: [Data]
     public let links: PagedDocumentLinks

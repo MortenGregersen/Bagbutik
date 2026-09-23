@@ -3,7 +3,30 @@ import Foundation
 
 /**
  # GameCenterLeaderboardSetV2GameCenterLeaderboardsLinkagesResponse
+
  A response that contains a list of Game Center leaderboard set v2 Game Center leaderboard linkage resources.
+
+ ```
+ object GameCenterLeaderboardSetV2GameCenterLeaderboardsLinkagesResponse
+ ```
+
+ ## Overview
+
+ - data:
+ - links:
+ - meta:
+
+ ## Topics
+
+ ### Dictionaries
+
+ [`object GameCenterLeaderboardSetV2GameCenterLeaderboardsLinkagesResponse.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/GameCenterLeaderboardSetV2GameCenterLeaderboardsLinkagesResponse/Data-data.dictionary)
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterleaderboardsetv2gamecenterleaderboardslinkagesresponse>

@@ -5,7 +5,12 @@ import BagbutikXcodeCloudModels
 public extension Request {
     /**
      # List all repositories for a source code management provider
+
      List all Git repositories for a specific source code management provider you connected to Xcode Cloud.
+
+     ---
+
+     Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-scmProviders-_id_-repositories>

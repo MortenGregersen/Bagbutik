@@ -3,7 +3,26 @@ import Foundation
 
 /**
  # MarketplaceSearchDetailCreateRequest
+
  The request body you use to create an alternative marketplace search detail.
+
+ ```
+ object MarketplaceSearchDetailCreateRequest
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object MarketplaceSearchDetailCreateRequest.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/MarketplaceSearchDetailCreateRequest/Data-data.dictionary)
+
+ The request body you use to create a marketplace search detail.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/marketplacesearchdetailcreaterequest>

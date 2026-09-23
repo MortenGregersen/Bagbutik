@@ -3,7 +3,26 @@ import Foundation
 
 /**
  # GameCenterLeaderboardEntrySubmissionCreateRequest
+
  The request body you use to create a Game Center leaderboard entry submission.
+
+ ```
+ object GameCenterLeaderboardEntrySubmissionCreateRequest
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object GameCenterLeaderboardEntrySubmissionCreateRequest.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/GameCenterLeaderboardEntrySubmissionCreateRequest/Data-data.dictionary)
+
+ The data element of the request body.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterleaderboardentrysubmissioncreaterequest>

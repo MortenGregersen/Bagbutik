@@ -3,13 +3,31 @@ import Foundation
 
 /**
  # AppStoreVersionAppClipDefaultExperienceLinkageRequest
+
  The request body you use to attach a default App Clip experience to an App Store version.
+
+ ```
+ object AppStoreVersionAppClipDefaultExperienceLinkageRequest
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object AppStoreVersionAppClipDefaultExperienceLinkageRequest.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/AppStoreVersionAppClipDefaultExperienceLinkageRequest/Data-data.dictionary)
+
+ The data element of the request body.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionappclipdefaultexperiencelinkagerequest>
  */
 public struct AppStoreVersionAppClipDefaultExperienceLinkageRequest: Codable, Sendable, RequestBody {
-    /// The types and IDs of related resources.
     @NullCodable public var data: Data?
 
     public init(data: Data? = nil) {

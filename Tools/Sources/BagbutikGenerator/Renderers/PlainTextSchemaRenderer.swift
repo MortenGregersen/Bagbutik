@@ -30,9 +30,13 @@ public class PlainTextSchemaRenderer: Renderer {
         }
         """
         if let url = plainTextSchema.url,
-           case .object(let objectDocumentation) = try await docsLoader.resolveDocumentationForSchema(withDocsUrl: url),
-           let abstract = objectDocumentation.abstract {
-            rendered = "/// \(abstract)\n" + rendered
+           case .object(let objectDocumentation) = try await docsLoader.resolveDocumentationForSchema(withDocsUrl: url, as: .object) {
+            rendered = await renderDocumentationBlock {
+                [objectDocumentation.content, """
+                Full documentation:
+                <\(url)>
+                """].joined(separator: "\n\n")
+            } + "\n" + rendered
         }
         return rendered
     }

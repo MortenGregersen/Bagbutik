@@ -3,15 +3,38 @@ import Foundation
 
 /**
  # BuildAppEncryptionDeclarationLinkageResponse
+
  A response body that contains the ID of a single related resource.
+
+ ```
+ object BuildAppEncryptionDeclarationLinkageResponse
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object BuildAppEncryptionDeclarationLinkageResponse.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/BuildAppEncryptionDeclarationLinkageResponse/Data-data.dictionary)
+
+ The data element of the response body.
+
+ ## See Also
+
+ [`Get the app encryption declaration id for a build`](https://developer.apple.com/documentation/AppStoreConnectAPI/GET-v1-builds-_id_-relationships-appEncryptionDeclaration)
+
+ Get the beta app encryption declaration resource ID associated with a build.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/buildappencryptiondeclarationlinkageresponse>
  */
 public struct BuildAppEncryptionDeclarationLinkageResponse: Codable, Sendable {
-    /// The object types and IDs of the related resources.
     public let data: Data
-    /// Navigational links including the self-link and links to the related data.
     public let links: DocumentLinks
 
     public init(data: Data,

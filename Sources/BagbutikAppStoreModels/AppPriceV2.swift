@@ -3,7 +3,30 @@ import Foundation
 
 /**
  # AppPriceV2
+
  A price configured for an app in a specific App Store territory under the v2 pricing model.
+
+ ```
+ object AppPriceV2
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object AppPriceV2.Attributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/AppPriceV2/Attributes-data.dictionary)
+
+ Attributes that describe an app price v2 resource.
+
+ [`object AppPriceV2.Relationships`](https://developer.apple.com/documentation/AppStoreConnectAPI/AppPriceV2/Relationships-data.dictionary)
+
+ The relationships you include in the request and those on which you can operate.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/apppricev2>

@@ -1,6 +1,22 @@
 import BagbutikCore
 import Foundation
 
+/**
+ # CertificateType
+
+ Literal values that represent types of signing certificates.
+
+ ```
+ string CertificateType
+ ```
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/certificatetype>
+ */
 public enum CertificateType: String, Sendable, ParameterValue, Codable, CaseIterable {
     case applePay = "APPLE_PAY"
     case applePayMerchantIdentity = "APPLE_PAY_MERCHANT_IDENTITY"

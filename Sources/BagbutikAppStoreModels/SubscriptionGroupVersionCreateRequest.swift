@@ -3,7 +3,26 @@ import Foundation
 
 /**
  # SubscriptionGroupVersionCreateRequest
+
  The request body you use to create a draft version of a subscription group.
+
+ ```
+ object SubscriptionGroupVersionCreateRequest
+ ```
+
+ ## Topics
+
+ ### Objects and types
+
+ [`object SubscriptionGroupVersionCreateRequest.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/SubscriptionGroupVersionCreateRequest/Data-data.dictionary)
+
+ The request body you use to create a subscription group version.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/subscriptiongroupversioncreaterequest>

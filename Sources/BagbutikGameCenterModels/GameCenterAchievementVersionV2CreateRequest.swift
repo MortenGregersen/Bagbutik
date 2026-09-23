@@ -3,7 +3,30 @@ import Foundation
 
 /**
  # GameCenterAchievementVersionV2CreateRequest
+
  The request body you use to create a Game Center achievement version v2.
+
+ ```
+ object GameCenterAchievementVersionV2CreateRequest
+ ```
+
+ ## Overview
+
+ - data:
+
+ ## Topics
+
+ ### Dictionaries
+
+ [`object GameCenterAchievementVersionV2CreateRequest.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/GameCenterAchievementVersionV2CreateRequest/Data-data.dictionary)
+
+ The data structure that represents a Game Center achievement version create request resource.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterachievementversionv2createrequest>

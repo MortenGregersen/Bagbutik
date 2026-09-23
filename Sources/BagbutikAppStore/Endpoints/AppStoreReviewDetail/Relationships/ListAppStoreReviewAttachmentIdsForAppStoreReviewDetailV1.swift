@@ -5,6 +5,10 @@ public extension Request {
     /**
      # List App Store review attachment IDs for an App Store review detail
 
+     ---
+
+     Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
+
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-appStoreReviewDetails-_id_-relationships-appStoreReviewAttachments>
 

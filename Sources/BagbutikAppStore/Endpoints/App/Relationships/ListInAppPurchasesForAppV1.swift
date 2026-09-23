@@ -5,7 +5,53 @@ import BagbutikModelsShared
 public extension Request {
     /**
      # List all in-app purchases for an app v1
+
      List the in-app purchases that are available for your app.
+
+     ## Discussion
+
+     ### Example Request and Response
+
+     **Request:**
+
+     ```
+     https://api.appstoreconnect.apple.com/v1/apps/6446998023/inAppPurchases
+     ```
+
+     **Response:**
+
+     ```json
+     {
+         "data": [
+             {
+                 "type": "inAppPurchases",
+                 "id": "ca38ea26-b7d5-4989-9615-c678cb05aabd",
+                 "attributes": {
+                     "referenceName": "YNC1",
+                     "productId": "YNCNC1",
+                     "inAppPurchaseType": "NON_CONSUMABLE",
+                     "state": "WAITING_FOR_SCREENSHOT"
+                 },
+                 "links": {
+                     "self": "https://api.appstoreconnect.apple.com/v1/inAppPurchases/ca38ea26-b7d5-4989-9615-c678cb05aabd"
+                 }
+             }
+         ],
+         "links": {
+             "self": "https://api.appstoreconnect.apple.com/v1/apps/6446998023/inAppPurchases"
+         },
+         "meta": {
+             "paging": {
+                 "total": 1,
+                 "limit": 50
+             }
+         }
+     }
+     ```
+
+     ---
+
+     Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-apps-_id_-inAppPurchases>

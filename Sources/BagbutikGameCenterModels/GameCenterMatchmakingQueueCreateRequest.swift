@@ -3,13 +3,31 @@ import Foundation
 
 /**
  # GameCenterMatchmakingQueueCreateRequest
+
  The request body you use to create a queue.
+
+ ```
+ object GameCenterMatchmakingQueueCreateRequest
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object GameCenterMatchmakingQueueCreateRequest.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/GameCenterMatchmakingQueueCreateRequest/Data-data.dictionary)
+
+ The data structure of the request body you use to create a queue.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingqueuecreaterequest>
  */
 public struct GameCenterMatchmakingQueueCreateRequest: Codable, Sendable, RequestBody {
-    /// The data structure of the request body.
     public let data: Data
 
     public init(data: Data) {

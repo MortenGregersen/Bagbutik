@@ -3,7 +3,26 @@ import Foundation
 
 /**
  # AppAppTagsLinkagesResponse
+
  A response containing the resource identifiers of tags associated with an app.
+
+ ```
+ object AppAppTagsLinkagesResponse
+ ```
+
+ ## Topics
+
+ ### Dictionaries
+
+ [`object AppAppTagsLinkagesResponse.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/AppAppTagsLinkagesResponse/Data-data.dictionary)
+
+ The resource linkage data identifying a tag associated with an app.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appapptagslinkagesresponse>

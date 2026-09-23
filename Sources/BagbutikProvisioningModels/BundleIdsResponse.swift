@@ -4,7 +4,24 @@ import Foundation
 
 /**
  # BundleIdsResponse
+
  The response body for endpoints that list bundle IDs.
+
+ ```
+ object BundleIdsResponse
+ ```
+
+ ## See Also
+
+ [`List bundle ids`](https://developer.apple.com/documentation/AppStoreConnectAPI/GET-v1-bundleIds)
+
+ Find and list bundle IDs that are registered to your team.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/bundleidsresponse>
@@ -12,13 +29,9 @@ import Foundation
 public struct BundleIdsResponse: Codable, Sendable, PagedResponse {
     public typealias Data = BundleId
 
-    /// The resource data.
     public let data: [BundleId]
-    /// The requested relationship data.
     public var included: [Included]?
-    /// Navigational links that include the self-link.
     public let links: PagedDocumentLinks
-    /// Paging information.
     public var meta: PagingInformation?
 
     public init(data: [BundleId],

@@ -3,13 +3,31 @@ import Foundation
 
 /**
  # AppClipDefaultExperienceLocalizationCreateRequest
+
  The request body you use to create a Default App Clip Experience Localization.
+
+ ```
+ object AppClipDefaultExperienceLocalizationCreateRequest
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object AppClipDefaultExperienceLocalizationCreateRequest.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/AppClipDefaultExperienceLocalizationCreateRequest/Data-data.dictionary)
+
+ The data element of the request body.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appclipdefaultexperiencelocalizationcreaterequest>
  */
 public struct AppClipDefaultExperienceLocalizationCreateRequest: Codable, Sendable, RequestBody {
-    /// The resource data.
     public let data: Data
 
     public init(data: Data) {

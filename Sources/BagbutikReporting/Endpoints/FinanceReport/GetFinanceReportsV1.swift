@@ -5,9 +5,16 @@ import BagbutikReportingModels
 public extension Request {
     /**
      # Download finance reports
+
      Download finance reports filtered by your specified criteria.
 
-     For more information see [Download financial reports](https://developer.apple.comhttps://developer.apple.com/help/app-store-connect/getting-paid/download-financial-reports).
+     ## Discussion
+
+     For more information see [Download financial reports](https://developer.apple.com/help/app-store-connect/getting-paid/download-financial-reports).
+
+     ---
+
+     Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-financeReports>

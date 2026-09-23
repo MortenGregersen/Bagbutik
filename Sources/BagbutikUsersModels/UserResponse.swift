@@ -4,16 +4,31 @@ import Foundation
 
 /**
  # UserResponse
+
  The response body for endpoints that read or modify a single App Store Connect team member.
+
+ ```
+ object UserResponse
+ ```
+
+ ## See Also
+
+ [`Read user information`](https://developer.apple.com/documentation/AppStoreConnectAPI/GET-v1-users-_id_)
+
+ Get information about a user on your team, such as name, roles, and app visibility.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/userresponse>
  */
 public struct UserResponse: Codable, Sendable {
-    /// The resource data.
     public let data: User
     public var included: [App]?
-    /// Navigational links that include the self-link.
     public let links: DocumentLinks
 
     public init(data: User,

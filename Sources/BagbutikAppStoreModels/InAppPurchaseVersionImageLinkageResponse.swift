@@ -3,7 +3,26 @@ import Foundation
 
 /**
  # InAppPurchaseVersionImageLinkageResponse
+
  A response containing the resource identifier of the review image for an in-app purchase version.
+
+ ```
+ object InAppPurchaseVersionImageLinkageResponse
+ ```
+
+ ## Topics
+
+ ### Objects and types
+
+ [`object InAppPurchaseVersionImageLinkageResponse.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/InAppPurchaseVersionImageLinkageResponse/Data-data.dictionary)
+
+ The data element of the response body.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/inapppurchaseversionimagelinkageresponse>

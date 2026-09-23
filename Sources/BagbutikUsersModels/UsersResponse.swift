@@ -4,7 +4,24 @@ import Foundation
 
 /**
  # UsersResponse
+
  A response containing a list of team members who have access to your App Store Connect account.
+
+ ```
+ object UsersResponse
+ ```
+
+ ## See Also
+
+ [`List users`](https://developer.apple.com/documentation/AppStoreConnectAPI/GET-v1-users)
+
+ Get a list of the users on your team.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/usersresponse>
@@ -12,12 +29,9 @@ import Foundation
 public struct UsersResponse: Codable, Sendable, PagedResponse {
     public typealias Data = User
 
-    /// The resource data.
     public let data: [User]
     public var included: [App]?
-    /// Navigational links that include the self-link.
     public let links: PagedDocumentLinks
-    /// Paging information.
     public var meta: PagingInformation?
 
     public init(data: [User],

@@ -4,7 +4,50 @@ import BagbutikAppStoreModels
 public extension Request {
     /**
      # Read information about the availability of an in-app purchase
+
      Get information about the territory availablity for an in-app purchase.
+
+     ## Discussion
+
+     ### Example Request and Response
+
+     **Request:**
+
+     ```
+     https://api.appstoreconnect.apple.com/v2/inAppPurchases/6448262365/inAppPurchaseAvailability
+     ```
+
+     **Response:**
+
+     ```json
+     {
+       “data”: {
+         “type”: “inAppPurchaseAvailabilities”,
+         “id”: “6448262365”,
+         “attributes”: {
+           “availableInNewTerritories”: true
+         },
+         “relationships”: {
+           “availableTerritories”: {
+             “links”: {
+               “self”: “https://api.appstoreconnect.apple.com/v1/inAppPurchaseAvailabilities/6448262365/relationships/availableTerritories”,
+               “related”: “https://api.appstoreconnect.apple.com/v1/inAppPurchaseAvailabilities/6448262365/availableTerritories”
+             }
+           }
+         },
+         “links”: {
+           “self”: “https://api.appstoreconnect.apple.com/v1/inAppPurchaseAvailabilities/6448262365”
+         }
+       },
+       “links”: {
+         “self”: “https://api.appstoreconnect.apple.com/v2/inAppPurchases/6448262365/inAppPurchaseAvailability”
+       }
+     }
+     ```
+
+     ---
+
+     Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/get-v2-inAppPurchases-_id_-inAppPurchaseAvailability>

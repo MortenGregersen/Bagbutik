@@ -4,7 +4,30 @@ import Foundation
 
 /**
  # AppEventVideoClip
+
  A video clip used to promote an app event on the App Store product page.
+
+ ```
+ object AppEventVideoClip
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object AppEventVideoClip.Attributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/AppEventVideoClip/Attributes-data.dictionary)
+
+ Attributes that describe an app event video clip resource.
+
+ [`object AppEventVideoClip.Relationships`](https://developer.apple.com/documentation/AppStoreConnectAPI/AppEventVideoClip/Relationships-data.dictionary)
+
+ The relationships you include in the request and those on which you can operate.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appeventvideoclip>

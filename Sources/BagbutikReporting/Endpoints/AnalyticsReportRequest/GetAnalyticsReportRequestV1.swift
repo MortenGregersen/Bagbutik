@@ -4,7 +4,54 @@ import BagbutikReportingModels
 public extension Request {
     /**
      # Read Report Request Information
+
      Get details for and the state of a specific analytics report request.
+
+     ## Discussion
+
+     > Note:
+     > If you don’t retrieve data for a long time, a report request changes to `stoppedDueToInactivity`. You need to make a new request to resume getting reports.
+
+     ### Examples Request and Response
+
+     **Request:**
+
+     ```
+     GET https://api.appstoreconnect.apple.com/v1/analyticsReportRequests/d48c69c5-9bcb-4592-abbd-08a9411b0231
+     ```
+
+     **Response:**
+
+     ```json
+     {
+       "data": {
+         "type": "analyticsReportRequests",
+         "id": "d48c69c5-9bcb-4592-abbd-08a9411b0231",
+         "attributes": {
+           "accessType": "ONGOING",
+           "stoppedDueToInactivity": false
+         },
+         "relationships": {
+           "reports": {
+             "links": {
+               "self": "https://api.appstoreconnect.apple.com/v1/analyticsReportRequests/d48c69c5-9bcb-4592-abbd-08a9411b0231/relationships/reports",
+               "related": "https://api.appstoreconnect.apple.com/v1/analyticsReportRequests/d48c69c5-9bcb-4592-abbd-08a9411b0231/reports"
+             }
+           }
+         },
+         "links": {
+           "self": "https://api.appstoreconnect.apple.com/v1/analyticsReportRequests/d48c69c5-9bcb-4592-abbd-08a9411b0231"
+         }
+       },
+       "links": {
+         "self": "https://api.appstoreconnect.apple.com/v1/analyticsReportRequests/d48c69c5-9bcb-4592-abbd-08a9411b0231"
+       }
+     }
+     ```
+
+     ---
+
+     Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-analyticsReportRequests-_id_>

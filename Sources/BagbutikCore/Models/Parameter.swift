@@ -2,13 +2,21 @@ import Foundation
 
 /**
  # Parameter
+
  An object that contains the query parameter that produced the error.
+
+ ```
+ object Parameter
+ ```
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/parameter>
  */
 public struct Parameter: Codable, Sendable {
-    /// The query parameter that produced the error.
     public let parameter: String
 
     public init(parameter: String) {

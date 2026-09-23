@@ -3,7 +3,30 @@ import Foundation
 
 /**
  # GameCenterLeaderboardImageV2UpdateRequest
+
  The request body you use to update a Game Center leaderboard image v2.
+
+ ```
+ object GameCenterLeaderboardImageV2UpdateRequest
+ ```
+
+ ## Overview
+
+ - data:
+
+ ## Topics
+
+ ### Dictionaries
+
+ [`object GameCenterLeaderboardImageV2UpdateRequest.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/GameCenterLeaderboardImageV2UpdateRequest/Data-data.dictionary)
+
+ The data structure that represents a Game Center leaderboard image update request resource.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterleaderboardimagev2updaterequest>

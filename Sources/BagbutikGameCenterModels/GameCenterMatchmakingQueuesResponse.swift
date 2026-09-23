@@ -3,7 +3,16 @@ import Foundation
 
 /**
  # GameCenterMatchmakingQueuesResponse
+
  The response body for endpoints that get multiple queues.
+
+ ```
+ object GameCenterMatchmakingQueuesResponse
+ ```
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingqueuesresponse>
@@ -11,11 +20,8 @@ import Foundation
 public struct GameCenterMatchmakingQueuesResponse: Codable, Sendable, PagedResponse {
     public typealias Data = GameCenterMatchmakingQueue
 
-    /// The queues that the endpoint fetches.
     public let data: [GameCenterMatchmakingQueue]
-    /// The rule sets included in the response.
     public var included: [GameCenterMatchmakingRuleSet]?
-    /// The link representations of the response.
     public let links: PagedDocumentLinks
     public var meta: PagingInformation?
 

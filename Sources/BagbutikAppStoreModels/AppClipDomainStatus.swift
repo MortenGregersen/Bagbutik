@@ -3,19 +3,34 @@ import Foundation
 
 /**
  # AppClipDomainStatus
+
  The validation status of the associated domains configured for an App Clip, indicating whether each domain is reachable and correctly set up.
+
+ ```
+ object AppClipDomainStatus
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object AppClipDomainStatus.Attributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/AppClipDomainStatus/Attributes-data.dictionary)
+
+ The attributes that describe the App Clip Domain Status resource.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appclipdomainstatus>
  */
 public struct AppClipDomainStatus: Codable, Sendable, Identifiable {
-    /// The opaque resource ID that uniquely identifies an App Clip Domain Statuses resource.
     public let id: String
-    /// Navigational links that include the self-link.
     public var links: ResourceLinks?
-    /// The resource type.
     public var type: String { "appClipDomainStatuses" }
-    /// The attributes that describe the App Clip Domain Statuses resource.
     public var attributes: Attributes?
 
     public init(id: String,

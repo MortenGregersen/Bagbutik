@@ -1,11 +1,17 @@
 import BagbutikCore
 import BagbutikAppStoreModels
 import BagbutikModelsShared
+import BagbutikTestFlightModels
 
 public extension Request {
     /**
      # Remove builds from a beta group
+
      Remove access to test one or more builds from beta testers in a specific beta group.
+
+     ---
+
+     Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/delete-v1-betaGroups-_id_-relationships-builds>

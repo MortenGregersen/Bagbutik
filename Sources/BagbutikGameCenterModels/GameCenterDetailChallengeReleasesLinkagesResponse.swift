@@ -3,7 +3,24 @@ import Foundation
 
 /**
  # GameCenterDetailChallengeReleasesLinkagesResponse
+
  A response containing the resource identifiers of challenge releases associated with a Game Center detail.
+
+ ```
+ object GameCenterDetailChallengeReleasesLinkagesResponse
+ ```
+
+ ## Topics
+
+ ### Dictionaries
+
+ [`object GameCenterDetailChallengeReleasesLinkagesResponse.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/GameCenterDetailChallengeReleasesLinkagesResponse/Data-data.dictionary)
+
+ The resource linkage data identifying a challenge release linked to a Game Center detail.
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterdetailchallengereleaseslinkagesresponse>

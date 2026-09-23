@@ -1,10 +1,16 @@
 import BagbutikCore
 import BagbutikAppStoreModels
+import BagbutikModelsShared
 
 public extension Request {
     /**
      # Read Background Assets External Beta Release Information
+
      Get the state of a background asset version external beta release.
+
+     ---
+
+     Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-backgroundAssetVersionExternalBetaReleases-_id_>

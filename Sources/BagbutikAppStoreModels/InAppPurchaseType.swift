@@ -1,6 +1,22 @@
 import BagbutikCore
 import Foundation
 
+/**
+ # InAppPurchaseType
+
+ A string that represents the type of an In-App Purchase.
+
+ ```
+ string InAppPurchaseType
+ ```
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/inapppurchasetype>
+ */
 public enum InAppPurchaseType: String, Sendable, ParameterValue, Codable, CaseIterable {
     case consumable = "CONSUMABLE"
     case nonConsumable = "NON_CONSUMABLE"

@@ -1,6 +1,30 @@
 import BagbutikCore
 import Foundation
 
+/**
+ # GameCenterLeaderboardFormatter
+
+ The values you can select to describe the format of a leaderboard.
+
+ ```
+ string GameCenterLeaderboardFormatter
+ ```
+
+ ## Discussion
+
+ ### Discussion
+
+ Leaderboard formatters allow you to specify the unit of measurement for a Game Center leaderboard. There is a new required attribute `defaultFormatter` when using [`Create a Leaderboard`](https://developer.apple.com/documentation/AppStoreConnectAPI/POST-v1-gameCenterLeaderboards) which will give all your localizations the same formatter. You can also optionally use `formatterOverride` to override a specific leaderboard localization when calling [`Create a Leaderboard Localization`](https://developer.apple.com/documentation/AppStoreConnectAPI/POST-v1-gameCenterLeaderboardLocalizations) or [`Modify a Leaderboard Localization`](https://developer.apple.com/documentation/AppStoreConnectAPI/PATCH-v1-gameCenterLeaderboardLocalizations-_id_).
+
+ Before App Store Connect API version 3.0, formatters were based on localizations and were required for each localization. Legacy leaderboards created before the new addition of the Game Center APIs will not have a `defaultFormatter` value, the value would be `null` in this case. Any localizations created before the new addition of the Game Center APIs will always have a `formatterOverride`.
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterleaderboardformatter>
+ */
 public enum GameCenterLeaderboardFormatter: String, Sendable, Codable, CaseIterable {
     case decimalPoint1Place = "DECIMAL_POINT_1_PLACE"
     case decimalPoint2Place = "DECIMAL_POINT_2_PLACE"

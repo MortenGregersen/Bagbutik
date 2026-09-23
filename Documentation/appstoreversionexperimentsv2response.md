@@ -1,0 +1,32 @@
+<!--
+{
+  "availability" : [
+    "App Store Connect API: 2.4.0 -"
+  ],
+  "documentType" : "symbol",
+  "framework" : "AppStoreConnectAPI",
+  "identifier" : "/documentation/AppStoreConnectAPI/AppStoreVersionExperimentsV2Response",
+  "metadataVersion" : "0.1.0",
+  "role" : "Object",
+  "symbol" : {
+    "kind" : "Object",
+    "modules" : [
+      "App Store Connect API"
+    ],
+    "preciseIdentifier" : "data:app_store_connect_api:AppStoreVersionExperimentsV2Response"
+  },
+  "title" : "AppStoreVersionExperimentsV2Response"
+}
+-->
+
+# AppStoreVersionExperimentsV2Response
+
+A response containing a list of A/B product page experiments for an App Store version.
+
+```
+object AppStoreVersionExperimentsV2Response
+```
+
+---
+
+Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)

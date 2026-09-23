@@ -4,7 +4,12 @@ import BagbutikMarketplacesModels
 public extension Request {
     /**
      # List delta ids
+
      List all delta Ids for a specific alternative distribution package version.
+
+     ---
+
+     Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-alternativeDistributionPackageVersions-_id_-relationships-deltas>

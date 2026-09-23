@@ -4,7 +4,26 @@ import Foundation
 
 /**
  # BuildIcon
+
  A PNG icon image extracted from a build, used for display in App Store Connect and TestFlight.
+
+ ```
+ object BuildIcon
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object BuildIcon.Attributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/BuildIcon/Attributes-data.dictionary)
+
+ Attributes that describe a Build Icons resource.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/buildicon>

@@ -1,6 +1,43 @@
 import BagbutikCore
 import Foundation
 
+/**
+ # PreviewType
+
+ String that represents the display type of an app preview.
+
+ ```
+ string PreviewType
+ ```
+
+ ## Discussion
+
+ Possible values
+
+ -`IPHONE_67`
+ -`IPHONE_65`
+ -`IPHONE_61`
+ -`IPHONE_58`
+ -`IPHONE_55`
+ -`IPHONE_47`
+ -`IPHONE_40`
+ -`IPHONE_35`
+ -`IPAD_PRO_3GEN_129`
+ -`IPAD_PRO_3GEN_11`
+ -`IPAD_PRO_129`
+ -`IPAD_105`
+ -`IPAD_97`
+ -`DESKTOP`
+ -`APPLE_TV`
+ -`APPLE_VISION_PRO`
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/previewtype>
+ */
 public enum PreviewType: String, Sendable, ParameterValue, Codable, CaseIterable {
     case appleTV = "APPLE_TV"
     case appleVisionPro = "APPLE_VISION_PRO"

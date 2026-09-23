@@ -3,19 +3,24 @@ import Foundation
 
 /**
  # CiPullRequestStartCondition
+
  Settings for a start condition that starts a build if a pull request changes.
+
+ ```
+ object CiPullRequestStartCondition
+ ```
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/cipullrequeststartcondition>
  */
 public struct CiPullRequestStartCondition: Codable, Sendable {
-    /// A Boolean value that indicates whether Xcode Cloud automatically cancels or skips builds.
     public var autoCancel: Bool?
-    /// The destination branch name and custom patterns you configure for a workflow that starts a new build for changes to a pull request.
     public var destination: CiBranchPatterns?
-    /// The custom rule that determines whether Xcode Cloud starts a build or not based on a pull request’s changes to files.
     public var filesAndFoldersRule: CiFilesAndFoldersRule?
-    /// The source branch name and custom patterns you configure for a workflow that starts a new build for changes to a pull request.
     public var source: CiBranchPatterns?
 
     public init(autoCancel: Bool? = nil,

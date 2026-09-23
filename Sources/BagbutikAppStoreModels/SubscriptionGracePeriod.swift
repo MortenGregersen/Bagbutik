@@ -3,7 +3,26 @@ import Foundation
 
 /**
  # SubscriptionGracePeriod
+
  A grace period configuration for a subscription, allowing subscribers continued access while payment issues are resolved.
+
+ ```
+ object SubscriptionGracePeriod
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object SubscriptionGracePeriod.Attributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/SubscriptionGracePeriod/Attributes-data.dictionary)
+
+ Attributes that describe a subscription grace period resource.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/subscriptiongraceperiod>

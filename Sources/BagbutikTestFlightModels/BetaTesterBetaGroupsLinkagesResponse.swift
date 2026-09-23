@@ -3,17 +3,39 @@ import Foundation
 
 /**
  # BetaTesterBetaGroupsLinkagesResponse
+
  A response body that contains a list of related resource IDs.
+
+ ```
+ object BetaTesterBetaGroupsLinkagesResponse
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object BetaTesterBetaGroupsLinkagesResponse.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/BetaTesterBetaGroupsLinkagesResponse/Data-data.dictionary)
+
+ The data element of the response body.
+
+ ## See Also
+
+ [`Get all beta group ids of a beta tester's groups`](https://developer.apple.com/documentation/AppStoreConnectAPI/GET-v1-betaTesters-_id_-relationships-betaGroups)
+
+ Get a list of group resource IDs associated with a beta tester.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/betatesterbetagroupslinkagesresponse>
  */
 public struct BetaTesterBetaGroupsLinkagesResponse: Codable, Sendable, PagedResponse {
-    /// The object types and IDs of the related resources.
     public let data: [Data]
-    /// Navigational links including the self-link and links to the related data.
     public let links: PagedDocumentLinks
-    /// Paging information.
     public var meta: PagingInformation?
 
     public init(data: [Data],

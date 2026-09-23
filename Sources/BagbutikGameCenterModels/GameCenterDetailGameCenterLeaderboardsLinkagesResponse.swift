@@ -3,7 +3,26 @@ import Foundation
 
 /**
  # GameCenterDetailGameCenterLeaderboardsLinkagesResponse
+
  A response that confirms a relationship between a Game Center detail and a leaderboard.
+
+ ```
+ object GameCenterDetailGameCenterLeaderboardsLinkagesResponse
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object GameCenterDetailGameCenterLeaderboardsLinkagesResponse.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/GameCenterDetailGameCenterLeaderboardsLinkagesResponse/Data-data.dictionary)
+
+ The resource linkage data identifying the leaderboards associated with a Game Center detail.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterdetailgamecenterleaderboardslinkagesresponse>

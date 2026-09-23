@@ -5,7 +5,12 @@ import BagbutikModelsShared
 public extension Request {
     /**
      # Remove compatible app version relationships
+
      Remove a compatible version relationship from an app version.
+
+     ---
+
+     Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/delete-v1-gameCenterAppVersions-_id_-relationships-compatibilityVersions>

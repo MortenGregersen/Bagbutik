@@ -3,7 +3,26 @@ import Foundation
 
 /**
  # AppStoreVersionExperimentTreatmentCreateRequest
+
  The request body you use to create an App Store version experiment treatment.
+
+ ```
+ object AppStoreVersionExperimentTreatmentCreateRequest
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object AppStoreVersionExperimentTreatmentCreateRequest.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/AppStoreVersionExperimentTreatmentCreateRequest/Data-data.dictionary)
+
+ The request body you use to create an App Store version experiment treatment.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionexperimenttreatmentcreaterequest>

@@ -3,7 +3,16 @@ import Foundation
 
 /**
  # AppCustomProductPageVersionsResponse
+
  The response body for endpoints that list versions of a custom App Store product page.
+
+ ```
+ object AppCustomProductPageVersionsResponse
+ ```
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appcustomproductpageversionsresponse>

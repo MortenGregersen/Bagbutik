@@ -1,22 +1,40 @@
 import BagbutikCore
 import BagbutikModelsShared
+import BagbutikProvisioningModels
 import Foundation
 
 /**
  # BetaFeedbackScreenshotSubmission
+
  A screenshot and feedback note submitted by a TestFlight beta tester while testing a specific build.
+
+ ```
+ object BetaFeedbackScreenshotSubmission
+ ```
+
+ ## Topics
+
+ ### Dictionaries
+
+ [`object BetaFeedbackScreenshotSubmission.Attributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/BetaFeedbackScreenshotSubmission/Attributes-data.dictionary)
+
+ Attributes that describe a `BetaFeedbackScreenshotSubmission` resource.
+
+ [`object BetaFeedbackScreenshotSubmission.Relationships`](https://developer.apple.com/documentation/AppStoreConnectAPI/BetaFeedbackScreenshotSubmission/Relationships-data.dictionary)
+
+ The relationships you include in the request and those on which you can operate.
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/betafeedbackscreenshotsubmission>
  */
 public struct BetaFeedbackScreenshotSubmission: Codable, Sendable, Identifiable {
-    /// The opaque resource ID that uniquely identifies the resource.
     public let id: String
-    /// Navigational links that include the self-link.
     public var links: ResourceLinks?
-    /// The resource type.
     public var type: String { "betaFeedbackScreenshotSubmissions" }
-    /// Attributes that describe a `BetaFeedbackScreenshotSubmission` resource.
     public var attributes: Attributes?
     public var relationships: Relationships?
 

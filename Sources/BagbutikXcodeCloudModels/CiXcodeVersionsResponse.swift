@@ -3,7 +3,16 @@ import Foundation
 
 /**
  # CiXcodeVersionsResponse
+
  The response body for endpoints that list Xcode versions available for Xcode Cloud.
+
+ ```
+ object CiXcodeVersionsResponse
+ ```
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/cixcodeversionsresponse>
@@ -11,13 +20,9 @@ import Foundation
 public struct CiXcodeVersionsResponse: Codable, Sendable, PagedResponse {
     public typealias Data = CiXcodeVersion
 
-    /// The resource data.
     public let data: [CiXcodeVersion]
-    /// The requested relationship data.
     public var included: [CiMacOsVersion]?
-    /// The navigational links that include the self-link.
     public let links: PagedDocumentLinks
-    /// The paging information.
     public var meta: PagingInformation?
 
     public init(data: [CiXcodeVersion],

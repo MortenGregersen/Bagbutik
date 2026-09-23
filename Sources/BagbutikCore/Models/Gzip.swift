@@ -1,5 +1,21 @@
 import Foundation
 
+/**
+ # gzip
+
+ A binary value that represents a gzip-compressed file.
+
+ ```
+ binary gzip
+ ```
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/gzip>
+ */
 public struct Gzip: BinaryResponse {
     public let data: Data
 

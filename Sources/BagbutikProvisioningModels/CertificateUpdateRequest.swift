@@ -3,7 +3,24 @@ import Foundation
 
 /**
  # CertificateUpdateRequest
+
  The request body you use to update a certificate activation status.
+
+ ```
+ object CertificateUpdateRequest
+ ```
+
+ ## Topics
+
+ ### Dictionaries
+
+ [`object CertificateUpdateRequest.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/CertificateUpdateRequest/Data-data.dictionary)
+
+ The data structure that represent a certificate update request resource.
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/certificateupdaterequest>

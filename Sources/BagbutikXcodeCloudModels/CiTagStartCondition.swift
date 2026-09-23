@@ -3,17 +3,33 @@ import Foundation
 
 /**
  # CiTagStartCondition
+
  Settings for a start condition that starts a build if a Git tag changes.
+
+ ```
+ object CiTagStartCondition
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object CiTagPatterns`](https://developer.apple.com/documentation/AppStoreConnectAPI/CiTagPatterns)
+
+ Case-sensitive patterns Xcode Cloud uses to determine if a change meets tag names you configure for a workflow’s start condition.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/citagstartcondition>
  */
 public struct CiTagStartCondition: Codable, Sendable {
-    /// A Boolean value that indicates whether Xcode Cloud automatically cancels or skips builds.
     public var autoCancel: Bool?
-    /// Settings Xcode Cloud uses to determine whether a change to a tag should start a new build or not.
     public var filesAndFoldersRule: CiFilesAndFoldersRule?
-    /// The source branch name and custom patterns you configure for a workflow that starts a new build for changes to a Git tag.
     public var source: CiTagPatterns?
 
     public init(autoCancel: Bool? = nil,

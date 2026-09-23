@@ -3,7 +3,22 @@ import Foundation
 
 /**
  # GameCenterChallengeVersionInlineCreate
+
  The data structure you use to configure a challenge version while creating a challenge.
+
+ ```
+ object GameCenterChallengeVersionInlineCreate
+ ```
+
+ ## Topics
+
+ ### Dictionaries
+
+ [`object GameCenterChallengeVersionInlineCreate.Relationships`](https://developer.apple.com/documentation/AppStoreConnectAPI/GameCenterChallengeVersionInlineCreate/Relationships-data.dictionary)
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterchallengeversioninlinecreate>

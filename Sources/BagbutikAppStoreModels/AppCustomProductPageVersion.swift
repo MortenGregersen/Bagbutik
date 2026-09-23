@@ -3,7 +3,30 @@ import Foundation
 
 /**
  # AppCustomProductPageVersion
+
  A version of a custom App Store product page, containing its localizations and review status.
+
+ ```
+ object AppCustomProductPageVersion
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object AppCustomProductPageVersion.Attributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/AppCustomProductPageVersion/Attributes-data.dictionary)
+
+ Attributes that describe an app custom product page version resource.
+
+ [`object AppCustomProductPageVersion.Relationships`](https://developer.apple.com/documentation/AppStoreConnectAPI/AppCustomProductPageVersion/Relationships-data.dictionary)
+
+ The relationships you include in the request and those on which you can operate.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appcustomproductpageversion>

@@ -3,7 +3,26 @@ import Foundation
 
 /**
  # WinBackOfferUpdateRequest
+
  The request body you use to update a win-back offer.
+
+ ```
+ object WinBackOfferUpdateRequest
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object WinBackOfferUpdateRequest.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/WinBackOfferUpdateRequest/Data-data.dictionary)
+
+ The updateable attributes of a win-back offer, including its duration, start date, and eligibility conditions.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/winbackofferupdaterequest>

@@ -3,7 +3,16 @@ import Foundation
 
 /**
  # BundleIdWithoutIncludesResponse
+
  A response containing a single bundle ID, without including capability and profile details.
+
+ ```
+ object BundleIdWithoutIncludesResponse
+ ```
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/bundleidwithoutincludesresponse>

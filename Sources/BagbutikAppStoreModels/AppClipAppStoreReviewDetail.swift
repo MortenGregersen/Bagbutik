@@ -3,21 +3,39 @@ import Foundation
 
 /**
  # AppClipAppStoreReviewDetail
+
  The review submission details for an App Clip, including the invocation URLs required for App Store review.
+
+ ```
+ object AppClipAppStoreReviewDetail
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object AppClipAppStoreReviewDetail.Attributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/AppClipAppStoreReviewDetail/Attributes-data.dictionary)
+
+ The attributes that describe the App Clip App Store Review Details resource.
+
+ [`object AppClipAppStoreReviewDetail.Relationships`](https://developer.apple.com/documentation/AppStoreConnectAPI/AppClipAppStoreReviewDetail/Relationships-data.dictionary)
+
+ The relationships of the App Clip App Store Details resource you included in the request and those on which you can operate.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appclipappstorereviewdetail>
  */
 public struct AppClipAppStoreReviewDetail: Codable, Sendable, Identifiable {
-    /// The opaque resource ID that uniquely identifies an App Clip App Store Review Details resource.
     public let id: String
-    /// Navigational links that include the self-link.
     public var links: ResourceLinks?
-    /// The resource type.
     public var type: String { "appClipAppStoreReviewDetails" }
-    /// The attributes that describe the App Clip App Store Review Details resource.
     public var attributes: Attributes?
-    /// The navigational links to related data and included resource types and IDs.
     public var relationships: Relationships?
 
     public init(id: String,

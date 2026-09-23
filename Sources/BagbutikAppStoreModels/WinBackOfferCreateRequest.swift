@@ -3,7 +3,30 @@ import Foundation
 
 /**
  # WinBackOfferCreateRequest
+
  The request body you use to create a winback offer.
+
+ ```
+ object WinBackOfferCreateRequest
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object WinBackOfferCreateRequest.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/WinBackOfferCreateRequest/Data-data.dictionary)
+
+ The data element of the request body.
+
+ [`object WinBackOfferPriceInlineCreate`](https://developer.apple.com/documentation/AppStoreConnectAPI/WinBackOfferPriceInlineCreate)
+
+ An inline object for specifying territory-specific pricing when creating or updating a win-back offer.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/winbackoffercreaterequest>

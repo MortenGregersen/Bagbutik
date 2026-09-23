@@ -3,7 +3,24 @@ import Foundation
 
 /**
  # InAppPurchaseV2VersionsLinkagesResponse
+
  A response containing the resource identifiers of the versions of an in-app purchase configured with the v2 API.
+
+ ```
+ object InAppPurchaseV2VersionsLinkagesResponse
+ ```
+
+ ## Topics
+
+ ### Dictionaries
+
+ [`object InAppPurchaseV2VersionsLinkagesResponse.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/InAppPurchaseV2VersionsLinkagesResponse/Data-data.dictionary)
+
+ The data element of the response body.
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/inapppurchasev2versionslinkagesresponse>

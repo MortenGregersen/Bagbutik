@@ -3,17 +3,23 @@ import Foundation
 
 /**
  # AppClipAppStoreReviewDetailResponse
+
  A response containing the App Store review details for a single App Clip.
+
+ ```
+ object AppClipAppStoreReviewDetailResponse
+ ```
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appclipappstorereviewdetailresponse>
  */
 public struct AppClipAppStoreReviewDetailResponse: Codable, Sendable {
-    /// The resource data.
     public let data: AppClipAppStoreReviewDetail
-    /// The requested relationship data.
     public var included: [AppClipDefaultExperience]?
-    /// Navigational links that include the self-link.
     public let links: DocumentLinks
 
     public init(data: AppClipAppStoreReviewDetail,

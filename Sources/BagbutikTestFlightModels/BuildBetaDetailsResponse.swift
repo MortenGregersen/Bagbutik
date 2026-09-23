@@ -4,7 +4,24 @@ import Foundation
 
 /**
  # BuildBetaDetailsResponse
+
  The response body for endpoints that list beta testing details across builds.
+
+ ```
+ object BuildBetaDetailsResponse
+ ```
+
+ ## See Also
+
+ [`List build beta details`](https://developer.apple.com/documentation/AppStoreConnectAPI/GET-v1-buildBetaDetails)
+
+ Find and list build beta details for all builds.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/buildbetadetailsresponse>
@@ -12,12 +29,9 @@ import Foundation
 public struct BuildBetaDetailsResponse: Codable, Sendable, PagedResponse {
     public typealias Data = BuildBetaDetail
 
-    /// The resource data.
     public let data: [BuildBetaDetail]
     public var included: [Build]?
-    /// Navigational links that include the self-link.
     public let links: PagedDocumentLinks
-    /// Paging information.
     public var meta: PagingInformation?
 
     public init(data: [BuildBetaDetail],

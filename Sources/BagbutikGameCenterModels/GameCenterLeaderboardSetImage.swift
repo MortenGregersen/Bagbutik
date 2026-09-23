@@ -5,7 +5,30 @@ import Foundation
 
 /**
  # GameCenterLeaderboardSetImage
+
  The data structure that represent a leaderboard set image resource.
+
+ ```
+ object GameCenterLeaderboardSetImage
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object GameCenterLeaderboardSetImage.Attributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/GameCenterLeaderboardSetImage/Attributes-data.dictionary)
+
+ Attributes that describe a leaderboard resource.
+
+ [`object GameCenterLeaderboardSetImage.Relationships`](https://developer.apple.com/documentation/AppStoreConnectAPI/GameCenterLeaderboardSetImage/Relationships-data.dictionary)
+
+ The relationships you include in the request and those on which you can operate.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterleaderboardsetimage>

@@ -3,7 +3,28 @@ import Foundation
 
 /**
  # GameCenterGroupGameCenterAchievementsV2LinkagesRequest
+
  The data structure that represents a Game Center group Game Center achievement linkage request resource.
+
+ ```
+ object GameCenterGroupGameCenterAchievementsV2LinkagesRequest
+ ```
+
+ ## Overview
+
+ - data:
+
+ ## Topics
+
+ ### Dictionaries
+
+ [`object GameCenterGroupGameCenterAchievementsV2LinkagesRequest.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/GameCenterGroupGameCenterAchievementsV2LinkagesRequest/Data-data.dictionary)
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecentergroupgamecenterachievementsv2linkagesrequest>

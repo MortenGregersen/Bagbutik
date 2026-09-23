@@ -3,17 +3,23 @@ import Foundation
 
 /**
  # ScmRepositoryResponse
+
  The response body for endpoints that read a single SCM repository connected to Xcode Cloud.
+
+ ```
+ object ScmRepositoryResponse
+ ```
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/scmrepositoryresponse>
  */
 public struct ScmRepositoryResponse: Codable, Sendable {
-    /// The resource data.
     public let data: ScmRepository
-    /// The requested relationship data.
     public var included: [Included]?
-    /// The navigational links that include the self-link.
     public let links: DocumentLinks
 
     public init(data: ScmRepository,

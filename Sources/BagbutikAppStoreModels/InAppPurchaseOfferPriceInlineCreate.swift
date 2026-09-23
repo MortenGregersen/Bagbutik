@@ -3,7 +3,24 @@ import Foundation
 
 /**
  # InAppPurchaseOfferPriceInlineCreate
+
  The data structure you use to configure an offer price when you create an in-app purchase offer code.
+
+ ```
+ object InAppPurchaseOfferPriceInlineCreate
+ ```
+
+ ## Topics
+
+ ### Dictionaries
+
+ [`object InAppPurchaseOfferPriceInlineCreate.Relationships`](https://developer.apple.com/documentation/AppStoreConnectAPI/InAppPurchaseOfferPriceInlineCreate/Relationships-data.dictionary)
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/inapppurchaseofferpriceinlinecreate>

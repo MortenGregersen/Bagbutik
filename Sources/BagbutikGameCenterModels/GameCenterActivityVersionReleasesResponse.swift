@@ -4,7 +4,16 @@ import Foundation
 
 /**
  # GameCenterActivityVersionReleasesResponse
+
  A response containing a list of release records for a Game Center activity version.
+
+ ```
+ object GameCenterActivityVersionReleasesResponse
+ ```
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecenteractivityversionreleasesresponse>

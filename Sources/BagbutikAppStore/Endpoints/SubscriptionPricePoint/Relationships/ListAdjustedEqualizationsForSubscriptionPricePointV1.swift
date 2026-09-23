@@ -5,12 +5,20 @@ import BagbutikModelsShared
 public extension Request {
     /**
      # List adjusted equalizations for a subscription price point
+
      List the adjusted territory equalizations for a subscription price point.
 
+     ## Overview
+
      Use this endpoint with filters to identify a specific adjusted equalization. Provide the `filter[upfrontPricePointId]` and `filter[planType]` query parameters, for example:
+
      ```
      GET /v1/subscriptionPricePoints/{pricePointId}/adjustedEqualizations?filter[upfrontPricePointId]=$id&filter[planType]=MONTHLY
      ```
+
+     ---
+
+     Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-subscriptionPricePoints-_id_-adjustedEqualizations>

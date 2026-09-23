@@ -1,6 +1,26 @@
 import BagbutikCore
 import Foundation
 
+/**
+ # BundleIdProfilesLinkagesResponse
+
+ ```
+ object BundleIdProfilesLinkagesResponse
+ ```
+
+ ## Topics
+
+ ### Dictionaries
+
+ [`object BundleIdProfilesLinkagesResponse.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/BundleIdProfilesLinkagesResponse/Data-data.dictionary)
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/bundleidprofileslinkagesresponse>
+ */
 public struct BundleIdProfilesLinkagesResponse: Codable, Sendable, PagedResponse {
     public let data: [Data]
     public let links: PagedDocumentLinks

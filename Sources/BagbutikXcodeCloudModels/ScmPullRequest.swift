@@ -3,21 +3,39 @@ import Foundation
 
 /**
  # ScmPullRequest
+
  A pull request in a source code repository connected to Xcode Cloud, which can automatically trigger workflow builds.
+
+ ```
+ object ScmPullRequest
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object ScmPullRequest.Attributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/ScmPullRequest/Attributes-data.dictionary)
+
+ The attributes that describe a Pull Requests resource.
+
+ [`object ScmPullRequest.Relationships`](https://developer.apple.com/documentation/AppStoreConnectAPI/ScmPullRequest/Relationships-data.dictionary)
+
+ The relationships of the Pull Requests resource you included in the request and those on which you can operate.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/scmpullrequest>
  */
 public struct ScmPullRequest: Codable, Sendable, Identifiable, RequestBody {
-    /// The opaque resource ID that uniquely identifies a Pull Request resource.
     public let id: String
-    /// The navigational links that include the self-link.
     public var links: ResourceLinks?
-    /// The resource type.
     public var type: String { "scmPullRequests" }
-    /// The attributes that describe the Pull Requests resource.
     public var attributes: Attributes?
-    /// The navigational links to related data and included resource types and IDs.
     public var relationships: Relationships?
 
     public init(id: String,

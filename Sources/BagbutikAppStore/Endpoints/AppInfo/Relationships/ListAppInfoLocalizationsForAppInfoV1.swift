@@ -5,7 +5,12 @@ import BagbutikModelsShared
 public extension Request {
     /**
      # List all app info localizations for an app info
+
      Get a list of localized, app-level information for an app.
+
+     ---
+
+     Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-appInfos-_id_-appInfoLocalizations>

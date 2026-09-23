@@ -3,13 +3,31 @@ import Foundation
 
 /**
  # CiWorkflowCreateRequest
+
  The request body you use to create a new Xcode Cloud workflow.
+
+ ```
+ object CiWorkflowCreateRequest
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object CiWorkflowCreateRequest.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/CiWorkflowCreateRequest/Data-data.dictionary)
+
+ The data element of the request you use to create a new Xcode Cloud workflow.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/ciworkflowcreaterequest>
  */
 public struct CiWorkflowCreateRequest: Codable, Sendable, RequestBody {
-    /// The resource data.
     public let data: Data
 
     public init(data: Data) {

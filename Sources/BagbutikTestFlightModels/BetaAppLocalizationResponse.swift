@@ -4,16 +4,31 @@ import Foundation
 
 /**
  # BetaAppLocalizationResponse
+
  The response body for endpoints that create, read, or modify localized TestFlight app metadata.
+
+ ```
+ object BetaAppLocalizationResponse
+ ```
+
+ ## See Also
+
+ [`Create a beta app localization`](https://developer.apple.com/documentation/AppStoreConnectAPI/POST-v1-betaAppLocalizations)
+
+ Create localized descriptive information for an app.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/betaapplocalizationresponse>
  */
 public struct BetaAppLocalizationResponse: Codable, Sendable {
-    /// The resource data.
     public let data: BetaAppLocalization
     public var included: [App]?
-    /// Navigational links that include the self-link.
     public let links: DocumentLinks
 
     public init(data: BetaAppLocalization,

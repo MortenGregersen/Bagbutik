@@ -3,17 +3,33 @@ import Foundation
 
 /**
  # GameCenterMatchmakingTestPlayerPropertyInlineCreate
+
  A resource object that represents a player’s properties when you create a request.
+
+ ```
+ object GameCenterMatchmakingTestPlayerPropertyInlineCreate
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object GameCenterMatchmakingTestPlayerPropertyInlineCreate.Attributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/GameCenterMatchmakingTestPlayerPropertyInlineCreate/Attributes-data.dictionary)
+
+ The attributes for sample player properties.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingtestplayerpropertyinlinecreate>
  */
 public struct GameCenterMatchmakingTestPlayerPropertyInlineCreate: Codable, Sendable, Identifiable {
-    /// The identifier for the resource object.
     public var id: String?
-    /// The type of the resource object.
     public var type: String { "gameCenterMatchmakingTestPlayerProperties" }
-    /// The attributes of the resource object.
     public var attributes: Attributes?
 
     public init(id: String? = nil,

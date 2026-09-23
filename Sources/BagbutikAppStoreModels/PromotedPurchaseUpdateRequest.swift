@@ -3,7 +3,26 @@ import Foundation
 
 /**
  # PromotedPurchaseUpdateRequest
+
  The request body you use to update a promoted purchase update request.
+
+ ```
+ object PromotedPurchaseUpdateRequest
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object PromotedPurchaseUpdateRequest.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/PromotedPurchaseUpdateRequest/Data-data.dictionary)
+
+ The request body you use to update a promoted purchase update request.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/promotedpurchaseupdaterequest>

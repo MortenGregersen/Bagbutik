@@ -3,7 +3,36 @@ import Foundation
 
 /**
  # GameCenterLeaderboardSetVersionV2
+
  The data structure that represents a Game Center leaderboard set version v2 resource.
+
+ ```
+ object GameCenterLeaderboardSetVersionV2
+ ```
+
+ ## Overview
+
+ - attributes:
+ - id:
+ - links:
+ - relationships:
+ - type:
+
+ ## Topics
+
+ ### Dictionaries
+
+ [`object GameCenterLeaderboardSetVersionV2.Attributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/GameCenterLeaderboardSetVersionV2/Attributes-data.dictionary)
+
+ [`object GameCenterLeaderboardSetVersionV2.Relationships`](https://developer.apple.com/documentation/AppStoreConnectAPI/GameCenterLeaderboardSetVersionV2/Relationships-data.dictionary)
+
+ The relationships you include in the request and those you can operate on.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterleaderboardsetversionv2>

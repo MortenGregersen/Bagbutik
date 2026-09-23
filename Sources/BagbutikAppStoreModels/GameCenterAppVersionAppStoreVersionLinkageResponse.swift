@@ -1,6 +1,26 @@
 import BagbutikCore
 import Foundation
 
+/**
+ # GameCenterAppVersionAppStoreVersionLinkageResponse
+
+ ```
+ object GameCenterAppVersionAppStoreVersionLinkageResponse
+ ```
+
+ ## Topics
+
+ ### Dictionaries
+
+ [`object GameCenterAppVersionAppStoreVersionLinkageResponse.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/GameCenterAppVersionAppStoreVersionLinkageResponse/Data-data.dictionary)
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterappversionappstoreversionlinkageresponse>
+ */
 public struct GameCenterAppVersionAppStoreVersionLinkageResponse: Codable, Sendable {
     public let data: Data
     public let links: DocumentLinks

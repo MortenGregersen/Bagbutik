@@ -4,7 +4,12 @@ import BagbutikTestFlightModels
 public extension Request {
     /**
      # Create localized metadata for a beta app clip invocation
+
      Provide localized metadata for an App Clip experience you make available to testers.
+
+     ---
+
+     Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/post-v1-betaAppClipInvocationLocalizations>

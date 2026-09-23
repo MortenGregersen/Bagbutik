@@ -4,7 +4,22 @@ import Foundation
 
 /**
  # NominationCreateRequest
+
  The request body you use to create a featuring nomination.
+
+ ```
+ object NominationCreateRequest
+ ```
+
+ ## Topics
+
+ ### Dictionaries
+
+ [`object NominationCreateRequest.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/NominationCreateRequest/Data-data.dictionary)
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/nominationcreaterequest>

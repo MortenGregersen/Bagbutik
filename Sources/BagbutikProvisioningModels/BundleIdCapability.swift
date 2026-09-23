@@ -3,19 +3,34 @@ import Foundation
 
 /**
  # BundleIdCapability
+
  An entitlement or service (such as Push Notifications or In-App Purchases) enabled for a registered bundle ID.
+
+ ```
+ object BundleIdCapability
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object BundleIdCapability.Attributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/BundleIdCapability/Attributes-data.dictionary)
+
+ Attributes that describe a Bundle ID Capabilities resource.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/bundleidcapability>
  */
 public struct BundleIdCapability: Codable, Sendable, Identifiable {
-    /// The opaque resource ID that uniquely identifies the resource.
     public let id: String
-    /// Navigational links that include the self-link.
     public var links: ResourceLinks?
-    /// The resource type.
     public var type: String { "bundleIdCapabilities" }
-    /// The resource’s attributes.
     public var attributes: Attributes?
 
     public init(id: String,

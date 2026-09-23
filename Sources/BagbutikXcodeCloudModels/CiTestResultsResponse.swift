@@ -3,7 +3,16 @@ import Foundation
 
 /**
  # CiTestResultsResponse
+
  The response body for endpoints that list test results from an Xcode Cloud build action.
+
+ ```
+ object CiTestResultsResponse
+ ```
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/citestresultsresponse>
@@ -11,11 +20,8 @@ import Foundation
 public struct CiTestResultsResponse: Codable, Sendable, PagedResponse {
     public typealias Data = CiTestResult
 
-    /// The resource data.
     public let data: [CiTestResult]
-    /// The navigational links that include the self-link.
     public let links: PagedDocumentLinks
-    /// The paging information.
     public var meta: PagingInformation?
 
     public init(data: [CiTestResult],

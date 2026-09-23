@@ -4,7 +4,16 @@ import Foundation
 
 /**
  # EndUserLicenseAgreementResponse
+
  The response body for endpoints that read or modify a custom end user license agreement for an app.
+
+ ```
+ object EndUserLicenseAgreementResponse
+ ```
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/enduserlicenseagreementresponse>

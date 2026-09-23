@@ -3,7 +3,30 @@ import Foundation
 
 /**
  # AppStoreVersionExperimentTreatmentLocalization
+
  The localized screenshots, previews, and text for one treatment variant in an App Store product page A/B experiment.
+
+ ```
+ object AppStoreVersionExperimentTreatmentLocalization
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object AppStoreVersionExperimentTreatmentLocalization.Attributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/AppStoreVersionExperimentTreatmentLocalization/Attributes-data.dictionary)
+
+ Attributes that describe an app store version experiment treatment localization resource.
+
+ [`object AppStoreVersionExperimentTreatmentLocalization.Relationships`](https://developer.apple.com/documentation/AppStoreConnectAPI/AppStoreVersionExperimentTreatmentLocalization/Relationships-data.dictionary)
+
+ The relationships you include in the request and those on which you can operate.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionexperimenttreatmentlocalization>

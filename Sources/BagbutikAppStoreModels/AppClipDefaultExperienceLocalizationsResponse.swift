@@ -3,7 +3,16 @@ import Foundation
 
 /**
  # AppClipDefaultExperienceLocalizationsResponse
+
  The response body for endpoints that list localized App Clip card subtitles for a default experience.
+
+ ```
+ object AppClipDefaultExperienceLocalizationsResponse
+ ```
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appclipdefaultexperiencelocalizationsresponse>
@@ -11,13 +20,9 @@ import Foundation
 public struct AppClipDefaultExperienceLocalizationsResponse: Codable, Sendable, PagedResponse {
     public typealias Data = AppClipDefaultExperienceLocalization
 
-    /// The resource data.
     public let data: [AppClipDefaultExperienceLocalization]
-    /// The requested relationship data.
     public var included: [Included]?
-    /// Navigational links that include the self-link.
     public let links: PagedDocumentLinks
-    /// The paging information.
     public var meta: PagingInformation?
 
     public init(data: [AppClipDefaultExperienceLocalization],

@@ -4,16 +4,31 @@ import Foundation
 
 /**
  # PrereleaseVersionResponse
+
  The response body for endpoints that read a single prerelease version of an app.
+
+ ```
+ object PrereleaseVersionResponse
+ ```
+
+ ## See Also
+
+ [`Read the prerelease version of a build`](https://developer.apple.com/documentation/AppStoreConnectAPI/GET-v1-builds-_id_-preReleaseVersion)
+
+ Get the prerelease version for a specific build.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/prereleaseversionresponse>
  */
 public struct PrereleaseVersionResponse: Codable, Sendable {
-    /// The resource data.
     public let data: PrereleaseVersion
     public var included: [Included]?
-    /// Navigational links that include the self-link.
     public let links: DocumentLinks
 
     public init(data: PrereleaseVersion,

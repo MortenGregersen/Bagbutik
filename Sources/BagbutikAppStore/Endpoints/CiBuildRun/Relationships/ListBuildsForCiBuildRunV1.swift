@@ -6,7 +6,12 @@ import BagbutikTestFlightModels
 public extension Request {
     /**
      # List all builds xcode cloud created in app store connect
+
      List All App Store Connect and TestFlight Builds when it performed a build.
+
+     ---
+
+     Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-ciBuildRuns-_id_-builds>

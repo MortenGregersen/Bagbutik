@@ -3,7 +3,26 @@ import Foundation
 
 /**
  # AppTagUpdateRequest
+
  The request body you use to update an app tag update request.
+
+ ```
+ object AppTagUpdateRequest
+ ```
+
+ ## Topics
+
+ ### Dictionaries
+
+ [`object AppTagUpdateRequest.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/AppTagUpdateRequest/Data-data.dictionary)
+
+ The data wrapper for an app tag update request, containing the resource type and attributes.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/apptagupdaterequest>

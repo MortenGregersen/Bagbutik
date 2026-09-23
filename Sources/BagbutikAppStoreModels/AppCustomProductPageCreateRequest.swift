@@ -3,7 +3,26 @@ import Foundation
 
 /**
  # AppCustomProductPageCreateRequest
+
  The request body you use to create an app custom product page.
+
+ ```
+ object AppCustomProductPageCreateRequest
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object AppCustomProductPageCreateRequest.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/AppCustomProductPageCreateRequest/Data-data.dictionary)
+
+ The request body you use to create an app custom product page.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appcustomproductpagecreaterequest>

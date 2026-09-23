@@ -1,6 +1,22 @@
 import BagbutikCore
 import Foundation
 
+/**
+ # SubscriptionOfferDuration
+
+ A length of time that can be assigned to a subscription.
+
+ ```
+ string SubscriptionOfferDuration
+ ```
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/subscriptionofferduration>
+ */
 public enum SubscriptionOfferDuration: String, Sendable, Codable, CaseIterable {
     case oneMonth = "ONE_MONTH"
     case oneWeek = "ONE_WEEK"

@@ -3,7 +3,24 @@ import Foundation
 
 /**
  # AccessibilityDeclarationUpdateRequest
+
  The request body you use to update an accessibility declaration for an app.
+
+ ```
+ object AccessibilityDeclarationUpdateRequest
+ ```
+
+ ## Topics
+
+ ### Dictionaries
+
+ [`object AccessibilityDeclarationUpdateRequest.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/AccessibilityDeclarationUpdateRequest/Data-data.dictionary)
+
+ The data structure of the request body you use to update an accessibility declaration.
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/accessibilitydeclarationupdaterequest>

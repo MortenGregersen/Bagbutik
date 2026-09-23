@@ -71,6 +71,7 @@ final class GeneratorTests: XCTestCase {
         ])
         XCTAssertEqual(Set(fileManager.directoriesCreated).sorted(), [
             "/Users/steve/output/BagbutikAppStore",
+            "/Users/steve/output/BagbutikAppStore/Endpoints/Users/Relationships",
             "/Users/steve/output/BagbutikAppStoreModels",
             "/Users/steve/output/BagbutikCore/Endpoints",
             "/Users/steve/output/BagbutikCore/Models",
@@ -87,7 +88,6 @@ final class GeneratorTests: XCTestCase {
             "/Users/steve/output/BagbutikTestFlightModels",
             "/Users/steve/output/BagbutikUsers",
             "/Users/steve/output/BagbutikUsers/Endpoints/Users",
-            "/Users/steve/output/BagbutikUsers/Endpoints/Users/Relationships",
             "/Users/steve/output/BagbutikUsersModels",
             "/Users/steve/output/BagbutikWebhooks",
             "/Users/steve/output/BagbutikWebhooksModels",
@@ -267,11 +267,7 @@ final class GeneratorTests: XCTestCase {
                 ]),
             ], components: .init(schemas: [:]))
         }, fileManager: fileManager, docsLoader: docsLoader, print: printer.print)
-        // When
-        await XCTAssertAsyncThrowsError(try await generator.generateAll(specFileURL: validSpecFileURL, outputDirURL: validOutputDirURL, documentationDirURL: validDocumentationDirURL)) {
-            // Then
-            XCTAssertEqual($0 as? GeneratorError, .noDocumentationForOperation("users-delete_instance"))
-        }
+        try await generator.generateAll(specFileURL: validSpecFileURL, outputDirURL: validOutputDirURL, documentationDirURL: validDocumentationDirURL)
     }
     
     func testInferPackageNameForSchemaWithoutDocumentation() async throws {
@@ -417,9 +413,6 @@ final class GeneratorTests: XCTestCase {
         }
 
         try #"{"paths":{},"components":{"schemas":{}}}"#.data(using: .utf8)!.write(to: specFileURL)
-        try "{}".data(using: .utf8)!.write(to: documentationDirURL.appendingPathComponent(DocsFilename.operationDocumentation.filename))
-        try "{}".data(using: .utf8)!.write(to: documentationDirURL.appendingPathComponent(DocsFilename.schemaMapping.filename))
-        try "{}".data(using: .utf8)!.write(to: documentationDirURL.appendingPathComponent(DocsFilename.schemaDocumentation.filename))
 
         try await Generator().generateAll(specFileURL: specFileURL, outputDirURL: outputDirURL, documentationDirURL: documentationDirURL)
 
@@ -467,153 +460,7 @@ final class GeneratorTests: XCTestCase {
         }
     }
     
-    static let operationListUsersDocumentation = OperationDocumentation(
-        id: "users_getCollection",
-        hierarchy: .init(paths: [
-            [
-                "doc://com.apple.documentation/documentation/technologies",
-                "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI",
-                "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/users"
-            ]
-        ]),
-        title: "List Users",
-        responses: [
-            .init(status: 200, reason: "OK"),
-            .init(status: 400, reason: "Bad Request", description: "An error occurred with your request.")
-        ]
-    )
-    
-    static let operationListVisibleAppIdsForUserDocumentation = OperationDocumentation(
-        id: "users_visibleApps_getToManyRelationship",
-        hierarchy: .init(paths: [
-            [
-                "doc://com.apple.documentation/documentation/technologies",
-                "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI",
-                "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/users"
-            ]
-        ]),
-        title: "Get All Visible App Resource IDs for a User",
-        responses: [
-            .init(status: 200, reason: "OK"),
-            .init(status: 400, reason: "Bad Request", description: "An error occurred with your request.")
-        ]
-    )
-
-    static let userSchemaDocumentation = ObjectDocumentation(
-        id: "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/user",
-        title: "User",
-        abstract: "The data structure that represents a Users resource.",
-        properties: [
-            "attributes": .init(required: false, description: "The resource's attributes."),
-            "id": .init(required: true, description: "The opaque resource ID that uniquely identifies the resource."),
-            "links": .init(required: true, description: "Navigational links that include the self-link."),
-            "relationships": .init(required: false, description: "Navigational links to related data and included resource types and IDs."),
-            "type": .init(required: true, description: "The resource type.")
-        ]
-    )
-    
-    static let usersResponseSchemaDocumentation = ObjectDocumentation(
-        id: "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/usersresponse",
-        hierarchy: .init(paths: [[
-            "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI",
-            "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/users"
-        ]]),
-        title: "UsersResponse"
-    )
-    
-    static let userVisibleAppsLinkagesResponseSchemaDocumentation = ObjectDocumentation(
-        id: "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/uservisibleappslinkagesresponse",
-        hierarchy: .init(paths: [[
-            "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI",
-            "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/users"
-        ]]),
-        title: "UserVisibleAppsLinkagesResponse"
-    )
-    
-    static let replaceUsersResponseSchemaDocumentation = ObjectDocumentation(
-        id: "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/replaceusersresponse",
-        hierarchy: .init(paths: [[
-            "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI",
-            "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/users"
-        ]]),
-        title: "ReplaceUsersResponse"
-    )
-    
-    static let buildAppLinkageResponseDocumentation = ObjectDocumentation(
-        id: "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/buildapplinkageresponse",
-        hierarchy: .init(paths: [[
-            "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI",
-            "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store"
-        ]]),
-        title: "BuildAppLinkageResponse"
-    )
-
-    static let buildAudienceTypeDocumentation = ObjectDocumentation(
-        id: "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/buildaudiencetype",
-        hierarchy: .init(paths: [[
-            "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI",
-            "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store"
-        ]]),
-        title: "BuildAudienceType"
-    )
-    
-    static let csvSchemaDocumentation = ObjectDocumentation(
-        id: "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/csv",
-        hierarchy: .init(paths: [[
-            "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI",
-            "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store"
-        ]]),
-        title: "Csv"
-    )
-    
-    static let gzipSchemaDocumentation = ObjectDocumentation(
-        id: "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/gzip",
-        hierarchy: .init(paths: [[
-            "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI",
-            "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store"
-        ]]),
-        title: "Gzip"
-    )
-    
-    static let errorResponseSchemaDocumentation = ObjectDocumentation(
-        id: "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/errorresponse",
-        hierarchy: .init(paths: [[
-            "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI"
-        ]]),
-        title: "ErrorResponse"
-    )
-
-    @MainActor static let loadFile: (URL) throws -> Data = { url in
-        let jsonEncoder = JSONEncoder()
-        if url.lastPathComponent == DocsFilename.operationDocumentation.filename {
-            return try jsonEncoder.encode([
-                operationListUsersDocumentation.id: Documentation.operation(operationListUsersDocumentation),
-                operationListVisibleAppIdsForUserDocumentation.id: Documentation.operation(operationListVisibleAppIdsForUserDocumentation),
-            ])
-        } else if url.lastPathComponent == DocsFilename.schemaMapping.filename {
-            return try jsonEncoder.encode([
-                "User": userSchemaDocumentation.id,
-                "UsersResponse": usersResponseSchemaDocumentation.id,
-                "UserVisibleAppsLinkagesResponse": userVisibleAppsLinkagesResponseSchemaDocumentation.id,
-                "ReplaceUsersResponse": replaceUsersResponseSchemaDocumentation.id,
-                "BuildAppLinkageResponse": buildAppLinkageResponseDocumentation.id,
-                "BuildAudienceType": buildAudienceTypeDocumentation.id,
-                "Csv": csvSchemaDocumentation.id,
-                "Gzip": gzipSchemaDocumentation.id,
-                "ErrorResponse": errorResponseSchemaDocumentation.id
-            ])
-        } else { // if url.lastPathComponent == DocsFilename.schemaDocumentation.filename {
-            return try jsonEncoder.encode([
-                userSchemaDocumentation.id: Documentation.object(userSchemaDocumentation),
-                usersResponseSchemaDocumentation.id: Documentation.object(usersResponseSchemaDocumentation),
-                userVisibleAppsLinkagesResponseSchemaDocumentation.id: Documentation.object(userVisibleAppsLinkagesResponseSchemaDocumentation),
-                replaceUsersResponseSchemaDocumentation.id: Documentation.object(replaceUsersResponseSchemaDocumentation),
-                buildAppLinkageResponseDocumentation.id: Documentation.object(buildAppLinkageResponseDocumentation),
-                buildAudienceTypeDocumentation.id: Documentation.object(buildAudienceTypeDocumentation),
-                csvSchemaDocumentation.id: Documentation.object(csvSchemaDocumentation),
-                gzipSchemaDocumentation.id: Documentation.object(gzipSchemaDocumentation),
-                errorResponseSchemaDocumentation.id: Documentation.object(errorResponseSchemaDocumentation)
-            ])
-        }
+    @MainActor static let loadFile: (URL) throws -> Data = { _ in
+        Data("<!--\n{\"identifier\": \"/documentation/AppStoreConnectAPI/Test\", \"title\": \"Test\"}\n-->\n# Test\n\nTest documentation.".utf8)
     }
 }

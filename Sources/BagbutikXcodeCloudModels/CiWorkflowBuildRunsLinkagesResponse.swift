@@ -1,6 +1,26 @@
 import BagbutikCore
 import Foundation
 
+/**
+ # CiWorkflowBuildRunsLinkagesResponse
+
+ ```
+ object CiWorkflowBuildRunsLinkagesResponse
+ ```
+
+ ## Topics
+
+ ### Dictionaries
+
+ [`object CiWorkflowBuildRunsLinkagesResponse.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/CiWorkflowBuildRunsLinkagesResponse/Data-data.dictionary)
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/ciworkflowbuildrunslinkagesresponse>
+ */
 public struct CiWorkflowBuildRunsLinkagesResponse: Codable, Sendable, PagedResponse {
     public let data: [Data]
     public let links: PagedDocumentLinks

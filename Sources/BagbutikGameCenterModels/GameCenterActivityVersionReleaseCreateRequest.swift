@@ -3,7 +3,24 @@ import Foundation
 
 /**
  # GameCenterActivityVersionReleaseCreateRequest
+
  The request body for releasing a Game Center activity version to players.
+
+ ```
+ object GameCenterActivityVersionReleaseCreateRequest
+ ```
+
+ ## Topics
+
+ ### Dictionaries
+
+ [`object GameCenterActivityVersionReleaseCreateRequest.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/GameCenterActivityVersionReleaseCreateRequest/Data-data.dictionary)
+
+ The request body you use to create a Game Center activity version release.
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecenteractivityversionreleasecreaterequest>

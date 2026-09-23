@@ -4,16 +4,31 @@ import Foundation
 
 /**
  # AppEncryptionDeclarationResponse
+
  A response containing a single app encryption declaration.
+
+ ```
+ object AppEncryptionDeclarationResponse
+ ```
+
+ ## See Also
+
+ [`Read app encryption declaration information`](https://developer.apple.com/documentation/AppStoreConnectAPI/GET-v1-appEncryptionDeclarations-_id_)
+
+ Get information about a specific app encryption declaration.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appencryptiondeclarationresponse>
  */
 public struct AppEncryptionDeclarationResponse: Codable, Sendable {
-    /// The resource data.
     public let data: AppEncryptionDeclaration
     public var included: [Included]?
-    /// Navigational links that include the self-link.
     public let links: DocumentLinks
 
     public init(data: AppEncryptionDeclaration,

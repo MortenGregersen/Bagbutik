@@ -71,10 +71,13 @@ public class FeedbackChecker {
         for patchedSchema in patchedSpec.patchedSchemasWithLocation {
             let schema = patchedSchema.schema
             let packageName: PackageName
-            if let documentation = try await self.docsLoader.resolveDocumentationForSchema(named: schema.name) {
-                packageName = try DocsLoader.resolvePackageName(for: documentation)
-            } else if let rootDocumentation = try await self.docsLoader.resolveDocumentationForSchema(named: patchedSchema.location.rootSchemaName) {
-                packageName = try DocsLoader.resolvePackageName(for: rootDocumentation)
+            if let url = schema.url,
+                      let resolvedPackageName = DocsLoader.resolvePackageName(from: url) {
+                packageName = resolvedPackageName
+            } else if let rootSchema = patchedSpec.components.schemas[patchedSchema.location.rootSchemaName],
+                      let url = rootSchema.url,
+                      let resolvedPackageName = DocsLoader.resolvePackageName(from: url) {
+                packageName = resolvedPackageName
             } else if let inferredPackageName = DocsLoader.resolvePackageName(from: schema.name) {
                 packageName = inferredPackageName
             } else {

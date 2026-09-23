@@ -4,7 +4,12 @@ import BagbutikGameCenterModels
 public extension Request {
     /**
      # Read the Leaderboards in a Group
+
      List all the leaderboard associated with a specific group.
+
+     ---
+
+     Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-gameCenterGroups-_id_-relationships-gameCenterLeaderboards>

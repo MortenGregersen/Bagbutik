@@ -4,21 +4,39 @@ import Foundation
 
 /**
  # AppClipHeaderImage
+
  The image displayed on the App Clip card for a default App Clip experience, uploaded as part of App Clip configuration.
+
+ ```
+ object AppClipHeaderImage
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object AppClipHeaderImage.Attributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/AppClipHeaderImage/Attributes-data.dictionary)
+
+ The attributes that describe the image that appears on the App Clip card of a default App Clip experience.
+
+ [`object AppClipHeaderImage.Relationships`](https://developer.apple.com/documentation/AppStoreConnectAPI/AppClipHeaderImage/Relationships-data.dictionary)
+
+ The relationships of the App Clip Header Images resource you included in the request and those on which you can operate.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appclipheaderimage>
  */
 public struct AppClipHeaderImage: Codable, Sendable, Identifiable {
-    /// The opaque resource ID that uniquely identifies an App Clip Header Images resource.
     public let id: String
-    /// Navigational links that include the self-link.
     public var links: ResourceLinks?
-    /// The resource type.
     public var type: String { "appClipHeaderImages" }
-    /// The attributes that describe the App Clip Header Images resource.
     public var attributes: Attributes?
-    /// The navigational links to related data and included resource types and IDs.
     public var relationships: Relationships?
 
     public init(id: String,

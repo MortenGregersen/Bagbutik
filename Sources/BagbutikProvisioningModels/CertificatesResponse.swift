@@ -3,7 +3,24 @@ import Foundation
 
 /**
  # CertificatesResponse
+
  The response body for endpoints that list signing certificates.
+
+ ```
+ object CertificatesResponse
+ ```
+
+ ## See Also
+
+ [`List and download certificates`](https://developer.apple.com/documentation/AppStoreConnectAPI/GET-v1-certificates)
+
+ Find and list certificates and download their data.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/certificatesresponse>
@@ -11,12 +28,9 @@ import Foundation
 public struct CertificatesResponse: Codable, Sendable, PagedResponse {
     public typealias Data = Certificate
 
-    /// The resource data.
     public let data: [Certificate]
     public var included: [PassTypeId]?
-    /// Navigational links that include the self-link.
     public let links: PagedDocumentLinks
-    /// Paging information
     public var meta: PagingInformation?
 
     public init(data: [Certificate],

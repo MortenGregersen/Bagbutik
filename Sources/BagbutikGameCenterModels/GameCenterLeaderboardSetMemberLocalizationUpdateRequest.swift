@@ -3,7 +3,26 @@ import Foundation
 
 /**
  # GameCenterLeaderboardSetMemberLocalizationUpdateRequest
+
  The request body you use to update a leaderboard localization.
+
+ ```
+ object GameCenterLeaderboardSetMemberLocalizationUpdateRequest
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object GameCenterLeaderboardSetMemberLocalizationUpdateRequest.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/GameCenterLeaderboardSetMemberLocalizationUpdateRequest/Data-data.dictionary)
+
+ The request body you use to update a leaderboard.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterleaderboardsetmemberlocalizationupdaterequest>

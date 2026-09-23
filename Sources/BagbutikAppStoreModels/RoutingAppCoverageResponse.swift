@@ -3,7 +3,16 @@ import Foundation
 
 /**
  # RoutingAppCoverageResponse
+
  The response body for endpoints that read or modify the routing app coverage file for an app version.
+
+ ```
+ object RoutingAppCoverageResponse
+ ```
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/routingappcoverageresponse>

@@ -5,7 +5,12 @@ import BagbutikTestFlightModels
 public extension Request {
     /**
      # Add beta testers to a beta group
+
      Add a specific beta tester to one or more beta groups for beta testing.
+
+     ---
+
+     Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/post-v1-betaGroups-_id_-relationships-betaTesters>

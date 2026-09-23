@@ -3,9 +3,30 @@ import Foundation
 
 /**
  # AlternativeDistributionKeyCreateRequest
+
  The request body you use to create an alternative distribution key.
 
- Use this object to create a new alternative distribution key association in App Store Connect. For more infomation about the request that includes this request body, see [Add an Alternative Distribution Key](https://developer.apple.com/documentation/appstoreconnectapi/post-v1-alternativedistributionkeys).
+ ```
+ object AlternativeDistributionKeyCreateRequest
+ ```
+
+ ## Discussion
+
+ Use this object to create a new alternative distribution key association in App Store Connect. For more infomation about the request that includes this request body, see [`Add an Alternative Distribution Key`](https://developer.apple.com/documentation/AppStoreConnectAPI/POST-v1-alternativeDistributionKeys).
+
+ ## Topics
+
+ ### Objects
+
+ [`object AlternativeDistributionKeyCreateRequest.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/AlternativeDistributionKeyCreateRequest/Data-data.dictionary)
+
+ The request body you use to create an alternative distribution key.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/alternativedistributionkeycreaterequest>

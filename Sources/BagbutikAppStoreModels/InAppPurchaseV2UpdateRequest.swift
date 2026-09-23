@@ -3,7 +3,26 @@ import Foundation
 
 /**
  # InAppPurchaseV2UpdateRequest
+
  The request body you use to update an in-app purchase v2update request.
+
+ ```
+ object InAppPurchaseV2UpdateRequest
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object InAppPurchaseV2UpdateRequest.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/InAppPurchaseV2UpdateRequest/Data-data.dictionary)
+
+ The request body you use to update an in-app purchase v2update request.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/inapppurchasev2updaterequest>

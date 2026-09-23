@@ -5,7 +5,12 @@ import BagbutikModelsShared
 public extension Request {
     /**
      # Delete an app store version phased release
+
      Cancel a planned phased release that has not been started.
+
+     ---
+
+     Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/delete-v1-appStoreVersionPhasedReleases-_id_>

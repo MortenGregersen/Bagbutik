@@ -1,6 +1,20 @@
 import BagbutikCore
 import Foundation
 
+/**
+ # BetaFeedbackScreenshotImage
+
+ ```
+ object BetaFeedbackScreenshotImage
+ ```
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/betafeedbackscreenshotimage>
+ */
 public struct BetaFeedbackScreenshotImage: Codable, Sendable {
     public var expirationDate: Date?
     public var height: Int?

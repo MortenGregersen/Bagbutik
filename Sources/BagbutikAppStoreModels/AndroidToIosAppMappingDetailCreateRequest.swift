@@ -3,7 +3,26 @@ import Foundation
 
 /**
  # AndroidToIosAppMappingDetailCreateRequest
+
  The request body you use to create an Android to iOS app mapping detail.
+
+ ```
+ object AndroidToIosAppMappingDetailCreateRequest
+ ```
+
+ ## Topics
+
+ ### Dictionaries
+
+ [`object AndroidToIosAppMappingDetailCreateRequest.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/AndroidToIosAppMappingDetailCreateRequest/Data-data.dictionary)
+
+ The data structure that represents an Android to iOS app mapping detail of a create request resource.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/androidtoiosappmappingdetailcreaterequest>

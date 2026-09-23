@@ -3,21 +3,39 @@ import Foundation
 
 /**
  # BetaLicenseAgreement
+
  The custom terms and conditions presented to TestFlight testers before they begin testing an app.
+
+ ```
+ object BetaLicenseAgreement
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object BetaLicenseAgreement.Attributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/BetaLicenseAgreement/Attributes-data.dictionary)
+
+ Attributes that describe a Beta License Agreements resource.
+
+ [`object BetaLicenseAgreement.Relationships`](https://developer.apple.com/documentation/AppStoreConnectAPI/BetaLicenseAgreement/Relationships-data.dictionary)
+
+ The relationships you include in the request and those on which you can operate.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/betalicenseagreement>
  */
 public struct BetaLicenseAgreement: Codable, Sendable, Identifiable {
-    /// The opaque resource ID that uniquely identifies the resource.
     public let id: String
-    /// Navigational links that include the self-link.
     public var links: ResourceLinks?
-    /// The resource type.
     public var type: String { "betaLicenseAgreements" }
-    /// The resource’s attributes.
     public var attributes: Attributes?
-    /// Navigational links to related data and included resource types and IDs.
     public var relationships: Relationships?
 
     public init(id: String,

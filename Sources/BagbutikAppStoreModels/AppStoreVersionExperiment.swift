@@ -1,6 +1,30 @@
 import BagbutikCore
 import Foundation
 
+/**
+ # AppStoreVersionExperiment
+
+ ```
+ object AppStoreVersionExperiment
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object AppStoreVersionExperiment.Attributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/AppStoreVersionExperiment/Attributes-data.dictionary)
+
+ [`object AppStoreVersionExperiment.Relationships`](https://developer.apple.com/documentation/AppStoreConnectAPI/AppStoreVersionExperiment/Relationships-data.dictionary)
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionexperiment>
+ */
 public struct AppStoreVersionExperiment: Codable, Sendable, Identifiable {
     public let id: String
     public var links: ResourceLinks?

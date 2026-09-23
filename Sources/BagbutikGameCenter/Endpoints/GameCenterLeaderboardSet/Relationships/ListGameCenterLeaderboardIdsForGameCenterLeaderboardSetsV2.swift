@@ -4,7 +4,23 @@ import BagbutikGameCenterModels
 public extension Request {
     /**
      # Get All Leaderboard IDs for a Game Center Leaderboard Set
+
      Get a list of leaderboard resource IDs for a specific Game Center leaderboard set.
+
+     ## Overview
+
+     - id:
+     - limit:
+     - 200:
+     - 400:
+     - 401:
+     - 403:
+     - 404:
+     - 429:
+
+     ---
+
+     Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/get-v2-gameCenterLeaderboardSets-_id_-relationships-gameCenterLeaderboards>

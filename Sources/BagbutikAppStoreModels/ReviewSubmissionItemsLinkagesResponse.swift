@@ -3,7 +3,56 @@ import Foundation
 
 /**
  # ReviewSubmissionItemsLinkagesResponse
+
  A response containing the resource identifiers of items included in a review submission.
+
+ ```
+ object ReviewSubmissionItemsLinkagesResponse
+ ```
+
+ ## Topics
+
+ ### Dictionaries
+
+ [`object ReviewSubmissionItemsLinkagesResponse.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/ReviewSubmissionItemsLinkagesResponse/Data-data.dictionary)
+
+ The data element of the response body.
+
+ ## See Also
+
+ [`object ReviewSubmission`](https://developer.apple.com/documentation/AppStoreConnectAPI/ReviewSubmission)
+
+ A formal submission to App Store review grouping one or more items — app versions, in-app purchases, or events — for simultaneous review.
+
+ [`object ReviewSubmissionItem`](https://developer.apple.com/documentation/AppStoreConnectAPI/ReviewSubmissionItem)
+
+ An individual reviewable item — such as an app version, in-app purchase, or App Clip — included in a review submission.
+
+ [`object ReviewSubmissionUpdateRequest`](https://developer.apple.com/documentation/AppStoreConnectAPI/ReviewSubmissionUpdateRequest)
+
+ The request body you use to update a review submission update request.
+
+ [`object ReviewSubmissionCreateRequest`](https://developer.apple.com/documentation/AppStoreConnectAPI/ReviewSubmissionCreateRequest)
+
+ The request body for creating a review submission for an App Store version or associated items.
+
+ [`object ReviewSubmissionResponse`](https://developer.apple.com/documentation/AppStoreConnectAPI/ReviewSubmissionResponse)
+
+ The response body for endpoints that create, read, or modify a single review submission.
+
+ [`object ReviewSubmissionsResponse`](https://developer.apple.com/documentation/AppStoreConnectAPI/ReviewSubmissionsResponse)
+
+ The response body for endpoints that list review submissions for an app.
+
+ [`object AppReviewSubmissionsLinkagesResponse`](https://developer.apple.com/documentation/AppStoreConnectAPI/AppReviewSubmissionsLinkagesResponse)
+
+ A response containing the resource identifiers of review submissions associated with an app.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/reviewsubmissionitemslinkagesresponse>

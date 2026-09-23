@@ -3,7 +3,30 @@ import Foundation
 
 /**
  # ReviewSubmissionItem
+
  An individual reviewable item — such as an app version, in-app purchase, or App Clip — included in a review submission.
+
+ ```
+ object ReviewSubmissionItem
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object ReviewSubmissionItem.Attributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/ReviewSubmissionItem/Attributes-data.dictionary)
+
+ Attributes that describe a review submission item resource.
+
+ [`object ReviewSubmissionItem.Relationships`](https://developer.apple.com/documentation/AppStoreConnectAPI/ReviewSubmissionItem/Relationships-data.dictionary)
+
+ The relationships you include in the request and those you can operate on.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/reviewsubmissionitem>

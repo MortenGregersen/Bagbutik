@@ -4,7 +4,78 @@ import BagbutikGameCenterModels
 public extension Request {
     /**
      # Read Leaderboard Information
+
      Read information about a specific leaderboard.
+
+     ## Discussion
+
+     ### Example Request and Response
+
+     **Request:**
+
+     ```
+     https://api.appstoreconnect.apple.com/v1/gameCenterLeaderboards/843189c3-61a6-480a-a9d2-760a41299829
+     ```
+
+     **Response:**
+
+     ```json
+     {
+       “data” : {
+         “type” : “gameCenterLeaderboards”,
+         “id” : “843189c3-61a6-480a-a9d2-760a41299829”,
+         “attributes” : {
+           “defaultFormatter” : “INTEGER”,
+           “referenceName” : “Latte Art”,
+           “vendorIdentifier” : “LA_LB”,
+           “submissionType” : “BEST_SCORE”,
+           “scoreSortType” : “DESC”,
+           “scoreRangeStart” : “1”,
+           “scoreRangeEnd” : “100”,
+           “recurrenceStartDate” : “2023-09-02T07:00:00Z”,
+           “recurrenceDuration” : “PT168H”,
+           “recurrenceRule” : “FREQ=DAILY;INTERVAL=7”,
+           “archived” : false
+         },
+         “relationships” : {
+           “groupLeaderboard” : {
+             “links” : {
+               “self” : “https://api.appstoreconnect.apple.com/v1/gameCenterLeaderboards/843189c3-61a6-480a-a9d2-760a41299829/relationships/groupLeaderboard”,
+               “related” : “https://api.appstoreconnect.apple.com/v1/gameCenterLeaderboards/843189c3-61a6-480a-a9d2-760a41299829/groupLeaderboard”
+             }
+           },
+           “localizations” : {
+             “links” : {
+               “self” : “https://api.appstoreconnect.apple.com/v1/gameCenterLeaderboards/843189c3-61a6-480a-a9d2-760a41299829/relationships/localizations”,
+               “related” : “https://api.appstoreconnect.apple.com/v1/gameCenterLeaderboards/843189c3-61a6-480a-a9d2-760a41299829/localizations”
+             }
+           },
+           “releases” : {
+             “links” : {
+               “self” : “https://api.appstoreconnect.apple.com/v1/gameCenterLeaderboards/843189c3-61a6-480a-a9d2-760a41299829/relationships/releases”,
+               “related” : “https://api.appstoreconnect.apple.com/v1/gameCenterLeaderboards/843189c3-61a6-480a-a9d2-760a41299829/releases”
+             }
+           },
+           “leaderboardScores” : {
+             “links” : {
+               “self” : “https://api.appstoreconnect.apple.com/v1/gameCenterLeaderboards/843189c3-61a6-480a-a9d2-760a41299829/relationships/leaderboardScores”,
+               “related” : “https://api.appstoreconnect.apple.com/v1/gameCenterLeaderboards/843189c3-61a6-480a-a9d2-760a41299829/leaderboardScores”
+             }
+           }
+         },
+         “links” : {
+           “self” : “https://api.appstoreconnect.apple.com/v1/gameCenterLeaderboards/843189c3-61a6-480a-a9d2-760a41299829”
+         }
+       },
+       “links” : {
+         “self” : “https://api.appstoreconnect.apple.com/v1/gameCenterLeaderboards/843189c3-61a6-480a-a9d2-760a41299829”
+       }
+     }
+     ```
+
+     ---
+
+     Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-gameCenterLeaderboards-_id_>

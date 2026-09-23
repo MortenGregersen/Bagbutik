@@ -3,17 +3,23 @@ import Foundation
 
 /**
  # BetaAppClipInvocationResponse
+
  A response containing a single TestFlight App Clip invocation URL.
+
+ ```
+ object BetaAppClipInvocationResponse
+ ```
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/betaappclipinvocationresponse>
  */
 public struct BetaAppClipInvocationResponse: Codable, Sendable {
-    /// The resource data.
     public let data: BetaAppClipInvocation
-    /// The requested relationship data.
     public var included: [BetaAppClipInvocationLocalization]?
-    /// Navigational links that include the self-link.
     public let links: DocumentLinks
 
     public init(data: BetaAppClipInvocation,

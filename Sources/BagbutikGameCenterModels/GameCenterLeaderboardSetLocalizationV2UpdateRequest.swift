@@ -3,7 +3,30 @@ import Foundation
 
 /**
  # GameCenterLeaderboardSetLocalizationV2UpdateRequest
+
  The request body you use to update a Game Center leaderboard set localization v2.
+
+ ```
+ object GameCenterLeaderboardSetLocalizationV2UpdateRequest
+ ```
+
+ ## Overview
+
+ - data:
+
+ ## Topics
+
+ ### Dictionaries
+
+ [`object GameCenterLeaderboardSetLocalizationV2UpdateRequest.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/GameCenterLeaderboardSetLocalizationV2UpdateRequest/Data-data.dictionary)
+
+ The data structure that represents a Game Center leaderboard set localization update request resource.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterleaderboardsetlocalizationv2updaterequest>

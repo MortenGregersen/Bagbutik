@@ -3,21 +3,39 @@ import Foundation
 
 /**
  # ScmRepository
+
  A source code repository connected to Xcode Cloud, used as the source for workflow builds.
+
+ ```
+ object ScmRepository
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object ScmRepository.Attributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/ScmRepository/Attributes-data.dictionary)
+
+ The attributes that describe a Repositories resource.
+
+ [`object ScmRepository.Relationships`](https://developer.apple.com/documentation/AppStoreConnectAPI/ScmRepository/Relationships-data.dictionary)
+
+ The relationships of the Repositories resource you included in the request and those on which you can operate.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/scmrepository>
  */
 public struct ScmRepository: Codable, Sendable, Identifiable {
-    /// The opaque resource ID that uniquely identifies a Repositories resource.
     public let id: String
-    /// The navigational links that include the self-link.
     public var links: ResourceLinks?
-    /// The resource type.
     public var type: String { "scmRepositories" }
-    /// The attributes that describe the Repositories resource.
     public var attributes: Attributes?
-    /// The navigational links to related data and included resource types and IDs.
     public var relationships: Relationships?
 
     public init(id: String,

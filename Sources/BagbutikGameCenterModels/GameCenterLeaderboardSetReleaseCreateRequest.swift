@@ -3,7 +3,26 @@ import Foundation
 
 /**
  # GameCenterLeaderboardSetReleaseCreateRequest
+
  The request body you use to create a leaderboard set release.
+
+ ```
+ object GameCenterLeaderboardSetReleaseCreateRequest
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object GameCenterLeaderboardSetReleaseCreateRequest.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/GameCenterLeaderboardSetReleaseCreateRequest/Data-data.dictionary)
+
+ The request body you use to create a Game Center leaderboard set release.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterleaderboardsetreleasecreaterequest>

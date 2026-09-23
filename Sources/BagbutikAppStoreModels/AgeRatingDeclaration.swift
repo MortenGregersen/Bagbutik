@@ -3,19 +3,34 @@ import Foundation
 
 /**
  # AgeRatingDeclaration
+
  A set of content descriptors for your app that App Store Connect uses to assign an age rating.
+
+ ```
+ object AgeRatingDeclaration
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object AgeRatingDeclaration.Attributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/AgeRatingDeclaration/Attributes-data.dictionary)
+
+ Attributes that describe an Age Rating Declarations resource.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/ageratingdeclaration>
  */
 public struct AgeRatingDeclaration: Codable, Sendable, Identifiable {
-    /// The opaque resource ID that uniquely identifies the resource.
     public let id: String
-    /// Navigational links that include the self-link.
     public var links: ResourceLinks?
-    /// The resource type.
     public var type: String { "ageRatingDeclarations" }
-    /// Attributes that describe this Age Rating Declarations resource.
     public var attributes: Attributes?
 
     public init(id: String,

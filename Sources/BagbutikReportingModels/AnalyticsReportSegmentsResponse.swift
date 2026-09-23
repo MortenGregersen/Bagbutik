@@ -3,9 +3,20 @@ import Foundation
 
 /**
  # AnalyticsReportSegmentsResponse
+
  The response body for endpoints that list the downloadable segments of an analytics report instance.
 
- Use this object with [Read the Segments for a Report](https://developer.apple.com/documentation/appstoreconnectapi/get-v1-analyticsreportinstances-_id_-segments).
+ ```
+ object AnalyticsReportSegmentsResponse
+ ```
+
+ ## Discussion
+
+ Use this object with [`Read the Segments for a Report`](https://developer.apple.com/documentation/AppStoreConnectAPI/GET-v1-analyticsReportInstances-_id_-segments).
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/analyticsreportsegmentsresponse>

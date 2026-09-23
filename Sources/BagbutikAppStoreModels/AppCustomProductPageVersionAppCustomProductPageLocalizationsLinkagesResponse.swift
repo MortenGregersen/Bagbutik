@@ -1,6 +1,26 @@
 import BagbutikCore
 import Foundation
 
+/**
+ # AppCustomProductPageVersionAppCustomProductPageLocalizationsLinkagesResponse
+
+ ```
+ object AppCustomProductPageVersionAppCustomProductPageLocalizationsLinkagesResponse
+ ```
+
+ ## Topics
+
+ ### Dictionaries
+
+ [`object AppCustomProductPageVersionAppCustomProductPageLocalizationsLinkagesResponse.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/AppCustomProductPageVersionAppCustomProductPageLocalizationsLinkagesResponse/Data-data.dictionary)
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appcustomproductpageversionappcustomproductpagelocalizationslinkagesresponse>
+ */
 public struct AppCustomProductPageVersionAppCustomProductPageLocalizationsLinkagesResponse: Codable, Sendable, PagedResponse {
     public let data: [Data]
     public let links: PagedDocumentLinks

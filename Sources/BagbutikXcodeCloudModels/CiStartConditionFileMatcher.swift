@@ -3,17 +3,23 @@ import Foundation
 
 /**
  # CiStartConditionFileMatcher
+
  A path pattern filter applied to an Xcode Cloud workflow start condition, restricting triggers to changes in specific files or directories.
+
+ ```
+ object CiStartConditionFileMatcher
+ ```
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/cistartconditionfilematcher>
  */
 public struct CiStartConditionFileMatcher: Codable, Sendable {
-    /// The directory you configure for a custom start condition’s Files and Folders setting.
     public var directory: String?
-    /// The file extension you configure for a custom start condition’s Files and Folders setting.
     public var fileExtension: String?
-    /// The filename you configure for a custom start condition’s Files and Folders setting.
     public var fileName: String?
 
     public init(directory: String? = nil,

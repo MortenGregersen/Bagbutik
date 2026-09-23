@@ -4,7 +4,12 @@ import BagbutikGameCenterModels
 public extension Request {
     /**
      # List Leaderboard Sets in a Group Leaderboard Set
+
      List information about leaderboards and leaderboard sets in a group leaderboard set.
+
+     ---
+
+     Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-gameCenterLeaderboardSets-_id_-groupLeaderboardSet>

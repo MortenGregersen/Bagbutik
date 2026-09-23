@@ -3,7 +3,28 @@ import Foundation
 
 /**
  # GameCenterChallengeVersion
+
  The data structure that represent a challenge version.
+
+ ```
+ object GameCenterChallengeVersion
+ ```
+
+ ## Topics
+
+ ### Dictionaries
+
+ [`object GameCenterChallengeVersion.Attributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/GameCenterChallengeVersion/Attributes-data.dictionary)
+
+ Attributes that describe a challenge resource.
+
+ [`object GameCenterChallengeVersion.Relationships`](https://developer.apple.com/documentation/AppStoreConnectAPI/GameCenterChallengeVersion/Relationships-data.dictionary)
+
+ The relationships you include in the request and those on which you can operate.
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterchallengeversion>

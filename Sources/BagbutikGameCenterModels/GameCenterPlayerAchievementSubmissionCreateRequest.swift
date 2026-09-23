@@ -3,7 +3,26 @@ import Foundation
 
 /**
  # GameCenterPlayerAchievementSubmissionCreateRequest
+
  The request body you use to create a Game Center player achievement.
+
+ ```
+ object GameCenterPlayerAchievementSubmissionCreateRequest
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object GameCenterPlayerAchievementSubmissionCreateRequest.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/GameCenterPlayerAchievementSubmissionCreateRequest/Data-data.dictionary)
+
+ The request body you use to create a Game Center player achievement submission.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterplayerachievementsubmissioncreaterequest>

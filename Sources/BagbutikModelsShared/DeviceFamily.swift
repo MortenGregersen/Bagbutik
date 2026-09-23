@@ -1,6 +1,22 @@
 import BagbutikCore
 import Foundation
 
+/**
+ # DeviceFamily
+
+ String that represents a device family.
+
+ ```
+ string DeviceFamily
+ ```
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/devicefamily>
+ */
 public enum DeviceFamily: String, Sendable, ParameterValue, Codable, CaseIterable {
     case appleTV = "APPLE_TV"
     case appleWatch = "APPLE_WATCH"

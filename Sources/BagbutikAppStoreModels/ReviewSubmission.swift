@@ -3,7 +3,30 @@ import Foundation
 
 /**
  # ReviewSubmission
+
  A formal submission to App Store review grouping one or more items — app versions, in-app purchases, or events — for simultaneous review.
+
+ ```
+ object ReviewSubmission
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object ReviewSubmission.Attributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/ReviewSubmission/Attributes-data.dictionary)
+
+ Attributes that describe a review submission resource.
+
+ [`object ReviewSubmission.Relationships`](https://developer.apple.com/documentation/AppStoreConnectAPI/ReviewSubmission/Relationships-data.dictionary)
+
+ The relationships you include in the request and those on which you can operate.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/reviewsubmission>

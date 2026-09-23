@@ -3,7 +3,24 @@ import Foundation
 
 /**
  # PassTypeIdCertificatesLinkagesResponse
+
  A response containing the resource identifiers of signing certificates associated with a pass type identifier.
+
+ ```
+ object PassTypeIdCertificatesLinkagesResponse
+ ```
+
+ ## Topics
+
+ ### Dictionaries
+
+ [`object PassTypeIdCertificatesLinkagesResponse.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/PassTypeIdCertificatesLinkagesResponse/Data-data.dictionary)
+
+ The resource linkage data identifying a certificate linked to a pass type identifier.
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/passtypeidcertificateslinkagesresponse>

@@ -3,21 +3,39 @@ import Foundation
 
 /**
  # BuildBundle
+
  A specific binary bundle within a build, such as an app extension, App Clip, or nested app target.
+
+ ```
+ object BuildBundle
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object BuildBundle.Attributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/BuildBundle/Attributes-data.dictionary)
+
+ The attributes that describe a Build Bundles resource.
+
+ [`object BuildBundle.Relationships`](https://developer.apple.com/documentation/AppStoreConnectAPI/BuildBundle/Relationships-data.dictionary)
+
+ The relationships of the Build Bundles resource you included in the request and those on which you can operate.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/buildbundle>
  */
 public struct BuildBundle: Codable, Sendable, Identifiable {
-    /// The opaque resource ID that uniquely identifies a Build Bundles resource.
     public let id: String
-    /// Navigational links that include the self-link.
     public var links: ResourceLinks?
-    /// The resource type.
     public var type: String { "buildBundles" }
-    /// The attributes that describe the Build Bundles resource.
     public var attributes: Attributes?
-    /// The navigational links to related data and included resource types and IDs.
     public var relationships: Relationships?
 
     public init(id: String,

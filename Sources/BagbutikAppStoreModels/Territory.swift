@@ -3,7 +3,26 @@ import Foundation
 
 /**
  # Territory
+
  An App Store region (country or territory) where apps, subscriptions, and in-app purchases are offered.
+
+ ```
+ object Territory
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object Territory.Attributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/Territory/Attributes-data.dictionary)
+
+ Attributes that describe a Territories resource.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/territory>

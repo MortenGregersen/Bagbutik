@@ -3,7 +3,30 @@ import Foundation
 
 /**
  # TerritoryAvailability
+
  The availability setting for an app or content in a specific App Store territory, including release date configuration.
+
+ ```
+ object TerritoryAvailability
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object TerritoryAvailability.Attributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/TerritoryAvailability/Attributes-data.dictionary)
+
+ The attributes that describe a territory availability resource.
+
+ [`object TerritoryAvailability.Relationships`](https://developer.apple.com/documentation/AppStoreConnectAPI/TerritoryAvailability/Relationships-data.dictionary)
+
+ The relationships you include in the request and those on which you can operate.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/territoryavailability>

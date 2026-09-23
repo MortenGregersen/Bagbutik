@@ -3,19 +3,34 @@ import Foundation
 
 /**
  # GameCenterMatchmakingRuleSetTest
+
  A test run of a Game Center matchmaking rule set using simulated player properties to validate the rules.
+
+ ```
+ object GameCenterMatchmakingRuleSetTest
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object GameCenterMatchmakingRuleSetTest.Attributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/GameCenterMatchmakingRuleSetTest/Attributes-data.dictionary)
+
+ The results of testing a rule set.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingrulesettest>
  */
 public struct GameCenterMatchmakingRuleSetTest: Codable, Sendable, Identifiable {
-    /// A unique identifier for the rule set.
     public let id: String
-    /// The link representations of the object.
     public var links: ResourceLinks?
-    /// The type of resource object.
     public var type: String { "gameCenterMatchmakingRuleSetTests" }
-    /// The object attributes.
     public var attributes: Attributes?
 
     public init(id: String,

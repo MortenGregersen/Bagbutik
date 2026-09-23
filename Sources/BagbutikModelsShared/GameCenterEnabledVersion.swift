@@ -3,7 +3,30 @@ import Foundation
 
 /**
  # GameCenterEnabledVersion
- An app version with Game Center enabled. Deprecated in API version 3.0; use [GameCenterAppVersion](https://developer.apple.com/documentation/appstoreconnectapi/gamecenterappversion) instead.
+
+ An app version with Game Center enabled. Deprecated in API version 3.0; use [`GameCenterAppVersion`](https://developer.apple.com/documentation/AppStoreConnectAPI/GameCenterAppVersion) instead.
+
+ ```
+ object GameCenterEnabledVersion
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object GameCenterEnabledVersion.Attributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/GameCenterEnabledVersion/Attributes-data.dictionary)
+
+ Attributes that describe a Game Center Enabled Versions resource.
+
+ [`object GameCenterEnabledVersion.Relationships`](https://developer.apple.com/documentation/AppStoreConnectAPI/GameCenterEnabledVersion/Relationships-data.dictionary)
+
+ The relationships you include in the request and those on which you can operate.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterenabledversion>

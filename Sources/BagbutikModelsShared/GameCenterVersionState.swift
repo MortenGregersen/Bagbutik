@@ -1,6 +1,22 @@
 import BagbutikCore
 import Foundation
 
+/**
+ # GameCenterVersionState
+
+ A string representing the state of a Game Center version.
+
+ ```
+ string GameCenterVersionState
+ ```
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterversionstate>
+ */
 public enum GameCenterVersionState: String, Sendable, Codable, CaseIterable {
     case accepted = "ACCEPTED"
     case developerRejected = "DEVELOPER_REJECTED"

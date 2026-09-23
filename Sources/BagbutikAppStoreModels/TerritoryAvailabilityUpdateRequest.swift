@@ -3,7 +3,26 @@ import Foundation
 
 /**
  # TerritoryAvailabilityUpdateRequest
+
  The request body for updating the availability settings for an app or content in a specific territory.
+
+ ```
+ object TerritoryAvailabilityUpdateRequest
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object TerritoryAvailabilityUpdateRequest.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/TerritoryAvailabilityUpdateRequest/Data-data.dictionary)
+
+ The request body you use to update a territory availability update request.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/territoryavailabilityupdaterequest>

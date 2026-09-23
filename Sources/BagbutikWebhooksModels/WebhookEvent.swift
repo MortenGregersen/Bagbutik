@@ -3,7 +3,24 @@ import Foundation
 
 /**
  # WebhookEvent
+
  An event type that can trigger webhook notifications, such as build completion or review status changes.
+
+ ```
+ object WebhookEvent
+ ```
+
+ ## Topics
+
+ ### Dictionaries
+
+ [`object WebhookEvent.Attributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/WebhookEvent/Attributes-data.dictionary)
+
+ Attributes that describe a webhook event resource.
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/webhookevent>

@@ -3,7 +3,26 @@ import Foundation
 
 /**
  # EndAppAvailabilityPreOrderCreateRequest
+
  The request body you use to end an app’s preorder availability.
+
+ ```
+ object EndAppAvailabilityPreOrderCreateRequest
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object EndAppAvailabilityPreOrderCreateRequest.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/EndAppAvailabilityPreOrderCreateRequest/Data-data.dictionary)
+
+ The request body you use to create an end app availability pre-order.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/endappavailabilitypreordercreaterequest>

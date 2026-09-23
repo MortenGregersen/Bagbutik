@@ -3,7 +3,26 @@ import Foundation
 
 /**
  # GameCenterAchievementGroupAchievementLinkageRequest
+
  The request body you use to attach an achievement to an achievement group.
+
+ ```
+ object GameCenterAchievementGroupAchievementLinkageRequest
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object GameCenterAchievementGroupAchievementLinkageRequest.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/GameCenterAchievementGroupAchievementLinkageRequest/Data-data.dictionary)
+
+ The resource linkage data for setting the group achievement associated with a Game Center achievement.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterachievementgroupachievementlinkagerequest>

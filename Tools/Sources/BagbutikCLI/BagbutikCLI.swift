@@ -23,7 +23,7 @@ struct BagbutikCLI: AsyncParsableCommand {
         @Option(name: .shortAndLong, help: "The output folder for the generated files. Should contain the different Bagbutik packages.")
         var outputPath = "./Sources"
 
-        @Option(name: .shortAndLong, help: "The folder containing the fetched documentation. Should contain a \(DocsFilename.operationDocumentation.filename), a \(DocsFilename.schemaDocumentation.filename) and a \(DocsFilename.schemaMapping.filename).")
+        @Option(name: .shortAndLong, help: "The folder containing the fetched Apple Markdown mirror.")
         var documentationPath = "./Documentation"
 
         mutating func run() async throws {
@@ -46,7 +46,7 @@ struct BagbutikCLI: AsyncParsableCommand {
         @Option(name: .shortAndLong, help: "Path to the App Store Connect OpenAPI Spec")
         var specPath: String?
 
-        @Option(name: .shortAndLong, help: "The folder containing the fetched documentation. Should contain a \(DocsFilename.operationDocumentation.filename), a \(DocsFilename.schemaDocumentation.filename) and a \(DocsFilename.schemaMapping.filename).")
+        @Option(name: .shortAndLong, help: "The folder containing the fetched Apple Markdown mirror.")
         var documentationPath = "./Documentation"
         
         func run() async throws {

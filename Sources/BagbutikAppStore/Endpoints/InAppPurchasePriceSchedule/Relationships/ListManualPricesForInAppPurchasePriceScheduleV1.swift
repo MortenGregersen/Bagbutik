@@ -5,7 +5,12 @@ import BagbutikModelsShared
 public extension Request {
     /**
      # Read Price Information for an In-App Purchase Price Schedule
+
      Get information about a set price or prices for an in-app purchase price schedule.
+
+     ---
+
+     Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-inAppPurchasePriceSchedules-_id_-manualPrices>

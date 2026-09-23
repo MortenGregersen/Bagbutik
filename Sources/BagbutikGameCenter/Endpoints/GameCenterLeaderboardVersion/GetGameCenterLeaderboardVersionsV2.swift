@@ -4,7 +4,26 @@ import BagbutikGameCenterModels
 public extension Request {
     /**
      # Read Game Center Leaderboard Version Information
+
      Get information about a specific Game Center leaderboard version.
+
+     ## Overview
+
+     - id:
+     - fields[gameCenterLeaderboardLocalizations]:
+     - fields[gameCenterLeaderboardVersions]:
+     - include:
+     - limit[localizations]:
+     - 200:
+     - 400:
+     - 401:
+     - 403:
+     - 404:
+     - 429:
+
+     ---
+
+     Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/get-v2-gameCenterLeaderboardVersions-_id_>

@@ -3,7 +3,28 @@ import Foundation
 
 /**
  # WebhookDelivery
+
  A recorded delivery attempt of an event notification to a webhook endpoint, including the request and response details.
+
+ ```
+ object WebhookDelivery
+ ```
+
+ ## Topics
+
+ ### Dictionaries
+
+ [`object WebhookDelivery.Attributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/WebhookDelivery/Attributes-data.dictionary)
+
+ Attributes that describe a webhook delivery resource.
+
+ [`object WebhookDelivery.Relationships`](https://developer.apple.com/documentation/AppStoreConnectAPI/WebhookDelivery/Relationships-data.dictionary)
+
+ The relationships you include in the request and those on which you can operate.
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/webhookdelivery>

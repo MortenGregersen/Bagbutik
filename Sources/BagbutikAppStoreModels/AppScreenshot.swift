@@ -4,7 +4,30 @@ import Foundation
 
 /**
  # AppScreenshot
+
  The data structure that represent an App Screenshots resource.
+
+ ```
+ object AppScreenshot
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object AppScreenshot.Attributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/AppScreenshot/Attributes-data.dictionary)
+
+ Attributes that describe an App Screenshots resource.
+
+ [`object AppScreenshot.Relationships`](https://developer.apple.com/documentation/AppStoreConnectAPI/AppScreenshot/Relationships-data.dictionary)
+
+ The relationships you include in the request and those on which you can operate.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appscreenshot>

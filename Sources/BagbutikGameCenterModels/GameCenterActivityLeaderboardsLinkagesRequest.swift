@@ -3,7 +3,24 @@ import Foundation
 
 /**
  # GameCenterActivityLeaderboardsLinkagesRequest
+
  The request body for updating the list of leaderboards linked to a Game Center activity.
+
+ ```
+ object GameCenterActivityLeaderboardsLinkagesRequest
+ ```
+
+ ## Topics
+
+ ### Dictionaries
+
+ [`object GameCenterActivityLeaderboardsLinkagesRequest.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/GameCenterActivityLeaderboardsLinkagesRequest/Data-data.dictionary)
+
+ The request body you use to update a activity.
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecenteractivityleaderboardslinkagesrequest>

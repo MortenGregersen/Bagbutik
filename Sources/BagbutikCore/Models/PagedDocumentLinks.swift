@@ -2,19 +2,27 @@ import Foundation
 
 /**
  # PagedDocumentLinks
+
  Links related to the response document, including paging links.
 
+ ```
+ object PagedDocumentLinks
+ ```
+
+ ## Discussion
+
  All the response data constitutes multiple *documents.*
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/pageddocumentlinks>
  */
 public struct PagedDocumentLinks: Codable, Sendable {
-    /// The link to the first page of documents.
     public var first: String?
-    /// The link to the next page of documents.
     public var next: String?
-    /// The link that produced the current document.
     public let itself: String
 
     public init(first: String? = nil,

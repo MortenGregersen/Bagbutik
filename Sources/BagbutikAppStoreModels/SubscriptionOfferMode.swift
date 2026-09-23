@@ -1,6 +1,24 @@
 import BagbutikCore
 import Foundation
 
+/**
+ # SubscriptionOfferMode
+
+ A string that indicates the payment mode of a subscription offer.
+
+ ```
+ string SubscriptionOfferMode
+ ```
+
+ ## Discussion
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/subscriptionoffermode>
+ */
 public enum SubscriptionOfferMode: String, Sendable, Codable, CaseIterable {
     case freeTrial = "FREE_TRIAL"
     case payAsYouGo = "PAY_AS_YOU_GO"

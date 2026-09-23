@@ -5,7 +5,12 @@ import BagbutikModelsShared
 public extension Request {
     /**
      # Add compatible app version relationships
+
      Create a relationship between two Game Center app versions.
+
+     ---
+
+     Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/post-v1-gameCenterAppVersions-_id_-relationships-compatibilityVersions>

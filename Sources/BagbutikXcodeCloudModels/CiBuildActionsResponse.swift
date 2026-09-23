@@ -3,7 +3,16 @@ import Foundation
 
 /**
  # CiBuildActionsResponse
+
  The response body for endpoints that list actions for an Xcode Cloud build run.
+
+ ```
+ object CiBuildActionsResponse
+ ```
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/cibuildactionsresponse>
@@ -11,13 +20,9 @@ import Foundation
 public struct CiBuildActionsResponse: Codable, Sendable, PagedResponse {
     public typealias Data = CiBuildAction
 
-    /// The resource data.
     public let data: [CiBuildAction]
-    /// The requested relationship data.
     public var included: [CiBuildRun]?
-    /// The navigational links that include the self-link.
     public let links: PagedDocumentLinks
-    /// The paging information.
     public var meta: PagingInformation?
 
     public init(data: [CiBuildAction],

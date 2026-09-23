@@ -3,7 +3,30 @@ import Foundation
 
 /**
  # GameCenterLeaderboardVersionV2LocalizationsLinkagesResponse
+
  A response that contains a list of Game Center leaderboard version v2 localization linkage resources.
+
+ ```
+ object GameCenterLeaderboardVersionV2LocalizationsLinkagesResponse
+ ```
+
+ ## Overview
+
+ - data:
+ - links:
+ - meta:
+
+ ## Topics
+
+ ### Dictionaries
+
+ [`object GameCenterLeaderboardVersionV2LocalizationsLinkagesResponse.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/GameCenterLeaderboardVersionV2LocalizationsLinkagesResponse/Data-data.dictionary)
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterleaderboardversionv2localizationslinkagesresponse>

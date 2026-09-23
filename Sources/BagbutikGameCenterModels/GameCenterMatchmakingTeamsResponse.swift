@@ -3,7 +3,16 @@ import Foundation
 
 /**
  # GameCenterMatchmakingTeamsResponse
+
  The response body for endpoints that get multiple teams.
+
+ ```
+ object GameCenterMatchmakingTeamsResponse
+ ```
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingteamsresponse>
@@ -11,9 +20,7 @@ import Foundation
 public struct GameCenterMatchmakingTeamsResponse: Codable, Sendable, PagedResponse {
     public typealias Data = GameCenterMatchmakingTeam
 
-    /// The teams that the endpoint fetches.
     public let data: [GameCenterMatchmakingTeam]
-    /// The link representations of the object.
     public let links: PagedDocumentLinks
     public var meta: PagingInformation?
 

@@ -1,6 +1,26 @@
 import BagbutikCore
 import Foundation
 
+/**
+ # InAppPurchaseV2IapPriceScheduleLinkageResponse
+
+ ```
+ object InAppPurchaseV2IapPriceScheduleLinkageResponse
+ ```
+
+ ## Topics
+
+ ### Dictionaries
+
+ [`object InAppPurchaseV2IapPriceScheduleLinkageResponse.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/InAppPurchaseV2IapPriceScheduleLinkageResponse/Data-data.dictionary)
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/inapppurchasev2iappriceschedulelinkageresponse>
+ */
 public struct InAppPurchaseV2IapPriceScheduleLinkageResponse: Codable, Sendable {
     public let data: Data
     public let links: DocumentLinks

@@ -5,7 +5,12 @@ import BagbutikModelsShared
 public extension Request {
     /**
      # List all app store version localizations for an app store version
+
      Get a list of localized, version-level information about an app, for all locales.
+
+     ---
+
+     Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-appStoreVersions-_id_-appStoreVersionLocalizations>

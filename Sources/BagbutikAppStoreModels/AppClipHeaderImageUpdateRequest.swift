@@ -3,13 +3,31 @@ import Foundation
 
 /**
  # AppClipHeaderImageUpdateRequest
+
  The request body you use to commit the image asset for a default App Clip experience.
+
+ ```
+ object AppClipHeaderImageUpdateRequest
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object AppClipHeaderImageUpdateRequest.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/AppClipHeaderImageUpdateRequest/Data-data.dictionary)
+
+ The data element of the request body.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appclipheaderimageupdaterequest>
  */
 public struct AppClipHeaderImageUpdateRequest: Codable, Sendable, RequestBody {
-    /// The resource data.
     public let data: Data
 
     public init(data: Data) {

@@ -4,7 +4,12 @@ import BagbutikTestFlightModels
 public extension Request {
     /**
      # List all beta build localizations of a build
+
      Get a list of localized beta test information for a specific build.
+
+     ---
+
+     Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-builds-_id_-betaBuildLocalizations>

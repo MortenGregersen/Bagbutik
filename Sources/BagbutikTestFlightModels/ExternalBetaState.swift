@@ -1,6 +1,22 @@
 import BagbutikCore
 import Foundation
 
+/**
+ # ExternalBetaState
+
+ String that represents a build’s availability for external testing.
+
+ ```
+ string ExternalBetaState
+ ```
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/externalbetastate>
+ */
 public enum ExternalBetaState: String, Sendable, Codable, CaseIterable {
     case betaApproved = "BETA_APPROVED"
     case betaRejected = "BETA_REJECTED"

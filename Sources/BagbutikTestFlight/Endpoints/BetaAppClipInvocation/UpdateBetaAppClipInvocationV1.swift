@@ -4,7 +4,12 @@ import BagbutikTestFlightModels
 public extension Request {
     /**
      # Modify an app clip invocation you provide to testers
+
      Change an App Clip invocation you make available to testers in the TestFlight app.
+
+     ---
+
+     Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/patch-v1-betaAppClipInvocations-_id_>

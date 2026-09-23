@@ -3,7 +3,26 @@ import Foundation
 
 /**
  # GameCenterMatchmakingQueueRequestsV1MetricResponse
+
  The response body for match requests in a queue.
+
+ ```
+ object GameCenterMatchmakingQueueRequestsV1MetricResponse
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object GameCenterMatchmakingQueueRequestsV1MetricResponse.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/GameCenterMatchmakingQueueRequestsV1MetricResponse/Data-data.dictionary)
+
+ The data structure in a response body for the match requests in a queue.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingqueuerequestsv1metricresponse>
