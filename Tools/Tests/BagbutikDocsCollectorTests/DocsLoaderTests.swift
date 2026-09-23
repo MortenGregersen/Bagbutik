@@ -14,7 +14,11 @@ final class DocsLoaderTests: XCTestCase {
         try await loader.loadDocs(documentationDirURL: directory)
         let documentation = try await loader.resolveDocumentationForSchema(withDocsUrl: sourceURL.absoluteString, as: .object)
 
-        XCTAssertEqual(documentation, .object(.init(id: "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/User", title: "User", abstract: "A team member.")))
+        XCTAssertEqual(documentation, .object(.init(
+            id: "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/User",
+            title: "User",
+            content: "# User\n\nA team member."
+        )))
     }
 
     func testLoaderIgnoresDocumentationRootDirectory() async throws {

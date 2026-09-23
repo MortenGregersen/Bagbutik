@@ -16,30 +16,12 @@ public enum Documentation: Equatable, Sendable {
         }
     }
 
-    var title: String {
+    var content: String {
         switch self {
-        case .enum(let documentation): documentation.title
-        case .typealias(let documentation): documentation.title
-        case .object(let documentation): documentation.title
-        case .operation(let documentation): documentation.title
-        }
-    }
-
-    var abstract: String? {
-        switch self {
-        case .enum(let documentation): documentation.abstract
-        case .typealias(let documentation): documentation.abstract
-        case .object(let documentation): documentation.abstract
-        case .operation(let documentation): documentation.abstract
-        }
-    }
-
-    var discussion: String? {
-        switch self {
-        case .enum(let documentation): documentation.discussion
-        case .typealias(let documentation): documentation.discussion
-        case .object(let documentation): documentation.discussion
-        case .operation(let documentation): documentation.discussion
+        case .enum(let documentation): documentation.content
+        case .typealias(let documentation): documentation.content
+        case .object(let documentation): documentation.content
+        case .operation(let documentation): documentation.content
         }
     }
 }

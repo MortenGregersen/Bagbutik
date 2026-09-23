@@ -1,13 +1,11 @@
 public struct ObjectDocumentation: Equatable, Sendable {
     public let id: String
     public let title: String
-    public let abstract: String?
-    public let discussion: String?
+    public let content: String
 
-    public init(id: String, title: String, abstract: String? = nil, discussion: String? = nil) {
+    public init(id: String, title: String, content: String) {
         self.id = id
         self.title = title
-        self.abstract = abstract
-        self.discussion = discussion
+        self.content = content
     }
 }

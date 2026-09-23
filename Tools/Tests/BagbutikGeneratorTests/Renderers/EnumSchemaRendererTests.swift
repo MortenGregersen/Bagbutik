@@ -9,8 +9,7 @@ final class EnumSchemaRendererTests: XCTestCase {
         let docsLoader = DocsLoader(schemaDocumentationById: ["/platform": .enum(.init(
             id: "/platform",
             title: "Platform",
-            abstract: "Strings that represent Apple operating systems.",
-            discussion: "All platforms are nice..."
+            content: "# Platform\nStrings that represent Apple operating systems.\n\nAll platforms are nice..."
         ))])
         let renderer = EnumSchemaRenderer(docsLoader: docsLoader, shouldFormat: true)
         let schema = EnumSchema(name: "Platform", type: "string", url: "/platform", caseValues: ["MAC_OS", "IOS", "TV_OS"])

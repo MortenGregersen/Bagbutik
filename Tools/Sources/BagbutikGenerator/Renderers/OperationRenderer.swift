@@ -41,26 +41,17 @@ public class OperationRenderer: Renderer {
         let parametersInfo = try await OperationParametersInfo(for: operation, in: path, docsLoader: docsLoader)
         let operationName = operation.getVersionedName(path: path)
         var rendered = await "import BagbutikCore\n\n" + renderExtension(on: "Request") {
-            let title = documentation?.title ?? "No overview available"
             var parameters = parametersInfo.pathParameters
             if let requestBody = parametersInfo.requestBody {
                 parameters.append(requestBody)
             }
             parameters.append(contentsOf: parametersInfo.parameters)
-            var extensionContent = await self.renderDocumentationBlock(title: title) {
+            var extensionContent = await self.renderDocumentationBlock {
                 let url = "https://developer.apple.com/documentation/appstoreconnectapi/" + operation.getDocumentationId(path: path)
-                var renderedDocumentation = ""
-                var documentationContent = [String]()
-                if let abstract = documentation?.abstract, !abstract.isEmpty {
-                    documentationContent.append(abstract)
-                }
-                if let discussion = documentation?.discussion, !discussion.isEmpty {
-                    documentationContent.append(discussion)
-                }
-                if documentationContent.isEmpty {
-                    renderedDocumentation += "\n"
-                }
+                var documentationContent = documentation.map(\.content) ?? ""
                 documentationContent.append("""
+
+
                 Full documentation:
                 <\(url)>
                 """)
@@ -68,8 +59,8 @@ public class OperationRenderer: Renderer {
                     partialResult.append(self.renderDocumentationParameterLine(name: parameter.name, description: parameter.documentation))
                 }.joined(separator: "\n")
                 parametersPart += "\n- Returns: A ``Request`` to send to an instance of ``BagbutikService``"
-                documentationContent.append(parametersPart)
-                return renderedDocumentation + documentationContent.joined(separator: "\n\n")
+                documentationContent.append("\n\n\(parametersPart)")
+                return documentationContent
             }
             extensionContent += "\n" + renderFunction(
                 named: operationName,

@@ -13,18 +13,12 @@ public class EnumSchemaRenderer: Renderer {
     public func render(enumSchema: EnumSchema) async throws -> String {
         var renderedDocumentation = ""
         if let url = enumSchema.url,
-           case .enum(let enumDocumentation) = try await docsLoader.resolveDocumentationForSchema(withDocsUrl: url, as: .enum),
-           let abstract = enumDocumentation.abstract {
-            renderedDocumentation += await renderDocumentationBlock(title: enumDocumentation.title) {
-                var documentationContent = [abstract]
-                if let discussion = enumDocumentation.discussion {
-                    documentationContent.append(discussion)
-                }
-                documentationContent.append("""
+           case .enum(let enumDocumentation) = try await docsLoader.resolveDocumentationForSchema(withDocsUrl: url, as: .enum) {
+            renderedDocumentation += await renderDocumentationBlock {
+                [enumDocumentation.content, """
                 Full documentation:
                 <\(url)>
-                """)
-                return documentationContent.joined(separator: "\n\n")
+                """].joined(separator: "\n\n")
             }
         }
         let protocols = enumSchema.additionalProtocols

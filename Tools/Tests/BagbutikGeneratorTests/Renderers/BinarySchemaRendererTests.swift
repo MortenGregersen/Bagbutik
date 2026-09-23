@@ -8,7 +8,7 @@ final class BinarySchemaRendererTests: XCTestCase {
         // Given
         let docsLoader = DocsLoader(schemaDocumentationById: [
             "some://url": .object(
-                .init(id: "/gzip", title: "Gzip", abstract: "Some summary", discussion: nil))
+                .init(id: "/gzip", title: "Gzip", content: "# Gzip\n\nSome summary"))
         ])
         let renderer = BinarySchemaRenderer(docsLoader: docsLoader, shouldFormat: true)
         let schema = BinarySchema(name: "Gzip", url: "some://url")
@@ -16,7 +16,14 @@ final class BinarySchemaRendererTests: XCTestCase {
         let rendered = try await renderer.render(binarySchema: schema)
         // Then
         XCTAssertEqual(rendered, #"""
-        /// Some summary
+        /**
+         # Gzip
+
+         Some summary
+
+         Full documentation:
+         <some://url>
+         */
         public struct Gzip: BinaryResponse {
             public let data: Data
 

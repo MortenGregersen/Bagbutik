@@ -14,18 +14,12 @@ public class ObjectSchemaRenderer: Renderer {
      */
     public func render(objectSchema: ObjectSchema, otherSchemas: [String: Schema]) async throws -> String {
         var rendered = ""
-        if case .object(let objectDocumentation) = try await docsLoader.resolveDocumentationForSchema(withDocsUrl: objectSchema.url, as: .object),
-           let abstract = objectDocumentation.abstract {
-            rendered += await renderDocumentationBlock(title: objectDocumentation.title) {
-                var documentationContent = [abstract]
-                if let discussion = objectDocumentation.discussion, !discussion.isEmpty {
-                    documentationContent.append(discussion)
-                }
-                documentationContent.append("""
+        if case .object(let objectDocumentation) = try await docsLoader.resolveDocumentationForSchema(withDocsUrl: objectSchema.url, as: .object) {
+            rendered += await renderDocumentationBlock {
+                [objectDocumentation.content, """
                 Full documentation:
                 <\(objectSchema.url)>
-                """)
-                return documentationContent.joined(separator: "\n\n")
+                """].joined(separator: "\n\n")
             } + "\n"
         }
         var protocols = ["Codable", "Sendable"]

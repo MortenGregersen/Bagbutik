@@ -25,14 +25,14 @@ struct MarkdownDocumentation {
         let metadata = try parseMetadata(from: source)
         guard metadata.identifier.hasPrefix("/documentation/") else { throw MarkdownDocumentationError.unsupportedIdentifier(metadata.identifier) }
         let identifier = "doc://com.apple.appstoreconnectapi" + metadata.identifier
-        let body = sourceAfterMetadata(in: source)
-        let abstract = firstProseBlock(afterTopLevelHeadingIn: body)
-        let discussion = section(named: "Discussion", in: body)
+        let content = absoluteAppleDocumentationURLs(in: trimTrailingWhitespace(
+            in: String(sourceAfterMetadata(in: source)).trimmingCharacters(in: .whitespacesAndNewlines)
+        ))
         switch kind {
-        case .enum: return .enum(.init(id: identifier, title: metadata.title, abstract: abstract, discussion: discussion))
-        case .typealias: return .typealias(.init(id: identifier, title: metadata.title, abstract: abstract, discussion: discussion))
-        case .object: return .object(.init(id: identifier, title: metadata.title, abstract: abstract, discussion: discussion))
-        case .operation: return .operation(.init(id: identifier, title: metadata.title, abstract: abstract, discussion: discussion))
+        case .enum: return .enum(.init(id: identifier, title: metadata.title, content: content))
+        case .typealias: return .typealias(.init(id: identifier, title: metadata.title, content: content))
+        case .object: return .object(.init(id: identifier, title: metadata.title, content: content))
+        case .operation: return .operation(.init(id: identifier, title: metadata.title, content: content))
         }
     }
 
@@ -49,40 +49,19 @@ struct MarkdownDocumentation {
         return source[end.upperBound...]
     }
 
-    private static func firstProseBlock(afterTopLevelHeadingIn source: Substring) -> String? {
-        let lines = source.split(separator: "\n", omittingEmptySubsequences: false)
-        guard let headingIndex = lines.firstIndex(where: { $0.hasPrefix("# ") }) else { return nil }
-        return proseBlock(in: lines.dropFirst(headingIndex + 1))
+    private static func absoluteAppleDocumentationURLs(in prose: String) -> String {
+        prose.replacingOccurrences(
+            of: "](/documentation/",
+            with: "](https://developer.apple.com/documentation/"
+        )
     }
 
-    private static func section(named name: String, in source: Substring) -> String? {
-        let lines = source.split(separator: "\n", omittingEmptySubsequences: false)
-        guard let headingIndex = lines.firstIndex(where: { $0 == "## \(name)" }) else { return nil }
-        return proseBlock(in: lines.dropFirst(headingIndex + 1), stopsAtHeading: true)
-    }
-
-    private static func proseBlock<S: Collection>(in lines: S, stopsAtHeading: Bool = false) -> String? where S.Element == Substring {
-        var result = [Substring]()
-        var isInCodeBlock = false
-        for line in lines {
-            if line.hasPrefix("```") {
-                isInCodeBlock.toggle()
-                if result.isEmpty { continue }
-                break
+    private static func trimTrailingWhitespace(in source: String) -> String {
+        source
+            .split(separator: "\n", omittingEmptySubsequences: false)
+            .map { line in
+                String(line.reversed().drop(while: { $0 == " " || $0 == "\t" }).reversed())
             }
-            if isInCodeBlock { continue }
-            if line == "---" || (stopsAtHeading && line.hasPrefix("## ")) { break }
-            if line.isEmpty {
-                if !result.isEmpty { break }
-                continue
-            }
-            if line.hasPrefix("#") {
-                if result.isEmpty { continue }
-                break
-            }
-            result.append(line)
-        }
-        let prose = result.joined(separator: "\n").trimmingCharacters(in: .whitespacesAndNewlines)
-        return prose.isEmpty ? nil : prose
+            .joined(separator: "\n")
     }
 }

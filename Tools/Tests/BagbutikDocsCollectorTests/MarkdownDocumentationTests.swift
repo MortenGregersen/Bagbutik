@@ -3,7 +3,7 @@
 import XCTest
 
 final class MarkdownDocumentationTests: XCTestCase {
-    func testParseOperationUsesMetadataSummaryAndDiscussion() throws {
+    func testParseOperationKeepsCompleteMarkdownContent() throws {
         let documentation = try MarkdownDocumentation.parse(markdown(title: "List users", identifier: "/documentation/AppStoreConnectAPI/GET-v1-users", body: """
         # List users
 
@@ -11,7 +11,7 @@ final class MarkdownDocumentationTests: XCTestCase {
 
         ## Discussion
 
-        Use this endpoint to manage your team.
+        Use this endpoint to manage your team. See [`User`](/documentation/AppStoreConnectAPI/User).
 
         ## See Also
 
@@ -21,12 +21,23 @@ final class MarkdownDocumentationTests: XCTestCase {
         XCTAssertEqual(documentation, .operation(.init(
             id: "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-users",
             title: "List users",
-            abstract: "Get a list of users.",
-            discussion: "Use this endpoint to manage your team."
+            content: """
+            # List users
+
+            Get a list of users.
+
+            ## Discussion
+
+            Use this endpoint to manage your team. See [`User`](https://developer.apple.com/documentation/AppStoreConnectAPI/User).
+
+            ## See Also
+
+            [Users](https://developer.apple.com/documentation/AppStoreConnectAPI/users)
+            """
         )))
     }
 
-    func testParseObjectWithoutDetailKeepsOnlyPageSummary() throws {
+    func testParseObjectKeepsCodeBlocks() throws {
         let documentation = try MarkdownDocumentation.parse(markdown(title: "User", identifier: "/documentation/AppStoreConnectAPI/User", body: """
         # User
 
@@ -40,7 +51,15 @@ final class MarkdownDocumentationTests: XCTestCase {
         XCTAssertEqual(documentation, .object(.init(
             id: "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/User",
             title: "User",
-            abstract: "A member of your App Store Connect team."
+            content: """
+            # User
+
+            A member of your App Store Connect team.
+
+            ```
+            object User
+            ```
+            """
         )))
     }
 

@@ -8,7 +8,7 @@ final class PlainTextSchemaRendererTests: XCTestCase {
         // Given
         let docsLoader = DocsLoader(schemaDocumentationById: [
             "some://url": .object(
-                .init(id: "/csv", title: "Csv", abstract: "Some summary", discussion: nil))
+                .init(id: "/csv", title: "Csv", content: "# Csv\n\nSome summary"))
         ])
         let renderer = PlainTextSchemaRenderer(docsLoader: docsLoader, shouldFormat: true)
         let schema = PlainTextSchema(name: "Csv", url: "some://url")
@@ -16,7 +16,14 @@ final class PlainTextSchemaRendererTests: XCTestCase {
         let rendered = try await renderer.render(plainTextSchema: schema)
         // Then
         XCTAssertEqual(rendered, #"""
-        /// Some summary
+        /**
+         # Csv
+
+         Some summary
+
+         Full documentation:
+         <some://url>
+         */
         public struct Csv: PlainTextResponse {
             public let text: String
 

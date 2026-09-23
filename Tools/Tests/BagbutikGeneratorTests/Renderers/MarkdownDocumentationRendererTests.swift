@@ -6,7 +6,7 @@ import XCTest
 final class MarkdownDocumentationRendererTests: XCTestCase {
     func testObjectRendererUsesPageSummaryWithoutPropertyDocumentation() async throws {
         let loader = DocsLoader(schemaDocumentationById: [
-            "some://url": .object(.init(id: "/person", title: "Person", abstract: "A person."))
+            "some://url": .object(.init(id: "/person", title: "Person", content: "# Person\n\nA person."))
         ])
         let renderer = ObjectSchemaRenderer(docsLoader: loader, shouldFormat: true)
         let schema = ObjectSchema(
@@ -25,7 +25,7 @@ final class MarkdownDocumentationRendererTests: XCTestCase {
 
     func testEnumRendererUsesPageSummaryWithoutCaseDocumentation() async throws {
         let loader = DocsLoader(schemaDocumentationById: [
-            "some://url": .enum(.init(id: "/platform", title: "Platform", abstract: "A platform."))
+            "some://url": .enum(.init(id: "/platform", title: "Platform", content: "# Platform\n\nA platform."))
         ])
         let renderer = EnumSchemaRenderer(docsLoader: loader, shouldFormat: true)
         let schema = EnumSchema(name: "Platform", type: "string", url: "some://url", caseValues: ["IOS"])
