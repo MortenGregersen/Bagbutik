@@ -15,13 +15,13 @@
     ],
     "preciseIdentifier" : "rest:app_store_connect_api:get:v2-inAppPurchases-{}-relationships-versions"
   },
-  "title" : "Get the resource IDs of the versions of an in-app purchase"
+  "title" : "Get the resource IDs of the versions of an In-App Purchase"
 }
 -->
 
-# Get the resource IDs of the versions of an in-app purchase
+# Get the resource IDs of the versions of an In-App Purchase
 
-Get the related resource IDs for the draft versions of an in-app purchase configured with the v2 API.
+Get the related resource IDs for the draft versions of an In-App Purchase configured with the v2 API.
 
 ---
 

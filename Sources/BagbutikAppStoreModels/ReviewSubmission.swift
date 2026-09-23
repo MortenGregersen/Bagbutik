@@ -4,7 +4,7 @@ import Foundation
 /**
  # ReviewSubmission
 
- A formal submission to App Store review grouping one or more items — app versions, in-app purchases, or events — for simultaneous review.
+ A formal submission to App Store review grouping one or more items — app versions, In-App Purchases, or events — for simultaneous review.
 
  ```
  object ReviewSubmission

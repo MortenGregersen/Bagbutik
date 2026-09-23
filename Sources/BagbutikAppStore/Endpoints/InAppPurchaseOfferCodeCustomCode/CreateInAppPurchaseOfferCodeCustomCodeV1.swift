@@ -5,7 +5,7 @@ public extension Request {
     /**
      # Create an In-App Purchase Offer Code Custom Code
 
-     Create a custom code for an in-app purchase offer code.
+     Create a custom code for an In-App Purchase offer code.
 
      ---
 

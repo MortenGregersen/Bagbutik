@@ -3,9 +3,9 @@ import BagbutikAppStoreModels
 
 public extension Request {
     /**
-     # Read in-app purchase content information
+     # Read In-App Purchase content information
 
-     Get details about uploaded in-app purchase content.
+     Get details about uploaded In-App Purchase content.
 
      ---
 

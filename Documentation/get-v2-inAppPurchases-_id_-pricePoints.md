@@ -15,13 +15,13 @@
     ],
     "preciseIdentifier" : "rest:app_store_connect_api:get:v2-inAppPurchases-{}-pricePoints"
   },
-  "title" : "List all price points for an in-app purchase"
+  "title" : "List all price points for an In-App Purchase"
 }
 -->
 
-# List all price points for an in-app purchase
+# List all price points for an In-App Purchase
 
-Get a list of possible price points for an in-app purchase.
+Get a list of possible price points for an In-App Purchase.
 
 ---
 

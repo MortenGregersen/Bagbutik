@@ -3,9 +3,9 @@ import BagbutikAppStoreModels
 
 public extension Request {
     /**
-     # Read in-app purchase image information
+     # Read In-App Purchase image information
 
-     Get the metadata for an in-app purchase image configured with the v2 API, including the asset upload state.
+     Get the metadata for an In-App Purchase image configured with the v2 API, including the asset upload state.
 
      ---
 

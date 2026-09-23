@@ -21,7 +21,7 @@
 
 # InAppPurchaseOfferPricesResponse
 
-A response that contains a list of in-app purchase offer price resources.
+A response that contains a list of In-App Purchase offer price resources.
 
 ```
 object InAppPurchaseOfferPricesResponse

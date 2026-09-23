@@ -4,7 +4,7 @@ import Foundation
 /**
  # InAppPurchaseOfferCode
 
- The data structure that represents an in-app purchase offer code resource.
+ The data structure that represents an In-App Purchase offer code resource.
 
  ```
  object InAppPurchaseOfferCode
@@ -16,7 +16,7 @@ import Foundation
 
  [`object InAppPurchaseOfferCode.Attributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/InAppPurchaseOfferCode/Attributes-data.dictionary)
 
- Attributes that describe an in-app purchase offer code resource.
+ Attributes that describe an In-App Purchase offer code resource.
 
  [`object InAppPurchaseOfferCode.Relationships`](https://developer.apple.com/documentation/AppStoreConnectAPI/InAppPurchaseOfferCode/Relationships-data.dictionary)
 

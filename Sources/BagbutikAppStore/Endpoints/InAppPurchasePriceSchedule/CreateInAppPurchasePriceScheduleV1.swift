@@ -5,12 +5,12 @@ public extension Request {
     /**
      # Add a Scheduled Price Change to an In-App Purchase
 
-     Create a scheduled price change for an in-app purchase.
+     Create a scheduled price change for an In-App Purchase.
 
      ## Discussion
 
      > Note:
-     > A base territory is now required when adding or creating a price for an in-app purchase.
+     > A base territory is now required when adding or creating a price for an In-App Purchase.
 
      ---
 

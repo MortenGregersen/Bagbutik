@@ -3,9 +3,9 @@ import BagbutikAppStoreModels
 
 public extension Request {
     /**
-     # Read in-app purchase version information
+     # Read In-App Purchase version information
 
-     Get information about a specific draft version of an in-app purchase.
+     Get information about a specific draft version of an In-App Purchase.
 
      ---
 

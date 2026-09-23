@@ -4,9 +4,9 @@ import BagbutikModelsShared
 
 public extension Request {
     /**
-     # Delete an in-app purchase
+     # Delete an In-App Purchase
 
-     Delete a specific in-app purchase from your app.
+     Delete a specific In-App Purchase from your app.
 
      ## Discussion
 

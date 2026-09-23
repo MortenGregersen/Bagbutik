@@ -4,7 +4,7 @@ import Foundation
 /**
  # InAppPurchasePriceScheduleCreateRequest
 
- The request body you use to create an in-app purchase price schedule.
+ The request body you use to create an In-App Purchase price schedule.
 
  ```
  object InAppPurchasePriceScheduleCreateRequest
@@ -16,7 +16,7 @@ import Foundation
 
  [`object InAppPurchasePriceScheduleCreateRequest.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/InAppPurchasePriceScheduleCreateRequest/Data-data.dictionary)
 
- The request body you use to create an in-app purchase price schedule.
+ The request body you use to create an In-App Purchase price schedule.
 
 
 

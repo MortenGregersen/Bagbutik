@@ -197,6 +197,7 @@ public enum ListEqualizationsForAppPricePointsV3 {
             case marketplaceSearchDetail
             case name
             case perfPowerMetrics
+            case performanceOverviews
             case preReleaseVersions
             case primaryLocale
             case promotedPurchases

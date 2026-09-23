@@ -15,13 +15,13 @@
     ],
     "preciseIdentifier" : "rest:app_store_connect_api:get:v2-inAppPurchases-{}-relationships-iapPriceSchedule"
   },
-  "title" : "Read the price schedule ID for an in-app purchase"
+  "title" : "Read the price schedule ID for an In-App Purchase"
 }
 -->
 
-# Read the price schedule ID for an in-app purchase
+# Read the price schedule ID for an In-App Purchase
 
-Get the price schedule ID for a specific in-app purchase.
+Get the price schedule ID for a specific In-App Purchase.
 
 ---
 

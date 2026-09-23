@@ -4,7 +4,7 @@ import Foundation
 /**
  # InAppPurchaseV2Response
 
- A response containing a single in-app purchase configured via the v2 API.
+ A response containing a single In-App Purchase configured via the v2 API.
 
  ```
  object InAppPurchaseV2Response

@@ -3,7 +3,7 @@ import BagbutikAppStoreModels
 
 public extension Request {
     /**
-     # List available territory IDs for an in-app purchase availability
+     # List available territory IDs for an In-App Purchase availability
 
      ---
 

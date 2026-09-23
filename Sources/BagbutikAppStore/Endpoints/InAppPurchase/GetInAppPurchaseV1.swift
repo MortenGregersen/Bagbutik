@@ -3,9 +3,9 @@ import BagbutikAppStoreModels
 
 public extension Request {
     /**
-     # Read in-app purchase information
+     # Read In-App Purchase information
 
-     Get information about an in-app purchase.
+     Get information about an In-App Purchase.
 
      ## Discussion
 
@@ -170,6 +170,7 @@ public enum GetInAppPurchaseV1 {
             case marketplaceSearchDetail
             case name
             case perfPowerMetrics
+            case performanceOverviews
             case preReleaseVersions
             case primaryLocale
             case promotedPurchases

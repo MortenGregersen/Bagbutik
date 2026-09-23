@@ -15,13 +15,13 @@
     ],
     "preciseIdentifier" : "rest:app_store_connect_api:get:v1-inAppPurchaseVersions-{}"
   },
-  "title" : "Read in-app purchase version information"
+  "title" : "Read In-App Purchase version information"
 }
 -->
 
-# Read in-app purchase version information
+# Read In-App Purchase version information
 
-Get information about a specific draft version of an in-app purchase.
+Get information about a specific draft version of an In-App Purchase.
 
 ---
 

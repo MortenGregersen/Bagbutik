@@ -102,6 +102,8 @@ public enum ListAdjustedEqualizationsForSubscriptionPricePointV1 {
 
     /**
      Attributes, relationships, and IDs by which to filter.
+
+     Required: `planType`
      */
     public enum Filter: FilterParameter {
         /// Filter by planType

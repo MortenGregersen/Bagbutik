@@ -154,6 +154,7 @@ public enum ListGameCenterGroupsV1 {
             case activityReleases
             case app
             case arcadeEnabled
+            case blockedPlayers
             case challengeEnabled
             case challengeReleases
             case challengesMinimumPlatformVersions
@@ -254,6 +255,7 @@ public enum ListGameCenterGroupsV1 {
             case gameCenterDetail
             case gameCenterGroup
             case gameCenterLeaderboardSets
+            case gameCenterScoreModerations
             case groupLeaderboard
             case localizations
             case recurrenceDuration

@@ -21,7 +21,7 @@
 
 # InAppPurchaseSubmission
 
-A submission of an in-app purchase to App Store review, triggering the review process for that item.
+A submission of an In-App Purchase to App Store review, triggering the review process for that item.
 
 ```
 object InAppPurchaseSubmission

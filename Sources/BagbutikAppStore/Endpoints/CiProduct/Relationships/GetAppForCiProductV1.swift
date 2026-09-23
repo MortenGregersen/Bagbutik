@@ -229,7 +229,6 @@ public enum GetAppForCiProductV1 {
             case brazilAgeRating
             case brazilAgeRatingV2
             case franceAgeRating
-            case kidsAgeBand
             case koreaAgeRating
             case primaryCategory
             case primarySubcategoryOne
@@ -369,6 +368,7 @@ public enum GetAppForCiProductV1 {
             case marketplaceSearchDetail
             case name
             case perfPowerMetrics
+            case performanceOverviews
             case preReleaseVersions
             case primaryLocale
             case promotedPurchases
@@ -626,6 +626,7 @@ public enum GetAppForCiProductV1 {
             case activityReleases
             case app
             case arcadeEnabled
+            case blockedPlayers
             case challengeEnabled
             case challengeReleases
             case challengesMinimumPlatformVersions

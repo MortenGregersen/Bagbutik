@@ -15,13 +15,13 @@
     ],
     "preciseIdentifier" : "rest:app_store_connect_api:delete:v2-inAppPurchases-{}"
   },
-  "title" : "Delete an in-app purchase"
+  "title" : "Delete an In-App Purchase"
 }
 -->
 
-# Delete an in-app purchase
+# Delete an In-App Purchase
 
-Delete a specific in-app purchase from your app.
+Delete a specific In-App Purchase from your app.
 
 ## Discussion
 

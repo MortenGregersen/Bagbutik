@@ -4,7 +4,7 @@ import Foundation
 /**
  # InAppPurchaseAppStoreReviewScreenshotResponse
 
- A response containing a single App Store review screenshot for an in-app purchase.
+ A response containing a single App Store review screenshot for an In-App Purchase.
 
  ```
  object InAppPurchaseAppStoreReviewScreenshotResponse

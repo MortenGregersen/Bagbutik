@@ -21,7 +21,7 @@
 
 # InAppPurchaseVersion
 
-A draft version of an in-app purchase that captures its localized metadata and review images for App Review submission.
+A draft version of an In-App Purchase that captures its localized metadata and review images for App Review submission.
 
 ```
 object InAppPurchaseVersion
@@ -33,7 +33,7 @@ object InAppPurchaseVersion
 
 [`object InAppPurchaseVersion.Attributes`](/documentation/AppStoreConnectAPI/InAppPurchaseVersion/Attributes-data.dictionary)
 
-Attributes that describe an in-app purchase version resource.
+Attributes that describe an In-App Purchase version resource.
 
 [`object InAppPurchaseVersion.Relationships`](/documentation/AppStoreConnectAPI/InAppPurchaseVersion/Relationships-data.dictionary)
 

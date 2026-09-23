@@ -4,7 +4,7 @@ import Foundation
 /**
  # InAppPurchaseLocalizationV2
 
- The localized display name and description for an in-app purchase configured with the v2 API, shown to customers in a specific language.
+ The localized display name and description for an In-App Purchase configured with the v2 API, shown to customers in a specific language.
 
  ```
  object InAppPurchaseLocalizationV2
@@ -16,7 +16,7 @@ import Foundation
 
  [`object InAppPurchaseLocalizationV2.Attributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/InAppPurchaseLocalizationV2/Attributes-data.dictionary)
 
- Attributes that describe an in-app purchase localization resource.
+ Attributes that describe an In-App Purchase localization resource.
 
  [`object InAppPurchaseLocalizationV2.Relationships`](https://developer.apple.com/documentation/AppStoreConnectAPI/InAppPurchaseLocalizationV2/Relationships-data.dictionary)
 

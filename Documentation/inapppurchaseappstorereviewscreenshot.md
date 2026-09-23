@@ -21,7 +21,7 @@
 
 # InAppPurchaseAppStoreReviewScreenshot
 
-A screenshot of the in-app purchase flow submitted alongside an in-app purchase for App Store review.
+A screenshot of the In-App Purchase flow submitted alongside an In-App Purchase for App Store review.
 
 ```
 object InAppPurchaseAppStoreReviewScreenshot
@@ -33,7 +33,7 @@ object InAppPurchaseAppStoreReviewScreenshot
 
 [`object InAppPurchaseAppStoreReviewScreenshot.Attributes`](/documentation/AppStoreConnectAPI/InAppPurchaseAppStoreReviewScreenshot/Attributes-data.dictionary)
 
-Attributes that describe an in-app purchase App Store review screenshot resource.
+Attributes that describe an In-App Purchase App Store review screenshot resource.
 
 [`object InAppPurchaseAppStoreReviewScreenshot.Relationships`](/documentation/AppStoreConnectAPI/InAppPurchaseAppStoreReviewScreenshot/Relationships-data.dictionary)
 

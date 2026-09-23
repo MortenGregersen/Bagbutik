@@ -21,7 +21,7 @@
 
 # InAppPurchaseOfferCodeCustomCode
 
-The data structure that represents an in-app purchase offer code custom code resource.
+The data structure that represents an In-App Purchase offer code custom code resource.
 
 ```
 object InAppPurchaseOfferCodeCustomCode
@@ -33,7 +33,7 @@ object InAppPurchaseOfferCodeCustomCode
 
 [`object InAppPurchaseOfferCodeCustomCode.Attributes`](/documentation/AppStoreConnectAPI/InAppPurchaseOfferCodeCustomCode/Attributes-data.dictionary)
 
-Attributes that describe an in-app purchase offer code custom code resource.
+Attributes that describe an In-App Purchase offer code custom code resource.
 
 [`object InAppPurchaseOfferCodeCustomCode.Relationships`](/documentation/AppStoreConnectAPI/InAppPurchaseOfferCodeCustomCode/Relationships-data.dictionary)
 

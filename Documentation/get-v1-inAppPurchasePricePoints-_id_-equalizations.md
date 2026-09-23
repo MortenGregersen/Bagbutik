@@ -21,7 +21,7 @@
 
 # List All In-App Purchase Price Point Equalizations
 
-Get a list of in-app purchase price points and their equivalent in a specified currency.
+Get a list of In-App Purchase price points and their equivalent in a specified currency.
 
 ---
 

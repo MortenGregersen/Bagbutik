@@ -21,7 +21,7 @@
 
 # Territory
 
-An App Store region (country or territory) where apps, subscriptions, and in-app purchases are offered.
+An App Store region (country or territory) where apps, subscriptions, and In-App Purchases are offered.
 
 ```
 object Territory

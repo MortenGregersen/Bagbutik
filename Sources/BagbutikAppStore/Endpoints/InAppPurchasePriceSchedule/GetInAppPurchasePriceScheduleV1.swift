@@ -5,7 +5,7 @@ public extension Request {
     /**
      # Read In-App Purchase Price Schedule Information
 
-     Get information about a specific scheduled price change for an in-app purchase.
+     Get information about a specific scheduled price change for an In-App Purchase.
 
      ## Discussion
 

@@ -39,11 +39,11 @@ The data element of the response body.
 
 [`object ReviewSubmission`](/documentation/AppStoreConnectAPI/ReviewSubmission)
 
-A formal submission to App Store review grouping one or more items — app versions, in-app purchases, or events — for simultaneous review.
+A formal submission to App Store review grouping one or more items — app versions, In-App Purchases, or events — for simultaneous review.
 
 [`object ReviewSubmissionItem`](/documentation/AppStoreConnectAPI/ReviewSubmissionItem)
 
-An individual reviewable item — such as an app version, in-app purchase, or App Clip — included in a review submission.
+An individual reviewable item — such as an app version, In-App Purchase, or App Clip — included in a review submission.
 
 [`object ReviewSubmissionUpdateRequest`](/documentation/AppStoreConnectAPI/ReviewSubmissionUpdateRequest)
 

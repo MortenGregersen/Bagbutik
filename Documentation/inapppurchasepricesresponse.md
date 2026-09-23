@@ -21,7 +21,7 @@
 
 # InAppPurchasePricesResponse
 
-A response containing a list of configured prices for an in-app purchase.
+A response containing a list of configured prices for an In-App Purchase.
 
 ```
 object InAppPurchasePricesResponse

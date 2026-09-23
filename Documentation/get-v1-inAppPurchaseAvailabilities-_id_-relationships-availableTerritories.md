@@ -15,11 +15,11 @@
     ],
     "preciseIdentifier" : "rest:app_store_connect_api:get:v1-inAppPurchaseAvailabilities-{}-relationships-availableTerritories"
   },
-  "title" : "List available territory IDs for an in-app purchase availability"
+  "title" : "List available territory IDs for an In-App Purchase availability"
 }
 -->
 
-# List available territory IDs for an in-app purchase availability
+# List available territory IDs for an In-App Purchase availability
 
 ---
 

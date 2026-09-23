@@ -15,11 +15,11 @@
     ],
     "preciseIdentifier" : "rest:app_store_connect_api:get:v1-inAppPurchasePricePoints-{}-relationships-equalizations"
   },
-  "title" : "List equalization IDs for an in-app purchase price point"
+  "title" : "List equalization IDs for an In-App Purchase price point"
 }
 -->
 
-# List equalization IDs for an in-app purchase price point
+# List equalization IDs for an In-App Purchase price point
 
 ---
 

@@ -4,7 +4,7 @@ import Foundation
 /**
  # InAppPurchaseOfferCodeOneTimeUseCodeValuesLinkageResponse
 
- A response that contains a single in-app purchase offer code one-time use code values linkage resource.
+ A response that contains a single In-App Purchase offer code one-time use code values linkage resource.
 
  ```
  object InAppPurchaseOfferCodeOneTimeUseCodeValuesLinkageResponse

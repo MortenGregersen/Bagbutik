@@ -4,7 +4,7 @@ import Foundation
 /**
  # InAppPurchaseAvailabilityResponse
 
- A response containing a single territory availability configuration for an in-app purchase.
+ A response containing a single territory availability configuration for an In-App Purchase.
 
  ```
  object InAppPurchaseAvailabilityResponse

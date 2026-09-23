@@ -3,9 +3,9 @@ import BagbutikAppStoreModels
 
 public extension Request {
     /**
-     # List images for an in-app purchase version
+     # List images for an In-App Purchase version
 
-     List the review images attached to a draft version of an in-app purchase.
+     List the review images attached to a draft version of an In-App Purchase.
 
      ---
 

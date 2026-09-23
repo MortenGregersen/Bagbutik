@@ -21,7 +21,7 @@
 
 # Get All Price IDs for an In-App Purchase Offer Code
 
-Get a list of price resource IDs for a specific in-app purchase offer code.
+Get a list of price resource IDs for a specific In-App Purchase offer code.
 
 ---
 

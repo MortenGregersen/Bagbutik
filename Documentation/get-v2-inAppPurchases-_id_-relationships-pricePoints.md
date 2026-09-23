@@ -15,13 +15,13 @@
     ],
     "preciseIdentifier" : "rest:app_store_connect_api:get:v2-inAppPurchases-{}-relationships-pricePoints"
   },
-  "title" : "List price point IDs for an in-app purchase"
+  "title" : "List price point IDs for an In-App Purchase"
 }
 -->
 
-# List price point IDs for an in-app purchase
+# List price point IDs for an In-App Purchase
 
-Get a list of price point IDs for a specific in-app purchase.
+Get a list of price point IDs for a specific In-App Purchase.
 
 ---
 

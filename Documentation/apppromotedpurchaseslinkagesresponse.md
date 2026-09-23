@@ -21,7 +21,7 @@
 
 # AppPromotedPurchasesLinkagesResponse
 
-A response containing the resource identifiers of in-app purchases and subscriptions promoted on an app’s product page.
+A response containing the resource identifiers of In-App Purchases and subscriptions promoted on an app’s product page.
 
 ```
 object AppPromotedPurchasesLinkagesResponse

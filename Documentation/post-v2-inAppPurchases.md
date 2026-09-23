@@ -15,13 +15,13 @@
     ],
     "preciseIdentifier" : "rest:app_store_connect_api:post:v2-inAppPurchases"
   },
-  "title" : "Create an in-app purchase"
+  "title" : "Create an In-App Purchase"
 }
 -->
 
-# Create an in-app purchase
+# Create an In-App Purchase
 
-Create an in-app purchase, including a consumable, non-consumable, or non-renewing subscription.
+Create an In-App Purchase, including a consumable, non-consumable, or non-renewing subscription.
 
 ## Discussion
 

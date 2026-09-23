@@ -3,7 +3,7 @@ import BagbutikAppStoreModels
 
 public extension Request {
     /**
-     # Get the base territory ID for an in-app purchase price schedule
+     # Get the base territory ID for an In-App Purchase price schedule
 
      ---
 

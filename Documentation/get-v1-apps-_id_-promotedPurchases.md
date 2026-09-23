@@ -21,7 +21,7 @@
 
 # List all promoted purchases for an app
 
-Get a list of promoted in-app purchases, including promoted auto-renewable subscriptions, for an app.
+Get a list of promoted In-App Purchases, including promoted auto-renewable subscriptions, for an app.
 
 ## Discussion
 

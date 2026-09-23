@@ -158,6 +158,7 @@ public enum ListGameCenterDetailsForGameCenterGroupV1 {
             case marketplaceSearchDetail
             case name
             case perfPowerMetrics
+            case performanceOverviews
             case preReleaseVersions
             case primaryLocale
             case promotedPurchases
@@ -367,6 +368,7 @@ public enum ListGameCenterDetailsForGameCenterGroupV1 {
             case activityReleases
             case app
             case arcadeEnabled
+            case blockedPlayers
             case challengeEnabled
             case challengeReleases
             case challengesMinimumPlatformVersions
@@ -509,6 +511,7 @@ public enum ListGameCenterDetailsForGameCenterGroupV1 {
             case gameCenterDetail
             case gameCenterGroup
             case gameCenterLeaderboardSets
+            case gameCenterScoreModerations
             case groupLeaderboard
             case localizations
             case recurrenceDuration

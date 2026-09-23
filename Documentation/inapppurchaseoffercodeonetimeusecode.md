@@ -21,7 +21,7 @@
 
 # InAppPurchaseOfferCodeOneTimeUseCode
 
-The data structure that represents an in-app purchase offer code one-time use code resource.
+The data structure that represents an In-App Purchase offer code one-time use code resource.
 
 ```
 object InAppPurchaseOfferCodeOneTimeUseCode
@@ -33,7 +33,7 @@ object InAppPurchaseOfferCodeOneTimeUseCode
 
 [`object InAppPurchaseOfferCodeOneTimeUseCode.Attributes`](/documentation/AppStoreConnectAPI/InAppPurchaseOfferCodeOneTimeUseCode/Attributes-data.dictionary)
 
-Attributes that describe an in-app purchase offer code one-time use code resource.
+Attributes that describe an In-App Purchase offer code one-time use code resource.
 
 [`object InAppPurchaseOfferCodeOneTimeUseCode.Relationships`](/documentation/AppStoreConnectAPI/InAppPurchaseOfferCodeOneTimeUseCode/Relationships-data.dictionary)
 

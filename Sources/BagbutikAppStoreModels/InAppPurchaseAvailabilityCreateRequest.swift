@@ -4,7 +4,7 @@ import Foundation
 /**
  # InAppPurchaseAvailabilityCreateRequest
 
- The request body you use to create an in-app purchase availability.
+ The request body you use to create an In-App Purchase availability.
 
  ```
  object InAppPurchaseAvailabilityCreateRequest
@@ -16,7 +16,7 @@ import Foundation
 
  [`object InAppPurchaseAvailabilityCreateRequest.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/InAppPurchaseAvailabilityCreateRequest/Data-data.dictionary)
 
- The request body you use to create an in-app purchase availability.
+ The request body you use to create an In-App Purchase availability.
 
 
 

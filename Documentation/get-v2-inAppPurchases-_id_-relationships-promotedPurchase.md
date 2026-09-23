@@ -15,13 +15,13 @@
     ],
     "preciseIdentifier" : "rest:app_store_connect_api:get:v2-inAppPurchases-{}-relationships-promotedPurchase"
   },
-  "title" : "Read the promoted purchase ID for an in-app purchase"
+  "title" : "Read the promoted purchase ID for an In-App Purchase"
 }
 -->
 
-# Read the promoted purchase ID for an in-app purchase
+# Read the promoted purchase ID for an In-App Purchase
 
-Get the promoted purchase ID for a specific in-app purchase.
+Get the promoted purchase ID for a specific In-App Purchase.
 
 ---
 

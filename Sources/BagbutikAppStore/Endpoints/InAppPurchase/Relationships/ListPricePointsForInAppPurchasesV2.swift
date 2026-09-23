@@ -4,9 +4,9 @@ import BagbutikModelsShared
 
 public extension Request {
     /**
-     # List all price points for an in-app purchase
+     # List all price points for an In-App Purchase
 
-     Get a list of possible price points for an in-app purchase.
+     Get a list of possible price points for an In-App Purchase.
 
      ---
 

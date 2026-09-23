@@ -71,6 +71,7 @@ public struct AgeRatingDeclaration: Codable, Sendable, Identifiable {
         public var developerAgeRatingInfoUrl: String?
         public var gambling: Bool?
         public var gamblingSimulated: GamblingSimulated?
+        public var gracRatingClassificationNumber: String?
         public var gunsOrOtherWeapons: GunsOrOtherWeapons?
         public var healthOrWellnessTopics: Bool?
         public var horrorOrFearThemes: HorrorOrFearThemes?
@@ -102,6 +103,7 @@ public struct AgeRatingDeclaration: Codable, Sendable, Identifiable {
                     developerAgeRatingInfoUrl: String? = nil,
                     gambling: Bool? = nil,
                     gamblingSimulated: GamblingSimulated? = nil,
+                    gracRatingClassificationNumber: String? = nil,
                     gunsOrOtherWeapons: GunsOrOtherWeapons? = nil,
                     healthOrWellnessTopics: Bool? = nil,
                     horrorOrFearThemes: HorrorOrFearThemes? = nil,
@@ -132,6 +134,7 @@ public struct AgeRatingDeclaration: Codable, Sendable, Identifiable {
             self.developerAgeRatingInfoUrl = developerAgeRatingInfoUrl
             self.gambling = gambling
             self.gamblingSimulated = gamblingSimulated
+            self.gracRatingClassificationNumber = gracRatingClassificationNumber
             self.gunsOrOtherWeapons = gunsOrOtherWeapons
             self.healthOrWellnessTopics = healthOrWellnessTopics
             self.horrorOrFearThemes = horrorOrFearThemes
@@ -162,6 +165,7 @@ public struct AgeRatingDeclaration: Codable, Sendable, Identifiable {
                     developerAgeRatingInfoUrl: String? = nil,
                     gambling: Bool? = nil,
                     gamblingSimulated: GamblingSimulated? = nil,
+                    gracRatingClassificationNumber: String? = nil,
                     gunsOrOtherWeapons: GunsOrOtherWeapons? = nil,
                     healthOrWellnessTopics: Bool? = nil,
                     horrorOrFearThemes: HorrorOrFearThemes? = nil,
@@ -191,6 +195,7 @@ public struct AgeRatingDeclaration: Codable, Sendable, Identifiable {
             self.developerAgeRatingInfoUrl = developerAgeRatingInfoUrl
             self.gambling = gambling
             self.gamblingSimulated = gamblingSimulated
+            self.gracRatingClassificationNumber = gracRatingClassificationNumber
             self.gunsOrOtherWeapons = gunsOrOtherWeapons
             self.healthOrWellnessTopics = healthOrWellnessTopics
             self.horrorOrFearThemes = horrorOrFearThemes
@@ -227,6 +232,7 @@ public struct AgeRatingDeclaration: Codable, Sendable, Identifiable {
             developerAgeRatingInfoUrl = try container.decodeIfPresent(String.self, forKey: "developerAgeRatingInfoUrl")
             gambling = try container.decodeIfPresent(Bool.self, forKey: "gambling")
             gamblingSimulated = try container.decodeIfPresent(GamblingSimulated.self, forKey: "gamblingSimulated")
+            gracRatingClassificationNumber = try container.decodeIfPresent(String.self, forKey: "gracRatingClassificationNumber")
             gunsOrOtherWeapons = try container.decodeIfPresent(GunsOrOtherWeapons.self, forKey: "gunsOrOtherWeapons")
             healthOrWellnessTopics = try container.decodeIfPresent(Bool.self, forKey: "healthOrWellnessTopics")
             horrorOrFearThemes = try container.decodeIfPresent(HorrorOrFearThemes.self, forKey: "horrorOrFearThemes")
@@ -263,6 +269,7 @@ public struct AgeRatingDeclaration: Codable, Sendable, Identifiable {
             try container.encodeIfPresent(developerAgeRatingInfoUrl, forKey: "developerAgeRatingInfoUrl")
             try container.encodeIfPresent(gambling, forKey: "gambling")
             try container.encodeIfPresent(gamblingSimulated, forKey: "gamblingSimulated")
+            try container.encodeIfPresent(gracRatingClassificationNumber, forKey: "gracRatingClassificationNumber")
             try container.encodeIfPresent(gunsOrOtherWeapons, forKey: "gunsOrOtherWeapons")
             try container.encodeIfPresent(healthOrWellnessTopics, forKey: "healthOrWellnessTopics")
             try container.encodeIfPresent(horrorOrFearThemes, forKey: "horrorOrFearThemes")
@@ -449,9 +456,11 @@ public struct AgeRatingDeclaration: Codable, Sendable, Identifiable {
         }
 
         public enum KoreaAgeRatingOverride: String, Sendable, Codable, CaseIterable {
+            case all = "ALL"
             case fifteenPlus = "FIFTEEN_PLUS"
             case nineteenPlus = "NINETEEN_PLUS"
             case none = "NONE"
+            case twelvePlus = "TWELVE_PLUS"
 
             public init(from decoder: Decoder) throws {
                 let container = try decoder.singleValueContainer()

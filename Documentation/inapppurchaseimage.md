@@ -21,7 +21,7 @@
 
 # InAppPurchaseImage
 
-A screenshot or image associated with an in-app purchase or subscription, displayed on the App Store product page.
+A screenshot or image associated with an In-App Purchase or subscription, displayed on the App Store product page.
 
 ```
 object InAppPurchaseImage
@@ -37,7 +37,7 @@ Attributes that describe a subscription image resource.
 
 [`object InAppPurchaseImage.Relationships`](/documentation/AppStoreConnectAPI/InAppPurchaseImage/Relationships-data.dictionary)
 
-The relationships for an in-app purchase image, linking it to its associated in-app purchase.
+The relationships for an In-App Purchase image, linking it to its associated In-App Purchase.
 
 
 

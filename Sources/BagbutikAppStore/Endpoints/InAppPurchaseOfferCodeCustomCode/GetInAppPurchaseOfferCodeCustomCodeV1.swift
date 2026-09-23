@@ -5,7 +5,7 @@ public extension Request {
     /**
      # Read In-App Purchase Offer Code Custom Code Information
 
-     Get information about a specific in-app purchase offer code custom code.
+     Get information about a specific In-App Purchase offer code custom code.
 
      ---
 

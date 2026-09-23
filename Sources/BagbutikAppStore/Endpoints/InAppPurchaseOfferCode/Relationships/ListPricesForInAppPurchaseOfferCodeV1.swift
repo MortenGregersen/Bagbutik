@@ -6,7 +6,7 @@ public extension Request {
     /**
      # List All Prices for an In-App Purchase Offer Code
 
-     Get a list of prices for a specific in-app purchase offer code.
+     Get a list of prices for a specific In-App Purchase offer code.
 
      ---
 

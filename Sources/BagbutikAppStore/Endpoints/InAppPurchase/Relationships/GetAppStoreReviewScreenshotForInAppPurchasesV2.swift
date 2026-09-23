@@ -3,9 +3,9 @@ import BagbutikAppStoreModels
 
 public extension Request {
     /**
-     # Read review screenshot information for an in-app purchase
+     # Read review screenshot information for an In-App Purchase
 
-     Get information about a review screenshot for a specific in-app purchase.
+     Get information about a review screenshot for a specific In-App Purchase.
 
      ---
 

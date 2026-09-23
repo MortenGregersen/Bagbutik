@@ -4,7 +4,7 @@ import Foundation
 /**
  # InAppPurchaseOfferCodeResponse
 
- A response that contains a single in-app purchase offer code resource.
+ A response that contains a single In-App Purchase offer code resource.
 
  ```
  object InAppPurchaseOfferCodeResponse

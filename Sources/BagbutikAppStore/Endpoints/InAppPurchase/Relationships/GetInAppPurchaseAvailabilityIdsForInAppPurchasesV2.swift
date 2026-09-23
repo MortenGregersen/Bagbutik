@@ -3,9 +3,9 @@ import BagbutikAppStoreModels
 
 public extension Request {
     /**
-     # Read the availability ID for an in-app purchase
+     # Read the availability ID for an In-App Purchase
 
-     Get the availability ID for a specific in-app purchase.
+     Get the availability ID for a specific In-App Purchase.
 
      ---
 

@@ -4,7 +4,7 @@ import Foundation
 /**
  # InAppPurchaseOfferCodeCustomCodesResponse
 
- A response that contains a list of in-app purchase offer code custom code resources.
+ A response that contains a list of In-App Purchase offer code custom code resources.
 
  ```
  object InAppPurchaseOfferCodeCustomCodesResponse

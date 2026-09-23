@@ -4,7 +4,7 @@ import Foundation
 /**
  # InAppPurchaseOfferCodeOneTimeUseCodeValue
 
- The data structure that represents an in-app purchase offer code one-time use code value resource.
+ The data structure that represents an In-App Purchase offer code one-time use code value resource.
 
  ```
  object InAppPurchaseOfferCodeOneTimeUseCodeValue

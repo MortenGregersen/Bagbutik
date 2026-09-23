@@ -61,6 +61,7 @@ public enum GetGameCenterLeaderboardSetV1 {
             case activityReleases
             case app
             case arcadeEnabled
+            case blockedPlayers
             case challengeEnabled
             case challengeReleases
             case challengesMinimumPlatformVersions

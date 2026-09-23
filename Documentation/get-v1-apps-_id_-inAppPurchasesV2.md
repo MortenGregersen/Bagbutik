@@ -15,13 +15,13 @@
     ],
     "preciseIdentifier" : "rest:app_store_connect_api:get:v1-apps-{}-inAppPurchasesV2"
   },
-  "title" : "List all in-app purchases for an app"
+  "title" : "List all In-App Purchases for an app"
 }
 -->
 
-# List all in-app purchases for an app
+# List all In-App Purchases for an app
 
-Get a list of the in-app purchases for a specific app.
+Get a list of the In-App Purchases for a specific app.
 
 ---
 

@@ -15,13 +15,13 @@
     ],
     "preciseIdentifier" : "rest:app_store_connect_api:post:v1-inAppPurchaseLocalizations"
   },
-  "title" : "Create an in-app purchase localization (v1)"
+  "title" : "Create an In-App Purchase localization (v1)"
 }
 -->
 
-# Create an in-app purchase localization (v1)
+# Create an In-App Purchase localization (v1)
 
-Create a localized display name and description for an in-app purchase.
+Create a localized display name and description for an In-App Purchase.
 
 ## Discussion
 

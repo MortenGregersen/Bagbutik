@@ -153,6 +153,7 @@ public enum ListAppInfosForAppV1 {
             case developerAgeRatingInfoUrl
             case gambling
             case gamblingSimulated
+            case gracRatingClassificationNumber
             case gunsOrOtherWeapons
             case healthOrWellnessTopics
             case horrorOrFearThemes
@@ -246,7 +247,6 @@ public enum ListAppInfosForAppV1 {
             case brazilAgeRating
             case brazilAgeRatingV2
             case franceAgeRating
-            case kidsAgeBand
             case koreaAgeRating
             case primaryCategory
             case primarySubcategoryOne
@@ -315,6 +315,7 @@ public enum ListAppInfosForAppV1 {
             case marketplaceSearchDetail
             case name
             case perfPowerMetrics
+            case performanceOverviews
             case preReleaseVersions
             case primaryLocale
             case promotedPurchases

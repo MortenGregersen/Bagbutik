@@ -21,7 +21,7 @@
 
 # Remove a promoted purchase
 
-Remove a promotion for an in-app purchase or auto-renewable subscription from the App Store listing.
+Remove a promotion for an In-App Purchase or auto-renewable subscription from the App Store listing.
 
 ---
 

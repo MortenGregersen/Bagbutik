@@ -4,7 +4,7 @@ import Foundation
 /**
  # InAppPurchaseImagesV2Response
 
- The response body for endpoints that list in-app purchase images configured with the v2 API.
+ The response body for endpoints that list In-App Purchase images configured with the v2 API.
 
  ```
  object InAppPurchaseImagesV2Response

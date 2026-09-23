@@ -3,9 +3,9 @@ import BagbutikAppStoreModels
 
 public extension Request {
     /**
-     # Modify an in-app purchase image
+     # Modify an In-App Purchase image
 
-     Commit the asset upload for an in-app purchase image configured with the v2 API.
+     Commit the asset upload for an In-App Purchase image configured with the v2 API.
 
      ---
 

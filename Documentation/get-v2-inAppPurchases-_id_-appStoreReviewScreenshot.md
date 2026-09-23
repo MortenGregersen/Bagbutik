@@ -15,13 +15,13 @@
     ],
     "preciseIdentifier" : "rest:app_store_connect_api:get:v2-inAppPurchases-{}-appStoreReviewScreenshot"
   },
-  "title" : "Read review screenshot information for an in-app purchase"
+  "title" : "Read review screenshot information for an In-App Purchase"
 }
 -->
 
-# Read review screenshot information for an in-app purchase
+# Read review screenshot information for an In-App Purchase
 
-Get information about a review screenshot for a specific in-app purchase.
+Get information about a review screenshot for a specific In-App Purchase.
 
 ---
 

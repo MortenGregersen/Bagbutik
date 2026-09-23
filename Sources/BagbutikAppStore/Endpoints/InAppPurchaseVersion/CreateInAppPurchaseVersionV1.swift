@@ -3,9 +3,9 @@ import BagbutikAppStoreModels
 
 public extension Request {
     /**
-     # Create an in-app purchase version
+     # Create an In-App Purchase version
 
-     Create a draft version of an in-app purchase, capturing its current localized metadata and review images for App Review submission.
+     Create a draft version of an In-App Purchase, capturing its current localized metadata and review images for App Review submission.
 
      ---
 

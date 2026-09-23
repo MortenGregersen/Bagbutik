@@ -15,13 +15,13 @@
     ],
     "preciseIdentifier" : "rest:app_store_connect_api:delete:v1-inAppPurchaseImages-{}"
   },
-  "title" : "Delete an in-app purchase image (v1)"
+  "title" : "Delete an In-App Purchase image (v1)"
 }
 -->
 
-# Delete an in-app purchase image (v1)
+# Delete an In-App Purchase image (v1)
 
-Delete the image asset that appears on the App Store listing that represents an in-app purchase.
+Delete the image asset that appears on the App Store listing that represents an In-App Purchase.
 
 ## Discussion
 

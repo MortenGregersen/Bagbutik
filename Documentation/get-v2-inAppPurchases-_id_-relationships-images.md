@@ -15,13 +15,13 @@
     ],
     "preciseIdentifier" : "rest:app_store_connect_api:get:v2-inAppPurchases-{}-relationships-images"
   },
-  "title" : "List image IDs for an in-app purchase"
+  "title" : "List image IDs for an In-App Purchase"
 }
 -->
 
-# List image IDs for an in-app purchase
+# List image IDs for an In-App Purchase
 
-Get a list of image IDs for a specific in-app purchase.
+Get a list of image IDs for a specific In-App Purchase.
 
 ---
 

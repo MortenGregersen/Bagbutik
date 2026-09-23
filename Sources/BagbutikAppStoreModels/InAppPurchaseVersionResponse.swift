@@ -4,7 +4,7 @@ import Foundation
 /**
  # InAppPurchaseVersionResponse
 
- The response body for endpoints that create or read an in-app purchase version.
+ The response body for endpoints that create or read an In-App Purchase version.
 
  ```
  object InAppPurchaseVersionResponse

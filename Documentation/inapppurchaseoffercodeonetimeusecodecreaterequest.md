@@ -21,7 +21,7 @@
 
 # InAppPurchaseOfferCodeOneTimeUseCodeCreateRequest
 
-The request body you use to create an in-app purchase offer code one-time use code.
+The request body you use to create an In-App Purchase offer code one-time use code.
 
 ```
 object InAppPurchaseOfferCodeOneTimeUseCodeCreateRequest

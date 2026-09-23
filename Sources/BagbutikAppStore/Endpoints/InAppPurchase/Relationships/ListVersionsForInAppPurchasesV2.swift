@@ -3,9 +3,9 @@ import BagbutikAppStoreModels
 
 public extension Request {
     /**
-     # List the versions of an in-app purchase
+     # List the versions of an In-App Purchase
 
-     List the draft versions of an in-app purchase configured with the v2 API.
+     List the draft versions of an In-App Purchase configured with the v2 API.
 
      ---
 

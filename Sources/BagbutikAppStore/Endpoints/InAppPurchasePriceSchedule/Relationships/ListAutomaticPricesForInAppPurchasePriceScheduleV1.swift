@@ -6,7 +6,7 @@ public extension Request {
     /**
      # List Automatically Generated Prices for an In-App Purchase Price
 
-     Get information about a price or prices automatically set based on a base territory for an in-app purchase price schedule.
+     Get information about a price or prices automatically set based on a base territory for an In-App Purchase price schedule.
 
      ---
 

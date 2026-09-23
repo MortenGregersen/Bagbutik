@@ -21,7 +21,7 @@
 
 # InAppPurchaseImageCreateRequest
 
-The request body you use to create an in-app purchase image reservation.
+The request body you use to create an In-App Purchase image reservation.
 
 ```
 object InAppPurchaseImageCreateRequest

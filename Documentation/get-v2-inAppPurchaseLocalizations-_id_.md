@@ -15,13 +15,13 @@
     ],
     "preciseIdentifier" : "rest:app_store_connect_api:get:v2-inAppPurchaseLocalizations-{}"
   },
-  "title" : "Read in-app purchase localization information"
+  "title" : "Read In-App Purchase localization information"
 }
 -->
 
-# Read in-app purchase localization information
+# Read In-App Purchase localization information
 
-Get the display name and description for a specific locale of an in-app purchase configured with the v2 API.
+Get the display name and description for a specific locale of an In-App Purchase configured with the v2 API.
 
 ---
 

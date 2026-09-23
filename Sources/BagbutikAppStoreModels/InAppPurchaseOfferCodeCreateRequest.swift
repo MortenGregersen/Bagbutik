@@ -4,7 +4,7 @@ import Foundation
 /**
  # InAppPurchaseOfferCodeCreateRequest
 
- The request body you use to create an in-app purchase offer code.
+ The request body you use to create an In-App Purchase offer code.
 
  ```
  object InAppPurchaseOfferCodeCreateRequest
@@ -16,7 +16,7 @@ import Foundation
 
  [`object InAppPurchaseOfferCodeCreateRequest.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/InAppPurchaseOfferCodeCreateRequest/Data-data.dictionary)
 
- The request body you use to create an in-app purchase offer code.
+ The request body you use to create an In-App Purchase offer code.
 
 
 

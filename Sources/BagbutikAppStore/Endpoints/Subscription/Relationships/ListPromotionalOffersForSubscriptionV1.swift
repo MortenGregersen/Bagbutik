@@ -103,6 +103,8 @@ public enum ListPromotionalOffersForSubscriptionV1 {
             case groupLevel
             case images
             case introductoryOffers
+            case marketSettings
+            case multiSeatStatus
             case name
             case offerCodes
             case planAvailabilities

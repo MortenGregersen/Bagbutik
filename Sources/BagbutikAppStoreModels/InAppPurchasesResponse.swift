@@ -5,7 +5,7 @@ import Foundation
 /**
  # InAppPurchasesResponse
 
- The response body for endpoints that list in-app purchases for an app.
+ The response body for endpoints that list In-App Purchases for an app.
 
  ```
  object InAppPurchasesResponse

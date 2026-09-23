@@ -3,9 +3,9 @@ import BagbutikAppStoreModels
 
 public extension Request {
     /**
-     # List image IDs for an in-app purchase version
+     # List image IDs for an In-App Purchase version
 
-     Get the related resource IDs for the review images attached to a draft version of an in-app purchase.
+     Get the related resource IDs for the review images attached to a draft version of an In-App Purchase.
 
      ---
 

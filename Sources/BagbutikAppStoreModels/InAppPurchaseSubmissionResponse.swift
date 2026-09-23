@@ -4,7 +4,7 @@ import Foundation
 /**
  # InAppPurchaseSubmissionResponse
 
- A response confirming the submission of an in-app purchase for App Store review.
+ A response confirming the submission of an In-App Purchase for App Store review.
 
  ```
  object InAppPurchaseSubmissionResponse

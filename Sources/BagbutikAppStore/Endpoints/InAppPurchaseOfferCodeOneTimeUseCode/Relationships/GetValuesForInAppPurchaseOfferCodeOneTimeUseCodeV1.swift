@@ -5,7 +5,7 @@ public extension Request {
     /**
      # List All Values for an In-App Purchase Offer Code One-Time Use Code
 
-     Get a list of values for a specific in-app purchase offer code one-time use code.
+     Get a list of values for a specific In-App Purchase offer code one-time use code.
 
      ---
 

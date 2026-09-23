@@ -4,7 +4,7 @@ import Foundation
 /**
  # InAppPurchaseImageResponse
 
- A response containing a single image for an in-app purchase.
+ A response containing a single image for an In-App Purchase.
 
  ```
  object InAppPurchaseImageResponse

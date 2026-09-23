@@ -21,7 +21,7 @@
 
 # InAppPurchasePriceSchedule
 
-A time-based pricing schedule for an in-app purchase, managing base prices and planned price changes.
+A time-based pricing schedule for an In-App Purchase, managing base prices and planned price changes.
 
 ```
 object InAppPurchasePriceSchedule

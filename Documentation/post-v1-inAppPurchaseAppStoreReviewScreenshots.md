@@ -15,13 +15,13 @@
     ],
     "preciseIdentifier" : "rest:app_store_connect_api:post:v1-inAppPurchaseAppStoreReviewScreenshots"
   },
-  "title" : "Create an in-app purchase review screenshot"
+  "title" : "Create an In-App Purchase review screenshot"
 }
 -->
 
-# Create an in-app purchase review screenshot
+# Create an In-App Purchase review screenshot
 
-Reserve a review screenshot for an in-app purchase.
+Reserve a review screenshot for an In-App Purchase.
 
 ---
 

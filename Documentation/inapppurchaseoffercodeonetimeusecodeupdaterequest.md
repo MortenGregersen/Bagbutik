@@ -21,7 +21,7 @@
 
 # InAppPurchaseOfferCodeOneTimeUseCodeUpdateRequest
 
-The request body you use to update an in-app purchase offer code one-time use code.
+The request body you use to update an In-App Purchase offer code one-time use code.
 
 ```
 object InAppPurchaseOfferCodeOneTimeUseCodeUpdateRequest

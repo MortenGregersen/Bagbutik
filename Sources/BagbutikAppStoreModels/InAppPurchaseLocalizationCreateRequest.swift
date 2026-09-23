@@ -4,7 +4,7 @@ import Foundation
 /**
  # InAppPurchaseLocalizationCreateRequest
 
- The request body you use to create an in-app purchase localization.
+ The request body you use to create an In-App Purchase localization.
 
  ```
  object InAppPurchaseLocalizationCreateRequest
@@ -16,7 +16,7 @@ import Foundation
 
  [`object InAppPurchaseLocalizationCreateRequest.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/InAppPurchaseLocalizationCreateRequest/Data-data.dictionary)
 
- The request body you use to create an in-app purchase localization.
+ The request body you use to create an In-App Purchase localization.
 
 
 

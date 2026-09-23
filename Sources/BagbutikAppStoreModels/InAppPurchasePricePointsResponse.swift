@@ -4,7 +4,7 @@ import Foundation
 /**
  # InAppPurchasePricePointsResponse
 
- The response body for endpoints that list available price points for an in-app purchase.
+ The response body for endpoints that list available price points for an In-App Purchase.
 
  ```
  object InAppPurchasePricePointsResponse

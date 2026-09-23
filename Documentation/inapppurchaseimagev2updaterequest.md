@@ -21,7 +21,7 @@
 
 # InAppPurchaseImageV2UpdateRequest
 
-The request body you use to commit an upload for an in-app purchase image with the v2 API.
+The request body you use to commit an upload for an In-App Purchase image with the v2 API.
 
 ```
 object InAppPurchaseImageV2UpdateRequest
@@ -33,7 +33,7 @@ object InAppPurchaseImageV2UpdateRequest
 
 [`object InAppPurchaseImageV2UpdateRequest.Data`](/documentation/AppStoreConnectAPI/InAppPurchaseImageV2UpdateRequest/Data-data.dictionary)
 
-The request body you use to modify an in-app purchase image with the v2 API.
+The request body you use to modify an In-App Purchase image with the v2 API.
 
 
 

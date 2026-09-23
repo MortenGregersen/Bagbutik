@@ -21,7 +21,7 @@
 
 # InAppPurchaseResponse
 
-The response body for endpoints that read a single in-app purchase.
+The response body for endpoints that read a single In-App Purchase.
 
 ```
 object InAppPurchaseResponse

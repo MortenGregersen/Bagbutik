@@ -21,7 +21,7 @@
 
 # InAppPurchaseV2
 
-An in-app purchase item configured via the v2 API, supporting both consumable and non-consumable types.
+An In-App Purchase item configured via the v2 API, supporting both consumable and non-consumable types.
 
 ```
 object InAppPurchaseV2
@@ -33,7 +33,7 @@ object InAppPurchaseV2
 
 [`object InAppPurchaseV2.Attributes`](/documentation/AppStoreConnectAPI/InAppPurchaseV2/Attributes-data.dictionary)
 
-Attributes that describe an in-app purchase v2 resource.
+Attributes that describe an In-App Purchase v2 resource.
 
 [`string InAppPurchaseType`](/documentation/AppStoreConnectAPI/InAppPurchaseType)
 

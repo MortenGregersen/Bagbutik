@@ -21,7 +21,7 @@
 
 # InAppPurchaseImageUpdateRequest
 
-The request body for updating the upload state or file content of an in-app purchase image.
+The request body for updating the upload state or file content of an In-App Purchase image.
 
 ```
 object InAppPurchaseImageUpdateRequest
@@ -33,7 +33,7 @@ object InAppPurchaseImageUpdateRequest
 
 [`object InAppPurchaseImageUpdateRequest.Data`](/documentation/AppStoreConnectAPI/InAppPurchaseImageUpdateRequest/Data-data.dictionary)
 
-The request body you use to update an in-app purchase image.
+The request body you use to update an In-App Purchase image.
 
 
 

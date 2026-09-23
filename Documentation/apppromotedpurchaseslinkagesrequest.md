@@ -21,7 +21,7 @@
 
 # AppPromotedPurchasesLinkagesRequest
 
-The request body for updating the ordered list of in-app purchases and subscriptions promoted on an app’s product page.
+The request body for updating the ordered list of In-App Purchases and subscriptions promoted on an app’s product page.
 
 ```
 object AppPromotedPurchasesLinkagesRequest

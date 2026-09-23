@@ -222,6 +222,7 @@ public struct GameCenterLeaderboardV2: Codable, Sendable, Identifiable {
         public var gameCenterDetail: GameCenterDetail?
         public var gameCenterGroup: GameCenterGroup?
         public var gameCenterLeaderboardSets: GameCenterLeaderboardSets?
+        public var gameCenterScoreModerations: GameCenterScoreModerations?
         public var versions: Versions?
 
         public init(activity: Activity? = nil,
@@ -229,6 +230,7 @@ public struct GameCenterLeaderboardV2: Codable, Sendable, Identifiable {
                     gameCenterDetail: GameCenterDetail? = nil,
                     gameCenterGroup: GameCenterGroup? = nil,
                     gameCenterLeaderboardSets: GameCenterLeaderboardSets? = nil,
+                    gameCenterScoreModerations: GameCenterScoreModerations? = nil,
                     versions: Versions? = nil)
         {
             self.activity = activity
@@ -236,6 +238,7 @@ public struct GameCenterLeaderboardV2: Codable, Sendable, Identifiable {
             self.gameCenterDetail = gameCenterDetail
             self.gameCenterGroup = gameCenterGroup
             self.gameCenterLeaderboardSets = gameCenterLeaderboardSets
+            self.gameCenterScoreModerations = gameCenterScoreModerations
             self.versions = versions
         }
 
@@ -246,6 +249,7 @@ public struct GameCenterLeaderboardV2: Codable, Sendable, Identifiable {
             gameCenterDetail = try container.decodeIfPresent(GameCenterDetail.self, forKey: "gameCenterDetail")
             gameCenterGroup = try container.decodeIfPresent(GameCenterGroup.self, forKey: "gameCenterGroup")
             gameCenterLeaderboardSets = try container.decodeIfPresent(GameCenterLeaderboardSets.self, forKey: "gameCenterLeaderboardSets")
+            gameCenterScoreModerations = try container.decodeIfPresent(GameCenterScoreModerations.self, forKey: "gameCenterScoreModerations")
             versions = try container.decodeIfPresent(Versions.self, forKey: "versions")
         }
 
@@ -256,6 +260,7 @@ public struct GameCenterLeaderboardV2: Codable, Sendable, Identifiable {
             try container.encodeIfPresent(gameCenterDetail, forKey: "gameCenterDetail")
             try container.encodeIfPresent(gameCenterGroup, forKey: "gameCenterGroup")
             try container.encodeIfPresent(gameCenterLeaderboardSets, forKey: "gameCenterLeaderboardSets")
+            try container.encodeIfPresent(gameCenterScoreModerations, forKey: "gameCenterScoreModerations")
             try container.encodeIfPresent(versions, forKey: "versions")
         }
 
@@ -479,6 +484,24 @@ public struct GameCenterLeaderboardV2: Codable, Sendable, Identifiable {
                     try container.encode(id, forKey: "id")
                     try container.encode(type, forKey: "type")
                 }
+            }
+        }
+
+        public struct GameCenterScoreModerations: Codable, Sendable {
+            public var links: RelationshipLinks?
+
+            public init(links: RelationshipLinks? = nil) {
+                self.links = links
+            }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                links = try container.decodeIfPresent(RelationshipLinks.self, forKey: "links")
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: AnyCodingKey.self)
+                try container.encodeIfPresent(links, forKey: "links")
             }
         }
 

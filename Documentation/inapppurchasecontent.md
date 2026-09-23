@@ -21,7 +21,7 @@
 
 # InAppPurchaseContent
 
-Hosted downloadable content associated with a non-consumable in-app purchase.
+Hosted downloadable content associated with a non-consumable In-App Purchase.
 
 ```
 object InAppPurchaseContent
@@ -33,7 +33,7 @@ object InAppPurchaseContent
 
 [`object InAppPurchaseContent.Attributes`](/documentation/AppStoreConnectAPI/InAppPurchaseContent/Attributes-data.dictionary)
 
-Attributes that describe an in-app purchase content resource.
+Attributes that describe an In-App Purchase content resource.
 
 [`object InAppPurchaseContent.Relationships`](/documentation/AppStoreConnectAPI/InAppPurchaseContent/Relationships-data.dictionary)
 

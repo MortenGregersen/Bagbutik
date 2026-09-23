@@ -3,9 +3,9 @@ import BagbutikAppStoreModels
 
 public extension Request {
     /**
-     # List in-app purchases ids for an app v1
+     # List In-App Purchases ids for an app v1
 
-     Get a list of all in-app purchases IDs for a specific app V1.
+     Get a list of all In-App Purchases IDs for a specific app V1.
 
      ---
 

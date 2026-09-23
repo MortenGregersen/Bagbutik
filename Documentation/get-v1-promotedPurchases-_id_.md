@@ -21,7 +21,7 @@
 
 # Read promoted purchase information
 
-Get details about a specific promoted in-app purchase.
+Get details about a specific promoted In-App Purchase.
 
 ---
 
