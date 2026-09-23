@@ -4,7 +4,7 @@ import Foundation
 /**
  # InAppPurchasePriceScheduleResponse
 
- A response containing a single pricing schedule for an in-app purchase.
+ A response containing a single pricing schedule for an In-App Purchase.
 
  ```
  object InAppPurchasePriceScheduleResponse

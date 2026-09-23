@@ -71,6 +71,7 @@ public enum GetGameCenterLeaderboardSetsV2 {
             case activityReleases
             case app
             case arcadeEnabled
+            case blockedPlayers
             case challengeEnabled
             case challengeReleases
             case challengesMinimumPlatformVersions
@@ -190,6 +191,7 @@ public enum GetGameCenterLeaderboardSetsV2 {
             case gameCenterDetail
             case gameCenterGroup
             case gameCenterLeaderboardSets
+            case gameCenterScoreModerations
             case recurrenceDuration
             case recurrenceRule
             case recurrenceStartDate

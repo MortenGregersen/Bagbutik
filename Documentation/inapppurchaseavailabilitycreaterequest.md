@@ -21,7 +21,7 @@
 
 # InAppPurchaseAvailabilityCreateRequest
 
-The request body you use to create an in-app purchase availability.
+The request body you use to create an In-App Purchase availability.
 
 ```
 object InAppPurchaseAvailabilityCreateRequest
@@ -33,7 +33,7 @@ object InAppPurchaseAvailabilityCreateRequest
 
 [`object InAppPurchaseAvailabilityCreateRequest.Data`](/documentation/AppStoreConnectAPI/InAppPurchaseAvailabilityCreateRequest/Data-data.dictionary)
 
-The request body you use to create an in-app purchase availability.
+The request body you use to create an In-App Purchase availability.
 
 
 

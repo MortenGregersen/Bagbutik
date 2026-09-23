@@ -21,7 +21,7 @@
 
 # Modify an In-App Purchase Offer Code
 
-Update a specific in-app purchase offer code.
+Update a specific In-App Purchase offer code.
 
 ---
 

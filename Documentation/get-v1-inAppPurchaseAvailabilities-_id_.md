@@ -15,13 +15,13 @@
     ],
     "preciseIdentifier" : "rest:app_store_connect_api:get:v1-inAppPurchaseAvailabilities-{}"
   },
-  "title" : "Read information about the availablity of an in-app purchase"
+  "title" : "Read information about the availablity of an In-App Purchase"
 }
 -->
 
-# Read information about the availablity of an in-app purchase
+# Read information about the availablity of an In-App Purchase
 
-Get information about the territory availablity for an in-app purchase.
+Get information about the territory availablity for an In-App Purchase.
 
 ## Discussion
 

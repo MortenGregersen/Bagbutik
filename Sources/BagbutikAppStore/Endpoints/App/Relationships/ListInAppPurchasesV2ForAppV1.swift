@@ -4,9 +4,9 @@ import BagbutikModelsShared
 
 public extension Request {
     /**
-     # List all in-app purchases for an app
+     # List all In-App Purchases for an app
 
-     Get a list of the in-app purchases for a specific app.
+     Get a list of the In-App Purchases for a specific app.
 
      ---
 

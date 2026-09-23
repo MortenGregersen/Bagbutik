@@ -21,7 +21,7 @@
 
 # InAppPurchaseImageV2CreateRequest
 
-The request body you use to create an in-app purchase image with the v2 API.
+The request body you use to create an In-App Purchase image with the v2 API.
 
 ```
 object InAppPurchaseImageV2CreateRequest
@@ -33,7 +33,7 @@ object InAppPurchaseImageV2CreateRequest
 
 [`object InAppPurchaseImageV2CreateRequest.Data`](/documentation/AppStoreConnectAPI/InAppPurchaseImageV2CreateRequest/Data-data.dictionary)
 
-The request body you use to create an in-app purchase image with the v2 API.
+The request body you use to create an In-App Purchase image with the v2 API.
 
 
 

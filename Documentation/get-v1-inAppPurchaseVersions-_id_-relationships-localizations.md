@@ -15,13 +15,13 @@
     ],
     "preciseIdentifier" : "rest:app_store_connect_api:get:v1-inAppPurchaseVersions-{}-relationships-localizations"
   },
-  "title" : "List localization IDs for an in-app purchase version"
+  "title" : "List localization IDs for an In-App Purchase version"
 }
 -->
 
-# List localization IDs for an in-app purchase version
+# List localization IDs for an In-App Purchase version
 
-Get the related resource IDs for the localizations captured in a draft version of an in-app purchase.
+Get the related resource IDs for the localizations captured in a draft version of an In-App Purchase.
 
 ---
 

@@ -15,11 +15,11 @@
     ],
     "preciseIdentifier" : "rest:app_store_connect_api:get:v1-inAppPurchasePriceSchedules-{}-relationships-baseTerritory"
   },
-  "title" : "Get the base territory ID for an in-app purchase price schedule"
+  "title" : "Get the base territory ID for an In-App Purchase price schedule"
 }
 -->
 
-# Get the base territory ID for an in-app purchase price schedule
+# Get the base territory ID for an In-App Purchase price schedule
 
 ---
 

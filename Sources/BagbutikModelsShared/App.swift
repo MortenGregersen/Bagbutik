@@ -201,6 +201,7 @@ public struct App: Codable, Sendable, Identifiable {
         public var inAppPurchasesV2: InAppPurchasesV2?
         public var marketplaceSearchDetail: MarketplaceSearchDetail?
         public var perfPowerMetrics: PerfPowerMetrics?
+        public var performanceOverviews: PerformanceOverviews?
         public var preReleaseVersions: PreReleaseVersions?
         public var promotedPurchases: PromotedPurchases?
         public var reviewSubmissions: ReviewSubmissions?
@@ -246,6 +247,7 @@ public struct App: Codable, Sendable, Identifiable {
                     inAppPurchasesV2: InAppPurchasesV2? = nil,
                     marketplaceSearchDetail: MarketplaceSearchDetail? = nil,
                     perfPowerMetrics: PerfPowerMetrics? = nil,
+                    performanceOverviews: PerformanceOverviews? = nil,
                     preReleaseVersions: PreReleaseVersions? = nil,
                     promotedPurchases: PromotedPurchases? = nil,
                     reviewSubmissions: ReviewSubmissions? = nil,
@@ -290,6 +292,7 @@ public struct App: Codable, Sendable, Identifiable {
             self.inAppPurchasesV2 = inAppPurchasesV2
             self.marketplaceSearchDetail = marketplaceSearchDetail
             self.perfPowerMetrics = perfPowerMetrics
+            self.performanceOverviews = performanceOverviews
             self.preReleaseVersions = preReleaseVersions
             self.promotedPurchases = promotedPurchases
             self.reviewSubmissions = reviewSubmissions
@@ -334,6 +337,7 @@ public struct App: Codable, Sendable, Identifiable {
                     inAppPurchasesV2: InAppPurchasesV2? = nil,
                     marketplaceSearchDetail: MarketplaceSearchDetail? = nil,
                     perfPowerMetrics: PerfPowerMetrics? = nil,
+                    performanceOverviews: PerformanceOverviews? = nil,
                     preReleaseVersions: PreReleaseVersions? = nil,
                     promotedPurchases: PromotedPurchases? = nil,
                     reviewSubmissions: ReviewSubmissions? = nil,
@@ -377,6 +381,7 @@ public struct App: Codable, Sendable, Identifiable {
             self.inAppPurchasesV2 = inAppPurchasesV2
             self.marketplaceSearchDetail = marketplaceSearchDetail
             self.perfPowerMetrics = perfPowerMetrics
+            self.performanceOverviews = performanceOverviews
             self.preReleaseVersions = preReleaseVersions
             self.promotedPurchases = promotedPurchases
             self.reviewSubmissions = reviewSubmissions
@@ -427,6 +432,7 @@ public struct App: Codable, Sendable, Identifiable {
             inAppPurchasesV2 = try container.decodeIfPresent(InAppPurchasesV2.self, forKey: "inAppPurchasesV2")
             marketplaceSearchDetail = try container.decodeIfPresent(MarketplaceSearchDetail.self, forKey: "marketplaceSearchDetail")
             perfPowerMetrics = try container.decodeIfPresent(PerfPowerMetrics.self, forKey: "perfPowerMetrics")
+            performanceOverviews = try container.decodeIfPresent(PerformanceOverviews.self, forKey: "performanceOverviews")
             preReleaseVersions = try container.decodeIfPresent(PreReleaseVersions.self, forKey: "preReleaseVersions")
             promotedPurchases = try container.decodeIfPresent(PromotedPurchases.self, forKey: "promotedPurchases")
             reviewSubmissions = try container.decodeIfPresent(ReviewSubmissions.self, forKey: "reviewSubmissions")
@@ -477,6 +483,7 @@ public struct App: Codable, Sendable, Identifiable {
             try container.encodeIfPresent(inAppPurchasesV2, forKey: "inAppPurchasesV2")
             try container.encodeIfPresent(marketplaceSearchDetail, forKey: "marketplaceSearchDetail")
             try container.encodeIfPresent(perfPowerMetrics, forKey: "perfPowerMetrics")
+            try container.encodeIfPresent(performanceOverviews, forKey: "performanceOverviews")
             try container.encodeIfPresent(preReleaseVersions, forKey: "preReleaseVersions")
             try container.encodeIfPresent(promotedPurchases, forKey: "promotedPurchases")
             try container.encodeIfPresent(reviewSubmissions, forKey: "reviewSubmissions")
@@ -1761,6 +1768,24 @@ public struct App: Codable, Sendable, Identifiable {
         }
 
         public struct PerfPowerMetrics: Codable, Sendable {
+            public var links: RelationshipLinks?
+
+            public init(links: RelationshipLinks? = nil) {
+                self.links = links
+            }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                links = try container.decodeIfPresent(RelationshipLinks.self, forKey: "links")
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: AnyCodingKey.self)
+                try container.encodeIfPresent(links, forKey: "links")
+            }
+        }
+
+        public struct PerformanceOverviews: Codable, Sendable {
             public var links: RelationshipLinks?
 
             public init(links: RelationshipLinks? = nil) {

@@ -21,7 +21,7 @@
 
 # List the Territory Availablity of an In-App Purchase
 
-List all the territories where an in-app purchase is available.
+List all the territories where an In-App Purchase is available.
 
 ## Discussion
 

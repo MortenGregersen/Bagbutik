@@ -15,13 +15,13 @@
     ],
     "preciseIdentifier" : "rest:app_store_connect_api:delete:v2-inAppPurchaseLocalizations-{}"
   },
-  "title" : "Delete an in-app purchase localization"
+  "title" : "Delete an In-App Purchase localization"
 }
 -->
 
-# Delete an in-app purchase localization
+# Delete an In-App Purchase localization
 
-Delete a localized display name and description for an in-app purchase configured with the v2 API.
+Delete a localized display name and description for an In-App Purchase configured with the v2 API.
 
 ---
 

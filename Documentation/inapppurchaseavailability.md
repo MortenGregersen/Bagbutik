@@ -21,7 +21,7 @@
 
 # InAppPurchaseAvailability
 
-The territory availability configuration for an in-app purchase, specifying which App Store regions it’s offered in.
+The territory availability configuration for an In-App Purchase, specifying which App Store regions it’s offered in.
 
 ```
 object InAppPurchaseAvailability
@@ -33,7 +33,7 @@ object InAppPurchaseAvailability
 
 [`object InAppPurchaseAvailability.Attributes`](/documentation/AppStoreConnectAPI/InAppPurchaseAvailability/Attributes-data.dictionary)
 
-Attributes that describe an in-app purchase availability resource.
+Attributes that describe an In-App Purchase availability resource.
 
 [`object InAppPurchaseAvailability.Relationships`](/documentation/AppStoreConnectAPI/InAppPurchaseAvailability/Relationships-data.dictionary)
 

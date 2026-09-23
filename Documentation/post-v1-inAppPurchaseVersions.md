@@ -15,13 +15,13 @@
     ],
     "preciseIdentifier" : "rest:app_store_connect_api:post:v1-inAppPurchaseVersions"
   },
-  "title" : "Create an in-app purchase version"
+  "title" : "Create an In-App Purchase version"
 }
 -->
 
-# Create an in-app purchase version
+# Create an In-App Purchase version
 
-Create a draft version of an in-app purchase, capturing its current localized metadata and review images for App Review submission.
+Create a draft version of an In-App Purchase, capturing its current localized metadata and review images for App Review submission.
 
 ---
 

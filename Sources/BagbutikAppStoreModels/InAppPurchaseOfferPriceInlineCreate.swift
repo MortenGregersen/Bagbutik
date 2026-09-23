@@ -4,7 +4,7 @@ import Foundation
 /**
  # InAppPurchaseOfferPriceInlineCreate
 
- The data structure you use to configure an offer price when you create an in-app purchase offer code.
+ The data structure you use to configure an offer price when you create an In-App Purchase offer code.
 
  ```
  object InAppPurchaseOfferPriceInlineCreate

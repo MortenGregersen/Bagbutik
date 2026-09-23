@@ -15,13 +15,13 @@
     ],
     "preciseIdentifier" : "rest:app_store_connect_api:patch:v2-inAppPurchaseImages-{}"
   },
-  "title" : "Modify an in-app purchase image"
+  "title" : "Modify an In-App Purchase image"
 }
 -->
 
-# Modify an in-app purchase image
+# Modify an In-App Purchase image
 
-Commit the asset upload for an in-app purchase image configured with the v2 API.
+Commit the asset upload for an In-App Purchase image configured with the v2 API.
 
 ---
 

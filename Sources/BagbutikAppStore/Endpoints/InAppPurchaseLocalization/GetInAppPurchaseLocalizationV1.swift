@@ -3,9 +3,9 @@ import BagbutikAppStoreModels
 
 public extension Request {
     /**
-     # Read in-app purchase localization information (v1)
+     # Read In-App Purchase localization information (v1)
 
-     Get the display name and description for a specific locale for an in-app purchase.
+     Get the display name and description for a specific locale for an In-App Purchase.
 
      ---
 

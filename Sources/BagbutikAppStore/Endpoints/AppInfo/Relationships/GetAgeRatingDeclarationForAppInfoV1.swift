@@ -91,6 +91,7 @@ public enum GetAgeRatingDeclarationForAppInfoV1 {
             case developerAgeRatingInfoUrl
             case gambling
             case gamblingSimulated
+            case gracRatingClassificationNumber
             case gunsOrOtherWeapons
             case healthOrWellnessTopics
             case horrorOrFearThemes

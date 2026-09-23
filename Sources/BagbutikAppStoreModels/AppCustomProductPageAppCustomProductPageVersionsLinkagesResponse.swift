@@ -54,11 +54,11 @@ import Foundation
 
  [`object InAppPurchaseResponse`](https://developer.apple.com/documentation/AppStoreConnectAPI/InAppPurchaseResponse)
 
- The response body for endpoints that read a single in-app purchase.
+ The response body for endpoints that read a single In-App Purchase.
 
  [`object InAppPurchasesResponse`](https://developer.apple.com/documentation/AppStoreConnectAPI/InAppPurchasesResponse)
 
- The response body for endpoints that list in-app purchases for an app.
+ The response body for endpoints that list In-App Purchases for an app.
 
  [`object AppBetaTestersLinkagesRequest`](https://developer.apple.com/documentation/AppStoreConnectAPI/AppBetaTestersLinkagesRequest)
 

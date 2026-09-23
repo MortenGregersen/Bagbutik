@@ -3,9 +3,9 @@ import BagbutikAppStoreModels
 
 public extension Request {
     /**
-     # Read promoted purchase information for an in-app purchase
+     # Read promoted purchase information for an In-App Purchase
 
-     Get details about the promoted purchase of an in-app purchase.
+     Get details about the promoted purchase of an In-App Purchase.
 
      ---
 
@@ -108,6 +108,8 @@ public enum GetPromotedPurchaseForInAppPurchasesV2 {
             case groupLevel
             case images
             case introductoryOffers
+            case marketSettings
+            case multiSeatStatus
             case name
             case offerCodes
             case planAvailabilities

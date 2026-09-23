@@ -21,7 +21,7 @@
 
 # InAppPurchaseImageV2
 
-A promotion image attached to an in-app purchase configured with the v2 API.
+A promotion image attached to an In-App Purchase configured with the v2 API.
 
 ```
 object InAppPurchaseImageV2
@@ -33,7 +33,7 @@ object InAppPurchaseImageV2
 
 [`object InAppPurchaseImageV2.Attributes`](/documentation/AppStoreConnectAPI/InAppPurchaseImageV2/Attributes-data.dictionary)
 
-Attributes that describe an in-app purchase image resource.
+Attributes that describe an In-App Purchase image resource.
 
 
 

@@ -5,7 +5,7 @@ public extension Request {
     /**
      # Promote a purchase
 
-     Add an existing in-app purchase or auto-renewable subscription to the promoted in-app purchases on an app listing in the App Store.
+     Add an existing In-App Purchase or auto-renewable subscription to the promoted In-App Purchases on an app listing in the App Store.
 
      ---
 

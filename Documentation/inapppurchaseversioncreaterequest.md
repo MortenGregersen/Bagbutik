@@ -21,7 +21,7 @@
 
 # InAppPurchaseVersionCreateRequest
 
-The request body you use to create a draft version of an in-app purchase.
+The request body you use to create a draft version of an In-App Purchase.
 
 ```
 object InAppPurchaseVersionCreateRequest
@@ -33,7 +33,7 @@ object InAppPurchaseVersionCreateRequest
 
 [`object InAppPurchaseVersionCreateRequest.Data`](/documentation/AppStoreConnectAPI/InAppPurchaseVersionCreateRequest/Data-data.dictionary)
 
-The request body you use to create a draft version of an in-app purchase.
+The request body you use to create a draft version of an In-App Purchase.
 
 
 

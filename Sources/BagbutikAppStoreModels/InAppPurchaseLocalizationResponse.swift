@@ -4,7 +4,7 @@ import Foundation
 /**
  # InAppPurchaseLocalizationResponse
 
- The response body for endpoints that create, read, or modify a single in-app purchase localization.
+ The response body for endpoints that create, read, or modify a single In-App Purchase localization.
 
  ```
  object InAppPurchaseLocalizationResponse

@@ -15,13 +15,13 @@
     ],
     "preciseIdentifier" : "rest:app_store_connect_api:patch:v2-inAppPurchases-{}"
   },
-  "title" : "Modify an in-app purchase"
+  "title" : "Modify an In-App Purchase"
 }
 -->
 
-# Modify an in-app purchase
+# Modify an In-App Purchase
 
-Update the reference name of a specific in-app purchase.
+Update the reference name of a specific In-App Purchase.
 
 ## Discussion
 

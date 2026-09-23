@@ -15,13 +15,13 @@
     ],
     "preciseIdentifier" : "rest:app_store_connect_api:patch:v1-inAppPurchaseAppStoreReviewScreenshots-{}"
   },
-  "title" : "Commit a review screenshot for an in-app purchase"
+  "title" : "Commit a review screenshot for an In-App Purchase"
 }
 -->
 
-# Commit a review screenshot for an in-app purchase
+# Commit a review screenshot for an In-App Purchase
 
-Commit an uploaded image asset as a review screenshot for an in-app purchase.
+Commit an uploaded image asset as a review screenshot for an In-App Purchase.
 
 ---
 

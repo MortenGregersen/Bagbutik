@@ -21,7 +21,7 @@
 
 # InAppPurchaseV2VersionsLinkagesResponse
 
-A response containing the resource identifiers of the versions of an in-app purchase configured with the v2 API.
+A response containing the resource identifiers of the versions of an In-App Purchase configured with the v2 API.
 
 ```
 object InAppPurchaseV2VersionsLinkagesResponse

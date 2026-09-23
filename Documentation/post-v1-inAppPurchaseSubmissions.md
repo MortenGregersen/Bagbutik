@@ -15,13 +15,13 @@
     ],
     "preciseIdentifier" : "rest:app_store_connect_api:post:v1-inAppPurchaseSubmissions"
   },
-  "title" : "Create a review submission for an in-app purchase"
+  "title" : "Create a review submission for an In-App Purchase"
 }
 -->
 
-# Create a review submission for an in-app purchase
+# Create a review submission for an In-App Purchase
 
-Create an in-app purchase submission for review.
+Create an In-App Purchase submission for review.
 
 ---
 

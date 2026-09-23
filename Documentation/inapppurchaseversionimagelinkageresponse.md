@@ -21,7 +21,7 @@
 
 # InAppPurchaseVersionImageLinkageResponse
 
-A response containing the resource identifier of the review image for an in-app purchase version.
+A response containing the resource identifier of the review image for an In-App Purchase version.
 
 ```
 object InAppPurchaseVersionImageLinkageResponse

@@ -33,7 +33,7 @@ object AppBackgroundAssetsLinkagesResponse
 
 [`object AppBackgroundAssetsLinkagesResponse.Data`](/documentation/AppStoreConnectAPI/AppBackgroundAssetsLinkagesResponse/Data-data.dictionary)
 
-The the type and ID of a background asset resource linked to an app.
+The type and ID of a background asset resource linked to an app.
 
 
 

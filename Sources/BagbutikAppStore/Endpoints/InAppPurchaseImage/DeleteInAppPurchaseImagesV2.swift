@@ -4,9 +4,9 @@ import BagbutikModelsShared
 
 public extension Request {
     /**
-     # Delete an in-app purchase image
+     # Delete an In-App Purchase image
 
-     Delete an in-app purchase image configured with the v2 API.
+     Delete an In-App Purchase image configured with the v2 API.
 
      ---
 

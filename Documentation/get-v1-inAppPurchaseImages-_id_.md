@@ -15,13 +15,13 @@
     ],
     "preciseIdentifier" : "rest:app_store_connect_api:get:v1-inAppPurchaseImages-{}"
   },
-  "title" : "Read in-app purchase image information (v1)"
+  "title" : "Read In-App Purchase image information (v1)"
 }
 -->
 
-# Read in-app purchase image information (v1)
+# Read In-App Purchase image information (v1)
 
-Read details about a specific in-app purchase image.
+Read details about a specific In-App Purchase image.
 
 ---
 

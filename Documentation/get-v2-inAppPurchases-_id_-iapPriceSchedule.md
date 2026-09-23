@@ -15,13 +15,13 @@
     ],
     "preciseIdentifier" : "rest:app_store_connect_api:get:v2-inAppPurchases-{}-iapPriceSchedule"
   },
-  "title" : "Read the price schedule for an in-app purchase"
+  "title" : "Read the price schedule for an In-App Purchase"
 }
 -->
 
-# Read the price schedule for an in-app purchase
+# Read the price schedule for an In-App Purchase
 
-Get a list of the scheduled prices for an in-app purchase.
+Get a list of the scheduled prices for an In-App Purchase.
 
 ---
 

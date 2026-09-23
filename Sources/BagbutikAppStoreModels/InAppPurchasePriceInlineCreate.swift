@@ -4,7 +4,7 @@ import Foundation
 /**
  # InAppPurchasePriceInlineCreate
 
- An inline object for specifying a territory-specific price when creating or updating an in-app purchase price schedule.
+ An inline object for specifying a territory-specific price when creating or updating an In-App Purchase price schedule.
 
  ```
  object InAppPurchasePriceInlineCreate
@@ -16,7 +16,7 @@ import Foundation
 
  [`object InAppPurchasePriceInlineCreate.Attributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/InAppPurchasePriceInlineCreate/Attributes-data.dictionary)
 
- Attributes that describe an in-app purchase price inline create resource.
+ Attributes that describe an In-App Purchase price inline create resource.
 
  [`object InAppPurchasePriceInlineCreate.Relationships`](https://developer.apple.com/documentation/AppStoreConnectAPI/InAppPurchasePriceInlineCreate/Relationships-data.dictionary)
 

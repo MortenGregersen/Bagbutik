@@ -3,9 +3,9 @@ import BagbutikAppStoreModels
 
 public extension Request {
     /**
-     # Create an in-app purchase localization (v1)
+     # Create an In-App Purchase localization (v1)
 
-     Create a localized display name and description for an in-app purchase.
+     Create a localized display name and description for an In-App Purchase.
 
      ## Discussion
 

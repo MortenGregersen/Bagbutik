@@ -15,13 +15,13 @@
     ],
     "preciseIdentifier" : "rest:app_store_connect_api:delete:v1-inAppPurchaseAppStoreReviewScreenshots-{}"
   },
-  "title" : "Delete a review screenshot for an in-app purchase"
+  "title" : "Delete a review screenshot for an In-App Purchase"
 }
 -->
 
-# Delete a review screenshot for an in-app purchase
+# Delete a review screenshot for an In-App Purchase
 
-Delete an image that you uploaded for review of an in-app purchase.
+Delete an image that you uploaded for review of an In-App Purchase.
 
 ---
 

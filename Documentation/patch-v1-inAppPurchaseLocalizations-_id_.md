@@ -15,13 +15,13 @@
     ],
     "preciseIdentifier" : "rest:app_store_connect_api:patch:v1-inAppPurchaseLocalizations-{}"
   },
-  "title" : "Modify an in-app purchase localization (v1)"
+  "title" : "Modify an In-App Purchase localization (v1)"
 }
 -->
 
-# Modify an in-app purchase localization (v1)
+# Modify an In-App Purchase localization (v1)
 
-Update the display name and description for a specific locale of an in-app purchase.
+Update the display name and description for a specific locale of an In-App Purchase.
 
 ## Discussion
 

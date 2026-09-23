@@ -15,13 +15,13 @@
     ],
     "preciseIdentifier" : "rest:app_store_connect_api:patch:v1-inAppPurchaseImages-{}"
   },
-  "title" : "Commit an image for an in-app purchase (v1)"
+  "title" : "Commit an image for an In-App Purchase (v1)"
 }
 -->
 
-# Commit an image for an in-app purchase (v1)
+# Commit an image for an In-App Purchase (v1)
 
-Commit an uploaded image asset for an in-app purchase.
+Commit an uploaded image asset for an In-App Purchase.
 
 ---
 

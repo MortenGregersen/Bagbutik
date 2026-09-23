@@ -4,7 +4,7 @@ import Foundation
 /**
  # InAppPurchaseAppStoreReviewScreenshotCreateRequest
 
- The request body you use to create an in-app purchase App Store review screenshot.
+ The request body you use to create an In-App Purchase App Store review screenshot.
 
  ```
  object InAppPurchaseAppStoreReviewScreenshotCreateRequest
@@ -16,7 +16,7 @@ import Foundation
 
  [`object InAppPurchaseAppStoreReviewScreenshotCreateRequest.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/InAppPurchaseAppStoreReviewScreenshotCreateRequest/Data-data.dictionary)
 
- The request body you use to create an in-app purchase App Store review screenshot.
+ The request body you use to create an In-App Purchase App Store review screenshot.
 
 
 

@@ -3,9 +3,9 @@ import BagbutikAppStoreModels
 
 public extension Request {
     /**
-     # Read the content ID for an in-app purchase
+     # Read the content ID for an In-App Purchase
 
-     Get the content ID for a specific in-app purchase.
+     Get the content ID for a specific In-App Purchase.
 
      ---
 

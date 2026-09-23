@@ -4,7 +4,7 @@ import Foundation
 /**
  # InAppPurchaseOfferCodePricesLinkagesResponse
 
- A response that contains a list of in-app purchase offer code prices linkage resources.
+ A response that contains a list of In-App Purchase offer code prices linkage resources.
 
  ```
  object InAppPurchaseOfferCodePricesLinkagesResponse

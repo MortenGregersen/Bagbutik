@@ -21,7 +21,7 @@
 
 # PromotedPurchaseResponse
 
-The response body for endpoints that read or modify a promoted in-app purchase or subscription.
+The response body for endpoints that read or modify a promoted In-App Purchase or subscription.
 
 ```
 object PromotedPurchaseResponse

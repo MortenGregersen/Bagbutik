@@ -3,9 +3,9 @@ import BagbutikAppStoreModels
 
 public extension Request {
     /**
-     # Create an in-app purchase image
+     # Create an In-App Purchase image
 
-     Reserve a promotion image for an in-app purchase configured with the v2 API and prepare its asset upload.
+     Reserve a promotion image for an In-App Purchase configured with the v2 API and prepare its asset upload.
 
      ---
 

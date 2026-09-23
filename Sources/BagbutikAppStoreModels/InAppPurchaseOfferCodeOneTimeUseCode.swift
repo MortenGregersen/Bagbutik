@@ -4,7 +4,7 @@ import Foundation
 /**
  # InAppPurchaseOfferCodeOneTimeUseCode
 
- The data structure that represents an in-app purchase offer code one-time use code resource.
+ The data structure that represents an In-App Purchase offer code one-time use code resource.
 
  ```
  object InAppPurchaseOfferCodeOneTimeUseCode
@@ -16,7 +16,7 @@ import Foundation
 
  [`object InAppPurchaseOfferCodeOneTimeUseCode.Attributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/InAppPurchaseOfferCodeOneTimeUseCode/Attributes-data.dictionary)
 
- Attributes that describe an in-app purchase offer code one-time use code resource.
+ Attributes that describe an In-App Purchase offer code one-time use code resource.
 
  [`object InAppPurchaseOfferCodeOneTimeUseCode.Relationships`](https://developer.apple.com/documentation/AppStoreConnectAPI/InAppPurchaseOfferCodeOneTimeUseCode/Relationships-data.dictionary)
 

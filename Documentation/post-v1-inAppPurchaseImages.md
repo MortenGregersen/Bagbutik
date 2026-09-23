@@ -15,13 +15,13 @@
     ],
     "preciseIdentifier" : "rest:app_store_connect_api:post:v1-inAppPurchaseImages"
   },
-  "title" : "Create an image for an in-app purchase (v1)"
+  "title" : "Create an image for an In-App Purchase (v1)"
 }
 -->
 
-# Create an image for an in-app purchase (v1)
+# Create an image for an In-App Purchase (v1)
 
-Reserve an image asset to appear in the App Store, representing an in-app purchase.
+Reserve an image asset to appear in the App Store, representing an In-App Purchase.
 
 ## Discussion
 

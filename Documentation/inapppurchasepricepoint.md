@@ -21,7 +21,7 @@
 
 # InAppPurchasePricePoint
 
-A standard price tier for in-app purchases, specifying the customer price and developer proceeds in a territory.
+A standard price tier for In-App Purchases, specifying the customer price and developer proceeds in a territory.
 
 ```
 object InAppPurchasePricePoint
@@ -33,7 +33,7 @@ object InAppPurchasePricePoint
 
 [`object InAppPurchasePricePoint.Attributes`](/documentation/AppStoreConnectAPI/InAppPurchasePricePoint/Attributes-data.dictionary)
 
-Attributes that describe an in-app purchase price point resource.
+Attributes that describe an In-App Purchase price point resource.
 
 [`object InAppPurchasePricePoint.Relationships`](/documentation/AppStoreConnectAPI/InAppPurchasePricePoint/Relationships-data.dictionary)
 

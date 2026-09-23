@@ -15,13 +15,13 @@
     ],
     "preciseIdentifier" : "rest:app_store_connect_api:get:v2-inAppPurchases-{}-inAppPurchaseLocalizations"
   },
-  "title" : "List all localizations for an in-app purchase"
+  "title" : "List all localizations for an In-App Purchase"
 }
 -->
 
-# List all localizations for an in-app purchase
+# List all localizations for an In-App Purchase
 
-Get a list of localized display names and descriptions for a specific in-app purchase.
+Get a list of localized display names and descriptions for a specific In-App Purchase.
 
 ---
 

@@ -83,6 +83,7 @@ public enum GetBetaAppLocalizationV1 {
             case marketplaceSearchDetail
             case name
             case perfPowerMetrics
+            case performanceOverviews
             case preReleaseVersions
             case primaryLocale
             case promotedPurchases

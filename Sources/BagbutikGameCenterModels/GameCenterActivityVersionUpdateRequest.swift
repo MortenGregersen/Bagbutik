@@ -4,7 +4,7 @@ import Foundation
 /**
  # GameCenterActivityVersionUpdateRequest
 
- The request body you use to update an activity version version.
+ The request body you use to update an activity version.
 
  ```
  object GameCenterActivityVersionUpdateRequest

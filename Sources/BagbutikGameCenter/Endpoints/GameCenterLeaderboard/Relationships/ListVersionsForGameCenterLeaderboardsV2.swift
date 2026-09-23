@@ -119,6 +119,7 @@ public enum ListVersionsForGameCenterLeaderboardsV2 {
             case gameCenterDetail
             case gameCenterGroup
             case gameCenterLeaderboardSets
+            case gameCenterScoreModerations
             case recurrenceDuration
             case recurrenceRule
             case recurrenceStartDate

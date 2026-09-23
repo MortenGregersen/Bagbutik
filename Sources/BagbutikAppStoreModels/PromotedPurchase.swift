@@ -4,7 +4,7 @@ import Foundation
 /**
  # PromotedPurchase
 
- An in-app purchase or subscription configured to appear on the app’s App Store product page.
+ An In-App Purchase or subscription configured to appear on the app’s App Store product page.
 
  ```
  object PromotedPurchase

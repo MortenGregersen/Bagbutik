@@ -15,13 +15,13 @@
     ],
     "preciseIdentifier" : "rest:app_store_connect_api:get:v2-inAppPurchases-{}-versions"
   },
-  "title" : "List the versions of an in-app purchase"
+  "title" : "List the versions of an In-App Purchase"
 }
 -->
 
-# List the versions of an in-app purchase
+# List the versions of an In-App Purchase
 
-List the draft versions of an in-app purchase configured with the v2 API.
+List the draft versions of an In-App Purchase configured with the v2 API.
 
 ---
 

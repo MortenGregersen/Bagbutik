@@ -15,11 +15,11 @@
     ],
     "preciseIdentifier" : "rest:app_store_connect_api:get:v1-inAppPurchasePriceSchedules-{}-relationships-manualPrices"
   },
-  "title" : "List manual price IDs for an in-app purchase price schedule"
+  "title" : "List manual price IDs for an In-App Purchase price schedule"
 }
 -->
 
-# List manual price IDs for an in-app purchase price schedule
+# List manual price IDs for an In-App Purchase price schedule
 
 ---
 

@@ -71,11 +71,11 @@ A one-time purchasable item available in an app, such as a consumable, non-consu
 
 [`object InAppPurchaseResponse`](/documentation/AppStoreConnectAPI/InAppPurchaseResponse)
 
-The response body for endpoints that read a single in-app purchase.
+The response body for endpoints that read a single In-App Purchase.
 
 [`object InAppPurchasesResponse`](/documentation/AppStoreConnectAPI/InAppPurchasesResponse)
 
-The response body for endpoints that list in-app purchases for an app.
+The response body for endpoints that list In-App Purchases for an app.
 
 [`object AppBetaTestersLinkagesRequest`](/documentation/AppStoreConnectAPI/AppBetaTestersLinkagesRequest)
 

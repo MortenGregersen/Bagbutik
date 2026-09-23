@@ -3,9 +3,9 @@ import BagbutikAppStoreModels
 
 public extension Request {
     /**
-     # Modify a promoted in-app purchase
+     # Modify a promoted In-App Purchase
 
-     Update the visibility of a promoted in-app purchase.
+     Update the visibility of a promoted In-App Purchase.
 
      ---
 

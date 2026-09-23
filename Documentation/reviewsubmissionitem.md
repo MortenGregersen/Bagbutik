@@ -21,7 +21,7 @@
 
 # ReviewSubmissionItem
 
-An individual reviewable item — such as an app version, in-app purchase, or App Clip — included in a review submission.
+An individual reviewable item — such as an app version, In-App Purchase, or App Clip — included in a review submission.
 
 ```
 object ReviewSubmissionItem

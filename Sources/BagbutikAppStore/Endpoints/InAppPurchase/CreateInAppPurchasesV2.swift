@@ -3,9 +3,9 @@ import BagbutikAppStoreModels
 
 public extension Request {
     /**
-     # Create an in-app purchase
+     # Create an In-App Purchase
 
-     Create an in-app purchase, including a consumable, non-consumable, or non-renewing subscription.
+     Create an In-App Purchase, including a consumable, non-consumable, or non-renewing subscription.
 
      ## Discussion
 

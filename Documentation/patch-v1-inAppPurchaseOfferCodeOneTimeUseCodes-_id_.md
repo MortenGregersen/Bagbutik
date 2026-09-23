@@ -21,7 +21,7 @@
 
 # Modify an In-App Purchase Offer Code One-Time Use Code
 
-Update a specific in-app purchase offer code one-time use code.
+Update a specific In-App Purchase offer code one-time use code.
 
 ---
 

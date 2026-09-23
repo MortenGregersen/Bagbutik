@@ -4,7 +4,7 @@ import Foundation
 /**
  # InAppPurchaseLocalizationUpdateRequest
 
- The request body you use to update an in-app purchase localization update request.
+ The request body you use to update an In-App Purchase localization update request.
 
  ```
  object InAppPurchaseLocalizationUpdateRequest
@@ -16,7 +16,7 @@ import Foundation
 
  [`object InAppPurchaseLocalizationUpdateRequest.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/InAppPurchaseLocalizationUpdateRequest/Data-data.dictionary)
 
- The request body you use to update an in-app purchase localization update request.
+ The request body you use to update an In-App Purchase localization update request.
 
 
 

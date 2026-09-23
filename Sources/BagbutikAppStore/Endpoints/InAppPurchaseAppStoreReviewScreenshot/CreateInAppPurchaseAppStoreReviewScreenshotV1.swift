@@ -3,9 +3,9 @@ import BagbutikAppStoreModels
 
 public extension Request {
     /**
-     # Create an in-app purchase review screenshot
+     # Create an In-App Purchase review screenshot
 
-     Reserve a review screenshot for an in-app purchase.
+     Reserve a review screenshot for an In-App Purchase.
 
      ---
 

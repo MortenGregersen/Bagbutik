@@ -21,7 +21,7 @@
 
 # InAppPurchaseV2CreateRequest
 
-The request body you use to create an in-app purchase.
+The request body you use to create an In-App Purchase.
 
 ```
 object InAppPurchaseV2CreateRequest
@@ -33,7 +33,7 @@ object InAppPurchaseV2CreateRequest
 
 [`object InAppPurchaseV2CreateRequest.Data`](/documentation/AppStoreConnectAPI/InAppPurchaseV2CreateRequest/Data-data.dictionary)
 
-The request body you use to create an in-app purchase.
+The request body you use to create an In-App Purchase.
 
 
 

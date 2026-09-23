@@ -3,7 +3,7 @@ import BagbutikAppStoreModels
 
 public extension Request {
     /**
-     # List equalization IDs for an in-app purchase price point
+     # List equalization IDs for an In-App Purchase price point
 
      ---
 

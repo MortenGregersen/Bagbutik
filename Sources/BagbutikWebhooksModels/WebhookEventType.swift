@@ -4,7 +4,7 @@ import Foundation
 /**
  # WebhookEventType
 
- A string that represents the the event types for a webhook notification.
+ A string that represents the event types for a webhook notification.
 
  ```
  string WebhookEventType

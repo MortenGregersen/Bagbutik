@@ -21,7 +21,7 @@
 
 # InAppPurchaseImageV2Response
 
-The response body for endpoints that create, read, or modify an in-app purchase image with the v2 API.
+The response body for endpoints that create, read, or modify an In-App Purchase image with the v2 API.
 
 ```
 object InAppPurchaseImageV2Response

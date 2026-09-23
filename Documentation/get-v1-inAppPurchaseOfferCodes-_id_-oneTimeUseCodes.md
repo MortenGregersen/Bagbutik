@@ -21,7 +21,7 @@
 
 # List All One-Time Use Codes for an In-App Purchase Offer Code
 
-Get a list of one-time use codes for a specific in-app purchase offer code.
+Get a list of one-time use codes for a specific In-App Purchase offer code.
 
 ---
 

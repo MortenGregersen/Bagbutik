@@ -5,7 +5,7 @@ public extension Request {
     /**
      # Create an In-App Purchase Offer Code One-Time Use Code
 
-     Create a one-time use code for an in-app purchase offer code.
+     Create a one-time use code for an In-App Purchase offer code.
 
      ---
 

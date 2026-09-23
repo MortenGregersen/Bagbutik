@@ -15,13 +15,13 @@
     ],
     "preciseIdentifier" : "rest:app_store_connect_api:get:v2-inAppPurchaseImages-{}"
   },
-  "title" : "Read in-app purchase image information"
+  "title" : "Read In-App Purchase image information"
 }
 -->
 
-# Read in-app purchase image information
+# Read In-App Purchase image information
 
-Get the metadata for an in-app purchase image configured with the v2 API, including the asset upload state.
+Get the metadata for an In-App Purchase image configured with the v2 API, including the asset upload state.
 
 ---
 

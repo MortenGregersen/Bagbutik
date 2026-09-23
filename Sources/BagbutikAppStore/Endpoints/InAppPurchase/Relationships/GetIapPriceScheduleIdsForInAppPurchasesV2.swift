@@ -3,9 +3,9 @@ import BagbutikAppStoreModels
 
 public extension Request {
     /**
-     # Read the price schedule ID for an in-app purchase
+     # Read the price schedule ID for an In-App Purchase
 
-     Get the price schedule ID for a specific in-app purchase.
+     Get the price schedule ID for a specific In-App Purchase.
 
      ---
 

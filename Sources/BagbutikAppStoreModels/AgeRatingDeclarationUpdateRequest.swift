@@ -83,6 +83,7 @@ public struct AgeRatingDeclarationUpdateRequest: Codable, Sendable, RequestBody 
             public var developerAgeRatingInfoUrl: Clearable<String>?
             public var gambling: Bool?
             public var gamblingSimulated: AgeRatingDeclaration.Attributes.GamblingSimulated?
+            public var gracRatingClassificationNumber: String?
             public var gunsOrOtherWeapons: AgeRatingDeclaration.Attributes.GunsOrOtherWeapons?
             public var healthOrWellnessTopics: Bool?
             public var horrorOrFearThemes: AgeRatingDeclaration.Attributes.HorrorOrFearThemes?
@@ -114,6 +115,7 @@ public struct AgeRatingDeclarationUpdateRequest: Codable, Sendable, RequestBody 
                         developerAgeRatingInfoUrl: Clearable<String>? = nil,
                         gambling: Bool? = nil,
                         gamblingSimulated: AgeRatingDeclaration.Attributes.GamblingSimulated? = nil,
+                        gracRatingClassificationNumber: String? = nil,
                         gunsOrOtherWeapons: AgeRatingDeclaration.Attributes.GunsOrOtherWeapons? = nil,
                         healthOrWellnessTopics: Bool? = nil,
                         horrorOrFearThemes: AgeRatingDeclaration.Attributes.HorrorOrFearThemes? = nil,
@@ -144,6 +146,7 @@ public struct AgeRatingDeclarationUpdateRequest: Codable, Sendable, RequestBody 
                 self.developerAgeRatingInfoUrl = developerAgeRatingInfoUrl
                 self.gambling = gambling
                 self.gamblingSimulated = gamblingSimulated
+                self.gracRatingClassificationNumber = gracRatingClassificationNumber
                 self.gunsOrOtherWeapons = gunsOrOtherWeapons
                 self.healthOrWellnessTopics = healthOrWellnessTopics
                 self.horrorOrFearThemes = horrorOrFearThemes
@@ -174,6 +177,7 @@ public struct AgeRatingDeclarationUpdateRequest: Codable, Sendable, RequestBody 
                         developerAgeRatingInfoUrl: Clearable<String>? = nil,
                         gambling: Bool? = nil,
                         gamblingSimulated: AgeRatingDeclaration.Attributes.GamblingSimulated? = nil,
+                        gracRatingClassificationNumber: String? = nil,
                         gunsOrOtherWeapons: AgeRatingDeclaration.Attributes.GunsOrOtherWeapons? = nil,
                         healthOrWellnessTopics: Bool? = nil,
                         horrorOrFearThemes: AgeRatingDeclaration.Attributes.HorrorOrFearThemes? = nil,
@@ -203,6 +207,7 @@ public struct AgeRatingDeclarationUpdateRequest: Codable, Sendable, RequestBody 
                 self.developerAgeRatingInfoUrl = developerAgeRatingInfoUrl
                 self.gambling = gambling
                 self.gamblingSimulated = gamblingSimulated
+                self.gracRatingClassificationNumber = gracRatingClassificationNumber
                 self.gunsOrOtherWeapons = gunsOrOtherWeapons
                 self.healthOrWellnessTopics = healthOrWellnessTopics
                 self.horrorOrFearThemes = horrorOrFearThemes
@@ -239,6 +244,7 @@ public struct AgeRatingDeclarationUpdateRequest: Codable, Sendable, RequestBody 
                 developerAgeRatingInfoUrl = try container.decodeIfPresent(Clearable<String>.self, forKey: "developerAgeRatingInfoUrl")
                 gambling = try container.decodeIfPresent(Bool.self, forKey: "gambling")
                 gamblingSimulated = try container.decodeIfPresent(AgeRatingDeclaration.Attributes.GamblingSimulated.self, forKey: "gamblingSimulated")
+                gracRatingClassificationNumber = try container.decodeIfPresent(String.self, forKey: "gracRatingClassificationNumber")
                 gunsOrOtherWeapons = try container.decodeIfPresent(AgeRatingDeclaration.Attributes.GunsOrOtherWeapons.self, forKey: "gunsOrOtherWeapons")
                 healthOrWellnessTopics = try container.decodeIfPresent(Bool.self, forKey: "healthOrWellnessTopics")
                 horrorOrFearThemes = try container.decodeIfPresent(AgeRatingDeclaration.Attributes.HorrorOrFearThemes.self, forKey: "horrorOrFearThemes")
@@ -275,6 +281,7 @@ public struct AgeRatingDeclarationUpdateRequest: Codable, Sendable, RequestBody 
                 try container.encodeIfPresent(developerAgeRatingInfoUrl, forKey: "developerAgeRatingInfoUrl")
                 try container.encodeIfPresent(gambling, forKey: "gambling")
                 try container.encodeIfPresent(gamblingSimulated, forKey: "gamblingSimulated")
+                try container.encodeIfPresent(gracRatingClassificationNumber, forKey: "gracRatingClassificationNumber")
                 try container.encodeIfPresent(gunsOrOtherWeapons, forKey: "gunsOrOtherWeapons")
                 try container.encodeIfPresent(healthOrWellnessTopics, forKey: "healthOrWellnessTopics")
                 try container.encodeIfPresent(horrorOrFearThemes, forKey: "horrorOrFearThemes")

@@ -4,9 +4,9 @@ import BagbutikModelsShared
 
 public extension Request {
     /**
-     # List all in-app purchases for an app v1
+     # List all In-App Purchases for an app v1
 
-     List the in-app purchases that are available for your app.
+     List the In-App Purchases that are available for your app.
 
      ## Discussion
 
@@ -135,6 +135,7 @@ public enum ListInAppPurchasesForAppV1 {
             case marketplaceSearchDetail
             case name
             case perfPowerMetrics
+            case performanceOverviews
             case preReleaseVersions
             case primaryLocale
             case promotedPurchases

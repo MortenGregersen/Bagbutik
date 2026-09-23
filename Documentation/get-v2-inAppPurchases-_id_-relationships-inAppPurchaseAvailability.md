@@ -15,13 +15,13 @@
     ],
     "preciseIdentifier" : "rest:app_store_connect_api:get:v2-inAppPurchases-{}-relationships-inAppPurchaseAvailability"
   },
-  "title" : "Read the availability ID for an in-app purchase"
+  "title" : "Read the availability ID for an In-App Purchase"
 }
 -->
 
-# Read the availability ID for an in-app purchase
+# Read the availability ID for an In-App Purchase
 
-Get the availability ID for a specific in-app purchase.
+Get the availability ID for a specific In-App Purchase.
 
 ---
 

@@ -4,7 +4,7 @@ import Foundation
 /**
  # InAppPurchaseVersionLocalizationsLinkagesResponse
 
- A response containing the resource identifiers of the localizations for an in-app purchase version.
+ A response containing the resource identifiers of the localizations for an In-App Purchase version.
 
  ```
  object InAppPurchaseVersionLocalizationsLinkagesResponse

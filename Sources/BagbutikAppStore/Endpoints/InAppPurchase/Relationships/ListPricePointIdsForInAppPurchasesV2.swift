@@ -3,9 +3,9 @@ import BagbutikAppStoreModels
 
 public extension Request {
     /**
-     # List price point IDs for an in-app purchase
+     # List price point IDs for an In-App Purchase
 
-     Get a list of price point IDs for a specific in-app purchase.
+     Get a list of price point IDs for a specific In-App Purchase.
 
      ---
 

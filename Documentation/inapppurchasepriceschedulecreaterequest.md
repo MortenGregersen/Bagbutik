@@ -21,7 +21,7 @@
 
 # InAppPurchasePriceScheduleCreateRequest
 
-The request body you use to create an in-app purchase price schedule.
+The request body you use to create an In-App Purchase price schedule.
 
 ```
 object InAppPurchasePriceScheduleCreateRequest
@@ -33,7 +33,7 @@ object InAppPurchasePriceScheduleCreateRequest
 
 [`object InAppPurchasePriceScheduleCreateRequest.Data`](/documentation/AppStoreConnectAPI/InAppPurchasePriceScheduleCreateRequest/Data-data.dictionary)
 
-The request body you use to create an in-app purchase price schedule.
+The request body you use to create an In-App Purchase price schedule.
 
 
 

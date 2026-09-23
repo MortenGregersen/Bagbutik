@@ -4,7 +4,7 @@ import Foundation
 /**
  # InAppPurchaseOfferCodeUpdateRequest
 
- The request body you use to update an in-app purchase offer code.
+ The request body you use to update an In-App Purchase offer code.
 
  ```
  object InAppPurchaseOfferCodeUpdateRequest
@@ -16,7 +16,7 @@ import Foundation
 
  [`object InAppPurchaseOfferCodeUpdateRequest.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/InAppPurchaseOfferCodeUpdateRequest/Data-data.dictionary)
 
- The request body you use to update an in-app purchase offer code.
+ The request body you use to update an In-App Purchase offer code.
 
 
 

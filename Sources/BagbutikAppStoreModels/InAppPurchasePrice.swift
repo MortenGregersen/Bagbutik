@@ -4,7 +4,7 @@ import Foundation
 /**
  # InAppPurchasePrice
 
- A configured price for an in-app purchase in a specific App Store territory.
+ A configured price for an In-App Purchase in a specific App Store territory.
 
  ```
  object InAppPurchasePrice
@@ -16,7 +16,7 @@ import Foundation
 
  [`object InAppPurchasePrice.Attributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/InAppPurchasePrice/Attributes-data.dictionary)
 
- Attributes that describe an in-app purchase price resource.
+ Attributes that describe an In-App Purchase price resource.
 
  [`object InAppPurchasePrice.Relationships`](https://developer.apple.com/documentation/AppStoreConnectAPI/InAppPurchasePrice/Relationships-data.dictionary)
 

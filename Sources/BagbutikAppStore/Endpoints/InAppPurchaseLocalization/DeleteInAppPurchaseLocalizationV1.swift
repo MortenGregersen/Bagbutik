@@ -4,9 +4,9 @@ import BagbutikModelsShared
 
 public extension Request {
     /**
-     # Delete an in-app purchase localization (v1)
+     # Delete an In-App Purchase localization (v1)
 
-     Delete the metadata for a single in-app purchase localization.
+     Delete the metadata for a single In-App Purchase localization.
 
      ## Discussion
 

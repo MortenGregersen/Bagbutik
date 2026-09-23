@@ -4,7 +4,7 @@ import Foundation
 /**
  # InAppPurchaseContentResponse
 
- A response containing a single hosted content record for an in-app purchase.
+ A response containing a single hosted content record for an In-App Purchase.
 
  ```
  object InAppPurchaseContentResponse

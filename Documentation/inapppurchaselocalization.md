@@ -21,7 +21,7 @@
 
 # InAppPurchaseLocalization
 
-The localized display name and description for an in-app purchase shown to customers in a specific language.
+The localized display name and description for an In-App Purchase shown to customers in a specific language.
 
 ```
 object InAppPurchaseLocalization
@@ -33,7 +33,7 @@ object InAppPurchaseLocalization
 
 [`object InAppPurchaseLocalization.Attributes`](/documentation/AppStoreConnectAPI/InAppPurchaseLocalization/Attributes-data.dictionary)
 
-Attributes that describe an in-app purchase localization resource.
+Attributes that describe an In-App Purchase localization resource.
 
 [`object InAppPurchaseLocalization.Relationships`](/documentation/AppStoreConnectAPI/InAppPurchaseLocalization/Relationships-data.dictionary)
 

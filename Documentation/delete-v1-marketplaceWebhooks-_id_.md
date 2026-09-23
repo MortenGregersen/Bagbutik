@@ -1,7 +1,7 @@
 <!--
 {
   "availability" : [
-    "App Store Connect API: 3.3.0 -"
+    "App Store Connect API: 3.3.0 - 4.0.1"
   ],
   "documentType" : "symbol",
   "framework" : "AppStoreConnectAPI",

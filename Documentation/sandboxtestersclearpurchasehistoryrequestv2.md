@@ -21,7 +21,7 @@
 
 # SandboxTestersClearPurchaseHistoryRequestV2
 
-A batch request to reset the in-app purchase and subscription history for one or more sandbox Apple IDs.
+A batch request to reset the In-App Purchase and subscription history for one or more sandbox Apple IDs.
 
 ```
 object SandboxTestersClearPurchaseHistoryRequestV2

@@ -5,7 +5,7 @@ public extension Request {
     /**
      # Read In-App Purchase Offer Code One-Time Use Code Information
 
-     Get information about a specific in-app purchase offer code one-time use code.
+     Get information about a specific In-App Purchase offer code one-time use code.
 
      ---
 

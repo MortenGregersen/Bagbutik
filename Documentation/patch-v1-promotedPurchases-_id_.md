@@ -15,13 +15,13 @@
     ],
     "preciseIdentifier" : "rest:app_store_connect_api:patch:v1-promotedPurchases-{}"
   },
-  "title" : "Modify a promoted in-app purchase"
+  "title" : "Modify a promoted In-App Purchase"
 }
 -->
 
-# Modify a promoted in-app purchase
+# Modify a promoted In-App Purchase
 
-Update the visibility of a promoted in-app purchase.
+Update the visibility of a promoted In-App Purchase.
 
 ---
 

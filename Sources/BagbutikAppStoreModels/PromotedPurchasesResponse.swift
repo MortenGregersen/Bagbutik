@@ -4,7 +4,7 @@ import Foundation
 /**
  # PromotedPurchasesResponse
 
- The response body for endpoints that list promoted in-app purchases and subscriptions for an app.
+ The response body for endpoints that list promoted In-App Purchases and subscriptions for an app.
 
  ```
  object PromotedPurchasesResponse

@@ -21,7 +21,7 @@
 
 # InAppPurchaseSubmissionCreateRequest
 
-The request body you use to create an in-app purchase submission.
+The request body you use to create an In-App Purchase submission.
 
 ```
 object InAppPurchaseSubmissionCreateRequest
@@ -33,7 +33,7 @@ object InAppPurchaseSubmissionCreateRequest
 
 [`object InAppPurchaseSubmissionCreateRequest.Data`](/documentation/AppStoreConnectAPI/InAppPurchaseSubmissionCreateRequest/Data-data.dictionary)
 
-The request body you use to create an in-app purchase submission.
+The request body you use to create an In-App Purchase submission.
 
 
 

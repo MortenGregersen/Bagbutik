@@ -21,7 +21,7 @@
 
 # InAppPurchaseOfferCodeOneTimeUseCodeResponse
 
-A response that contains a single in-app purchase offer code one-time use code resource.
+A response that contains a single In-App Purchase offer code one-time use code resource.
 
 ```
 object InAppPurchaseOfferCodeOneTimeUseCodeResponse

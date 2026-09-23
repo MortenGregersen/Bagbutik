@@ -5,7 +5,7 @@ import Foundation
 /**
  # SandboxTesterV2
 
- A sandbox Apple ID you use to test in-app purchases and subscriptions in the Xcode sandbox environment.
+ A sandbox Apple ID you use to test In-App Purchases and subscriptions in the Xcode sandbox environment.
 
  ```
  object SandboxTesterV2

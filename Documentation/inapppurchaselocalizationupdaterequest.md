@@ -21,7 +21,7 @@
 
 # InAppPurchaseLocalizationUpdateRequest
 
-The request body you use to update an in-app purchase localization update request.
+The request body you use to update an In-App Purchase localization update request.
 
 ```
 object InAppPurchaseLocalizationUpdateRequest
@@ -33,7 +33,7 @@ object InAppPurchaseLocalizationUpdateRequest
 
 [`object InAppPurchaseLocalizationUpdateRequest.Data`](/documentation/AppStoreConnectAPI/InAppPurchaseLocalizationUpdateRequest/Data-data.dictionary)
 
-The request body you use to update an in-app purchase localization update request.
+The request body you use to update an In-App Purchase localization update request.
 
 
 

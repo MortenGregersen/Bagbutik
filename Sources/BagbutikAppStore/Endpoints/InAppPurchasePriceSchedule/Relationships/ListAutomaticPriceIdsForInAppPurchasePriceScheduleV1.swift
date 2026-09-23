@@ -3,7 +3,7 @@ import BagbutikAppStoreModels
 
 public extension Request {
     /**
-     # List automatic price IDs for an in-app purchase price schedule
+     # List automatic price IDs for an In-App Purchase price schedule
 
      ---
 

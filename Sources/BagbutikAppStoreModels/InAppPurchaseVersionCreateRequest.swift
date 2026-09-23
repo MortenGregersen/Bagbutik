@@ -4,7 +4,7 @@ import Foundation
 /**
  # InAppPurchaseVersionCreateRequest
 
- The request body you use to create a draft version of an in-app purchase.
+ The request body you use to create a draft version of an In-App Purchase.
 
  ```
  object InAppPurchaseVersionCreateRequest
@@ -16,7 +16,7 @@ import Foundation
 
  [`object InAppPurchaseVersionCreateRequest.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/InAppPurchaseVersionCreateRequest/Data-data.dictionary)
 
- The request body you use to create a draft version of an in-app purchase.
+ The request body you use to create a draft version of an In-App Purchase.
 
 
 

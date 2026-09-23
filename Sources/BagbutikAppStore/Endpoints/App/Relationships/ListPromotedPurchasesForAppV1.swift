@@ -5,7 +5,7 @@ public extension Request {
     /**
      # List all promoted purchases for an app
 
-     Get a list of promoted in-app purchases, including promoted auto-renewable subscriptions, for an app.
+     Get a list of promoted In-App Purchases, including promoted auto-renewable subscriptions, for an app.
 
      ## Discussion
 
@@ -179,6 +179,8 @@ public enum ListPromotedPurchasesForAppV1 {
             case groupLevel
             case images
             case introductoryOffers
+            case marketSettings
+            case multiSeatStatus
             case name
             case offerCodes
             case planAvailabilities

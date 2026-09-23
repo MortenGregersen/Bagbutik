@@ -86,18 +86,24 @@ public struct SubscriptionUpdateRequest: Codable, Sendable, RequestBody {
         public struct Attributes: Codable, Sendable {
             public var familySharable: Bool?
             public var groupLevel: Int?
+            public var marketSettings: [MarketSettings]?
+            public var multiSeatStatus: Subscription.Attributes.MultiSeatStatus?
             public var name: String?
             public var reviewNote: String?
             public var subscriptionPeriod: Subscription.Attributes.SubscriptionPeriod?
 
             public init(familySharable: Bool? = nil,
                         groupLevel: Int? = nil,
+                        marketSettings: [MarketSettings]? = nil,
+                        multiSeatStatus: Subscription.Attributes.MultiSeatStatus? = nil,
                         name: String? = nil,
                         reviewNote: String? = nil,
                         subscriptionPeriod: Subscription.Attributes.SubscriptionPeriod? = nil)
             {
                 self.familySharable = familySharable
                 self.groupLevel = groupLevel
+                self.marketSettings = marketSettings
+                self.multiSeatStatus = multiSeatStatus
                 self.name = name
                 self.reviewNote = reviewNote
                 self.subscriptionPeriod = subscriptionPeriod
@@ -107,6 +113,8 @@ public struct SubscriptionUpdateRequest: Codable, Sendable, RequestBody {
                 let container = try decoder.container(keyedBy: AnyCodingKey.self)
                 familySharable = try container.decodeIfPresent(Bool.self, forKey: "familySharable")
                 groupLevel = try container.decodeIfPresent(Int.self, forKey: "groupLevel")
+                marketSettings = try container.decodeIfPresent([MarketSettings].self, forKey: "marketSettings")
+                multiSeatStatus = try container.decodeIfPresent(Subscription.Attributes.MultiSeatStatus.self, forKey: "multiSeatStatus")
                 name = try container.decodeIfPresent(String.self, forKey: "name")
                 reviewNote = try container.decodeIfPresent(String.self, forKey: "reviewNote")
                 subscriptionPeriod = try container.decodeIfPresent(Subscription.Attributes.SubscriptionPeriod.self, forKey: "subscriptionPeriod")
@@ -116,9 +124,32 @@ public struct SubscriptionUpdateRequest: Codable, Sendable, RequestBody {
                 var container = encoder.container(keyedBy: AnyCodingKey.self)
                 try container.encodeIfPresent(familySharable, forKey: "familySharable")
                 try container.encodeIfPresent(groupLevel, forKey: "groupLevel")
+                try container.encodeIfPresent(marketSettings, forKey: "marketSettings")
+                try container.encodeIfPresent(multiSeatStatus, forKey: "multiSeatStatus")
                 try container.encodeIfPresent(name, forKey: "name")
                 try container.encodeIfPresent(reviewNote, forKey: "reviewNote")
                 try container.encodeIfPresent(subscriptionPeriod, forKey: "subscriptionPeriod")
+            }
+
+            public enum MarketSettings: String, Sendable, Codable, CaseIterable {
+                case appStore = "APP_STORE"
+                case appleBusiness = "APPLE_BUSINESS"
+                case appleSchool = "APPLE_SCHOOL"
+
+                public init(from decoder: Decoder) throws {
+                    let container = try decoder.singleValueContainer()
+                    let string = try container.decode(String.self)
+                    if let value = MarketSettings(rawValue: string) {
+                        self = value
+                    } else if let value = MarketSettings(rawValue: string.uppercased()) {
+                        self = value
+                    } else {
+                        throw DecodingError.dataCorruptedError(
+                            in: container,
+                            debugDescription: "Invalid MarketSettings value: \(string)"
+                        )
+                    }
+                }
             }
         }
 

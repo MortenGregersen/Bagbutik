@@ -4,7 +4,7 @@ import Foundation
 /**
  # InAppPurchaseSubmissionCreateRequest
 
- The request body you use to create an in-app purchase submission.
+ The request body you use to create an In-App Purchase submission.
 
  ```
  object InAppPurchaseSubmissionCreateRequest
@@ -16,7 +16,7 @@ import Foundation
 
  [`object InAppPurchaseSubmissionCreateRequest.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/InAppPurchaseSubmissionCreateRequest/Data-data.dictionary)
 
- The request body you use to create an in-app purchase submission.
+ The request body you use to create an In-App Purchase submission.
 
 
 

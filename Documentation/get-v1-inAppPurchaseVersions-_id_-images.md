@@ -15,13 +15,13 @@
     ],
     "preciseIdentifier" : "rest:app_store_connect_api:get:v1-inAppPurchaseVersions-{}-images"
   },
-  "title" : "List images for an in-app purchase version"
+  "title" : "List images for an In-App Purchase version"
 }
 -->
 
-# List images for an in-app purchase version
+# List images for an In-App Purchase version
 
-List the review images attached to a draft version of an in-app purchase.
+List the review images attached to a draft version of an In-App Purchase.
 
 ---
 

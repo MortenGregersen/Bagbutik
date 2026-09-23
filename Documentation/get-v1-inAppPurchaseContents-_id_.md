@@ -15,13 +15,13 @@
     ],
     "preciseIdentifier" : "rest:app_store_connect_api:get:v1-inAppPurchaseContents-{}"
   },
-  "title" : "Read in-app purchase content information"
+  "title" : "Read In-App Purchase content information"
 }
 -->
 
-# Read in-app purchase content information
+# Read In-App Purchase content information
 
-Get details about uploaded in-app purchase content.
+Get details about uploaded In-App Purchase content.
 
 ---
 

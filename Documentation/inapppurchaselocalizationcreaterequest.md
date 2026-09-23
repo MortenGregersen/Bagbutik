@@ -21,7 +21,7 @@
 
 # InAppPurchaseLocalizationCreateRequest
 
-The request body you use to create an in-app purchase localization.
+The request body you use to create an In-App Purchase localization.
 
 ```
 object InAppPurchaseLocalizationCreateRequest
@@ -33,7 +33,7 @@ object InAppPurchaseLocalizationCreateRequest
 
 [`object InAppPurchaseLocalizationCreateRequest.Data`](/documentation/AppStoreConnectAPI/InAppPurchaseLocalizationCreateRequest/Data-data.dictionary)
 
-The request body you use to create an in-app purchase localization.
+The request body you use to create an In-App Purchase localization.
 
 
 

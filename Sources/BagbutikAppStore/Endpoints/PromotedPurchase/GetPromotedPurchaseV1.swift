@@ -5,7 +5,7 @@ public extension Request {
     /**
      # Read promoted purchase information
 
-     Get details about a specific promoted in-app purchase.
+     Get details about a specific promoted In-App Purchase.
 
      ---
 
@@ -108,6 +108,8 @@ public enum GetPromotedPurchaseV1 {
             case groupLevel
             case images
             case introductoryOffers
+            case marketSettings
+            case multiSeatStatus
             case name
             case offerCodes
             case planAvailabilities

@@ -21,7 +21,7 @@
 
 # InAppPurchasesV2Response
 
-A response containing a list of in-app purchases configured via the v2 API.
+A response containing a list of In-App Purchases configured via the v2 API.
 
 ```
 object InAppPurchasesV2Response

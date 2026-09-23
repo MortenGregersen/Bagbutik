@@ -21,7 +21,7 @@
 
 # Modify the Territory Availablity of an In-App Purchase
 
-Update the territory availablity of a specific in-app purchase.
+Update the territory availablity of a specific In-App Purchase.
 
 ## Discussion
 

@@ -4,7 +4,7 @@ import Foundation
 /**
  # InAppPurchaseOfferPrice
 
- The data structure that represents an in-app purchase offer price resource.
+ The data structure that represents an In-App Purchase offer price resource.
 
  ```
  object InAppPurchaseOfferPrice

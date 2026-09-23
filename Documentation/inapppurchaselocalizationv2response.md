@@ -21,7 +21,7 @@
 
 # InAppPurchaseLocalizationV2Response
 
-The response body for endpoints that create, read, or modify an in-app purchase localization with the v2 API.
+The response body for endpoints that create, read, or modify an In-App Purchase localization with the v2 API.
 
 ```
 object InAppPurchaseLocalizationV2Response
