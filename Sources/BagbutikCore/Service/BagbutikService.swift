@@ -110,8 +110,27 @@ public actor BagbutikService {
     public func requestNextPage<T>(for response: T) async throws -> T?
         where T: Decodable & PagedResponse & Sendable {
         guard let urlString = response.links.next, let url = URL(string: urlString) else { return nil }
-        let urlRequest = URLRequest(url: url)
-        return try await fetch(urlRequest)
+        return try await fetch(URLRequest(url: url))
+    }
+
+    /**
+     Fetches the next page from an App Store Connect continuation URL from a paged response.
+
+     Use the `next` URL returned in a previous response's ``PagedResponse/links``. The URL
+     already contains the cursor and every parameter required to continue the original request.
+
+     - Parameter url: An App Store Connect `links.next` URL.
+     - Returns: The decoded next page.
+     */
+    public func requestNextPage<T>(at url: URL) async throws -> T
+        where T: Decodable & PagedResponse & Sendable {
+        guard url.scheme == baseUrl.scheme,
+              url.host == baseUrl.host,
+              url.port == baseUrl.port || (baseUrl.port == nil && url.port == 443)
+        else {
+            throw URLError(.badURL)
+        }
+        return try await fetch(URLRequest(url: url))
     }
 
     /**
