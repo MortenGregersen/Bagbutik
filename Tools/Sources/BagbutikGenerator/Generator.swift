@@ -42,6 +42,8 @@ public class Generator {
         "BackgroundAssetVersionExternalBetaReleaseResponse",
         "Build",
         "BuildAudienceType",
+        "ChecksumAlgorithm",
+        "Checksums",
         "DeviceFamily",
         "GameCenterAchievementVersionV2",
         "GameCenterActivityVersion",
@@ -55,6 +57,7 @@ public class Generator {
         "ImageAsset",
         "SubscriptionStatusUrlVersion",
         "TerritoryCode",
+        "UploadOperation",
     ]
 
     private let loadSpec: LoadSpec

@@ -119,6 +119,19 @@ final class RuntimeModulePlanTests: XCTestCase {
         XCTAssertEqual(plan.dependencies(for: .modelsShared), [.core])
     }
 
+    func testExplicitSharedSchemaOverridesCoreOwnership() {
+        let schemas: [String: Schema] = [
+            "Checksums": .object(.init(name: "Checksums", url: "")),
+        ]
+        let plan = RuntimeModulePlan(
+            graph: .init(schemas: schemas),
+            packageBySchema: ["Checksums": .core],
+            sharedSchemas: ["Checksums"]
+        )
+
+        XCTAssertEqual(plan["Checksums"], .modelsShared)
+    }
+
     func testExplicitSharedSchemaDoesNotCreateACrossDomainDependency() {
         let schemas: [String: Schema] = [
             "DeviceFamily": .enum(.init(

@@ -65,6 +65,8 @@ class PackageNameTests: XCTestCase {
 
     func testResolvePackageNameReporting() {
         XCTAssertEqual(PackageName.resolvePackageName(from: "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/SalesStats"), .reporting)
+        XCTAssertEqual(PackageName.resolvePackageName(from: "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/XcodeOverview"), .reporting)
+        XCTAssertEqual(PackageName.resolvePackageName(from: "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/PerformanceSignature"), .reporting)
     }
 
     func testResolvePackageNameTestFlight() {
