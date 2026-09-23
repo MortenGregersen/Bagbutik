@@ -1,6 +1,9 @@
 @testable import BagbutikDocsCollector
 @testable import BagbutikSpecDecoder
 import XCTest
+#if canImport(FoundationNetworking)
+import FoundationNetworking
+#endif
 
 final class MarkdownDocumentationTests: XCTestCase {
     func testParseOperationKeepsCompleteMarkdownContent() throws {
