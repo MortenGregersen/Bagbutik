@@ -178,11 +178,13 @@ public enum PackageName: CaseIterable, Codable, Hashable, Sendable {
             || resource.hasPrefix("instance")
             || resource.hasPrefix("log")
             || resource.hasPrefix("metric")
+            || resource.hasPrefix("performance")
             || resource.hasPrefix("perfPowerMetric")
             || resource.hasPrefix("reports")
             || resource.hasPrefix("sale")
             || resource.hasPrefix("segment")
-            || resource.hasPrefix("xcodeMetric") {
+            || resource.hasPrefix("xcodeMetric")
+            || resource.hasPrefix("xcodeOverview") {
             return .reporting
         } else if resource.hasPrefix("user") {
             return .users

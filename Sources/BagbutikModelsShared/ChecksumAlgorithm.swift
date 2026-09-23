@@ -1,3 +1,4 @@
+import BagbutikCore
 import Foundation
 
 /**
