@@ -190,8 +190,7 @@ public class Generator {
 
         try await withThrowingTaskGroup(of: RenderResult?.self) { taskGroup in
             for schema in schemas.values {
-                taskGroup.addTask { [docsLoader, schemas, packageBySchema, schemaReferenceGraph, modulePlan] in
-                    let packageName = packageBySchema[schema.name]!
+                taskGroup.addTask { [docsLoader, schemas, schemaReferenceGraph, modulePlan] in
                     let modelModule = modulePlan[schema.name]
                     let referencedModelModules = Set(schemaReferenceGraph.references[schema.name, default: []]
                         .map { modulePlan[$0] })
