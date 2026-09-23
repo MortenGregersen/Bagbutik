@@ -1,6 +1,6 @@
 import BagbutikCore
 import BagbutikAppStoreModels
-import BagbutikTestFlightModels
+import BagbutikModelsShared
 
 public extension Request {
     /**

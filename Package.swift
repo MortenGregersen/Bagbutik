@@ -173,7 +173,7 @@ let package = Package(
         .target(name: "BagbutikReportingModels", dependencies: ["BagbutikCore", "BagbutikModelsShared"]),
         .target(
             name: "BagbutikTestFlightModels",
-            dependencies: ["BagbutikCore", "BagbutikModelsShared"]
+            dependencies: ["BagbutikCore", "BagbutikModelsShared", "BagbutikProvisioningModels"]
         ),
         .target(name: "BagbutikUsersModels", dependencies: ["BagbutikCore", "BagbutikModelsShared"]),
         .target(name: "BagbutikWebhooksModels", dependencies: ["BagbutikCore", "BagbutikModelsShared"]),
@@ -183,7 +183,7 @@ let package = Package(
         ),
         .target(
             name: "BagbutikMarketplaces",
-            dependencies: ["BagbutikCore", "BagbutikModelsShared", "BagbutikMarketplacesModels"]
+            dependencies: ["BagbutikCore", "BagbutikModelsShared", "BagbutikAppStoreModels", "BagbutikMarketplacesModels"]
         ),
         .target(
             name: "BagbutikProvisioning",
@@ -191,7 +191,7 @@ let package = Package(
         ),
         .target(
             name: "BagbutikReporting",
-            dependencies: ["BagbutikCore", "BagbutikModelsShared", "BagbutikReportingModels"]
+            dependencies: ["BagbutikCore", "BagbutikModelsShared", "BagbutikAppStoreModels", "BagbutikReportingModels"]
         ),
         .target(
             name: "BagbutikUsers",
@@ -203,6 +203,9 @@ let package = Package(
                 "BagbutikCore",
                 "BagbutikModelsShared",
                 "BagbutikAppStoreModels",
+                "BagbutikTestFlightModels",
+                "BagbutikUsersModels",
+                "BagbutikXcodeCloudModels",
             ]
         ),
         .target(
@@ -218,18 +221,20 @@ let package = Package(
             dependencies: [
                 "BagbutikCore",
                 "BagbutikModelsShared",
+                "BagbutikAppStoreModels",
                 "BagbutikTestFlightModels",
             ]
         ),
         .target(
             name: "BagbutikWebhooks",
-            dependencies: ["BagbutikCore", "BagbutikModelsShared", "BagbutikWebhooksModels"]
+            dependencies: ["BagbutikCore", "BagbutikModelsShared", "BagbutikAppStoreModels", "BagbutikWebhooksModels"]
         ),
         .target(
             name: "BagbutikXcodeCloud",
             dependencies: [
                 "BagbutikCore",
                 "BagbutikModelsShared",
+                "BagbutikAppStoreModels",
                 "BagbutikProvisioningModels",
                 "BagbutikXcodeCloudModels",
             ]

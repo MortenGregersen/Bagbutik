@@ -39,6 +39,7 @@ public class Generator {
     private static let domainPackages: Set<PackageName> = Set(PackageName.allCases).subtracting([.core])
     private static let sharedSchemas: Set<String> = [
         "App",
+        "BackgroundAssetVersionExternalBetaReleaseResponse",
         "Build",
         "BuildAudienceType",
         "DeviceFamily",
