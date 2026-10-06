@@ -30,7 +30,7 @@ public class EnumSchemaRenderer: Renderer {
         enumSchema.cases
             .sorted(by: { $0.id < $1.id })
             .forEach {
-                renderedEnum += "    case \($0.id)"
+                renderedEnum += "    case \(escapeReservedKeywords(in: $0.id))"
                 if $0.id != $0.value {
                     renderedEnum += " = \"\($0.value)\""
                 }

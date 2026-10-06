@@ -88,9 +88,6 @@ public class OperationRenderer: Renderer {
                         path: \"\(interpolatablePath)\",
                         method: .\(operation.method.rawValue)
                     """
-                    if operation.requestBody != nil {
-                        funcContent += ",\n    requestBody: requestBody"
-                    }
                     if !parametersInfo.parameters.isEmpty {
                         var parameterKeyValues = parametersInfo.parameters
                             .filter { parameter in
@@ -113,6 +110,9 @@ public class OperationRenderer: Renderer {
                             funcContent += parameterList
                         }
                         funcContent += ")"
+                    }
+                    if operation.requestBody != nil {
+                        funcContent += ",\n    requestBody: requestBody"
                     }
                     funcContent += ")"
                     return funcContent
