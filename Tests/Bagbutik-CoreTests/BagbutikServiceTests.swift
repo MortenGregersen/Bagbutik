@@ -8,7 +8,7 @@ import XCTest
 import FoundationNetworking
 #endif
 
-@MainActor final class BagbutikServiceTests: XCTestCase, Sendable {
+@MainActor final class BagbutikServiceTests: XCTestCase, @unchecked Sendable {
     var service: BagbutikService!
     var jwt: JWT!
     let jsonEncoder = JSONEncoder()
