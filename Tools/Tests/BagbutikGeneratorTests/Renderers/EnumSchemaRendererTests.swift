@@ -4,6 +4,21 @@ import BagbutikSpecDecoder
 import XCTest
 
 final class EnumSchemaRendererTests: XCTestCase {
+    func testReservedCaseNamesAreEscapedWithoutChangingRawValues() async throws {
+        let renderer = EnumSchemaRenderer(docsLoader: DocsLoader(), shouldFormat: true)
+        let displayClass = EnumSchema(name: "AppAssetLibraryDisplayClass", type: "string", caseValues: ["DEFAULT", "PRODUCT_PAGE"])
+        let lowercase = EnumSchema(name: "Selection", type: "string", caseValues: ["default", "case", "normal"])
+
+        let displayClassSource = try await renderer.render(enumSchema: displayClass)
+        let lowercaseSource = try await renderer.render(enumSchema: lowercase)
+
+        XCTAssertTrue(displayClassSource.contains(#"case `default` = "DEFAULT""#))
+        XCTAssertTrue(displayClassSource.contains(#"case productPage = "PRODUCT_PAGE""#))
+        XCTAssertTrue(lowercaseSource.contains("case `default`\n"))
+        XCTAssertTrue(lowercaseSource.contains("case `case`\n"))
+        XCTAssertTrue(lowercaseSource.contains("case normal\n"))
+    }
+
     func testRenderPlain() async throws {
         // Given
         let docsLoader = DocsLoader(schemaDocumentationById: ["/platform": .enum(.init(
