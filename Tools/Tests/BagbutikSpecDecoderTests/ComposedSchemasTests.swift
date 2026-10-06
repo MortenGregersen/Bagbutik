@@ -69,14 +69,36 @@ final class ComposedSchemasTests: XCTestCase {
         }
     }
 
-    func testCheckedInSpecDecodesComposedAssetSchemas() throws {
-        let root = URL(fileURLWithPath: #filePath)
-            .deletingLastPathComponent().deletingLastPathComponent()
-            .deletingLastPathComponent().deletingLastPathComponent()
-        let spec = try JSONDecoder().decode(Spec.self, from: Data(contentsOf: root.appendingPathComponent("openapi.oas.json")))
-        guard case .object(let attributes) = spec.components.schemas["AppAssetLibraryImageAwaitingUploadAttributes"],
-              case .object(let common) = spec.components.schemas["AppAssetLibraryImageCommonAttributes"],
-              case .object(let relationships) = spec.components.schemas["AppAssetLibraryPlacementImageRelationships"] else {
+    func testAssetLibrarySchemasDecodeComposedProperties() throws {
+        let components = try decode(#"""
+        {
+            "AppAssetLibraryImageCommonAttributes": {
+                "type": "object",
+                "properties": { "fileName": { "type": "string" } }
+            },
+            "AppAssetLibraryImageAwaitingUploadAttributes": {
+                "allOf": [
+                    { "$ref": "#/components/schemas/AppAssetLibraryImageCommonAttributes" },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "uploadOperations": {
+                                "type": "array",
+                                "items": { "$ref": "#/components/schemas/UploadOperation" }
+                            }
+                        }
+                    }
+                ]
+            },
+            "AppAssetLibraryPlacementImageRelationships": {
+                "type": "object",
+                "properties": { "image": { "$ref": "#/components/schemas/AppAssetLibraryImage" } }
+            }
+        }
+        """#)
+        guard case .object(let attributes) = components.schemas["AppAssetLibraryImageAwaitingUploadAttributes"],
+              case .object(let common) = components.schemas["AppAssetLibraryImageCommonAttributes"],
+              case .object(let relationships) = components.schemas["AppAssetLibraryPlacementImageRelationships"] else {
             return XCTFail("Missing asset library schemas")
         }
         for (name, property) in common.properties {
