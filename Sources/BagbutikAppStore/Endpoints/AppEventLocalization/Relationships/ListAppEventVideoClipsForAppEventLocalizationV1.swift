@@ -51,6 +51,7 @@ public enum ListAppEventVideoClipsForAppEventLocalizationV1 {
             case locale
             case longDescription
             case name
+            case placements
             case shortDescription
 
             public init(from decoder: Decoder) throws {

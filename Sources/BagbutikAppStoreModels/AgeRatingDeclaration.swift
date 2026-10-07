@@ -294,7 +294,7 @@ public struct AgeRatingDeclaration: Codable, Sendable, Identifiable {
 
         public enum AgeRatingOverride: String, Sendable, Codable, CaseIterable {
             case ninePlus = "NINE_PLUS"
-            case none = "NONE"
+            case `none` = "NONE"
             case seventeenPlus = "SEVENTEEN_PLUS"
             case sixteenPlus = "SIXTEEN_PLUS"
             case thirteenPlus = "THIRTEEN_PLUS"
@@ -319,7 +319,7 @@ public struct AgeRatingDeclaration: Codable, Sendable, Identifiable {
         public enum AgeRatingOverrideV2: String, Sendable, Codable, CaseIterable {
             case eighteenPlus = "EIGHTEEN_PLUS"
             case ninePlus = "NINE_PLUS"
-            case none = "NONE"
+            case `none` = "NONE"
             case sixteenPlus = "SIXTEEN_PLUS"
             case thirteenPlus = "THIRTEEN_PLUS"
             case unrated = "UNRATED"
@@ -345,7 +345,7 @@ public struct AgeRatingDeclaration: Codable, Sendable, Identifiable {
             case frequentOrIntense = "FREQUENT_OR_INTENSE"
             case infrequent = "INFREQUENT"
             case infrequentOrMild = "INFREQUENT_OR_MILD"
-            case none = "NONE"
+            case `none` = "NONE"
 
             public init(from decoder: Decoder) throws {
                 let container = try decoder.singleValueContainer()
@@ -368,7 +368,7 @@ public struct AgeRatingDeclaration: Codable, Sendable, Identifiable {
             case frequentOrIntense = "FREQUENT_OR_INTENSE"
             case infrequent = "INFREQUENT"
             case infrequentOrMild = "INFREQUENT_OR_MILD"
-            case none = "NONE"
+            case `none` = "NONE"
 
             public init(from decoder: Decoder) throws {
                 let container = try decoder.singleValueContainer()
@@ -391,7 +391,7 @@ public struct AgeRatingDeclaration: Codable, Sendable, Identifiable {
             case frequentOrIntense = "FREQUENT_OR_INTENSE"
             case infrequent = "INFREQUENT"
             case infrequentOrMild = "INFREQUENT_OR_MILD"
-            case none = "NONE"
+            case `none` = "NONE"
 
             public init(from decoder: Decoder) throws {
                 let container = try decoder.singleValueContainer()
@@ -414,7 +414,7 @@ public struct AgeRatingDeclaration: Codable, Sendable, Identifiable {
             case frequentOrIntense = "FREQUENT_OR_INTENSE"
             case infrequent = "INFREQUENT"
             case infrequentOrMild = "INFREQUENT_OR_MILD"
-            case none = "NONE"
+            case `none` = "NONE"
 
             public init(from decoder: Decoder) throws {
                 let container = try decoder.singleValueContainer()
@@ -437,7 +437,7 @@ public struct AgeRatingDeclaration: Codable, Sendable, Identifiable {
             case frequentOrIntense = "FREQUENT_OR_INTENSE"
             case infrequent = "INFREQUENT"
             case infrequentOrMild = "INFREQUENT_OR_MILD"
-            case none = "NONE"
+            case `none` = "NONE"
 
             public init(from decoder: Decoder) throws {
                 let container = try decoder.singleValueContainer()
@@ -459,7 +459,7 @@ public struct AgeRatingDeclaration: Codable, Sendable, Identifiable {
             case all = "ALL"
             case fifteenPlus = "FIFTEEN_PLUS"
             case nineteenPlus = "NINETEEN_PLUS"
-            case none = "NONE"
+            case `none` = "NONE"
             case twelvePlus = "TWELVE_PLUS"
 
             public init(from decoder: Decoder) throws {
@@ -483,7 +483,7 @@ public struct AgeRatingDeclaration: Codable, Sendable, Identifiable {
             case frequentOrIntense = "FREQUENT_OR_INTENSE"
             case infrequent = "INFREQUENT"
             case infrequentOrMild = "INFREQUENT_OR_MILD"
-            case none = "NONE"
+            case `none` = "NONE"
 
             public init(from decoder: Decoder) throws {
                 let container = try decoder.singleValueContainer()
@@ -506,7 +506,7 @@ public struct AgeRatingDeclaration: Codable, Sendable, Identifiable {
             case frequentOrIntense = "FREQUENT_OR_INTENSE"
             case infrequent = "INFREQUENT"
             case infrequentOrMild = "INFREQUENT_OR_MILD"
-            case none = "NONE"
+            case `none` = "NONE"
 
             public init(from decoder: Decoder) throws {
                 let container = try decoder.singleValueContainer()
@@ -529,7 +529,7 @@ public struct AgeRatingDeclaration: Codable, Sendable, Identifiable {
             case frequentOrIntense = "FREQUENT_OR_INTENSE"
             case infrequent = "INFREQUENT"
             case infrequentOrMild = "INFREQUENT_OR_MILD"
-            case none = "NONE"
+            case `none` = "NONE"
 
             public init(from decoder: Decoder) throws {
                 let container = try decoder.singleValueContainer()
@@ -552,7 +552,7 @@ public struct AgeRatingDeclaration: Codable, Sendable, Identifiable {
             case frequentOrIntense = "FREQUENT_OR_INTENSE"
             case infrequent = "INFREQUENT"
             case infrequentOrMild = "INFREQUENT_OR_MILD"
-            case none = "NONE"
+            case `none` = "NONE"
 
             public init(from decoder: Decoder) throws {
                 let container = try decoder.singleValueContainer()
@@ -575,7 +575,7 @@ public struct AgeRatingDeclaration: Codable, Sendable, Identifiable {
             case frequentOrIntense = "FREQUENT_OR_INTENSE"
             case infrequent = "INFREQUENT"
             case infrequentOrMild = "INFREQUENT_OR_MILD"
-            case none = "NONE"
+            case `none` = "NONE"
 
             public init(from decoder: Decoder) throws {
                 let container = try decoder.singleValueContainer()
@@ -598,7 +598,7 @@ public struct AgeRatingDeclaration: Codable, Sendable, Identifiable {
             case frequentOrIntense = "FREQUENT_OR_INTENSE"
             case infrequent = "INFREQUENT"
             case infrequentOrMild = "INFREQUENT_OR_MILD"
-            case none = "NONE"
+            case `none` = "NONE"
 
             public init(from decoder: Decoder) throws {
                 let container = try decoder.singleValueContainer()
@@ -621,7 +621,7 @@ public struct AgeRatingDeclaration: Codable, Sendable, Identifiable {
             case frequentOrIntense = "FREQUENT_OR_INTENSE"
             case infrequent = "INFREQUENT"
             case infrequentOrMild = "INFREQUENT_OR_MILD"
-            case none = "NONE"
+            case `none` = "NONE"
 
             public init(from decoder: Decoder) throws {
                 let container = try decoder.singleValueContainer()
@@ -644,7 +644,7 @@ public struct AgeRatingDeclaration: Codable, Sendable, Identifiable {
             case frequentOrIntense = "FREQUENT_OR_INTENSE"
             case infrequent = "INFREQUENT"
             case infrequentOrMild = "INFREQUENT_OR_MILD"
-            case none = "NONE"
+            case `none` = "NONE"
 
             public init(from decoder: Decoder) throws {
                 let container = try decoder.singleValueContainer()

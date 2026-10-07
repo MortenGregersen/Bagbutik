@@ -39,6 +39,10 @@ public enum ListItemsForReviewSubmissionV1 {
      Fields to return for included related types.
      */
     public enum Field: FieldParameter {
+        /// The fields to include for returned resources of type appAssetLibraryImages
+        case appAssetLibraryImages([AppAssetLibraryImages])
+        /// The fields to include for returned resources of type appAssetLibraryVideos
+        case appAssetLibraryVideos([AppAssetLibraryVideos])
         /// The fields to include for returned resources of type appCustomProductPageVersions
         case appCustomProductPageVersions([AppCustomProductPageVersions])
         /// The fields to include for returned resources of type appEvents
@@ -67,6 +71,68 @@ public enum ListItemsForReviewSubmissionV1 {
         case subscriptionGroupVersions([SubscriptionGroupVersions])
         /// The fields to include for returned resources of type subscriptionVersions
         case subscriptionVersions([SubscriptionVersions])
+
+        public enum AppAssetLibraryImages: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case category
+            case createdDate
+            case fileName
+            case fileSize
+            case imageAsset
+            case lastModifiedDate
+            case placements
+            case referenceName
+            case specId
+            case state
+            case stateDetails
+            case uploadOperations
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = AppAssetLibraryImages(rawValue: string) {
+                    self = value
+                } else if let value = AppAssetLibraryImages(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid AppAssetLibraryImages value: \(string)"
+                    )
+                }
+            }
+        }
+
+        public enum AppAssetLibraryVideos: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case category
+            case createdDate
+            case fileName
+            case fileSize
+            case lastModifiedDate
+            case placements
+            case previewFrameImage
+            case previewFrameTimeCode
+            case referenceName
+            case specId
+            case state
+            case stateDetails
+            case uploadOperations
+            case videoAsset
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = AppAssetLibraryVideos(rawValue: string) {
+                    self = value
+                } else if let value = AppAssetLibraryVideos(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid AppAssetLibraryVideos value: \(string)"
+                    )
+                }
+            }
+        }
 
         public enum AppCustomProductPageVersions: String, Sendable, ParameterValue, Codable, CaseIterable {
             case appCustomProductPage
@@ -363,6 +429,8 @@ public enum ListItemsForReviewSubmissionV1 {
         }
 
         public enum ReviewSubmissionItems: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case appAssetLibraryImage
+            case appAssetLibraryVideo
             case appCustomProductPageVersion
             case appEvent
             case appStoreVersion
@@ -446,6 +514,8 @@ public enum ListItemsForReviewSubmissionV1 {
      Relationship data to include in the response.
      */
     public enum Include: String, IncludeParameter, CaseIterable {
+        case appAssetLibraryImage
+        case appAssetLibraryVideo
         case appCustomProductPageVersion
         case appEvent
         case appStoreVersion

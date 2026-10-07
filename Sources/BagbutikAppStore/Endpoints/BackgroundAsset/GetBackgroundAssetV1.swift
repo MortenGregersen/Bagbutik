@@ -61,6 +61,7 @@ public enum GetBackgroundAssetV1 {
             case appStoreVersionExperimentsV2
             case appStoreVersions
             case appTags
+            case assetLibrary
             case backgroundAssets
             case betaAppLocalizations
             case betaAppReviewDetail

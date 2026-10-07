@@ -76,7 +76,20 @@ public struct AppEventLocalizationResponse: Codable, Sendable {
         return appEventVideoClips
     }
 
+    public func getPlacements() -> [AppAssetLibraryPlacement] {
+        guard let placementIds = data.relationships?.placements?.data?.map(\.id),
+              let placements = included?.compactMap({ relationship -> AppAssetLibraryPlacement? in
+                  guard case let .appAssetLibraryPlacement(placement) = relationship else { return nil }
+                  return placementIds.contains(placement.id) ? placement : nil
+              })
+        else {
+            return []
+        }
+        return placements
+    }
+
     public enum Included: Codable, Sendable {
+        case appAssetLibraryPlacement(AppAssetLibraryPlacement)
         case appEvent(AppEvent)
         case appEventScreenshot(AppEventScreenshot)
         case appEventVideoClip(AppEventVideoClip)
@@ -85,6 +98,8 @@ public struct AppEventLocalizationResponse: Codable, Sendable {
             let container = try decoder.container(keyedBy: AnyCodingKey.self)
             let discriminatorValue = try container.decode(String.self, forKey: "type")
             switch discriminatorValue {
+            case "appAssetLibraryPlacements":
+                self = .appAssetLibraryPlacement(try AppAssetLibraryPlacement(from: decoder))
             case "appEvents":
                 self = .appEvent(try AppEvent(from: decoder))
             case "appEventScreenshots":
@@ -101,6 +116,8 @@ public struct AppEventLocalizationResponse: Codable, Sendable {
 
         public func encode(to encoder: Encoder) throws {
             switch self {
+            case let .appAssetLibraryPlacement(value):
+                try value.encode(to: encoder)
             case let .appEvent(value):
                 try value.encode(to: encoder)
             case let .appEventScreenshot(value):

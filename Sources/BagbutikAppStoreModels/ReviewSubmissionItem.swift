@@ -111,6 +111,8 @@ public struct ReviewSubmissionItem: Codable, Sendable, Identifiable {
     }
 
     public struct Relationships: Codable, Sendable {
+        public var appAssetLibraryImage: AppAssetLibraryImage?
+        public var appAssetLibraryVideo: AppAssetLibraryVideo?
         public var appCustomProductPageVersion: AppCustomProductPageVersion?
         public var appEvent: AppEvent?
         public var appStoreVersion: AppStoreVersion?
@@ -126,7 +128,9 @@ public struct ReviewSubmissionItem: Codable, Sendable, Identifiable {
         public var subscriptionGroupVersion: SubscriptionGroupVersion?
         public var subscriptionVersion: SubscriptionVersion?
 
-        public init(appCustomProductPageVersion: AppCustomProductPageVersion? = nil,
+        public init(appAssetLibraryImage: AppAssetLibraryImage? = nil,
+                    appAssetLibraryVideo: AppAssetLibraryVideo? = nil,
+                    appCustomProductPageVersion: AppCustomProductPageVersion? = nil,
                     appEvent: AppEvent? = nil,
                     appStoreVersion: AppStoreVersion? = nil,
                     appStoreVersionExperiment: AppStoreVersionExperiment? = nil,
@@ -141,6 +145,8 @@ public struct ReviewSubmissionItem: Codable, Sendable, Identifiable {
                     subscriptionGroupVersion: SubscriptionGroupVersion? = nil,
                     subscriptionVersion: SubscriptionVersion? = nil)
         {
+            self.appAssetLibraryImage = appAssetLibraryImage
+            self.appAssetLibraryVideo = appAssetLibraryVideo
             self.appCustomProductPageVersion = appCustomProductPageVersion
             self.appEvent = appEvent
             self.appStoreVersion = appStoreVersion
@@ -159,6 +165,8 @@ public struct ReviewSubmissionItem: Codable, Sendable, Identifiable {
 
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: AnyCodingKey.self)
+            appAssetLibraryImage = try container.decodeIfPresent(AppAssetLibraryImage.self, forKey: "appAssetLibraryImage")
+            appAssetLibraryVideo = try container.decodeIfPresent(AppAssetLibraryVideo.self, forKey: "appAssetLibraryVideo")
             appCustomProductPageVersion = try container.decodeIfPresent(AppCustomProductPageVersion.self, forKey: "appCustomProductPageVersion")
             appEvent = try container.decodeIfPresent(AppEvent.self, forKey: "appEvent")
             appStoreVersion = try container.decodeIfPresent(AppStoreVersion.self, forKey: "appStoreVersion")
@@ -177,6 +185,8 @@ public struct ReviewSubmissionItem: Codable, Sendable, Identifiable {
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: AnyCodingKey.self)
+            try container.encodeIfPresent(appAssetLibraryImage, forKey: "appAssetLibraryImage")
+            try container.encodeIfPresent(appAssetLibraryVideo, forKey: "appAssetLibraryVideo")
             try container.encodeIfPresent(appCustomProductPageVersion, forKey: "appCustomProductPageVersion")
             try container.encodeIfPresent(appEvent, forKey: "appEvent")
             try container.encodeIfPresent(appStoreVersion, forKey: "appStoreVersion")
@@ -191,6 +201,88 @@ public struct ReviewSubmissionItem: Codable, Sendable, Identifiable {
             try container.encodeIfPresent(inAppPurchaseVersion, forKey: "inAppPurchaseVersion")
             try container.encodeIfPresent(subscriptionGroupVersion, forKey: "subscriptionGroupVersion")
             try container.encodeIfPresent(subscriptionVersion, forKey: "subscriptionVersion")
+        }
+
+        public struct AppAssetLibraryImage: Codable, Sendable {
+            @NullCodable public var data: Data?
+
+            public init(data: Data? = nil) {
+                self.data = data
+            }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                data = try container.decodeIfPresent(Data.self, forKey: "data")
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: AnyCodingKey.self)
+                try container.encode(data, forKey: "data")
+            }
+
+            public struct Data: Codable, Sendable, Identifiable {
+                public let id: String
+                public var type: String { "appAssetLibraryImages" }
+
+                public init(id: String) {
+                    self.id = id
+                }
+
+                public init(from decoder: Decoder) throws {
+                    let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                    id = try container.decode(String.self, forKey: "id")
+                    if try container.decode(String.self, forKey: "type") != type {
+                        throw DecodingError.dataCorruptedError(forKey: "type", in: container, debugDescription: "Not matching \(type)")
+                    }
+                }
+
+                public func encode(to encoder: Encoder) throws {
+                    var container = encoder.container(keyedBy: AnyCodingKey.self)
+                    try container.encode(id, forKey: "id")
+                    try container.encode(type, forKey: "type")
+                }
+            }
+        }
+
+        public struct AppAssetLibraryVideo: Codable, Sendable {
+            @NullCodable public var data: Data?
+
+            public init(data: Data? = nil) {
+                self.data = data
+            }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                data = try container.decodeIfPresent(Data.self, forKey: "data")
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: AnyCodingKey.self)
+                try container.encode(data, forKey: "data")
+            }
+
+            public struct Data: Codable, Sendable, Identifiable {
+                public let id: String
+                public var type: String { "appAssetLibraryVideos" }
+
+                public init(id: String) {
+                    self.id = id
+                }
+
+                public init(from decoder: Decoder) throws {
+                    let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                    id = try container.decode(String.self, forKey: "id")
+                    if try container.decode(String.self, forKey: "type") != type {
+                        throw DecodingError.dataCorruptedError(forKey: "type", in: container, debugDescription: "Not matching \(type)")
+                    }
+                }
+
+                public func encode(to encoder: Encoder) throws {
+                    var container = encoder.container(keyedBy: AnyCodingKey.self)
+                    try container.encode(id, forKey: "id")
+                    try container.encode(type, forKey: "type")
+                }
+            }
         }
 
         public struct AppCustomProductPageVersion: Codable, Sendable {
