@@ -98,19 +98,25 @@ public struct AppCustomProductPageLocalizationCreateRequest: Codable, Sendable, 
 
         public struct Relationships: Codable, Sendable {
             public let appCustomProductPageVersion: AppCustomProductPageVersion
+            public var placements: Placements?
 
-            public init(appCustomProductPageVersion: AppCustomProductPageVersion) {
+            public init(appCustomProductPageVersion: AppCustomProductPageVersion,
+                        placements: Placements? = nil)
+            {
                 self.appCustomProductPageVersion = appCustomProductPageVersion
+                self.placements = placements
             }
 
             public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: AnyCodingKey.self)
                 appCustomProductPageVersion = try container.decode(AppCustomProductPageVersion.self, forKey: "appCustomProductPageVersion")
+                placements = try container.decodeIfPresent(Placements.self, forKey: "placements")
             }
 
             public func encode(to encoder: Encoder) throws {
                 var container = encoder.container(keyedBy: AnyCodingKey.self)
                 try container.encode(appCustomProductPageVersion, forKey: "appCustomProductPageVersion")
+                try container.encodeIfPresent(placements, forKey: "placements")
             }
 
             public struct AppCustomProductPageVersion: Codable, Sendable {
@@ -133,6 +139,47 @@ public struct AppCustomProductPageLocalizationCreateRequest: Codable, Sendable, 
                 public struct Data: Codable, Sendable, Identifiable {
                     public let id: String
                     public var type: String { "appCustomProductPageVersions" }
+
+                    public init(id: String) {
+                        self.id = id
+                    }
+
+                    public init(from decoder: Decoder) throws {
+                        let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                        id = try container.decode(String.self, forKey: "id")
+                        if try container.decode(String.self, forKey: "type") != type {
+                            throw DecodingError.dataCorruptedError(forKey: "type", in: container, debugDescription: "Not matching \(type)")
+                        }
+                    }
+
+                    public func encode(to encoder: Encoder) throws {
+                        var container = encoder.container(keyedBy: AnyCodingKey.self)
+                        try container.encode(id, forKey: "id")
+                        try container.encode(type, forKey: "type")
+                    }
+                }
+            }
+
+            public struct Placements: Codable, Sendable {
+                @NullCodable public var data: [Data]?
+
+                public init(data: [Data]? = nil) {
+                    self.data = data
+                }
+
+                public init(from decoder: Decoder) throws {
+                    let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                    data = try container.decodeIfPresent([Data].self, forKey: "data")
+                }
+
+                public func encode(to encoder: Encoder) throws {
+                    var container = encoder.container(keyedBy: AnyCodingKey.self)
+                    try container.encode(data, forKey: "data")
+                }
+
+                public struct Data: Codable, Sendable, Identifiable {
+                    public let id: String
+                    public var type: String { "appAssetLibraryPlacements" }
 
                     public init(id: String) {
                         self.id = id

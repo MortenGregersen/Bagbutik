@@ -52,6 +52,7 @@ public enum ListAppStoreVersionExperimentTreatmentsForAppStoreVersionExperimentV
             case appScreenshotSets
             case appStoreVersionExperimentTreatment
             case locale
+            case placements
 
             public init(from decoder: Decoder) throws {
                 let container = try decoder.singleValueContainer()

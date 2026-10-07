@@ -76,7 +76,20 @@ public struct AppStoreVersionExperimentTreatmentLocalizationResponse: Codable, S
         }.first { $0.id == data.relationships?.appStoreVersionExperimentTreatment?.data?.id }
     }
 
+    public func getPlacements() -> [AppAssetLibraryPlacement] {
+        guard let placementIds = data.relationships?.placements?.data?.map(\.id),
+              let placements = included?.compactMap({ relationship -> AppAssetLibraryPlacement? in
+                  guard case let .appAssetLibraryPlacement(placement) = relationship else { return nil }
+                  return placementIds.contains(placement.id) ? placement : nil
+              })
+        else {
+            return []
+        }
+        return placements
+    }
+
     public enum Included: Codable, Sendable {
+        case appAssetLibraryPlacement(AppAssetLibraryPlacement)
         case appPreviewSet(AppPreviewSet)
         case appScreenshotSet(AppScreenshotSet)
         case appStoreVersionExperimentTreatment(AppStoreVersionExperimentTreatment)
@@ -85,6 +98,8 @@ public struct AppStoreVersionExperimentTreatmentLocalizationResponse: Codable, S
             let container = try decoder.container(keyedBy: AnyCodingKey.self)
             let discriminatorValue = try container.decode(String.self, forKey: "type")
             switch discriminatorValue {
+            case "appAssetLibraryPlacements":
+                self = .appAssetLibraryPlacement(try AppAssetLibraryPlacement(from: decoder))
             case "appPreviewSets":
                 self = .appPreviewSet(try AppPreviewSet(from: decoder))
             case "appScreenshotSets":
@@ -101,6 +116,8 @@ public struct AppStoreVersionExperimentTreatmentLocalizationResponse: Codable, S
 
         public func encode(to encoder: Encoder) throws {
             switch self {
+            case let .appAssetLibraryPlacement(value):
+                try value.encode(to: encoder)
             case let .appPreviewSet(value):
                 try value.encode(to: encoder)
             case let .appScreenshotSet(value):

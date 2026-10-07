@@ -59,6 +59,7 @@ public enum ListAppScreenshotSetsForAppStoreVersionExperimentTreatmentLocalizati
             case appPreviewSets
             case appScreenshotSets
             case locale
+            case placements
             case promotionalText
             case searchKeywords
 
@@ -133,6 +134,7 @@ public enum ListAppScreenshotSetsForAppStoreVersionExperimentTreatmentLocalizati
             case appScreenshotSets
             case appStoreVersionExperimentTreatment
             case locale
+            case placements
 
             public init(from decoder: Decoder) throws {
                 let container = try decoder.singleValueContainer()
@@ -158,6 +160,7 @@ public enum ListAppScreenshotSetsForAppStoreVersionExperimentTreatmentLocalizati
             case keywords
             case locale
             case marketingUrl
+            case placements
             case promotionalText
             case searchKeywords
             case supportUrl
