@@ -39,6 +39,8 @@ public enum ListLocalizationsForAppEventV1 {
      Fields to return for included related types.
      */
     public enum Field: FieldParameter {
+        /// The fields to include for returned resources of type appAssetLibraryPlacements
+        case appAssetLibraryPlacements([AppAssetLibraryPlacements])
         /// The fields to include for returned resources of type appEventLocalizations
         case appEventLocalizations([AppEventLocalizations])
         /// The fields to include for returned resources of type appEventScreenshots
@@ -48,6 +50,37 @@ public enum ListLocalizationsForAppEventV1 {
         /// The fields to include for returned resources of type appEvents
         case appEvents([AppEvents])
 
+        public enum AppAssetLibraryPlacements: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case appCustomProductPageLocalization
+            case appEventLocalization
+            case appStoreVersionExperimentTreatmentLocalization
+            case appStoreVersionLocalization
+            case createdDate
+            case image
+            case lastModifiedDate
+            case mediaType
+            case placementGroup
+            case placementType
+            case state
+            case stateDetails
+            case video
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = AppAssetLibraryPlacements(rawValue: string) {
+                    self = value
+                } else if let value = AppAssetLibraryPlacements(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid AppAssetLibraryPlacements value: \(string)"
+                    )
+                }
+            }
+        }
+
         public enum AppEventLocalizations: String, Sendable, ParameterValue, Codable, CaseIterable {
             case appEvent
             case appEventScreenshots
@@ -55,6 +88,7 @@ public enum ListLocalizationsForAppEventV1 {
             case locale
             case longDescription
             case name
+            case placements
             case shortDescription
 
             public init(from decoder: Decoder) throws {
@@ -165,6 +199,7 @@ public enum ListLocalizationsForAppEventV1 {
         case appEvent
         case appEventScreenshots
         case appEventVideoClips
+        case placements
     }
 
     /**
@@ -177,5 +212,7 @@ public enum ListLocalizationsForAppEventV1 {
         case appEventVideoClips(Int)
         /// Maximum resources per page - maximum 200
         case limit(Int)
+        /// Maximum number of related placements returned (when they are included) - maximum 50
+        case placements(Int)
     }
 }

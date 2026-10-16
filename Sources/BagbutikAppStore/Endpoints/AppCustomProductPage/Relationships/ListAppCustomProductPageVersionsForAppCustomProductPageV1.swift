@@ -101,6 +101,7 @@ public enum ListAppCustomProductPageVersionsForAppCustomProductPageV1 {
             case appPreviewSets
             case appScreenshotSets
             case locale
+            case placements
             case promotionalText
             case searchKeywords
 

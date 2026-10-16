@@ -135,6 +135,7 @@ public enum ListReviewSubmissionsV1 {
             case appStoreVersionExperimentsV2
             case appStoreVersions
             case appTags
+            case assetLibrary
             case backgroundAssets
             case betaAppLocalizations
             case betaAppReviewDetail
@@ -192,6 +193,8 @@ public enum ListReviewSubmissionsV1 {
         }
 
         public enum ReviewSubmissionItems: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case appAssetLibraryImage
+            case appAssetLibraryVideo
             case appCustomProductPageVersion
             case appEvent
             case appStoreVersion

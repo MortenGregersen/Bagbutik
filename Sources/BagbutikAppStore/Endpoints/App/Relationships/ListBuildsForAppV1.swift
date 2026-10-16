@@ -34,7 +34,7 @@ public extension Request {
              "lsMinimumSystemVersion": null,
              "computedMinMacOsVersion": "12.4",
              "iconAssetToken": {
-               "templateUrl": "https://isq11.mzstatic.com/image/thumb/Purple123/v4/fb/4d/c2/fb4dc243-7048-8939-ac1c-0e1819c6e723/Icon-83.5@2x.png.png/{w}x{h}bb.{f}",
+               "templateUrl": "https://is1.mzstatic.com/image/thumb/Purple123/v4/fb/4d/c2/fb4dc243-7048-8939-ac1c-0e1819c6e723/Icon-83.5@2x.png.png/{w}x{h}bb.{f}",
                "width": 167,
                "height": 167
              },
@@ -130,7 +130,7 @@ public extension Request {
              "lsMinimumSystemVersion": null,
              "computedMinMacOsVersion": "12.4",
              "iconAssetToken": {
-               "templateUrl": "https://isq11.mzstatic.com/image/thumb/Purple123/v4/97/9b/62/979b62fb-df95-39cb-c2b9-45ee6aa0b707/Icon-83.5@2x.png.png/{w}x{h}bb.{f}",
+               "templateUrl": "https://is1.mzstatic.com/image/thumb/Purple123/v4/97/9b/62/979b62fb-df95-39cb-c2b9-45ee6aa0b707/Icon-83.5@2x.png.png/{w}x{h}bb.{f}",
                "width": 167,
                "height": 167
              },
@@ -226,7 +226,7 @@ public extension Request {
              "lsMinimumSystemVersion": null,
              "computedMinMacOsVersion": "12.4",
              "iconAssetToken": {
-               "templateUrl": "https://isq11.mzstatic.com/image/thumb/Purple113/v4/04/ac/0b/04ac0b6f-fa09-a354-80f3-ecf74ed38059/Icon-83.5@2x.png.png/{w}x{h}bb.{f}",
+               "templateUrl": "https://is1.mzstatic.com/image/thumb/Purple113/v4/04/ac/0b/04ac0b6f-fa09-a354-80f3-ecf74ed38059/Icon-83.5@2x.png.png/{w}x{h}bb.{f}",
                "width": 167,
                "height": 167
              },

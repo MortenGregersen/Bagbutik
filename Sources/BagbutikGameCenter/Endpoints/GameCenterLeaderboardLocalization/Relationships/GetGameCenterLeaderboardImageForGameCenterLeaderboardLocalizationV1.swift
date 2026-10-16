@@ -28,7 +28,7 @@ public extension Request {
            “fileSize” : 357407,
            “fileName” : “coffee2.png”,
            “imageAsset” : {
-             “templateUrl” : “https://isq11.mzstatic.com/image/thumb/PurpleSource113/v4/ad/e2/7b/ade27bd0-013d-86ef-2748-9d63b53e781e/482f6124-4570-43a0-aa5e-ec289ba6faf8_coffee2.png/{w}x{h}bb.{f}”,
+             “templateUrl” : “https://is1.mzstatic.com/image/thumb/PurpleSource113/v4/ad/e2/7b/ade27bd0-013d-86ef-2748-9d63b53e781e/482f6124-4570-43a0-aa5e-ec289ba6faf8_coffee2.png/{w}x{h}bb.{f}”,
              “width” : 512,
              “height” : 512
            },

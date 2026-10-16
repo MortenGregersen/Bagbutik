@@ -174,6 +174,7 @@ public enum GetAppStoreVersionV1 {
             case keywords
             case locale
             case marketingUrl
+            case placements
             case promotionalText
             case searchKeywords
             case supportUrl
@@ -296,6 +297,7 @@ public enum GetAppStoreVersionV1 {
             case appStoreVersionExperimentsV2
             case appStoreVersions
             case appTags
+            case assetLibrary
             case backgroundAssets
             case betaAppLocalizations
             case betaAppReviewDetail

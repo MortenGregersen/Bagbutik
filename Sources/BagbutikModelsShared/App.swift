@@ -180,6 +180,7 @@ public struct App: Codable, Sendable, Identifiable {
         public var appStoreVersionExperimentsV2: AppStoreVersionExperimentsV2?
         public var appStoreVersions: AppStoreVersions?
         public var appTags: AppTags?
+        public var assetLibrary: AssetLibrary?
         public var backgroundAssets: BackgroundAssets?
         public var betaAppLocalizations: BetaAppLocalizations?
         public var betaAppReviewDetail: BetaAppReviewDetail?
@@ -227,6 +228,7 @@ public struct App: Codable, Sendable, Identifiable {
                     appStoreVersionExperimentsV2: AppStoreVersionExperimentsV2? = nil,
                     appStoreVersions: AppStoreVersions? = nil,
                     appTags: AppTags? = nil,
+                    assetLibrary: AssetLibrary? = nil,
                     backgroundAssets: BackgroundAssets? = nil,
                     betaAppLocalizations: BetaAppLocalizations? = nil,
                     betaAppReviewDetail: BetaAppReviewDetail? = nil,
@@ -272,6 +274,7 @@ public struct App: Codable, Sendable, Identifiable {
             self.appStoreVersionExperimentsV2 = appStoreVersionExperimentsV2
             self.appStoreVersions = appStoreVersions
             self.appTags = appTags
+            self.assetLibrary = assetLibrary
             self.backgroundAssets = backgroundAssets
             self.betaAppLocalizations = betaAppLocalizations
             self.betaAppReviewDetail = betaAppReviewDetail
@@ -318,6 +321,7 @@ public struct App: Codable, Sendable, Identifiable {
                     appStoreVersionExperimentsV2: AppStoreVersionExperimentsV2? = nil,
                     appStoreVersions: AppStoreVersions? = nil,
                     appTags: AppTags? = nil,
+                    assetLibrary: AssetLibrary? = nil,
                     backgroundAssets: BackgroundAssets? = nil,
                     betaAppLocalizations: BetaAppLocalizations? = nil,
                     betaAppReviewDetail: BetaAppReviewDetail? = nil,
@@ -362,6 +366,7 @@ public struct App: Codable, Sendable, Identifiable {
             self.appStoreVersionExperimentsV2 = appStoreVersionExperimentsV2
             self.appStoreVersions = appStoreVersions
             self.appTags = appTags
+            self.assetLibrary = assetLibrary
             self.backgroundAssets = backgroundAssets
             self.betaAppLocalizations = betaAppLocalizations
             self.betaAppReviewDetail = betaAppReviewDetail
@@ -412,6 +417,7 @@ public struct App: Codable, Sendable, Identifiable {
             appStoreVersionExperimentsV2 = try container.decodeIfPresent(AppStoreVersionExperimentsV2.self, forKey: "appStoreVersionExperimentsV2")
             appStoreVersions = try container.decodeIfPresent(AppStoreVersions.self, forKey: "appStoreVersions")
             appTags = try container.decodeIfPresent(AppTags.self, forKey: "appTags")
+            assetLibrary = try container.decodeIfPresent(AssetLibrary.self, forKey: "assetLibrary")
             backgroundAssets = try container.decodeIfPresent(BackgroundAssets.self, forKey: "backgroundAssets")
             betaAppLocalizations = try container.decodeIfPresent(BetaAppLocalizations.self, forKey: "betaAppLocalizations")
             betaAppReviewDetail = try container.decodeIfPresent(BetaAppReviewDetail.self, forKey: "betaAppReviewDetail")
@@ -463,6 +469,7 @@ public struct App: Codable, Sendable, Identifiable {
             try container.encodeIfPresent(appStoreVersionExperimentsV2, forKey: "appStoreVersionExperimentsV2")
             try container.encodeIfPresent(appStoreVersions, forKey: "appStoreVersions")
             try container.encodeIfPresent(appTags, forKey: "appTags")
+            try container.encodeIfPresent(assetLibrary, forKey: "assetLibrary")
             try container.encodeIfPresent(backgroundAssets, forKey: "backgroundAssets")
             try container.encodeIfPresent(betaAppLocalizations, forKey: "betaAppLocalizations")
             try container.encodeIfPresent(betaAppReviewDetail, forKey: "betaAppReviewDetail")
@@ -1059,6 +1066,24 @@ public struct App: Codable, Sendable, Identifiable {
         }
 
         public struct AppTags: Codable, Sendable {
+            public var links: RelationshipLinks?
+
+            public init(links: RelationshipLinks? = nil) {
+                self.links = links
+            }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                links = try container.decodeIfPresent(RelationshipLinks.self, forKey: "links")
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: AnyCodingKey.self)
+                try container.encodeIfPresent(links, forKey: "links")
+            }
+        }
+
+        public struct AssetLibrary: Codable, Sendable {
             public var links: RelationshipLinks?
 
             public init(links: RelationshipLinks? = nil) {

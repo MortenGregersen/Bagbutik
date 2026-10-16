@@ -108,6 +108,18 @@ public struct AppCustomProductPageLocalizationResponse: Codable, Sendable {
         return appScreenshotSets
     }
 
+    public func getPlacements() -> [AppAssetLibraryPlacement] {
+        guard let placementIds = data.relationships?.placements?.data?.map(\.id),
+              let placements = included?.compactMap({ relationship -> AppAssetLibraryPlacement? in
+                  guard case let .appAssetLibraryPlacement(placement) = relationship else { return nil }
+                  return placementIds.contains(placement.id) ? placement : nil
+              })
+        else {
+            return []
+        }
+        return placements
+    }
+
     public func getSearchKeywords() -> [AppKeyword] {
         guard let searchKeywordIds = data.relationships?.searchKeywords?.data?.map(\.id),
               let searchKeywords = included?.compactMap({ relationship -> AppKeyword? in
@@ -121,6 +133,7 @@ public struct AppCustomProductPageLocalizationResponse: Codable, Sendable {
     }
 
     public enum Included: Codable, Sendable {
+        case appAssetLibraryPlacement(AppAssetLibraryPlacement)
         case appCustomProductPageVersion(AppCustomProductPageVersion)
         case appKeyword(AppKeyword)
         case appPreviewSet(AppPreviewSet)
@@ -130,6 +143,8 @@ public struct AppCustomProductPageLocalizationResponse: Codable, Sendable {
             let container = try decoder.container(keyedBy: AnyCodingKey.self)
             let discriminatorValue = try container.decode(String.self, forKey: "type")
             switch discriminatorValue {
+            case "appAssetLibraryPlacements":
+                self = .appAssetLibraryPlacement(try AppAssetLibraryPlacement(from: decoder))
             case "appCustomProductPageVersions":
                 self = .appCustomProductPageVersion(try AppCustomProductPageVersion(from: decoder))
             case "appKeywords":
@@ -148,6 +163,8 @@ public struct AppCustomProductPageLocalizationResponse: Codable, Sendable {
 
         public func encode(to encoder: Encoder) throws {
             switch self {
+            case let .appAssetLibraryPlacement(value):
+                try value.encode(to: encoder)
             case let .appCustomProductPageVersion(value):
                 try value.encode(to: encoder)
             case let .appKeyword(value):

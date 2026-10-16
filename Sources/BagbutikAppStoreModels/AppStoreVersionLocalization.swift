@@ -122,16 +122,19 @@ public struct AppStoreVersionLocalization: Codable, Sendable, Identifiable {
         public var appPreviewSets: AppPreviewSets?
         public var appScreenshotSets: AppScreenshotSets?
         public var appStoreVersion: AppStoreVersion?
+        public var placements: Placements?
         public var searchKeywords: SearchKeywords?
 
         public init(appPreviewSets: AppPreviewSets? = nil,
                     appScreenshotSets: AppScreenshotSets? = nil,
                     appStoreVersion: AppStoreVersion? = nil,
+                    placements: Placements? = nil,
                     searchKeywords: SearchKeywords? = nil)
         {
             self.appPreviewSets = appPreviewSets
             self.appScreenshotSets = appScreenshotSets
             self.appStoreVersion = appStoreVersion
+            self.placements = placements
             self.searchKeywords = searchKeywords
         }
 
@@ -140,6 +143,7 @@ public struct AppStoreVersionLocalization: Codable, Sendable, Identifiable {
             appPreviewSets = try container.decodeIfPresent(AppPreviewSets.self, forKey: "appPreviewSets")
             appScreenshotSets = try container.decodeIfPresent(AppScreenshotSets.self, forKey: "appScreenshotSets")
             appStoreVersion = try container.decodeIfPresent(AppStoreVersion.self, forKey: "appStoreVersion")
+            placements = try container.decodeIfPresent(Placements.self, forKey: "placements")
             searchKeywords = try container.decodeIfPresent(SearchKeywords.self, forKey: "searchKeywords")
         }
 
@@ -148,6 +152,7 @@ public struct AppStoreVersionLocalization: Codable, Sendable, Identifiable {
             try container.encodeIfPresent(appPreviewSets, forKey: "appPreviewSets")
             try container.encodeIfPresent(appScreenshotSets, forKey: "appScreenshotSets")
             try container.encodeIfPresent(appStoreVersion, forKey: "appStoreVersion")
+            try container.encodeIfPresent(placements, forKey: "placements")
             try container.encodeIfPresent(searchKeywords, forKey: "searchKeywords")
         }
 
@@ -275,6 +280,58 @@ public struct AppStoreVersionLocalization: Codable, Sendable, Identifiable {
             public struct Data: Codable, Sendable, Identifiable {
                 public let id: String
                 public var type: String { "appStoreVersions" }
+
+                public init(id: String) {
+                    self.id = id
+                }
+
+                public init(from decoder: Decoder) throws {
+                    let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                    id = try container.decode(String.self, forKey: "id")
+                    if try container.decode(String.self, forKey: "type") != type {
+                        throw DecodingError.dataCorruptedError(forKey: "type", in: container, debugDescription: "Not matching \(type)")
+                    }
+                }
+
+                public func encode(to encoder: Encoder) throws {
+                    var container = encoder.container(keyedBy: AnyCodingKey.self)
+                    try container.encode(id, forKey: "id")
+                    try container.encode(type, forKey: "type")
+                }
+            }
+        }
+
+        public struct Placements: Codable, Sendable {
+            @NullCodable public var data: [Data]?
+            public var links: RelationshipLinks?
+            public var meta: PagingInformation?
+
+            public init(data: [Data]? = nil,
+                        links: RelationshipLinks? = nil,
+                        meta: PagingInformation? = nil)
+            {
+                self.data = data
+                self.links = links
+                self.meta = meta
+            }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                data = try container.decodeIfPresent([Data].self, forKey: "data")
+                links = try container.decodeIfPresent(RelationshipLinks.self, forKey: "links")
+                meta = try container.decodeIfPresent(PagingInformation.self, forKey: "meta")
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: AnyCodingKey.self)
+                try container.encode(data, forKey: "data")
+                try container.encodeIfPresent(links, forKey: "links")
+                try container.encodeIfPresent(meta, forKey: "meta")
+            }
+
+            public struct Data: Codable, Sendable, Identifiable {
+                public let id: String
+                public var type: String { "appAssetLibraryPlacements" }
 
                 public init(id: String) {
                     self.id = id

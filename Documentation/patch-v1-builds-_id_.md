@@ -66,7 +66,7 @@ PATCH https://api.appstoreconnect.apple.com/v1/builds/932eff64-a144-4350-8d10-9e
       “lsMinimumSystemVersion” : “11.0”,
       “computedMinMacOsVersion” : “11.0”,
       “iconAssetToken” : {
-        “templateUrl” : “httpss://isq11.mzstatic.com/image/thumb/Purple123/v4/0b/84/ee/0b84eed1-e323-8b13-591b-163e1cfa8d67/Icon-83.5@2x.png.png/{w}x{h}bb.{f}”,
+        “templateUrl” : “https://is1.mzstatic.com/image/thumb/Purple123/v4/0b/84/ee/0b84eed1-e323-8b13-591b-163e1cfa8d67/Icon-83.5@2x.png.png/{w}x{h}bb.{f}”,
         “width” : 167,
         “height” : 167
       },

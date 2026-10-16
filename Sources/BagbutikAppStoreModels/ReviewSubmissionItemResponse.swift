@@ -46,6 +46,20 @@ public struct ReviewSubmissionItemResponse: Codable, Sendable {
         try container.encode(links, forKey: "links")
     }
 
+    public func getAppAssetLibraryImage() -> AppAssetLibraryImage? {
+        included?.compactMap { relationship -> AppAssetLibraryImage? in
+            guard case let .appAssetLibraryImage(appAssetLibraryImage) = relationship else { return nil }
+            return appAssetLibraryImage
+        }.first { $0.id == data.relationships?.appAssetLibraryImage?.data?.id }
+    }
+
+    public func getAppAssetLibraryVideo() -> AppAssetLibraryVideo? {
+        included?.compactMap { relationship -> AppAssetLibraryVideo? in
+            guard case let .appAssetLibraryVideo(appAssetLibraryVideo) = relationship else { return nil }
+            return appAssetLibraryVideo
+        }.first { $0.id == data.relationships?.appAssetLibraryVideo?.data?.id }
+    }
+
     public func getAppCustomProductPageVersion() -> AppCustomProductPageVersion? {
         included?.compactMap { relationship -> AppCustomProductPageVersion? in
             guard case let .appCustomProductPageVersion(appCustomProductPageVersion) = relationship else { return nil }
@@ -145,6 +159,8 @@ public struct ReviewSubmissionItemResponse: Codable, Sendable {
     }
 
     public enum Included: Codable, Sendable {
+        case appAssetLibraryImage(AppAssetLibraryImage)
+        case appAssetLibraryVideo(AppAssetLibraryVideo)
         case appCustomProductPageVersion(AppCustomProductPageVersion)
         case appEvent(AppEvent)
         case appStoreVersion(AppStoreVersion)
@@ -163,6 +179,10 @@ public struct ReviewSubmissionItemResponse: Codable, Sendable {
             let container = try decoder.container(keyedBy: AnyCodingKey.self)
             let discriminatorValue = try container.decode(String.self, forKey: "type")
             switch discriminatorValue {
+            case "appAssetLibraryImages":
+                self = .appAssetLibraryImage(try AppAssetLibraryImage(from: decoder))
+            case "appAssetLibraryVideos":
+                self = .appAssetLibraryVideo(try AppAssetLibraryVideo(from: decoder))
             case "appCustomProductPageVersions":
                 self = .appCustomProductPageVersion(try AppCustomProductPageVersion(from: decoder))
             case "appEvents":
@@ -199,6 +219,10 @@ public struct ReviewSubmissionItemResponse: Codable, Sendable {
 
         public func encode(to encoder: Encoder) throws {
             switch self {
+            case let .appAssetLibraryImage(value):
+                try value.encode(to: encoder)
+            case let .appAssetLibraryVideo(value):
+                try value.encode(to: encoder)
             case let .appCustomProductPageVersion(value):
                 try value.encode(to: encoder)
             case let .appEvent(value):

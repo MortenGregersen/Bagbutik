@@ -83,6 +83,18 @@ public struct AppStoreVersionLocalizationsResponse: Codable, Sendable, PagedResp
         }.first { $0.id == appStoreVersionLocalization.relationships?.appStoreVersion?.data?.id }
     }
 
+    public func getPlacements(for appStoreVersionLocalization: AppStoreVersionLocalization) -> [AppAssetLibraryPlacement] {
+        guard let placementIds = appStoreVersionLocalization.relationships?.placements?.data?.map(\.id),
+              let placements = included?.compactMap({ relationship -> AppAssetLibraryPlacement? in
+                  guard case let .appAssetLibraryPlacement(placement) = relationship else { return nil }
+                  return placementIds.contains(placement.id) ? placement : nil
+              })
+        else {
+            return []
+        }
+        return placements
+    }
+
     public func getSearchKeywords(for appStoreVersionLocalization: AppStoreVersionLocalization) -> [AppKeyword] {
         guard let searchKeywordIds = appStoreVersionLocalization.relationships?.searchKeywords?.data?.map(\.id),
               let searchKeywords = included?.compactMap({ relationship -> AppKeyword? in
@@ -96,6 +108,7 @@ public struct AppStoreVersionLocalizationsResponse: Codable, Sendable, PagedResp
     }
 
     public enum Included: Codable, Sendable {
+        case appAssetLibraryPlacement(AppAssetLibraryPlacement)
         case appKeyword(AppKeyword)
         case appPreviewSet(AppPreviewSet)
         case appScreenshotSet(AppScreenshotSet)
@@ -105,6 +118,8 @@ public struct AppStoreVersionLocalizationsResponse: Codable, Sendable, PagedResp
             let container = try decoder.container(keyedBy: AnyCodingKey.self)
             let discriminatorValue = try container.decode(String.self, forKey: "type")
             switch discriminatorValue {
+            case "appAssetLibraryPlacements":
+                self = .appAssetLibraryPlacement(try AppAssetLibraryPlacement(from: decoder))
             case "appKeywords":
                 self = .appKeyword(try AppKeyword(from: decoder))
             case "appPreviewSets":
@@ -123,6 +138,8 @@ public struct AppStoreVersionLocalizationsResponse: Codable, Sendable, PagedResp
 
         public func encode(to encoder: Encoder) throws {
             switch self {
+            case let .appAssetLibraryPlacement(value):
+                try value.encode(to: encoder)
             case let .appKeyword(value):
                 try value.encode(to: encoder)
             case let .appPreviewSet(value):

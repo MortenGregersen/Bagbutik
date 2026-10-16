@@ -120,6 +120,8 @@ public enum GetAppCustomProductPageLocalizationV1 {
      Fields to return for included related types.
      */
     public enum Field: FieldParameter {
+        /// The fields to include for returned resources of type appAssetLibraryPlacements
+        case appAssetLibraryPlacements([AppAssetLibraryPlacements])
         /// The fields to include for returned resources of type appCustomProductPageLocalizations
         case appCustomProductPageLocalizations([AppCustomProductPageLocalizations])
         /// The fields to include for returned resources of type appCustomProductPageVersions
@@ -129,11 +131,43 @@ public enum GetAppCustomProductPageLocalizationV1 {
         /// The fields to include for returned resources of type appScreenshotSets
         case appScreenshotSets([AppScreenshotSets])
 
+        public enum AppAssetLibraryPlacements: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case appCustomProductPageLocalization
+            case appEventLocalization
+            case appStoreVersionExperimentTreatmentLocalization
+            case appStoreVersionLocalization
+            case createdDate
+            case image
+            case lastModifiedDate
+            case mediaType
+            case placementGroup
+            case placementType
+            case state
+            case stateDetails
+            case video
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = AppAssetLibraryPlacements(rawValue: string) {
+                    self = value
+                } else if let value = AppAssetLibraryPlacements(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid AppAssetLibraryPlacements value: \(string)"
+                    )
+                }
+            }
+        }
+
         public enum AppCustomProductPageLocalizations: String, Sendable, ParameterValue, Codable, CaseIterable {
             case appCustomProductPageVersion
             case appPreviewSets
             case appScreenshotSets
             case locale
+            case placements
             case promotionalText
             case searchKeywords
 
@@ -230,6 +264,7 @@ public enum GetAppCustomProductPageLocalizationV1 {
         case appCustomProductPageVersion
         case appPreviewSets
         case appScreenshotSets
+        case placements
         case searchKeywords
     }
 
@@ -241,6 +276,8 @@ public enum GetAppCustomProductPageLocalizationV1 {
         case appPreviewSets(Int)
         /// Maximum number of related appScreenshotSets returned (when they are included) - maximum 50
         case appScreenshotSets(Int)
+        /// Maximum number of related placements returned (when they are included) - maximum 50
+        case placements(Int)
         /// Maximum number of related searchKeywords returned (when they are included) - maximum 50
         case searchKeywords(Int)
     }

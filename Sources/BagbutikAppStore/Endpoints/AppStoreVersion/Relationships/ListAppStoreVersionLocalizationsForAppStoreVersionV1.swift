@@ -43,6 +43,8 @@ public enum ListAppStoreVersionLocalizationsForAppStoreVersionV1 {
      Fields to return for included related types.
      */
     public enum Field: FieldParameter {
+        /// The fields to include for returned resources of type appAssetLibraryPlacements
+        case appAssetLibraryPlacements([AppAssetLibraryPlacements])
         /// The fields to include for returned resources of type appPreviewSets
         case appPreviewSets([AppPreviewSets])
         /// The fields to include for returned resources of type appScreenshotSets
@@ -51,6 +53,37 @@ public enum ListAppStoreVersionLocalizationsForAppStoreVersionV1 {
         case appStoreVersionLocalizations([AppStoreVersionLocalizations])
         /// The fields to include for returned resources of type appStoreVersions
         case appStoreVersions([AppStoreVersions])
+
+        public enum AppAssetLibraryPlacements: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case appCustomProductPageLocalization
+            case appEventLocalization
+            case appStoreVersionExperimentTreatmentLocalization
+            case appStoreVersionLocalization
+            case createdDate
+            case image
+            case lastModifiedDate
+            case mediaType
+            case placementGroup
+            case placementType
+            case state
+            case stateDetails
+            case video
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = AppAssetLibraryPlacements(rawValue: string) {
+                    self = value
+                } else if let value = AppAssetLibraryPlacements(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid AppAssetLibraryPlacements value: \(string)"
+                    )
+                }
+            }
+        }
 
         public enum AppPreviewSets: String, Sendable, ParameterValue, Codable, CaseIterable {
             case appCustomProductPageLocalization
@@ -106,6 +139,7 @@ public enum ListAppStoreVersionLocalizationsForAppStoreVersionV1 {
             case keywords
             case locale
             case marketingUrl
+            case placements
             case promotionalText
             case searchKeywords
             case supportUrl
@@ -185,6 +219,7 @@ public enum ListAppStoreVersionLocalizationsForAppStoreVersionV1 {
         case appPreviewSets
         case appScreenshotSets
         case appStoreVersion
+        case placements
         case searchKeywords
     }
 
@@ -198,6 +233,8 @@ public enum ListAppStoreVersionLocalizationsForAppStoreVersionV1 {
         case appScreenshotSets(Int)
         /// Maximum resources per page - maximum 200
         case limit(Int)
+        /// Maximum number of related placements returned (when they are included) - maximum 50
+        case placements(Int)
         /// Maximum number of related searchKeywords returned (when they are included) - maximum 50
         case searchKeywords(Int)
     }
