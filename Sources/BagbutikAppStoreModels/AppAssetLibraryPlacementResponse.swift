@@ -45,6 +45,48 @@ public struct AppAssetLibraryPlacementResponse: Codable, Sendable {
         try container.encode(links, forKey: "links")
     }
 
+    public func getAppCustomProductPageLocalization() -> AppCustomProductPageLocalization? {
+        included?.compactMap { relationship -> AppCustomProductPageLocalization? in
+            guard case let .appCustomProductPageLocalization(appCustomProductPageLocalization) = relationship else { return nil }
+            return appCustomProductPageLocalization
+        }.first { $0.id == data.relationships?.appCustomProductPageLocalization?.data?.id }
+    }
+
+    public func getAppEventLocalization() -> AppEventLocalization? {
+        included?.compactMap { relationship -> AppEventLocalization? in
+            guard case let .appEventLocalization(appEventLocalization) = relationship else { return nil }
+            return appEventLocalization
+        }.first { $0.id == data.relationships?.appEventLocalization?.data?.id }
+    }
+
+    public func getAppStoreVersionExperimentTreatmentLocalization() -> AppStoreVersionExperimentTreatmentLocalization? {
+        included?.compactMap { relationship -> AppStoreVersionExperimentTreatmentLocalization? in
+            guard case let .appStoreVersionExperimentTreatmentLocalization(appStoreVersionExperimentTreatmentLocalization) = relationship else { return nil }
+            return appStoreVersionExperimentTreatmentLocalization
+        }.first { $0.id == data.relationships?.appStoreVersionExperimentTreatmentLocalization?.data?.id }
+    }
+
+    public func getAppStoreVersionLocalization() -> AppStoreVersionLocalization? {
+        included?.compactMap { relationship -> AppStoreVersionLocalization? in
+            guard case let .appStoreVersionLocalization(appStoreVersionLocalization) = relationship else { return nil }
+            return appStoreVersionLocalization
+        }.first { $0.id == data.relationships?.appStoreVersionLocalization?.data?.id }
+    }
+
+    public func getImage() -> AppAssetLibraryImage? {
+        included?.compactMap { relationship -> AppAssetLibraryImage? in
+            guard case let .appAssetLibraryImage(image) = relationship else { return nil }
+            return image
+        }.first { $0.id == data.relationships?.image?.data?.id }
+    }
+
+    public func getVideo() -> AppAssetLibraryVideo? {
+        included?.compactMap { relationship -> AppAssetLibraryVideo? in
+            guard case let .appAssetLibraryVideo(video) = relationship else { return nil }
+            return video
+        }.first { $0.id == data.relationships?.video?.data?.id }
+    }
+
     public enum Included: Codable, Sendable {
         case appAssetLibraryImage(AppAssetLibraryImage)
         case appAssetLibraryVideo(AppAssetLibraryVideo)

@@ -251,6 +251,23 @@ public struct Spec: Decodable {
             }
         }
 
+        // FB25217789: mediaType belongs to attributes, not relationships.
+        // Both relationship keys can appear in a response, with the unused linkage null.
+        if case .object(var placementSchema) = components.schemas["AppAssetLibraryPlacement"],
+           case .oneOf(_, let relationships)? = placementSchema.properties["relationships"]?.type,
+           relationships.discriminator?.propertyName == "mediaType",
+           case .object(let imageRelationships) = components.schemas["AppAssetLibraryPlacementImageRelationships"],
+           case .object(let videoRelationships) = components.schemas["AppAssetLibraryPlacementVideoRelationships"] {
+            let schema = ObjectSchema(
+                name: "Relationships",
+                url: placementSchema.url + "/relationships",
+                properties: imageRelationships.properties.merging(videoRelationships.properties) { first, _ in first },
+                requiredProperties: Array(Set(imageRelationships.requiredProperties).intersection(videoRelationships.requiredProperties)).sorted())
+            placementSchema.properties["relationships"]?.type = .schema(schema)
+            components.schemas["AppAssetLibraryPlacement"] = .object(placementSchema)
+            addPatchedSchema(.object(placementSchema), location: .topLevel(schemaName: "AppAssetLibraryPlacement"))
+        }
+
         // FB22529824: Add `see` to ErrorLinks
         // Some App Store Connect errors include a `links.see` URL for resolving the issue,
         // but Apple's OpenAPI spec currently omits that property from ErrorLinks.
