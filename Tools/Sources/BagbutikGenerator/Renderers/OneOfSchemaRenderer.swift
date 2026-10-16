@@ -57,8 +57,8 @@ public class OneOfSchemaRenderer: Renderer {
                 let schemaName = schemaRef.components(separatedBy: "/").last ?? schemaRef
                 return schemaName == option.value ? value : nil
             }
-            guard let discriminatorValue = matchingValues.sorted().first else { return nil }
-            return DiscriminatorCase(id: option.id, type: option.value, discriminatorValue: discriminatorValue)
+            guard !matchingValues.isEmpty else { return nil }
+            return DiscriminatorCase(id: option.id, type: option.value, discriminatorValues: matchingValues.sorted())
         }
         return discriminatorCases.count == options.count ? discriminatorCases : nil
     }
@@ -72,8 +72,9 @@ public class OneOfSchemaRenderer: Renderer {
 
             """
             rendered += discriminatorCases.map { discriminatorCase in
-                """
-                case "\(discriminatorCase.discriminatorValue)":
+                let values = discriminatorCase.discriminatorValues.map { "\"\($0)\"" }.joined(separator: ", ")
+                return """
+                case \(values):
                     self = .\(discriminatorCase.id)(try \(discriminatorCase.type)(from: decoder))
                 """
             }.joined(separator: "\n")
@@ -122,6 +123,6 @@ public class OneOfSchemaRenderer: Renderer {
     private struct DiscriminatorCase {
         let id: String
         let type: String
-        let discriminatorValue: String
+        let discriminatorValues: [String]
     }
 }

@@ -90,7 +90,7 @@ public struct AppAssetLibraryVideo: Codable, Sendable, Identifiable {
                 self = .appAssetLibraryVideoArchivedAttributes(try AppAssetLibraryVideoArchivedAttributes(from: decoder))
             case "AWAITING_UPLOAD":
                 self = .appAssetLibraryVideoAwaitingUploadAttributes(try AppAssetLibraryVideoAwaitingUploadAttributes(from: decoder))
-            case "COMPLETE":
+            case "COMPLETE", "PREPARE_FOR_SUBMISSION":
                 self = .appAssetLibraryVideoCommonAttributes(try AppAssetLibraryVideoCommonAttributes(from: decoder))
             case "FAILED":
                 self = .appAssetLibraryVideoFailedAttributes(try AppAssetLibraryVideoFailedAttributes(from: decoder))

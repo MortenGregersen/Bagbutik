@@ -90,7 +90,7 @@ public struct AppAssetLibraryImage: Codable, Sendable, Identifiable {
                 self = .appAssetLibraryImageArchivedAttributes(try AppAssetLibraryImageArchivedAttributes(from: decoder))
             case "AWAITING_UPLOAD":
                 self = .appAssetLibraryImageAwaitingUploadAttributes(try AppAssetLibraryImageAwaitingUploadAttributes(from: decoder))
-            case "COMPLETE":
+            case "COMPLETE", "PREPARE_FOR_SUBMISSION":
                 self = .appAssetLibraryImageCommonAttributes(try AppAssetLibraryImageCommonAttributes(from: decoder))
             case "FAILED":
                 self = .appAssetLibraryImageFailedAttributes(try AppAssetLibraryImageFailedAttributes(from: decoder))
