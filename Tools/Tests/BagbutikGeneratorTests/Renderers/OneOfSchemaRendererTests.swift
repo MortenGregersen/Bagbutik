@@ -4,6 +4,20 @@
 import XCTest
 
 final class OneOfSchemaRendererTests: XCTestCase {
+    func testMultipleDiscriminatorValuesCanSelectTheSameSchema() async throws {
+        let renderer = OneOfSchemaRenderer(docsLoader: .init(schemaDocumentationById: [:]), shouldFormat: true)
+        let schema = OneOfSchema(options: [.schemaRef("CommonAttributes"), .schemaRef("FailedAttributes")],
+                                 discriminator: .init(propertyName: "state", mapping: [
+                                     "PREPARE_FOR_SUBMISSION": "#/components/schemas/CommonAttributes",
+                                     "COMPLETE": "#/components/schemas/CommonAttributes",
+                                     "FAILED": "#/components/schemas/FailedAttributes",
+                                 ]))
+        let rendered = try await renderer.render(name: "Attributes", oneOfSchema: schema)
+        XCTAssertTrue(rendered.contains(#"case "COMPLETE", "PREPARE_FOR_SUBMISSION":"#))
+        XCTAssertTrue(rendered.contains("self = .commonAttributes(try CommonAttributes(from: decoder))"))
+        XCTAssertTrue(rendered.contains(#"case "FAILED":"#))
+    }
+
     func testRender() async throws {
         // Given
         let docsLoader = DocsLoader(schemaDocumentationById: ["some://url": .object(
