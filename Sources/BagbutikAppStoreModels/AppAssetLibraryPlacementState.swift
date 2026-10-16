@@ -18,8 +18,10 @@ import Foundation
  <https://developer.apple.com/documentation/appstoreconnectapi/appassetlibraryplacementstate>
  */
 public enum AppAssetLibraryPlacementState: String, Sendable, ParameterValue, Codable, CaseIterable {
+    case active = "ACTIVE"
     case assetProcessing = "ASSET_PROCESSING"
     case failed = "FAILED"
+    case inactive = "INACTIVE"
     case parentApproved = "PARENT_APPROVED"
     case parentInReview = "PARENT_IN_REVIEW"
     case parentPrepareForSubmission = "PARENT_PREPARE_FOR_SUBMISSION"

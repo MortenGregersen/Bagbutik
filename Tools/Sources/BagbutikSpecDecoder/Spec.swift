@@ -224,6 +224,33 @@ public struct Spec: Decodable {
             }
         }
 
+        // FB25217452: The live API returns ACTIVE and INACTIVE, but spec 4.5.1 omits them.
+        let placementStates = [EnumCase(id: "active", value: "ACTIVE"), EnumCase(id: "inactive", value: "INACTIVE")]
+        if case .enum(var placementStateSchema) = components.schemas["AppAssetLibraryPlacementState"] {
+            for state in placementStates where !placementStateSchema.cases.contains(where: { $0.value == state.value }) {
+                placementStateSchema.cases.append(state)
+            }
+            components.schemas["AppAssetLibraryPlacementState"] = .enum(placementStateSchema)
+            addPatchedSchema(.enum(placementStateSchema), location: .topLevel(schemaName: "AppAssetLibraryPlacementState"))
+
+            // Keep placement state filters aligned so flattening reuses the patched enum.
+            for pathKey in paths.keys.sorted() where pathKey.hasSuffix("/placements") {
+                guard var path = paths[pathKey],
+                      let operationIndex = path.operations.firstIndex(where: { $0.method == .get }),
+                      let parameterIndex = path.operations[operationIndex].parameters?.firstIndex(where: {
+                          if case .filter(let name, _, _, _) = $0 { name == "state" } else { false }
+                      }),
+                      case .filter(let name, let type, let required, let documentation) = path.operations[operationIndex].parameters?[parameterIndex],
+                      case .enum(let valueType, var values) = type else { continue }
+                for state in placementStates where !values.contains(state.value) {
+                    values.append(state.value)
+                }
+                path.operations[operationIndex].parameters?[parameterIndex] = .filter(
+                    name: name, type: .enum(type: valueType, values: values), required: required, documentation: documentation)
+                paths[pathKey] = path
+            }
+        }
+
         // FB22529824: Add `see` to ErrorLinks
         // Some App Store Connect errors include a `links.see` URL for resolving the issue,
         // but Apple's OpenAPI spec currently omits that property from ErrorLinks.
