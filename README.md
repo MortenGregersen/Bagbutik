@@ -223,6 +223,14 @@ One observed case is a `403` error with code `FORBIDDEN.REQUIRED_AGREEMENTS_MISS
 
 In the OpenAPI spec (and documentation) for the App Store Connect API the `purchaseRequirement` property on the “AppEvent” schema is a string. As a consumer of the API, we don’t know the possible values of this could be. After doing some research, it looks like there are two options `NO_COST_ASSOCIATED` and `IN_APP_PURCHASE`.
 
+#### **FB25217452**: AppAssetLibraryPlacementState is missing "ACTIVE" and "INACTIVE"
+
+* Submitted: October 16th, 2026.
+
+In the OpenAPI specification for App Store Connect API 4.5.1, the `AppAssetLibraryPlacementState` schema does not include `ACTIVE` or `INACTIVE`. However, the API returns both values in the `state` attribute of `appAssetLibraryPlacements` resources.
+
+This causes clients generated from the specification to fail when decoding otherwise successful responses, preventing them from reading existing asset placements. The manual patch adds both values to the schema and placement state filters.
+
 ### Closed feedback (removed patches)
 
 * **FB9963088**: The xcodeMetrics schema has no properties or attributes in the OpenAPI spec
