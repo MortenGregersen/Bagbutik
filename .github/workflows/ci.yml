@@ -116,7 +116,7 @@ jobs:
       run: swift test -v --package-path Tools
   build-android:
     name: Build and Test (Android) - Swift 6.3
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     permissions:
       contents: read
     steps:
