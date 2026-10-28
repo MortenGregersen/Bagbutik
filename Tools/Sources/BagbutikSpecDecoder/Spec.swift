@@ -167,6 +167,20 @@ public struct Spec: Decodable {
         // Remove all paths with no operations
         paths = paths.filter { !$0.value.operations.isEmpty }
 
+        // FB25354273: The live API rejects `limit` for this relationship with PARAMETER_ERROR.ILLEGAL.
+        // Observed October 28, 2026, although Apple's spec declares the parameter.
+        let capabilitiesPath = "/v1/bundleIds/{id}/bundleIdCapabilities"
+        if var path = paths[capabilitiesPath],
+           let operationIndex = path.operations.firstIndex(where: { $0.method == .get }) {
+            path.operations[operationIndex].parameters?.removeAll {
+                if case .limit(name: "limit", documentation: _, maximum: _) = $0 {
+                    return true
+                }
+                return false
+            }
+            paths[capabilitiesPath] = path
+        }
+
         // Add the case `SERVICES` to BundleIdPlatform
         // Apple's OpenAPI spec doesn't include Service IDs (like "Sign in with Apple"). Reported to Apple 14/10/22 as a later comment on FB8977648.
         if case .enum(var bundleIdPlatformSchema) = components.schemas["BundleIdPlatform"] {

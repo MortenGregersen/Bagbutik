@@ -2,6 +2,32 @@
 import XCTest
 
 final class SpecTests: XCTestCase {
+    func testPatchBundleIdCapabilitiesPreservesFieldsAndOtherEndpoints() throws {
+        let capabilitiesPath = "/v1/bundleIds/{id}/bundleIdCapabilities"
+        let relationshipPath = "/v1/bundleIds/{id}/relationships/bundleIdCapabilities"
+        let limit = Operation.Parameter.limit(name: "limit", documentation: "Maximum resources per page", maximum: 200)
+        let fields = Operation.Parameter.fields(name: "bundleIdCapabilities", type: .enum(type: "string", values: ["capabilityType", "settings"]), deprecated: false, documentation: "Fields to return")
+        let operation = Operation(
+            id: "bundleIds_bundleIdCapabilities_getToManyRelated",
+            name: "listBundleIdCapabilitiesForBundleId",
+            method: .get,
+            parameters: [fields, limit],
+            successResponseType: "BundleIdCapabilitiesWithoutIncludesResponse",
+            errorResponseType: "ErrorResponse")
+        let paths = Dictionary(uniqueKeysWithValues: [capabilitiesPath, relationshipPath, "/v1/bundleIds"].map { path in
+            (path, Path(path: path, info: .init(mainType: "BundleId", version: "V1", isRelationship: true), operations: [operation]))
+        })
+        var spec = try Spec(paths: paths, components: .init(schemas: [:]))
+
+        try spec.applyManualPatches()
+        // Applying the patch again must preserve the same parameters.
+        try spec.applyManualPatches()
+
+        XCTAssertEqual(spec.paths[capabilitiesPath]?.operations.first?.parameters, [fields])
+        XCTAssertEqual(spec.paths[relationshipPath]?.operations.first?.parameters, [fields, limit])
+        XCTAssertEqual(spec.paths["/v1/bundleIds"]?.operations.first?.parameters, [fields, limit])
+    }
+
     func testFlattenIdenticalSchemas_InEndpoints() throws {
         let specString = """
         {
