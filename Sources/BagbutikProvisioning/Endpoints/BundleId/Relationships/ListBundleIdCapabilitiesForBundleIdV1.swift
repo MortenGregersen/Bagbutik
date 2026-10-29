@@ -16,18 +16,14 @@ public extension Request {
 
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types
-     - Parameter limit: Maximum resources per page - maximum 200
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func listBundleIdCapabilitiesForBundleIdV1(id: String,
-                                                      fields: [ListBundleIdCapabilitiesForBundleIdV1.Field]? = nil,
-                                                      limit: Int? = nil) -> Request<BundleIdCapabilitiesWithoutIncludesResponse, ErrorResponse> {
+                                                      fields: [ListBundleIdCapabilitiesForBundleIdV1.Field]? = nil) -> Request<BundleIdCapabilitiesWithoutIncludesResponse, ErrorResponse> {
         .init(
             path: "/v1/bundleIds/\(id)/bundleIdCapabilities",
             method: .get,
-            parameters: .init(
-                fields: fields,
-                limit: limit))
+            parameters: .init(fields: fields))
     }
 }
 

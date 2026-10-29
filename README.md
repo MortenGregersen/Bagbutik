@@ -235,6 +235,17 @@ This causes clients generated from the specification to fail when decoding other
 
 Submitted on October 16, 2026 for API 4.5.1. [Feedback description](Documentation/Feedback/AppAssetLibraryPlacementRelationships.md). The relationships schema discriminates on `mediaType`, but successful responses supply that field in `attributes`. Responses contain image and video relationship keys, with null data for the unused relationship. The response schema is patched to expose both optional relationships and preserve their linkage without requiring a discriminator inside `relationships`.
 
+#### **FB25354273**: Bundle ID capabilities relationship rejects `limit`
+
+* Observed: October 28th, 2026.
+* Submitted: October 28th, 2026.
+
+Apple's spec declares a `limit` query parameter for `GET /v1/bundleIds/{id}/bundleIdCapabilities`.
+The live API rejects a request with `limit=200` with HTTP `400` and code `PARAMETER_ERROR.ILLEGAL`:
+"The parameter 'limit' can not be used with this request : This relationship does not support this parameter."
+
+The spec loader removes this parameter from that operation so the generated helper does not expose it.
+
 ### Closed feedback (removed patches)
 
 * **FB9963088**: The xcodeMetrics schema has no properties or attributes in the OpenAPI spec
