@@ -175,8 +175,12 @@ The manually maintained comments and types in `BagbutikCore` and the nested `Too
 Run the maintainer CLI from the repository root with:
 
 ```sh
-swift run --package-path Tools bagbutik-cli
+swift run --package-path Tools bagbutik-cli generate --spec-path Specs/app-store-connect.json
 ```
+
+CI runs `bash scripts/check-generated-code.sh` using the committed spec and documentation, and fails if regeneration leaves modified, deleted, or untracked files under `Sources/`. This catches stale output and manual edits to generated code. Make changes in the generator or its inputs, regenerate, and commit the resulting sources together. Manually maintained core files and model extensions remain supported.
+
+The spec update workflow refreshes `Specs/app-store-connect.json` along with the documentation and generated sources.
 
 The CLI and generator are not part of the runtime package consumed by applications.
 

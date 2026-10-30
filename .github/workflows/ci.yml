@@ -10,6 +10,17 @@ on:
   workflow_dispatch:
 
 jobs:
+  generated-code:
+    name: Check Generated Code
+    runs-on: macos-26
+    permissions:
+      contents: read
+    env:
+      DEVELOPER_DIR: /Applications/Xcode_26.4.app/Contents/Developer
+    steps:
+    - uses: actions/checkout@v7.0.1
+    - name: Regenerate and check sources
+      run: bash scripts/check-generated-code.sh
   build-apple:
     name: Build and Test (macOS)
     runs-on: macos-26
