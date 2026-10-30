@@ -231,7 +231,11 @@ In the OpenAPI specification for App Store Connect API 4.5.1, the `AppAssetLibra
 
 This causes clients generated from the specification to fail when decoding otherwise successful responses, preventing them from reading existing asset placements. The manual patch adds both values to the schema and placement state filters.
 
-The patch also adds `PENDING`, observed in successful placement creation responses for screenshots and app previews on October 30th, 2026. Without it, clients can report a decoding failure after Apple has already created the placement.
+#### **FB25371939**: AppAssetLibraryPlacementState is missing "PENDING"
+
+* Submitted: October 30th, 2026.
+
+Successful placement creation can return `PENDING`, which the App Store Connect OpenAPI specification 4.5.1 omits. Clients generated from the spec can fail to decode HTTP 201 responses after Apple has already created the placement. The manual patch adds the state to the schema and placement filters. [Feedback description](Documentation/Feedback/AppAssetLibraryPlacementPendingState.md).
 
 #### **FB25217789**: AppAssetLibraryPlacement relationships has a misplaced discriminator
 

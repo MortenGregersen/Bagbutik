@@ -239,7 +239,7 @@ public struct Spec: Decodable {
         }
 
         // FB25217452: The live API returns ACTIVE and INACTIVE, but spec 4.5.1 omits them.
-        // PENDING is also returned immediately after successful placement creation.
+        // FB25371939: PENDING is also returned immediately after successful placement creation.
         let placementStates = [EnumCase(id: "active", value: "ACTIVE"), EnumCase(id: "inactive", value: "INACTIVE"), EnumCase(id: "pending", value: "PENDING")]
         if case .enum(var placementStateSchema) = components.schemas["AppAssetLibraryPlacementState"] {
             for state in placementStates where !placementStateSchema.cases.contains(where: { $0.value == state.value }) {
