@@ -29,7 +29,7 @@ final class PlacementStatePatchTests: XCTestCase {
     }
 
     func testPatchDoesNotDuplicateStatesWhenUpstreamAlreadyContainsThem() throws {
-        for existingStates in [[], ["ACTIVE"], ["INACTIVE"], ["ACTIVE", "INACTIVE"]] {
+        for existingStates in [[], ["ACTIVE"], ["INACTIVE"], ["PENDING"], ["ACTIVE", "INACTIVE"], ["ACTIVE", "PENDING"], ["INACTIVE", "PENDING"], ["ACTIVE", "INACTIVE", "PENDING"]] {
             var spec = try Spec(paths: [:], components: .init(schemas: [
                 "AppAssetLibraryPlacementState": .enum(.init(
                     name: "AppAssetLibraryPlacementState",
@@ -43,8 +43,8 @@ final class PlacementStatePatchTests: XCTestCase {
             guard case .enum(let schema) = spec.components.schemas["AppAssetLibraryPlacementState"] else {
                 return XCTFail("Missing placement state schema")
             }
-            XCTAssertEqual(Set(schema.cases.map(\.value)), ["PARENT_APPROVED", "ACTIVE", "INACTIVE"])
-            XCTAssertEqual(schema.cases.count, 3)
+            XCTAssertEqual(Set(schema.cases.map(\.value)), ["PARENT_APPROVED", "ACTIVE", "INACTIVE", "PENDING"])
+            XCTAssertEqual(schema.cases.count, 4)
             XCTAssertEqual(spec.patchedSchemasWithLocation.map(\.location), [.topLevel(schemaName: "AppAssetLibraryPlacementState")])
         }
     }

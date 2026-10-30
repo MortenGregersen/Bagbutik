@@ -27,6 +27,7 @@ public enum AppAssetLibraryPlacementState: String, Sendable, ParameterValue, Cod
     case parentPrepareForSubmission = "PARENT_PREPARE_FOR_SUBMISSION"
     case parentReadyForReview = "PARENT_READY_FOR_REVIEW"
     case parentWaitingForReview = "PARENT_WAITING_FOR_REVIEW"
+    case pending = "PENDING"
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
