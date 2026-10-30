@@ -42,6 +42,45 @@ final class AppAssetLibraryPlacementTests: XCTestCase {
         XCTAssertEqual(response.data.map(\.id), ["active-placement", "inactive-placement"])
     }
 
+    func testDecodeCreatedPlacementsWithPendingState() throws {
+        for (mediaType, placementType, relationship, assetType) in [
+            ("IMAGE", "APP_SCREENSHOT", "image", "appAssetLibraryImages"),
+            ("VIDEO", "APP_PREVIEW", "video", "appAssetLibraryVideos"),
+        ] {
+            let json = """
+            {
+              "data": {
+                "type": "appAssetLibraryPlacements",
+                "id": "created-placement",
+                "attributes": {
+                  "mediaType": "\(mediaType)",
+                  "placementType": "\(placementType)",
+                  "placementGroup": "IPAD_105_PROFILE",
+                  "state": "PENDING",
+                  "stateDetails": null
+                },
+                "relationships": {
+                  "\(relationship)": { "data": { "type": "\(assetType)", "id": "uploaded-asset" } },
+                  "appStoreVersionLocalization": { "data": { "type": "appStoreVersionLocalizations", "id": "localization" } }
+                }
+              },
+              "links": { "self": "https://example.invalid/placements" }
+            }
+            """
+
+            let response = try JSONDecoder().decode(AppAssetLibraryPlacementResponse.self, from: Data(json.utf8))
+
+            XCTAssertEqual(response.data.id, "created-placement")
+            XCTAssertEqual(response.data.attributes?.state, .pending)
+            XCTAssertEqual(response.data.relationships?.appStoreVersionLocalization?.data?.id, "localization")
+            if mediaType == "IMAGE" {
+                XCTAssertEqual(response.data.relationships?.image?.data?.id, "uploaded-asset")
+            } else {
+                XCTAssertEqual(response.data.relationships?.video?.data?.id, "uploaded-asset")
+            }
+        }
+    }
+
     // Image shape observed in successful API responses; video shape checks the parallel contract.
     func testDecodeMediaRelationshipsWithoutNestedDiscriminator() throws {
         for media in ["IMAGE", "VIDEO"] {
@@ -70,7 +109,7 @@ final class AppAssetLibraryPlacementTests: XCTestCase {
     }
 
     func testPlacementFiltersAcceptObservedStates() {
-        let filter = ListPlacementsForAppEventLocalizationV1.Filter.state([.active, .inactive])
-        XCTAssertEqual(filter.value, "ACTIVE,INACTIVE")
+        let filter = ListPlacementsForAppEventLocalizationV1.Filter.state([.active, .inactive, .pending])
+        XCTAssertEqual(filter.value, "ACTIVE,INACTIVE,PENDING")
     }
 }
