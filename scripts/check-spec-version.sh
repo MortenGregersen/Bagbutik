@@ -43,8 +43,7 @@ trap 'rm -f "$docs_output_file"' EXIT
 swift run --package-path Tools bagbutik-cli download-newest-docs --spec-path "$spec_file_path" 2>&1 | tee "$docs_output_file"
 warnings="$(grep -a "⚠️" "$docs_output_file" || true)"
 
-cp "$spec_file_path" Specs/app-store-connect.json
-swift run --package-path Tools bagbutik-cli generate --spec-path Specs/app-store-connect.json
+swift run --package-path Tools bagbutik-cli generate --spec-path "$spec_file_path"
 
 rm "$spec_file_path"
 echo "$downloaded_version" > spec-version
