@@ -10,6 +10,18 @@ on:
   workflow_dispatch:
 
 jobs:
+  generated-code:
+    name: Check Generated Code
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: read
+    steps:
+    - uses: actions/checkout@v7.0.1
+    - uses: vapor/swiftly-action@v0.2.1
+      with:
+        toolchain: "6.3"
+    - name: Regenerate and check sources
+      run: bash scripts/check-generated-code.sh
   build-apple:
     name: Build and Test (macOS)
     runs-on: macos-26
