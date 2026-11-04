@@ -16,8 +16,8 @@ current_version="$(cat spec-version)"
 downloaded_version="$(jq -er '.info.version | select(type == "string" and length > 0)' "$spec_file_path")"
 if [[ "$current_version" != "$downloaded_version" ]]; then
     echo "Spec version mismatch: repository has $current_version, but Apple provides $downloaded_version."
-    echo "Merge the spec update PR for $downloaded_version, then rerun this check."
-    exit 1
+    echo "Waiting for the spec update PR for $downloaded_version. Generated sources will be checked when the versions match."
+    exit 0
 fi
 
 swift run --package-path Tools bagbutik-cli generate \

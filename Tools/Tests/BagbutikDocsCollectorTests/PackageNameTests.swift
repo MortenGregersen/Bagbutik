@@ -47,6 +47,30 @@ class PackageNameTests: XCTestCase {
         )
     }
 
+    func testResolveRetentionResourcesAsAppStore() {
+        let identifiers = [
+            "RetentionMessage",
+            "RetentionMessageVersion",
+            "RetentionMessageLocalization",
+            "RetentionOffer",
+            "RetentionOfferPrice",
+            "GET-v1-retentionMessages",
+            "POST-v1-retentionOffers",
+            "GET-v1-retentionMessageVersions-_id_-placement",
+            "GET-v1-retentionMessageVersions-_id_-relationships-placement",
+            "GET-v1-retentionMessages-_id_-versions",
+            "GET-v1-retentionMessages-_id_-relationships-versions",
+            "GET-v1-subscriptions-_id_-retentionMessageOffers",
+        ]
+        for identifier in identifiers {
+            XCTAssertEqual(
+                PackageName.resolvePackageName(from: "https://developer.apple.com/documentation/AppStoreConnectAPI/\(identifier)"),
+                .appStore,
+                identifier
+            )
+        }
+    }
+
     func testResolvePackageNameCore() {
         XCTAssertEqual(PackageName.resolvePackageName(from: "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/ErrorResponse"), nil)
     }
