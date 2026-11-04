@@ -50,6 +50,7 @@ private final class UnsafeSendableBox<Value>: @unchecked Sendable {
 public class DocsFetcher {
     private let loadSpec: LoadSpec
     private let fetchData: FetchData
+    private let sleep: (UInt64) async throws -> Void
     private let fileManager: TestableFileManager
     private let print: (String) -> Void
 
@@ -65,9 +66,10 @@ public class DocsFetcher {
         self.init(loadSpec: loadSpec)
     }
 
-    init(loadSpec: @escaping LoadSpec, fetchData: @escaping FetchData = URLSession.shared.data(from:delegate:), fileManager: TestableFileManager = FileManager.default, print: @escaping (String) -> Void = { Swift.print($0) }) {
+    init(loadSpec: @escaping LoadSpec, fetchData: @escaping FetchData = URLSession.shared.data(from:delegate:), fileManager: TestableFileManager = FileManager.default, sleep: @escaping (UInt64) async throws -> Void = { try await Task.sleep(nanoseconds: $0) }, print: @escaping (String) -> Void = { Swift.print($0) }) {
         self.loadSpec = loadSpec
         self.fetchData = fetchData
+        self.sleep = sleep
         self.fileManager = fileManager
         self.print = print
     }
@@ -108,13 +110,14 @@ public class DocsFetcher {
         }
 
         let fetchData = UnsafeSendableBox(fetchData)
+        let sleep = UnsafeSendableBox(sleep)
         for batchStart in stride(from: 0, to: sortedPages.count, by: 32) {
             let batchEnd = min(batchStart + 32, sortedPages.count)
             let batch = sortedPages[batchStart..<batchEnd]
             let downloadedPages = try await withThrowingTaskGroup(of: (URL, String, Data, URLResponse).self, returning: [(URL, String, Data, URLResponse)].self) { taskGroup in
                 for (url, context) in batch {
                     taskGroup.addTask {
-                        let (data, response) = try await fetchData.value(url, nil)
+                        let (data, response) = try await Self.fetchWithRetry(url, fetchData: fetchData.value, sleep: sleep.value)
                         return (url, context, data, response)
                     }
                 }
@@ -147,6 +150,31 @@ public class DocsFetcher {
                     throw DocsFetcherError.couldNotCreateFile
                 }
             }
+        }
+    }
+
+    private static func fetchWithRetry(
+        _ url: URL,
+        fetchData: FetchData,
+        sleep: (UInt64) async throws -> Void
+    ) async throws -> (Data, URLResponse) {
+        var attempt = 0
+        while true {
+            try Task.checkCancellation()
+            do {
+                let result = try await fetchData(url, nil)
+                guard let response = result.1 as? HTTPURLResponse,
+                      response.statusCode == 408 || response.statusCode == 429 || (500..<600).contains(response.statusCode),
+                      attempt < 2 else { return result }
+            } catch let error as URLError {
+                let transientCodes: Set<URLError.Code> = [
+                    .timedOut, .networkConnectionLost, .cannotConnectToHost,
+                    .cannotFindHost, .dnsLookupFailed, .notConnectedToInternet,
+                ]
+                guard transientCodes.contains(error.code), attempt < 2 else { throw error }
+            }
+            attempt += 1
+            try await sleep(UInt64(attempt) * 1_000_000_000)
         }
     }
 

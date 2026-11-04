@@ -154,9 +154,11 @@ final class MarkdownDocumentationTests: XCTestCase {
         for status in [404, 503, 200] {
             let fileManager = MockFileManager()
             var messages = [String]()
+            var attempts = 0
             let fetcher = DocsFetcher(loadSpec: { _ in spec }, fetchData: { url, _ in
-                (Data("<!doctype html><html>Unavailable</html>".utf8), HTTPURLResponse(url: url, statusCode: status, httpVersion: nil, headerFields: nil)!)
-            }, fileManager: fileManager, print: { messages.append($0) })
+                attempts += 1
+                return (Data("<!doctype html><html>Unavailable</html>".utf8), HTTPURLResponse(url: url, statusCode: status, httpVersion: nil, headerFields: nil)!)
+            }, fileManager: fileManager, sleep: { _ in }, print: { messages.append($0) })
             if status == 404 {
                 try await fetcher.fetchAllDocs(specFileURL: URL(fileURLWithPath: "/tmp/spec.json"), outputDirURL: URL(fileURLWithPath: "/tmp/Documentation"), dryRun: false)
                 XCTAssertTrue(messages.contains { $0.contains("⚠️") && $0.contains(url.absoluteString) })
@@ -166,7 +168,29 @@ final class MarkdownDocumentationTests: XCTestCase {
                 }
             }
             XCTAssertTrue(fileManager.createdFiles.isEmpty)
+            XCTAssertEqual(attempts, status == 503 ? 3 : 1)
         }
+    }
+
+    func testFetcherRecoversFromTemporaryFailures() async throws {
+        let url = URL(string: "https://developer.apple.com/documentation/AppStoreConnectAPI/usersresponse.md")!
+        let schema = Schema.object(.init(name: "UsersResponse", url: url.absoluteString, properties: [:]))
+        let spec = try Spec(paths: [:], components: .init(schemas: ["UsersResponse": schema]))
+        let fileManager = MockFileManager()
+        var attempts = 0
+        let fetcher = DocsFetcher(loadSpec: { _ in spec }, fetchData: { url, _ in
+            attempts += 1
+            if attempts == 1 { throw URLError(.timedOut) }
+            if attempts == 2 {
+                return (Data("Bad Gateway".utf8), HTTPURLResponse(url: url, statusCode: 502, httpVersion: nil, headerFields: nil)!)
+            }
+            return (self.markdown(title: "UsersResponse", identifier: "/documentation/AppStoreConnectAPI/usersresponse", body: "# UsersResponse"), HTTPURLResponse(url: url, statusCode: 200, httpVersion: nil, headerFields: nil)!)
+        }, fileManager: fileManager, sleep: { _ in })
+
+        try await fetcher.fetchAllDocs(specFileURL: URL(fileURLWithPath: "/tmp/spec.json"), outputDirURL: URL(fileURLWithPath: "/tmp/Documentation"), dryRun: false)
+
+        XCTAssertEqual(fileManager.createdFiles, ["/tmp/Documentation/usersresponse.md"])
+        XCTAssertEqual(attempts, 3)
     }
 
     private func markdown(title: String, identifier: String, body: String) -> Data {
