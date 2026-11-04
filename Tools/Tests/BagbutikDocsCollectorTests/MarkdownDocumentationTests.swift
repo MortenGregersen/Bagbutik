@@ -121,7 +121,7 @@ final class MarkdownDocumentationTests: XCTestCase {
         let schema = Schema.object(.init(name: "UsersResponse", url: "https://developer.apple.com/documentation/AppStoreConnectAPI/usersresponse", properties: [:]))
         let fileManager = MockFileManager(shouldFailCreatingFiles: true)
         let failingWriteFetcher = DocsFetcher(loadSpec: { _ in try Spec(paths: [:], components: .init(schemas: ["UsersResponse": schema])) }, fetchData: { url, _ in
-            (Data(), HTTPURLResponse(url: url, statusCode: 200, httpVersion: nil, headerFields: nil)!)
+            (self.markdown(title: "UsersResponse", identifier: "/documentation/AppStoreConnectAPI/usersresponse", body: "# UsersResponse"), HTTPURLResponse(url: url, statusCode: 200, httpVersion: nil, headerFields: nil)!)
         }, fileManager: fileManager)
         await XCTAssertAsyncThrowsError(try await failingWriteFetcher.fetchAllDocs(specFileURL: URL(fileURLWithPath: "/tmp/spec.json"), outputDirURL: URL(fileURLWithPath: "/tmp/Documentation"), dryRun: false)) {
             XCTAssertEqual($0 as? DocsFetcherError, .couldNotCreateFile)
@@ -145,6 +145,28 @@ final class MarkdownDocumentationTests: XCTestCase {
             "/tmp/Documentation/get-v1-users.md",
             "/tmp/Documentation/usersresponse.md"
         ])
+    }
+
+    func testFetcherDoesNotSaveMissingOrFailedPages() async throws {
+        let url = URL(string: "https://developer.apple.com/documentation/AppStoreConnectAPI/retentionmessage.md")!
+        let schema = Schema.object(.init(name: "RetentionMessage", url: url.absoluteString, properties: [:]))
+        let spec = try Spec(paths: [:], components: .init(schemas: ["RetentionMessage": schema]))
+        for status in [404, 503, 200] {
+            let fileManager = MockFileManager()
+            var messages = [String]()
+            let fetcher = DocsFetcher(loadSpec: { _ in spec }, fetchData: { url, _ in
+                (Data("<!doctype html><html>Unavailable</html>".utf8), HTTPURLResponse(url: url, statusCode: status, httpVersion: nil, headerFields: nil)!)
+            }, fileManager: fileManager, print: { messages.append($0) })
+            if status == 404 {
+                try await fetcher.fetchAllDocs(specFileURL: URL(fileURLWithPath: "/tmp/spec.json"), outputDirURL: URL(fileURLWithPath: "/tmp/Documentation"), dryRun: false)
+                XCTAssertTrue(messages.contains { $0.contains("⚠️") && $0.contains(url.absoluteString) })
+            } else {
+                await XCTAssertAsyncThrowsError(try await fetcher.fetchAllDocs(specFileURL: URL(fileURLWithPath: "/tmp/spec.json"), outputDirURL: URL(fileURLWithPath: "/tmp/Documentation"), dryRun: false)) {
+                    XCTAssertEqual($0 as? DocsFetcherError, status == 503 ? .httpError(url, 503) : .invalidDocumentation(url, "missingMetadata"))
+                }
+            }
+            XCTAssertTrue(fileManager.createdFiles.isEmpty)
+        }
     }
 
     private func markdown(title: String, identifier: String, body: String) -> Data {

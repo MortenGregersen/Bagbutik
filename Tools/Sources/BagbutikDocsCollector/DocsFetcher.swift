@@ -13,6 +13,13 @@ public enum DocsFetcherError: Error, Equatable {
     /// The local Markdown file could not be created.
     case couldNotCreateFile
 
+    /// The documentation server returned an unsuccessful response.
+    case httpError(URL, Int)
+    /// The documentation server did not return an HTTP response.
+    case invalidResponse(URL)
+    /// The downloaded page is not valid Apple Markdown documentation.
+    case invalidDocumentation(URL, String)
+
     /// Identifies a file URL argument.
     public enum FileURLType: Sendable {
         /// The local OpenAPI specification file.
@@ -104,20 +111,35 @@ public class DocsFetcher {
         for batchStart in stride(from: 0, to: sortedPages.count, by: 32) {
             let batchEnd = min(batchStart + 32, sortedPages.count)
             let batch = sortedPages[batchStart..<batchEnd]
-            let downloadedPages = try await withThrowingTaskGroup(of: (URL, String, Data).self, returning: [(URL, String, Data)].self) { taskGroup in
+            let downloadedPages = try await withThrowingTaskGroup(of: (URL, String, Data, URLResponse).self, returning: [(URL, String, Data, URLResponse)].self) { taskGroup in
                 for (url, context) in batch {
                     taskGroup.addTask {
-                        let (data, _) = try await fetchData.value(url, nil)
-                        return (url, context, data)
+                        let (data, response) = try await fetchData.value(url, nil)
+                        return (url, context, data, response)
                     }
                 }
-                var downloadedPages = [(URL, String, Data)]()
+                var downloadedPages = [(URL, String, Data, URLResponse)]()
                 for try await page in taskGroup {
                     downloadedPages.append(page)
                 }
                 return downloadedPages
             }
-            for (url, context, data) in downloadedPages.sorted(by: { $0.0.absoluteString < $1.0.absoluteString }) {
+            for (url, context, data, response) in downloadedPages.sorted(by: { $0.0.absoluteString < $1.0.absoluteString }) {
+                guard let response = response as? HTTPURLResponse else {
+                    throw DocsFetcherError.invalidResponse(url)
+                }
+                if response.statusCode == 404 {
+                    print("⚠️ No documentation available for \(context) (\(url)): HTTP 404")
+                    continue
+                }
+                guard (200..<300).contains(response.statusCode) else {
+                    throw DocsFetcherError.httpError(url, response.statusCode)
+                }
+                do {
+                    _ = try MarkdownDocumentation.parse(data, as: .object)
+                } catch {
+                    throw DocsFetcherError.invalidDocumentation(url, String(describing: error))
+                }
                 let destination = Self.localURL(for: url, in: outputDirURL)
                 print("Fetching documentation for \(context) (\(url))")
                 try fileManager.createDirectory(at: destination.deletingLastPathComponent(), withIntermediateDirectories: true, attributes: nil)
