@@ -81,6 +81,7 @@ public struct ReviewSubmissionItemCreateRequest: Codable, Sendable, RequestBody 
             public var gameCenterLeaderboardSetVersion: GameCenterLeaderboardSetVersion?
             public var gameCenterLeaderboardVersion: GameCenterLeaderboardVersion?
             public var inAppPurchaseVersion: InAppPurchaseVersion?
+            public var retentionMessageVersion: RetentionMessageVersion?
             public let reviewSubmission: ReviewSubmission
             public var subscriptionGroupVersion: SubscriptionGroupVersion?
             public var subscriptionVersion: SubscriptionVersion?
@@ -99,6 +100,7 @@ public struct ReviewSubmissionItemCreateRequest: Codable, Sendable, RequestBody 
                         gameCenterLeaderboardSetVersion: GameCenterLeaderboardSetVersion? = nil,
                         gameCenterLeaderboardVersion: GameCenterLeaderboardVersion? = nil,
                         inAppPurchaseVersion: InAppPurchaseVersion? = nil,
+                        retentionMessageVersion: RetentionMessageVersion? = nil,
                         reviewSubmission: ReviewSubmission,
                         subscriptionGroupVersion: SubscriptionGroupVersion? = nil,
                         subscriptionVersion: SubscriptionVersion? = nil)
@@ -117,6 +119,7 @@ public struct ReviewSubmissionItemCreateRequest: Codable, Sendable, RequestBody 
                 self.gameCenterLeaderboardSetVersion = gameCenterLeaderboardSetVersion
                 self.gameCenterLeaderboardVersion = gameCenterLeaderboardVersion
                 self.inAppPurchaseVersion = inAppPurchaseVersion
+                self.retentionMessageVersion = retentionMessageVersion
                 self.reviewSubmission = reviewSubmission
                 self.subscriptionGroupVersion = subscriptionGroupVersion
                 self.subscriptionVersion = subscriptionVersion
@@ -138,6 +141,7 @@ public struct ReviewSubmissionItemCreateRequest: Codable, Sendable, RequestBody 
                 gameCenterLeaderboardSetVersion = try container.decodeIfPresent(GameCenterLeaderboardSetVersion.self, forKey: "gameCenterLeaderboardSetVersion")
                 gameCenterLeaderboardVersion = try container.decodeIfPresent(GameCenterLeaderboardVersion.self, forKey: "gameCenterLeaderboardVersion")
                 inAppPurchaseVersion = try container.decodeIfPresent(InAppPurchaseVersion.self, forKey: "inAppPurchaseVersion")
+                retentionMessageVersion = try container.decodeIfPresent(RetentionMessageVersion.self, forKey: "retentionMessageVersion")
                 reviewSubmission = try container.decode(ReviewSubmission.self, forKey: "reviewSubmission")
                 subscriptionGroupVersion = try container.decodeIfPresent(SubscriptionGroupVersion.self, forKey: "subscriptionGroupVersion")
                 subscriptionVersion = try container.decodeIfPresent(SubscriptionVersion.self, forKey: "subscriptionVersion")
@@ -159,6 +163,7 @@ public struct ReviewSubmissionItemCreateRequest: Codable, Sendable, RequestBody 
                 try container.encodeIfPresent(gameCenterLeaderboardSetVersion, forKey: "gameCenterLeaderboardSetVersion")
                 try container.encodeIfPresent(gameCenterLeaderboardVersion, forKey: "gameCenterLeaderboardVersion")
                 try container.encodeIfPresent(inAppPurchaseVersion, forKey: "inAppPurchaseVersion")
+                try container.encodeIfPresent(retentionMessageVersion, forKey: "retentionMessageVersion")
                 try container.encode(reviewSubmission, forKey: "reviewSubmission")
                 try container.encodeIfPresent(subscriptionGroupVersion, forKey: "subscriptionGroupVersion")
                 try container.encodeIfPresent(subscriptionVersion, forKey: "subscriptionVersion")
@@ -717,6 +722,47 @@ public struct ReviewSubmissionItemCreateRequest: Codable, Sendable, RequestBody 
                 public struct Data: Codable, Sendable, Identifiable {
                     public let id: String
                     public var type: String { "inAppPurchaseVersions" }
+
+                    public init(id: String) {
+                        self.id = id
+                    }
+
+                    public init(from decoder: Decoder) throws {
+                        let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                        id = try container.decode(String.self, forKey: "id")
+                        if try container.decode(String.self, forKey: "type") != type {
+                            throw DecodingError.dataCorruptedError(forKey: "type", in: container, debugDescription: "Not matching \(type)")
+                        }
+                    }
+
+                    public func encode(to encoder: Encoder) throws {
+                        var container = encoder.container(keyedBy: AnyCodingKey.self)
+                        try container.encode(id, forKey: "id")
+                        try container.encode(type, forKey: "type")
+                    }
+                }
+            }
+
+            public struct RetentionMessageVersion: Codable, Sendable {
+                @NullCodable public var data: Data?
+
+                public init(data: Data? = nil) {
+                    self.data = data
+                }
+
+                public init(from decoder: Decoder) throws {
+                    let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                    data = try container.decodeIfPresent(Data.self, forKey: "data")
+                }
+
+                public func encode(to encoder: Encoder) throws {
+                    var container = encoder.container(keyedBy: AnyCodingKey.self)
+                    try container.encode(data, forKey: "data")
+                }
+
+                public struct Data: Codable, Sendable, Identifiable {
+                    public let id: String
+                    public var type: String { "retentionMessageVersions" }
 
                     public init(id: String) {
                         self.id = id

@@ -205,6 +205,7 @@ public struct App: Codable, Sendable, Identifiable {
         public var performanceOverviews: PerformanceOverviews?
         public var preReleaseVersions: PreReleaseVersions?
         public var promotedPurchases: PromotedPurchases?
+        public var retentionMessages: RetentionMessages?
         public var reviewSubmissions: ReviewSubmissions?
         public var searchKeywords: SearchKeywords?
         public var subscriptionGracePeriod: SubscriptionGracePeriod?
@@ -252,6 +253,7 @@ public struct App: Codable, Sendable, Identifiable {
                     performanceOverviews: PerformanceOverviews? = nil,
                     preReleaseVersions: PreReleaseVersions? = nil,
                     promotedPurchases: PromotedPurchases? = nil,
+                    retentionMessages: RetentionMessages? = nil,
                     reviewSubmissions: ReviewSubmissions? = nil,
                     searchKeywords: SearchKeywords? = nil,
                     subscriptionGracePeriod: SubscriptionGracePeriod? = nil,
@@ -298,6 +300,7 @@ public struct App: Codable, Sendable, Identifiable {
             self.performanceOverviews = performanceOverviews
             self.preReleaseVersions = preReleaseVersions
             self.promotedPurchases = promotedPurchases
+            self.retentionMessages = retentionMessages
             self.reviewSubmissions = reviewSubmissions
             self.searchKeywords = searchKeywords
             self.subscriptionGracePeriod = subscriptionGracePeriod
@@ -344,6 +347,7 @@ public struct App: Codable, Sendable, Identifiable {
                     performanceOverviews: PerformanceOverviews? = nil,
                     preReleaseVersions: PreReleaseVersions? = nil,
                     promotedPurchases: PromotedPurchases? = nil,
+                    retentionMessages: RetentionMessages? = nil,
                     reviewSubmissions: ReviewSubmissions? = nil,
                     searchKeywords: SearchKeywords? = nil,
                     subscriptionGracePeriod: SubscriptionGracePeriod? = nil,
@@ -389,6 +393,7 @@ public struct App: Codable, Sendable, Identifiable {
             self.performanceOverviews = performanceOverviews
             self.preReleaseVersions = preReleaseVersions
             self.promotedPurchases = promotedPurchases
+            self.retentionMessages = retentionMessages
             self.reviewSubmissions = reviewSubmissions
             self.searchKeywords = searchKeywords
             self.subscriptionGracePeriod = subscriptionGracePeriod
@@ -441,6 +446,7 @@ public struct App: Codable, Sendable, Identifiable {
             performanceOverviews = try container.decodeIfPresent(PerformanceOverviews.self, forKey: "performanceOverviews")
             preReleaseVersions = try container.decodeIfPresent(PreReleaseVersions.self, forKey: "preReleaseVersions")
             promotedPurchases = try container.decodeIfPresent(PromotedPurchases.self, forKey: "promotedPurchases")
+            retentionMessages = try container.decodeIfPresent(RetentionMessages.self, forKey: "retentionMessages")
             reviewSubmissions = try container.decodeIfPresent(ReviewSubmissions.self, forKey: "reviewSubmissions")
             searchKeywords = try container.decodeIfPresent(SearchKeywords.self, forKey: "searchKeywords")
             subscriptionGracePeriod = try container.decodeIfPresent(SubscriptionGracePeriod.self, forKey: "subscriptionGracePeriod")
@@ -493,6 +499,7 @@ public struct App: Codable, Sendable, Identifiable {
             try container.encodeIfPresent(performanceOverviews, forKey: "performanceOverviews")
             try container.encodeIfPresent(preReleaseVersions, forKey: "preReleaseVersions")
             try container.encodeIfPresent(promotedPurchases, forKey: "promotedPurchases")
+            try container.encodeIfPresent(retentionMessages, forKey: "retentionMessages")
             try container.encodeIfPresent(reviewSubmissions, forKey: "reviewSubmissions")
             try container.encodeIfPresent(searchKeywords, forKey: "searchKeywords")
             try container.encodeIfPresent(subscriptionGracePeriod, forKey: "subscriptionGracePeriod")
@@ -1911,6 +1918,58 @@ public struct App: Codable, Sendable, Identifiable {
             public struct Data: Codable, Sendable, Identifiable {
                 public let id: String
                 public var type: String { "promotedPurchases" }
+
+                public init(id: String) {
+                    self.id = id
+                }
+
+                public init(from decoder: Decoder) throws {
+                    let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                    id = try container.decode(String.self, forKey: "id")
+                    if try container.decode(String.self, forKey: "type") != type {
+                        throw DecodingError.dataCorruptedError(forKey: "type", in: container, debugDescription: "Not matching \(type)")
+                    }
+                }
+
+                public func encode(to encoder: Encoder) throws {
+                    var container = encoder.container(keyedBy: AnyCodingKey.self)
+                    try container.encode(id, forKey: "id")
+                    try container.encode(type, forKey: "type")
+                }
+            }
+        }
+
+        public struct RetentionMessages: Codable, Sendable {
+            @NullCodable public var data: [Data]?
+            public var links: RelationshipLinks?
+            public var meta: PagingInformation?
+
+            public init(data: [Data]? = nil,
+                        links: RelationshipLinks? = nil,
+                        meta: PagingInformation? = nil)
+            {
+                self.data = data
+                self.links = links
+                self.meta = meta
+            }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                data = try container.decodeIfPresent([Data].self, forKey: "data")
+                links = try container.decodeIfPresent(RelationshipLinks.self, forKey: "links")
+                meta = try container.decodeIfPresent(PagingInformation.self, forKey: "meta")
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: AnyCodingKey.self)
+                try container.encode(data, forKey: "data")
+                try container.encodeIfPresent(links, forKey: "links")
+                try container.encodeIfPresent(meta, forKey: "meta")
+            }
+
+            public struct Data: Codable, Sendable, Identifiable {
+                public let id: String
+                public var type: String { "retentionMessages" }
 
                 public init(id: String) {
                     self.id = id

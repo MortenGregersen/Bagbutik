@@ -291,6 +291,18 @@ public struct AppResponse: Codable, Sendable {
         return promotedPurchases
     }
 
+    public func getRetentionMessages() -> [RetentionMessage] {
+        guard let retentionMessageIds = data.relationships?.retentionMessages?.data?.map(\.id),
+              let retentionMessages = included?.compactMap({ relationship -> RetentionMessage? in
+                  guard case let .retentionMessage(retentionMessage) = relationship else { return nil }
+                  return retentionMessageIds.contains(retentionMessage.id) ? retentionMessage : nil
+              })
+        else {
+            return []
+        }
+        return retentionMessages
+    }
+
     public func getReviewSubmissions() -> [ReviewSubmission] {
         guard let reviewSubmissionIds = data.relationships?.reviewSubmissions?.data?.map(\.id),
               let reviewSubmissions = included?.compactMap({ relationship -> ReviewSubmission? in
@@ -344,6 +356,7 @@ public struct AppResponse: Codable, Sendable {
         case inAppPurchase(InAppPurchase)
         case prereleaseVersion(PrereleaseVersion)
         case promotedPurchase(PromotedPurchase)
+        case retentionMessage(RetentionMessage)
         case reviewSubmission(ReviewSubmission)
         case subscriptionGracePeriod(SubscriptionGracePeriod)
         case subscriptionGroup(SubscriptionGroup)
@@ -394,6 +407,8 @@ public struct AppResponse: Codable, Sendable {
                 self = .prereleaseVersion(try PrereleaseVersion(from: decoder))
             case "promotedPurchases":
                 self = .promotedPurchase(try PromotedPurchase(from: decoder))
+            case "retentionMessages":
+                self = .retentionMessage(try RetentionMessage(from: decoder))
             case "reviewSubmissions":
                 self = .reviewSubmission(try ReviewSubmission(from: decoder))
             case "subscriptionGracePeriods":
@@ -451,6 +466,8 @@ public struct AppResponse: Codable, Sendable {
             case let .prereleaseVersion(value):
                 try value.encode(to: encoder)
             case let .promotedPurchase(value):
+                try value.encode(to: encoder)
+            case let .retentionMessage(value):
                 try value.encode(to: encoder)
             case let .reviewSubmission(value):
                 try value.encode(to: encoder)

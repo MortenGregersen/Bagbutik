@@ -31,25 +31,25 @@ object AppAssetLibraryVideoCommonAttributes
 
 ### Inherited By
 
-[`AppAssetLibraryVideoWaitingForReviewAttributes`](/documentation/AppStoreConnectAPI/AppAssetLibraryVideoWaitingForReviewAttributes)
-
-[`AppAssetLibraryVideoInReviewAttributes`](/documentation/AppStoreConnectAPI/AppAssetLibraryVideoInReviewAttributes)
-
-[`AppAssetLibraryVideoFailedAttributes`](/documentation/AppStoreConnectAPI/AppAssetLibraryVideoFailedAttributes)
-
-[`AppAssetLibraryVideoAwaitingUploadAttributes`](/documentation/AppStoreConnectAPI/AppAssetLibraryVideoAwaitingUploadAttributes)
+[`AppAssetLibraryVideoRejectedAttributes`](/documentation/AppStoreConnectAPI/AppAssetLibraryVideoRejectedAttributes)
 
 [`AppAssetLibraryVideoReadyForReviewAttributes`](/documentation/AppStoreConnectAPI/AppAssetLibraryVideoReadyForReviewAttributes)
 
-[`AppAssetLibraryVideoArchivedAttributes`](/documentation/AppStoreConnectAPI/AppAssetLibraryVideoArchivedAttributes)
-
-[`AppAssetLibraryVideoApprovedAttributes`](/documentation/AppStoreConnectAPI/AppAssetLibraryVideoApprovedAttributes)
+[`AppAssetLibraryVideoInReviewAttributes`](/documentation/AppStoreConnectAPI/AppAssetLibraryVideoInReviewAttributes)
 
 [`AppAssetLibraryVideoAcceptedAttributes`](/documentation/AppStoreConnectAPI/AppAssetLibraryVideoAcceptedAttributes)
 
-[`AppAssetLibraryVideoRejectedAttributes`](/documentation/AppStoreConnectAPI/AppAssetLibraryVideoRejectedAttributes)
-
 [`AppAssetLibraryVideoUploadCompleteAttributes`](/documentation/AppStoreConnectAPI/AppAssetLibraryVideoUploadCompleteAttributes)
+
+[`AppAssetLibraryVideoFailedAttributes`](/documentation/AppStoreConnectAPI/AppAssetLibraryVideoFailedAttributes)
+
+[`AppAssetLibraryVideoApprovedAttributes`](/documentation/AppStoreConnectAPI/AppAssetLibraryVideoApprovedAttributes)
+
+[`AppAssetLibraryVideoAwaitingUploadAttributes`](/documentation/AppStoreConnectAPI/AppAssetLibraryVideoAwaitingUploadAttributes)
+
+[`AppAssetLibraryVideoArchivedAttributes`](/documentation/AppStoreConnectAPI/AppAssetLibraryVideoArchivedAttributes)
+
+[`AppAssetLibraryVideoWaitingForReviewAttributes`](/documentation/AppStoreConnectAPI/AppAssetLibraryVideoWaitingForReviewAttributes)
 
 ---
 

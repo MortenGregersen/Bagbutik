@@ -157,14 +157,20 @@ public struct SubscriptionUpdateRequest: Codable, Sendable, RequestBody {
             public var introductoryOffers: IntroductoryOffers?
             public var prices: Prices?
             public var promotionalOffers: PromotionalOffers?
+            public var retentionMessage: RetentionMessage?
+            public var retentionMessageOffers: RetentionMessageOffers?
 
             public init(introductoryOffers: IntroductoryOffers? = nil,
                         prices: Prices? = nil,
-                        promotionalOffers: PromotionalOffers? = nil)
+                        promotionalOffers: PromotionalOffers? = nil,
+                        retentionMessage: RetentionMessage? = nil,
+                        retentionMessageOffers: RetentionMessageOffers? = nil)
             {
                 self.introductoryOffers = introductoryOffers
                 self.prices = prices
                 self.promotionalOffers = promotionalOffers
+                self.retentionMessage = retentionMessage
+                self.retentionMessageOffers = retentionMessageOffers
             }
 
             public init(from decoder: Decoder) throws {
@@ -172,6 +178,8 @@ public struct SubscriptionUpdateRequest: Codable, Sendable, RequestBody {
                 introductoryOffers = try container.decodeIfPresent(IntroductoryOffers.self, forKey: "introductoryOffers")
                 prices = try container.decodeIfPresent(Prices.self, forKey: "prices")
                 promotionalOffers = try container.decodeIfPresent(PromotionalOffers.self, forKey: "promotionalOffers")
+                retentionMessage = try container.decodeIfPresent(RetentionMessage.self, forKey: "retentionMessage")
+                retentionMessageOffers = try container.decodeIfPresent(RetentionMessageOffers.self, forKey: "retentionMessageOffers")
             }
 
             public func encode(to encoder: Encoder) throws {
@@ -179,6 +187,8 @@ public struct SubscriptionUpdateRequest: Codable, Sendable, RequestBody {
                 try container.encodeIfPresent(introductoryOffers, forKey: "introductoryOffers")
                 try container.encodeIfPresent(prices, forKey: "prices")
                 try container.encodeIfPresent(promotionalOffers, forKey: "promotionalOffers")
+                try container.encodeIfPresent(retentionMessage, forKey: "retentionMessage")
+                try container.encodeIfPresent(retentionMessageOffers, forKey: "retentionMessageOffers")
             }
 
             public struct IntroductoryOffers: Codable, Sendable {
@@ -283,6 +293,88 @@ public struct SubscriptionUpdateRequest: Codable, Sendable, RequestBody {
                 public struct Data: Codable, Sendable, Identifiable {
                     public let id: String
                     public var type: String { "subscriptionPromotionalOffers" }
+
+                    public init(id: String) {
+                        self.id = id
+                    }
+
+                    public init(from decoder: Decoder) throws {
+                        let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                        id = try container.decode(String.self, forKey: "id")
+                        if try container.decode(String.self, forKey: "type") != type {
+                            throw DecodingError.dataCorruptedError(forKey: "type", in: container, debugDescription: "Not matching \(type)")
+                        }
+                    }
+
+                    public func encode(to encoder: Encoder) throws {
+                        var container = encoder.container(keyedBy: AnyCodingKey.self)
+                        try container.encode(id, forKey: "id")
+                        try container.encode(type, forKey: "type")
+                    }
+                }
+            }
+
+            public struct RetentionMessage: Codable, Sendable {
+                @NullCodable public var data: Data?
+
+                public init(data: Data? = nil) {
+                    self.data = data
+                }
+
+                public init(from decoder: Decoder) throws {
+                    let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                    data = try container.decodeIfPresent(Data.self, forKey: "data")
+                }
+
+                public func encode(to encoder: Encoder) throws {
+                    var container = encoder.container(keyedBy: AnyCodingKey.self)
+                    try container.encode(data, forKey: "data")
+                }
+
+                public struct Data: Codable, Sendable, Identifiable {
+                    public let id: String
+                    public var type: String { "retentionMessages" }
+
+                    public init(id: String) {
+                        self.id = id
+                    }
+
+                    public init(from decoder: Decoder) throws {
+                        let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                        id = try container.decode(String.self, forKey: "id")
+                        if try container.decode(String.self, forKey: "type") != type {
+                            throw DecodingError.dataCorruptedError(forKey: "type", in: container, debugDescription: "Not matching \(type)")
+                        }
+                    }
+
+                    public func encode(to encoder: Encoder) throws {
+                        var container = encoder.container(keyedBy: AnyCodingKey.self)
+                        try container.encode(id, forKey: "id")
+                        try container.encode(type, forKey: "type")
+                    }
+                }
+            }
+
+            public struct RetentionMessageOffers: Codable, Sendable {
+                @NullCodable public var data: [Data]?
+
+                public init(data: [Data]? = nil) {
+                    self.data = data
+                }
+
+                public init(from decoder: Decoder) throws {
+                    let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                    data = try container.decodeIfPresent([Data].self, forKey: "data")
+                }
+
+                public func encode(to encoder: Encoder) throws {
+                    var container = encoder.container(keyedBy: AnyCodingKey.self)
+                    try container.encode(data, forKey: "data")
+                }
+
+                public struct Data: Codable, Sendable, Identifiable {
+                    public let id: String
+                    public var type: String { "retentionOffers" }
 
                     public init(id: String) {
                         self.id = id

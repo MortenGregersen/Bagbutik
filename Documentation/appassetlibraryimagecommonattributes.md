@@ -31,25 +31,25 @@ object AppAssetLibraryImageCommonAttributes
 
 ### Inherited By
 
-[`AppAssetLibraryImageFailedAttributes`](/documentation/AppStoreConnectAPI/AppAssetLibraryImageFailedAttributes)
-
 [`AppAssetLibraryImageAwaitingUploadAttributes`](/documentation/AppStoreConnectAPI/AppAssetLibraryImageAwaitingUploadAttributes)
 
+[`AppAssetLibraryImageFailedAttributes`](/documentation/AppStoreConnectAPI/AppAssetLibraryImageFailedAttributes)
+
+[`AppAssetLibraryImageAcceptedAttributes`](/documentation/AppStoreConnectAPI/AppAssetLibraryImageAcceptedAttributes)
+
 [`AppAssetLibraryImageInReviewAttributes`](/documentation/AppStoreConnectAPI/AppAssetLibraryImageInReviewAttributes)
+
+[`AppAssetLibraryImageApprovedAttributes`](/documentation/AppStoreConnectAPI/AppAssetLibraryImageApprovedAttributes)
+
+[`AppAssetLibraryImageUploadCompleteAttributes`](/documentation/AppStoreConnectAPI/AppAssetLibraryImageUploadCompleteAttributes)
+
+[`AppAssetLibraryImageWaitingForReviewAttributes`](/documentation/AppStoreConnectAPI/AppAssetLibraryImageWaitingForReviewAttributes)
+
+[`AppAssetLibraryImageArchivedAttributes`](/documentation/AppStoreConnectAPI/AppAssetLibraryImageArchivedAttributes)
 
 [`AppAssetLibraryImageReadyForReviewAttributes`](/documentation/AppStoreConnectAPI/AppAssetLibraryImageReadyForReviewAttributes)
 
 [`AppAssetLibraryImageRejectedAttributes`](/documentation/AppStoreConnectAPI/AppAssetLibraryImageRejectedAttributes)
-
-[`AppAssetLibraryImageWaitingForReviewAttributes`](/documentation/AppStoreConnectAPI/AppAssetLibraryImageWaitingForReviewAttributes)
-
-[`AppAssetLibraryImageApprovedAttributes`](/documentation/AppStoreConnectAPI/AppAssetLibraryImageApprovedAttributes)
-
-[`AppAssetLibraryImageAcceptedAttributes`](/documentation/AppStoreConnectAPI/AppAssetLibraryImageAcceptedAttributes)
-
-[`AppAssetLibraryImageUploadCompleteAttributes`](/documentation/AppStoreConnectAPI/AppAssetLibraryImageUploadCompleteAttributes)
-
-[`AppAssetLibraryImageArchivedAttributes`](/documentation/AppStoreConnectAPI/AppAssetLibraryImageArchivedAttributes)
 
 ---
 

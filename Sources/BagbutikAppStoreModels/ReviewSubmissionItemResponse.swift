@@ -144,6 +144,13 @@ public struct ReviewSubmissionItemResponse: Codable, Sendable {
         }.first { $0.id == data.relationships?.inAppPurchaseVersion?.data?.id }
     }
 
+    public func getRetentionMessageVersion() -> RetentionMessageVersion? {
+        included?.compactMap { relationship -> RetentionMessageVersion? in
+            guard case let .retentionMessageVersion(retentionMessageVersion) = relationship else { return nil }
+            return retentionMessageVersion
+        }.first { $0.id == data.relationships?.retentionMessageVersion?.data?.id }
+    }
+
     public func getSubscriptionGroupVersion() -> SubscriptionGroupVersion? {
         included?.compactMap { relationship -> SubscriptionGroupVersion? in
             guard case let .subscriptionGroupVersion(subscriptionGroupVersion) = relationship else { return nil }
@@ -172,6 +179,7 @@ public struct ReviewSubmissionItemResponse: Codable, Sendable {
         case gameCenterLeaderboardSetVersionV2(GameCenterLeaderboardSetVersionV2)
         case gameCenterLeaderboardVersionV2(GameCenterLeaderboardVersionV2)
         case inAppPurchaseVersion(InAppPurchaseVersion)
+        case retentionMessageVersion(RetentionMessageVersion)
         case subscriptionGroupVersion(SubscriptionGroupVersion)
         case subscriptionVersion(SubscriptionVersion)
 
@@ -205,6 +213,8 @@ public struct ReviewSubmissionItemResponse: Codable, Sendable {
                 self = .gameCenterLeaderboardVersionV2(try GameCenterLeaderboardVersionV2(from: decoder))
             case "inAppPurchaseVersions":
                 self = .inAppPurchaseVersion(try InAppPurchaseVersion(from: decoder))
+            case "retentionMessageVersions":
+                self = .retentionMessageVersion(try RetentionMessageVersion(from: decoder))
             case "subscriptionGroupVersions":
                 self = .subscriptionGroupVersion(try SubscriptionGroupVersion(from: decoder))
             case "subscriptionVersions":
@@ -244,6 +254,8 @@ public struct ReviewSubmissionItemResponse: Codable, Sendable {
             case let .gameCenterLeaderboardVersionV2(value):
                 try value.encode(to: encoder)
             case let .inAppPurchaseVersion(value):
+                try value.encode(to: encoder)
+            case let .retentionMessageVersion(value):
                 try value.encode(to: encoder)
             case let .subscriptionGroupVersion(value):
                 try value.encode(to: encoder)

@@ -189,6 +189,9 @@ public enum ListPromotedPurchasesForAppV1 {
             case productId
             case promotedPurchase
             case promotionalOffers
+            case retentionMessage
+            case retentionMessageOffers
+            case retentionOffers
             case reviewNote
             case state
             case subscriptionAvailability

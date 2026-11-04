@@ -80,6 +80,13 @@ public struct AppAssetLibraryPlacementResponse: Codable, Sendable {
         }.first { $0.id == data.relationships?.image?.data?.id }
     }
 
+    public func getRetentionMessageVersion() -> RetentionMessageVersion? {
+        included?.compactMap { relationship -> RetentionMessageVersion? in
+            guard case let .retentionMessageVersion(retentionMessageVersion) = relationship else { return nil }
+            return retentionMessageVersion
+        }.first { $0.id == data.relationships?.retentionMessageVersion?.data?.id }
+    }
+
     public func getVideo() -> AppAssetLibraryVideo? {
         included?.compactMap { relationship -> AppAssetLibraryVideo? in
             guard case let .appAssetLibraryVideo(video) = relationship else { return nil }
@@ -94,6 +101,7 @@ public struct AppAssetLibraryPlacementResponse: Codable, Sendable {
         case appEventLocalization(AppEventLocalization)
         case appStoreVersionExperimentTreatmentLocalization(AppStoreVersionExperimentTreatmentLocalization)
         case appStoreVersionLocalization(AppStoreVersionLocalization)
+        case retentionMessageVersion(RetentionMessageVersion)
 
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: AnyCodingKey.self)
@@ -111,6 +119,8 @@ public struct AppAssetLibraryPlacementResponse: Codable, Sendable {
                 self = .appStoreVersionExperimentTreatmentLocalization(try AppStoreVersionExperimentTreatmentLocalization(from: decoder))
             case "appStoreVersionLocalizations":
                 self = .appStoreVersionLocalization(try AppStoreVersionLocalization(from: decoder))
+            case "retentionMessageVersions":
+                self = .retentionMessageVersion(try RetentionMessageVersion(from: decoder))
             default:
                 throw DecodingError.dataCorruptedError(
                     forKey: "type",
@@ -132,6 +142,8 @@ public struct AppAssetLibraryPlacementResponse: Codable, Sendable {
             case let .appStoreVersionExperimentTreatmentLocalization(value):
                 try value.encode(to: encoder)
             case let .appStoreVersionLocalization(value):
+                try value.encode(to: encoder)
+            case let .retentionMessageVersion(value):
                 try value.encode(to: encoder)
             }
         }

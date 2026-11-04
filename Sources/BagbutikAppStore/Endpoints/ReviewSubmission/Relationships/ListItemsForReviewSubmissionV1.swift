@@ -65,6 +65,8 @@ public enum ListItemsForReviewSubmissionV1 {
         case gameCenterLeaderboardVersions([GameCenterLeaderboardVersions])
         /// The fields to include for returned resources of type inAppPurchaseVersions
         case inAppPurchaseVersions([InAppPurchaseVersions])
+        /// The fields to include for returned resources of type retentionMessageVersions
+        case retentionMessageVersions([RetentionMessageVersions])
         /// The fields to include for returned resources of type reviewSubmissionItems
         case reviewSubmissionItems([ReviewSubmissionItems])
         /// The fields to include for returned resources of type subscriptionGroupVersions
@@ -428,6 +430,28 @@ public enum ListItemsForReviewSubmissionV1 {
             }
         }
 
+        public enum RetentionMessageVersions: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case localizations
+            case placement
+            case retentionMessage
+            case state
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = RetentionMessageVersions(rawValue: string) {
+                    self = value
+                } else if let value = RetentionMessageVersions(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid RetentionMessageVersions value: \(string)"
+                    )
+                }
+            }
+        }
+
         public enum ReviewSubmissionItems: String, Sendable, ParameterValue, Codable, CaseIterable {
             case appAssetLibraryImage
             case appAssetLibraryVideo
@@ -443,6 +467,7 @@ public enum ListItemsForReviewSubmissionV1 {
             case gameCenterLeaderboardSetVersion
             case gameCenterLeaderboardVersion
             case inAppPurchaseVersion
+            case retentionMessageVersion
             case state
             case subscriptionGroupVersion
             case subscriptionVersion
@@ -528,6 +553,7 @@ public enum ListItemsForReviewSubmissionV1 {
         case gameCenterLeaderboardSetVersion
         case gameCenterLeaderboardVersion
         case inAppPurchaseVersion
+        case retentionMessageVersion
         case subscriptionGroupVersion
         case subscriptionVersion
     }

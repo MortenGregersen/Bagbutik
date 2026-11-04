@@ -232,6 +232,9 @@ public struct Subscription: Codable, Sendable, Identifiable {
         public var prices: Prices?
         public var promotedPurchase: PromotedPurchase?
         public var promotionalOffers: PromotionalOffers?
+        public var retentionMessage: RetentionMessage?
+        public var retentionMessageOffers: RetentionMessageOffers?
+        public var retentionOffers: RetentionOffers?
         @available(*, deprecated, message: "Apple has marked this property deprecated and it will be removed sometime in the future.")
         public var subscriptionAvailability: SubscriptionAvailability? = nil
         public var subscriptionLocalizations: SubscriptionLocalizations?
@@ -249,6 +252,9 @@ public struct Subscription: Codable, Sendable, Identifiable {
                     prices: Prices? = nil,
                     promotedPurchase: PromotedPurchase? = nil,
                     promotionalOffers: PromotionalOffers? = nil,
+                    retentionMessage: RetentionMessage? = nil,
+                    retentionMessageOffers: RetentionMessageOffers? = nil,
+                    retentionOffers: RetentionOffers? = nil,
                     subscriptionAvailability: SubscriptionAvailability? = nil,
                     subscriptionLocalizations: SubscriptionLocalizations? = nil,
                     versions: Versions? = nil,
@@ -264,6 +270,9 @@ public struct Subscription: Codable, Sendable, Identifiable {
             self.prices = prices
             self.promotedPurchase = promotedPurchase
             self.promotionalOffers = promotionalOffers
+            self.retentionMessage = retentionMessage
+            self.retentionMessageOffers = retentionMessageOffers
+            self.retentionOffers = retentionOffers
             self.subscriptionAvailability = subscriptionAvailability
             self.subscriptionLocalizations = subscriptionLocalizations
             self.versions = versions
@@ -280,6 +289,9 @@ public struct Subscription: Codable, Sendable, Identifiable {
                     prices: Prices? = nil,
                     promotedPurchase: PromotedPurchase? = nil,
                     promotionalOffers: PromotionalOffers? = nil,
+                    retentionMessage: RetentionMessage? = nil,
+                    retentionMessageOffers: RetentionMessageOffers? = nil,
+                    retentionOffers: RetentionOffers? = nil,
                     subscriptionLocalizations: SubscriptionLocalizations? = nil,
                     versions: Versions? = nil,
                     winBackOffers: WinBackOffers? = nil)
@@ -294,6 +306,9 @@ public struct Subscription: Codable, Sendable, Identifiable {
             self.prices = prices
             self.promotedPurchase = promotedPurchase
             self.promotionalOffers = promotionalOffers
+            self.retentionMessage = retentionMessage
+            self.retentionMessageOffers = retentionMessageOffers
+            self.retentionOffers = retentionOffers
             self.subscriptionLocalizations = subscriptionLocalizations
             self.versions = versions
             self.winBackOffers = winBackOffers
@@ -314,6 +329,9 @@ public struct Subscription: Codable, Sendable, Identifiable {
             prices = try container.decodeIfPresent(Prices.self, forKey: "prices")
             promotedPurchase = try container.decodeIfPresent(PromotedPurchase.self, forKey: "promotedPurchase")
             promotionalOffers = try container.decodeIfPresent(PromotionalOffers.self, forKey: "promotionalOffers")
+            retentionMessage = try container.decodeIfPresent(RetentionMessage.self, forKey: "retentionMessage")
+            retentionMessageOffers = try container.decodeIfPresent(RetentionMessageOffers.self, forKey: "retentionMessageOffers")
+            retentionOffers = try container.decodeIfPresent(RetentionOffers.self, forKey: "retentionOffers")
             subscriptionAvailability = try container.decodeIfPresent(SubscriptionAvailability.self, forKey: "subscriptionAvailability")
             subscriptionLocalizations = try container.decodeIfPresent(SubscriptionLocalizations.self, forKey: "subscriptionLocalizations")
             versions = try container.decodeIfPresent(Versions.self, forKey: "versions")
@@ -335,6 +353,9 @@ public struct Subscription: Codable, Sendable, Identifiable {
             try container.encodeIfPresent(prices, forKey: "prices")
             try container.encodeIfPresent(promotedPurchase, forKey: "promotedPurchase")
             try container.encodeIfPresent(promotionalOffers, forKey: "promotionalOffers")
+            try container.encodeIfPresent(retentionMessage, forKey: "retentionMessage")
+            try container.encodeIfPresent(retentionMessageOffers, forKey: "retentionMessageOffers")
+            try container.encodeIfPresent(retentionOffers, forKey: "retentionOffers")
             try container.encodeIfPresent(subscriptionAvailability, forKey: "subscriptionAvailability")
             try container.encodeIfPresent(subscriptionLocalizations, forKey: "subscriptionLocalizations")
             try container.encodeIfPresent(versions, forKey: "versions")
@@ -785,6 +806,157 @@ public struct Subscription: Codable, Sendable, Identifiable {
             public struct Data: Codable, Sendable, Identifiable {
                 public let id: String
                 public var type: String { "subscriptionPromotionalOffers" }
+
+                public init(id: String) {
+                    self.id = id
+                }
+
+                public init(from decoder: Decoder) throws {
+                    let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                    id = try container.decode(String.self, forKey: "id")
+                    if try container.decode(String.self, forKey: "type") != type {
+                        throw DecodingError.dataCorruptedError(forKey: "type", in: container, debugDescription: "Not matching \(type)")
+                    }
+                }
+
+                public func encode(to encoder: Encoder) throws {
+                    var container = encoder.container(keyedBy: AnyCodingKey.self)
+                    try container.encode(id, forKey: "id")
+                    try container.encode(type, forKey: "type")
+                }
+            }
+        }
+
+        public struct RetentionMessage: Codable, Sendable {
+            @NullCodable public var data: Data?
+            public var links: RelationshipLinks?
+
+            public init(data: Data? = nil,
+                        links: RelationshipLinks? = nil)
+            {
+                self.data = data
+                self.links = links
+            }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                data = try container.decodeIfPresent(Data.self, forKey: "data")
+                links = try container.decodeIfPresent(RelationshipLinks.self, forKey: "links")
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: AnyCodingKey.self)
+                try container.encode(data, forKey: "data")
+                try container.encodeIfPresent(links, forKey: "links")
+            }
+
+            public struct Data: Codable, Sendable, Identifiable {
+                public let id: String
+                public var type: String { "retentionMessages" }
+
+                public init(id: String) {
+                    self.id = id
+                }
+
+                public init(from decoder: Decoder) throws {
+                    let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                    id = try container.decode(String.self, forKey: "id")
+                    if try container.decode(String.self, forKey: "type") != type {
+                        throw DecodingError.dataCorruptedError(forKey: "type", in: container, debugDescription: "Not matching \(type)")
+                    }
+                }
+
+                public func encode(to encoder: Encoder) throws {
+                    var container = encoder.container(keyedBy: AnyCodingKey.self)
+                    try container.encode(id, forKey: "id")
+                    try container.encode(type, forKey: "type")
+                }
+            }
+        }
+
+        public struct RetentionMessageOffers: Codable, Sendable {
+            @NullCodable public var data: [Data]?
+            public var links: RelationshipLinks?
+            public var meta: PagingInformation?
+
+            public init(data: [Data]? = nil,
+                        links: RelationshipLinks? = nil,
+                        meta: PagingInformation? = nil)
+            {
+                self.data = data
+                self.links = links
+                self.meta = meta
+            }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                data = try container.decodeIfPresent([Data].self, forKey: "data")
+                links = try container.decodeIfPresent(RelationshipLinks.self, forKey: "links")
+                meta = try container.decodeIfPresent(PagingInformation.self, forKey: "meta")
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: AnyCodingKey.self)
+                try container.encode(data, forKey: "data")
+                try container.encodeIfPresent(links, forKey: "links")
+                try container.encodeIfPresent(meta, forKey: "meta")
+            }
+
+            public struct Data: Codable, Sendable, Identifiable {
+                public let id: String
+                public var type: String { "retentionOffers" }
+
+                public init(id: String) {
+                    self.id = id
+                }
+
+                public init(from decoder: Decoder) throws {
+                    let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                    id = try container.decode(String.self, forKey: "id")
+                    if try container.decode(String.self, forKey: "type") != type {
+                        throw DecodingError.dataCorruptedError(forKey: "type", in: container, debugDescription: "Not matching \(type)")
+                    }
+                }
+
+                public func encode(to encoder: Encoder) throws {
+                    var container = encoder.container(keyedBy: AnyCodingKey.self)
+                    try container.encode(id, forKey: "id")
+                    try container.encode(type, forKey: "type")
+                }
+            }
+        }
+
+        public struct RetentionOffers: Codable, Sendable {
+            @NullCodable public var data: [Data]?
+            public var links: RelationshipLinks?
+            public var meta: PagingInformation?
+
+            public init(data: [Data]? = nil,
+                        links: RelationshipLinks? = nil,
+                        meta: PagingInformation? = nil)
+            {
+                self.data = data
+                self.links = links
+                self.meta = meta
+            }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                data = try container.decodeIfPresent([Data].self, forKey: "data")
+                links = try container.decodeIfPresent(RelationshipLinks.self, forKey: "links")
+                meta = try container.decodeIfPresent(PagingInformation.self, forKey: "meta")
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: AnyCodingKey.self)
+                try container.encode(data, forKey: "data")
+                try container.encodeIfPresent(links, forKey: "links")
+                try container.encodeIfPresent(meta, forKey: "meta")
+            }
+
+            public struct Data: Codable, Sendable, Identifiable {
+                public let id: String
+                public var type: String { "retentionOffers" }
 
                 public init(id: String) {
                     self.id = id
