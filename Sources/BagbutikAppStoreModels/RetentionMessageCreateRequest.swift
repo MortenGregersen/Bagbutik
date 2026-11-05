@@ -1,6 +1,32 @@
 import BagbutikCore
 import Foundation
 
+/**
+ # RetentionMessageCreateRequest
+
+ The request body you use to create a retention message.
+
+ ```
+ object RetentionMessageCreateRequest
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object RetentionMessageCreateRequest.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/RetentionMessageCreateRequest/Data-data.dictionary)
+
+ The data element of the request body.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/retentionmessagecreaterequest>
+ */
 public struct RetentionMessageCreateRequest: Codable, Sendable, RequestBody {
     public let data: Data
 

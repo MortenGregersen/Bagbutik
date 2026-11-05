@@ -1,6 +1,36 @@
 import BagbutikCore
 import Foundation
 
+/**
+ # RetentionOffer
+
+ A discounted offer for an auto-renewable subscription that you present to people who start to cancel it.
+
+ ```
+ object RetentionOffer
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object RetentionOffer.Attributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/RetentionOffer/Attributes-data.dictionary)
+
+ Attributes that describe a retention offer resource.
+
+ [`object RetentionOffer.Relationships`](https://developer.apple.com/documentation/AppStoreConnectAPI/RetentionOffer/Relationships-data.dictionary)
+
+ The relationships you include in the request and those on which you can operate.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/retentionoffer>
+ */
 public struct RetentionOffer: Codable, Sendable, Identifiable {
     public let id: String
     public var links: ResourceLinks?

@@ -47,6 +47,10 @@ The custom product page localization on which the app asset library placement ap
 
 The App Store version experiment treatment localization on which the app asset library placement appears.
 
+### Dictionaries
+
+[`object AppAssetLibraryPlacementCommonRelationships.RetentionMessageVersion`](/documentation/AppStoreConnectAPI/AppAssetLibraryPlacementCommonRelationships/RetentionMessageVersion-data.dictionary)
+
 ## Relationships
 
 ### Inherited By

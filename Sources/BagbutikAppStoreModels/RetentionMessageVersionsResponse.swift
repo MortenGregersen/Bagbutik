@@ -1,6 +1,22 @@
 import BagbutikCore
 import Foundation
 
+/**
+ # RetentionMessageVersionsResponse
+
+ The response body for endpoints that list retention message versions.
+
+ ```
+ object RetentionMessageVersionsResponse
+ ```
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/retentionmessageversionsresponse>
+ */
 public struct RetentionMessageVersionsResponse: Codable, Sendable, PagedResponse {
     public typealias Data = RetentionMessageVersion
 

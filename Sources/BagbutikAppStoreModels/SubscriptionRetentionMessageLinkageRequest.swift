@@ -1,6 +1,32 @@
 import BagbutikCore
 import Foundation
 
+/**
+ # SubscriptionRetentionMessageLinkageRequest
+
+ The request body you use to assign a retention message to an auto-renewable subscription.
+
+ ```
+ object SubscriptionRetentionMessageLinkageRequest
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object SubscriptionRetentionMessageLinkageRequest.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/SubscriptionRetentionMessageLinkageRequest/Data-data.dictionary)
+
+ The type and ID of the retention message to assign to the subscription.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/subscriptionretentionmessagelinkagerequest>
+ */
 public struct SubscriptionRetentionMessageLinkageRequest: Codable, Sendable, RequestBody {
     @NullCodable public var data: Data?
 

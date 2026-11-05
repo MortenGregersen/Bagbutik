@@ -17,23 +17,23 @@ import Foundation
 
  [`AppAssetLibraryImageAwaitingUploadAttributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/AppAssetLibraryImageAwaitingUploadAttributes)
 
- [`AppAssetLibraryImageFailedAttributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/AppAssetLibraryImageFailedAttributes)
-
- [`AppAssetLibraryImageAcceptedAttributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/AppAssetLibraryImageAcceptedAttributes)
+ [`AppAssetLibraryImageWaitingForReviewAttributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/AppAssetLibraryImageWaitingForReviewAttributes)
 
  [`AppAssetLibraryImageInReviewAttributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/AppAssetLibraryImageInReviewAttributes)
 
- [`AppAssetLibraryImageApprovedAttributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/AppAssetLibraryImageApprovedAttributes)
-
- [`AppAssetLibraryImageUploadCompleteAttributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/AppAssetLibraryImageUploadCompleteAttributes)
-
- [`AppAssetLibraryImageWaitingForReviewAttributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/AppAssetLibraryImageWaitingForReviewAttributes)
-
- [`AppAssetLibraryImageArchivedAttributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/AppAssetLibraryImageArchivedAttributes)
+ [`AppAssetLibraryImageAcceptedAttributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/AppAssetLibraryImageAcceptedAttributes)
 
  [`AppAssetLibraryImageReadyForReviewAttributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/AppAssetLibraryImageReadyForReviewAttributes)
 
+ [`AppAssetLibraryImageArchivedAttributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/AppAssetLibraryImageArchivedAttributes)
+
+ [`AppAssetLibraryImageFailedAttributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/AppAssetLibraryImageFailedAttributes)
+
+ [`AppAssetLibraryImageApprovedAttributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/AppAssetLibraryImageApprovedAttributes)
+
  [`AppAssetLibraryImageRejectedAttributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/AppAssetLibraryImageRejectedAttributes)
+
+ [`AppAssetLibraryImageUploadCompleteAttributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/AppAssetLibraryImageUploadCompleteAttributes)
 
  ---
 

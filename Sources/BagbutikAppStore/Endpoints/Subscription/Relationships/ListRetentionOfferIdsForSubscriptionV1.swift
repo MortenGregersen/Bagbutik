@@ -3,7 +3,13 @@ import BagbutikAppStoreModels
 
 public extension Request {
     /**
+     # List retention offer IDs for a subscription
 
+     Get a list of retention offer IDs for a specific auto-renewable subscription.
+
+     ---
+
+     Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-subscriptions-_id_-relationships-retentionOffers>

@@ -1,6 +1,32 @@
 import BagbutikCore
 import Foundation
 
+/**
+ # RetentionOfferPrice
+
+ The territory-specific price point for a retention offer.
+
+ ```
+ object RetentionOfferPrice
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object RetentionOfferPrice.Relationships`](https://developer.apple.com/documentation/AppStoreConnectAPI/RetentionOfferPrice/Relationships-data.dictionary)
+
+ The relationships you include in the request and those on which you can operate.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/retentionofferprice>
+ */
 public struct RetentionOfferPrice: Codable, Sendable, Identifiable {
     public let id: String
     public var links: ResourceLinks?

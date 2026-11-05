@@ -1,6 +1,36 @@
 import BagbutikCore
 import Foundation
 
+/**
+ # RetentionMessage
+
+ A message shown to people who start to cancel an auto-renewable subscription.
+
+ ```
+ object RetentionMessage
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object RetentionMessage.Attributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/RetentionMessage/Attributes-data.dictionary)
+
+ Attributes that describe a retention message resource.
+
+ [`object RetentionMessage.Relationships`](https://developer.apple.com/documentation/AppStoreConnectAPI/RetentionMessage/Relationships-data.dictionary)
+
+ The relationships you include in the request and those on which you can operate.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/retentionmessage>
+ */
 public struct RetentionMessage: Codable, Sendable, Identifiable {
     public let id: String
     public var links: ResourceLinks?

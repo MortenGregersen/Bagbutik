@@ -4,7 +4,13 @@ import BagbutikModelsShared
 
 public extension Request {
     /**
+     # Add retention message offers to a subscription
 
+     Add retention offers to the retention message for a specific auto-renewable subscription.
+
+     ---
+
+     Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/post-v1-subscriptions-_id_-relationships-retentionMessageOffers>

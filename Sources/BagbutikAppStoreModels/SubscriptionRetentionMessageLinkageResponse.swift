@@ -1,6 +1,32 @@
 import BagbutikCore
 import Foundation
 
+/**
+ # SubscriptionRetentionMessageLinkageResponse
+
+ A response containing the resource identifier of the retention message for a subscription.
+
+ ```
+ object SubscriptionRetentionMessageLinkageResponse
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object SubscriptionRetentionMessageLinkageResponse.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/SubscriptionRetentionMessageLinkageResponse/Data-data.dictionary)
+
+ The type and ID of a related resource.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/subscriptionretentionmessagelinkageresponse>
+ */
 public struct SubscriptionRetentionMessageLinkageResponse: Codable, Sendable {
     public let data: Data
     public let links: DocumentLinks

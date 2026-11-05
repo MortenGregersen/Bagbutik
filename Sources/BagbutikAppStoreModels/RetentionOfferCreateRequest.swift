@@ -1,6 +1,32 @@
 import BagbutikCore
 import Foundation
 
+/**
+ # RetentionOfferCreateRequest
+
+ The request body you use to create a retention offer.
+
+ ```
+ object RetentionOfferCreateRequest
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object RetentionOfferCreateRequest.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/RetentionOfferCreateRequest/Data-data.dictionary)
+
+ The data element of the request body.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/retentionoffercreaterequest>
+ */
 public struct RetentionOfferCreateRequest: Codable, Sendable, RequestBody {
     public let data: Data
     public var included: [RetentionOfferPriceInlineCreate]?
