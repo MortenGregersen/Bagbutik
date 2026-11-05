@@ -31,25 +31,25 @@ object AppAssetLibraryVideoCommonAttributes
 
 ### Inherited By
 
-[`AppAssetLibraryVideoRejectedAttributes`](/documentation/AppStoreConnectAPI/AppAssetLibraryVideoRejectedAttributes)
+[`AppAssetLibraryVideoUploadCompleteAttributes`](/documentation/AppStoreConnectAPI/AppAssetLibraryVideoUploadCompleteAttributes)
+
+[`AppAssetLibraryVideoWaitingForReviewAttributes`](/documentation/AppStoreConnectAPI/AppAssetLibraryVideoWaitingForReviewAttributes)
 
 [`AppAssetLibraryVideoReadyForReviewAttributes`](/documentation/AppStoreConnectAPI/AppAssetLibraryVideoReadyForReviewAttributes)
 
-[`AppAssetLibraryVideoInReviewAttributes`](/documentation/AppStoreConnectAPI/AppAssetLibraryVideoInReviewAttributes)
-
 [`AppAssetLibraryVideoAcceptedAttributes`](/documentation/AppStoreConnectAPI/AppAssetLibraryVideoAcceptedAttributes)
 
-[`AppAssetLibraryVideoUploadCompleteAttributes`](/documentation/AppStoreConnectAPI/AppAssetLibraryVideoUploadCompleteAttributes)
-
-[`AppAssetLibraryVideoFailedAttributes`](/documentation/AppStoreConnectAPI/AppAssetLibraryVideoFailedAttributes)
-
-[`AppAssetLibraryVideoApprovedAttributes`](/documentation/AppStoreConnectAPI/AppAssetLibraryVideoApprovedAttributes)
-
-[`AppAssetLibraryVideoAwaitingUploadAttributes`](/documentation/AppStoreConnectAPI/AppAssetLibraryVideoAwaitingUploadAttributes)
+[`AppAssetLibraryVideoInReviewAttributes`](/documentation/AppStoreConnectAPI/AppAssetLibraryVideoInReviewAttributes)
 
 [`AppAssetLibraryVideoArchivedAttributes`](/documentation/AppStoreConnectAPI/AppAssetLibraryVideoArchivedAttributes)
 
-[`AppAssetLibraryVideoWaitingForReviewAttributes`](/documentation/AppStoreConnectAPI/AppAssetLibraryVideoWaitingForReviewAttributes)
+[`AppAssetLibraryVideoAwaitingUploadAttributes`](/documentation/AppStoreConnectAPI/AppAssetLibraryVideoAwaitingUploadAttributes)
+
+[`AppAssetLibraryVideoFailedAttributes`](/documentation/AppStoreConnectAPI/AppAssetLibraryVideoFailedAttributes)
+
+[`AppAssetLibraryVideoRejectedAttributes`](/documentation/AppStoreConnectAPI/AppAssetLibraryVideoRejectedAttributes)
+
+[`AppAssetLibraryVideoApprovedAttributes`](/documentation/AppStoreConnectAPI/AppAssetLibraryVideoApprovedAttributes)
 
 ---
 

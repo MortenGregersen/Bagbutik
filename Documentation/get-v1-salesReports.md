@@ -25,6 +25,9 @@ Download sales and trends reports filtered by your specified criteria.
 
 ## Discussion
 
+> Important:
+> The `INSTALLS` report type is deprecated, including its `SUMMARY_CHANNEL`, `SUMMARY_INSTALL_TYPE`, and `SUMMARY_TERRITORY` sub types, which no other report type uses. As of November 4, 2026, Apple no longer generates new `INSTALLS` reports, but you can still download historical reports. There’s no replacement report type.
+
 ### Allowed values based on sales report type
 
 Each sales report type has specific valid values for `reportType`, `reportSubType`, `frequency`, and `version`. If you use other types, it results in an error. For more details on each report type, see [Download and view reports](https://developer.apple.com/help/app-store-connect/view-sales-and-trends/download-and-view-reports).

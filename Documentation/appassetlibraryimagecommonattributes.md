@@ -33,23 +33,23 @@ object AppAssetLibraryImageCommonAttributes
 
 [`AppAssetLibraryImageAwaitingUploadAttributes`](/documentation/AppStoreConnectAPI/AppAssetLibraryImageAwaitingUploadAttributes)
 
-[`AppAssetLibraryImageFailedAttributes`](/documentation/AppStoreConnectAPI/AppAssetLibraryImageFailedAttributes)
-
-[`AppAssetLibraryImageAcceptedAttributes`](/documentation/AppStoreConnectAPI/AppAssetLibraryImageAcceptedAttributes)
+[`AppAssetLibraryImageWaitingForReviewAttributes`](/documentation/AppStoreConnectAPI/AppAssetLibraryImageWaitingForReviewAttributes)
 
 [`AppAssetLibraryImageInReviewAttributes`](/documentation/AppStoreConnectAPI/AppAssetLibraryImageInReviewAttributes)
 
-[`AppAssetLibraryImageApprovedAttributes`](/documentation/AppStoreConnectAPI/AppAssetLibraryImageApprovedAttributes)
-
-[`AppAssetLibraryImageUploadCompleteAttributes`](/documentation/AppStoreConnectAPI/AppAssetLibraryImageUploadCompleteAttributes)
-
-[`AppAssetLibraryImageWaitingForReviewAttributes`](/documentation/AppStoreConnectAPI/AppAssetLibraryImageWaitingForReviewAttributes)
-
-[`AppAssetLibraryImageArchivedAttributes`](/documentation/AppStoreConnectAPI/AppAssetLibraryImageArchivedAttributes)
+[`AppAssetLibraryImageAcceptedAttributes`](/documentation/AppStoreConnectAPI/AppAssetLibraryImageAcceptedAttributes)
 
 [`AppAssetLibraryImageReadyForReviewAttributes`](/documentation/AppStoreConnectAPI/AppAssetLibraryImageReadyForReviewAttributes)
 
+[`AppAssetLibraryImageArchivedAttributes`](/documentation/AppStoreConnectAPI/AppAssetLibraryImageArchivedAttributes)
+
+[`AppAssetLibraryImageFailedAttributes`](/documentation/AppStoreConnectAPI/AppAssetLibraryImageFailedAttributes)
+
+[`AppAssetLibraryImageApprovedAttributes`](/documentation/AppStoreConnectAPI/AppAssetLibraryImageApprovedAttributes)
+
 [`AppAssetLibraryImageRejectedAttributes`](/documentation/AppStoreConnectAPI/AppAssetLibraryImageRejectedAttributes)
+
+[`AppAssetLibraryImageUploadCompleteAttributes`](/documentation/AppStoreConnectAPI/AppAssetLibraryImageUploadCompleteAttributes)
 
 ---
 
