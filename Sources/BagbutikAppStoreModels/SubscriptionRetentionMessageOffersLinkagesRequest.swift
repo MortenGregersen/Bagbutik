@@ -1,6 +1,28 @@
 import BagbutikCore
 import Foundation
 
+/**
+ # SubscriptionRetentionMessageOffersLinkagesRequest
+
+ The request body you use to add or remove retention offers from a subscription’s retention message.
+
+ ```
+ object SubscriptionRetentionMessageOffersLinkagesRequest
+ ```
+
+ ## Topics
+
+ ### Dictionaries
+
+ [`object SubscriptionRetentionMessageOffersLinkagesRequest.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/SubscriptionRetentionMessageOffersLinkagesRequest/Data-data.dictionary)
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/subscriptionretentionmessageofferslinkagesrequest>
+ */
 public struct SubscriptionRetentionMessageOffersLinkagesRequest: Codable, Sendable, RequestBody {
     public let data: [Data]
 

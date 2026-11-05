@@ -1,6 +1,28 @@
 import BagbutikCore
 import Foundation
 
+/**
+ # SubscriptionRetentionOffersLinkagesResponse
+
+ A response containing the resource identifiers of all retention offers for a subscription.
+
+ ```
+ object SubscriptionRetentionOffersLinkagesResponse
+ ```
+
+ ## Topics
+
+ ### Dictionaries
+
+ [`object SubscriptionRetentionOffersLinkagesResponse.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/SubscriptionRetentionOffersLinkagesResponse/Data-data.dictionary)
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/subscriptionretentionofferslinkagesresponse>
+ */
 public struct SubscriptionRetentionOffersLinkagesResponse: Codable, Sendable, PagedResponse {
     public let data: [Data]
     public let links: PagedDocumentLinks

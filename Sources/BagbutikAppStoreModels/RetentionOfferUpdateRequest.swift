@@ -1,6 +1,32 @@
 import BagbutikCore
 import Foundation
 
+/**
+ # RetentionOfferUpdateRequest
+
+ The request body you use to update a retention offer.
+
+ ```
+ object RetentionOfferUpdateRequest
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object RetentionOfferUpdateRequest.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/RetentionOfferUpdateRequest/Data-data.dictionary)
+
+ The data element of the request body.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/retentionofferupdaterequest>
+ */
 public struct RetentionOfferUpdateRequest: Codable, Sendable, RequestBody {
     public let data: Data
 

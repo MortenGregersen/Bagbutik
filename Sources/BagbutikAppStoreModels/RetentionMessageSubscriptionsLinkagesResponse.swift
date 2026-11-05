@@ -1,6 +1,28 @@
 import BagbutikCore
 import Foundation
 
+/**
+ # RetentionMessageSubscriptionsLinkagesResponse
+
+ A response containing the resource identifiers of subscriptions that use a retention message.
+
+ ```
+ object RetentionMessageSubscriptionsLinkagesResponse
+ ```
+
+ ## Topics
+
+ ### Dictionaries
+
+ [`object RetentionMessageSubscriptionsLinkagesResponse.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/RetentionMessageSubscriptionsLinkagesResponse/Data-data.dictionary)
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/retentionmessagesubscriptionslinkagesresponse>
+ */
 public struct RetentionMessageSubscriptionsLinkagesResponse: Codable, Sendable, PagedResponse {
     public let data: [Data]
     public let links: PagedDocumentLinks

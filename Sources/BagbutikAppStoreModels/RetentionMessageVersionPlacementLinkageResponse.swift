@@ -1,6 +1,32 @@
 import BagbutikCore
 import Foundation
 
+/**
+ # RetentionMessageVersionPlacementLinkageResponse
+
+ A response containing the resource identifier of the image placement for a retention message version.
+
+ ```
+ object RetentionMessageVersionPlacementLinkageResponse
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object RetentionMessageVersionPlacementLinkageResponse.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/RetentionMessageVersionPlacementLinkageResponse/Data-data.dictionary)
+
+ The type and ID of a related resource.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/retentionmessageversionplacementlinkageresponse>
+ */
 public struct RetentionMessageVersionPlacementLinkageResponse: Codable, Sendable {
     public let data: Data
     public let links: DocumentLinks

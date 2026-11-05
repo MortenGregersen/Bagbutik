@@ -1,6 +1,28 @@
 import BagbutikCore
 import Foundation
 
+/**
+ # RetentionMessageVersionsLinkagesResponse
+
+ A response containing the resource identifiers of versions for a retention message.
+
+ ```
+ object RetentionMessageVersionsLinkagesResponse
+ ```
+
+ ## Topics
+
+ ### Dictionaries
+
+ [`object RetentionMessageVersionsLinkagesResponse.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/RetentionMessageVersionsLinkagesResponse/Data-data.dictionary)
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/retentionmessageversionslinkagesresponse>
+ */
 public struct RetentionMessageVersionsLinkagesResponse: Codable, Sendable, PagedResponse {
     public let data: [Data]
     public let links: PagedDocumentLinks

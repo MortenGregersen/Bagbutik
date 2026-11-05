@@ -14,25 +14,25 @@ import Foundation
 
  ### Inherited By
 
- [`AppAssetLibraryVideoRejectedAttributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/AppAssetLibraryVideoRejectedAttributes)
+ [`AppAssetLibraryVideoUploadCompleteAttributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/AppAssetLibraryVideoUploadCompleteAttributes)
+
+ [`AppAssetLibraryVideoWaitingForReviewAttributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/AppAssetLibraryVideoWaitingForReviewAttributes)
 
  [`AppAssetLibraryVideoReadyForReviewAttributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/AppAssetLibraryVideoReadyForReviewAttributes)
 
- [`AppAssetLibraryVideoInReviewAttributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/AppAssetLibraryVideoInReviewAttributes)
-
  [`AppAssetLibraryVideoAcceptedAttributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/AppAssetLibraryVideoAcceptedAttributes)
 
- [`AppAssetLibraryVideoUploadCompleteAttributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/AppAssetLibraryVideoUploadCompleteAttributes)
-
- [`AppAssetLibraryVideoFailedAttributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/AppAssetLibraryVideoFailedAttributes)
-
- [`AppAssetLibraryVideoApprovedAttributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/AppAssetLibraryVideoApprovedAttributes)
-
- [`AppAssetLibraryVideoAwaitingUploadAttributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/AppAssetLibraryVideoAwaitingUploadAttributes)
+ [`AppAssetLibraryVideoInReviewAttributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/AppAssetLibraryVideoInReviewAttributes)
 
  [`AppAssetLibraryVideoArchivedAttributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/AppAssetLibraryVideoArchivedAttributes)
 
- [`AppAssetLibraryVideoWaitingForReviewAttributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/AppAssetLibraryVideoWaitingForReviewAttributes)
+ [`AppAssetLibraryVideoAwaitingUploadAttributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/AppAssetLibraryVideoAwaitingUploadAttributes)
+
+ [`AppAssetLibraryVideoFailedAttributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/AppAssetLibraryVideoFailedAttributes)
+
+ [`AppAssetLibraryVideoRejectedAttributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/AppAssetLibraryVideoRejectedAttributes)
+
+ [`AppAssetLibraryVideoApprovedAttributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/AppAssetLibraryVideoApprovedAttributes)
 
  ---
 

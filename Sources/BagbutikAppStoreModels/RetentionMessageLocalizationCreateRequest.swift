@@ -1,6 +1,32 @@
 import BagbutikCore
 import Foundation
 
+/**
+ # RetentionMessageLocalizationCreateRequest
+
+ The request body you use to create a retention message localization.
+
+ ```
+ object RetentionMessageLocalizationCreateRequest
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object RetentionMessageLocalizationCreateRequest.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/RetentionMessageLocalizationCreateRequest/Data-data.dictionary)
+
+ The data element of the request body.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/retentionmessagelocalizationcreaterequest>
+ */
 public struct RetentionMessageLocalizationCreateRequest: Codable, Sendable, RequestBody {
     public let data: Data
 

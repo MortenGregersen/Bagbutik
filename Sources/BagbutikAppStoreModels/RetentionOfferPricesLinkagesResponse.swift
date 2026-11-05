@@ -1,6 +1,28 @@
 import BagbutikCore
 import Foundation
 
+/**
+ # RetentionOfferPricesLinkagesResponse
+
+ A response containing the resource identifiers of prices for a retention offer.
+
+ ```
+ object RetentionOfferPricesLinkagesResponse
+ ```
+
+ ## Topics
+
+ ### Dictionaries
+
+ [`object RetentionOfferPricesLinkagesResponse.Data`](https://developer.apple.com/documentation/AppStoreConnectAPI/RetentionOfferPricesLinkagesResponse/Data-data.dictionary)
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/retentionofferpriceslinkagesresponse>
+ */
 public struct RetentionOfferPricesLinkagesResponse: Codable, Sendable, PagedResponse {
     public let data: [Data]
     public let links: PagedDocumentLinks

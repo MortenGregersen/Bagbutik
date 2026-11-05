@@ -4,7 +4,13 @@ import BagbutikModelsShared
 
 public extension Request {
     /**
+     # Delete a retention offer
 
+     Delete a specific retention offer.
+
+     ---
+
+     Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/delete-v1-retentionOffers-_id_>

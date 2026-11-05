@@ -1,6 +1,36 @@
 import BagbutikCore
 import Foundation
 
+/**
+ # RetentionMessageLocalization
+
+ The header and body text of a retention message version for a single locale.
+
+ ```
+ object RetentionMessageLocalization
+ ```
+
+ ## Topics
+
+ ### Objects
+
+ [`object RetentionMessageLocalization.Attributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/RetentionMessageLocalization/Attributes-data.dictionary)
+
+ Attributes that describe a retention message localization resource.
+
+ [`object RetentionMessageLocalization.Relationships`](https://developer.apple.com/documentation/AppStoreConnectAPI/RetentionMessageLocalization/Relationships-data.dictionary)
+
+ The relationships you include in the request and those on which you can operate.
+
+
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/retentionmessagelocalization>
+ */
 public struct RetentionMessageLocalization: Codable, Sendable, Identifiable {
     public let id: String
     public var links: ResourceLinks?

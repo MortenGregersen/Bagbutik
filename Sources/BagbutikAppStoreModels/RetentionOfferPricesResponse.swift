@@ -1,6 +1,22 @@
 import BagbutikCore
 import Foundation
 
+/**
+ # RetentionOfferPricesResponse
+
+ The response body for endpoints that list retention offer prices.
+
+ ```
+ object RetentionOfferPricesResponse
+ ```
+
+ ---
+
+ Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/retentionofferpricesresponse>
+ */
 public struct RetentionOfferPricesResponse: Codable, Sendable, PagedResponse {
     public typealias Data = RetentionOfferPrice
 

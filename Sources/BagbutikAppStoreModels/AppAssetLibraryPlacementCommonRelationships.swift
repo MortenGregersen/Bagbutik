@@ -30,6 +30,10 @@ import Foundation
 
  The App Store version experiment treatment localization on which the app asset library placement appears.
 
+ ### Dictionaries
+
+ [`object AppAssetLibraryPlacementCommonRelationships.RetentionMessageVersion`](https://developer.apple.com/documentation/AppStoreConnectAPI/AppAssetLibraryPlacementCommonRelationships/RetentionMessageVersion-data.dictionary)
+
  ## Relationships
 
  ### Inherited By
