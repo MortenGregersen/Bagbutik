@@ -151,6 +151,13 @@ public struct ReviewSubmissionItemsResponse: Codable, Sendable, PagedResponse {
         }.first { $0.id == reviewSubmissionItem.relationships?.inAppPurchaseVersion?.data?.id }
     }
 
+    public func getRetentionMessageVersion(for reviewSubmissionItem: ReviewSubmissionItem) -> RetentionMessageVersion? {
+        included?.compactMap { relationship -> RetentionMessageVersion? in
+            guard case let .retentionMessageVersion(retentionMessageVersion) = relationship else { return nil }
+            return retentionMessageVersion
+        }.first { $0.id == reviewSubmissionItem.relationships?.retentionMessageVersion?.data?.id }
+    }
+
     public func getSubscriptionGroupVersion(for reviewSubmissionItem: ReviewSubmissionItem) -> SubscriptionGroupVersion? {
         included?.compactMap { relationship -> SubscriptionGroupVersion? in
             guard case let .subscriptionGroupVersion(subscriptionGroupVersion) = relationship else { return nil }
@@ -179,6 +186,7 @@ public struct ReviewSubmissionItemsResponse: Codable, Sendable, PagedResponse {
         case gameCenterLeaderboardSetVersionV2(GameCenterLeaderboardSetVersionV2)
         case gameCenterLeaderboardVersionV2(GameCenterLeaderboardVersionV2)
         case inAppPurchaseVersion(InAppPurchaseVersion)
+        case retentionMessageVersion(RetentionMessageVersion)
         case subscriptionGroupVersion(SubscriptionGroupVersion)
         case subscriptionVersion(SubscriptionVersion)
 
@@ -212,6 +220,8 @@ public struct ReviewSubmissionItemsResponse: Codable, Sendable, PagedResponse {
                 self = .gameCenterLeaderboardVersionV2(try GameCenterLeaderboardVersionV2(from: decoder))
             case "inAppPurchaseVersions":
                 self = .inAppPurchaseVersion(try InAppPurchaseVersion(from: decoder))
+            case "retentionMessageVersions":
+                self = .retentionMessageVersion(try RetentionMessageVersion(from: decoder))
             case "subscriptionGroupVersions":
                 self = .subscriptionGroupVersion(try SubscriptionGroupVersion(from: decoder))
             case "subscriptionVersions":
@@ -251,6 +261,8 @@ public struct ReviewSubmissionItemsResponse: Codable, Sendable, PagedResponse {
             case let .gameCenterLeaderboardVersionV2(value):
                 try value.encode(to: encoder)
             case let .inAppPurchaseVersion(value):
+                try value.encode(to: encoder)
+            case let .retentionMessageVersion(value):
                 try value.encode(to: encoder)
             case let .subscriptionGroupVersion(value):
                 try value.encode(to: encoder)

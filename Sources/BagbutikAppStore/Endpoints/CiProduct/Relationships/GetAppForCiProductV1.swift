@@ -83,6 +83,8 @@ public enum GetAppForCiProductV1 {
         case preReleaseVersions([PreReleaseVersions])
         /// The fields to include for returned resources of type promotedPurchases
         case promotedPurchases([PromotedPurchases])
+        /// The fields to include for returned resources of type retentionMessages
+        case retentionMessages([RetentionMessages])
         /// The fields to include for returned resources of type reviewSubmissions
         case reviewSubmissions([ReviewSubmissions])
         /// The fields to include for returned resources of type subscriptionGracePeriods
@@ -373,6 +375,7 @@ public enum GetAppForCiProductV1 {
             case preReleaseVersions
             case primaryLocale
             case promotedPurchases
+            case retentionMessages
             case reviewSubmissions
             case searchKeywords
             case sku
@@ -769,6 +772,27 @@ public enum GetAppForCiProductV1 {
             }
         }
 
+        public enum RetentionMessages: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case referenceName
+            case subscriptions
+            case versions
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = RetentionMessages(rawValue: string) {
+                    self = value
+                } else if let value = RetentionMessages(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid RetentionMessages value: \(string)"
+                    )
+                }
+            }
+        }
+
         public enum ReviewSubmissions: String, Sendable, ParameterValue, Codable, CaseIterable {
             case app
             case appStoreVersionForReview
@@ -866,6 +890,7 @@ public enum GetAppForCiProductV1 {
         case inAppPurchasesV2
         case preReleaseVersions
         case promotedPurchases
+        case retentionMessages
         case reviewSubmissions
         case subscriptionGracePeriod
         case subscriptionGroups
@@ -907,6 +932,8 @@ public enum GetAppForCiProductV1 {
         case preReleaseVersions(Int)
         /// Maximum number of related promotedPurchases returned (when they are included) - maximum 50
         case promotedPurchases(Int)
+        /// Maximum number of related retentionMessages returned (when they are included) - maximum 50
+        case retentionMessages(Int)
         /// Maximum number of related reviewSubmissions returned (when they are included) - maximum 50
         case reviewSubmissions(Int)
         /// Maximum number of related subscriptionGroups returned (when they are included) - maximum 50

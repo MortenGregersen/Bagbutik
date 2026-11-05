@@ -102,6 +102,7 @@ public struct AppAssetLibraryPlacementCreateRequest: Codable, Sendable, RequestB
             public var appStoreVersionExperimentTreatmentLocalization: AppStoreVersionExperimentTreatmentLocalization?
             public var appStoreVersionLocalization: AppStoreVersionLocalization?
             public var image: Image?
+            public var retentionMessageVersion: RetentionMessageVersion?
             public var video: Video?
 
             public init(appCustomProductPageLocalization: AppCustomProductPageLocalization? = nil,
@@ -109,6 +110,7 @@ public struct AppAssetLibraryPlacementCreateRequest: Codable, Sendable, RequestB
                         appStoreVersionExperimentTreatmentLocalization: AppStoreVersionExperimentTreatmentLocalization? = nil,
                         appStoreVersionLocalization: AppStoreVersionLocalization? = nil,
                         image: Image? = nil,
+                        retentionMessageVersion: RetentionMessageVersion? = nil,
                         video: Video? = nil)
             {
                 self.appCustomProductPageLocalization = appCustomProductPageLocalization
@@ -116,6 +118,7 @@ public struct AppAssetLibraryPlacementCreateRequest: Codable, Sendable, RequestB
                 self.appStoreVersionExperimentTreatmentLocalization = appStoreVersionExperimentTreatmentLocalization
                 self.appStoreVersionLocalization = appStoreVersionLocalization
                 self.image = image
+                self.retentionMessageVersion = retentionMessageVersion
                 self.video = video
             }
 
@@ -126,6 +129,7 @@ public struct AppAssetLibraryPlacementCreateRequest: Codable, Sendable, RequestB
                 appStoreVersionExperimentTreatmentLocalization = try container.decodeIfPresent(AppStoreVersionExperimentTreatmentLocalization.self, forKey: "appStoreVersionExperimentTreatmentLocalization")
                 appStoreVersionLocalization = try container.decodeIfPresent(AppStoreVersionLocalization.self, forKey: "appStoreVersionLocalization")
                 image = try container.decodeIfPresent(Image.self, forKey: "image")
+                retentionMessageVersion = try container.decodeIfPresent(RetentionMessageVersion.self, forKey: "retentionMessageVersion")
                 video = try container.decodeIfPresent(Video.self, forKey: "video")
             }
 
@@ -136,6 +140,7 @@ public struct AppAssetLibraryPlacementCreateRequest: Codable, Sendable, RequestB
                 try container.encodeIfPresent(appStoreVersionExperimentTreatmentLocalization, forKey: "appStoreVersionExperimentTreatmentLocalization")
                 try container.encodeIfPresent(appStoreVersionLocalization, forKey: "appStoreVersionLocalization")
                 try container.encodeIfPresent(image, forKey: "image")
+                try container.encodeIfPresent(retentionMessageVersion, forKey: "retentionMessageVersion")
                 try container.encodeIfPresent(video, forKey: "video")
             }
 
@@ -323,6 +328,47 @@ public struct AppAssetLibraryPlacementCreateRequest: Codable, Sendable, RequestB
                 public struct Data: Codable, Sendable, Identifiable {
                     public let id: String
                     public var type: String { "appAssetLibraryImages" }
+
+                    public init(id: String) {
+                        self.id = id
+                    }
+
+                    public init(from decoder: Decoder) throws {
+                        let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                        id = try container.decode(String.self, forKey: "id")
+                        if try container.decode(String.self, forKey: "type") != type {
+                            throw DecodingError.dataCorruptedError(forKey: "type", in: container, debugDescription: "Not matching \(type)")
+                        }
+                    }
+
+                    public func encode(to encoder: Encoder) throws {
+                        var container = encoder.container(keyedBy: AnyCodingKey.self)
+                        try container.encode(id, forKey: "id")
+                        try container.encode(type, forKey: "type")
+                    }
+                }
+            }
+
+            public struct RetentionMessageVersion: Codable, Sendable {
+                @NullCodable public var data: Data?
+
+                public init(data: Data? = nil) {
+                    self.data = data
+                }
+
+                public init(from decoder: Decoder) throws {
+                    let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                    data = try container.decodeIfPresent(Data.self, forKey: "data")
+                }
+
+                public func encode(to encoder: Encoder) throws {
+                    var container = encoder.container(keyedBy: AnyCodingKey.self)
+                    try container.encode(data, forKey: "data")
+                }
+
+                public struct Data: Codable, Sendable, Identifiable {
+                    public let id: String
+                    public var type: String { "retentionMessageVersions" }
 
                     public init(id: String) {
                         self.id = id

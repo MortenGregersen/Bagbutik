@@ -48,6 +48,10 @@ public enum ListSubscriptionsForSubscriptionGroupV1 {
     public enum Field: FieldParameter {
         /// The fields to include for returned resources of type promotedPurchases
         case promotedPurchases([PromotedPurchases])
+        /// The fields to include for returned resources of type retentionMessages
+        case retentionMessages([RetentionMessages])
+        /// The fields to include for returned resources of type retentionOffers
+        case retentionOffers([RetentionOffers])
         /// The fields to include for returned resources of type subscriptionAppStoreReviewScreenshots
         case subscriptionAppStoreReviewScreenshots([SubscriptionAppStoreReviewScreenshots])
         /// The fields to include for returned resources of type subscriptionAvailabilities
@@ -93,6 +97,55 @@ public enum ListSubscriptionsForSubscriptionGroupV1 {
                     throw DecodingError.dataCorruptedError(
                         in: container,
                         debugDescription: "Invalid PromotedPurchases value: \(string)"
+                    )
+                }
+            }
+        }
+
+        public enum RetentionMessages: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case referenceName
+            case subscriptions
+            case versions
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = RetentionMessages(rawValue: string) {
+                    self = value
+                } else if let value = RetentionMessages(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid RetentionMessages value: \(string)"
+                    )
+                }
+            }
+        }
+
+        public enum RetentionOffers: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case customerEligibilityPaidSubscriptionDurationInMonths
+            case customerEligibilityWaitBetweenOffersInMonths
+            case duration
+            case offerId
+            case offerMode
+            case periodCount
+            case prices
+            case referenceName
+            case subscription
+            case targetSubscriptionPlanType
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = RetentionOffers(rawValue: string) {
+                    self = value
+                } else if let value = RetentionOffers(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid RetentionOffers value: \(string)"
                     )
                 }
             }
@@ -388,6 +441,9 @@ public enum ListSubscriptionsForSubscriptionGroupV1 {
             case productId
             case promotedPurchase
             case promotionalOffers
+            case retentionMessage
+            case retentionMessageOffers
+            case retentionOffers
             case reviewNote
             case state
             case subscriptionAvailability
@@ -498,6 +554,9 @@ public enum ListSubscriptionsForSubscriptionGroupV1 {
         case prices
         case promotedPurchase
         case promotionalOffers
+        case retentionMessage
+        case retentionMessageOffers
+        case retentionOffers
         case subscriptionAvailability
         case subscriptionLocalizations
         case versions
@@ -530,6 +589,10 @@ public enum ListSubscriptionsForSubscriptionGroupV1 {
         case prices(Int)
         /// Maximum number of related promotionalOffers returned (when they are included) - maximum 50
         case promotionalOffers(Int)
+        /// Maximum number of related retentionMessageOffers returned (when they are included) - maximum 50
+        case retentionMessageOffers(Int)
+        /// Maximum number of related retentionOffers returned (when they are included) - maximum 50
+        case retentionOffers(Int)
         /// Maximum number of related subscriptionLocalizations returned (when they are included) - maximum 50
         case subscriptionLocalizations(Int)
         /// Maximum number of related versions returned (when they are included) - maximum 50

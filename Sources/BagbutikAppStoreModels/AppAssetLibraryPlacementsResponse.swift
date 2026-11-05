@@ -87,6 +87,13 @@ public struct AppAssetLibraryPlacementsResponse: Codable, Sendable, PagedRespons
         }.first { $0.id == appAssetLibraryPlacement.relationships?.image?.data?.id }
     }
 
+    public func getRetentionMessageVersion(for appAssetLibraryPlacement: AppAssetLibraryPlacement) -> RetentionMessageVersion? {
+        included?.compactMap { relationship -> RetentionMessageVersion? in
+            guard case let .retentionMessageVersion(retentionMessageVersion) = relationship else { return nil }
+            return retentionMessageVersion
+        }.first { $0.id == appAssetLibraryPlacement.relationships?.retentionMessageVersion?.data?.id }
+    }
+
     public func getVideo(for appAssetLibraryPlacement: AppAssetLibraryPlacement) -> AppAssetLibraryVideo? {
         included?.compactMap { relationship -> AppAssetLibraryVideo? in
             guard case let .appAssetLibraryVideo(video) = relationship else { return nil }
@@ -101,6 +108,7 @@ public struct AppAssetLibraryPlacementsResponse: Codable, Sendable, PagedRespons
         case appEventLocalization(AppEventLocalization)
         case appStoreVersionExperimentTreatmentLocalization(AppStoreVersionExperimentTreatmentLocalization)
         case appStoreVersionLocalization(AppStoreVersionLocalization)
+        case retentionMessageVersion(RetentionMessageVersion)
 
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: AnyCodingKey.self)
@@ -118,6 +126,8 @@ public struct AppAssetLibraryPlacementsResponse: Codable, Sendable, PagedRespons
                 self = .appStoreVersionExperimentTreatmentLocalization(try AppStoreVersionExperimentTreatmentLocalization(from: decoder))
             case "appStoreVersionLocalizations":
                 self = .appStoreVersionLocalization(try AppStoreVersionLocalization(from: decoder))
+            case "retentionMessageVersions":
+                self = .retentionMessageVersion(try RetentionMessageVersion(from: decoder))
             default:
                 throw DecodingError.dataCorruptedError(
                     forKey: "type",
@@ -139,6 +149,8 @@ public struct AppAssetLibraryPlacementsResponse: Codable, Sendable, PagedRespons
             case let .appStoreVersionExperimentTreatmentLocalization(value):
                 try value.encode(to: encoder)
             case let .appStoreVersionLocalization(value):
+                try value.encode(to: encoder)
+            case let .retentionMessageVersion(value):
                 try value.encode(to: encoder)
             }
         }

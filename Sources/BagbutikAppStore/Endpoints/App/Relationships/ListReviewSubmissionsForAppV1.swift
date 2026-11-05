@@ -213,6 +213,7 @@ public enum ListReviewSubmissionsForAppV1 {
             case preReleaseVersions
             case primaryLocale
             case promotedPurchases
+            case retentionMessages
             case reviewSubmissions
             case searchKeywords
             case sku
@@ -256,6 +257,7 @@ public enum ListReviewSubmissionsForAppV1 {
             case gameCenterLeaderboardSetVersion
             case gameCenterLeaderboardVersion
             case inAppPurchaseVersion
+            case retentionMessageVersion
             case state
             case subscriptionGroupVersion
             case subscriptionVersion

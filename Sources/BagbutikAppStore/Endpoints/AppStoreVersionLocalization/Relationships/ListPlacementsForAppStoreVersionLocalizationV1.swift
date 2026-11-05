@@ -60,6 +60,8 @@ public enum ListPlacementsForAppStoreVersionLocalizationV1 {
         case appStoreVersionExperimentTreatmentLocalizations([AppStoreVersionExperimentTreatmentLocalizations])
         /// The fields to include for returned resources of type appStoreVersionLocalizations
         case appStoreVersionLocalizations([AppStoreVersionLocalizations])
+        /// The fields to include for returned resources of type retentionMessageVersions
+        case retentionMessageVersions([RetentionMessageVersions])
 
         public enum AppAssetLibraryImages: String, Sendable, ParameterValue, Codable, CaseIterable {
             case category
@@ -102,6 +104,7 @@ public enum ListPlacementsForAppStoreVersionLocalizationV1 {
             case mediaType
             case placementGroup
             case placementType
+            case retentionMessageVersion
             case state
             case stateDetails
             case video
@@ -257,6 +260,28 @@ public enum ListPlacementsForAppStoreVersionLocalizationV1 {
                 }
             }
         }
+
+        public enum RetentionMessageVersions: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case localizations
+            case placement
+            case retentionMessage
+            case state
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = RetentionMessageVersions(rawValue: string) {
+                    self = value
+                } else if let value = RetentionMessageVersions(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid RetentionMessageVersions value: \(string)"
+                    )
+                }
+            }
+        }
     }
 
     /**
@@ -292,6 +317,7 @@ public enum ListPlacementsForAppStoreVersionLocalizationV1 {
         case appStoreVersionExperimentTreatmentLocalization
         case appStoreVersionLocalization
         case image
+        case retentionMessageVersion
         case video
     }
 

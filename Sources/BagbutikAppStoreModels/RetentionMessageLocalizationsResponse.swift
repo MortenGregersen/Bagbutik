@@ -1,0 +1,42 @@
+import BagbutikCore
+import Foundation
+
+public struct RetentionMessageLocalizationsResponse: Codable, Sendable, PagedResponse {
+    public typealias Data = RetentionMessageLocalization
+
+    public let data: [RetentionMessageLocalization]
+    public var included: [RetentionMessageVersion]?
+    public let links: PagedDocumentLinks
+    public var meta: PagingInformation?
+
+    public init(data: [RetentionMessageLocalization],
+                included: [RetentionMessageVersion]? = nil,
+                links: PagedDocumentLinks,
+                meta: PagingInformation? = nil)
+    {
+        self.data = data
+        self.included = included
+        self.links = links
+        self.meta = meta
+    }
+
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: AnyCodingKey.self)
+        data = try container.decode([RetentionMessageLocalization].self, forKey: "data")
+        included = try container.decodeIfPresent([RetentionMessageVersion].self, forKey: "included")
+        links = try container.decode(PagedDocumentLinks.self, forKey: "links")
+        meta = try container.decodeIfPresent(PagingInformation.self, forKey: "meta")
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: AnyCodingKey.self)
+        try container.encode(data, forKey: "data")
+        try container.encodeIfPresent(included, forKey: "included")
+        try container.encode(links, forKey: "links")
+        try container.encodeIfPresent(meta, forKey: "meta")
+    }
+
+    public func getRetentionMessageVersion(for retentionMessageLocalization: RetentionMessageLocalization) -> RetentionMessageVersion? {
+        included?.first { $0.id == retentionMessageLocalization.relationships?.retentionMessageVersion?.data?.id }
+    }
+}

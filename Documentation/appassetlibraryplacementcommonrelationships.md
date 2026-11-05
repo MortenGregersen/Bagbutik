@@ -51,9 +51,9 @@ The App Store version experiment treatment localization on which the app asset l
 
 ### Inherited By
 
-[`AppAssetLibraryPlacementVideoRelationships`](/documentation/AppStoreConnectAPI/AppAssetLibraryPlacementVideoRelationships)
-
 [`AppAssetLibraryPlacementImageRelationships`](/documentation/AppStoreConnectAPI/AppAssetLibraryPlacementImageRelationships)
+
+[`AppAssetLibraryPlacementVideoRelationships`](/documentation/AppStoreConnectAPI/AppAssetLibraryPlacementVideoRelationships)
 
 ---
 

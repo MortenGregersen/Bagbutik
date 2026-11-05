@@ -93,6 +93,7 @@ public enum GetPreReleaseVersionV1 {
             case preReleaseVersions
             case primaryLocale
             case promotedPurchases
+            case retentionMessages
             case reviewSubmissions
             case searchKeywords
             case sku

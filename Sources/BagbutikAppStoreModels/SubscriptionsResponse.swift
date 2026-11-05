@@ -145,6 +145,37 @@ public struct SubscriptionsResponse: Codable, Sendable, PagedResponse {
         return promotionalOffers
     }
 
+    public func getRetentionMessage(for subscription: Subscription) -> RetentionMessage? {
+        included?.compactMap { relationship -> RetentionMessage? in
+            guard case let .retentionMessage(retentionMessage) = relationship else { return nil }
+            return retentionMessage
+        }.first { $0.id == subscription.relationships?.retentionMessage?.data?.id }
+    }
+
+    public func getRetentionMessageOffers(for subscription: Subscription) -> [RetentionOffer] {
+        guard let retentionMessageOfferIds = subscription.relationships?.retentionMessageOffers?.data?.map(\.id),
+              let retentionMessageOffers = included?.compactMap({ relationship -> RetentionOffer? in
+                  guard case let .retentionOffer(retentionMessageOffer) = relationship else { return nil }
+                  return retentionMessageOfferIds.contains(retentionMessageOffer.id) ? retentionMessageOffer : nil
+              })
+        else {
+            return []
+        }
+        return retentionMessageOffers
+    }
+
+    public func getRetentionOffers(for subscription: Subscription) -> [RetentionOffer] {
+        guard let retentionOfferIds = subscription.relationships?.retentionOffers?.data?.map(\.id),
+              let retentionOffers = included?.compactMap({ relationship -> RetentionOffer? in
+                  guard case let .retentionOffer(retentionOffer) = relationship else { return nil }
+                  return retentionOfferIds.contains(retentionOffer.id) ? retentionOffer : nil
+              })
+        else {
+            return []
+        }
+        return retentionOffers
+    }
+
     @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
     public func getSubscriptionAvailability(for subscription: Subscription) -> SubscriptionAvailability? {
         included?.compactMap { relationship -> SubscriptionAvailability? in
@@ -191,6 +222,8 @@ public struct SubscriptionsResponse: Codable, Sendable, PagedResponse {
 
     public enum Included: Codable, Sendable {
         case promotedPurchase(PromotedPurchase)
+        case retentionMessage(RetentionMessage)
+        case retentionOffer(RetentionOffer)
         case subscriptionAppStoreReviewScreenshot(SubscriptionAppStoreReviewScreenshot)
         case subscriptionAvailability(SubscriptionAvailability)
         case subscriptionGroup(SubscriptionGroup)
@@ -210,6 +243,10 @@ public struct SubscriptionsResponse: Codable, Sendable, PagedResponse {
             switch discriminatorValue {
             case "promotedPurchases":
                 self = .promotedPurchase(try PromotedPurchase(from: decoder))
+            case "retentionMessages":
+                self = .retentionMessage(try RetentionMessage(from: decoder))
+            case "retentionOffers":
+                self = .retentionOffer(try RetentionOffer(from: decoder))
             case "subscriptionAppStoreReviewScreenshots":
                 self = .subscriptionAppStoreReviewScreenshot(try SubscriptionAppStoreReviewScreenshot(from: decoder))
             case "subscriptionAvailabilities":
@@ -245,6 +282,10 @@ public struct SubscriptionsResponse: Codable, Sendable, PagedResponse {
         public func encode(to encoder: Encoder) throws {
             switch self {
             case let .promotedPurchase(value):
+                try value.encode(to: encoder)
+            case let .retentionMessage(value):
+                try value.encode(to: encoder)
+            case let .retentionOffer(value):
                 try value.encode(to: encoder)
             case let .subscriptionAppStoreReviewScreenshot(value):
                 try value.encode(to: encoder)

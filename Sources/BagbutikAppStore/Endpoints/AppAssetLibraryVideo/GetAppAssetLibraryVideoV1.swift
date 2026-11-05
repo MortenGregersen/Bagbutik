@@ -111,6 +111,7 @@ public enum GetAppAssetLibraryVideoV1 {
             case mediaType
             case placementGroup
             case placementType
+            case retentionMessageVersion
             case state
             case stateDetails
             case video
