@@ -4,7 +4,7 @@ import Foundation
 import FoundationNetworking
 #endif
 
-private let baseUrl = URL(string: "https://api.appstoreconnect.apple.com")!
+internal let baseUrl = URL(string: "https://api.appstoreconnect.apple.com")!
 
 /// A lightweight description of an App Store Connect request before it is turned into a `URLRequest`.
 public struct Request<ResponseType, ErrorResponseType>: Sendable {

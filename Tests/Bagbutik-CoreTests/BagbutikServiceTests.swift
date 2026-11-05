@@ -113,6 +113,26 @@ import FoundationNetworking
         XCTAssertNil(nextPage)
     }
 
+    func testRequestNextPageAtURL() async throws {
+        let url = URL(string: "https://api.appstoreconnect.apple.com/v1/apps?cursor=opaque")!
+        let expectedResponse = AppsResponse(data: [.init(id: "app-2", links: .init(self: ""))], links: .init(self: ""))
+        try setUpService(responsesByUrl: [url: (data: jsonEncoder.encode(expectedResponse), type: .http(statusCode: 200))])
+
+        let response: AppsResponse = try await service.requestNextPage(at: url)
+
+        XCTAssertEqual(response.data.map(\.id), expectedResponse.data.map(\.id))
+    }
+
+    func testRequestNextPageAtURLRejectsOtherHosts() async throws {
+        try setUpService(responsesByUrl: [:])
+
+        await XCTAssertAsyncThrowsError(
+            try await service.requestNextPage(at: URL(string: "https://example.com/v1/apps")!) as AppsResponse
+        ) { error in
+            XCTAssertEqual((error as? URLError)?.code, .badURL)
+        }
+    }
+
     func testDateDecoding_ISO8601() async throws {
         let dateString = "2021-09-13T13:01:52-07:00"
         let dateFormatter = ISO8601DateFormatter()
