@@ -110,7 +110,7 @@ jobs:
       contents: read
     strategy:
       matrix:
-        swift: ["6.0", "6.1", "6.2", "6.3"]
+        swift: ["6.0", "6.1", "6.2", "6.3", "6.4"]
     steps:
     - uses: vapor/swiftly-action@v0.2.1
       with:
