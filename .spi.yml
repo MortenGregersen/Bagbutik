@@ -2,5 +2,5 @@ version: 1
 builder:
   configs:
   - scheme: Bagbutik
-    target: Bagbutik-Core
-    documentation_targets: [Bagbutik-Core]
+    target: BagbutikCore
+    documentation_targets: [BagbutikCore]
