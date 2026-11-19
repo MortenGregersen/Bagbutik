@@ -29,19 +29,25 @@ import Foundation
  */
 public struct SubscriptionPriceCreateRequest: Codable, Sendable, RequestBody {
     public let data: Data
+    public var included: [SubscriptionPriceTierInlineCreate]?
 
-    public init(data: Data) {
+    public init(data: Data,
+                included: [SubscriptionPriceTierInlineCreate]? = nil)
+    {
         self.data = data
+        self.included = included
     }
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: AnyCodingKey.self)
         data = try container.decode(Data.self, forKey: "data")
+        included = try container.decodeIfPresent([SubscriptionPriceTierInlineCreate].self, forKey: "included")
     }
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: AnyCodingKey.self)
         try container.encode(data, forKey: "data")
+        try container.encodeIfPresent(included, forKey: "included")
     }
 
     public struct Data: Codable, Sendable {
@@ -102,14 +108,17 @@ public struct SubscriptionPriceCreateRequest: Codable, Sendable, RequestBody {
         }
 
         public struct Relationships: Codable, Sendable {
+            public var additionalPriceTiers: AdditionalPriceTiers?
             public let subscription: Subscription
             public let subscriptionPricePoint: SubscriptionPricePoint
             public var territory: Territory?
 
-            public init(subscription: Subscription,
+            public init(additionalPriceTiers: AdditionalPriceTiers? = nil,
+                        subscription: Subscription,
                         subscriptionPricePoint: SubscriptionPricePoint,
                         territory: Territory? = nil)
             {
+                self.additionalPriceTiers = additionalPriceTiers
                 self.subscription = subscription
                 self.subscriptionPricePoint = subscriptionPricePoint
                 self.territory = territory
@@ -117,6 +126,7 @@ public struct SubscriptionPriceCreateRequest: Codable, Sendable, RequestBody {
 
             public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                additionalPriceTiers = try container.decodeIfPresent(AdditionalPriceTiers.self, forKey: "additionalPriceTiers")
                 subscription = try container.decode(Subscription.self, forKey: "subscription")
                 subscriptionPricePoint = try container.decode(SubscriptionPricePoint.self, forKey: "subscriptionPricePoint")
                 territory = try container.decodeIfPresent(Territory.self, forKey: "territory")
@@ -124,9 +134,51 @@ public struct SubscriptionPriceCreateRequest: Codable, Sendable, RequestBody {
 
             public func encode(to encoder: Encoder) throws {
                 var container = encoder.container(keyedBy: AnyCodingKey.self)
+                try container.encodeIfPresent(additionalPriceTiers, forKey: "additionalPriceTiers")
                 try container.encode(subscription, forKey: "subscription")
                 try container.encode(subscriptionPricePoint, forKey: "subscriptionPricePoint")
                 try container.encodeIfPresent(territory, forKey: "territory")
+            }
+
+            public struct AdditionalPriceTiers: Codable, Sendable {
+                @NullCodable public var data: [Data]?
+
+                public init(data: [Data]? = nil) {
+                    self.data = data
+                }
+
+                public init(from decoder: Decoder) throws {
+                    let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                    data = try container.decodeIfPresent([Data].self, forKey: "data")
+                }
+
+                public func encode(to encoder: Encoder) throws {
+                    var container = encoder.container(keyedBy: AnyCodingKey.self)
+                    try container.encode(data, forKey: "data")
+                }
+
+                public struct Data: Codable, Sendable, Identifiable {
+                    public let id: String
+                    public var type: String { "subscriptionPriceTiers" }
+
+                    public init(id: String) {
+                        self.id = id
+                    }
+
+                    public init(from decoder: Decoder) throws {
+                        let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                        id = try container.decode(String.self, forKey: "id")
+                        if try container.decode(String.self, forKey: "type") != type {
+                            throw DecodingError.dataCorruptedError(forKey: "type", in: container, debugDescription: "Not matching \(type)")
+                        }
+                    }
+
+                    public func encode(to encoder: Encoder) throws {
+                        var container = encoder.container(keyedBy: AnyCodingKey.self)
+                        try container.encode(id, forKey: "id")
+                        try container.encode(type, forKey: "type")
+                    }
+                }
             }
 
             public struct Subscription: Codable, Sendable {

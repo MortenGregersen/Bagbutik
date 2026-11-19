@@ -72,6 +72,7 @@ public enum GetAppForBetaGroupV1 {
             case endUserLicenseAgreement
             case gameCenterDetail
             case gameCenterEnabledVersions
+            case groupPurchaseInvitationMode
             case inAppPurchases
             case inAppPurchasesV2
             case isOrEverWasMadeForKids

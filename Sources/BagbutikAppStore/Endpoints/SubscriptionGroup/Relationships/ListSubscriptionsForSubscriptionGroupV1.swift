@@ -352,6 +352,7 @@ public enum ListSubscriptionsForSubscriptionGroupV1 {
         }
 
         public enum SubscriptionPrices: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case additionalPriceTiers
             case planType
             case preserved
             case startDate

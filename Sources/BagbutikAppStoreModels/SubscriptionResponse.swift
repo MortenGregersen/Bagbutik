@@ -226,6 +226,7 @@ public struct SubscriptionResponse: Codable, Sendable {
         case subscriptionOfferCode(SubscriptionOfferCode)
         case subscriptionPlanAvailability(SubscriptionPlanAvailability)
         case subscriptionPrice(SubscriptionPrice)
+        case subscriptionPriceTier(SubscriptionPriceTier)
         case subscriptionPromotionalOffer(SubscriptionPromotionalOffer)
         case subscriptionVersion(SubscriptionVersion)
         case winBackOffer(WinBackOffer)
@@ -258,6 +259,8 @@ public struct SubscriptionResponse: Codable, Sendable {
                 self = .subscriptionPlanAvailability(try SubscriptionPlanAvailability(from: decoder))
             case "subscriptionPrices":
                 self = .subscriptionPrice(try SubscriptionPrice(from: decoder))
+            case "subscriptionPriceTiers":
+                self = .subscriptionPriceTier(try SubscriptionPriceTier(from: decoder))
             case "subscriptionPromotionalOffers":
                 self = .subscriptionPromotionalOffer(try SubscriptionPromotionalOffer(from: decoder))
             case "subscriptionVersions":
@@ -297,6 +300,8 @@ public struct SubscriptionResponse: Codable, Sendable {
             case let .subscriptionPlanAvailability(value):
                 try value.encode(to: encoder)
             case let .subscriptionPrice(value):
+                try value.encode(to: encoder)
+            case let .subscriptionPriceTier(value):
                 try value.encode(to: encoder)
             case let .subscriptionPromotionalOffer(value):
                 try value.encode(to: encoder)

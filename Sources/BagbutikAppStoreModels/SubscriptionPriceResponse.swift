@@ -45,6 +45,18 @@ public struct SubscriptionPriceResponse: Codable, Sendable {
         try container.encode(links, forKey: "links")
     }
 
+    public func getAdditionalPriceTiers() -> [SubscriptionPriceTier] {
+        guard let additionalPriceTierIds = data.relationships?.additionalPriceTiers?.data?.map(\.id),
+              let additionalPriceTiers = included?.compactMap({ relationship -> SubscriptionPriceTier? in
+                  guard case let .subscriptionPriceTier(additionalPriceTier) = relationship else { return nil }
+                  return additionalPriceTierIds.contains(additionalPriceTier.id) ? additionalPriceTier : nil
+              })
+        else {
+            return []
+        }
+        return additionalPriceTiers
+    }
+
     public func getSubscriptionPricePoint() -> SubscriptionPricePoint? {
         included?.compactMap { relationship -> SubscriptionPricePoint? in
             guard case let .subscriptionPricePoint(subscriptionPricePoint) = relationship else { return nil }
@@ -61,6 +73,7 @@ public struct SubscriptionPriceResponse: Codable, Sendable {
 
     public enum Included: Codable, Sendable {
         case subscriptionPricePoint(SubscriptionPricePoint)
+        case subscriptionPriceTier(SubscriptionPriceTier)
         case territory(Territory)
 
         public init(from decoder: Decoder) throws {
@@ -69,6 +82,8 @@ public struct SubscriptionPriceResponse: Codable, Sendable {
             switch discriminatorValue {
             case "subscriptionPricePoints":
                 self = .subscriptionPricePoint(try SubscriptionPricePoint(from: decoder))
+            case "subscriptionPriceTiers":
+                self = .subscriptionPriceTier(try SubscriptionPriceTier(from: decoder))
             case "territories":
                 self = .territory(try Territory(from: decoder))
             default:
@@ -82,6 +97,8 @@ public struct SubscriptionPriceResponse: Codable, Sendable {
         public func encode(to encoder: Encoder) throws {
             switch self {
             case let .subscriptionPricePoint(value):
+                try value.encode(to: encoder)
+            case let .subscriptionPriceTier(value):
                 try value.encode(to: encoder)
             case let .territory(value):
                 try value.encode(to: encoder)

@@ -88,6 +88,7 @@ public enum GetAgeRatingDeclarationForAppInfoV1 {
             case ageRatingOverrideV2
             case alcoholTobaccoOrDrugUseOrReferences
             case contests
+            case datingAndRelationships
             case developerAgeRatingInfoUrl
             case gambling
             case gamblingSimulated
@@ -105,6 +106,7 @@ public enum GetAgeRatingDeclarationForAppInfoV1 {
             case profanityOrCrudeHumor
             case sexualContentGraphicAndNudity
             case sexualContentOrNudity
+            case sharedLocation
             case socialMedia
             case socialMediaAgeRestricted
             case unrestrictedWebAccess

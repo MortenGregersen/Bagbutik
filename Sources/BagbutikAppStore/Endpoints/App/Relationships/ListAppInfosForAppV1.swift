@@ -150,6 +150,7 @@ public enum ListAppInfosForAppV1 {
             case ageRatingOverrideV2
             case alcoholTobaccoOrDrugUseOrReferences
             case contests
+            case datingAndRelationships
             case developerAgeRatingInfoUrl
             case gambling
             case gamblingSimulated
@@ -167,6 +168,7 @@ public enum ListAppInfosForAppV1 {
             case profanityOrCrudeHumor
             case sexualContentGraphicAndNudity
             case sexualContentOrNudity
+            case sharedLocation
             case socialMedia
             case socialMediaAgeRestricted
             case unrestrictedWebAccess
@@ -310,6 +312,7 @@ public enum ListAppInfosForAppV1 {
             case endUserLicenseAgreement
             case gameCenterDetail
             case gameCenterEnabledVersions
+            case groupPurchaseInvitationMode
             case inAppPurchases
             case inAppPurchasesV2
             case isOrEverWasMadeForKids

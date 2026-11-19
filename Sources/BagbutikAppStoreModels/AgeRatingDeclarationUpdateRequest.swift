@@ -80,6 +80,7 @@ public struct AgeRatingDeclarationUpdateRequest: Codable, Sendable, RequestBody 
             public var ageRatingOverrideV2: AgeRatingDeclaration.Attributes.AgeRatingOverrideV2?
             public var alcoholTobaccoOrDrugUseOrReferences: AgeRatingDeclaration.Attributes.AlcoholTobaccoOrDrugUseOrReferences?
             public var contests: AgeRatingDeclaration.Attributes.Contests?
+            public var datingAndRelationships: Bool?
             public var developerAgeRatingInfoUrl: Clearable<String>?
             public var gambling: Bool?
             public var gamblingSimulated: AgeRatingDeclaration.Attributes.GamblingSimulated?
@@ -97,6 +98,7 @@ public struct AgeRatingDeclarationUpdateRequest: Codable, Sendable, RequestBody 
             public var profanityOrCrudeHumor: AgeRatingDeclaration.Attributes.ProfanityOrCrudeHumor?
             public var sexualContentGraphicAndNudity: AgeRatingDeclaration.Attributes.SexualContentGraphicAndNudity?
             public var sexualContentOrNudity: AgeRatingDeclaration.Attributes.SexualContentOrNudity?
+            public var sharedLocation: Bool?
             public var socialMedia: Bool?
             public var socialMediaAgeRestricted: Bool?
             public var unrestrictedWebAccess: Bool?
@@ -112,6 +114,7 @@ public struct AgeRatingDeclarationUpdateRequest: Codable, Sendable, RequestBody 
                         ageRatingOverrideV2: AgeRatingDeclaration.Attributes.AgeRatingOverrideV2? = nil,
                         alcoholTobaccoOrDrugUseOrReferences: AgeRatingDeclaration.Attributes.AlcoholTobaccoOrDrugUseOrReferences? = nil,
                         contests: AgeRatingDeclaration.Attributes.Contests? = nil,
+                        datingAndRelationships: Bool? = nil,
                         developerAgeRatingInfoUrl: Clearable<String>? = nil,
                         gambling: Bool? = nil,
                         gamblingSimulated: AgeRatingDeclaration.Attributes.GamblingSimulated? = nil,
@@ -129,6 +132,7 @@ public struct AgeRatingDeclarationUpdateRequest: Codable, Sendable, RequestBody 
                         profanityOrCrudeHumor: AgeRatingDeclaration.Attributes.ProfanityOrCrudeHumor? = nil,
                         sexualContentGraphicAndNudity: AgeRatingDeclaration.Attributes.SexualContentGraphicAndNudity? = nil,
                         sexualContentOrNudity: AgeRatingDeclaration.Attributes.SexualContentOrNudity? = nil,
+                        sharedLocation: Bool? = nil,
                         socialMedia: Bool? = nil,
                         socialMediaAgeRestricted: Bool? = nil,
                         unrestrictedWebAccess: Bool? = nil,
@@ -143,6 +147,7 @@ public struct AgeRatingDeclarationUpdateRequest: Codable, Sendable, RequestBody 
                 self.ageRatingOverrideV2 = ageRatingOverrideV2
                 self.alcoholTobaccoOrDrugUseOrReferences = alcoholTobaccoOrDrugUseOrReferences
                 self.contests = contests
+                self.datingAndRelationships = datingAndRelationships
                 self.developerAgeRatingInfoUrl = developerAgeRatingInfoUrl
                 self.gambling = gambling
                 self.gamblingSimulated = gamblingSimulated
@@ -160,6 +165,7 @@ public struct AgeRatingDeclarationUpdateRequest: Codable, Sendable, RequestBody 
                 self.profanityOrCrudeHumor = profanityOrCrudeHumor
                 self.sexualContentGraphicAndNudity = sexualContentGraphicAndNudity
                 self.sexualContentOrNudity = sexualContentOrNudity
+                self.sharedLocation = sharedLocation
                 self.socialMedia = socialMedia
                 self.socialMediaAgeRestricted = socialMediaAgeRestricted
                 self.unrestrictedWebAccess = unrestrictedWebAccess
@@ -174,6 +180,7 @@ public struct AgeRatingDeclarationUpdateRequest: Codable, Sendable, RequestBody 
                         ageRatingOverrideV2: AgeRatingDeclaration.Attributes.AgeRatingOverrideV2? = nil,
                         alcoholTobaccoOrDrugUseOrReferences: AgeRatingDeclaration.Attributes.AlcoholTobaccoOrDrugUseOrReferences? = nil,
                         contests: AgeRatingDeclaration.Attributes.Contests? = nil,
+                        datingAndRelationships: Bool? = nil,
                         developerAgeRatingInfoUrl: Clearable<String>? = nil,
                         gambling: Bool? = nil,
                         gamblingSimulated: AgeRatingDeclaration.Attributes.GamblingSimulated? = nil,
@@ -191,6 +198,7 @@ public struct AgeRatingDeclarationUpdateRequest: Codable, Sendable, RequestBody 
                         profanityOrCrudeHumor: AgeRatingDeclaration.Attributes.ProfanityOrCrudeHumor? = nil,
                         sexualContentGraphicAndNudity: AgeRatingDeclaration.Attributes.SexualContentGraphicAndNudity? = nil,
                         sexualContentOrNudity: AgeRatingDeclaration.Attributes.SexualContentOrNudity? = nil,
+                        sharedLocation: Bool? = nil,
                         socialMedia: Bool? = nil,
                         socialMediaAgeRestricted: Bool? = nil,
                         unrestrictedWebAccess: Bool? = nil,
@@ -204,6 +212,7 @@ public struct AgeRatingDeclarationUpdateRequest: Codable, Sendable, RequestBody 
                 self.ageRatingOverrideV2 = ageRatingOverrideV2
                 self.alcoholTobaccoOrDrugUseOrReferences = alcoholTobaccoOrDrugUseOrReferences
                 self.contests = contests
+                self.datingAndRelationships = datingAndRelationships
                 self.developerAgeRatingInfoUrl = developerAgeRatingInfoUrl
                 self.gambling = gambling
                 self.gamblingSimulated = gamblingSimulated
@@ -221,6 +230,7 @@ public struct AgeRatingDeclarationUpdateRequest: Codable, Sendable, RequestBody 
                 self.profanityOrCrudeHumor = profanityOrCrudeHumor
                 self.sexualContentGraphicAndNudity = sexualContentGraphicAndNudity
                 self.sexualContentOrNudity = sexualContentOrNudity
+                self.sharedLocation = sharedLocation
                 self.socialMedia = socialMedia
                 self.socialMediaAgeRestricted = socialMediaAgeRestricted
                 self.unrestrictedWebAccess = unrestrictedWebAccess
@@ -241,6 +251,7 @@ public struct AgeRatingDeclarationUpdateRequest: Codable, Sendable, RequestBody 
                 ageRatingOverrideV2 = try container.decodeIfPresent(AgeRatingDeclaration.Attributes.AgeRatingOverrideV2.self, forKey: "ageRatingOverrideV2")
                 alcoholTobaccoOrDrugUseOrReferences = try container.decodeIfPresent(AgeRatingDeclaration.Attributes.AlcoholTobaccoOrDrugUseOrReferences.self, forKey: "alcoholTobaccoOrDrugUseOrReferences")
                 contests = try container.decodeIfPresent(AgeRatingDeclaration.Attributes.Contests.self, forKey: "contests")
+                datingAndRelationships = try container.decodeIfPresent(Bool.self, forKey: "datingAndRelationships")
                 developerAgeRatingInfoUrl = try container.decodeIfPresent(Clearable<String>.self, forKey: "developerAgeRatingInfoUrl")
                 gambling = try container.decodeIfPresent(Bool.self, forKey: "gambling")
                 gamblingSimulated = try container.decodeIfPresent(AgeRatingDeclaration.Attributes.GamblingSimulated.self, forKey: "gamblingSimulated")
@@ -258,6 +269,7 @@ public struct AgeRatingDeclarationUpdateRequest: Codable, Sendable, RequestBody 
                 profanityOrCrudeHumor = try container.decodeIfPresent(AgeRatingDeclaration.Attributes.ProfanityOrCrudeHumor.self, forKey: "profanityOrCrudeHumor")
                 sexualContentGraphicAndNudity = try container.decodeIfPresent(AgeRatingDeclaration.Attributes.SexualContentGraphicAndNudity.self, forKey: "sexualContentGraphicAndNudity")
                 sexualContentOrNudity = try container.decodeIfPresent(AgeRatingDeclaration.Attributes.SexualContentOrNudity.self, forKey: "sexualContentOrNudity")
+                sharedLocation = try container.decodeIfPresent(Bool.self, forKey: "sharedLocation")
                 socialMedia = try container.decodeIfPresent(Bool.self, forKey: "socialMedia")
                 socialMediaAgeRestricted = try container.decodeIfPresent(Bool.self, forKey: "socialMediaAgeRestricted")
                 unrestrictedWebAccess = try container.decodeIfPresent(Bool.self, forKey: "unrestrictedWebAccess")
@@ -278,6 +290,7 @@ public struct AgeRatingDeclarationUpdateRequest: Codable, Sendable, RequestBody 
                 try container.encodeIfPresent(ageRatingOverrideV2, forKey: "ageRatingOverrideV2")
                 try container.encodeIfPresent(alcoholTobaccoOrDrugUseOrReferences, forKey: "alcoholTobaccoOrDrugUseOrReferences")
                 try container.encodeIfPresent(contests, forKey: "contests")
+                try container.encodeIfPresent(datingAndRelationships, forKey: "datingAndRelationships")
                 try container.encodeIfPresent(developerAgeRatingInfoUrl, forKey: "developerAgeRatingInfoUrl")
                 try container.encodeIfPresent(gambling, forKey: "gambling")
                 try container.encodeIfPresent(gamblingSimulated, forKey: "gamblingSimulated")
@@ -295,6 +308,7 @@ public struct AgeRatingDeclarationUpdateRequest: Codable, Sendable, RequestBody 
                 try container.encodeIfPresent(profanityOrCrudeHumor, forKey: "profanityOrCrudeHumor")
                 try container.encodeIfPresent(sexualContentGraphicAndNudity, forKey: "sexualContentGraphicAndNudity")
                 try container.encodeIfPresent(sexualContentOrNudity, forKey: "sexualContentOrNudity")
+                try container.encodeIfPresent(sharedLocation, forKey: "sharedLocation")
                 try container.encodeIfPresent(socialMedia, forKey: "socialMedia")
                 try container.encodeIfPresent(socialMediaAgeRestricted, forKey: "socialMediaAgeRestricted")
                 try container.encodeIfPresent(unrestrictedWebAccess, forKey: "unrestrictedWebAccess")

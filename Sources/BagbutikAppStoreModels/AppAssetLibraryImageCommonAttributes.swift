@@ -15,25 +15,25 @@ import Foundation
 
  ### Inherited By
 
- [`AppAssetLibraryImageAwaitingUploadAttributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/AppAssetLibraryImageAwaitingUploadAttributes)
+ [`AppAssetLibraryImageRejectedAttributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/AppAssetLibraryImageRejectedAttributes)
+
+ [`AppAssetLibraryImageUploadCompleteAttributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/AppAssetLibraryImageUploadCompleteAttributes)
 
  [`AppAssetLibraryImageWaitingForReviewAttributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/AppAssetLibraryImageWaitingForReviewAttributes)
+
+ [`AppAssetLibraryImageAwaitingUploadAttributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/AppAssetLibraryImageAwaitingUploadAttributes)
+
+ [`AppAssetLibraryImageReadyForReviewAttributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/AppAssetLibraryImageReadyForReviewAttributes)
+
+ [`AppAssetLibraryImageApprovedAttributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/AppAssetLibraryImageApprovedAttributes)
 
  [`AppAssetLibraryImageInReviewAttributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/AppAssetLibraryImageInReviewAttributes)
 
  [`AppAssetLibraryImageAcceptedAttributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/AppAssetLibraryImageAcceptedAttributes)
 
- [`AppAssetLibraryImageReadyForReviewAttributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/AppAssetLibraryImageReadyForReviewAttributes)
-
- [`AppAssetLibraryImageArchivedAttributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/AppAssetLibraryImageArchivedAttributes)
-
  [`AppAssetLibraryImageFailedAttributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/AppAssetLibraryImageFailedAttributes)
 
- [`AppAssetLibraryImageApprovedAttributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/AppAssetLibraryImageApprovedAttributes)
-
- [`AppAssetLibraryImageRejectedAttributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/AppAssetLibraryImageRejectedAttributes)
-
- [`AppAssetLibraryImageUploadCompleteAttributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/AppAssetLibraryImageUploadCompleteAttributes)
+ [`AppAssetLibraryImageArchivedAttributes`](https://developer.apple.com/documentation/AppStoreConnectAPI/AppAssetLibraryImageArchivedAttributes)
 
  ---
 
