@@ -38,9 +38,9 @@ import Foundation
 
  ### Inherited By
 
- [`AppAssetLibraryPlacementImageRelationships`](https://developer.apple.com/documentation/AppStoreConnectAPI/AppAssetLibraryPlacementImageRelationships)
-
  [`AppAssetLibraryPlacementVideoRelationships`](https://developer.apple.com/documentation/AppStoreConnectAPI/AppAssetLibraryPlacementVideoRelationships)
+
+ [`AppAssetLibraryPlacementImageRelationships`](https://developer.apple.com/documentation/AppStoreConnectAPI/AppAssetLibraryPlacementImageRelationships)
 
  ---
 

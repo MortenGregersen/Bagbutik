@@ -99,26 +99,83 @@ public struct SubscriptionPrice: Codable, Sendable, Identifiable {
     }
 
     public struct Relationships: Codable, Sendable {
+        public var additionalPriceTiers: AdditionalPriceTiers?
         public var subscriptionPricePoint: SubscriptionPricePoint?
         public var territory: Territory?
 
-        public init(subscriptionPricePoint: SubscriptionPricePoint? = nil,
+        public init(additionalPriceTiers: AdditionalPriceTiers? = nil,
+                    subscriptionPricePoint: SubscriptionPricePoint? = nil,
                     territory: Territory? = nil)
         {
+            self.additionalPriceTiers = additionalPriceTiers
             self.subscriptionPricePoint = subscriptionPricePoint
             self.territory = territory
         }
 
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: AnyCodingKey.self)
+            additionalPriceTiers = try container.decodeIfPresent(AdditionalPriceTiers.self, forKey: "additionalPriceTiers")
             subscriptionPricePoint = try container.decodeIfPresent(SubscriptionPricePoint.self, forKey: "subscriptionPricePoint")
             territory = try container.decodeIfPresent(Territory.self, forKey: "territory")
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: AnyCodingKey.self)
+            try container.encodeIfPresent(additionalPriceTiers, forKey: "additionalPriceTiers")
             try container.encodeIfPresent(subscriptionPricePoint, forKey: "subscriptionPricePoint")
             try container.encodeIfPresent(territory, forKey: "territory")
+        }
+
+        public struct AdditionalPriceTiers: Codable, Sendable {
+            @NullCodable public var data: [Data]?
+            public var links: RelationshipLinks?
+            public var meta: PagingInformation?
+
+            public init(data: [Data]? = nil,
+                        links: RelationshipLinks? = nil,
+                        meta: PagingInformation? = nil)
+            {
+                self.data = data
+                self.links = links
+                self.meta = meta
+            }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                data = try container.decodeIfPresent([Data].self, forKey: "data")
+                links = try container.decodeIfPresent(RelationshipLinks.self, forKey: "links")
+                meta = try container.decodeIfPresent(PagingInformation.self, forKey: "meta")
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: AnyCodingKey.self)
+                try container.encode(data, forKey: "data")
+                try container.encodeIfPresent(links, forKey: "links")
+                try container.encodeIfPresent(meta, forKey: "meta")
+            }
+
+            public struct Data: Codable, Sendable, Identifiable {
+                public let id: String
+                public var type: String { "subscriptionPriceTiers" }
+
+                public init(id: String) {
+                    self.id = id
+                }
+
+                public init(from decoder: Decoder) throws {
+                    let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                    id = try container.decode(String.self, forKey: "id")
+                    if try container.decode(String.self, forKey: "type") != type {
+                        throw DecodingError.dataCorruptedError(forKey: "type", in: container, debugDescription: "Not matching \(type)")
+                    }
+                }
+
+                public func encode(to encoder: Encoder) throws {
+                    var container = encoder.container(keyedBy: AnyCodingKey.self)
+                    try container.encode(id, forKey: "id")
+                    try container.encode(type, forKey: "type")
+                }
+            }
         }
 
         public struct SubscriptionPricePoint: Codable, Sendable {

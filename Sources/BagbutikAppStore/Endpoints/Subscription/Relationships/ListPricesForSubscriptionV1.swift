@@ -85,14 +85,14 @@ public extension Request {
      - Parameter fields: Fields to return for included related types
      - Parameter filters: Attributes, relationships, and IDs by which to filter
      - Parameter includes: Relationship data to include in the response
-     - Parameter limit: Maximum resources per page - maximum 200
+     - Parameter limits: Number of resources to return
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func listPricesForSubscriptionV1(id: String,
                                             fields: [ListPricesForSubscriptionV1.Field]? = nil,
                                             filters: [ListPricesForSubscriptionV1.Filter]? = nil,
                                             includes: [ListPricesForSubscriptionV1.Include]? = nil,
-                                            limit: Int? = nil) -> Request<SubscriptionPricesResponse, ErrorResponse> {
+                                            limits: [ListPricesForSubscriptionV1.Limit]? = nil) -> Request<SubscriptionPricesResponse, ErrorResponse> {
         .init(
             path: "/v1/subscriptions/\(id)/prices",
             method: .get,
@@ -100,7 +100,7 @@ public extension Request {
                 fields: fields,
                 filters: filters,
                 includes: includes,
-                limit: limit))
+                limits: limits))
     }
 }
 
@@ -111,6 +111,8 @@ public enum ListPricesForSubscriptionV1 {
     public enum Field: FieldParameter {
         /// The fields to include for returned resources of type subscriptionPricePoints
         case subscriptionPricePoints([SubscriptionPricePoints])
+        /// The fields to include for returned resources of type subscriptionPriceTiers
+        case subscriptionPriceTiers([SubscriptionPriceTiers])
         /// The fields to include for returned resources of type subscriptionPrices
         case subscriptionPrices([SubscriptionPrices])
         /// The fields to include for returned resources of type territories
@@ -140,7 +142,28 @@ public enum ListPricesForSubscriptionV1 {
             }
         }
 
+        public enum SubscriptionPriceTiers: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case minQuantity
+            case subscriptionPricePoint
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = SubscriptionPriceTiers(rawValue: string) {
+                    self = value
+                } else if let value = SubscriptionPriceTiers(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid SubscriptionPriceTiers value: \(string)"
+                    )
+                }
+            }
+        }
+
         public enum SubscriptionPrices: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case additionalPriceTiers
             case planType
             case preserved
             case startDate
@@ -199,7 +222,18 @@ public enum ListPricesForSubscriptionV1 {
      Relationship data to include in the response.
      */
     public enum Include: String, IncludeParameter, CaseIterable {
+        case additionalPriceTiers
         case subscriptionPricePoint
         case territory
+    }
+
+    /**
+     Number of included related resources to return.
+     */
+    public enum Limit: LimitParameter {
+        /// Maximum number of related additionalPriceTiers returned (when they are included) - maximum 50
+        case additionalPriceTiers(Int)
+        /// Maximum resources per page - maximum 200
+        case limit(Int)
     }
 }

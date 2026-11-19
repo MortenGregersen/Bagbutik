@@ -73,6 +73,7 @@ public struct App: Codable, Sendable, Identifiable {
         public var accessibilityUrl: String?
         public var bundleId: String?
         public var contentRightsDeclaration: ContentRightsDeclaration?
+        public var groupPurchaseInvitationMode: GroupPurchaseInvitationMode?
         public var isOrEverWasMadeForKids: Bool?
         public var name: String?
         public var primaryLocale: String?
@@ -86,6 +87,7 @@ public struct App: Codable, Sendable, Identifiable {
         public init(accessibilityUrl: String? = nil,
                     bundleId: String? = nil,
                     contentRightsDeclaration: ContentRightsDeclaration? = nil,
+                    groupPurchaseInvitationMode: GroupPurchaseInvitationMode? = nil,
                     isOrEverWasMadeForKids: Bool? = nil,
                     name: String? = nil,
                     primaryLocale: String? = nil,
@@ -99,6 +101,7 @@ public struct App: Codable, Sendable, Identifiable {
             self.accessibilityUrl = accessibilityUrl
             self.bundleId = bundleId
             self.contentRightsDeclaration = contentRightsDeclaration
+            self.groupPurchaseInvitationMode = groupPurchaseInvitationMode
             self.isOrEverWasMadeForKids = isOrEverWasMadeForKids
             self.name = name
             self.primaryLocale = primaryLocale
@@ -115,6 +118,7 @@ public struct App: Codable, Sendable, Identifiable {
             accessibilityUrl = try container.decodeIfPresent(String.self, forKey: "accessibilityUrl")
             bundleId = try container.decodeIfPresent(String.self, forKey: "bundleId")
             contentRightsDeclaration = try container.decodeIfPresent(ContentRightsDeclaration.self, forKey: "contentRightsDeclaration")
+            groupPurchaseInvitationMode = try container.decodeIfPresent(GroupPurchaseInvitationMode.self, forKey: "groupPurchaseInvitationMode")
             isOrEverWasMadeForKids = try container.decodeIfPresent(Bool.self, forKey: "isOrEverWasMadeForKids")
             name = try container.decodeIfPresent(String.self, forKey: "name")
             primaryLocale = try container.decodeIfPresent(String.self, forKey: "primaryLocale")
@@ -131,6 +135,7 @@ public struct App: Codable, Sendable, Identifiable {
             try container.encodeIfPresent(accessibilityUrl, forKey: "accessibilityUrl")
             try container.encodeIfPresent(bundleId, forKey: "bundleId")
             try container.encodeIfPresent(contentRightsDeclaration, forKey: "contentRightsDeclaration")
+            try container.encodeIfPresent(groupPurchaseInvitationMode, forKey: "groupPurchaseInvitationMode")
             try container.encodeIfPresent(isOrEverWasMadeForKids, forKey: "isOrEverWasMadeForKids")
             try container.encodeIfPresent(name, forKey: "name")
             try container.encodeIfPresent(primaryLocale, forKey: "primaryLocale")
@@ -157,6 +162,26 @@ public struct App: Codable, Sendable, Identifiable {
                     throw DecodingError.dataCorruptedError(
                         in: container,
                         debugDescription: "Invalid ContentRightsDeclaration value: \(string)"
+                    )
+                }
+            }
+        }
+
+        public enum GroupPurchaseInvitationMode: String, Sendable, Codable, CaseIterable {
+            case appleHosted = "APPLE_HOSTED"
+            case developerHosted = "DEVELOPER_HOSTED"
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                if let value = GroupPurchaseInvitationMode(rawValue: string) {
+                    self = value
+                } else if let value = GroupPurchaseInvitationMode(rawValue: string.uppercased()) {
+                    self = value
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Invalid GroupPurchaseInvitationMode value: \(string)"
                     )
                 }
             }

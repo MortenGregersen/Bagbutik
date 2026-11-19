@@ -77,6 +77,7 @@ public struct AppUpdateRequest: Codable, Sendable, RequestBody {
             public var accessibilityUrl: String?
             public var bundleId: String?
             public var contentRightsDeclaration: App.Attributes.ContentRightsDeclaration?
+            public var groupPurchaseInvitationMode: App.Attributes.GroupPurchaseInvitationMode?
             public var primaryLocale: String?
             public var streamlinedPurchasingEnabled: Bool?
             public var subscriptionStatusUrl: String?
@@ -87,6 +88,7 @@ public struct AppUpdateRequest: Codable, Sendable, RequestBody {
             public init(accessibilityUrl: String? = nil,
                         bundleId: String? = nil,
                         contentRightsDeclaration: App.Attributes.ContentRightsDeclaration? = nil,
+                        groupPurchaseInvitationMode: App.Attributes.GroupPurchaseInvitationMode? = nil,
                         primaryLocale: String? = nil,
                         streamlinedPurchasingEnabled: Bool? = nil,
                         subscriptionStatusUrl: String? = nil,
@@ -97,6 +99,7 @@ public struct AppUpdateRequest: Codable, Sendable, RequestBody {
                 self.accessibilityUrl = accessibilityUrl
                 self.bundleId = bundleId
                 self.contentRightsDeclaration = contentRightsDeclaration
+                self.groupPurchaseInvitationMode = groupPurchaseInvitationMode
                 self.primaryLocale = primaryLocale
                 self.streamlinedPurchasingEnabled = streamlinedPurchasingEnabled
                 self.subscriptionStatusUrl = subscriptionStatusUrl
@@ -110,6 +113,7 @@ public struct AppUpdateRequest: Codable, Sendable, RequestBody {
                 accessibilityUrl = try container.decodeIfPresent(String.self, forKey: "accessibilityUrl")
                 bundleId = try container.decodeIfPresent(String.self, forKey: "bundleId")
                 contentRightsDeclaration = try container.decodeIfPresent(App.Attributes.ContentRightsDeclaration.self, forKey: "contentRightsDeclaration")
+                groupPurchaseInvitationMode = try container.decodeIfPresent(App.Attributes.GroupPurchaseInvitationMode.self, forKey: "groupPurchaseInvitationMode")
                 primaryLocale = try container.decodeIfPresent(String.self, forKey: "primaryLocale")
                 streamlinedPurchasingEnabled = try container.decodeIfPresent(Bool.self, forKey: "streamlinedPurchasingEnabled")
                 subscriptionStatusUrl = try container.decodeIfPresent(String.self, forKey: "subscriptionStatusUrl")
@@ -123,6 +127,7 @@ public struct AppUpdateRequest: Codable, Sendable, RequestBody {
                 try container.encodeIfPresent(accessibilityUrl, forKey: "accessibilityUrl")
                 try container.encodeIfPresent(bundleId, forKey: "bundleId")
                 try container.encodeIfPresent(contentRightsDeclaration, forKey: "contentRightsDeclaration")
+                try container.encodeIfPresent(groupPurchaseInvitationMode, forKey: "groupPurchaseInvitationMode")
                 try container.encodeIfPresent(primaryLocale, forKey: "primaryLocale")
                 try container.encodeIfPresent(streamlinedPurchasingEnabled, forKey: "streamlinedPurchasingEnabled")
                 try container.encodeIfPresent(subscriptionStatusUrl, forKey: "subscriptionStatusUrl")

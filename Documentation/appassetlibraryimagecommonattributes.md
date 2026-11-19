@@ -31,25 +31,25 @@ object AppAssetLibraryImageCommonAttributes
 
 ### Inherited By
 
-[`AppAssetLibraryImageAwaitingUploadAttributes`](/documentation/AppStoreConnectAPI/AppAssetLibraryImageAwaitingUploadAttributes)
+[`AppAssetLibraryImageRejectedAttributes`](/documentation/AppStoreConnectAPI/AppAssetLibraryImageRejectedAttributes)
+
+[`AppAssetLibraryImageUploadCompleteAttributes`](/documentation/AppStoreConnectAPI/AppAssetLibraryImageUploadCompleteAttributes)
 
 [`AppAssetLibraryImageWaitingForReviewAttributes`](/documentation/AppStoreConnectAPI/AppAssetLibraryImageWaitingForReviewAttributes)
+
+[`AppAssetLibraryImageAwaitingUploadAttributes`](/documentation/AppStoreConnectAPI/AppAssetLibraryImageAwaitingUploadAttributes)
+
+[`AppAssetLibraryImageReadyForReviewAttributes`](/documentation/AppStoreConnectAPI/AppAssetLibraryImageReadyForReviewAttributes)
+
+[`AppAssetLibraryImageApprovedAttributes`](/documentation/AppStoreConnectAPI/AppAssetLibraryImageApprovedAttributes)
 
 [`AppAssetLibraryImageInReviewAttributes`](/documentation/AppStoreConnectAPI/AppAssetLibraryImageInReviewAttributes)
 
 [`AppAssetLibraryImageAcceptedAttributes`](/documentation/AppStoreConnectAPI/AppAssetLibraryImageAcceptedAttributes)
 
-[`AppAssetLibraryImageReadyForReviewAttributes`](/documentation/AppStoreConnectAPI/AppAssetLibraryImageReadyForReviewAttributes)
-
-[`AppAssetLibraryImageArchivedAttributes`](/documentation/AppStoreConnectAPI/AppAssetLibraryImageArchivedAttributes)
-
 [`AppAssetLibraryImageFailedAttributes`](/documentation/AppStoreConnectAPI/AppAssetLibraryImageFailedAttributes)
 
-[`AppAssetLibraryImageApprovedAttributes`](/documentation/AppStoreConnectAPI/AppAssetLibraryImageApprovedAttributes)
-
-[`AppAssetLibraryImageRejectedAttributes`](/documentation/AppStoreConnectAPI/AppAssetLibraryImageRejectedAttributes)
-
-[`AppAssetLibraryImageUploadCompleteAttributes`](/documentation/AppStoreConnectAPI/AppAssetLibraryImageUploadCompleteAttributes)
+[`AppAssetLibraryImageArchivedAttributes`](/documentation/AppStoreConnectAPI/AppAssetLibraryImageArchivedAttributes)
 
 ---
 

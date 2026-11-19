@@ -401,6 +401,7 @@ public struct SubscriptionUpdateRequest: Codable, Sendable, RequestBody {
     public enum Included: Codable, Sendable {
         case subscriptionIntroductoryOfferInlineCreate(SubscriptionIntroductoryOfferInlineCreate)
         case subscriptionPriceInlineCreate(SubscriptionPriceInlineCreate)
+        case subscriptionPriceTierInlineCreate(SubscriptionPriceTierInlineCreate)
         case subscriptionPromotionalOfferInlineCreate(SubscriptionPromotionalOfferInlineCreate)
 
         public init(from decoder: Decoder) throws {
@@ -408,6 +409,8 @@ public struct SubscriptionUpdateRequest: Codable, Sendable, RequestBody {
                 self = .subscriptionIntroductoryOfferInlineCreate(subscriptionIntroductoryOfferInlineCreate)
             } else if let subscriptionPriceInlineCreate = try? SubscriptionPriceInlineCreate(from: decoder) {
                 self = .subscriptionPriceInlineCreate(subscriptionPriceInlineCreate)
+            } else if let subscriptionPriceTierInlineCreate = try? SubscriptionPriceTierInlineCreate(from: decoder) {
+                self = .subscriptionPriceTierInlineCreate(subscriptionPriceTierInlineCreate)
             } else if let subscriptionPromotionalOfferInlineCreate = try? SubscriptionPromotionalOfferInlineCreate(from: decoder) {
                 self = .subscriptionPromotionalOfferInlineCreate(subscriptionPromotionalOfferInlineCreate)
             } else {
@@ -424,6 +427,8 @@ public struct SubscriptionUpdateRequest: Codable, Sendable, RequestBody {
             case let .subscriptionIntroductoryOfferInlineCreate(value):
                 try value.encode(to: encoder)
             case let .subscriptionPriceInlineCreate(value):
+                try value.encode(to: encoder)
+            case let .subscriptionPriceTierInlineCreate(value):
                 try value.encode(to: encoder)
             case let .subscriptionPromotionalOfferInlineCreate(value):
                 try value.encode(to: encoder)
