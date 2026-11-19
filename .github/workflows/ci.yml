@@ -24,11 +24,11 @@ jobs:
       run: bash scripts/check-generated-code.sh
   build-apple:
     name: Build and Test (macOS)
-    runs-on: macos-26
+    runs-on: xcode-27
     permissions:
       contents: read
     env:
-      DEVELOPER_DIR: /Applications/Xcode_26.4.app/Contents/Developer
+      DEVELOPER_DIR: /Applications/Xcode_27.2.app/Contents/Developer
     steps:
     - uses: actions/checkout@v7.0.1
     - name: Print Xcode & Swift Version
@@ -39,34 +39,34 @@ jobs:
       run: swift test -v --enable-code-coverage --xunit-output .build/test-results.xml
     - name: Test Maintainer Tools
       run: swift test -v --package-path Tools --enable-code-coverage
-    - name: Generate runtime LCOV coverage report
-      id: runtime_coverage
+    - name: Generate LCOV coverage reports
+      id: coverage
       run: |
         # SwiftPM's exported JSON uploads, but Codecov marks it unusable.
-        # Convert the collected profdata to LCOV instead.
-        coverage_json_path="$(swift test --skip-build --show-codecov-path --enable-code-coverage | tail -n 1)"
-        codecov_dir="$(dirname "$coverage_json_path")"
-        build_dir="$(dirname "$codecov_dir")"
-        profdata_path="$codecov_dir/default.profdata"
-        test_binary_path="$build_dir/BagbutikPackageTests.xctest/Contents/MacOS/BagbutikPackageTests"
-        test -f "$profdata_path"
-        test -f "$test_binary_path"
-        xcrun llvm-cov export -format=lcov -instr-profile "$profdata_path" "$test_binary_path" > .build/codecov-runtime.lcov
-        test -s .build/codecov-runtime.lcov
-        echo "path=.build/codecov-runtime.lcov" >> "$GITHUB_OUTPUT"
-    - name: Generate tools LCOV coverage report
-      id: tools_coverage
-      run: |
-        coverage_json_path="$(swift test --package-path Tools --skip-build --show-codecov-path --enable-code-coverage | tail -n 1)"
-        codecov_dir="$(dirname "$coverage_json_path")"
-        build_dir="$(dirname "$codecov_dir")"
-        profdata_path="$codecov_dir/default.profdata"
-        test_binary_path="$build_dir/BagbutikToolsPackageTests.xctest/Contents/MacOS/BagbutikToolsPackageTests"
-        test -f "$profdata_path"
-        test -f "$test_binary_path"
-        xcrun llvm-cov export -format=lcov -instr-profile "$profdata_path" "$test_binary_path" > Tools/.build/codecov-tools.lcov
-        test -s Tools/.build/codecov-tools.lcov
-        echo "path=Tools/.build/codecov-tools.lcov" >> "$GITHUB_OUTPUT"
+        # Swift Build produces an XCTest bundle per test target and one merged profile.
+        export_lcov() {
+          local package_path="$1" report_path="$2"
+          local coverage_json codecov_dir test_bundle test_binary
+          local -a objects=()
+          coverage_json="$(swift test --package-path "$package_path" --skip-build --show-codecov-path --enable-code-coverage)"
+          codecov_dir="$(dirname "$coverage_json")"
+          for test_bundle in "$codecov_dir"/../*.xctest; do
+            test_binary="$test_bundle/Contents/MacOS/$(basename "$test_bundle" .xctest)"
+            test -f "$test_binary" || continue
+            objects+=(-object "$test_binary")
+          done
+          if ! test -f "$codecov_dir/default.profdata" || [ "${#objects[@]}" -eq 0 ]; then
+            echo "Missing coverage profile or test binaries for $package_path" >&2
+            return 1
+          fi
+          xcrun llvm-cov export -format=lcov -instr-profile "$codecov_dir/default.profdata" "${objects[@]}" > "$report_path"
+          test -s "$report_path"
+        }
+
+        export_lcov . .build/codecov-runtime.lcov
+        export_lcov Tools Tools/.build/codecov-tools.lcov
+        echo "runtime=.build/codecov-runtime.lcov" >> "$GITHUB_OUTPUT"
+        echo "tools=Tools/.build/codecov-tools.lcov" >> "$GITHUB_OUTPUT"
     - name: Resolve test results report path
       id: test_results
       run: |
@@ -78,7 +78,7 @@ jobs:
       uses: codecov/codecov-action@v7.0.0
       with:
         token: ${{ secrets.CODECOV_TOKEN }}
-        files: ${{ steps.runtime_coverage.outputs.path }},${{ steps.tools_coverage.outputs.path }}
+        files: ${{ steps.coverage.outputs.runtime }},${{ steps.coverage.outputs.tools }}
     - name: Upload test results to Codecov
       if: ${{ !cancelled() }}
       uses: codecov/codecov-action@v7.0.0
@@ -105,12 +105,15 @@ jobs:
       run: swift test -v --package-path Tools
   build-linux:
     name: Build and Test (Linux) - Swift ${{ matrix.swift }}
-    runs-on: ubuntu-24.04
+    runs-on: ${{ matrix.os || 'ubuntu-24.04' }}
     permissions:
       contents: read
     strategy:
       matrix:
         swift: ["6.0", "6.1", "6.2", "6.3", "6.4"]
+        include:
+          - swift: "6.4"
+            os: ubuntu-26.04
     steps:
     - uses: vapor/swiftly-action@v0.2.1
       with:
@@ -127,8 +130,8 @@ jobs:
     - name: Test Maintainer Tools
       run: swift test -v --package-path Tools
   build-android:
-    name: Build and Test (Android) - Swift 6.3
-    runs-on: ubuntu-24.04
+    name: Build and Test (Android) - Swift 6.4
+    runs-on: ubuntu-26.04
     permissions:
       contents: read
     steps:
@@ -145,4 +148,7 @@ jobs:
         swap-storage: true
     - uses: skiptools/swift-android-action@v2.9.5
       with:
-        swift-version: 6.3
+        swift-version: "6.4.2"
+        ndk-version: "30"
+        # The action only stages .resources automatically. Swift Build emits .bundle.
+        copy-files: .build/out/Products/Debug-android-x86_64/*.bundle
