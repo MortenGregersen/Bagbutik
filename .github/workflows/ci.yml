@@ -24,11 +24,11 @@ jobs:
       run: bash scripts/check-generated-code.sh
   build-apple:
     name: Build and Test (macOS)
-    runs-on: macos-26
+    runs-on: xcode-27
     permissions:
       contents: read
     env:
-      DEVELOPER_DIR: /Applications/Xcode_26.4.app/Contents/Developer
+      DEVELOPER_DIR: /Applications/Xcode_27.2.app/Contents/Developer
     steps:
     - uses: actions/checkout@v7.0.1
     - name: Print Xcode & Swift Version
@@ -105,12 +105,15 @@ jobs:
       run: swift test -v --package-path Tools
   build-linux:
     name: Build and Test (Linux) - Swift ${{ matrix.swift }}
-    runs-on: ubuntu-24.04
+    runs-on: ${{ matrix.os || 'ubuntu-24.04' }}
     permissions:
       contents: read
     strategy:
       matrix:
         swift: ["6.0", "6.1", "6.2", "6.3", "6.4"]
+        include:
+          - swift: "6.4"
+            os: ubuntu-26.04
     steps:
     - uses: vapor/swiftly-action@v0.2.1
       with:
@@ -127,8 +130,8 @@ jobs:
     - name: Test Maintainer Tools
       run: swift test -v --package-path Tools
   build-android:
-    name: Build and Test (Android) - Swift 6.3
-    runs-on: ubuntu-24.04
+    name: Build and Test (Android) - Swift 6.4
+    runs-on: ubuntu-26.04
     permissions:
       contents: read
     steps:
@@ -145,4 +148,5 @@ jobs:
         swap-storage: true
     - uses: skiptools/swift-android-action@v2.9.5
       with:
-        swift-version: 6.3
+        swift-version: "6.4.2"
+        ndk-version: "30"
